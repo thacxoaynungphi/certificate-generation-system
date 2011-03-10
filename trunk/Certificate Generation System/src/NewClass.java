@@ -10,5 +10,6 @@
 public class NewClass {
     public static void main(String[] args) {
         System.out.println("Hai anh dep trai qua");
+        System.out.println("Anh biên có mặt");
     }
 }
