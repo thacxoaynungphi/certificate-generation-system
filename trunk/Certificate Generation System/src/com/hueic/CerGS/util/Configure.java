@@ -17,11 +17,10 @@ import java.util.logging.Logger;
 public class Configure {
     Connection con = null;
     public Connection getConnection() {
-
         //String url = "jdbc:sqlserver://localhost:1433;databaseName=BugReportingSystem";
         String url = "jdbc:odbc:CertificateGenerationSystem";
         String user = "sa";
-        String password = "123456";
+        String password = "123";
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             con = java.sql.DriverManager.getConnection(url, user, password);
