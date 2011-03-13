@@ -12,8 +12,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -90,6 +88,7 @@ public class PersonDAO {
     }
 
     public boolean Create(Person person) {
+        boolean status = false;
         try {
             con = db.getConnection();
             String sql = "insert into Person(Id,FirstName,LastName,Birthday,Gender,Phone,Email,Address,Image,Status)" + " values (?,?,?,?,?,?,?); ";
@@ -104,52 +103,72 @@ public class PersonDAO {
             pst.setString(8, person.getAddress());
             pst.setString(9, person.getImage());
             pst.setInt(10, person.getStatus());
-
-            if(pst.executeUpdate() > 0)
-            {
+            if (pst.executeUpdate() > 0) {
                 setLastError("Add Person Successfully");
-                db.closeConnection();
-                return true;
+                status = true;
+            } else {
+                setLastError("Add Person unuccessfully");
             }
         } catch (SQLException ex) {
-           setLastError("SQL Error!");
-           db.closeConnection();
-           return  false;
+            setLastError("SQL Error!");
+        } finally {
+            db.closeConnection();
         }
-
-        setLastError("Add Fail!");
-        db.closeConnection();
-        return  false;
+        return status;
     }
 
-
-    public boolean Update(Person person)
-    {
+    public boolean Update(Person person) {
+        boolean status = false;
         try {
             con = db.getConnection();
             String sql = "select * from Person where Id = ?";
             pst = con.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst.setString(1, person.getId());
-            rs.first();
-            rs.updateString(2,person.getFirstName());
-            rs.updateString(3, person.getLastName());
-            rs.updateString(4, person.getBirthDay());
-            rs.updateString(5, person.getGender());
-            rs.updateString(6, person.getPhone());
-            rs.updateString(7, person.getEmail());
-            rs.updateString(8, person.getAddress());
-            rs.updateString(9, person.getImage());
-            rs.updateInt(10, person.getStatus());
-            rs.updateRow();
-            db.closeConnection();
-            setLastError("Update Person successfully");
-            return true;
+            rs = pst.executeQuery();
+            if (rs.first()) {
+                rs.updateString(2, person.getFirstName());
+                rs.updateString(3, person.getLastName());
+                rs.updateString(4, person.getBirthDay());
+                rs.updateString(5, person.getGender());
+                rs.updateString(6, person.getPhone());
+                rs.updateString(7, person.getEmail());
+                rs.updateString(8, person.getAddress());
+                rs.updateString(9, person.getImage());
+                rs.updateInt(10, person.getStatus());
+                rs.updateRow();
+                db.closeConnection();
+                setLastError("Update Person successfully");
+                status = true;
+            } else {
+                setLastError("Update Person unsuccessfully");
+            }
         } catch (SQLException ex) {
             setLastError("SQL Error!");
+        } finally {
             db.closeConnection();
-            return false;
         }
-        
+        return status;
+    }
+
+    public boolean Delete(String Id) {
+        boolean status = false;
+        try {
+            con = db.getConnection();
+            String sql = "delete from Person where Id = ?";
+            pst = con.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            pst.setString(1, Id);
+            if (pst.executeUpdate() > 0) {
+                setLastError("Delete Person successfully!");
+                status = true;
+            } else {
+                setLastError("Delete Person unsuccessfully!");
+            }
+        } catch (SQLException ex) {
+            setLastError("SQL Error!");
+        } finally {
+            db.closeConnection();
+        }
+        return status;
     }
 
     /**
