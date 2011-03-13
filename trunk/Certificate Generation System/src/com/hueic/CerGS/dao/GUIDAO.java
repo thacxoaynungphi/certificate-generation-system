@@ -23,7 +23,7 @@ public class GUIDAO extends JFrame {
         try {
             setLocationRelativeTo(null);
             GUIProperties prop = new GUIProperties();
-            UIManager.setLookAndFeel(prop.getLookAndFeel());
+            UIManager.setLookAndFeel(gui);
             SwingUtilities.updateComponentTreeUI(this);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(GUIDAO.class.getName()).log(Level.SEVERE, null, ex);

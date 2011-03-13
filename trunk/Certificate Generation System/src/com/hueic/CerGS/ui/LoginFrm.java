@@ -36,7 +36,7 @@ public class LoginFrm extends javax.swing.JFrame {
         bindingLang();
         GUIDAO guidao = new GUIDAO();
         GUIProperties guip = new GUIProperties();
-        guidao.setGUI(guip.PLAF_METAL);
+        guidao.setGUI(guip.PLAF_SMART);
     }
 
     public void bindingLang()
