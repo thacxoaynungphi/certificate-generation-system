@@ -1,3 +1,12 @@
+package com.hueic.CerGS.ui;
+
+import com.hueic.CerGS.dao.AccountDAO;
+import com.hueic.CerGS.dao.PermissionDAO;
+import com.hueic.CerGS.entity.Account;
+import com.hueic.CerGS.entity.Permission;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -8,7 +17,6 @@
  *
  * Created on Mar 13, 2011, 10:50:08 AM
  */
-
 /**
  *
  * @author qhvic
@@ -16,8 +24,22 @@
 public class LoginFrm extends javax.swing.JFrame {
 
     /** Creates new form LoginFrm */
+    PermissionDAO perDao = new PermissionDAO();
+
     public LoginFrm() {
         initComponents();
+        bindingData();
+    }
+
+    public void bindingData() {
+        cbxPermission.removeAllItems();
+
+        ArrayList<Permission> list = perDao.ReadByAll();
+        if (list != null) {
+            for (Permission per : list) {
+                cbxPermission.addItem(per.getName());
+            }
+        }
     }
 
     /** This method is called from within the constructor to
@@ -90,7 +112,6 @@ public class LoginFrm extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 20);
         getContentPane().add(txtUsername, gridBagConstraints);
 
-        cbxPermission.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrator", "Student", "Certificate Cell" }));
         cbxPermission.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -112,10 +133,20 @@ public class LoginFrm extends javax.swing.JFrame {
 
         btnLogin.setText("Login");
         btnLogin.setPreferredSize(new java.awt.Dimension(85, 23));
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnLogin);
 
         btnCancel.setText("Cancel");
         btnCancel.setPreferredSize(new java.awt.Dimension(85, 23));
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnCancel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -156,17 +187,36 @@ public class LoginFrm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
+        String username = txtUsername.getText();
+        String password = String.valueOf(txtPassword.getPassword());
+        Account acc = new Account(username, password, perDao.ReadByName(cbxPermission.getSelectedItem().toString()).getId());
+        AccountDAO accDao = new AccountDAO();
+        if (accDao.Login(acc)) {
+            JOptionPane.showMessageDialog(this, accDao.getLastError(), "Login", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, accDao.getLastError(), "Login", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnLoginActionPerformed
+
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new LoginFrm().setVisible(true);
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnLogin;
@@ -182,5 +232,4 @@ public class LoginFrm extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
-
 }

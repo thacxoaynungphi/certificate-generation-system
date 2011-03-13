@@ -65,6 +65,9 @@ public class AccountDAO {
             rs = pst.executeQuery();
             if (rs.next()) {
                 status = true;
+                setLastError("Login successfully");
+            } else {
+                setLastError("Login unsuccessfully");
             }
         } catch (SQLException ex) {
             setLastError("SQL Error!");
