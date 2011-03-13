@@ -13,7 +13,7 @@ public class GUIProperties {
     public static final String PLAF_NIMBUS = "com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel";
     public static final String PLAF_WINDOWS = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
     public static final String PLAF_MOTIF = "com.sun.java.swing.plaf.motif.MotifLookAndFeel";
-    public static final String PLAF_MAC = "com.sun.java.swing.plaf.mac.MacLookAndFeel";
+    public static final String PLAF_MAC = "com.birosoft.liquid.LiquidLookAndFeel";
     public static final String PLAF_ACRYL = "com.jtattoo.plaf.acryl.AcrylLookAndFeel";
     public static final String PLAF_AERO = "com.jtattoo.plaf.aero.AeroLookAndFeel";
     public static final String PLAF_ALUMINIUM = "com.jtattoo.plaf.aluminium.AluminiumLookAndFeel";
