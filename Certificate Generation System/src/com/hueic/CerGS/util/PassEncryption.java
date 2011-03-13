@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.hueic.CerGS.util;
 
 import java.security.MessageDigest;
@@ -16,7 +15,8 @@ import sun.misc.BASE64Encoder;
  * @author nhchung
  */
 public class PassEncryption {
-     public String encryptPass(String pass) {
+
+    public String encryptPass(String pass) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] b = md.digest(pass.getBytes());

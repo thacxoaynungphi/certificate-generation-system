@@ -6,8 +6,6 @@ package com.hueic.CerGS.dao;
 
 import com.hueic.CerGS.entity.Certificate;
 import com.hueic.CerGS.util.Configure;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,13 +14,7 @@ import java.util.ArrayList;
  *
  * @author nhchung
  */
-public class CertificateDAO {
-
-    private Configure db;
-    private Connection con = null;
-    private ResultSet rs = null;
-    private PreparedStatement pst = null;
-    private String lastError = "";
+public class CertificateDAO  extends BaseDAO{
 
     public CertificateDAO() {
         db = new Configure();
@@ -173,19 +165,5 @@ public class CertificateDAO {
             db.closeConnection();
         }
         return status;
-    }
-    
-    /**
-     * @return the lastError
-     */
-    public String getLastError() {
-        return lastError;
-    }
-
-    /**
-     * @param lastError the lastError to set
-     */
-    public void setLastError(String lastError) {
-        this.lastError = lastError;
     }
 }
