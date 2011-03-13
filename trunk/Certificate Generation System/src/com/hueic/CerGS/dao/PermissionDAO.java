@@ -68,6 +68,26 @@ public class PermissionDAO {
         return per;
     }
 
+    public Permission ReadByName(String name)
+    {
+         Permission per = null;
+        try {
+            con = db.getConnection();
+            String sql = "select * from Permission where Name = ?";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, name);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                per = new Permission();
+                per.setId(rs.getInt(1));
+                per.setName(rs.getString(2));
+            }
+        } catch (SQLException ex) {
+            setLastError("SQL Error!");
+        }
+        return per;
+    }
+
     public boolean Create(Permission per) {
         boolean status = false;
         try {
