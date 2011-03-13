@@ -14,7 +14,7 @@ package com.hueic.CerGS.entity;
 public class Certificate {
 
     //field
-    private String id;
+    private int id;
     private String studentID;
     private float sourse;
     private String grader;
@@ -24,14 +24,14 @@ public class Certificate {
     //contruction
     public Certificate()
     {
-        id = null;
+        id = 0;
         studentID = null;
         sourse = 0;
         grader = null;
         degreeDay = null;
     }
 
-    public Certificate(String id,String studentID,float sourse,String grader,String degreeDay)
+    public Certificate(int id,String studentID,float sourse,String grader,String degreeDay)
     {
         setId(id);
         setStudentID(studentID);
@@ -44,14 +44,14 @@ public class Certificate {
     /**
      * @return the id
      */
-    public String getId() {
+    public int getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
