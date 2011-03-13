@@ -62,18 +62,15 @@ public class PersonDAO {
         return list;
     }
 
-    public Person ReadByID(String id)
-    {
+    public Person ReadByID(String id) {
         Person person = null;
-        try
-        {
+        try {
             con = db.getConnection();
             String sql = "select * from Person where Id = ?";
             pst = con.prepareStatement(sql);
             pst.setString(1, id);
             rs = pst.executeQuery();
-            if(rs.next())
-            {
+            if (rs.next()) {
                 person = new Person();
                 person.setId(rs.getString("Id"));
                 person.setFirstName(rs.getString("FirstName"));
@@ -86,14 +83,76 @@ public class PersonDAO {
                 person.setImage(rs.getString("Image"));
                 person.setStatus(rs.getInt("Status"));
             }
-        }
-        catch(SQLException ex)
-        {
+        } catch (SQLException ex) {
             setLastError("SQL Error!");
         }
         return person;
     }
-     /**
+
+    public boolean Create(Person person) {
+        try {
+            con = db.getConnection();
+            String sql = "insert into Person(Id,FirstName,LastName,Birthday,Gender,Phone,Email,Address,Image,Status)" + " values (?,?,?,?,?,?,?); ";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, person.getId());
+            pst.setString(2, person.getFirstName());
+            pst.setString(3, person.getLastName());
+            pst.setString(4, person.getBirthDay());
+            pst.setString(5, person.getGender());
+            pst.setString(6, person.getPhone());
+            pst.setString(7, person.getEmail());
+            pst.setString(8, person.getAddress());
+            pst.setString(9, person.getImage());
+            pst.setInt(10, person.getStatus());
+
+            if(pst.executeUpdate() > 0)
+            {
+                setLastError("Add Person Successfully");
+                db.closeConnection();
+                return true;
+            }
+        } catch (SQLException ex) {
+           setLastError("SQL Error!");
+           db.closeConnection();
+           return  false;
+        }
+
+        setLastError("Add Fail!");
+        db.closeConnection();
+        return  false;
+    }
+
+
+    public boolean Update(Person person)
+    {
+        try {
+            con = db.getConnection();
+            String sql = "select * from Person where Id = ?";
+            pst = con.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            pst.setString(1, person.getId());
+            rs.first();
+            rs.updateString(2,person.getFirstName());
+            rs.updateString(3, person.getLastName());
+            rs.updateString(4, person.getBirthDay());
+            rs.updateString(5, person.getGender());
+            rs.updateString(6, person.getPhone());
+            rs.updateString(7, person.getEmail());
+            rs.updateString(8, person.getAddress());
+            rs.updateString(9, person.getImage());
+            rs.updateInt(10, person.getStatus());
+            rs.updateRow();
+            db.closeConnection();
+            setLastError("Update Person successfully");
+            return true;
+        } catch (SQLException ex) {
+            setLastError("SQL Error!");
+            db.closeConnection();
+            return false;
+        }
+        
+    }
+
+    /**
      * @return the lastError
      */
     public String getLastError() {
