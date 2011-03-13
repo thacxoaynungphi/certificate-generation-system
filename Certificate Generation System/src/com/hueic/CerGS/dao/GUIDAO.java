@@ -16,15 +16,20 @@ import javax.swing.UnsupportedLookAndFeelException;
  *
  * @author nhchung
  */
-public class GUIDAO extends JFrame {
+public class GUIDAO {
 
-    
+    JFrame frame = null;
+
+    public GUIDAO(JFrame frame) {
+        this.frame = frame;
+    }
+
     public void setGUI(String gui) {
         try {
-            setLocationRelativeTo(null);
+            frame.setLocationRelativeTo(null);
             GUIProperties prop = new GUIProperties();
             UIManager.setLookAndFeel(gui);
-            SwingUtilities.updateComponentTreeUI(this);
+            SwingUtilities.updateComponentTreeUI(frame);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(GUIDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
@@ -34,10 +39,10 @@ public class GUIDAO extends JFrame {
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(GUIDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
-    public void setLanguage(String lang)
-    {
+    public void setLanguage(String lang) {
         //TODO: thiet lap ngon ngu cho chuong trinh
     }
 }

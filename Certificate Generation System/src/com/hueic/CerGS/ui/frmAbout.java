@@ -15,10 +15,10 @@ package com.hueic.CerGS.ui;
  *
  * @author qhvic
  */
-public class AboutFrm extends javax.swing.JFrame {
+public class frmAbout extends javax.swing.JFrame {
 
     /** Creates new form AboutFrm */
-    public AboutFrm() {
+    public frmAbout() {
         initComponents();
     }
 
@@ -37,7 +37,7 @@ public class AboutFrm extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setText("<html>\n<body>\nCertificate Generation System<br/>Version 1.0<br/>© 2011 ConnectPlus.<br/>All rights reserved.\n</body>\n</html>");
@@ -58,6 +58,11 @@ public class AboutFrm extends javax.swing.JFrame {
 
         jButton1.setText("Close");
         jButton1.setPreferredSize(new java.awt.Dimension(85, 23));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -74,13 +79,18 @@ public class AboutFrm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
     * @param args the command line arguments
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AboutFrm().setVisible(true);
+                new frmAbout().setVisible(true);
             }
         });
     }
