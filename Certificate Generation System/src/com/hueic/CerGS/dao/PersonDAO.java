@@ -40,16 +40,16 @@ public class PersonDAO {
             rs = pst.executeQuery();
             while (rs.next()) {
                 Person person = new Person();
-                person.setId(rs.getString("Id"));
-                person.setFirstName(rs.getString("FirstName"));
-                person.setLastName(rs.getString("LastName"));
-                person.setBirthDay(rs.getString("Birthday"));
-                person.setGender(rs.getString("Gender"));
-                person.setPhone(rs.getString("Phone"));
-                person.setEmail(rs.getString("Email"));
-                person.setAddress(rs.getString("Address"));
-                person.setImage(rs.getString("Image"));
-                person.setStatus(rs.getInt("Status"));
+                person.setId(rs.getString(1));
+                person.setFirstName(rs.getString(2));
+                person.setLastName(rs.getString(3));
+                person.setBirthDay(rs.getString(4));
+                person.setGender(rs.getString(5));
+                person.setPhone(rs.getString(6));
+                person.setEmail(rs.getString(7));
+                person.setAddress(rs.getString(8));
+                person.setImage(rs.getString(9));
+                person.setStatus(rs.getInt(10));
                 list.add(person);
             }
         } catch (SQLException ex) {
@@ -70,16 +70,16 @@ public class PersonDAO {
             rs = pst.executeQuery();
             if (rs.next()) {
                 person = new Person();
-                person.setId(rs.getString("Id"));
-                person.setFirstName(rs.getString("FirstName"));
-                person.setLastName(rs.getString("LastName"));
-                person.setBirthDay(rs.getString("Birthday"));
-                person.setGender(rs.getString("Gender"));
-                person.setPhone(rs.getString("Phone"));
-                person.setEmail(rs.getString("Email"));
-                person.setAddress(rs.getString("Address"));
-                person.setImage(rs.getString("Image"));
-                person.setStatus(rs.getInt("Status"));
+                person.setId(rs.getString(1));
+                person.setFirstName(rs.getString(2));
+                person.setLastName(rs.getString(3));
+                person.setBirthDay(rs.getString(4));
+                person.setGender(rs.getString(5));
+                person.setPhone(rs.getString(6));
+                person.setEmail(rs.getString(7));
+                person.setAddress(rs.getString(8));
+                person.setImage(rs.getString(9));
+                person.setStatus(rs.getInt(10));
             }
         } catch (SQLException ex) {
             setLastError("SQL Error!");
@@ -155,7 +155,7 @@ public class PersonDAO {
         try {
             con = db.getConnection();
             String sql = "delete from Person where Id = ?";
-            pst = con.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            pst = con.prepareStatement(sql);
             pst.setString(1, Id);
             if (pst.executeUpdate() > 0) {
                 setLastError("Delete Person successfully!");
