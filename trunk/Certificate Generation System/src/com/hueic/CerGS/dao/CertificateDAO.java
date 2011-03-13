@@ -20,7 +20,7 @@ public class CertificateDAO  extends BaseDAO{
         db = new Configure();
     }
 
-    public ArrayList<Certificate> ReadByAll() {
+    public ArrayList<Certificate> readByAll() {
         ArrayList<Certificate> list = new ArrayList<Certificate>();
         con = db.getConnection();
         String sql = "select * from Certificate";
@@ -44,7 +44,7 @@ public class CertificateDAO  extends BaseDAO{
         return list;
     }
 
-    public Certificate ReadById(int id) {
+    public Certificate readById(int id) {
         Certificate cer = null;
         try {
             con = db.getConnection();
@@ -66,7 +66,7 @@ public class CertificateDAO  extends BaseDAO{
         return cer;
     }
 
-    public ArrayList<Certificate> ReadByStudentId(String studentID) {
+    public ArrayList<Certificate> readByStudentId(String studentID) {
         ArrayList<Certificate> list = new ArrayList<Certificate>();
         con = db.getConnection();
         String sql = "select * from Certificate where StudentId = ?";
@@ -91,7 +91,7 @@ public class CertificateDAO  extends BaseDAO{
         return list;
     }
 
-    public boolean Create(Certificate cer) {
+    public boolean create(Certificate cer) {
         boolean status = false;
         try {
             con = db.getConnection();
@@ -116,7 +116,7 @@ public class CertificateDAO  extends BaseDAO{
         return status;
     }
     
-    public boolean Update(Certificate cer)
+    public boolean update(Certificate cer)
     {
          boolean status = false;
         try {
@@ -145,7 +145,7 @@ public class CertificateDAO  extends BaseDAO{
         return status;
     }
 
-    public boolean  Delete(int id)
+    public boolean  delete(int id)
     {
         boolean status = false;
         try {

@@ -76,7 +76,7 @@ public class PersonDAO extends BaseDAO {
         return person;
     }
 
-    public boolean Create(Person person) {
+    public boolean create(Person person) {
         boolean status = false;
         try {
             con = db.getConnection();
@@ -106,7 +106,7 @@ public class PersonDAO extends BaseDAO {
         return status;
     }
 
-    public boolean Update(Person person) {
+    public boolean update(Person person) {
         boolean status = false;
         try {
             con = db.getConnection();
@@ -139,7 +139,7 @@ public class PersonDAO extends BaseDAO {
         return status;
     }
 
-    public boolean Delete(String Id) {
+    public boolean delete(String Id) {
         boolean status = false;
         try {
             con = db.getConnection();

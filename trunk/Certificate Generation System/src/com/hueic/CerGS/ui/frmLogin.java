@@ -27,15 +27,14 @@ public class frmLogin extends javax.swing.JFrame {
     /** Creates new form LoginFrm */
     PermissionDAO perDao = new PermissionDAO();
     LanguageProperties langProperties = new LanguageProperties();
-    
+
     public frmLogin() {
         initComponents();
         bindingData();
         bindingLang();
     }
 
-    public void bindingLang()
-    {
+    public void bindingLang() {
         btnLogin.setText(langProperties.getValueLanguage("LOGIN"));
         btnCancel.setText(langProperties.getValueLanguage("CANCEL"));
         lblUsername.setText(langProperties.getValueLanguage("USERNAME"));
@@ -47,7 +46,7 @@ public class frmLogin extends javax.swing.JFrame {
     public void bindingData() {
         cbxPermission.removeAllItems();
 
-        ArrayList<Permission> list = perDao.ReadByAll();
+        ArrayList<Permission> list = perDao.readByAll();
         if (list != null) {
             for (Permission per : list) {
                 cbxPermission.addItem(per.getName());
@@ -209,9 +208,9 @@ public class frmLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         String username = txtUsername.getText();
         String password = String.valueOf(txtPassword.getPassword());
-        Account acc = new Account(username, password, perDao.ReadByName(cbxPermission.getSelectedItem().toString()).getId());
+        Account acc = new Account(username, password, perDao.readByName(cbxPermission.getSelectedItem().toString()).getId());
         AccountDAO accDao = new AccountDAO();
-        if (accDao.Login(acc)) {
+        if (accDao.login(acc)) {
             JOptionPane.showMessageDialog(this, accDao.getLastError(), "Login", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         } else {

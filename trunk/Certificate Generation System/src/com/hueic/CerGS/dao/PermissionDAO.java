@@ -20,7 +20,7 @@ public class PermissionDAO  extends BaseDAO{
         db = new Configure();
     }
 
-    public ArrayList<Permission> ReadByAll() {
+    public ArrayList<Permission> readByAll() {
         ArrayList<Permission> list = new ArrayList<Permission>();
         con = db.getConnection();
         String sql = "select * from Permission";
@@ -41,7 +41,7 @@ public class PermissionDAO  extends BaseDAO{
         return list;
     }
 
-    public Permission ReadByID(int id) {
+    public Permission readByID(int id) {
         Permission per = null;
         try {
             con = db.getConnection();
@@ -60,7 +60,7 @@ public class PermissionDAO  extends BaseDAO{
         return per;
     }
 
-    public Permission ReadByName(String name)
+    public Permission readByName(String name)
     {
          Permission per = null;
         try {
@@ -80,7 +80,7 @@ public class PermissionDAO  extends BaseDAO{
         return per;
     }
 
-    public boolean Create(Permission per) {
+    public boolean create(Permission per) {
         boolean status = false;
         try {
             con = db.getConnection();
@@ -102,7 +102,7 @@ public class PermissionDAO  extends BaseDAO{
         return status;
     }
 
-    public boolean Update(Permission per) {
+    public boolean update(Permission per) {
         boolean status = false;
         try {
             con = db.getConnection();
@@ -126,7 +126,7 @@ public class PermissionDAO  extends BaseDAO{
         return status;
     }
 
-    public boolean Delete(int id)
+    public boolean delete(int id)
     {
           boolean status = false;
         try {
