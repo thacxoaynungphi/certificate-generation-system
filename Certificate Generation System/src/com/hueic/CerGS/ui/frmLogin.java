@@ -3,6 +3,7 @@ package com.hueic.CerGS.ui;
 import com.hueic.CerGS.component.LanguageProperties;
 import com.hueic.CerGS.dao.AccountDAO;
 import com.hueic.CerGS.dao.PermissionDAO;
+import com.hueic.CerGS.dao.RememberAccount;
 import com.hueic.CerGS.entity.Account;
 import com.hueic.CerGS.entity.Permission;
 import java.util.ArrayList;
@@ -32,6 +33,13 @@ public class frmLogin extends javax.swing.JFrame {
         initComponents();
         bindingData();
         bindingLang();
+        RememberAccount rememberAcc = new RememberAccount();
+        Account acc = rememberAcc.getUser();
+        if (acc != null) {
+            System.out.println(acc.getPassword());
+            txtUsername.setText(acc.getUsername().trim());
+            txtPassword.setText(acc.getPassword().trim());
+        }
     }
 
     public void bindingLang() {
@@ -212,6 +220,10 @@ public class frmLogin extends javax.swing.JFrame {
         AccountDAO accDao = new AccountDAO();
         if (accDao.login(acc)) {
             JOptionPane.showMessageDialog(this, accDao.getLastError(), "Login", JOptionPane.INFORMATION_MESSAGE);
+            if (chbRepass.isSelected()) {
+                RememberAccount rememberAccount = new RememberAccount();
+                rememberAccount.writeFile(acc);
+            }
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, accDao.getLastError(), "Login", JOptionPane.ERROR_MESSAGE);
