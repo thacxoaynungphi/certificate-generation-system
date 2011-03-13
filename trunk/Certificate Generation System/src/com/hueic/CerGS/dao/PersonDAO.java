@@ -31,7 +31,7 @@ public class PersonDAO {
         passEncryption = new PassEncryption();
     }
 
-    public ArrayList<Person> ReadByAll() {
+    public ArrayList<Person> readByAll() {
         ArrayList<Person> list = new ArrayList<Person>();
         con = db.getConnection();
         String sql = "select * from Person";
@@ -60,7 +60,7 @@ public class PersonDAO {
         return list;
     }
 
-    public Person ReadByID(String id) {
+    public Person readByID(String id) {
         Person person = null;
         try {
             con = db.getConnection();
@@ -136,7 +136,7 @@ public class PersonDAO {
                 rs.updateString(9, person.getImage());
                 rs.updateInt(10, person.getStatus());
                 rs.updateRow();
-                db.closeConnection();
+                db.closeConnection();//du code ne
                 setLastError("Update Person successfully");
                 status = true;
             } else {
