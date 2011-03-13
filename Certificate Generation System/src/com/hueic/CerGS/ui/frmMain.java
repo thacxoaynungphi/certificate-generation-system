@@ -129,7 +129,7 @@ public class frmMain extends javax.swing.JFrame {
 
     private void mnuILoginSystemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuILoginSystemActionPerformed
         // TODO add your handling code here:
-        frmLogin login = new frmLogin();
+        frmLogin login = new frmLogin(this,true);
         login.setVisible(true);
     }//GEN-LAST:event_mnuILoginSystemActionPerformed
 
