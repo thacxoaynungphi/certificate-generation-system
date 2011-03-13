@@ -4,9 +4,9 @@
  */
 
 /*
- * MainFrm.java
+ * EmployeeFrm.java
  *
- * Created on Mar 13, 2011, 5:37:51 PM
+ * Created on Mar 13, 2011, 5:38:22 PM
  */
 
 package com.hueic.CerGS.ui;
@@ -15,10 +15,10 @@ package com.hueic.CerGS.ui;
  *
  * @author nhchung
  */
-public class MainFrm extends javax.swing.JFrame {
+public class frmEmployee extends javax.swing.JFrame {
 
-    /** Creates new form MainFrm */
-    public MainFrm() {
+    /** Creates new form EmployeeFrm */
+    public frmEmployee() {
         initComponents();
     }
 
@@ -31,7 +31,7 @@ public class MainFrm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -53,7 +53,7 @@ public class MainFrm extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainFrm().setVisible(true);
+                new frmEmployee().setVisible(true);
             }
         });
     }

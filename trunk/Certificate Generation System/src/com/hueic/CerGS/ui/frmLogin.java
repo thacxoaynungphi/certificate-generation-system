@@ -1,9 +1,7 @@
 package com.hueic.CerGS.ui;
 
-import com.hueic.CerGS.component.GUIProperties;
 import com.hueic.CerGS.component.LanguageProperties;
 import com.hueic.CerGS.dao.AccountDAO;
-import com.hueic.CerGS.dao.GUIDAO;
 import com.hueic.CerGS.dao.PermissionDAO;
 import com.hueic.CerGS.entity.Account;
 import com.hueic.CerGS.entity.Permission;
@@ -24,19 +22,16 @@ import javax.swing.JOptionPane;
  *
  * @author qhvic
  */
-public class LoginFrm extends javax.swing.JFrame {
+public class frmLogin extends javax.swing.JFrame {
 
     /** Creates new form LoginFrm */
     PermissionDAO perDao = new PermissionDAO();
     LanguageProperties langProperties = new LanguageProperties();
     
-    public LoginFrm() {
+    public frmLogin() {
         initComponents();
         bindingData();
         bindingLang();
-        GUIDAO guidao = new GUIDAO();
-        GUIProperties guip = new GUIProperties();
-        guidao.setGUI(guip.PLAF_SMART);
     }
 
     public void bindingLang()
@@ -86,8 +81,9 @@ public class LoginFrm extends javax.swing.JFrame {
 
         jPasswordField1.setText("jPasswordField1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(400, 300));
+        setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         txtPassword.setPreferredSize(new java.awt.Dimension(200, 20));
@@ -150,7 +146,6 @@ public class LoginFrm extends javax.swing.JFrame {
         jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
 
         btnLogin.setText("Login");
-        btnLogin.setPreferredSize(new java.awt.Dimension(85, 23));
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
@@ -207,9 +202,7 @@ public class LoginFrm extends javax.swing.JFrame {
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
-        //this.dispose();
-        AboutFrm about = new AboutFrm();
-        about.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
@@ -233,7 +226,7 @@ public class LoginFrm extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new LoginFrm().setVisible(true);
+                new frmLogin().setVisible(true);
             }
         });
     }
