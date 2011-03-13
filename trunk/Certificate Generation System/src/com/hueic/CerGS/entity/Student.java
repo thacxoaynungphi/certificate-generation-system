@@ -2,19 +2,16 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.hueic.CerGS.entity;
-
 /**
  *
  * @author nhchung
  * Date : 13/03/2011
  * Version : 1.0
  */
-public class Student {
+public class Student extends Person {
 
     //field
-    private String id;
     private String classID;
     private String currentClass;
     private String registrationDate;
@@ -22,36 +19,21 @@ public class Student {
     //contruction
     public Student()
     {
-        id = null;
+        super();
         classID = null;
         currentClass = null;
         registrationDate = null;
     }
 
-
-    public Student(String id,String classID,String currentClass,String registrationDate)
+    public Student(String id,String firstName,String lastName,String birthDay,String gender,String phone,String email,String address,String image,String classID,String currentClass,String registrationDate)
     {
-        setId(id);
+        super(id, firstName, lastName, birthDay, gender, phone, email, address, image);
         setClassID(classID);
         setCurrentClass(currentClass);
         setRegistrationDate(registrationDate);
     }
 
-    //method get-set
-    /**
-     * @return the id
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
-
+    //method get-set    
     /**
      * @return the classID
      */
@@ -94,4 +76,3 @@ public class Student {
         this.registrationDate = registrationDate;
     }    
 }
-

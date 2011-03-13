@@ -6,8 +6,6 @@ package com.hueic.CerGS.dao;
 
 import com.hueic.CerGS.entity.Permission;
 import com.hueic.CerGS.util.Configure;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,13 +14,7 @@ import java.util.ArrayList;
  *
  * @author nhchung
  */
-public class PermissionDAO {
-
-    private Configure db = null;
-    private Connection con = null;
-    private ResultSet rs = null;
-    private PreparedStatement pst = null;
-    private String lastError = "";
+public class PermissionDAO  extends BaseDAO{
 
     public PermissionDAO() {
         db = new Configure();
@@ -154,19 +146,5 @@ public class PermissionDAO {
             db.closeConnection();
         }
         return status;
-    }
-    
-    /**
-     * @return the lastError
-     */
-    public String getLastError() {
-        return lastError;
-    }
-
-    /**
-     * @param lastError the lastError to set
-     */
-    public void setLastError(String lastError) {
-        this.lastError = lastError;
     }
 }

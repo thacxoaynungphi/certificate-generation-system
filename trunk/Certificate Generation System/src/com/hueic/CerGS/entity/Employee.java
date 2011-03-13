@@ -11,41 +11,22 @@ package com.hueic.CerGS.entity;
  * Date: 13/03/2011
  * Version: 1.0
  */
-public class Employee {
-
-    //field
-    private String id;
+public class Employee extends Person {
+    
     private String beginWork;
-
     //contruction
-
     public Employee()
     {
-        id = null;
+        super();
         beginWork = null;
     }
 
-    public Employee(String id,String beginWork)
+    public Employee(String id,String firstName,String lastName,String birthDay,String gender,String phone,String email,String address,String image,String beginWork)
     {
-        setId(id);
+        super(id, firstName, lastName, birthDay, gender, phone, email, address, image);
         setBeginWork(beginWork);
     }
-    //method get-set
-    
-    /**
-     * @return the id
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
-
+    //method get-set    
     /**
      * @return the beginWork
      */
