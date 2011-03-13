@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  */
 public class LanguageProperties {
 
-    public String lang = "vn_VN";
+    public String lang = "fr_FR";
     public String filename = null;
     public LanguageProperties()
     {
