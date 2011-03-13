@@ -1,6 +1,9 @@
 package com.hueic.CerGS.ui;
 
+import com.hueic.CerGS.component.GUIProperties;
+import com.hueic.CerGS.component.LanguageProperties;
 import com.hueic.CerGS.dao.AccountDAO;
+import com.hueic.CerGS.dao.GUIDAO;
 import com.hueic.CerGS.dao.PermissionDAO;
 import com.hueic.CerGS.entity.Account;
 import com.hueic.CerGS.entity.Permission;
@@ -25,10 +28,25 @@ public class LoginFrm extends javax.swing.JFrame {
 
     /** Creates new form LoginFrm */
     PermissionDAO perDao = new PermissionDAO();
-
+    LanguageProperties langProperties = new LanguageProperties();
+    
     public LoginFrm() {
         initComponents();
         bindingData();
+        bindingLang();
+        GUIDAO guidao = new GUIDAO();
+        GUIProperties guip = new GUIProperties();
+        guidao.setGUI(guip.PLAF_METAL);
+    }
+
+    public void bindingLang()
+    {
+        btnLogin.setText(langProperties.getValueLanguage("LOGIN"));
+        btnCancel.setText(langProperties.getValueLanguage("CANCEL"));
+        lblUsername.setText(langProperties.getValueLanguage("USERNAME"));
+        lblPassword.setText(langProperties.getValueLanguage("PASSWORD"));
+        lblPermission.setText(langProperties.getValueLanguage("PERMISSION"));
+        chbRepass.setText(langProperties.getValueLanguage("REMEMBER_PASSWORD"));
     }
 
     public void bindingData() {
@@ -189,7 +207,9 @@ public class LoginFrm extends javax.swing.JFrame {
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+        //this.dispose();
+        AboutFrm about = new AboutFrm();
+        about.setVisible(true);
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
