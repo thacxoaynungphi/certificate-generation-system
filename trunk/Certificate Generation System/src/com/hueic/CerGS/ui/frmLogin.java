@@ -23,16 +23,18 @@ import javax.swing.JOptionPane;
  *
  * @author qhvic
  */
-public class frmLogin extends javax.swing.JFrame {
+public class frmLogin extends javax.swing.JDialog {
 
     /** Creates new form LoginFrm */
     PermissionDAO perDao = new PermissionDAO();
     LanguageProperties langProperties = new LanguageProperties();
 
-    public frmLogin() {
+    public frmLogin(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
         bindingData();
         bindingLang();
+        setLocationRelativeTo(null);
         RememberAccount rememberAcc = new RememberAccount();
         Account acc = rememberAcc.getUser();
         if (acc != null) {
@@ -237,7 +239,13 @@ public class frmLogin extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new frmLogin().setVisible(true);
+                frmLogin dialog = new frmLogin(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
