@@ -19,7 +19,7 @@ public class Configure {
     public Connection getConnection() {
 
         //String url = "jdbc:sqlserver://localhost:1433;databaseName=BugReportingSystem";
-        String url = "jdbc:odbc:BugReportingSystem";
+        String url = "jdbc:odbc:CertificateGenerationSystem";
         String user = "sa";
         String password = "123456";
         try {
