@@ -21,7 +21,7 @@ public class RememberAccount {
     String fileName = "";
     //thuc hien lay du lieu tu trong file luu tai khoan
 
-    public Account GetUser() {
+    public Account getUser() {
         Account acc = null;
         File file = new  File(fileName);
         if(file.exists())
@@ -33,7 +33,7 @@ public class RememberAccount {
     }
 
     //xoa cac du lieu tai khoan da dang nhap vo trong tai khoan
-    public void ClearUser() {
+    public void clearUser() {
         FileInputStream fis = null;
         try {
             File file = new File(fileName);

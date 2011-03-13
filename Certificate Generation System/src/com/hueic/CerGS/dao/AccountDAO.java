@@ -24,7 +24,7 @@ public class AccountDAO extends BaseDAO {
         passEncryption = new PassEncryption();
     }
 
-    public ArrayList<Account> ReadByAll() {
+    public ArrayList<Account> readByAll() {
         ArrayList<Account> list = new ArrayList<Account>();
         con = db.getConnection();
         String sql = "select * from Account";
@@ -46,7 +46,7 @@ public class AccountDAO extends BaseDAO {
         return list;
     }
 
-    public boolean Login(Account acc) {
+    public boolean login(Account acc) {
         boolean status = false;
         try {
             con = db.getConnection();
@@ -95,7 +95,7 @@ public class AccountDAO extends BaseDAO {
         return status;
     }
 
-    public boolean Create(Account acc) {
+    public boolean create(Account acc) {
         boolean status = false;
         try {
             con = db.getConnection();
@@ -118,7 +118,7 @@ public class AccountDAO extends BaseDAO {
         return status;
     }
 
-    public boolean Update(Account acc) {
+    public boolean update(Account acc) {
         boolean status = false;
         try {
             con = db.getConnection();
@@ -143,7 +143,7 @@ public class AccountDAO extends BaseDAO {
         return status;
     }
 
-    public boolean Delete(Account acc) {
+    public boolean delete(Account acc) {
         boolean status = false;
         try {
             con = db.getConnection();
