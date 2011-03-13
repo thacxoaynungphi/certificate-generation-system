@@ -22,7 +22,8 @@ public class Configure {
         String user = "sa";
         String password = "123";
         try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             con = java.sql.DriverManager.getConnection(url, user, password);
         } catch (SQLException ex) {
             Logger.getLogger(Configure.class.getName()).log(Level.SEVERE, null, ex);
