@@ -21,7 +21,7 @@ public class Employee extends Person {
         beginWork = null;
     }
 
-    public Employee(String id,String firstName,String lastName,String birthDay,String gender,String phone,String email,String address,String image,String beginWork)
+    public Employee(String id,String firstName,String lastName,String birthDay,int gender,String phone,String email,String address,String image,String beginWork) throws Exception
     {
         super(id, firstName, lastName, birthDay, gender, phone, email, address, image);
         setBeginWork(beginWork);
@@ -37,6 +37,7 @@ public class Employee extends Person {
     /**
      * @param beginWork the beginWork to set
      */
+     //khi nhap beginwork thi se dua vao Commbobox de nhap
     public void setBeginWork(String beginWork) {
         this.beginWork = beginWork;
     }    

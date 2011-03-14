@@ -23,7 +23,7 @@ public class Class {
 
     public Class(){}
 
-    public Class(String id, String name, float totalFees, String courseId, String startDate, int feesStructe){
+    public Class(String id, String name, float totalFees, String courseId, String startDate, int feesStructe)throws Exception{
         setId(id);
         setCourseId(courseId);
         setName(name);
@@ -33,7 +33,7 @@ public class Class {
         setStatus(1);
     }
 
-    public Class(String id, String name, float totalFees, String courseId, String startDate){
+    public Class(String id, String name, float totalFees, String courseId, String startDate) throws Exception{
         setId(id);
         setName(name);
         setTotalFees(totalFees);
@@ -43,7 +43,7 @@ public class Class {
         setStatus(1);
     }
 
-    public Class(String id, String name, float totalFees, String courseId, int feesStructe){
+    public Class(String id, String name, float totalFees, String courseId, int feesStructe)throws Exception{
         setId(id);
         setCourseId(courseId);
         setName(name);
@@ -53,7 +53,7 @@ public class Class {
         setStatus(1);
     }
 
-    public Class(String id, String name, float totalFees, String courseId){
+    public Class(String id, String name, float totalFees, String courseId) throws Exception{
         setId(id);
         setCourseId(courseId);
         setName(name);
@@ -73,7 +73,8 @@ public class Class {
     /**
      * @param id the id to set
      */
-    public void setId(String id) {
+    public void setId(String id) throws Exception {
+        if(id.length() > 10 || id.length() < 0) throw new Exception("length of ID properties can't greater than 10");
         this.id = id;
     }
 
@@ -87,7 +88,8 @@ public class Class {
     /**
      * @param name the name to set
      */
-    public void setName(String name) {
+    public void setName(String name) throws Exception{
+        if(name.length() > 20 || name.length() < 0) throw new Exception("length if ID properties can't greater than 10");
         this.name = name;
     }
 
