@@ -8,7 +8,7 @@
  * This software is in the public domain.
  */
 
-package com.hueic.CerGS.ui;
+package com.hueic.CerGS.ui.main;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

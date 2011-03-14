@@ -1,4 +1,4 @@
-package com.hueic.CerGS.ui;
+package com.hueic.CerGS.ui.system;
 
 import com.hueic.CerGS.component.LanguageProperties;
 import com.hueic.CerGS.dao.AccountDAO;
