@@ -17,22 +17,19 @@ public class Payment {
 
     private int id;
     private String studentId;
-    private String subjectId;
     private float money;
     private String payday;
 
     public Payment(){
         setId(0);
         setStudentId(null);
-        setSubjectId(null);
         setMoney(0);
         setPayday(null);
     }
 
-    public Payment(int id, String studentId, String subjectId, float money, String payday){
+    public Payment(int id, String studentId, float money, String payday){
         setId(id);
         setStudentId(studentId);
-        setSubjectId(subjectId);
         setMoney(money);
         setPayday(payday);
     }
@@ -63,20 +60,6 @@ public class Payment {
      */
     public void setStudentId(String studentId) {
         this.studentId = studentId;
-    }
-
-    /**
-     * @return the subjectId
-     */
-    public String getSubjectId() {
-        return subjectId;
-    }
-
-    /**
-     * @param subjectId the subjectId to set
-     */
-    public void setSubjectId(String subjectId) {
-        this.subjectId = subjectId;
     }
 
     /**

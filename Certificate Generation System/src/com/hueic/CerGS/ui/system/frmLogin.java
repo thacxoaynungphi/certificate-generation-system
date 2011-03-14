@@ -7,6 +7,8 @@ import com.hueic.CerGS.dao.RememberAccount;
 import com.hueic.CerGS.entity.Account;
 import com.hueic.CerGS.entity.Permission;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /*
@@ -237,20 +239,24 @@ public class frmLogin extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
-        String username = txtUsername.getText();
-        String password = String.valueOf(txtPassword.getPassword());
-        Account acc = new Account(username, password, perDao.readByName(cbxPermission.getSelectedItem().toString()).getId());
-        AccountDAO accDao = new AccountDAO();
-        if (accDao.login(acc)) {
-            JOptionPane.showMessageDialog(this, accDao.getLastError(), "Login", JOptionPane.INFORMATION_MESSAGE);
-            if (chbRepass.isSelected()) {
-                RememberAccount rememberAccount = new RememberAccount();
-                rememberAccount.writeFile(acc);
+        try {
+            // TODO add your handling code here:
+            String username = txtUsername.getText();
+            String password = String.valueOf(txtPassword.getPassword());
+            Account acc = new Account(username, password, perDao.readByName(cbxPermission.getSelectedItem().toString()).getId());
+            AccountDAO accDao = new AccountDAO();
+            if (accDao.login(acc)) {
+                JOptionPane.showMessageDialog(this, accDao.getLastError(), "Login", JOptionPane.INFORMATION_MESSAGE);
+                if (chbRepass.isSelected()) {
+                    RememberAccount rememberAccount = new RememberAccount();
+                    rememberAccount.writeFile(acc);
+                }
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, accDao.getLastError(), "Login", JOptionPane.ERROR_MESSAGE);
             }
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(this, accDao.getLastError(), "Login", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception ex) {
+            Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 

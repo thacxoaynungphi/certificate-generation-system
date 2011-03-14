@@ -14,7 +14,7 @@ import java.util.ArrayList;
  *
  * @author nhchung
  */
-public class SubjectDAO extends BaseDAO{
+public class SubjectDAO extends BaseDAO {
 
     public SubjectDAO() {
         db = new Configure();
@@ -34,7 +34,6 @@ public class SubjectDAO extends BaseDAO{
                 sub.setCoefficient(rs.getInt(3));
                 sub.setCourseID(rs.getString(4));
                 sub.setStatus(rs.getInt(5));
-                sub.setFees(rs.getFloat(6));
                 list.add(sub);
             }
         } catch (SQLException ex) {
@@ -60,7 +59,6 @@ public class SubjectDAO extends BaseDAO{
                 sub.setCoefficient(rs.getInt(3));
                 sub.setCourseID(rs.getString(4));
                 sub.setStatus(rs.getInt(5));
-                sub.setFees(rs.getFloat(6));
             }
         } catch (SQLException ex) {
             setLastError("SQL Error!");
@@ -79,8 +77,6 @@ public class SubjectDAO extends BaseDAO{
             pst.setInt(3, sub.getCoefficient());
             pst.setString(4, sub.getCourseID());
             pst.setInt(5, sub.getStatus());
-            pst.setFloat(6, sub.getFees());
-            pst.setInt(10, sub.getStatus());
             if (pst.executeUpdate() > 0) {
                 setLastError("Add Subject Successfully");
                 status = true;
@@ -108,7 +104,6 @@ public class SubjectDAO extends BaseDAO{
                 rs.updateInt(3, sub.getCoefficient());
                 rs.updateString(4, sub.getCourseID());
                 rs.updateInt(5, sub.getStatus());
-                rs.updateFloat(6, sub.getFees());
                 rs.updateRow();
                 db.closeConnection();
                 setLastError("Update Subject successfully");

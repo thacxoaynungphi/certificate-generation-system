@@ -9,6 +9,8 @@ import com.hueic.CerGS.entity.Person;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -29,7 +31,7 @@ public class EmployeeDAO extends BaseDAO {
                 emp.setFirstName(rs.getString(2));
                 emp.setLastName(rs.getString(3));
                 emp.setBirthDay(rs.getString(4));
-                emp.setGender(rs.getString(5));
+                emp.setGender(rs.getInt(5));
                 emp.setPhone(rs.getString(6));
                 emp.setEmail(rs.getString(7));
                 emp.setAddress(rs.getString(8));
@@ -38,8 +40,8 @@ public class EmployeeDAO extends BaseDAO {
                 emp.setBeginWork(rs.getString(11));
                 list.add(emp);
             }
-        } catch (SQLException ex) {
-            setLastError("SQL Error!");
+        } catch (Exception ex) {
+            Logger.getLogger(EmployeeDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             db.closeConnection();
         }
@@ -60,7 +62,7 @@ public class EmployeeDAO extends BaseDAO {
                 emp.setFirstName(rs.getString(2));
                 emp.setLastName(rs.getString(3));
                 emp.setBirthDay(rs.getString(4));
-                emp.setGender(rs.getString(5));
+                emp.setGender(rs.getInt(5));
                 emp.setPhone(rs.getString(6));
                 emp.setEmail(rs.getString(7));
                 emp.setAddress(rs.getString(8));
@@ -68,8 +70,8 @@ public class EmployeeDAO extends BaseDAO {
                 emp.setStatus(rs.getInt(10));
                 emp.setBeginWork(rs.getString(11));
             }
-        } catch (SQLException ex) {
-            setLastError("SQL Error!");
+        } catch (Exception ex) {
+            Logger.getLogger(EmployeeDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return emp;
     }

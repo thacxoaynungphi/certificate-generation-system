@@ -7,7 +7,6 @@ package com.hueic.CerGS.dao;
 import com.hueic.CerGS.entity.Account;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -39,7 +38,7 @@ public class RememberAccount {
                     //TODO: chua thuc hien ma hoa duoc password trong file log
                     acc.setPermission(Integer.parseInt(properties.getProperty("permission")));
                 }
-            } catch (IOException ex) {
+            } catch (Exception ex) {
                 Logger.getLogger(RememberAccount.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
                 try {

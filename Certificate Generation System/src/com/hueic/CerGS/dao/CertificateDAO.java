@@ -32,8 +32,7 @@ public class CertificateDAO  extends BaseDAO{
                 cer.setId(rs.getInt(1));
                 cer.setStudentID(rs.getString(2));
                 cer.setSourse(rs.getFloat(3));
-                cer.setGrader(rs.getString(4));
-                cer.setDegreeDay(rs.getString(5));
+                cer.setDegreeDay(rs.getString(4));
                 list.add(cer);
             }
         } catch (SQLException ex) {
@@ -57,8 +56,7 @@ public class CertificateDAO  extends BaseDAO{
                 cer.setId(rs.getInt(1));
                 cer.setStudentID(rs.getString(2));
                 cer.setSourse(rs.getFloat(3));
-                cer.setGrader(rs.getString(4));
-                cer.setDegreeDay(rs.getString(5));
+                cer.setDegreeDay(rs.getString(4));
             }
         } catch (SQLException ex) {
             setLastError("SQL Error!");
@@ -79,8 +77,7 @@ public class CertificateDAO  extends BaseDAO{
                 cer.setId(rs.getInt(1));
                 cer.setStudentID(rs.getString(2));
                 cer.setSourse(rs.getFloat(3));
-                cer.setGrader(rs.getString(4));
-                cer.setDegreeDay(rs.getString(5));
+                cer.setDegreeDay(rs.getString(4));
                 list.add(cer);
             }
         } catch (SQLException ex) {
@@ -100,8 +97,7 @@ public class CertificateDAO  extends BaseDAO{
             pst.setInt(1, cer.getId());
             pst.setString(2, cer.getStudentID());
             pst.setFloat(3, cer.getSourse());
-            pst.setString(4, cer.getGrader());
-            pst.setString(5, cer.getDegreeDay());
+            pst.setString(4, cer.getDegreeDay());
             if (pst.executeUpdate() > 0) {
                 setLastError("Add Certificate Successfully");
                 status = true;
@@ -128,8 +124,7 @@ public class CertificateDAO  extends BaseDAO{
             if (rs.first()) {
                 rs.updateString(2, cer.getStudentID());
                 rs.updateFloat(3, cer.getSourse());
-                rs.updateString(4, cer.getGrader());
-                rs.updateString(5, cer.getDegreeDay());
+                rs.updateString(4, cer.getDegreeDay());
                 rs.updateRow();
                 db.closeConnection();
                 setLastError("Update Certificate successfully");

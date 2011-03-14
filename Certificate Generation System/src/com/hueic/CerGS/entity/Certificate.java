@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.hueic.CerGS.entity;
 
 /**
@@ -17,26 +16,20 @@ public class Certificate {
     private int id;
     private String studentID;
     private float sourse;
-    private String grader;
     private String degreeDay;
 
-    
     //contruction
-    public Certificate()
-    {
+    public Certificate() {
         id = 0;
         studentID = null;
         sourse = 0;
-        grader = null;
         degreeDay = null;
     }
 
-    public Certificate(int id,String studentID,float sourse,String grader,String degreeDay)
-    {
+    public Certificate(int id, String studentID, float sourse, String degreeDay) {
         setId(id);
         setStudentID(studentID);
         setSourse(sourse);
-        setGrader(grader);
         setDegreeDay(degreeDay);
     }
 
@@ -81,20 +74,6 @@ public class Certificate {
      */
     public void setSourse(float sourse) {
         this.sourse = sourse;
-    }
-
-    /**
-     * @return the grader
-     */
-    public String getGrader() {
-        return grader;
-    }
-
-    /**
-     * @param grader the grader to set
-     */
-    public void setGrader(String grader) {
-        this.grader = grader;
     }
 
     /**

@@ -15,6 +15,7 @@ package com.hueic.CerGS.entity;
 public class Course {
     private String id;
     private String name;
+    private float  totalFees;
     private int status;
 
     public Course(){
@@ -71,6 +72,20 @@ public class Course {
      */
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    /**
+     * @return the totalFees
+     */
+    public float getTotalFees() {
+        return totalFees;
+    }
+
+    /**
+     * @param totalFees the totalFees to set
+     */
+    public void setTotalFees(float totalFees) {
+        this.totalFees = totalFees;
     }
 
 

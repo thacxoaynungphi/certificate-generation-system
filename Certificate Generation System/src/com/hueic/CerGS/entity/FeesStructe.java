@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.hueic.CerGS.entity;
 
 /**
@@ -13,19 +12,19 @@ package com.hueic.CerGS.entity;
  * Lop FeesStructe mo ta cac hinh thuc dong hoc phi
  */
 public class FeesStructe {
+
     private int id;
     private String name;
 
-    public FeesStructe(){
-
+    public FeesStructe() {
     }
 
-    public FeesStructe(int id, String name){
+    public FeesStructe(int id, String name) {
         setId(id);
         setName(name);
     }
 
-    public FeesStructe(int id){
+    public FeesStructe(int id) {
         setId(id);
         setName(null);
     }

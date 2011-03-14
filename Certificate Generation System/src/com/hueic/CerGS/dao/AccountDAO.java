@@ -10,6 +10,8 @@ import com.hueic.CerGS.util.PassEncryption;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -38,8 +40,8 @@ public class AccountDAO extends BaseDAO {
                 account.setPermission(rs.getInt(3));
                 list.add(account);
             }
-        } catch (SQLException ex) {
-            setLastError("SQL Error!");
+        } catch (Exception ex) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             db.closeConnection();
         }

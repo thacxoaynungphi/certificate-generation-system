@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.hueic.CerGS.entity;
 
 /**
@@ -18,14 +17,12 @@ public class Account {
     private String password;
     private int permission;
 
-     //contruction
-    public Account()
-    {
+    //contruction
+    public Account() {
         username = null;
         password = null;
         permission = 0;
     }
-
     public Account(String username,String password,int permission) throws Exception
     {
         setUsername(username);
@@ -33,7 +30,7 @@ public class Account {
         setPermission(permission);
     }
     //method get-set
-    
+
     /**
      * @return the username
      */

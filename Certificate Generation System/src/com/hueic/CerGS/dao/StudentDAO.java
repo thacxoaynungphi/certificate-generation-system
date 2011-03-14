@@ -9,6 +9,8 @@ import com.hueic.CerGS.entity.Person;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -29,19 +31,16 @@ public class StudentDAO extends BaseDAO {
                 student.setFirstName(rs.getString(2));
                 student.setLastName(rs.getString(3));
                 student.setBirthDay(rs.getString(4));
-                student.setGender(rs.getString(5));
+                student.setGender(rs.getInt(5));
                 student.setPhone(rs.getString(6));
                 student.setEmail(rs.getString(7));
                 student.setAddress(rs.getString(8));
                 student.setImage(rs.getString(9));
                 student.setStatus(rs.getInt(10));
-                student.setClassID(rs.getString(11));
-                student.setCurrentClass(rs.getString(12));
-                student.setRegistrationDate(rs.getString(13));
                 list.add(student);
             }
-        } catch (SQLException ex) {
-            setLastError("SQL Error!");
+        } catch (Exception ex) {
+           setLastError("SQL Error!");
         } finally {
             db.closeConnection();
         }
@@ -62,19 +61,16 @@ public class StudentDAO extends BaseDAO {
                 student.setFirstName(rs.getString(2));
                 student.setLastName(rs.getString(3));
                 student.setBirthDay(rs.getString(4));
-                student.setGender(rs.getString(5));
+                 student.setGender(rs.getInt(5));
                 student.setPhone(rs.getString(6));
                 student.setEmail(rs.getString(7));
                 student.setAddress(rs.getString(8));
                 student.setImage(rs.getString(9));
                 student.setStatus(rs.getInt(10));
-                student.setClassID(rs.getString(11));
-                student.setCurrentClass(rs.getString(12));
-                student.setRegistrationDate(rs.getString(13));
             }
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             setLastError("SQL Error!");
-        }
+        } 
         return student;
     }
 
@@ -88,9 +84,6 @@ public class StudentDAO extends BaseDAO {
                 String sql = "insert into Student(Id,ClassId,CurrentClass,RegistrationDate)" + " values (?,?,?,?); ";
                 pst = con.prepareStatement(sql);
                 pst.setString(1, student.getId());
-                pst.setString(2, student.getClassID());
-                pst.setString(3, student.getCurrentClass());
-                pst.setString(3, student.getRegistrationDate());
                 if (pst.executeUpdate() > 0) {
                     setLastError("Add Student Successfully");
                     status = true;
@@ -120,9 +113,9 @@ public class StudentDAO extends BaseDAO {
                 pst.setString(1, person.getId());
                 rs = pst.executeQuery();
                 if (rs.first()) {
-                    rs.updateString(2, student.getClassID());
-                    rs.updateString(3, student.getCurrentClass());
-                    rs.updateString(4, student.getRegistrationDate());
+//                    rs.updateString(2, student.getClassID());
+//                    rs.updateString(3, student.getCurrentClass());
+//                    rs.updateString(4, student.getRegistrationDate());
                     rs.updateRow();
                     setLastError("Update Student successfully");
                     status = true;
