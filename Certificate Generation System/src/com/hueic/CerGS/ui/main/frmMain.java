@@ -26,6 +26,7 @@ public class frmMain extends javax.swing.JFrame {
     GUIProperties guip = null;
 
     public frmMain() {
+        
         initComponents();
         guidao = new GUIDAO(this);
         guip = new GUIProperties();
@@ -71,7 +72,6 @@ public class frmMain extends javax.swing.JFrame {
         jLinkButton11 = new com.l2fprod.common.swing.JLinkButton();
         jLinkButton12 = new com.l2fprod.common.swing.JLinkButton();
         panelContent = new javax.swing.JPanel();
-        panelFooter = new javax.swing.JToolBar();
         lblLogo = new javax.swing.JLabel();
         mnuBSystem = new javax.swing.JMenuBar();
         mnuSystem = new javax.swing.JMenu();
@@ -194,13 +194,11 @@ public class frmMain extends javax.swing.JFrame {
         panelLeft.setLayout(panelLeftLayout);
         panelLeftLayout.setHorizontalGroup(
             panelLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTaskPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+            .addComponent(jTaskPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         panelLeftLayout.setVerticalGroup(
             panelLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelLeftLayout.createSequentialGroup()
-                .addComponent(jTaskPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jTaskPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -232,18 +230,6 @@ public class frmMain extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(7, 6, 0, 0);
         panelMain.add(panelContent, gridBagConstraints);
-
-        panelFooter.setRollover(true);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 960;
-        gridBagConstraints.ipady = 21;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
-        panelMain.add(panelFooter, gridBagConstraints);
 
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Graphic_tall.jpg"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -504,9 +490,7 @@ public class frmMain extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE)
         );
 
         pack();
@@ -693,7 +677,6 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JMenu mnuStudent;
     private javax.swing.JMenu mnuSystem;
     private javax.swing.JPanel panelContent;
-    private javax.swing.JToolBar panelFooter;
     private javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelMain;
     private javax.swing.JRadioButtonMenuItem radioAcryl;
