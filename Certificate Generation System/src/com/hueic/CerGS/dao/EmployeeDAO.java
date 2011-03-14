@@ -50,7 +50,7 @@ public class EmployeeDAO extends BaseDAO {
         Employee emp = null;
         try {
             con = db.getConnection();
-            String sql = "select e.Id,p.FirstName,p.LastName,p.BirthDay,p.Gender,p.Phone,p.Email,p.Address,p.Image,p.Status,e.BeginWork from Employee e inner join Person p on e.Id = p.Id  where Id = ?";
+            String sql = "select e.Id,p.FirstName,p.LastName,p.BirthDay,p.Gender,p.Phone,p.Email,p.Address,p.Image,p.Status,e.BeginWork from Employee e inner join Person p on e.Id = p.Id  where e.Id = ?";
             pst = con.prepareStatement(sql);
             pst.setString(1, id);
             rs = pst.executeQuery();

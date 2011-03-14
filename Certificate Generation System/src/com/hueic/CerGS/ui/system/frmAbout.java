@@ -1,4 +1,4 @@
-package com.hueic.CerGS.ui;
+package com.hueic.CerGS.ui.system;
 
 /*
  * To change this template, choose Tools | Templates
