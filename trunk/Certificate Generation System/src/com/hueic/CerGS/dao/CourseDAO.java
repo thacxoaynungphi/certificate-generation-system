@@ -6,9 +6,6 @@ package com.hueic.CerGS.dao;
 
 import com.hueic.CerGS.entity.Course;
 import com.hueic.CerGS.util.Configure;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -110,6 +107,26 @@ public class CourseDAO extends BaseDAO {
                 setLastError("Update Course successful");
             }
         } catch (SQLException ex) {
+            setLastError("SQL Error!!!");
+        } finally {
+            db.closeConnection();
+            return status;
+        }
+    }
+
+    public boolean delete(Course course){
+        boolean status = false;
+        con = db.getConnection();
+        String sqlcommand = "delete from Course where id like ?";
+        try{
+            pst = con.prepareCall(sqlcommand);
+            pst.setString(1, course.getId());
+            if(pst.execute()){
+                setLastError("Delete Course successful");
+            } else {
+                setLastError("Delete Course unsuccessful");
+            }
+        }catch (SQLException ex) {
             setLastError("SQL Error!!!");
         } finally {
             db.closeConnection();
