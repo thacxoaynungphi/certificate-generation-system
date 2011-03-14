@@ -10,6 +10,12 @@
  */
 package com.hueic.CerGS.ui.system;
 
+import com.hueic.CerGS.dao.AccountDAO;
+import com.hueic.CerGS.entity.Account;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author nhchung
@@ -18,6 +24,7 @@ public class frmChangePass extends javax.swing.JFrame {
 
     /** Creates new form frmChangePass */
     public frmChangePass() {
+        setLocationRelativeTo(null);
         initComponents();
     }
 
@@ -42,11 +49,13 @@ public class frmChangePass extends javax.swing.JFrame {
         pfOldPassWord = new javax.swing.JPasswordField();
         pfNewPassWord = new javax.swing.JPasswordField();
         pfConfirmPass = new javax.swing.JPasswordField();
-        tfUserName = new javax.swing.JTextField();
+        txtUserName = new javax.swing.JTextField();
         lblNewPassWord = new javax.swing.JLabel();
         lblConfirmPass = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Change Password");
+        setResizable(false);
 
         pnlChangepass.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Change Password", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 3, 24), new java.awt.Color(0, 51, 204))); // NOI18N
         pnlChangepass.setLayout(new java.awt.GridBagLayout());
@@ -124,12 +133,6 @@ public class frmChangePass extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlChangepass.add(pfOldPassWord, gridBagConstraints);
-
-        pfNewPassWord.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pfNewPassWordActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -143,7 +146,7 @@ public class frmChangePass extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlChangepass.add(pfConfirmPass, gridBagConstraints);
 
-        tfUserName.setEnabled(false);
+        txtUserName.setEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -151,7 +154,7 @@ public class frmChangePass extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 170;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlChangepass.add(tfUserName, gridBagConstraints);
+        pnlChangepass.add(txtUserName, gridBagConstraints);
 
         lblNewPassWord.setFont(new java.awt.Font("Tahoma", 0, 12));
         lblNewPassWord.setText("New PassWord:");
@@ -189,19 +192,41 @@ public class frmChangePass extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-    }//GEN-LAST:event_btnLoginActionPerformed
-
-    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-}//GEN-LAST:event_btnResetActionPerformed
-
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-
         this.dispose();
 }//GEN-LAST:event_btnExitActionPerformed
 
-    private void pfNewPassWordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pfNewPassWordActionPerformed
-}//GEN-LAST:event_pfNewPassWordActionPerformed
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+        pfOldPassWord.setText(null);
+        pfNewPassWord.setText(null);
+        pfConfirmPass.setText(null);
+    }//GEN-LAST:event_btnResetActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
+        String username = txtUserName.getText();
+        String oldPassword = String.valueOf(pfOldPassWord.getPassword());
+        String newPassword = String.valueOf(pfNewPassWord.getPassword());
+        String confirmPass = String.valueOf(pfConfirmPass.getPassword());
+        if (confirmPass.equals(newPassword)) {
+            try {
+                AccountDAO accDao = new AccountDAO();
+                Account acc = new Account();
+                acc.setUsername(username);
+                acc.setPassword(newPassword);
+                if (accDao.changePass(acc, oldPassword)) {
+                    JOptionPane.showMessageDialog(this, accDao.getLastError(), "Change Password", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, accDao.getLastError(), "Change Password", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(frmChangePass.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Password not match", "Change Password", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,6 +253,6 @@ public class frmChangePass extends javax.swing.JFrame {
     private javax.swing.JPasswordField pfOldPassWord;
     private javax.swing.JPanel pnlBottom;
     private javax.swing.JPanel pnlChangepass;
-    private javax.swing.JTextField tfUserName;
+    private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
 }

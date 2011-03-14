@@ -27,15 +27,12 @@ public class PaymentDAO extends BaseDAO {
         try {
             pst = con.prepareCall(sqlcommand);
             rs = pst.executeQuery();
-
             while (rs.next()) {
                 Payment pay = new Payment();
                 pay.setId(rs.getInt("Id"));
                 pay.setStudentId(rs.getString("StudentId"));
-                pay.setSubjectId(rs.getString("SubjectId"));
                 pay.setMoney(rs.getFloat("Money"));
                 pay.setPayday(rs.getString("Payday"));
-
                 result.add(pay);
             }
 
@@ -62,7 +59,6 @@ public class PaymentDAO extends BaseDAO {
                 Payment pay = new Payment();
                 pay.setId(rs.getInt("Id"));
                 pay.setStudentId(rs.getString("StudentId"));
-                pay.setSubjectId(rs.getString("SubjectId"));
                 pay.setMoney(rs.getFloat("Money"));
                 pay.setPayday(rs.getString("Payday"));
 
@@ -87,9 +83,8 @@ public class PaymentDAO extends BaseDAO {
             pst = con.prepareCall(sqlcommand);
             pst.setInt(1, pay.getId());
             pst.setString(2, pay.getStudentId());
-            pst.setString(3, pay.getSubjectId());
-            pst.setFloat(4, pay.getMoney());
-            pst.setString(5, pay.getPayday());
+            pst.setFloat(3, pay.getMoney());
+            pst.setString(4, pay.getPayday());
 
             if (pst.execute()) {
                 setLastError("Add fee successful");
@@ -118,7 +113,6 @@ public class PaymentDAO extends BaseDAO {
             if (rs.first()) {
                 rs.updateInt("Id", pay.getId());
                 rs.updateString("StudentId", pay.getStudentId());
-                rs.updateString("SubjectId", pay.getSubjectId());
                 rs.updateFloat("Money", pay.getMoney());
                 rs.updateString("Payday", pay.getPayday());
                 rs.updateRow();

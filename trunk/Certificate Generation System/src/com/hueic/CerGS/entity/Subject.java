@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.hueic.CerGS.entity;
 
 /**
@@ -18,31 +17,25 @@ public class Subject {
     private String name;
     private int coefficient;
     private String courseID;
-    private float fees;
     private int status;
 
     //contruction
-    public Subject()
-    {
+    public Subject() {
         id = null;
         name = null;
         coefficient = 0;
         courseID = null;
-        fees = 0;
         status = 0;
     }
 
-
-    public Subject(String id,String name,int coefficient,String courseID,float fees)
-    {
+    public Subject(String id, String name, int coefficient, String courseID) {
         setId(id);
         setName(name);
         setCoefficient(coefficient);
         setCourseID(courseID);
-        setFees(fees);
         setStatus(1);
     }
-    
+
     //method get-set
     /**
      * @return the id
@@ -101,20 +94,6 @@ public class Subject {
     }
 
     /**
-     * @return the fees
-     */
-    public float getFees() {
-        return fees;
-    }
-
-    /**
-     * @param fees the fees to set
-     */
-    public void setFees(float fees) {
-        this.fees = fees;
-    }
-
-    /**
      * @return the status
      */
     public int getStatus() {
@@ -126,5 +105,5 @@ public class Subject {
      */
     public void setStatus(int status) {
         this.status = status;
-    }    
+    }
 }

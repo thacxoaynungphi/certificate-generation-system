@@ -14,6 +14,7 @@ import com.hueic.CerGS.ui.system.frmLogin;
 import com.hueic.CerGS.ui.system.frmAbout;
 import com.hueic.CerGS.component.GUIProperties;
 import com.hueic.CerGS.dao.GUIDAO;
+import com.hueic.CerGS.ui.system.frmChangePass;
 
 /**
  *
@@ -33,8 +34,6 @@ public class frmMain extends javax.swing.JFrame {
         guidao.setGUI(guip.PLAF_MAC);
         bindingLang();
         setSize(995, 700);
-        System.out.println(this.getWidth());
-        System.out.println(this.getHeight());
     }
 
     public void bindingLang() {
@@ -52,27 +51,6 @@ public class frmMain extends javax.swing.JFrame {
 
         buttonGroupLanguage = new javax.swing.ButtonGroup();
         buttonGroupSkin = new javax.swing.ButtonGroup();
-        panelMain = new javax.swing.JPanel();
-        panelLeft = new javax.swing.JPanel();
-        jTaskPane1 = new com.l2fprod.common.swing.JTaskPane();
-        jTaskPaneGroup1 = new com.l2fprod.common.swing.JTaskPaneGroup();
-        jLinkButton1 = new com.l2fprod.common.swing.JLinkButton();
-        jLinkButton2 = new com.l2fprod.common.swing.JLinkButton();
-        jLinkButton3 = new com.l2fprod.common.swing.JLinkButton();
-        jTaskPaneGroup2 = new com.l2fprod.common.swing.JTaskPaneGroup();
-        jLinkButton4 = new com.l2fprod.common.swing.JLinkButton();
-        jLinkButton5 = new com.l2fprod.common.swing.JLinkButton();
-        jLinkButton6 = new com.l2fprod.common.swing.JLinkButton();
-        jTaskPaneGroup3 = new com.l2fprod.common.swing.JTaskPaneGroup();
-        jLinkButton7 = new com.l2fprod.common.swing.JLinkButton();
-        jLinkButton8 = new com.l2fprod.common.swing.JLinkButton();
-        jLinkButton9 = new com.l2fprod.common.swing.JLinkButton();
-        jTaskPaneGroup4 = new com.l2fprod.common.swing.JTaskPaneGroup();
-        jLinkButton10 = new com.l2fprod.common.swing.JLinkButton();
-        jLinkButton11 = new com.l2fprod.common.swing.JLinkButton();
-        jLinkButton12 = new com.l2fprod.common.swing.JLinkButton();
-        panelContent = new javax.swing.JPanel();
-        lblLogo = new javax.swing.JLabel();
         mnuBSystem = new javax.swing.JMenuBar();
         mnuSystem = new javax.swing.JMenu();
         menuIChangePass = new javax.swing.JMenuItem();
@@ -116,135 +94,16 @@ public class frmMain extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Certificate Generation System");
         setResizable(false);
-
-        panelMain.setLayout(new java.awt.GridBagLayout());
-
-        com.l2fprod.common.swing.PercentLayout percentLayout1 = new com.l2fprod.common.swing.PercentLayout();
-        percentLayout1.setGap(14);
-        percentLayout1.setOrientation(1);
-        jTaskPane1.setLayout(percentLayout1);
-
-        jTaskPaneGroup1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/at.png"))); // NOI18N
-        jTaskPaneGroup1.setTitle("System");
-        com.l2fprod.common.swing.PercentLayout percentLayout2 = new com.l2fprod.common.swing.PercentLayout();
-        percentLayout2.setGap(2);
-        percentLayout2.setOrientation(1);
-        jTaskPaneGroup1.getContentPane().setLayout(percentLayout2);
-
-        jLinkButton1.setText("jLinkButton1");
-        jTaskPaneGroup1.getContentPane().add(jLinkButton1);
-
-        jLinkButton2.setText("jLinkButton2");
-        jTaskPaneGroup1.getContentPane().add(jLinkButton2);
-
-        jLinkButton3.setText("jLinkButton3");
-        jTaskPaneGroup1.getContentPane().add(jLinkButton3);
-
-        jTaskPane1.add(jTaskPaneGroup1);
-
-        com.l2fprod.common.swing.PercentLayout percentLayout3 = new com.l2fprod.common.swing.PercentLayout();
-        percentLayout3.setGap(2);
-        percentLayout3.setOrientation(1);
-        jTaskPaneGroup2.getContentPane().setLayout(percentLayout3);
-
-        jLinkButton4.setText("jLinkButton4");
-        jTaskPaneGroup2.getContentPane().add(jLinkButton4);
-
-        jLinkButton5.setText("jLinkButton5");
-        jTaskPaneGroup2.getContentPane().add(jLinkButton5);
-
-        jLinkButton6.setText("jLinkButton6");
-        jTaskPaneGroup2.getContentPane().add(jLinkButton6);
-
-        jTaskPane1.add(jTaskPaneGroup2);
-
-        com.l2fprod.common.swing.PercentLayout percentLayout4 = new com.l2fprod.common.swing.PercentLayout();
-        percentLayout4.setGap(2);
-        percentLayout4.setOrientation(1);
-        jTaskPaneGroup3.getContentPane().setLayout(percentLayout4);
-
-        jLinkButton7.setText("jLinkButton7");
-        jTaskPaneGroup3.getContentPane().add(jLinkButton7);
-
-        jLinkButton8.setText("jLinkButton8");
-        jTaskPaneGroup3.getContentPane().add(jLinkButton8);
-
-        jLinkButton9.setText("jLinkButton9");
-        jTaskPaneGroup3.getContentPane().add(jLinkButton9);
-
-        jTaskPane1.add(jTaskPaneGroup3);
-
-        com.l2fprod.common.swing.PercentLayout percentLayout5 = new com.l2fprod.common.swing.PercentLayout();
-        percentLayout5.setGap(2);
-        percentLayout5.setOrientation(1);
-        jTaskPaneGroup4.getContentPane().setLayout(percentLayout5);
-
-        jLinkButton10.setText("jLinkButton10");
-        jTaskPaneGroup4.getContentPane().add(jLinkButton10);
-
-        jLinkButton11.setText("jLinkButton11");
-        jTaskPaneGroup4.getContentPane().add(jLinkButton11);
-
-        jLinkButton12.setText("jLinkButton12");
-        jTaskPaneGroup4.getContentPane().add(jLinkButton12);
-
-        jTaskPane1.add(jTaskPaneGroup4);
-
-        javax.swing.GroupLayout panelLeftLayout = new javax.swing.GroupLayout(panelLeft);
-        panelLeft.setLayout(panelLeftLayout);
-        panelLeftLayout.setHorizontalGroup(
-            panelLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTaskPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        panelLeftLayout.setVerticalGroup(
-            panelLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTaskPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-        gridBagConstraints.ipadx = 43;
-        gridBagConstraints.ipady = 17;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
-        panelMain.add(panelLeft, gridBagConstraints);
-
-        javax.swing.GroupLayout panelContentLayout = new javax.swing.GroupLayout(panelContent);
-        panelContent.setLayout(panelContentLayout);
-        panelContentLayout.setHorizontalGroup(
-            panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 785, Short.MAX_VALUE)
-        );
-        panelContentLayout.setVerticalGroup(
-            panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 531, Short.MAX_VALUE)
-        );
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 785;
-        gridBagConstraints.ipady = 531;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(7, 6, 0, 0);
-        panelMain.add(panelContent, gridBagConstraints);
-
-        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Graphic_tall.jpg"))); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 83;
-        gridBagConstraints.ipady = -1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        panelMain.add(lblLogo, gridBagConstraints);
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
         mnuSystem.setText("System");
 
         menuIChangePass.setText("Change Pass");
+        menuIChangePass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuIChangePassActionPerformed(evt);
+            }
+        });
         mnuSystem.add(menuIChangePass);
 
         mnuILoginSystem.setText("Login System");
@@ -480,19 +339,6 @@ public class frmMain extends javax.swing.JFrame {
 
         setJMenuBar(mnuBSystem);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelMain, javax.swing.GroupLayout.PREFERRED_SIZE, 979, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE)
-        );
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -627,6 +473,12 @@ public class frmMain extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_radioSmartActionPerformed
 
+    private void menuIChangePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIChangePassActionPerformed
+        // TODO add your handling code here:
+        frmChangePass changePass = new frmChangePass();
+        changePass.setVisible(true);
+    }//GEN-LAST:event_menuIChangePassActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -641,28 +493,10 @@ public class frmMain extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupLanguage;
     private javax.swing.ButtonGroup buttonGroupSkin;
-    private com.l2fprod.common.swing.JLinkButton jLinkButton1;
-    private com.l2fprod.common.swing.JLinkButton jLinkButton10;
-    private com.l2fprod.common.swing.JLinkButton jLinkButton11;
-    private com.l2fprod.common.swing.JLinkButton jLinkButton12;
-    private com.l2fprod.common.swing.JLinkButton jLinkButton2;
-    private com.l2fprod.common.swing.JLinkButton jLinkButton3;
-    private com.l2fprod.common.swing.JLinkButton jLinkButton4;
-    private com.l2fprod.common.swing.JLinkButton jLinkButton5;
-    private com.l2fprod.common.swing.JLinkButton jLinkButton6;
-    private com.l2fprod.common.swing.JLinkButton jLinkButton7;
-    private com.l2fprod.common.swing.JLinkButton jLinkButton8;
-    private com.l2fprod.common.swing.JLinkButton jLinkButton9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JPopupMenu.Separator jSeparator1;
-    private com.l2fprod.common.swing.JTaskPane jTaskPane1;
-    private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroup1;
-    private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroup2;
-    private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroup3;
-    private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroup4;
-    private javax.swing.JLabel lblLogo;
     private javax.swing.JMenuItem menuIChangePass;
     private javax.swing.JMenu mnuAdministrator;
     private javax.swing.JMenuBar mnuBSystem;
@@ -676,9 +510,6 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuIViewInformation;
     private javax.swing.JMenu mnuStudent;
     private javax.swing.JMenu mnuSystem;
-    private javax.swing.JPanel panelContent;
-    private javax.swing.JPanel panelLeft;
-    private javax.swing.JPanel panelMain;
     private javax.swing.JRadioButtonMenuItem radioAcryl;
     private javax.swing.JRadioButtonMenuItem radioAero;
     private javax.swing.JRadioButtonMenuItem radioAluminium;

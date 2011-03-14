@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.hueic.CerGS.entity;
 
 /**
@@ -12,14 +11,15 @@ package com.hueic.CerGS.entity;
  * Version: 1.0
  */
 public class Employee extends Person {
-    
+
     private String beginWork;
     //contruction
-    public Employee()
-    {
+
+    public Employee() {
         super();
         beginWork = null;
     }
+
 
     public Employee(String id,String firstName,String lastName,String birthDay,int gender,String phone,String email,String address,String image,String beginWork) throws Exception
     {
@@ -27,6 +27,7 @@ public class Employee extends Person {
         setBeginWork(beginWork);
     }
     //method get-set    
+
     /**
      * @return the beginWork
      */
@@ -40,5 +41,5 @@ public class Employee extends Person {
      //khi nhap beginwork thi se dua vao Commbobox de nhap
     public void setBeginWork(String beginWork) {
         this.beginWork = beginWork;
-    }    
+    }
 }

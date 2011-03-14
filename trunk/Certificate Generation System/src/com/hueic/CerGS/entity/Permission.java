@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.hueic.CerGS.entity;
 
 /**
@@ -18,19 +17,17 @@ public class Permission {
     private String name;
 
     //contruction
-
-    public Permission()
-    {
+    public Permission() {
         id = 0;
         name = null;
     }
 
-    public Permission(int id,String name)
-    {
+    public Permission(int id, String name) {
         setId(id);
         setName(name);
     }
     //method get-set
+
     /**
      * @return the id
      */
