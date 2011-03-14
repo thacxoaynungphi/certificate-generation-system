@@ -5,6 +5,9 @@
 
 package com.hueic.CerGS.entity;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  *
  * @author nhchung
@@ -18,7 +21,7 @@ public class Person {
     private String firstName;
     private String lastName;
     private String birthDay;
-    private String gender;
+    private int gender;
     private String phone;
     private String email;
     private String address;
@@ -33,7 +36,7 @@ public class Person {
         firstName = null;
         lastName = null;
         birthDay = null;
-        gender = null;
+        gender = 1;
         phone = null;
         email = null;
         address = null;
@@ -41,7 +44,7 @@ public class Person {
         status = 1;
     }
 
-    public Person(String id,String firstName,String lastName,String birthDay,String gender,String phone,String email,String address,String image)
+    public Person(String id,String firstName,String lastName,String birthDay,int gender,String phone,String email,String address,String image) throws Exception
     {
         setId(id);
         setFirstName(firstName);
@@ -67,7 +70,8 @@ public class Person {
     /**
      * @param id the id to set
      */
-    public void setId(String id) {
+    public void setId(String id) throws Exception {
+        if(id.length() > 10 || id.length() < 0) throw new Exception("length of ID properties can't greater than 10");
         this.id = id;
     }
 
@@ -81,7 +85,8 @@ public class Person {
     /**
      * @param firstName the firstName to set
      */
-    public void setFirstName(String firstName) {
+    public void setFirstName(String firstName) throws Exception{
+        if(firstName.length() > 20 || firstName.length() < 0) throw new Exception("length if ID properties can't greater than 10");
         this.firstName = firstName;
     }
 
@@ -95,7 +100,9 @@ public class Person {
     /**
      * @param lastName the lastName to set
      */
-    public void setLastName(String lastName) {
+    public void setLastName(String lastName) throws Exception {
+        if(lastName.length() > 20 || lastName.length() < 0) throw new Exception("length if ID properties can't greater than 10");
+
         this.lastName = lastName;
     }
 
@@ -109,6 +116,7 @@ public class Person {
     /**
      * @param birthDay the birthDay to set
      */
+    //TODO can them vao Pattern dinh dang ngay thang. tuy vao ngon ngu
     public void setBirthDay(String birthDay) {
         this.birthDay = birthDay;
     }
@@ -116,14 +124,15 @@ public class Person {
     /**
      * @return the gender
      */
-    public String getGender() {
+    public int getGender() {
         return gender;
     }
 
     /**
      * @param gender the gender to set
      */
-    public void setGender(String gender) {
+    public void setGender(int gender) throws Exception {
+        if(gender > 2 || gender < 0) throw new Exception("Gender of Person must be \n0 -> Male \n1 -> Female \n2 -> Unknow");
         this.gender = gender;
     }
 
@@ -137,7 +146,8 @@ public class Person {
     /**
      * @param phone the phone to set
      */
-    public void setPhone(String phone) {
+    public void setPhone(String phone) throws Exception{
+        if(phone.length() > 20) throw new Exception("Phone string's length can't greater than 20");
         this.phone = phone;
     }
 
@@ -151,8 +161,11 @@ public class Person {
     /**
      * @param email the email to set
      */
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String email) throws Exception {
+        Pattern pattern = Pattern.compile("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]");
+        Matcher match = pattern.matcher(email);
+        if(match.matches()) this.email = email;
+        else throw  new Exception("Email is not valid format");
     }
 
     /**
@@ -193,7 +206,8 @@ public class Person {
     /**
      * @param status the status to set
      */
-    public void setStatus(int status) {
+    public void setStatus(int status) throws Exception{
+        if(status > 2 || status < 0) throw new Exception("Status of Person must be \n0 -> Deleted \n1 -> Normal \n3 -> reserve");
         this.status = status;
     }
 }

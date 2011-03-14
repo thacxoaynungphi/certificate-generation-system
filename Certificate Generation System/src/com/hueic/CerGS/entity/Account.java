@@ -26,7 +26,7 @@ public class Account {
         permission = 0;
     }
 
-    public Account(String username,String password,int permission)
+    public Account(String username,String password,int permission) throws Exception
     {
         setUsername(username);
         setPassword(password);
@@ -44,7 +44,8 @@ public class Account {
     /**
      * @param username the username to set
      */
-    public void setUsername(String username) {
+    public void setUsername(String username) throws Exception{
+        if(username.length() > 10 || username.length() < 0) throw new Exception("length of ID properties can't greater than 10");
         this.username = username;
     }
 
@@ -58,7 +59,8 @@ public class Account {
     /**
      * @param password the password to set
      */
-    public void setPassword(String password) {
+    public void setPassword(String password) throws Exception {
+        if(password.length() > 22 || password.length() < 6) throw new Exception("password must be more than 6 characters and not exceed 30 characters");
         this.password = password;
     }
 

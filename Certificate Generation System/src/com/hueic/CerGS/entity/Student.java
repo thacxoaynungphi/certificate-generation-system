@@ -25,7 +25,7 @@ public class Student extends Person {
         registrationDate = null;
     }
 
-    public Student(String id,String firstName,String lastName,String birthDay,String gender,String phone,String email,String address,String image,String classID,String currentClass,String registrationDate)
+    public Student(String id,String firstName,String lastName,String birthDay,int gender,String phone,String email,String address,String image,String classID,String currentClass,String registrationDate) throws Exception
     {
         super(id, firstName, lastName, birthDay, gender, phone, email, address, image);
         setClassID(classID);
