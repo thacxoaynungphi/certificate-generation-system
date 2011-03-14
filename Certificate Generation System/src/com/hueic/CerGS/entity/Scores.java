@@ -7,7 +7,7 @@ package com.hueic.CerGS.entity;
 
 /**
  *
- * @author Wind
+ * @author Huu Bien
  * Version 1.0
  *
  * Lop Scores mo ta danh sach diem cua moi sinh vien trong lop hoc va mon hoc tuong ung
