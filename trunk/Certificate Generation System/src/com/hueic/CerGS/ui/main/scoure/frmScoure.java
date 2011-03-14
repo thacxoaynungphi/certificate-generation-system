@@ -8,8 +8,9 @@
  *
  * Created on Mar 13, 2011, 5:38:22 PM
  */
-package com.hueic.CerGS.ui.main.employee;
+package com.hueic.CerGS.ui.main.scoure;
 
+import com.hueic.CerGS.ui.main.employee.*;
 import java.awt.AWTEvent;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
@@ -20,10 +21,10 @@ import javax.swing.CellEditor;
  *
  * @author nhchung
  */
-public class frmEmployee extends javax.swing.JFrame {
+public class frmScoure extends javax.swing.JFrame {
 
     /** Creates new form EmployeeFrm */
-    public frmEmployee() {
+    public frmScoure() {
         initComponents();
         System.out.println(getWidth() + "," + getHeight());
         setSize(1100, 700);
@@ -308,7 +309,7 @@ public class frmEmployee extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new frmEmployee().setVisible(true);
+                new frmScoure().setVisible(true);
             }
         });
     }

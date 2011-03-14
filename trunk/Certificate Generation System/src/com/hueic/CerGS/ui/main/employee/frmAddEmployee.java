@@ -4,21 +4,21 @@
  */
 
 /*
- * frmAccountReport.java
+ * frmAddEmployee.java
  *
- * Created on Mar 14, 2011, 7:31:11 AM
+ * Created on Mar 15, 2011, 12:22:56 AM
  */
 
-package com.hueic.CerGS.ui.main.report;
+package com.hueic.CerGS.ui.main.employee;
 
 /**
  *
  * @author nhchung
  */
-public class frmAccountReport extends javax.swing.JFrame {
+public class frmAddEmployee extends javax.swing.JFrame {
 
-    /** Creates new form frmAccountReport */
-    public frmAccountReport() {
+    /** Creates new form frmAddEmployee */
+    public frmAddEmployee() {
         initComponents();
     }
 
@@ -53,7 +53,7 @@ public class frmAccountReport extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmAccountReport().setVisible(true);
+                new frmAddEmployee().setVisible(true);
             }
         });
     }
