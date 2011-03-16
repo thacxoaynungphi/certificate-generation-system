@@ -297,6 +297,7 @@ public class frmAddStudent extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel1.add(jLabel5, gridBagConstraints);
 
+        DateChBirthday.setDateFormatString("MM\\dd\\yyyy");
         DateChBirthday.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
