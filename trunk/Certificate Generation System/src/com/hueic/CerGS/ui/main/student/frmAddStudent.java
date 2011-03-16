@@ -15,10 +15,10 @@ package com.hueic.CerGS.ui.main.student;
  *
  * @author qhvic
  */
-public class AddStuFrm extends javax.swing.JFrame {
+public class frmAddStudent extends javax.swing.JFrame {
 
     /** Creates new form AddStuFrm */
-    public AddStuFrm() {
+    public frmAddStudent() {
         initComponents();
     }
 
@@ -311,7 +311,7 @@ public class AddStuFrm extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddStuFrm().setVisible(true);
+                new frmAddStudent().setVisible(true);
             }
         });
     }

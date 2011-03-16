@@ -8,8 +8,9 @@
  *
  * Created on Mar 13, 2011, 5:38:22 PM
  */
-package com.hueic.CerGS.ui.main.employee;
+package com.hueic.CerGS.ui.main.student;
 
+import com.hueic.CerGS.ui.main.employee.*;
 import com.hueic.CerGS.component.ColumnData;
 import com.hueic.CerGS.component.ObjectTableModel;
 import com.hueic.CerGS.dao.EmployeeDAO;
@@ -43,7 +44,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
  *
  * @author nhchung
  */
-public class frmEmployee extends javax.swing.JFrame {
+public class frmStudent extends javax.swing.JFrame {
 
     /** Creates new form EmployeeFrm */
     private ObjectTableModel tableModel;
@@ -52,7 +53,7 @@ public class frmEmployee extends javax.swing.JFrame {
     private ArrayList<Employee> listEmpSearch = new ArrayList<Employee>();
     private EmployeeDAO empDao = new EmployeeDAO();
 
-    public frmEmployee() {
+    public frmStudent() {
         initComponents();
         setSize(1100, 700);
         listEmp = empDao.readByAll();
@@ -265,7 +266,7 @@ public class frmEmployee extends javax.swing.JFrame {
             }
         });
 
-        lblHienthi1.setText("Tổng số nhân viên là : ");
+        lblHienthi1.setText("Tổng số sinh viên là : ");
 
         lblSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/view.png"))); // NOI18N
         lblSearch.setToolTipText("Click to search!");
@@ -284,7 +285,7 @@ public class frmEmployee extends javax.swing.JFrame {
                 .addComponent(lblHienthi1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblCount, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 319, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 324, Short.MAX_VALUE)
                 .addComponent(comboSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -495,14 +496,14 @@ public class frmEmployee extends javax.swing.JFrame {
                 wb.write(fos);
             }
         } catch (IOException ex) {
-            Logger.getLogger(frmEmployee.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(frmStudent.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 if (fos != null) {
                     fos.close();
                 }
             } catch (IOException ex) {
-                Logger.getLogger(frmEmployee.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(frmStudent.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_btnExportActionPerformed
@@ -553,12 +554,12 @@ public class frmEmployee extends javax.swing.JFrame {
                 loadTable(listEmp);
             }
         } catch (Exception ex) {
-            Logger.getLogger(frmEmployee.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(frmStudent.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 fis.close();
             } catch (IOException ex) {
-                Logger.getLogger(frmEmployee.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(frmStudent.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_btnImportActionPerformed
@@ -690,7 +691,7 @@ public class frmEmployee extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new frmEmployee().setVisible(true);
+                new frmStudent().setVisible(true);
             }
         });
     }

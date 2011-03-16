@@ -592,7 +592,7 @@
                       <Component id="lblHienthi1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblCount" min="-2" pref="21" max="-2" attributes="0"/>
-                      <EmptySpace pref="319" max="32767" attributes="0"/>
+                      <EmptySpace pref="324" max="32767" attributes="0"/>
                       <Component id="comboSearch" min="-2" pref="149" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="txtSearch" min="-2" pref="226" max="-2" attributes="0"/>
@@ -642,7 +642,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblHienthi1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="T&#x1ed5;ng s&#x1ed1; nh&#xe2;n vi&#xea;n l&#xe0; : "/>
+                <Property name="text" type="java.lang.String" value="T&#x1ed5;ng s&#x1ed1; sinh vi&#xea;n l&#xe0; : "/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblCount">
