@@ -14,6 +14,7 @@ import com.hueic.CerGS.ui.system.frmLogin;
 import com.hueic.CerGS.ui.system.frmAbout;
 import com.hueic.CerGS.component.GUIProperties;
 import com.hueic.CerGS.dao.GUIDAO;
+import com.hueic.CerGS.ui.main.employee.frmEmployee;
 import com.hueic.CerGS.ui.system.frmChangePass;
 
 /**
@@ -27,7 +28,7 @@ public class frmMain extends javax.swing.JFrame {
     GUIProperties guip = null;
 
     public frmMain() {
-        
+
         initComponents();
         guidao = new GUIDAO(this);
         guip = new GUIProperties();
@@ -47,7 +48,6 @@ public class frmMain extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         buttonGroupLanguage = new javax.swing.ButtonGroup();
         buttonGroupSkin = new javax.swing.ButtonGroup();
@@ -61,6 +61,7 @@ public class frmMain extends javax.swing.JFrame {
         mnuIExit = new javax.swing.JMenuItem();
         mnuAdministrator = new javax.swing.JMenu();
         mnuEmployee = new javax.swing.JMenu();
+        mnuIManagmentEmp = new javax.swing.JMenuItem();
         mnuStudent = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -129,7 +130,14 @@ public class frmMain extends javax.swing.JFrame {
         mnuAdministrator.setText("Administrator");
         mnuBSystem.add(mnuAdministrator);
 
-        mnuEmployee.setText("Employee");
+        mnuIManagmentEmp.setText("Managment Employee");
+        mnuIManagmentEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuIManagmentEmpActionPerformed(evt);
+            }
+        });
+        mnuEmployee.add(mnuIManagmentEmp);
+
         mnuBSystem.add(mnuEmployee);
 
         mnuStudent.setText("Student");
@@ -479,6 +487,12 @@ public class frmMain extends javax.swing.JFrame {
         changePass.setVisible(true);
     }//GEN-LAST:event_menuIChangePassActionPerformed
 
+    private void mnuIManagmentEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuIManagmentEmpActionPerformed
+        // TODO add your handling code here:
+        frmEmployee employee = new frmEmployee();
+        employee.setVisible(true);
+    }//GEN-LAST:event_mnuIManagmentEmpActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -506,6 +520,7 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuIExit;
     private javax.swing.JMenuItem mnuIHelpContents;
     private javax.swing.JMenuItem mnuILoginSystem;
+    private javax.swing.JMenuItem mnuIManagmentEmp;
     private javax.swing.JMenuItem mnuISwitchUser;
     private javax.swing.JMenuItem mnuIViewInformation;
     private javax.swing.JMenu mnuStudent;

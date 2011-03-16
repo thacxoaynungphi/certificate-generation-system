@@ -54,9 +54,16 @@
           </Properties>
         </Menu>
         <Menu class="javax.swing.JMenu" name="mnuEmployee">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Employee"/>
-          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuIManagmentEmp">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Managment Employee"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuIManagmentEmpActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="mnuStudent">
           <Properties>
