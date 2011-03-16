@@ -15,10 +15,10 @@ package com.hueic.CerGS.ui.main.student;
  *
  * @author qhvic
  */
-public class SearchStuFrm extends javax.swing.JFrame {
+public class frmSearchStudent extends javax.swing.JFrame {
 
     /** Creates new form SearchStuFrm */
-    public SearchStuFrm() {
+    public frmSearchStudent() {
         initComponents();
     }
 
@@ -175,7 +175,7 @@ public class SearchStuFrm extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SearchStuFrm().setVisible(true);
+                new frmSearchStudent().setVisible(true);
             }
         });
     }

@@ -12,6 +12,7 @@ package com.hueic.CerGS.ui.main.employee;
 
 import com.hueic.CerGS.dao.EmployeeDAO;
 import com.hueic.CerGS.entity.Employee;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 
@@ -19,12 +20,43 @@ import javax.swing.JFileChooser;
  *
  * @author qhvic
  */
-public class frmAddEmployee extends javax.swing.JFrame {
+public class frmEditEmployee extends javax.swing.JFrame {
 
     /** Creates new form AddEmpFrm */
-    public frmAddEmployee() {
+    private Employee emp;
+
+    public frmEditEmployee() {
         initComponents();
         setLocationRelativeTo(null);
+    }
+
+    public frmEditEmployee(Employee emp) {
+        initComponents();
+        setLocationRelativeTo(null);
+        this.emp = emp;
+        loadData();
+    }
+
+    public void loadData() {
+        txtID.setText(emp.getId());
+        txtFirstname.setText(emp.getFirstName());
+        txtLastname.setText(emp.getLastName());
+        try {
+            DateChBirthday.setDate(new Date(emp.getBirthDay()));
+        } catch (Exception ex) {
+        }
+        int gender = emp.getGender();
+        if (gender == 0) {
+            radioMale.setSelected(true);
+
+        } else {
+            radioFemale.setSelected(true);
+
+        }
+        txtPhone.setText(emp.getPhone());
+        txtEmail.setText(emp.getEmail());
+        txtAddress.setText(emp.getAddress());
+        txtImage.setText(emp.getImage());
     }
 
     /** This method is called from within the constructor to
@@ -319,6 +351,7 @@ public class frmAddEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel1.add(lblEmployeeID, gridBagConstraints);
 
+        txtID.setEnabled(false);
         txtID.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -460,7 +493,7 @@ public class frmAddEmployee extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new frmAddEmployee().setVisible(true);
+                new frmEditEmployee().setVisible(true);
             }
         });
     }

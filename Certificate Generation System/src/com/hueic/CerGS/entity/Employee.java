@@ -59,7 +59,12 @@ public class Employee extends Person implements PropertyIndex {
                 value = this.getBirthDay();
                 break;
             case 5:
-                value = String.valueOf(this.getGender());
+                if (this.getGender() == 0) {
+                    value = "Male";
+                } else {
+                    value = "FeMale";
+                }
+
                 break;
             case 6:
                 value = this.getPhone();
