@@ -20,12 +20,12 @@ import java.util.ArrayList;
  *
  * @author qhvic
  */
-public class AddSubFrm extends javax.swing.JFrame {
+public class frmAddSubject extends javax.swing.JFrame {
 
     /** Creates new form AddSubFrm */
     private ArrayList<Course> listCourses = new ArrayList<Course>();
 
-    public AddSubFrm() {
+    public frmAddSubject() {
         initComponents();
         setLocationRelativeTo(null);
         loadComboCourse();
@@ -79,9 +79,9 @@ public class AddSubFrm extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(40, 27, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel1.add(jLabel1, gridBagConstraints);
 
         lblName.setText("Name subject:");
@@ -89,7 +89,7 @@ public class AddSubFrm extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(13, 32, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 25, 5, 5);
         panel1.add(lblName, gridBagConstraints);
 
         lblCoefficient.setText("Coefficient:");
@@ -97,18 +97,18 @@ public class AddSubFrm extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(13, 32, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 25, 5, 5);
         panel1.add(lblCoefficient, gridBagConstraints);
 
         jSeparator1.setPreferredSize(new java.awt.Dimension(300, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 10;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.ipadx = 299;
         gridBagConstraints.ipady = 9;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 27, 0, 27);
+        gridBagConstraints.insets = new java.awt.Insets(0, 27, 5, 27);
         panel1.add(jSeparator1, gridBagConstraints);
 
         lblCourseID.setText("Course ID:");
@@ -116,7 +116,7 @@ public class AddSubFrm extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(13, 32, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 25, 5, 5);
         panel1.add(lblCourseID, gridBagConstraints);
 
         panel2.setPreferredSize(new java.awt.Dimension(265, 33));
@@ -151,45 +151,38 @@ public class AddSubFrm extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 10;
-        gridBagConstraints.gridwidth = 10;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.ipadx = 93;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(15, 32, 24, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel1.add(panel2, gridBagConstraints);
 
         txtName.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 205;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel1.add(txtName, gridBagConstraints);
 
         txtCoefficient.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 205;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel1.add(txtCoefficient, gridBagConstraints);
 
         comboCourse.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboCourse.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 140;
         gridBagConstraints.ipady = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 20);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel1.add(comboCourse, gridBagConstraints);
 
         jLabel2.setText("Subject ID:");
@@ -197,18 +190,16 @@ public class AddSubFrm extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 32, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 25, 5, 5);
         panel1.add(jLabel2, gridBagConstraints);
 
         txtSubjectId.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 205;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(15, 10, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel1.add(txtSubjectId, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -219,7 +210,7 @@ public class AddSubFrm extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
         );
 
         pack();
@@ -255,7 +246,7 @@ public class AddSubFrm extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new AddSubFrm().setVisible(true);
+                new frmAddSubject().setVisible(true);
             }
         });
     }
