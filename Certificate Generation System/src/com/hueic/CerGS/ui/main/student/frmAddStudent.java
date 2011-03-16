@@ -8,7 +8,6 @@
  *
  * Created on Mar 14, 2011, 9:45:49 PM
  */
-
 package com.hueic.CerGS.ui.main.student;
 
 /**
@@ -20,6 +19,7 @@ public class frmAddStudent extends javax.swing.JFrame {
     /** Creates new form AddStuFrm */
     public frmAddStudent() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /** This method is called from within the constructor to
@@ -66,7 +66,7 @@ public class frmAddStudent extends javax.swing.JFrame {
         lblPhone = new javax.swing.JLabel();
         txtPhone = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add Student");
         setResizable(false);
 
@@ -336,16 +336,16 @@ public class frmAddStudent extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new frmAddStudent().setVisible(true);
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser DateChBirthday;
     private javax.swing.JButton btnAdd;
@@ -381,5 +381,4 @@ public class frmAddStudent extends javax.swing.JFrame {
     private javax.swing.JTextField txtLastname;
     private javax.swing.JTextField txtPhone;
     // End of variables declaration//GEN-END:variables
-
 }
