@@ -1,6 +1,6 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this tstudentlate, choose Tools | Tstudentlates
+ * and open the tstudentlate in the editor.
  */
 
 /*
@@ -30,6 +30,29 @@ public class frmEditStudent extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         this.student = student;
+        loadData();
+    }
+
+    public void loadData() {
+        txtID.setText(student.getId());
+        txtFirstname.setText(student.getFirstName());
+        txtLastname.setText(student.getLastName());
+        try {
+            DateChBirthday.setDate(student.getBirthDay());
+        } catch (Exception ex) {
+        }
+        int gender = student.getGender();
+        if (gender == 0) {
+            radioMale.setSelected(true);
+
+        } else {
+            radioFemale.setSelected(true);
+
+        }
+        txtPhone.setText(student.getPhone());
+        txtEmail.setText(student.getEmail());
+        txtAddress.setText(student.getAddress());
+        txtImage.setText(student.getImage());
     }
 
     /** This method is called from within the constructor to
@@ -246,10 +269,20 @@ public class frmEditStudent extends javax.swing.JFrame {
 
         btnReset.setText("Reset");
         btnReset.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
         panel2.add(btnReset);
 
         btnCancel.setText("Cancel");
         btnCancel.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
         panel2.add(btnCancel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -307,6 +340,7 @@ public class frmEditStudent extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel1.add(jLabel5, gridBagConstraints);
 
+        DateChBirthday.setDateFormatString("MM\\dd\\yyyy");
         DateChBirthday.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -344,6 +378,16 @@ public class frmEditStudent extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+        loadData();
+    }//GEN-LAST:event_btnResetActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
      * @param args the command line arguments

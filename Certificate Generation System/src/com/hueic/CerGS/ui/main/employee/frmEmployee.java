@@ -58,6 +58,7 @@ public class frmEmployee extends javax.swing.JFrame {
         listEmp = empDao.readByAll();
         enableEvents(AWTEvent.MOUSE_EVENT_MASK);
         tableContent.addMouseListener(new MouseAdapter() {
+
             private void maybeShowPopup(MouseEvent e) {
                 if (e.isPopupTrigger() && tableContent.isEnabled()) {
                     Point p = new Point(e.getX(), e.getY());
@@ -456,9 +457,11 @@ public class frmEmployee extends javax.swing.JFrame {
     private void menuIEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIEditActionPerformed
         // TODO add your handling co\de here:
         int index = tableContent.getSelectedRow();
-        Employee emp = listEmp.get(index);
-        frmEditEmployee editEmployee = new frmEditEmployee(emp);
-        editEmployee.setVisible(true);
+        if (index != -1) {
+            Employee emp = listEmp.get(index);
+            frmEditEmployee editEmployee = new frmEditEmployee(emp);
+            editEmployee.setVisible(true);
+        }
     }//GEN-LAST:event_menuIEditActionPerformed
 
     private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked

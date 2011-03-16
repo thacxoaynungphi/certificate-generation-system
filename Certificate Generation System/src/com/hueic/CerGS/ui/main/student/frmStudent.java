@@ -55,7 +55,7 @@ public class frmStudent extends javax.swing.JFrame {
     public frmStudent() {
         initComponents();
         setSize(1100, 700);
-         setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
         liststudent = studentDao.readByAll();
         enableEvents(AWTEvent.MOUSE_EVENT_MASK);
         tableContent.addMouseListener(new MouseAdapter() {
@@ -446,9 +446,11 @@ public class frmStudent extends javax.swing.JFrame {
     private void menuIEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIEditActionPerformed
         // TODO add your handling co\de here:
         int index = tableContent.getSelectedRow();
-        Student student = liststudent.get(index);
-        frmEditStudent editStudent = new frmEditStudent(student);
-        editStudent.setVisible(true);
+        if (index != -1) {
+            Student student = liststudent.get(index);
+            frmEditStudent editStudent = new frmEditStudent(student);
+            editStudent.setVisible(true);
+        }
     }//GEN-LAST:event_menuIEditActionPerformed
 
     private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
