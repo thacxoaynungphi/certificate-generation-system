@@ -20,7 +20,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -52,7 +51,6 @@ public class frmEmployee extends javax.swing.JFrame {
 
     public frmEmployee() {
         initComponents();
-        System.out.println(getWidth() + "," + getHeight());
         setSize(1100, 700);
         listEmp = empDao.readByAll();
         enableEvents(AWTEvent.MOUSE_EVENT_MASK);
@@ -506,8 +504,10 @@ public class frmEmployee extends javax.swing.JFrame {
                     emp.setImage(row.getCell(8).toString());
                     emp.setStatus((int) Float.parseFloat(row.getCell(9).toString()));
                     emp.setBeginWork(row.getCell(10).toString());
-                    listEmp.add(emp);
-                    listEmpTemp.add(emp);
+                    if (isExist(emp)) {
+                        listEmp.add(emp);
+                        listEmpTemp.add(emp);
+                    }
                     index++;
                     //TODO: doc du lieu tu file excel vo trong JTable
                 } while (true);
@@ -551,6 +551,15 @@ public class frmEmployee extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    public boolean isExist(Employee emp) {
+        for (int i = 0; i < listEmp.size(); i++) {
+            if (listEmp.get(i).getId().equalsIgnoreCase(emp.getId())) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     private void cancelCellEditing() {
         CellEditor ce = tableContent.getCellEditor();
