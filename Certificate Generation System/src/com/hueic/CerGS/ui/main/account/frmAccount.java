@@ -4,22 +4,57 @@
  */
 
 /*
- * AccountFrm.java
+ * frmAccount.java
  *
- * Created on Mar 15, 2011, 12:30:48 AM
+ * Created on Mar 16, 2011, 8:16:51 PM
  */
-
 package com.hueic.CerGS.ui.main.account;
+
+import com.hueic.CerGS.component.ColumnData;
+import com.hueic.CerGS.component.ObjectTableModel;
+import com.hueic.CerGS.dao.AccountDAO;
+import com.hueic.CerGS.entity.Account;
+import java.util.ArrayList;
+import javax.swing.JTable;
+import javax.swing.JViewport;
+import javax.swing.ListSelectionModel;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
 
 /**
  *
- * @author qhvic
+ * @author nhchung
  */
-public class AccountFrm extends javax.swing.JFrame {
+public class frmAccount extends javax.swing.JFrame {
 
-    /** Creates new form AccountFrm */
-    public AccountFrm() {
+    /** Creates new form frmAccount */
+    private ObjectTableModel tableModel;
+    private ArrayList<Account> listAccounts = new ArrayList<Account>();
+    private AccountDAO accDao;
+
+    public frmAccount() {
         initComponents();
+        setLocationRelativeTo(null);
+        accDao = new AccountDAO();
+        listAccounts = accDao.readByAll();
+        loadData(listAccounts);
+    }
+
+    public void loadData(ArrayList<Account> listAccounts) {
+        ColumnData[] columns = {
+            new ColumnData("Username", 20, SwingConstants.LEFT, 1),
+            new ColumnData("Password", 30, SwingConstants.LEFT, 2),
+            new ColumnData("Permission", 20, SwingConstants.LEFT, 3),};
+        tableModel = new ObjectTableModel(tableContent, columns, listAccounts);
+        JTable headerTable = tableModel.getHeaderTable();
+        headerTable.createDefaultColumnsFromModel();
+        tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        JViewport viewPort = new JViewport();
+        viewPort.setView(headerTable);
+        viewPort.setPreferredSize(headerTable.getMaximumSize());
+        jScrollPane1.setRowHeader(viewPort);
+        jScrollPane1.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, headerTable.getTableHeader());
     }
 
     /** This method is called from within the constructor to
@@ -32,8 +67,11 @@ public class AccountFrm extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jLabel2 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableContent = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
         panel1 = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
         sepaAccount = new javax.swing.JSeparator();
@@ -53,11 +91,33 @@ public class AccountFrm extends javax.swing.JFrame {
         lblType = new javax.swing.JLabel();
         cbxType = new javax.swing.JComboBox();
 
-        jLabel2.setText("jLabel2");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Managment Account");
+        setResizable(false);
 
-        jLabel6.setText("jLabel6");
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 737, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        tableContent.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tableContent);
 
         panel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "Add Account", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14)))); // NOI18N
         panel1.setLayout(new java.awt.GridBagLayout());
@@ -70,7 +130,7 @@ public class AccountFrm extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 0);
         panel1.add(lblTitle, gridBagConstraints);
 
         sepaAccount.setPreferredSize(new java.awt.Dimension(300, 10));
@@ -177,7 +237,7 @@ public class AccountFrm extends javax.swing.JFrame {
         panel1.add(lblType, gridBagConstraints);
 
         cbxType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrator", "Employee", "Student", " " }));
-        cbxType.setPreferredSize(new java.awt.Dimension(150, 20));
+        cbxType.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
@@ -185,38 +245,80 @@ public class AccountFrm extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel1.add(cbxType, gridBagConstraints);
 
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
-                new AccountFrm().setVisible(true);
+                new frmAccount().setVisible(true);
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnReset;
     private javax.swing.JComboBox cbxType;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblConfirmPass;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblTitle;
@@ -228,9 +330,9 @@ public class AccountFrm extends javax.swing.JFrame {
     private javax.swing.JPanel panel1;
     private javax.swing.JPanel panel2;
     private javax.swing.JSeparator sepaAccount;
+    private javax.swing.JTable tableContent;
     private javax.swing.JTextField txtConfirmPass;
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
-
 }

@@ -61,7 +61,7 @@ public class Account implements PropertyIndex {
      * @param password the password to set
      */
     public void setPassword(String password) throws Exception {
-        if (password.length() > 22 || password.length() < 6) {
+        if (password.length() > 100 || password.length() < 6) {
             throw new Exception("password must be more than 6 characters and not exceed 30 characters");
         }
         this.password = password;
