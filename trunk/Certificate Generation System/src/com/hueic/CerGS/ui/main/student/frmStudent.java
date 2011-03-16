@@ -1,20 +1,19 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this tstudentlate, choose Tools | Tstudentlates
+ * and open the tstudentlate in the editor.
  */
 
 /*
- * EmployeeFrm.java
+ * StudentFrm.java
  *
  * Created on Mar 13, 2011, 5:38:22 PM
  */
 package com.hueic.CerGS.ui.main.student;
 
-import com.hueic.CerGS.ui.main.employee.*;
 import com.hueic.CerGS.component.ColumnData;
 import com.hueic.CerGS.component.ObjectTableModel;
-import com.hueic.CerGS.dao.EmployeeDAO;
-import com.hueic.CerGS.entity.Employee;
+import com.hueic.CerGS.dao.StudentDAO;
+import com.hueic.CerGS.entity.Student;
 import java.awt.AWTEvent;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
@@ -46,17 +45,17 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
  */
 public class frmStudent extends javax.swing.JFrame {
 
-    /** Creates new form EmployeeFrm */
+    /** Creates new form StudentFrm */
     private ObjectTableModel tableModel;
-    private ArrayList<Employee> listEmp = new ArrayList<Employee>();
-    private ArrayList<Employee> listEmpTemp = new ArrayList<Employee>();
-    private ArrayList<Employee> listEmpSearch = new ArrayList<Employee>();
-    private EmployeeDAO empDao = new EmployeeDAO();
+    private ArrayList<Student> liststudent = new ArrayList<Student>();
+    private ArrayList<Student> liststudentTemp = new ArrayList<Student>();
+    private ArrayList<Student> liststudentSearch = new ArrayList<Student>();
+    private StudentDAO studentDao = new StudentDAO();
 
     public frmStudent() {
         initComponents();
         setSize(1100, 700);
-        listEmp = empDao.readByAll();
+        liststudent = studentDao.readByAll();
         enableEvents(AWTEvent.MOUSE_EVENT_MASK);
         tableContent.addMouseListener(new MouseAdapter() {
 
@@ -86,11 +85,11 @@ public class frmStudent extends javax.swing.JFrame {
                 maybeShowPopup(e);
             }
         });
-        loadTable(listEmp);
+        loadTable(liststudent);
     }
 
-    public void loadTable(ArrayList<Employee> listEmp) {
-        lblCount.setText(String.valueOf(listEmp.size()));
+    public void loadTable(ArrayList<Student> liststudent) {
+        lblCount.setText(String.valueOf(liststudent.size()));
         ColumnData[] columns = {
             new ColumnData("Id", 20, SwingConstants.LEFT, 1),
             new ColumnData("First Name", 30, SwingConstants.LEFT, 2),
@@ -98,7 +97,7 @@ public class frmStudent extends javax.swing.JFrame {
             new ColumnData("Birthday", 20, SwingConstants.LEFT, 4),
             new ColumnData("Gender", 20, SwingConstants.LEFT, 5),
             new ColumnData("Phone", 20, SwingConstants.LEFT, 6),};
-        tableModel = new ObjectTableModel(tableContent, columns, listEmp);
+        tableModel = new ObjectTableModel(tableContent, columns, liststudent);
         JTable headerTable = tableModel.getHeaderTable();
         headerTable.createDefaultColumnsFromModel();
         tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -123,16 +122,16 @@ public class frmStudent extends javax.swing.JFrame {
         menuIAdd = new javax.swing.JMenuItem();
         menuIEdit = new javax.swing.JMenuItem();
         menuIDelete = new javax.swing.JMenuItem();
-        mnuIDetailsEmployee = new javax.swing.JMenuItem();
+        mnuIDetails = new javax.swing.JMenuItem();
         panelBanner = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jTaskPane1 = new com.l2fprod.common.swing.JTaskPane();
         jTaskPaneGroup1 = new com.l2fprod.common.swing.JTaskPaneGroup();
-        linkButtonAddEmp = new com.l2fprod.common.swing.JLinkButton();
-        linkButtonEditEmp = new com.l2fprod.common.swing.JLinkButton();
-        linkButtonDeleteEmp = new com.l2fprod.common.swing.JLinkButton();
-        linkButtonSearchEmp = new com.l2fprod.common.swing.JLinkButton();
+        linkButtonAddStudent = new com.l2fprod.common.swing.JLinkButton();
+        linkButtonEditStudent = new com.l2fprod.common.swing.JLinkButton();
+        linkButtonDeleteStudent = new com.l2fprod.common.swing.JLinkButton();
+        linkButtonSearchStudent = new com.l2fprod.common.swing.JLinkButton();
         jTaskPaneGroup2 = new com.l2fprod.common.swing.JTaskPaneGroup();
         jTaskPaneGroup3 = new com.l2fprod.common.swing.JTaskPaneGroup();
         linkButtonImport = new com.l2fprod.common.swing.JLinkButton();
@@ -172,8 +171,8 @@ public class frmStudent extends javax.swing.JFrame {
         menuIDelete.setText("Delete ");
         popupMenuTable.add(menuIDelete);
 
-        mnuIDetailsEmployee.setText("Details");
-        popupMenuTable.add(mnuIDetailsEmployee);
+        mnuIDetails.setText("Details");
+        popupMenuTable.add(mnuIDetails);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Management Employee");
@@ -197,28 +196,28 @@ public class frmStudent extends javax.swing.JFrame {
         percentLayout1.setOrientation(1);
         jTaskPane1.setLayout(percentLayout1);
 
-        jTaskPaneGroup1.setTitle("Managment Employee");
-        jTaskPaneGroup1.setToolTipText("Managment Employee");
+        jTaskPaneGroup1.setTitle("Managment Student");
+        jTaskPaneGroup1.setToolTipText("Managment Student");
         com.l2fprod.common.swing.PercentLayout percentLayout2 = new com.l2fprod.common.swing.PercentLayout();
         percentLayout2.setGap(2);
         percentLayout2.setOrientation(1);
         jTaskPaneGroup1.getContentPane().setLayout(percentLayout2);
 
-        linkButtonAddEmp.setText("Add Employee");
-        linkButtonAddEmp.setToolTipText("Add Employee");
-        jTaskPaneGroup1.getContentPane().add(linkButtonAddEmp);
+        linkButtonAddStudent.setText("Add Student");
+        linkButtonAddStudent.setToolTipText("Add Employee");
+        jTaskPaneGroup1.getContentPane().add(linkButtonAddStudent);
 
-        linkButtonEditEmp.setText("Edit Employee");
-        linkButtonEditEmp.setToolTipText("Edit Employee");
-        jTaskPaneGroup1.getContentPane().add(linkButtonEditEmp);
+        linkButtonEditStudent.setText("Edit Student");
+        linkButtonEditStudent.setToolTipText("Edit Employee");
+        jTaskPaneGroup1.getContentPane().add(linkButtonEditStudent);
 
-        linkButtonDeleteEmp.setText("Delete Employee");
-        linkButtonDeleteEmp.setToolTipText("Delete Employee");
-        jTaskPaneGroup1.getContentPane().add(linkButtonDeleteEmp);
+        linkButtonDeleteStudent.setText("Delete Student");
+        linkButtonDeleteStudent.setToolTipText("Delete Employee");
+        jTaskPaneGroup1.getContentPane().add(linkButtonDeleteStudent);
 
-        linkButtonSearchEmp.setText("Search Employee");
-        linkButtonSearchEmp.setToolTipText("Search Employee");
-        jTaskPaneGroup1.getContentPane().add(linkButtonSearchEmp);
+        linkButtonSearchStudent.setText("Search Student");
+        linkButtonSearchStudent.setToolTipText("Search Employee");
+        jTaskPaneGroup1.getContentPane().add(linkButtonSearchStudent);
 
         jTaskPane1.add(jTaskPaneGroup1);
 
@@ -258,7 +257,7 @@ public class frmStudent extends javax.swing.JFrame {
             .addComponent(jTaskPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
         );
 
-        comboSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All Employee", "Employee ID", "First Name", "Last Name", "Birthday", "Gender", "Phone Number" }));
+        comboSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All Student", "Student ID", "First Name", "Last Name", "Birthday", "Gender", "Phone Number" }));
         comboSearch.setToolTipText("Choose type to search");
         comboSearch.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -438,9 +437,9 @@ public class frmStudent extends javax.swing.JFrame {
     private void menuIEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIEditActionPerformed
         // TODO add your handling co\de here:
         int index = tableContent.getSelectedRow();
-        Employee emp = listEmp.get(index);
-        frmEditEmployee editEmployee = new frmEditEmployee(emp);
-        editEmployee.setVisible(true);
+        Student student = liststudent.get(index);
+     //   frmEditStudent editStudent = new frmEditStudent(student);
+      //  editStudent.setVisible(true);
     }//GEN-LAST:event_menuIEditActionPerformed
 
     private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
@@ -452,7 +451,7 @@ public class frmStudent extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             HSSFWorkbook wb = new HSSFWorkbook();
-            HSSFSheet sheet = wb.createSheet("Employee Sheet");
+            HSSFSheet sheet = wb.createSheet("Student Sheet");
             HSSFRow rowHead = sheet.createRow(0);
             rowHead.createCell(0).setCellValue("Id");
             rowHead.createCell(1).setCellValue("First Name");
@@ -466,20 +465,19 @@ public class frmStudent extends javax.swing.JFrame {
             rowHead.createCell(9).setCellValue("Status");
             rowHead.createCell(10).setCellValue("Begin Work");
             int index = 1;
-            for (int i = 0; i < listEmp.size(); i++) {
-                Employee emp = listEmp.get(i);
+            for (int i = 0; i < liststudent.size(); i++) {
+                Student student = liststudent.get(i);
                 HSSFRow row = sheet.createRow(index);
-                row.createCell(0).setCellValue(emp.getId());
-                row.createCell(1).setCellValue(emp.getFirstName());
-                row.createCell(2).setCellValue(emp.getLastName());
-                row.createCell(3).setCellValue(emp.getBirthDay());
-                row.createCell(4).setCellValue(emp.getGender());
-                row.createCell(5).setCellValue(emp.getPhone());
-                row.createCell(6).setCellValue(emp.getEmail());
-                row.createCell(7).setCellValue(emp.getAddress());
-                row.createCell(8).setCellValue(emp.getImage());
-                row.createCell(9).setCellValue(emp.getStatus());
-                row.createCell(10).setCellValue(emp.getBeginWork());
+                row.createCell(0).setCellValue(student.getId());
+                row.createCell(1).setCellValue(student.getFirstName());
+                row.createCell(2).setCellValue(student.getLastName());
+                row.createCell(3).setCellValue(student.getBirthDay());
+                row.createCell(4).setCellValue(student.getGender());
+                row.createCell(5).setCellValue(student.getPhone());
+                row.createCell(6).setCellValue(student.getEmail());
+                row.createCell(7).setCellValue(student.getAddress());
+                row.createCell(8).setCellValue(student.getImage());
+                row.createCell(9).setCellValue(student.getStatus());
                 index++;
             }
             JFileChooser fileChooser = new JFileChooser();
@@ -525,33 +523,32 @@ public class frmStudent extends javax.swing.JFrame {
             if (file.exists()) {
                 fis = new FileInputStream(file);
                 HSSFWorkbook wb = new HSSFWorkbook(fis);
-                HSSFSheet sheet = wb.getSheet("Employee Sheet");
+                HSSFSheet sheet = wb.getSheet("Student Sheet");
                 int index = 1;
                 do {
                     HSSFRow row = sheet.getRow(index);
-                    Employee emp = new Employee();
+                    Student student = new Student();
                     if (row == null) {
                         break;
                     }
-                    emp.setId(row.getCell(0).toString());
-                    emp.setFirstName(row.getCell(1).toString());
-                    emp.setLastName(row.getCell(2).toString());
-                    emp.setBirthDay(row.getCell(3).toString());
-                    emp.setGender((int) Float.parseFloat(row.getCell(4).toString()));
-                    emp.setPhone(row.getCell(5).toString());
-                    emp.setEmail(row.getCell(6).toString());
-                    emp.setAddress(row.getCell(7).toString());
-                    emp.setImage(row.getCell(8).toString());
-                    emp.setStatus((int) Float.parseFloat(row.getCell(9).toString()));
-                    emp.setBeginWork(row.getCell(10).toString());
-                    if (isExist(emp)) {
-                        listEmp.add(emp);
-                        listEmpTemp.add(emp);
+                    student.setId(row.getCell(0).toString());
+                    student.setFirstName(row.getCell(1).toString());
+                    student.setLastName(row.getCell(2).toString());
+                    student.setBirthDay(row.getCell(3).getDateCellValue());
+                    student.setGender((int) Float.parseFloat(row.getCell(4).toString()));
+                    student.setPhone(row.getCell(5).toString());
+                    student.setEmail(row.getCell(6).toString());
+                    student.setAddress(row.getCell(7).toString());
+                    student.setImage(row.getCell(8).toString());
+                    student.setStatus((int) Float.parseFloat(row.getCell(9).toString()));
+                    if (isExist(student)) {
+                        liststudent.add(student);
+                        liststudentTemp.add(student);
                     }
                     index++;
                     //TODO: doc du lieu tu file excel vo trong JTable
                 } while (true);
-                loadTable(listEmp);
+                loadTable(liststudent);
             }
         } catch (Exception ex) {
             Logger.getLogger(frmStudent.class.getName()).log(Level.SEVERE, null, ex);
@@ -566,7 +563,7 @@ public class frmStudent extends javax.swing.JFrame {
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
-        if (listEmpTemp.size() != 0) {
+        if (liststudentTemp.size() != 0) {
             int result = JOptionPane.showOptionDialog(this, "Save Data", "Question", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
             if (result == JOptionPane.OK_OPTION) {
             } else if (result == JOptionPane.CANCEL_OPTION) {
@@ -579,15 +576,15 @@ public class frmStudent extends javax.swing.JFrame {
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
-        listEmpTemp.clear();
+        liststudentTemp.clear();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        if (listEmpTemp.size() != 0) {
-            for (int i = 0; i < listEmpTemp.size(); i++) {
-                Employee emp = new Employee();
-                empDao.create(emp);
+        if (liststudentTemp.size() != 0) {
+            for (int i = 0; i < liststudentTemp.size(); i++) {
+                Student student = new Student();
+                studentDao.create(student);
             }
         }
     }//GEN-LAST:event_btnSaveActionPerformed
@@ -595,28 +592,28 @@ public class frmStudent extends javax.swing.JFrame {
     private void lblSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSearchMouseClicked
         // TODO add your handling code here:
         String choose = comboSearch.getSelectedItem().toString().trim();
-        if (choose.equalsIgnoreCase("All Employee")) {
-            loadTable(listEmp);
+        if (choose.equalsIgnoreCase("All Student")) {
+            loadTable(liststudent);
             return;
-        } else if (choose.equalsIgnoreCase("Employee ID")) {
-            listEmpSearch.clear();
-            for (int i = 0; i < listEmp.size(); i++) {
-                if (listEmp.get(i).getId().contentEquals(txtSearch.getText())) {
-                    listEmpSearch.add(listEmp.get(i));
+        } else if (choose.equalsIgnoreCase("Student ID")) {
+            liststudentSearch.clear();
+            for (int i = 0; i < liststudent.size(); i++) {
+                if (liststudent.get(i).getId().contentEquals(txtSearch.getText())) {
+                    liststudentSearch.add(liststudent.get(i));
                 }
             }
         } else if (choose.equalsIgnoreCase("First Name")) {
-            listEmpSearch.clear();
-            for (int i = 0; i < listEmp.size(); i++) {
-                if (listEmp.get(i).getFirstName().contentEquals(txtSearch.getText())) {
-                    listEmpSearch.add(listEmp.get(i));
+            liststudentSearch.clear();
+            for (int i = 0; i < liststudent.size(); i++) {
+                if (liststudent.get(i).getFirstName().contentEquals(txtSearch.getText())) {
+                    liststudentSearch.add(liststudent.get(i));
                 }
             }
         } else if (choose.equalsIgnoreCase("Last Name")) {
-            listEmpSearch.clear();
-            for (int i = 0; i < listEmp.size(); i++) {
-                if (listEmp.get(i).getLastName().contentEquals(txtSearch.getText())) {
-                    listEmpSearch.add(listEmp.get(i));
+            liststudentSearch.clear();
+            for (int i = 0; i < liststudent.size(); i++) {
+                if (liststudent.get(i).getLastName().contentEquals(txtSearch.getText())) {
+                    liststudentSearch.add(liststudent.get(i));
                 }
             }
         } else if (choose.equalsIgnoreCase("Birthday")) {
@@ -638,39 +635,39 @@ public class frmStudent extends javax.swing.JFrame {
             } else {
                 return;
             }
-            listEmpSearch.clear();
-            for (int i = 0; i < listEmp.size(); i++) {
-                if (listEmp.get(i).getGender() == gender) {
-                    listEmpSearch.add(listEmp.get(i));
+            liststudentSearch.clear();
+            for (int i = 0; i < liststudent.size(); i++) {
+                if (liststudent.get(i).getGender() == gender) {
+                    liststudentSearch.add(liststudent.get(i));
                 }
             }
         } else if (choose.equalsIgnoreCase("Phone")) {
-            listEmpSearch.clear();
-            for (int i = 0; i < listEmp.size(); i++) {
-                if (listEmp.get(i).getPhone().contentEquals(txtSearch.getText())) {
-                    listEmpSearch.add(listEmp.get(i));
+            liststudentSearch.clear();
+            for (int i = 0; i < liststudent.size(); i++) {
+                if (liststudent.get(i).getPhone().contentEquals(txtSearch.getText())) {
+                    liststudentSearch.add(liststudent.get(i));
                 }
             }
         }
-        loadTable(listEmpSearch);
+        loadTable(liststudentSearch);
     }//GEN-LAST:event_lblSearchMouseClicked
 
     private void comboSearchItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboSearchItemStateChanged
         // TODO add your handling code here:
-        if (comboSearch.getSelectedItem().toString().equalsIgnoreCase("All Employee")) {
-            loadTable(listEmp);
+        if (comboSearch.getSelectedItem().toString().equalsIgnoreCase("All Student")) {
+            loadTable(liststudent);
         }
     }//GEN-LAST:event_comboSearchItemStateChanged
 
     private void menuIAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIAddActionPerformed
         // TODO add your handling code here:
-        frmAddEmployee addEmployee = new frmAddEmployee();
-        addEmployee.setVisible(true);
+        frmAddStudent addStudent = new frmAddStudent();
+        addStudent.setVisible(true);
     }//GEN-LAST:event_menuIAddActionPerformed
 
-    public boolean isExist(Employee emp) {
-        for (int i = 0; i < listEmp.size(); i++) {
-            if (listEmp.get(i).getId().equalsIgnoreCase(emp.getId())) {
+    public boolean isExist(Student student) {
+        for (int i = 0; i < liststudent.size(); i++) {
+            if (liststudent.get(i).getId().equalsIgnoreCase(student.getId())) {
                 return false;
             }
         }
@@ -715,16 +712,16 @@ public class frmStudent extends javax.swing.JFrame {
     private javax.swing.JLabel lblCount;
     private javax.swing.JLabel lblHienthi1;
     private javax.swing.JLabel lblSearch;
-    private com.l2fprod.common.swing.JLinkButton linkButtonAddEmp;
-    private com.l2fprod.common.swing.JLinkButton linkButtonDeleteEmp;
-    private com.l2fprod.common.swing.JLinkButton linkButtonEditEmp;
+    private com.l2fprod.common.swing.JLinkButton linkButtonAddStudent;
+    private com.l2fprod.common.swing.JLinkButton linkButtonDeleteStudent;
+    private com.l2fprod.common.swing.JLinkButton linkButtonEditStudent;
     private com.l2fprod.common.swing.JLinkButton linkButtonExport;
     private com.l2fprod.common.swing.JLinkButton linkButtonImport;
-    private com.l2fprod.common.swing.JLinkButton linkButtonSearchEmp;
+    private com.l2fprod.common.swing.JLinkButton linkButtonSearchStudent;
     private javax.swing.JMenuItem menuIAdd;
     private javax.swing.JMenuItem menuIDelete;
     private javax.swing.JMenuItem menuIEdit;
-    private javax.swing.JMenuItem mnuIDetailsEmployee;
+    private javax.swing.JMenuItem mnuIDetails;
     private javax.swing.JPanel panelBanner;
     private javax.swing.JPopupMenu popupMenuTable;
     private javax.swing.JTable tableContent;

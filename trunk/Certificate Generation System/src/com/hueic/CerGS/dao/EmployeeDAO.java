@@ -6,6 +6,7 @@ package com.hueic.CerGS.dao;
 
 import com.hueic.CerGS.entity.Employee;
 import com.hueic.CerGS.entity.Person;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -35,14 +36,14 @@ public class EmployeeDAO extends BaseDAO {
                 emp.setId(rs.getString(1));
                 emp.setFirstName(rs.getString(2));
                 emp.setLastName(rs.getString(3));
-                emp.setBirthDay(rs.getString(4));
+                emp.setBirthDay(rs.getDate(4));
                 emp.setGender(rs.getInt(5));
                 emp.setPhone(rs.getString(6));
                 emp.setEmail(rs.getString(7));
                 emp.setAddress(rs.getString(8));
                 emp.setImage(rs.getString(9));
                 emp.setStatus(rs.getInt(10));
-                emp.setBeginWork(rs.getString(11));
+                emp.setBeginWork(rs.getDate(11));
                 list.add(emp);
             }
         } catch (Exception ex) {
@@ -66,14 +67,14 @@ public class EmployeeDAO extends BaseDAO {
                 emp.setId(rs.getString(1));
                 emp.setFirstName(rs.getString(2));
                 emp.setLastName(rs.getString(3));
-                emp.setBirthDay(rs.getString(4));
+                emp.setBirthDay(rs.getDate(4));
                 emp.setGender(rs.getInt(5));
                 emp.setPhone(rs.getString(6));
                 emp.setEmail(rs.getString(7));
                 emp.setAddress(rs.getString(8));
                 emp.setImage(rs.getString(9));
                 emp.setStatus(rs.getInt(10));
-                emp.setBeginWork(rs.getString(11));
+                emp.setBeginWork(rs.getDate(11));
             }
         } catch (Exception ex) {
             Logger.getLogger(EmployeeDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -91,7 +92,7 @@ public class EmployeeDAO extends BaseDAO {
                 String sql = "insert into Employee(Id,BeginWork)" + " values (?,?); ";
                 pst = con.prepareStatement(sql);
                 pst.setString(1, emp.getId());
-                pst.setString(2, emp.getBeginWork());
+                pst.setDate(2, (Date) emp.getBeginWork());
                 if (pst.executeUpdate() > 0) {
                     setLastError("Add Employee Successfully");
                     status = true;
@@ -121,7 +122,7 @@ public class EmployeeDAO extends BaseDAO {
                 pst.setString(1, person.getId());
                 rs = pst.executeQuery();
                 if (rs.first()) {
-                    rs.updateString(2, emp.getBeginWork());
+                    rs.updateDate(2, (Date) emp.getBeginWork());
                     rs.updateRow();
                     setLastError("Update Employee successfully");
                     status = true;

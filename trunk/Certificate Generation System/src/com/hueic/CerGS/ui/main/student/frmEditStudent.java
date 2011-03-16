@@ -4,27 +4,22 @@
  */
 
 /*
- * AddEmpFrm.java
+ * AddStuFrm.java
  *
- * Created on Mar 16, 2011, 2:25:12 PM
+ * Created on Mar 14, 2011, 9:45:49 PM
  */
-package com.hueic.CerGS.ui.main.employee;
 
-import com.hueic.CerGS.dao.EmployeeDAO;
-import com.hueic.CerGS.entity.Employee;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
+package com.hueic.CerGS.ui.main.student;
 
 /**
  *
  * @author qhvic
  */
-public class frmAddEmployee extends javax.swing.JFrame {
+public class frmEditStudent extends javax.swing.JFrame {
 
-    /** Creates new form AddEmpFrm */
-    public frmAddEmployee() {
+    /** Creates new form AddStuFrm */
+    public frmEditStudent() {
         initComponents();
-        setLocationRelativeTo(null);
     }
 
     /** This method is called from within the constructor to
@@ -37,7 +32,7 @@ public class frmAddEmployee extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        buttonGroupGender = new javax.swing.ButtonGroup();
+        btnGGender = new javax.swing.ButtonGroup();
         panel1 = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
         sepaAddStu = new javax.swing.JSeparator();
@@ -64,26 +59,23 @@ public class frmAddEmployee extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        lblEmployeeID = new javax.swing.JLabel();
+        lblStudentID = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         DateChBirthday = new com.toedter.calendar.JDateChooser();
-        lblBeginwork = new javax.swing.JLabel();
-        DateChBeginWork = new com.toedter.calendar.JDateChooser();
         lblPhone = new javax.swing.JLabel();
         txtPhone = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Add Employee");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Add Student");
         setResizable(false);
 
-        panel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "Add Employee", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        panel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "Add Student", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
         panel1.setLayout(new java.awt.GridBagLayout());
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 13));
         lblTitle.setForeground(new java.awt.Color(102, 0, 102));
-        lblTitle.setText("Information Employee");
+        lblTitle.setText("Information Student");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -181,8 +173,6 @@ public class frmAddEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel1.add(txtLastname, gridBagConstraints);
 
-        buttonGroupGender.add(radioMale);
-        radioMale.setSelected(true);
         radioMale.setText("Male");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -191,7 +181,6 @@ public class frmAddEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         panel1.add(radioMale, gridBagConstraints);
 
-        buttonGroupGender.add(radioFemale);
         radioFemale.setText("Female");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -222,11 +211,6 @@ public class frmAddEmployee extends javax.swing.JFrame {
         btnBrowse.setMaximumSize(new java.awt.Dimension(70, 23));
         btnBrowse.setMinimumSize(new java.awt.Dimension(70, 23));
         btnBrowse.setPreferredSize(new java.awt.Dimension(60, 23));
-        btnBrowse.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBrowseActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 11;
@@ -248,29 +232,14 @@ public class frmAddEmployee extends javax.swing.JFrame {
 
         btnAdd.setText("Add");
         btnAdd.setPreferredSize(new java.awt.Dimension(75, 23));
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
-            }
-        });
         panel2.add(btnAdd);
 
         btnReset.setText("Reset");
         btnReset.setPreferredSize(new java.awt.Dimension(75, 23));
-        btnReset.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnResetActionPerformed(evt);
-            }
-        });
         panel2.add(btnReset);
 
         btnCancel.setText("Cancel");
         btnCancel.setPreferredSize(new java.awt.Dimension(75, 23));
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelActionPerformed(evt);
-            }
-        });
         panel2.add(btnCancel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -303,21 +272,13 @@ public class frmAddEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel1.add(jLabel3, gridBagConstraints);
 
-        jLabel4.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel4.setText("(*)");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 10;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(jLabel4, gridBagConstraints);
-
-        lblEmployeeID.setText("Employee ID:");
+        lblStudentID.setText("Student ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(lblEmployeeID, gridBagConstraints);
+        panel1.add(lblStudentID, gridBagConstraints);
 
         txtID.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -336,7 +297,6 @@ public class frmAddEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel1.add(jLabel5, gridBagConstraints);
 
-        DateChBirthday.setDateFormatString("MM\\dd\\yyyy");
         DateChBirthday.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -345,24 +305,6 @@ public class frmAddEmployee extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel1.add(DateChBirthday, gridBagConstraints);
-
-        lblBeginwork.setText("Begin work:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(lblBeginwork, gridBagConstraints);
-
-        DateChBeginWork.setDateFormatString("MM\\dd\\yyyy");
-        DateChBeginWork.setPreferredSize(new java.awt.Dimension(200, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 10;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(DateChBeginWork, gridBagConstraints);
 
         lblPhone.setText("Phone: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -383,10 +325,7 @@ public class frmAddEmployee extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(panel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -396,100 +335,38 @@ public class frmAddEmployee extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_btnCancelActionPerformed
-
-    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        // TODO add your handling code here:
-        txtID.setText(null);
-        txtFirstname.setText(null);
-        txtLastname.setText(null);
-        txtPhone.setText(null);
-        txtEmail.setText(null);
-        txtAddress.setText(null);
-        txtImage.setText(null);
-    }//GEN-LAST:event_btnResetActionPerformed
-
-    private void btnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseActionPerformed
-        // TODO add your handling code here:
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogType(JFileChooser.OPEN_DIALOG);
-        fileChooser.showOpenDialog(this);
-        String path = null;
-        try {
-            path = fileChooser.getSelectedFile().getPath();
-        } catch (Exception ex) {
-            return;
-        }
-        txtImage.setText(path);
-        ImageIcon icon = new ImageIcon(path);
-        lblImage2.setIcon(icon);
-    }//GEN-LAST:event_btnBrowseActionPerformed
-
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        try {
-            // TODO add your handling code here:
-            Employee emp = new Employee();
-            emp.setId(txtID.getText());
-            emp.setFirstName(txtFirstname.getText());
-            emp.setLastName(txtLastname.getText());
-            emp.setBirthDay(DateChBirthday.getDate());
-            if (radioMale.isSelected()) {
-                emp.setGender(0);
-
-            } else if (radioFemale.isSelected()) {
-                emp.setGender(1);
-
-            }
-            emp.setPhone(txtPhone.getText());
-            emp.setEmail(txtEmail.getText());
-            emp.setAddress(txtAddress.getText());
-            emp.setImage(txtImage.getText());
-            emp.setStatus(1);
-
-            EmployeeDAO empDao = new EmployeeDAO();
-            empDao.create(emp);
-        } catch (Exception ex) {
-        }
-    }//GEN-LAST:event_btnAddActionPerformed
-
     /**
-     * @param args the command line arguments
-     */
+    * @param args the command line arguments
+    */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
-
             public void run() {
-                new frmAddEmployee().setVisible(true);
+                new frmEditStudent().setVisible(true);
             }
         });
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser DateChBeginWork;
     private com.toedter.calendar.JDateChooser DateChBirthday;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBrowse;
     private javax.swing.JButton btnCancel;
+    private javax.swing.ButtonGroup btnGGender;
     private javax.swing.JButton btnReset;
-    private javax.swing.ButtonGroup buttonGroupGender;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel lblAddress;
-    private javax.swing.JLabel lblBeginwork;
     private javax.swing.JLabel lblBirthday;
     private javax.swing.JLabel lblEmail;
-    private javax.swing.JLabel lblEmployeeID;
     private javax.swing.JLabel lblFirstname;
     private javax.swing.JLabel lblGender;
     private javax.swing.JLabel lblImage1;
     private javax.swing.JLabel lblImage2;
     private javax.swing.JLabel lblLastname;
     private javax.swing.JLabel lblPhone;
+    private javax.swing.JLabel lblStudentID;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JPanel panel1;
     private javax.swing.JPanel panel2;
@@ -504,4 +381,5 @@ public class frmAddEmployee extends javax.swing.JFrame {
     private javax.swing.JTextField txtLastname;
     private javax.swing.JTextField txtPhone;
     // End of variables declaration//GEN-END:variables
+
 }

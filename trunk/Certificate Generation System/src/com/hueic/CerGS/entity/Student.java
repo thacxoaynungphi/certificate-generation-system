@@ -5,6 +5,7 @@
 package com.hueic.CerGS.entity;
 
 import com.hueic.CerGS.component.PropertyIndex;
+import java.util.Date;
 
 /**
  *
@@ -20,7 +21,7 @@ public class Student extends Person implements PropertyIndex {
         super();
     }
 
-    public Student(String id, String firstName, String lastName, String birthDay, int gender, String phone, String email, String address, String image, String classID, String currentClass, String registrationDate) throws Exception {
+    public Student(String id, String firstName, String lastName, Date birthDay, int gender, String phone, String email, String address, String image, String classID, String currentClass, String registrationDate) throws Exception {
         super(id, firstName, lastName, birthDay, gender, phone, email, address, image);
     }
 
@@ -37,7 +38,7 @@ public class Student extends Person implements PropertyIndex {
                 value = this.getLastName();
                 break;
             case 4:
-                value = this.getBirthDay();
+                value = this.getBirthDay().toString();
                 break;
             case 5:
                 value = String.valueOf(this.getGender());

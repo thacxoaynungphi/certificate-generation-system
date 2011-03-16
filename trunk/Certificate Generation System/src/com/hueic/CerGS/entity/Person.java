@@ -4,6 +4,7 @@
  */
 package com.hueic.CerGS.entity;
 
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,7 +20,7 @@ public class Person {
     private String id;
     private String firstName;
     private String lastName;
-    private String birthDay;
+    private Date birthDay;
     private int gender;
     private String phone;
     private String email;
@@ -41,7 +42,7 @@ public class Person {
         status = 1;
     }
 
-    public Person(String id, String firstName, String lastName, String birthDay, int gender, String phone, String email, String address, String image) throws Exception {
+    public Person(String id, String firstName, String lastName, Date birthDay, int gender, String phone, String email, String address, String image) throws Exception {
         setId(id);
         setFirstName(firstName);
         setLastName(lastName);
@@ -110,7 +111,7 @@ public class Person {
     /**
      * @return the birthDay
      */
-    public String getBirthDay() {
+    public Date getBirthDay() {
         return birthDay;
     }
 
@@ -118,7 +119,7 @@ public class Person {
      * @param birthDay the birthDay to set
      */
     //TODO can them vao Pattern dinh dang ngay thang. tuy vao ngon ngu
-    public void setBirthDay(String birthDay) {
+    public void setBirthDay(Date birthDay) {
         this.birthDay = birthDay;
     }
 

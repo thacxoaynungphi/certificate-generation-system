@@ -9,8 +9,6 @@ import com.hueic.CerGS.entity.Person;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -30,7 +28,7 @@ public class StudentDAO extends BaseDAO {
                 student.setId(rs.getString(1));
                 student.setFirstName(rs.getString(2));
                 student.setLastName(rs.getString(3));
-                student.setBirthDay(rs.getString(4));
+                student.setBirthDay(rs.getDate(4));
                 student.setGender(rs.getInt(5));
                 student.setPhone(rs.getString(6));
                 student.setEmail(rs.getString(7));
@@ -60,7 +58,7 @@ public class StudentDAO extends BaseDAO {
                 student.setId(rs.getString(1));
                 student.setFirstName(rs.getString(2));
                 student.setLastName(rs.getString(3));
-                student.setBirthDay(rs.getString(4));
+                student.setBirthDay(rs.getDate(4));
                  student.setGender(rs.getInt(5));
                 student.setPhone(rs.getString(6));
                 student.setEmail(rs.getString(7));
