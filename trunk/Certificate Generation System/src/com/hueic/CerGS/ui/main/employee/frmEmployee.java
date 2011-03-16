@@ -18,13 +18,22 @@ import java.awt.AWTEvent;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.CellEditor;
+import javax.swing.JFileChooser;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 /**
  *
@@ -285,6 +294,11 @@ public class frmEmployee extends javax.swing.JFrame {
         btnOK.setText("OK");
 
         btnExport.setText("Export");
+        btnExport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -364,6 +378,58 @@ public class frmEmployee extends javax.swing.JFrame {
     private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_tableContentMouseClicked
+
+    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
+        FileOutputStream fos = null;
+        try {
+            // TODO add your handling code here:
+            HSSFWorkbook wb = new HSSFWorkbook();
+            HSSFSheet sheet = wb.createSheet("Employee Sheet");
+            HSSFRow rowHead = sheet.createRow(0);
+            rowHead.createCell(0).setCellValue("Id");
+            rowHead.createCell(1).setCellValue("First Name");
+            rowHead.createCell(2).setCellValue("Last Name");
+            rowHead.createCell(3).setCellValue("Birthday");
+            rowHead.createCell(4).setCellValue("Gender");
+            rowHead.createCell(5).setCellValue("Phone");
+            rowHead.createCell(6).setCellValue("Email");
+            rowHead.createCell(7).setCellValue("Address");
+            rowHead.createCell(8).setCellValue("Images");
+            rowHead.createCell(9).setCellValue("Status");
+            rowHead.createCell(10).setCellValue("Begin Work");
+            int index = 1;
+            for (int i = 0; i < listTable.size(); i++) {
+                Employee emp = listTable.get(i);
+                HSSFRow row = sheet.createRow(index);
+                row.createCell(0).setCellValue(emp.getId());
+                row.createCell(1).setCellValue(emp.getFirstName());
+                row.createCell(2).setCellValue(emp.getLastName());
+                row.createCell(3).setCellValue(emp.getBirthDay());
+                row.createCell(4).setCellValue(emp.getGender());
+                row.createCell(5).setCellValue(emp.getPhone());
+                row.createCell(6).setCellValue(emp.getEmail());
+                row.createCell(7).setCellValue(emp.getAddress());
+                row.createCell(8).setCellValue(emp.getImage());
+                row.createCell(9).setCellValue(emp.getStatus());
+                row.createCell(10).setCellValue(emp.getBeginWork());
+                index++;
+            }
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogType(JFileChooser.SAVE_DIALOG);
+            fileChooser.showSaveDialog(this);
+            String path = fileChooser.getSelectedFile().getPath();
+            fos = new FileOutputStream(path);
+            wb.write(fos);
+        } catch (IOException ex) {
+            Logger.getLogger(frmEmployee.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                fos.close();
+            } catch (IOException ex) {
+                Logger.getLogger(frmEmployee.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_btnExportActionPerformed
 
     private void cancelCellEditing() {
         CellEditor ce = tableContent.getCellEditor();
