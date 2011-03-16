@@ -19,7 +19,7 @@ public class StudentDAO extends BaseDAO {
     public ArrayList<Student> readByAll() {
         ArrayList<Student> list = new ArrayList<Student>();
         con = db.getConnection();
-        String sql = "select s.Id,p.FirstName,p.LastName,p.BirthDay,p.Gender,p.Phone,p.Email,p.Address,p.Image,p.Status,s.ClassId,s.CurrentClass,s.RegistrationDate from Student s inner join Person p on s.Id = p.Id";
+        String sql = "select s.Id,p.FirstName,p.LastName,p.BirthDay,p.Gender,p.Phone,p.Email,p.Address,p.Image,p.Status from Student s inner join Person p on s.Id = p.Id";
         try {
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -49,7 +49,7 @@ public class StudentDAO extends BaseDAO {
         Student student = null;
         try {
             con = db.getConnection();
-            String sql = "select s.Id,p.FirstName,p.LastName,p.BirthDay,p.Gender,p.Phone,p.Email,p.Address,p.Image,p.Status,s.ClassId,s.CurrentClass,s.RegistrationDate from Student s inner join Person p on s.Id = p.Id  where s.Id = ?";
+            String sql = "select s.Id,p.FirstName,p.LastName,p.BirthDay,p.Gender,p.Phone,p.Email,p.Address,p.Image,p.Status from Student s inner join Person p on s.Id = p.Id  where s.Id = ?";
             pst = con.prepareStatement(sql);
             pst.setString(1, id);
             rs = pst.executeQuery();

@@ -55,6 +55,7 @@ public class frmStudent extends javax.swing.JFrame {
     public frmStudent() {
         initComponents();
         setSize(1100, 700);
+         setLocationRelativeTo(null);
         liststudent = studentDao.readByAll();
         enableEvents(AWTEvent.MOUSE_EVENT_MASK);
         tableContent.addMouseListener(new MouseAdapter() {
@@ -122,6 +123,7 @@ public class frmStudent extends javax.swing.JFrame {
         menuIAdd = new javax.swing.JMenuItem();
         menuIEdit = new javax.swing.JMenuItem();
         menuIDelete = new javax.swing.JMenuItem();
+        mnuISearch = new javax.swing.JMenuItem();
         mnuIDetails = new javax.swing.JMenuItem();
         panelBanner = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -132,6 +134,7 @@ public class frmStudent extends javax.swing.JFrame {
         linkButtonEditStudent = new com.l2fprod.common.swing.JLinkButton();
         linkButtonDeleteStudent = new com.l2fprod.common.swing.JLinkButton();
         linkButtonSearchStudent = new com.l2fprod.common.swing.JLinkButton();
+        linkButtonDetails = new com.l2fprod.common.swing.JLinkButton();
         jTaskPaneGroup2 = new com.l2fprod.common.swing.JTaskPaneGroup();
         jTaskPaneGroup3 = new com.l2fprod.common.swing.JTaskPaneGroup();
         linkButtonImport = new com.l2fprod.common.swing.JLinkButton();
@@ -170,6 +173,9 @@ public class frmStudent extends javax.swing.JFrame {
 
         menuIDelete.setText("Delete ");
         popupMenuTable.add(menuIDelete);
+
+        mnuISearch.setText("Search");
+        popupMenuTable.add(mnuISearch);
 
         mnuIDetails.setText("Details");
         popupMenuTable.add(mnuIDetails);
@@ -218,6 +224,9 @@ public class frmStudent extends javax.swing.JFrame {
         linkButtonSearchStudent.setText("Search Student");
         linkButtonSearchStudent.setToolTipText("Search Employee");
         jTaskPaneGroup1.getContentPane().add(linkButtonSearchStudent);
+
+        linkButtonDetails.setText("Details Student");
+        jTaskPaneGroup1.getContentPane().add(linkButtonDetails);
 
         jTaskPane1.add(jTaskPaneGroup1);
 
@@ -438,8 +447,8 @@ public class frmStudent extends javax.swing.JFrame {
         // TODO add your handling co\de here:
         int index = tableContent.getSelectedRow();
         Student student = liststudent.get(index);
-     //   frmEditStudent editStudent = new frmEditStudent(student);
-      //  editStudent.setVisible(true);
+        frmEditStudent editStudent = new frmEditStudent(student);
+        editStudent.setVisible(true);
     }//GEN-LAST:event_menuIEditActionPerformed
 
     private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
@@ -714,6 +723,7 @@ public class frmStudent extends javax.swing.JFrame {
     private javax.swing.JLabel lblSearch;
     private com.l2fprod.common.swing.JLinkButton linkButtonAddStudent;
     private com.l2fprod.common.swing.JLinkButton linkButtonDeleteStudent;
+    private com.l2fprod.common.swing.JLinkButton linkButtonDetails;
     private com.l2fprod.common.swing.JLinkButton linkButtonEditStudent;
     private com.l2fprod.common.swing.JLinkButton linkButtonExport;
     private com.l2fprod.common.swing.JLinkButton linkButtonImport;
@@ -722,6 +732,7 @@ public class frmStudent extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuIDelete;
     private javax.swing.JMenuItem menuIEdit;
     private javax.swing.JMenuItem mnuIDetails;
+    private javax.swing.JMenuItem mnuISearch;
     private javax.swing.JPanel panelBanner;
     private javax.swing.JPopupMenu popupMenuTable;
     private javax.swing.JTable tableContent;
