@@ -6,6 +6,7 @@ package com.hueic.CerGS.dao;
 
 import com.hueic.CerGS.entity.Person;
 import com.hueic.CerGS.util.Configure;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ import java.util.logging.Logger;
  * @author nhchung
  */
 public class PersonDAO extends BaseDAO {
-    
+
     public PersonDAO() {
         db = new Configure();
     }
@@ -34,7 +35,7 @@ public class PersonDAO extends BaseDAO {
                 person.setId(rs.getString(1));
                 person.setFirstName(rs.getString(2));
                 person.setLastName(rs.getString(3));
-                person.setBirthDay(rs.getString(4));
+                person.setBirthDay(rs.getDate(4));
                 person.setGender(rs.getInt(5));
                 person.setPhone(rs.getString(6));
                 person.setEmail(rs.getString(7));
@@ -64,7 +65,7 @@ public class PersonDAO extends BaseDAO {
                 person.setId(rs.getString(1));
                 person.setFirstName(rs.getString(2));
                 person.setLastName(rs.getString(3));
-                person.setBirthDay(rs.getString(4));
+                person.setBirthDay(rs.getDate(4));
                 person.setGender(rs.getInt(5));
                 person.setPhone(rs.getString(6));
                 person.setEmail(rs.getString(7));
@@ -73,7 +74,7 @@ public class PersonDAO extends BaseDAO {
                 person.setStatus(rs.getInt(10));
             }
         } catch (Exception ex) {
-          setLastError("SQL Error!");
+            setLastError("SQL Error!");
         }
         return person;
     }
@@ -87,7 +88,7 @@ public class PersonDAO extends BaseDAO {
             pst.setString(1, person.getId());
             pst.setString(2, person.getFirstName());
             pst.setString(3, person.getLastName());
-            pst.setString(4, person.getBirthDay());
+            pst.setDate(4, (Date) person.getBirthDay());
             pst.setInt(5, person.getGender());
             pst.setString(6, person.getPhone());
             pst.setString(7, person.getEmail());
@@ -119,7 +120,7 @@ public class PersonDAO extends BaseDAO {
             if (rs.first()) {
                 rs.updateString(2, person.getFirstName());
                 rs.updateString(3, person.getLastName());
-                rs.updateString(4, person.getBirthDay());
+                rs.updateDate(4, (Date) person.getBirthDay());
                 rs.updateInt(5, person.getGender());
                 rs.updateString(6, person.getPhone());
                 rs.updateString(7, person.getEmail());

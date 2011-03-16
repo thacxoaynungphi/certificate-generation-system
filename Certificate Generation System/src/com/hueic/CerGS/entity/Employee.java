@@ -5,6 +5,7 @@
 package com.hueic.CerGS.entity;
 
 import com.hueic.CerGS.component.PropertyIndex;
+import java.util.Date;
 
 /**
  *
@@ -14,7 +15,7 @@ import com.hueic.CerGS.component.PropertyIndex;
  */
 public class Employee extends Person implements PropertyIndex {
 
-    private String beginWork;
+    private Date beginWork;
     //contruction
 
     public Employee() {
@@ -22,7 +23,7 @@ public class Employee extends Person implements PropertyIndex {
         beginWork = null;
     }
 
-    public Employee(String id, String firstName, String lastName, String birthDay, int gender, String phone, String email, String address, String image, String beginWork) throws Exception {
+    public Employee(String id, String firstName, String lastName, Date birthDay, int gender, String phone, String email, String address, String image, Date beginWork) throws Exception {
         super(id, firstName, lastName, birthDay, gender, phone, email, address, image);
         setBeginWork(beginWork);
     }
@@ -31,7 +32,7 @@ public class Employee extends Person implements PropertyIndex {
     /**
      * @return the beginWork
      */
-    public String getBeginWork() {
+    public Date getBeginWork() {
         return beginWork;
     }
 
@@ -39,7 +40,7 @@ public class Employee extends Person implements PropertyIndex {
      * @param beginWork the beginWork to set
      */
     //khi nhap beginwork thi se dua vao Commbobox de nhap
-    public void setBeginWork(String beginWork) {
+    public void setBeginWork(Date beginWork) {
         this.beginWork = beginWork;
     }
 
@@ -56,7 +57,7 @@ public class Employee extends Person implements PropertyIndex {
                 value = this.getLastName();
                 break;
             case 4:
-                value = this.getBirthDay();
+                value = this.getBirthDay().toString();
                 break;
             case 5:
                 if (this.getGender() == 0) {
@@ -82,7 +83,7 @@ public class Employee extends Person implements PropertyIndex {
                 value = String.valueOf(this.getStatus());
                 break;
             case 11:
-                value = this.getBeginWork();
+                value = this.getBeginWork().toString();
                 break;
         }
         return value;

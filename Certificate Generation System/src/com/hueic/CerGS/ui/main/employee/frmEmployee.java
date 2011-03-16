@@ -58,7 +58,6 @@ public class frmEmployee extends javax.swing.JFrame {
         listEmp = empDao.readByAll();
         enableEvents(AWTEvent.MOUSE_EVENT_MASK);
         tableContent.addMouseListener(new MouseAdapter() {
-
             private void maybeShowPopup(MouseEvent e) {
                 if (e.isPopupTrigger() && tableContent.isEnabled()) {
                     Point p = new Point(e.getX(), e.getY());
@@ -123,6 +122,7 @@ public class frmEmployee extends javax.swing.JFrame {
         menuIEdit = new javax.swing.JMenuItem();
         menuIDelete = new javax.swing.JMenuItem();
         mnuIDetailsEmployee = new javax.swing.JMenuItem();
+        mnuISearchEmp = new javax.swing.JMenuItem();
         panelBanner = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -132,6 +132,7 @@ public class frmEmployee extends javax.swing.JFrame {
         linkButtonEditEmp = new com.l2fprod.common.swing.JLinkButton();
         linkButtonDeleteEmp = new com.l2fprod.common.swing.JLinkButton();
         linkButtonSearchEmp = new com.l2fprod.common.swing.JLinkButton();
+        linkButtonDetailsEmp = new com.l2fprod.common.swing.JLinkButton();
         jTaskPaneGroup2 = new com.l2fprod.common.swing.JTaskPaneGroup();
         jTaskPaneGroup3 = new com.l2fprod.common.swing.JTaskPaneGroup();
         linkButtonImport = new com.l2fprod.common.swing.JLinkButton();
@@ -174,6 +175,10 @@ public class frmEmployee extends javax.swing.JFrame {
         mnuIDetailsEmployee.setText("Details");
         popupMenuTable.add(mnuIDetailsEmployee);
 
+        mnuISearchEmp.setText("Search");
+        mnuISearchEmp.setToolTipText("");
+        popupMenuTable.add(mnuISearchEmp);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Management Employee");
         setResizable(false);
@@ -196,6 +201,7 @@ public class frmEmployee extends javax.swing.JFrame {
         percentLayout1.setOrientation(1);
         jTaskPane1.setLayout(percentLayout1);
 
+        jTaskPaneGroup1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/users1.png"))); // NOI18N
         jTaskPaneGroup1.setTitle("Managment Employee");
         jTaskPaneGroup1.setToolTipText("Managment Employee");
         com.l2fprod.common.swing.PercentLayout percentLayout2 = new com.l2fprod.common.swing.PercentLayout();
@@ -205,10 +211,20 @@ public class frmEmployee extends javax.swing.JFrame {
 
         linkButtonAddEmp.setText("Add Employee");
         linkButtonAddEmp.setToolTipText("Add Employee");
+        linkButtonAddEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                linkButtonAddEmpActionPerformed(evt);
+            }
+        });
         jTaskPaneGroup1.getContentPane().add(linkButtonAddEmp);
 
         linkButtonEditEmp.setText("Edit Employee");
         linkButtonEditEmp.setToolTipText("Edit Employee");
+        linkButtonEditEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                linkButtonEditEmpActionPerformed(evt);
+            }
+        });
         jTaskPaneGroup1.getContentPane().add(linkButtonEditEmp);
 
         linkButtonDeleteEmp.setText("Delete Employee");
@@ -218,6 +234,9 @@ public class frmEmployee extends javax.swing.JFrame {
         linkButtonSearchEmp.setText("Search Employee");
         linkButtonSearchEmp.setToolTipText("Search Employee");
         jTaskPaneGroup1.getContentPane().add(linkButtonSearchEmp);
+
+        linkButtonDetailsEmp.setText("Details Employee");
+        jTaskPaneGroup1.getContentPane().add(linkButtonDetailsEmp);
 
         jTaskPane1.add(jTaskPaneGroup1);
 
@@ -535,14 +554,14 @@ public class frmEmployee extends javax.swing.JFrame {
                     emp.setId(row.getCell(0).toString());
                     emp.setFirstName(row.getCell(1).toString());
                     emp.setLastName(row.getCell(2).toString());
-                    emp.setBirthDay(row.getCell(3).toString());
+                    emp.setBirthDay(row.getCell(3).getDateCellValue());
                     emp.setGender((int) Float.parseFloat(row.getCell(4).toString()));
                     emp.setPhone(row.getCell(5).toString());
                     emp.setEmail(row.getCell(6).toString());
                     emp.setAddress(row.getCell(7).toString());
                     emp.setImage(row.getCell(8).toString());
                     emp.setStatus((int) Float.parseFloat(row.getCell(9).toString()));
-                    emp.setBeginWork(row.getCell(10).toString());
+                    emp.setBeginWork(row.getCell(10).getDateCellValue());
                     if (isExist(emp)) {
                         listEmp.add(emp);
                         listEmpTemp.add(emp);
@@ -667,6 +686,18 @@ public class frmEmployee extends javax.swing.JFrame {
         addEmployee.setVisible(true);
     }//GEN-LAST:event_menuIAddActionPerformed
 
+    private void linkButtonAddEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkButtonAddEmpActionPerformed
+        // TODO add your handling code here:
+        frmAddEmployee addEmployee = new frmAddEmployee();
+        addEmployee.setVisible(true);
+    }//GEN-LAST:event_linkButtonAddEmpActionPerformed
+
+    private void linkButtonEditEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkButtonEditEmpActionPerformed
+        // TODO add your handling code here:
+        frmEditEmployee editEmployee = new frmEditEmployee();
+        editEmployee.setVisible(true);
+    }//GEN-LAST:event_linkButtonEditEmpActionPerformed
+
     public boolean isExist(Employee emp) {
         for (int i = 0; i < listEmp.size(); i++) {
             if (listEmp.get(i).getId().equalsIgnoreCase(emp.getId())) {
@@ -716,6 +747,7 @@ public class frmEmployee extends javax.swing.JFrame {
     private javax.swing.JLabel lblSearch;
     private com.l2fprod.common.swing.JLinkButton linkButtonAddEmp;
     private com.l2fprod.common.swing.JLinkButton linkButtonDeleteEmp;
+    private com.l2fprod.common.swing.JLinkButton linkButtonDetailsEmp;
     private com.l2fprod.common.swing.JLinkButton linkButtonEditEmp;
     private com.l2fprod.common.swing.JLinkButton linkButtonExport;
     private com.l2fprod.common.swing.JLinkButton linkButtonImport;
@@ -724,6 +756,7 @@ public class frmEmployee extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuIDelete;
     private javax.swing.JMenuItem menuIEdit;
     private javax.swing.JMenuItem mnuIDetailsEmployee;
+    private javax.swing.JMenuItem mnuISearchEmp;
     private javax.swing.JPanel panelBanner;
     private javax.swing.JPopupMenu popupMenuTable;
     private javax.swing.JTable tableContent;

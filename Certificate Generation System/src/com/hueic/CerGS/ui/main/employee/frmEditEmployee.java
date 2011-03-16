@@ -12,7 +12,6 @@ package com.hueic.CerGS.ui.main.employee;
 
 import com.hueic.CerGS.dao.EmployeeDAO;
 import com.hueic.CerGS.entity.Employee;
-import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 
@@ -42,7 +41,7 @@ public class frmEditEmployee extends javax.swing.JFrame {
         txtFirstname.setText(emp.getFirstName());
         txtLastname.setText(emp.getLastName());
         try {
-            DateChBirthday.setDate(new Date(emp.getBirthDay()));
+            DateChBirthday.setDate(emp.getBirthDay());
         } catch (Exception ex) {
         }
         int gender = emp.getGender();
@@ -57,6 +56,10 @@ public class frmEditEmployee extends javax.swing.JFrame {
         txtEmail.setText(emp.getEmail());
         txtAddress.setText(emp.getAddress());
         txtImage.setText(emp.getImage());
+        try {
+            DateChBeginWork.setDate(emp.getBeginWork());
+        } catch (Exception ex) {
+        }
     }
 
     /** This method is called from within the constructor to
@@ -369,6 +372,7 @@ public class frmEditEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel1.add(jLabel5, gridBagConstraints);
 
+        DateChBirthday.setDateFormatString("MM\\dd\\yyyy");
         DateChBirthday.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -386,6 +390,7 @@ public class frmEditEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel1.add(lblBeginwork, gridBagConstraints);
 
+        DateChBeginWork.setDateFormatString("MM\\dd\\yyyy");
         DateChBeginWork.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -434,13 +439,7 @@ public class frmEditEmployee extends javax.swing.JFrame {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
-        txtID.setText(null);
-        txtFirstname.setText(null);
-        txtLastname.setText(null);
-        txtPhone.setText(null);
-        txtEmail.setText(null);
-        txtAddress.setText(null);
-        txtImage.setText(null);
+        loadData();
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseActionPerformed
@@ -466,7 +465,7 @@ public class frmEditEmployee extends javax.swing.JFrame {
             emp.setId(txtID.getText());
             emp.setFirstName(txtFirstname.getText());
             emp.setLastName(txtLastname.getText());
-            emp.setBirthDay(DateChBirthday.getDate().toString());
+            emp.setBirthDay(DateChBirthday.getDate());
             if (radioMale.isSelected()) {
                 emp.setGender(0);
 
