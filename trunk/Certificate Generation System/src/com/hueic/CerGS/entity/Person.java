@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.hueic.CerGS.entity;
 
 import java.util.regex.Matcher;
@@ -29,9 +28,7 @@ public class Person {
     private int status;
 
     //contruction
-
-    public Person()
-    {
+    public Person() {
         id = null;
         firstName = null;
         lastName = null;
@@ -44,8 +41,7 @@ public class Person {
         status = 1;
     }
 
-    public Person(String id,String firstName,String lastName,String birthDay,int gender,String phone,String email,String address,String image) throws Exception
-    {
+    public Person(String id, String firstName, String lastName, String birthDay, int gender, String phone, String email, String address, String image) throws Exception {
         setId(id);
         setFirstName(firstName);
         setLastName(lastName);
@@ -59,7 +55,6 @@ public class Person {
     }
 
     //method get - set
-    
     /**
      * @return the id
      */
@@ -71,7 +66,9 @@ public class Person {
      * @param id the id to set
      */
     public void setId(String id) throws Exception {
-        if(id.length() > 10 || id.length() < 0) throw new Exception("length of ID properties can't greater than 10");
+        if (id.length() > 10 || id.length() < 0) {
+            throw new Exception("length of ID properties can't greater than 10");
+        }
         this.id = id;
     }
 
@@ -85,8 +82,10 @@ public class Person {
     /**
      * @param firstName the firstName to set
      */
-    public void setFirstName(String firstName) throws Exception{
-        if(firstName.length() > 20 || firstName.length() < 0) throw new Exception("length if ID properties can't greater than 10");
+    public void setFirstName(String firstName) throws Exception {
+        if (firstName.length() > 20 || firstName.length() < 0) {
+            throw new Exception("length if ID properties can't greater than 10");
+        }
         this.firstName = firstName;
     }
 
@@ -101,7 +100,9 @@ public class Person {
      * @param lastName the lastName to set
      */
     public void setLastName(String lastName) throws Exception {
-        if(lastName.length() > 20 || lastName.length() < 0) throw new Exception("length if ID properties can't greater than 10");
+        if (lastName.length() > 20 || lastName.length() < 0) {
+            throw new Exception("length if ID properties can't greater than 10");
+        }
 
         this.lastName = lastName;
     }
@@ -132,7 +133,9 @@ public class Person {
      * @param gender the gender to set
      */
     public void setGender(int gender) throws Exception {
-        if(gender > 2 || gender < 0) throw new Exception("Gender of Person must be \n0 -> Male \n1 -> Female \n2 -> Unknow");
+        if (gender > 2 || gender < 0) {
+            throw new Exception("Gender of Person must be \n0 -> Male \n1 -> Female \n2 -> Unknow");
+        }
         this.gender = gender;
     }
 
@@ -146,8 +149,10 @@ public class Person {
     /**
      * @param phone the phone to set
      */
-    public void setPhone(String phone) throws Exception{
-        if(phone.length() > 20) throw new Exception("Phone string's length can't greater than 20");
+    public void setPhone(String phone) throws Exception {
+        if (phone.length() > 20) {
+            throw new Exception("Phone string's length can't greater than 20");
+        }
         this.phone = phone;
     }
 
@@ -164,8 +169,13 @@ public class Person {
     public void setEmail(String email) throws Exception {
         Pattern pattern = Pattern.compile("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]");
         Matcher match = pattern.matcher(email);
-        if(match.matches()) this.email = email;
-        else throw  new Exception("Email is not valid format");
+        System.out.println(email);
+        if (match.matches()) {
+            this.email = email;
+
+        } else {
+            throw new Exception("Email is not valid format");
+        }
     }
 
     /**
@@ -206,8 +216,10 @@ public class Person {
     /**
      * @param status the status to set
      */
-    public void setStatus(int status) throws Exception{
-        if(status > 2 || status < 0) throw new Exception("Status of Person must be \n0 -> Deleted \n1 -> Normal \n3 -> reserve");
+    public void setStatus(int status) throws Exception {
+        if (status > 2 || status < 0) {
+            throw new Exception("Status of Person must be \n0 -> Deleted \n1 -> Normal \n3 -> reserve");
+        }
         this.status = status;
     }
 }

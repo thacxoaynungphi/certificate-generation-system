@@ -1,10 +1,11 @@
 package com.hueic.CerGS.entity;
 
+import com.hueic.CerGS.component.PropertyIndex;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Huu Bien
@@ -12,24 +13,21 @@ package com.hueic.CerGS.entity;
  *
  * Lop Scores mo ta danh sach diem cua moi sinh vien trong lop hoc va mon hoc tuong ung
  */
-public class Scores {
+public class Scores implements PropertyIndex {
 
     private int id;
     private String studentId;
     private String subjectId;
-    private float sL1;
-    private float sL2;
-    private float sT1;
-    private float sT2;
+    private float score;
 
-    public Scores(){
-
+    public Scores() {
     }
 
-    public Scores(int id, String studentId, String subjectId){
+    public Scores(int id, String studentId, String subjectId, float score) {
         setId(id);
         setStudentId(studentId);
         setSubjectId(subjectId);
+        setScore(score);
     }
 
     /**
@@ -75,68 +73,42 @@ public class Scores {
     }
 
     /**
-     * @return the sL1
-     * tra ve diem ly thuyet lan 1
+     * @return the score
      */
-    public float getsL1() {
-        return sL1;
+    public float getScore() {
+        return score;
     }
 
     /**
-     * @param sL1 the sL1 to set
-     * ghi vao diem ly thuyet lan 1
+     * @param score the score to set
      */
-    public void setsL1(float sL1) {
-        this.sL1 = sL1;
+    public void setScore(float score) {
+        this.score = score;
     }
 
-    /**
-     * @return the sL2
-     * tra ve diem ly thuyet lan 2
-     */
-    public float getsL2() {
-        return sL2;
+    public Object getPropertyValue(int index) {
+        String value = "";
+        switch (index) {
+            case 1:
+                value = String.valueOf(this.getId());
+                break;
+            case 2:
+                value = this.getStudentId();
+                break;
+            case 3:
+                value = this.getSubjectId();
+                break;
+            case 4:
+                value = String.valueOf(this.getScore());
+                break;
+        }
+        return value;
     }
 
-    /**
-     * @param sL2 the sL2 to set
-     * ghi vao diem ly thuyet lan 2
-     */
-    public void setsL2(float sL2) {
-        this.sL2 = sL2;
+    public void setPropertyValue(int index, Object value) {
     }
 
-    /**
-     * @return the sT1
-     * tra ve diem thuc hanh lan 1
-     */
-    public float getsT1() {
-        return sT1;
+    public Class getPropertyClass(int index) {
+        return String.class;
     }
-
-    /**
-     * @param sT1 the sT1 to set
-     * ghi vao diem thuc hanh lan 1
-     */
-    public void setsT1(float sT1) {
-        this.sT1 = sT1;
-    }
-
-    /**
-     * @return the sT2
-     * tra ve diem thuc hanh lan 2
-     */
-    public float getsT2() {
-        return sT2;
-    }
-
-    /**
-     * @param sT2 the sT2 to set
-     * ghi vao diem thuc hanh lan 2
-     */
-    public void setsT2(float sT2) {
-        this.sT2 = sT2;
-    }
-
-    
 }

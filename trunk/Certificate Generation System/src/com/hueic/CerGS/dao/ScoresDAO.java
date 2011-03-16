@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.hueic.CerGS.dao;
 
 import com.hueic.CerGS.entity.Scores;
@@ -14,7 +13,8 @@ import java.util.ArrayList;
  *
  * @author Wind
  */
-public class ScoresDAO extends BaseDAO{
+public class ScoresDAO extends BaseDAO {
+
     public ScoresDAO() {
         db = new Configure();
     }
@@ -33,11 +33,7 @@ public class ScoresDAO extends BaseDAO{
                 scores.setId(rs.getInt("Id"));
                 scores.setStudentId(rs.getString("StudentId"));
                 scores.setSubjectId(rs.getString("SubjectId"));
-                scores.setsL1(rs.getFloat("Score1L1"));
-                scores.setsL2(rs.getFloat("Score1L2"));
-                scores.setsT1(rs.getFloat("Score2L1"));
-                scores.setsT2(rs.getFloat("Score2L2"));
-
+                scores.setScore(rs.getFloat("Score"));
                 result.add(scores);
             }
 
@@ -65,10 +61,7 @@ public class ScoresDAO extends BaseDAO{
                 scores.setId(rs.getInt("Id"));
                 scores.setStudentId(rs.getString("StudentId"));
                 scores.setSubjectId(rs.getString("SubjectId"));
-                scores.setsL1(rs.getFloat("Score1L1"));
-                scores.setsL2(rs.getFloat("Score1L2"));
-                scores.setsT1(rs.getFloat("Score2L1"));
-                scores.setsT2(rs.getFloat("Score2L2"));
+                scores.setScore(rs.getFloat("Score"));
 
                 result.add(scores);
             }
@@ -92,10 +85,7 @@ public class ScoresDAO extends BaseDAO{
             pst.setInt(1, scores.getId());
             pst.setString(2, scores.getStudentId());
             pst.setString(3, scores.getSubjectId());
-            pst.setFloat(4, scores.getsL1());
-            pst.setFloat(5, scores.getsL2());
-            pst.setFloat(6, scores.getsT1());
-            pst.setFloat(7, scores.getsT2());
+            pst.setFloat(4, scores.getScore());
             if (pst.execute()) {
                 setLastError("Add fee successful");
                 status = true;
@@ -123,10 +113,7 @@ public class ScoresDAO extends BaseDAO{
             if (rs.first()) {
                 rs.updateString("StudentId", scores.getStudentId());
                 rs.updateString("SubjectId", scores.getSubjectId());
-                rs.updateFloat("Score1L1", scores.getsL1());
-                rs.updateFloat("Score1L2", scores.getsL2());
-                rs.updateFloat("Score2L1", scores.getsT1());
-                rs.updateFloat("Score2L2", scores.getsT2());
+                rs.updateFloat("Score1L1", scores.getScore());
                 rs.updateRow();
 
                 setLastError("Add fee successful");

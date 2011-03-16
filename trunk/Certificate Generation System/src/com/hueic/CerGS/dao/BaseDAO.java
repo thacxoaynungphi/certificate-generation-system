@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.hueic.CerGS.dao;
 
 import com.hueic.CerGS.util.Configure;
@@ -15,12 +14,16 @@ import java.sql.ResultSet;
  * @author nhchung
  */
 public class BaseDAO {
-    
-    protected  Configure db;
-    protected  Connection con = null;
-    protected  ResultSet rs = null;
-    protected  PreparedStatement pst = null;
-    protected  String lastError = "";
+
+    protected Configure db;
+    protected Connection con = null;
+    protected ResultSet rs = null;
+    protected PreparedStatement pst = null;
+    protected String lastError = "";
+
+    public BaseDAO() {
+        db = new Configure();
+    }
 
     /**
      * @return the lastError
