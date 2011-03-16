@@ -169,7 +169,6 @@ public class Person {
     public void setEmail(String email) throws Exception {
         Pattern pattern = Pattern.compile("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]");
         Matcher match = pattern.matcher(email);
-        System.out.println(email);
         if (match.matches()) {
             this.email = email;
 
