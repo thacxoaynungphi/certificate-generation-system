@@ -18,6 +18,8 @@ import java.awt.AWTEvent;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -26,6 +28,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.CellEditor;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
@@ -43,14 +46,15 @@ public class frmEmployee extends javax.swing.JFrame {
 
     /** Creates new form EmployeeFrm */
     private ObjectTableModel tableModel;
-    private ArrayList<Employee> listTable = new ArrayList<Employee>();
+    private ArrayList<Employee> listEmp = new ArrayList<Employee>();
+    private ArrayList<Employee> listEmpTemp = new ArrayList<Employee>();
     private EmployeeDAO empDao = new EmployeeDAO();
 
     public frmEmployee() {
         initComponents();
         System.out.println(getWidth() + "," + getHeight());
         setSize(1100, 700);
-        listTable = empDao.readByAll();
+        listEmp = empDao.readByAll();
         enableEvents(AWTEvent.MOUSE_EVENT_MASK);
         tableContent.addMouseListener(new MouseAdapter() {
 
@@ -84,13 +88,13 @@ public class frmEmployee extends javax.swing.JFrame {
     }
 
     public void loadTable() {
-        lblCount.setText(String.valueOf(listTable.size()));
+        lblCount.setText(String.valueOf(listEmp.size()));
         ColumnData[] columns = {
             new ColumnData("Id", 20, SwingConstants.LEFT, 1),
             new ColumnData("First Name", 30, SwingConstants.LEFT, 2),
             new ColumnData("Last Name", 20, SwingConstants.LEFT, 3),
             new ColumnData("Birthday", 20, SwingConstants.LEFT, 4),};
-        tableModel = new ObjectTableModel(tableContent, columns, listTable);
+        tableModel = new ObjectTableModel(tableContent, columns, listEmp);
         JTable headerTable = tableModel.getHeaderTable();
         headerTable.createDefaultColumnsFromModel();
         tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -139,8 +143,9 @@ public class frmEmployee extends javax.swing.JFrame {
         tableContent = new javax.swing.JTable();
         btnImport = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
-        btnOK = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
         btnExport = new javax.swing.JButton();
+        btnExit = new javax.swing.JButton();
 
         menuIEdit.setText("Edit");
         menuIEdit.addActionListener(new java.awt.event.ActionListener() {
@@ -288,15 +293,37 @@ public class frmEmployee extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tableContent);
 
         btnImport.setText("Import");
+        btnImport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImportActionPerformed(evt);
+            }
+        });
 
         btnCancel.setText("Cancel");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
 
-        btnOK.setText("OK");
+        btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         btnExport.setText("Export");
         btnExport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExportActionPerformed(evt);
+            }
+        });
+
+        btnExit.setText("Exit");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
             }
         });
 
@@ -308,11 +335,13 @@ public class frmEmployee extends javax.swing.JFrame {
                 .addComponent(btnImport)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnExport)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 612, Short.MAX_VALUE)
-                .addComponent(btnOK)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 563, Short.MAX_VALUE)
+                .addComponent(btnSave)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCancel)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnExit)
+                .addGap(14, 14, 14))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 898, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
@@ -322,8 +351,9 @@ public class frmEmployee extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnOK)
-                        .addComponent(btnCancel))
+                        .addComponent(btnSave)
+                        .addComponent(btnCancel)
+                        .addComponent(btnExit))
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnImport)
                         .addComponent(btnExport)))
@@ -398,8 +428,8 @@ public class frmEmployee extends javax.swing.JFrame {
             rowHead.createCell(9).setCellValue("Status");
             rowHead.createCell(10).setCellValue("Begin Work");
             int index = 1;
-            for (int i = 0; i < listTable.size(); i++) {
-                Employee emp = listTable.get(i);
+            for (int i = 0; i < listEmp.size(); i++) {
+                Employee emp = listEmp.get(i);
                 HSSFRow row = sheet.createRow(index);
                 row.createCell(0).setCellValue(emp.getId());
                 row.createCell(1).setCellValue(emp.getFirstName());
@@ -417,32 +447,115 @@ public class frmEmployee extends javax.swing.JFrame {
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setDialogType(JFileChooser.SAVE_DIALOG);
             fileChooser.showSaveDialog(this);
-            String path = fileChooser.getSelectedFile().getPath();
-            fos = new FileOutputStream(path);
-            wb.write(fos);
+            String path = null;
+            try {
+                path = fileChooser.getSelectedFile().getPath();
+            } catch (Exception ex) {
+                return;
+            }
+            if (path != null) {
+                fos = new FileOutputStream(path);
+                wb.write(fos);
+            }
         } catch (IOException ex) {
             Logger.getLogger(frmEmployee.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
-                fos.close();
+                if (fos != null) {
+                    fos.close();
+                }
             } catch (IOException ex) {
                 Logger.getLogger(frmEmployee.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_btnExportActionPerformed
 
+    private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogType(JFileChooser.OPEN_DIALOG);
+        fileChooser.showOpenDialog(this);
+        String path = null;
+        try {
+            path = fileChooser.getSelectedFile().getPath();
+        } catch (Exception ex) {
+            return;
+        }
+        FileInputStream fis = null;
+        try {
+            // TODO add your handling code here:
+            File file = new File(path);
+            if (file.exists()) {
+                fis = new FileInputStream(file);
+                HSSFWorkbook wb = new HSSFWorkbook(fis);
+                HSSFSheet sheet = wb.getSheet("Employee Sheet");
+                int index = 1;
+                do {
+                    HSSFRow row = sheet.getRow(index);
+                    Employee emp = new Employee();
+                    if (row == null) {
+                        break;
+                    }
+                    emp.setId(row.getCell(0).toString());
+                    emp.setFirstName(row.getCell(1).toString());
+                    emp.setLastName(row.getCell(2).toString());
+                    emp.setBirthDay(row.getCell(3).toString());
+                    emp.setGender((int) Float.parseFloat(row.getCell(4).toString()));
+                    emp.setPhone(row.getCell(5).toString());
+                    emp.setEmail(row.getCell(6).toString());
+                    emp.setAddress(row.getCell(7).toString());
+                    emp.setImage(row.getCell(8).toString());
+                    emp.setStatus((int) Float.parseFloat(row.getCell(9).toString()));
+                    emp.setBeginWork(row.getCell(10).toString());
+                    listEmp.add(emp);
+                    listEmpTemp.add(emp);
+                    index++;
+                    //TODO: doc du lieu tu file excel vo trong JTable
+                } while (true);
+                loadTable();
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(frmEmployee.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                fis.close();
+            } catch (IOException ex) {
+                Logger.getLogger(frmEmployee.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_btnImportActionPerformed
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        // TODO add your handling code here:
+        if (listEmpTemp.size() != 0) {
+            int result = JOptionPane.showOptionDialog(this, "Save Data", "Question", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+            if (result == JOptionPane.OK_OPTION) {
+            } else if (result == JOptionPane.CANCEL_OPTION) {
+                this.dispose();
+            } else {
+            }
+        }
+        this.dispose();
+    }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        listEmpTemp.clear();
+    }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        if (listEmpTemp.size() != 0) {
+            for (int i = 0; i < listEmpTemp.size(); i++) {
+                Employee emp = new Employee();
+                empDao.create(emp);
+            }
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
+
     private void cancelCellEditing() {
         CellEditor ce = tableContent.getCellEditor();
-
-
-
-
         if (ce != null) {
             ce.cancelCellEditing();
-
-
-
-
         }
     }
 
@@ -454,22 +567,15 @@ public class frmEmployee extends javax.swing.JFrame {
 
             public void run() {
                 new frmEmployee().setVisible(true);
-
-
-
-
             }
         });
-
-
-
-
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnExit;
     private javax.swing.JButton btnExport;
     private javax.swing.JButton btnImport;
-    private javax.swing.JButton btnOK;
+    private javax.swing.JButton btnSave;
     private javax.swing.JComboBox comboSearch;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
