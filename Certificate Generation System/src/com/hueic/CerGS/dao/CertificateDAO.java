@@ -14,7 +14,7 @@ import java.util.ArrayList;
  *
  * @author nhchung
  */
-public class CertificateDAO  extends BaseDAO{
+public class CertificateDAO extends BaseDAO {
 
     public CertificateDAO() {
         db = new Configure();
@@ -31,7 +31,7 @@ public class CertificateDAO  extends BaseDAO{
                 Certificate cer = new Certificate();
                 cer.setId(rs.getInt(1));
                 cer.setStudentID(rs.getString(2));
-                cer.setSourse(rs.getFloat(3));
+                cer.setScore(rs.getFloat(3));
                 cer.setDegreeDay(rs.getString(4));
                 list.add(cer);
             }
@@ -55,7 +55,7 @@ public class CertificateDAO  extends BaseDAO{
                 cer = new Certificate();
                 cer.setId(rs.getInt(1));
                 cer.setStudentID(rs.getString(2));
-                cer.setSourse(rs.getFloat(3));
+                cer.setScore(rs.getFloat(3));
                 cer.setDegreeDay(rs.getString(4));
             }
         } catch (SQLException ex) {
@@ -76,7 +76,7 @@ public class CertificateDAO  extends BaseDAO{
                 Certificate cer = new Certificate();
                 cer.setId(rs.getInt(1));
                 cer.setStudentID(rs.getString(2));
-                cer.setSourse(rs.getFloat(3));
+                cer.setScore(rs.getFloat(3));
                 cer.setDegreeDay(rs.getString(4));
                 list.add(cer);
             }
@@ -96,7 +96,7 @@ public class CertificateDAO  extends BaseDAO{
             pst = con.prepareStatement(sql);
             pst.setInt(1, cer.getId());
             pst.setString(2, cer.getStudentID());
-            pst.setFloat(3, cer.getSourse());
+            pst.setFloat(3, cer.getScore());
             pst.setString(4, cer.getDegreeDay());
             if (pst.executeUpdate() > 0) {
                 setLastError("Add Certificate Successfully");
@@ -111,10 +111,9 @@ public class CertificateDAO  extends BaseDAO{
         }
         return status;
     }
-    
-    public boolean update(Certificate cer)
-    {
-         boolean status = false;
+
+    public boolean update(Certificate cer) {
+        boolean status = false;
         try {
             con = db.getConnection();
             String sql = "select * from Certificate where Id = ?";
@@ -123,7 +122,7 @@ public class CertificateDAO  extends BaseDAO{
             rs = pst.executeQuery();
             if (rs.first()) {
                 rs.updateString(2, cer.getStudentID());
-                rs.updateFloat(3, cer.getSourse());
+                rs.updateFloat(3, cer.getScore());
                 rs.updateString(4, cer.getDegreeDay());
                 rs.updateRow();
                 db.closeConnection();
@@ -140,8 +139,7 @@ public class CertificateDAO  extends BaseDAO{
         return status;
     }
 
-    public boolean  delete(int id)
-    {
+    public boolean delete(int id) {
         boolean status = false;
         try {
             con = db.getConnection();

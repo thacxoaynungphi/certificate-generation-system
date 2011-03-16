@@ -18,6 +18,11 @@ import java.util.logging.Logger;
  */
 public class EmployeeDAO extends BaseDAO {
 
+    public EmployeeDAO()
+    {
+        super();
+    }
+
     public ArrayList<Employee> readByAll() {
         ArrayList<Employee> list = new ArrayList<Employee>();
         con = db.getConnection();

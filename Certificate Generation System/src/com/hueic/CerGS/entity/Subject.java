@@ -4,13 +4,15 @@
  */
 package com.hueic.CerGS.entity;
 
+import com.hueic.CerGS.component.PropertyIndex;
+
 /**
  *
  * @author nhchung
  * Date: 13/03/2011
  * Version: 1.0
  */
-public class Subject {
+public class Subject implements PropertyIndex {
 
     //field
     private String id;
@@ -105,5 +107,34 @@ public class Subject {
      */
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public Object getPropertyValue(int index) {
+        String value = "";
+        switch (index) {
+            case 1:
+                value = String.valueOf(this.getId());
+                break;
+            case 2:
+                value = this.getName();
+                break;
+            case 3:
+                value = String.valueOf(this.getCoefficient());
+                break;
+            case 4:
+                value = this.getCourseID();
+                break;
+            case 5:
+                value = String.valueOf(this.getStatus());
+                break;
+        }
+        return value;
+    }
+
+    public void setPropertyValue(int index, Object value) {
+    }
+
+    public Class getPropertyClass(int index) {
+        return String.class;
     }
 }

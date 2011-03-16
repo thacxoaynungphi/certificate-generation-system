@@ -10,11 +10,21 @@
  */
 package com.hueic.CerGS.ui.main.employee;
 
+import com.hueic.CerGS.component.ColumnData;
+import com.hueic.CerGS.component.ObjectTableModel;
+import com.hueic.CerGS.dao.EmployeeDAO;
+import com.hueic.CerGS.entity.Employee;
 import java.awt.AWTEvent;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import javax.swing.CellEditor;
+import javax.swing.JTable;
+import javax.swing.JViewport;
+import javax.swing.ListSelectionModel;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -23,10 +33,15 @@ import javax.swing.CellEditor;
 public class frmEmployee extends javax.swing.JFrame {
 
     /** Creates new form EmployeeFrm */
+    private ObjectTableModel tableModel;
+    private ArrayList<Employee> listTable = new ArrayList<Employee>();
+    private EmployeeDAO empDao = new EmployeeDAO();
+
     public frmEmployee() {
         initComponents();
         System.out.println(getWidth() + "," + getHeight());
         setSize(1100, 700);
+        listTable = empDao.readByAll();
         enableEvents(AWTEvent.MOUSE_EVENT_MASK);
         tableContent.addMouseListener(new MouseAdapter() {
 
@@ -56,6 +71,26 @@ public class frmEmployee extends javax.swing.JFrame {
                 maybeShowPopup(e);
             }
         });
+        loadTable();
+    }
+
+    public void loadTable() {
+        lblCount.setText(String.valueOf(listTable.size()));
+        ColumnData[] columns = {
+            new ColumnData("Id", 20, SwingConstants.LEFT, 1),
+            new ColumnData("First Name", 30, SwingConstants.LEFT, 2),
+            new ColumnData("Last Name", 20, SwingConstants.LEFT, 3),
+            new ColumnData("Birthday", 20, SwingConstants.LEFT, 4),};
+        tableModel = new ObjectTableModel(tableContent, columns, listTable);
+        JTable headerTable = tableModel.getHeaderTable();
+        headerTable.createDefaultColumnsFromModel();
+        tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        JViewport viewPort = new JViewport();
+        viewPort.setView(headerTable);
+        viewPort.setPreferredSize(headerTable.getMaximumSize());
+        jScrollPane1.setRowHeader(viewPort);
+        jScrollPane1.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, headerTable.getTableHeader());
     }
 
     /** This method is called from within the constructor to
@@ -76,22 +111,27 @@ public class frmEmployee extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jTaskPane1 = new com.l2fprod.common.swing.JTaskPane();
         jTaskPaneGroup1 = new com.l2fprod.common.swing.JTaskPaneGroup();
-        jLinkButton1 = new com.l2fprod.common.swing.JLinkButton();
-        jLinkButton2 = new com.l2fprod.common.swing.JLinkButton();
-        jLinkButton3 = new com.l2fprod.common.swing.JLinkButton();
-        jLinkButton4 = new com.l2fprod.common.swing.JLinkButton();
+        linkButtonAddEmp = new com.l2fprod.common.swing.JLinkButton();
+        linkButtonEditEmp = new com.l2fprod.common.swing.JLinkButton();
+        linkButtonDeleteEmp = new com.l2fprod.common.swing.JLinkButton();
+        linkButtonSearchEmp = new com.l2fprod.common.swing.JLinkButton();
         jTaskPaneGroup2 = new com.l2fprod.common.swing.JTaskPaneGroup();
+        jTaskPaneGroup3 = new com.l2fprod.common.swing.JTaskPaneGroup();
+        linkButtonImport = new com.l2fprod.common.swing.JLinkButton();
+        linkButtonExport = new com.l2fprod.common.swing.JLinkButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         comboSearch = new javax.swing.JComboBox();
         txtSearch = new javax.swing.JTextField();
         lblHienthi1 = new javax.swing.JLabel();
+        lblCount = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
         btnImport = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         btnOK = new javax.swing.JButton();
+        btnExport = new javax.swing.JButton();
 
         menuIEdit.setText("Edit");
         menuIEdit.addActionListener(new java.awt.event.ActionListener() {
@@ -128,30 +168,53 @@ public class frmEmployee extends javax.swing.JFrame {
         percentLayout1.setOrientation(1);
         jTaskPane1.setLayout(percentLayout1);
 
+        jTaskPaneGroup1.setTitle("Managment Employee");
+        jTaskPaneGroup1.setToolTipText("Managment Employee");
         com.l2fprod.common.swing.PercentLayout percentLayout2 = new com.l2fprod.common.swing.PercentLayout();
         percentLayout2.setGap(2);
         percentLayout2.setOrientation(1);
         jTaskPaneGroup1.getContentPane().setLayout(percentLayout2);
 
-        jLinkButton1.setText("jLinkButton1");
-        jTaskPaneGroup1.getContentPane().add(jLinkButton1);
+        linkButtonAddEmp.setText("Add Employee");
+        linkButtonAddEmp.setToolTipText("Add Employee");
+        jTaskPaneGroup1.getContentPane().add(linkButtonAddEmp);
 
-        jLinkButton2.setText("jLinkButton2");
-        jTaskPaneGroup1.getContentPane().add(jLinkButton2);
+        linkButtonEditEmp.setText("Edit Employee");
+        linkButtonEditEmp.setToolTipText("Edit Employee");
+        jTaskPaneGroup1.getContentPane().add(linkButtonEditEmp);
 
-        jLinkButton3.setText("jLinkButton3");
-        jTaskPaneGroup1.getContentPane().add(jLinkButton3);
+        linkButtonDeleteEmp.setText("Delete Employee");
+        linkButtonDeleteEmp.setToolTipText("Delete Employee");
+        jTaskPaneGroup1.getContentPane().add(linkButtonDeleteEmp);
 
-        jLinkButton4.setText("jLinkButton4");
-        jTaskPaneGroup1.getContentPane().add(jLinkButton4);
+        linkButtonSearchEmp.setText("Search Employee");
+        linkButtonSearchEmp.setToolTipText("Search Employee");
+        jTaskPaneGroup1.getContentPane().add(linkButtonSearchEmp);
 
         jTaskPane1.add(jTaskPaneGroup1);
 
+        jTaskPaneGroup2.setTitle("Report");
+        jTaskPaneGroup2.setToolTipText("Report");
         com.l2fprod.common.swing.PercentLayout percentLayout3 = new com.l2fprod.common.swing.PercentLayout();
         percentLayout3.setGap(2);
         percentLayout3.setOrientation(1);
         jTaskPaneGroup2.getContentPane().setLayout(percentLayout3);
         jTaskPane1.add(jTaskPaneGroup2);
+
+        jTaskPaneGroup3.setTitle("Managment Data");
+        jTaskPaneGroup3.setToolTipText("Managment Data");
+        com.l2fprod.common.swing.PercentLayout percentLayout4 = new com.l2fprod.common.swing.PercentLayout();
+        percentLayout4.setGap(2);
+        percentLayout4.setOrientation(1);
+        jTaskPaneGroup3.getContentPane().setLayout(percentLayout4);
+
+        linkButtonImport.setText("Import Data");
+        jTaskPaneGroup3.getContentPane().add(linkButtonImport);
+
+        linkButtonExport.setText("Export Data");
+        jTaskPaneGroup3.getContentPane().add(linkButtonExport);
+
+        jTaskPane1.add(jTaskPaneGroup3);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -177,7 +240,9 @@ public class frmEmployee extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblHienthi1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 376, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblCount, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 349, Short.MAX_VALUE)
                 .addComponent(comboSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -190,7 +255,8 @@ public class frmEmployee extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblHienthi1)
-                    .addComponent(comboSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCount, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(6, Short.MAX_VALUE))
         );
 
@@ -218,13 +284,17 @@ public class frmEmployee extends javax.swing.JFrame {
 
         btnOK.setText("OK");
 
+        btnExport.setText("Export");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addComponent(btnImport)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 683, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnExport)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 612, Short.MAX_VALUE)
                 .addComponent(btnOK)
                 .addGap(28, 28, 28)
                 .addComponent(btnCancel)
@@ -240,7 +310,9 @@ public class frmEmployee extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnOK)
                         .addComponent(btnCancel))
-                    .addComponent(btnImport))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnImport)
+                        .addComponent(btnExport)))
                 .addContainerGap(9, Short.MAX_VALUE))
         );
 
@@ -291,13 +363,20 @@ public class frmEmployee extends javax.swing.JFrame {
 
     private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
         // TODO add your handling code here:
-       
     }//GEN-LAST:event_tableContentMouseClicked
 
     private void cancelCellEditing() {
         CellEditor ce = tableContent.getCellEditor();
+
+
+
+
         if (ce != null) {
             ce.cancelCellEditing();
+
+
+
+
         }
     }
 
@@ -309,19 +388,24 @@ public class frmEmployee extends javax.swing.JFrame {
 
             public void run() {
                 new frmEmployee().setVisible(true);
+
+
+
+
             }
         });
+
+
+
+
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnExport;
     private javax.swing.JButton btnImport;
     private javax.swing.JButton btnOK;
     private javax.swing.JComboBox comboSearch;
     private javax.swing.JLabel jLabel2;
-    private com.l2fprod.common.swing.JLinkButton jLinkButton1;
-    private com.l2fprod.common.swing.JLinkButton jLinkButton2;
-    private com.l2fprod.common.swing.JLinkButton jLinkButton3;
-    private com.l2fprod.common.swing.JLinkButton jLinkButton4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -330,7 +414,15 @@ public class frmEmployee extends javax.swing.JFrame {
     private com.l2fprod.common.swing.JTaskPane jTaskPane1;
     private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroup1;
     private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroup2;
+    private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroup3;
+    private javax.swing.JLabel lblCount;
     private javax.swing.JLabel lblHienthi1;
+    private com.l2fprod.common.swing.JLinkButton linkButtonAddEmp;
+    private com.l2fprod.common.swing.JLinkButton linkButtonDeleteEmp;
+    private com.l2fprod.common.swing.JLinkButton linkButtonEditEmp;
+    private com.l2fprod.common.swing.JLinkButton linkButtonExport;
+    private com.l2fprod.common.swing.JLinkButton linkButtonImport;
+    private com.l2fprod.common.swing.JLinkButton linkButtonSearchEmp;
     private javax.swing.JMenuItem menuIAdd;
     private javax.swing.JMenuItem menuIDelete;
     private javax.swing.JMenuItem menuIEdit;

@@ -4,32 +4,34 @@
  */
 package com.hueic.CerGS.entity;
 
+import com.hueic.CerGS.component.PropertyIndex;
+
 /**
  *
  * @author nhchung
  * Date: 13/03/2011
  * Version: 1.0
  */
-public class Certificate {
+public class Certificate implements PropertyIndex {
 
     //field
     private int id;
     private String studentID;
-    private float sourse;
+    private float score;
     private String degreeDay;
 
     //contruction
     public Certificate() {
         id = 0;
         studentID = null;
-        sourse = 0;
+        score = 0;
         degreeDay = null;
     }
 
-    public Certificate(int id, String studentID, float sourse, String degreeDay) {
+    public Certificate(int id, String studentID, float score, String degreeDay) {
         setId(id);
         setStudentID(studentID);
-        setSourse(sourse);
+        setScore(score);
         setDegreeDay(degreeDay);
     }
 
@@ -65,15 +67,15 @@ public class Certificate {
     /**
      * @return the sourse
      */
-    public float getSourse() {
-        return sourse;
+    public float getScore() {
+        return score;
     }
 
     /**
      * @param sourse the sourse to set
      */
-    public void setSourse(float sourse) {
-        this.sourse = sourse;
+    public void setScore(float score) {
+        this.score = score;
     }
 
     /**
@@ -88,5 +90,31 @@ public class Certificate {
      */
     public void setDegreeDay(String degreeDay) {
         this.degreeDay = degreeDay;
+    }
+
+    public Object getPropertyValue(int index) {
+        String value = "";
+        switch (index) {
+            case 1:
+                value = String.valueOf(this.getId());
+                break;
+            case 2:
+                value = this.getStudentID();
+                break;
+            case 3:
+                value = String.valueOf(this.getScore());
+                break;
+            case 4:
+                value = this.getDegreeDay();
+                break;
+        }
+        return value;
+    }
+
+    public void setPropertyValue(int index, Object value) {
+    }
+
+    public Class getPropertyClass(int index) {
+        return String.class;
     }
 }

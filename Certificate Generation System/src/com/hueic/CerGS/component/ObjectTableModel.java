@@ -1,7 +1,5 @@
 package com.hueic.CerGS.component;
 
-
-
 import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.JTable;
@@ -10,7 +8,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
-
 
 public class ObjectTableModel extends AbstractTableModel {
 
@@ -65,7 +62,7 @@ public class ObjectTableModel extends AbstractTableModel {
 
         return " " + this.columns[index - 1].getTitle() + " ";
     }
-    
+
     //so luong cot trong bang
     public int getColumnCount() {
         return this.columns.length + 1;
@@ -77,13 +74,12 @@ public class ObjectTableModel extends AbstractTableModel {
             return String.class;
         }
 
-        Class cl = ((PropertyIndex) this.tableData.get(0)).
-                getPropertyClass(this.getColumnPropertyIndex(columnIndex - 1));
+        Class cl = ((PropertyIndex) this.tableData.get(0)).getPropertyClass(this.getColumnPropertyIndex(columnIndex - 1));
 
         // return getValueAt(0, index).getClass();
         return cl;
     }
-    
+
     //so luong hang
     public int getRowCount() {
         return this.tableData.size();
@@ -94,11 +90,10 @@ public class ObjectTableModel extends AbstractTableModel {
         if (columnIndex == 0) {
             return "" + (rowIndex + 1);
         }
-
         Object obj = ((PropertyIndex) this.tableData.get(rowIndex)).getPropertyValue(this.getColumnPropertyIndex(columnIndex - 1));
         return obj;
     }
-    
+
     //gia tri o (i,j)
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
@@ -131,13 +126,13 @@ public class ObjectTableModel extends AbstractTableModel {
                 //doi tuong bieu dien thuoc tinh cot thu i, cot bat dau la 1
                 TableColumn col = this.table.getColumnModel().getColumn(i + 1);
                 ObjectTableCellRenderer cellRenderer = new ObjectTableCellRenderer();
-                
+
                 cellRenderer.setHorizontalAlignment(this.columns[i].getAlignment());
                 col.setResizable(true);
                 col.setMinWidth((this.columns[i]).getWidth());
                 //thiet lap thong tin cho cot i
                 col.setCellRenderer(cellRenderer);
-                
+
                 //thiet lap thong tin cho tieu de cot
                 ObjectTableHeaderRenderer headerRenderer = new ObjectTableHeaderRenderer(this.columns[i].getAlignment());
                 col.setHeaderRenderer(headerRenderer);

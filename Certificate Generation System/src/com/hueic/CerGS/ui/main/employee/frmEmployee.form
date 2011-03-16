@@ -121,25 +121,33 @@
         <Container class="com.l2fprod.common.swing.JTaskPane" name="jTaskPane1">
           <SubComponents>
             <Container class="com.l2fprod.common.swing.JTaskPaneGroup" name="jTaskPaneGroup1">
+              <Properties>
+                <Property name="title" type="java.lang.String" value="Managment Employee"/>
+                <Property name="toolTipText" type="java.lang.String" value="Managment Employee"/>
+              </Properties>
               <SubComponents>
-                <Component class="com.l2fprod.common.swing.JLinkButton" name="jLinkButton1">
+                <Component class="com.l2fprod.common.swing.JLinkButton" name="linkButtonAddEmp">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="jLinkButton1"/>
+                    <Property name="text" type="java.lang.String" value="Add Employee"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Add Employee"/>
                   </Properties>
                 </Component>
-                <Component class="com.l2fprod.common.swing.JLinkButton" name="jLinkButton2">
+                <Component class="com.l2fprod.common.swing.JLinkButton" name="linkButtonEditEmp">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="jLinkButton2"/>
+                    <Property name="text" type="java.lang.String" value="Edit Employee"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Edit Employee"/>
                   </Properties>
                 </Component>
-                <Component class="com.l2fprod.common.swing.JLinkButton" name="jLinkButton3">
+                <Component class="com.l2fprod.common.swing.JLinkButton" name="linkButtonDeleteEmp">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="jLinkButton3"/>
+                    <Property name="text" type="java.lang.String" value="Delete Employee"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Delete Employee"/>
                   </Properties>
                 </Component>
-                <Component class="com.l2fprod.common.swing.JLinkButton" name="jLinkButton4">
+                <Component class="com.l2fprod.common.swing.JLinkButton" name="linkButtonSearchEmp">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="jLinkButton4"/>
+                    <Property name="text" type="java.lang.String" value="Search Employee"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Search Employee"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -212,11 +220,11 @@
                     <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component"/>
                   </StatementProvider>
                   <Parameters>
-                    <CodeExpression id="6_jLinkButton1">
-                      <CodeVariable name="jLinkButton1" type="8194" declaredType="com.l2fprod.common.swing.JLinkButton"/>
+                    <CodeExpression id="6_linkButtonAddEmp">
+                      <CodeVariable name="linkButtonAddEmp" type="8194" declaredType="com.l2fprod.common.swing.JLinkButton"/>
                       <ExpressionOrigin>
                         <ExpressionProvider type="ComponentRef">
-                          <ComponentRef name="jLinkButton1"/>
+                          <ComponentRef name="linkButtonAddEmp"/>
                         </ExpressionProvider>
                       </ExpressionOrigin>
                     </CodeExpression>
@@ -228,11 +236,11 @@
                     <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component"/>
                   </StatementProvider>
                   <Parameters>
-                    <CodeExpression id="7_jLinkButton2">
-                      <CodeVariable name="jLinkButton2" type="8194" declaredType="com.l2fprod.common.swing.JLinkButton"/>
+                    <CodeExpression id="7_linkButtonEditEmp">
+                      <CodeVariable name="linkButtonEditEmp" type="8194" declaredType="com.l2fprod.common.swing.JLinkButton"/>
                       <ExpressionOrigin>
                         <ExpressionProvider type="ComponentRef">
-                          <ComponentRef name="jLinkButton2"/>
+                          <ComponentRef name="linkButtonEditEmp"/>
                         </ExpressionProvider>
                       </ExpressionOrigin>
                     </CodeExpression>
@@ -244,11 +252,11 @@
                     <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component"/>
                   </StatementProvider>
                   <Parameters>
-                    <CodeExpression id="8_jLinkButton3">
-                      <CodeVariable name="jLinkButton3" type="8194" declaredType="com.l2fprod.common.swing.JLinkButton"/>
+                    <CodeExpression id="8_linkButtonDeleteEmp">
+                      <CodeVariable name="linkButtonDeleteEmp" type="8194" declaredType="com.l2fprod.common.swing.JLinkButton"/>
                       <ExpressionOrigin>
                         <ExpressionProvider type="ComponentRef">
-                          <ComponentRef name="jLinkButton3"/>
+                          <ComponentRef name="linkButtonDeleteEmp"/>
                         </ExpressionProvider>
                       </ExpressionOrigin>
                     </CodeExpression>
@@ -260,11 +268,11 @@
                     <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component"/>
                   </StatementProvider>
                   <Parameters>
-                    <CodeExpression id="9_jLinkButton4">
-                      <CodeVariable name="jLinkButton4" type="8194" declaredType="com.l2fprod.common.swing.JLinkButton"/>
+                    <CodeExpression id="9_linkButtonSearchEmp">
+                      <CodeVariable name="linkButtonSearchEmp" type="8194" declaredType="com.l2fprod.common.swing.JLinkButton"/>
                       <ExpressionOrigin>
                         <ExpressionProvider type="ComponentRef">
-                          <ComponentRef name="jLinkButton4"/>
+                          <ComponentRef name="linkButtonSearchEmp"/>
                         </ExpressionProvider>
                       </ExpressionOrigin>
                     </CodeExpression>
@@ -273,6 +281,10 @@
               </LayoutCode>
             </Container>
             <Container class="com.l2fprod.common.swing.JTaskPaneGroup" name="jTaskPaneGroup2">
+              <Properties>
+                <Property name="title" type="java.lang.String" value="Report"/>
+                <Property name="toolTipText" type="java.lang.String" value="Report"/>
+              </Properties>
               <LayoutCode>
                 <CodeStatement>
                   <CodeExpression id="10_percentLayout3">
@@ -338,10 +350,124 @@
                 </CodeStatement>
               </LayoutCode>
             </Container>
+            <Container class="com.l2fprod.common.swing.JTaskPaneGroup" name="jTaskPaneGroup3">
+              <Properties>
+                <Property name="title" type="java.lang.String" value="Managment Data"/>
+                <Property name="toolTipText" type="java.lang.String" value="Managment Data"/>
+              </Properties>
+              <SubComponents>
+                <Component class="com.l2fprod.common.swing.JLinkButton" name="linkButtonImport">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Import Data"/>
+                  </Properties>
+                </Component>
+                <Component class="com.l2fprod.common.swing.JLinkButton" name="linkButtonExport">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Export Data"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+              <LayoutCode>
+                <CodeStatement>
+                  <CodeExpression id="15_percentLayout4">
+                    <CodeVariable name="percentLayout4" type="4096" declaredType="com.l2fprod.common.swing.PercentLayout"/>
+                    <ExpressionOrigin>
+                      <ExpressionProvider type="CodeConstructor">
+                        <CodeConstructor class="com.l2fprod.common.swing.PercentLayout" parameterTypes=""/>
+                      </ExpressionProvider>
+                    </ExpressionOrigin>
+                  </CodeExpression>
+                  <StatementProvider type="CodeExpression">
+                    <CodeExpression id="15_percentLayout4"/>
+                  </StatementProvider>
+                </CodeStatement>
+                <CodeStatement>
+                  <CodeExpression id="15_percentLayout4"/>
+                  <StatementProvider type="CodeMethod">
+                    <CodeMethod name="setGap" class="com.l2fprod.common.swing.PercentLayout" parameterTypes="int"/>
+                  </StatementProvider>
+                  <Parameters>
+                    <CodeExpression id="16">
+                      <ExpressionOrigin>
+                        <Value type="int" value="2"/>
+                      </ExpressionOrigin>
+                    </CodeExpression>
+                  </Parameters>
+                </CodeStatement>
+                <CodeStatement>
+                  <CodeExpression id="15_percentLayout4"/>
+                  <StatementProvider type="CodeMethod">
+                    <CodeMethod name="setOrientation" class="com.l2fprod.common.swing.PercentLayout" parameterTypes="int"/>
+                  </StatementProvider>
+                  <Parameters>
+                    <CodeExpression id="17">
+                      <ExpressionOrigin>
+                        <Value type="int" value="1"/>
+                      </ExpressionOrigin>
+                    </CodeExpression>
+                  </Parameters>
+                </CodeStatement>
+                <CodeStatement>
+                  <CodeExpression id="18">
+                    <ExpressionOrigin>
+                      <CodeExpression id="19_jTaskPaneGroup3">
+                        <CodeVariable name="jTaskPaneGroup3" type="8194" declaredType="com.l2fprod.common.swing.JTaskPaneGroup"/>
+                        <ExpressionOrigin>
+                          <ExpressionProvider type="ComponentRef">
+                            <ComponentRef name="jTaskPaneGroup3"/>
+                          </ExpressionProvider>
+                        </ExpressionOrigin>
+                      </CodeExpression>
+                      <ExpressionProvider type="CodeMethod">
+                        <CodeMethod name="getContentPane" class="com.l2fprod.common.swing.JTaskPaneGroup" parameterTypes=""/>
+                      </ExpressionProvider>
+                    </ExpressionOrigin>
+                  </CodeExpression>
+                  <StatementProvider type="CodeMethod">
+                    <CodeMethod name="setLayout" class="java.awt.Container" parameterTypes="java.awt.LayoutManager"/>
+                  </StatementProvider>
+                  <Parameters>
+                    <CodeExpression id="15_percentLayout4"/>
+                  </Parameters>
+                </CodeStatement>
+                <CodeStatement>
+                  <CodeExpression id="18"/>
+                  <StatementProvider type="CodeMethod">
+                    <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component"/>
+                  </StatementProvider>
+                  <Parameters>
+                    <CodeExpression id="20_linkButtonImport">
+                      <CodeVariable name="linkButtonImport" type="8194" declaredType="com.l2fprod.common.swing.JLinkButton"/>
+                      <ExpressionOrigin>
+                        <ExpressionProvider type="ComponentRef">
+                          <ComponentRef name="linkButtonImport"/>
+                        </ExpressionProvider>
+                      </ExpressionOrigin>
+                    </CodeExpression>
+                  </Parameters>
+                </CodeStatement>
+                <CodeStatement>
+                  <CodeExpression id="18"/>
+                  <StatementProvider type="CodeMethod">
+                    <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component"/>
+                  </StatementProvider>
+                  <Parameters>
+                    <CodeExpression id="21_linkButtonExport">
+                      <CodeVariable name="linkButtonExport" type="8194" declaredType="com.l2fprod.common.swing.JLinkButton"/>
+                      <ExpressionOrigin>
+                        <ExpressionProvider type="ComponentRef">
+                          <ComponentRef name="linkButtonExport"/>
+                        </ExpressionProvider>
+                      </ExpressionOrigin>
+                    </CodeExpression>
+                  </Parameters>
+                </CodeStatement>
+              </LayoutCode>
+            </Container>
           </SubComponents>
           <LayoutCode>
             <CodeStatement>
-              <CodeExpression id="15_percentLayout1">
+              <CodeExpression id="22_percentLayout1">
                 <CodeVariable name="percentLayout1" type="4096" declaredType="com.l2fprod.common.swing.PercentLayout"/>
                 <ExpressionOrigin>
                   <ExpressionProvider type="CodeConstructor">
@@ -350,16 +476,16 @@
                 </ExpressionOrigin>
               </CodeExpression>
               <StatementProvider type="CodeExpression">
-                <CodeExpression id="15_percentLayout1"/>
+                <CodeExpression id="22_percentLayout1"/>
               </StatementProvider>
             </CodeStatement>
             <CodeStatement>
-              <CodeExpression id="15_percentLayout1"/>
+              <CodeExpression id="22_percentLayout1"/>
               <StatementProvider type="CodeMethod">
                 <CodeMethod name="setGap" class="com.l2fprod.common.swing.PercentLayout" parameterTypes="int"/>
               </StatementProvider>
               <Parameters>
-                <CodeExpression id="16">
+                <CodeExpression id="23">
                   <ExpressionOrigin>
                     <Value type="int" value="14"/>
                   </ExpressionOrigin>
@@ -367,12 +493,12 @@
               </Parameters>
             </CodeStatement>
             <CodeStatement>
-              <CodeExpression id="15_percentLayout1"/>
+              <CodeExpression id="22_percentLayout1"/>
               <StatementProvider type="CodeMethod">
                 <CodeMethod name="setOrientation" class="com.l2fprod.common.swing.PercentLayout" parameterTypes="int"/>
               </StatementProvider>
               <Parameters>
-                <CodeExpression id="17">
+                <CodeExpression id="24">
                   <ExpressionOrigin>
                     <Value type="int" value="1"/>
                   </ExpressionOrigin>
@@ -380,7 +506,7 @@
               </Parameters>
             </CodeStatement>
             <CodeStatement>
-              <CodeExpression id="18_jTaskPane1">
+              <CodeExpression id="25_jTaskPane1">
                 <CodeVariable name="jTaskPane1" type="8194" declaredType="com.l2fprod.common.swing.JTaskPane"/>
                 <ExpressionOrigin>
                   <ExpressionProvider type="ComponentRef">
@@ -392,11 +518,11 @@
                 <CodeMethod name="setLayout" class="java.awt.Container" parameterTypes="java.awt.LayoutManager"/>
               </StatementProvider>
               <Parameters>
-                <CodeExpression id="15_percentLayout1"/>
+                <CodeExpression id="22_percentLayout1"/>
               </Parameters>
             </CodeStatement>
             <CodeStatement>
-              <CodeExpression id="18_jTaskPane1"/>
+              <CodeExpression id="25_jTaskPane1"/>
               <StatementProvider type="CodeMethod">
                 <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component"/>
               </StatementProvider>
@@ -405,12 +531,21 @@
               </Parameters>
             </CodeStatement>
             <CodeStatement>
-              <CodeExpression id="18_jTaskPane1"/>
+              <CodeExpression id="25_jTaskPane1"/>
               <StatementProvider type="CodeMethod">
                 <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component"/>
               </StatementProvider>
               <Parameters>
                 <CodeExpression id="14_jTaskPaneGroup2"/>
+              </Parameters>
+            </CodeStatement>
+            <CodeStatement>
+              <CodeExpression id="25_jTaskPane1"/>
+              <StatementProvider type="CodeMethod">
+                <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component"/>
+              </StatementProvider>
+              <Parameters>
+                <CodeExpression id="19_jTaskPaneGroup3"/>
               </Parameters>
             </CodeStatement>
           </LayoutCode>
@@ -446,7 +581,9 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblHienthi1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="376" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lblCount" min="-2" pref="21" max="-2" attributes="0"/>
+                      <EmptySpace pref="349" max="32767" attributes="0"/>
                       <Component id="comboSearch" min="-2" pref="149" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Component id="txtSearch" min="-2" pref="218" max="-2" attributes="0"/>
@@ -462,6 +599,7 @@
                           <Component id="txtSearch" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblHienthi1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="comboSearch" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCount" alignment="3" min="-2" pref="15" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="6" max="32767" attributes="0"/>
                   </Group>
@@ -488,6 +626,8 @@
                 <Property name="text" type="java.lang.String" value="T&#x1ed5;ng s&#x1ed1; nh&#xe2;n vi&#xea;n l&#xe0; : "/>
               </Properties>
             </Component>
+            <Component class="javax.swing.JLabel" name="lblCount">
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel4">
@@ -497,7 +637,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="btnImport" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="683" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnExport" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="612" max="32767" attributes="0"/>
                       <Component id="btnOK" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Component id="btnCancel" min="-2" max="-2" attributes="0"/>
@@ -516,7 +658,10 @@
                               <Component id="btnOK" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnCancel" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="btnImport" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="btnImport" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnExport" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace pref="9" max="32767" attributes="0"/>
                   </Group>
@@ -561,6 +706,11 @@
             <Component class="javax.swing.JButton" name="btnOK">
               <Properties>
                 <Property name="text" type="java.lang.String" value="OK"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnExport">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Export"/>
               </Properties>
             </Component>
           </SubComponents>
