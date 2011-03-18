@@ -78,14 +78,10 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="panelDetails" min="-2" max="-2" attributes="1"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="11" pref="11" max="11" attributes="0"/>
-                          <Component id="srcPanelAccount" min="-2" pref="239" max="-2" attributes="1"/>
-                      </Group>
-                  </Group>
+              <Component id="panelDetails" alignment="0" max="32767" attributes="1"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="11" pref="11" max="11" attributes="0"/>
+                  <Component id="srcPanelAccount" pref="253" max="32767" attributes="1"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -130,8 +126,8 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="panel1" min="-2" pref="253" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="panel1" pref="264" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -141,12 +137,8 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder>
-                      <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                        <TitledBorder title="Add Account">
-                          <Font PropertyName="font" name="Tahoma" size="14" style="1"/>
-                        </TitledBorder>
-                      </Border>
+                    <TitledBorder title="Management Account">
+                      <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
                     </TitledBorder>
                   </Border>
                 </Property>

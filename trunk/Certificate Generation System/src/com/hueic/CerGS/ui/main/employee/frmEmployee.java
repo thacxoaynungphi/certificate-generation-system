@@ -55,6 +55,7 @@ public class frmEmployee extends javax.swing.JFrame {
     public frmEmployee() {
         initComponents();
         setSize(1100, 700);
+        setLocationRelativeTo(null);
         listEmp = empDao.readByAll();
         enableEvents(AWTEvent.MOUSE_EVENT_MASK);
         tableContent.addMouseListener(new MouseAdapter() {
@@ -122,8 +123,8 @@ public class frmEmployee extends javax.swing.JFrame {
         menuIAdd = new javax.swing.JMenuItem();
         menuIEdit = new javax.swing.JMenuItem();
         menuIDelete = new javax.swing.JMenuItem();
-        mnuIDetailsEmployee = new javax.swing.JMenuItem();
-        mnuISearchEmp = new javax.swing.JMenuItem();
+        mnuIDetails = new javax.swing.JMenuItem();
+        mnuISearch = new javax.swing.JMenuItem();
         panelBanner = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -173,16 +174,24 @@ public class frmEmployee extends javax.swing.JFrame {
         menuIDelete.setText("Delete ");
         popupMenuTable.add(menuIDelete);
 
-        mnuIDetailsEmployee.setText("Details");
-        popupMenuTable.add(mnuIDetailsEmployee);
+        mnuIDetails.setText("Details");
+        mnuIDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuIDetailsActionPerformed(evt);
+            }
+        });
+        popupMenuTable.add(mnuIDetails);
 
-        mnuISearchEmp.setText("Search");
-        mnuISearchEmp.setToolTipText("");
-        popupMenuTable.add(mnuISearchEmp);
+        mnuISearch.setText("Search");
+        mnuISearch.setToolTipText("");
+        popupMenuTable.add(mnuISearch);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Management Employee");
+        setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
+
+        panelBanner.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/dispatcher.png"))); // NOI18N
 
@@ -196,6 +205,8 @@ public class frmEmployee extends javax.swing.JFrame {
             panelBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         com.l2fprod.common.swing.PercentLayout percentLayout1 = new com.l2fprod.common.swing.PercentLayout();
         percentLayout1.setGap(14);
@@ -277,6 +288,10 @@ public class frmEmployee extends javax.swing.JFrame {
             .addComponent(jTaskPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
         );
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
         comboSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All Employee", "Employee ID", "First Name", "Last Name", "Birthday", "Gender", "Phone Number" }));
         comboSearch.setToolTipText("Choose type to search");
         comboSearch.addItemListener(new java.awt.event.ItemListener() {
@@ -324,6 +339,8 @@ public class frmEmployee extends javax.swing.JFrame {
                     .addComponent(lblSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(6, Short.MAX_VALUE))
         );
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -701,6 +718,15 @@ public class frmEmployee extends javax.swing.JFrame {
         editEmployee.setVisible(true);
     }//GEN-LAST:event_linkButtonEditEmpActionPerformed
 
+    private void mnuIDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuIDetailsActionPerformed
+        // TODO add your handling code here:
+        int index = tableContent.getSelectedRow();
+        if (index != -1) {
+            frmDetailsEmployee detailsEmployee = new frmDetailsEmployee(listEmp.get(index));
+            detailsEmployee.setVisible(true);
+        }
+    }//GEN-LAST:event_mnuIDetailsActionPerformed
+
     public boolean isExist(Employee emp) {
         for (int i = 0; i < listEmp.size(); i++) {
             if (listEmp.get(i).getId().equalsIgnoreCase(emp.getId())) {
@@ -758,8 +784,8 @@ public class frmEmployee extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuIAdd;
     private javax.swing.JMenuItem menuIDelete;
     private javax.swing.JMenuItem menuIEdit;
-    private javax.swing.JMenuItem mnuIDetailsEmployee;
-    private javax.swing.JMenuItem mnuISearchEmp;
+    private javax.swing.JMenuItem mnuIDetails;
+    private javax.swing.JMenuItem mnuISearch;
     private javax.swing.JPanel panelBanner;
     private javax.swing.JPopupMenu popupMenuTable;
     private javax.swing.JTable tableContent;
