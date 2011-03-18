@@ -50,7 +50,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="mnuAdministrator">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Administrator"/>
+            <Property name="text" type="java.lang.String" value="Student"/>
           </Properties>
         </Menu>
         <Menu class="javax.swing.JMenu" name="mnuEmployee">
@@ -67,7 +67,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="mnuStudent">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Student"/>
+            <Property name="text" type="java.lang.String" value="Payment"/>
           </Properties>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu1">

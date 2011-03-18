@@ -28,8 +28,8 @@ public class frmMain extends javax.swing.JFrame {
     GUIProperties guip = null;
 
     public frmMain() {
-
         initComponents();
+        setLocationRelativeTo(null);
         guidao = new GUIDAO(this);
         guip = new GUIProperties();
         guidao.setGUI(guip.PLAF_MAC);
@@ -127,7 +127,7 @@ public class frmMain extends javax.swing.JFrame {
 
         mnuBSystem.add(mnuSystem);
 
-        mnuAdministrator.setText("Administrator");
+        mnuAdministrator.setText("Student");
         mnuBSystem.add(mnuAdministrator);
 
         mnuIManagmentEmp.setText("Managment Employee");
@@ -140,7 +140,7 @@ public class frmMain extends javax.swing.JFrame {
 
         mnuBSystem.add(mnuEmployee);
 
-        mnuStudent.setText("Student");
+        mnuStudent.setText("Payment");
         mnuBSystem.add(mnuStudent);
 
         jMenu1.setText("Option");
