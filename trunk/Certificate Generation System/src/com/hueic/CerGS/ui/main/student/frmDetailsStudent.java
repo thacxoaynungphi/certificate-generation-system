@@ -272,9 +272,12 @@ public class frmDetailsStudent extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 10, 5);
         panel1.add(lblImageInfo, gridBagConstraints);
 
+        panel2.setBackground(new java.awt.Color(255, 255, 255));
         panel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
 
+        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Edit_16.png"))); // NOI18N
         btnEdit.setText("Edit");
+        btnEdit.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnEdit.setPreferredSize(new java.awt.Dimension(75, 23));
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -283,11 +286,15 @@ public class frmDetailsStudent extends javax.swing.JFrame {
         });
         panel2.add(btnEdit);
 
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
         btnDelete.setText("Delete");
+        btnDelete.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnDelete.setPreferredSize(new java.awt.Dimension(75, 23));
         panel2.add(btnDelete);
 
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
         btnCancel.setText("Cancel");
+        btnCancel.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnCancel.setPreferredSize(new java.awt.Dimension(75, 23));
         panel2.add(btnCancel);
 
