@@ -93,7 +93,7 @@ public class frmEditEmployee extends javax.swing.JFrame {
         btnBrowse = new javax.swing.JButton();
         txtImage = new javax.swing.JTextField();
         panel2 = new javax.swing.JPanel();
-        btnAdd = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
@@ -281,16 +281,20 @@ public class frmEditEmployee extends javax.swing.JFrame {
 
         panel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
 
-        btnAdd.setText("Add");
-        btnAdd.setPreferredSize(new java.awt.Dimension(75, 23));
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/button_ok - 16x16.png"))); // NOI18N
+        btnSave.setText("Save");
+        btnSave.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnSave.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
+                btnSaveActionPerformed(evt);
             }
         });
-        panel2.add(btnAdd);
+        panel2.add(btnSave);
 
+        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Reset.png"))); // NOI18N
         btnReset.setText("Reset");
+        btnReset.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnReset.setPreferredSize(new java.awt.Dimension(75, 23));
         btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -299,7 +303,9 @@ public class frmEditEmployee extends javax.swing.JFrame {
         });
         panel2.add(btnReset);
 
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
         btnCancel.setText("Cancel");
+        btnCancel.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnCancel.setPreferredSize(new java.awt.Dimension(75, 23));
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -458,7 +464,7 @@ public class frmEditEmployee extends javax.swing.JFrame {
         lblImage2.setIcon(icon);
     }//GEN-LAST:event_btnBrowseActionPerformed
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         try {
             // TODO add your handling code here:
             Employee emp = new Employee();
@@ -483,7 +489,7 @@ public class frmEditEmployee extends javax.swing.JFrame {
             empDao.create(emp);
         } catch (Exception ex) {
         }
-    }//GEN-LAST:event_btnAddActionPerformed
+    }//GEN-LAST:event_btnSaveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -499,10 +505,10 @@ public class frmEditEmployee extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser DateChBeginWork;
     private com.toedter.calendar.JDateChooser DateChBirthday;
-    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBrowse;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnReset;
+    private javax.swing.JButton btnSave;
     private javax.swing.ButtonGroup buttonGroupGender;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;

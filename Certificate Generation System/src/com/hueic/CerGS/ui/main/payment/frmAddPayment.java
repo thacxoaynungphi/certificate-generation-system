@@ -106,15 +106,21 @@ public class frmAddPayment extends javax.swing.JFrame {
 
         jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
 
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
         btnAdd.setText("Add");
+        btnAdd.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnAdd.setPreferredSize(new java.awt.Dimension(75, 23));
         jPanel2.add(btnAdd);
 
+        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
         btnReset.setText("Reset");
+        btnReset.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnReset.setPreferredSize(new java.awt.Dimension(75, 23));
         jPanel2.add(btnReset);
 
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
         btnCancel.setText("Cancel");
+        btnCancel.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnCancel.setPreferredSize(new java.awt.Dimension(75, 23));
         jPanel2.add(btnCancel);
 

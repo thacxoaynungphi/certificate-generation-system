@@ -57,7 +57,7 @@ public class AddStuScoFrm extends javax.swing.JFrame {
         panel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Add Student Scores", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
         panel1.setLayout(new java.awt.GridBagLayout());
 
-        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 12));
         lblTitle.setForeground(new java.awt.Color(102, 0, 102));
         lblTitle.setText("Enter Student Scores");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -159,15 +159,21 @@ public class AddStuScoFrm extends javax.swing.JFrame {
 
         panel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
 
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
         btnAdd.setText("Add");
+        btnAdd.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnAdd.setPreferredSize(new java.awt.Dimension(75, 23));
         panel2.add(btnAdd);
 
+        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
         btnReset.setText("Reset");
+        btnReset.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnReset.setPreferredSize(new java.awt.Dimension(75, 23));
         panel2.add(btnReset);
 
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
         btnCancel.setText("Cancel");
+        btnCancel.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnCancel.setPreferredSize(new java.awt.Dimension(75, 23));
         panel2.add(btnCancel);
 
