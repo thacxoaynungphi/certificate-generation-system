@@ -17,21 +17,21 @@ public class Certificate implements PropertyIndex {
     //field
     private int id;
     private String studentID;
-    private float score;
+    private float mark;
     private String degreeDay;
 
     //contruction
     public Certificate() {
         id = 0;
         studentID = null;
-        score = 0;
+        mark = 0;
         degreeDay = null;
     }
 
-    public Certificate(int id, String studentID, float score, String degreeDay) {
+    public Certificate(int id, String studentID, float mark, String degreeDay) {
         setId(id);
         setStudentID(studentID);
-        setScore(score);
+        setMark(mark);
         setDegreeDay(degreeDay);
     }
 
@@ -67,15 +67,15 @@ public class Certificate implements PropertyIndex {
     /**
      * @return the sourse
      */
-    public float getScore() {
-        return score;
+    public float getMark() {
+        return mark;
     }
 
     /**
      * @param sourse the sourse to set
      */
-    public void setScore(float score) {
-        this.score = score;
+    public void setMark(float mark) {
+        this.mark = mark;
     }
 
     /**
@@ -102,7 +102,7 @@ public class Certificate implements PropertyIndex {
                 value = this.getStudentID();
                 break;
             case 3:
-                value = String.valueOf(this.getScore());
+                value = String.valueOf(this.getMark());
                 break;
             case 4:
                 value = this.getDegreeDay();

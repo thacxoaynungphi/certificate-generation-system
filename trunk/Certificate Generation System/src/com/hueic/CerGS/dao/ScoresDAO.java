@@ -4,7 +4,7 @@
  */
 package com.hueic.CerGS.dao;
 
-import com.hueic.CerGS.entity.Scores;
+import com.hueic.CerGS.entity.Mark;
 import com.hueic.CerGS.util.Configure;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,8 +19,8 @@ public class ScoresDAO extends BaseDAO {
         db = new Configure();
     }
 
-    public ArrayList<Scores> readByAll() {
-        ArrayList<Scores> result = new ArrayList<Scores>();
+    public ArrayList<Mark> readByAll() {
+        ArrayList<Mark> result = new ArrayList<Mark>();
         con = db.getConnection();
         String sqlcommand = "select * from Scores";
 
@@ -29,11 +29,11 @@ public class ScoresDAO extends BaseDAO {
             rs = pst.executeQuery();
 
             while (rs.next()) {
-                Scores scores = new Scores();
+                Mark scores = new Mark();
                 scores.setId(rs.getInt("Id"));
                 scores.setStudentId(rs.getString("StudentId"));
                 scores.setSubjectId(rs.getString("SubjectId"));
-                scores.setScore(rs.getFloat("Score"));
+                scores.setMark(rs.getFloat("Score"));
                 result.add(scores);
             }
 
@@ -46,8 +46,8 @@ public class ScoresDAO extends BaseDAO {
         }
     }
 
-    public ArrayList<Scores> readByID(int id) {
-        ArrayList<Scores> result = new ArrayList<Scores>();
+    public ArrayList<Mark> readByID(int id) {
+        ArrayList<Mark> result = new ArrayList<Mark>();
         con = db.getConnection();
         String sqlcommand = "select * from Scores where id like ?";
 
@@ -57,11 +57,11 @@ public class ScoresDAO extends BaseDAO {
             rs = pst.executeQuery();
 
             while (rs.next()) {
-                Scores scores = new Scores();
+                Mark scores = new Mark();
                 scores.setId(rs.getInt("Id"));
                 scores.setStudentId(rs.getString("StudentId"));
                 scores.setSubjectId(rs.getString("SubjectId"));
-                scores.setScore(rs.getFloat("Score"));
+                scores.setMark(rs.getFloat("Score"));
 
                 result.add(scores);
             }
@@ -75,7 +75,7 @@ public class ScoresDAO extends BaseDAO {
         }
     }
 
-    public boolean create(Scores scores) {
+    public boolean create(Mark scores) {
         boolean status = false;
         con = db.getConnection();
         String sqlcommand = "insert into Scores values(?, ?, ?, ?, ?, ?, ?)";
@@ -85,7 +85,7 @@ public class ScoresDAO extends BaseDAO {
             pst.setInt(1, scores.getId());
             pst.setString(2, scores.getStudentId());
             pst.setString(3, scores.getSubjectId());
-            pst.setFloat(4, scores.getScore());
+            pst.setFloat(4, scores.getMark());
             if (pst.execute()) {
                 setLastError("Add fee successful");
                 status = true;
@@ -100,7 +100,7 @@ public class ScoresDAO extends BaseDAO {
         }
     }
 
-    public boolean update(Scores scores) {
+    public boolean update(Mark scores) {
         boolean status = false;
         con = db.getConnection();
         String sqlcommand = "select * from Scores where id like ?";
@@ -113,7 +113,7 @@ public class ScoresDAO extends BaseDAO {
             if (rs.first()) {
                 rs.updateString("StudentId", scores.getStudentId());
                 rs.updateString("SubjectId", scores.getSubjectId());
-                rs.updateFloat("Score1L1", scores.getScore());
+                rs.updateFloat("Score1L1", scores.getMark());
                 rs.updateRow();
 
                 setLastError("Add fee successful");
@@ -129,7 +129,7 @@ public class ScoresDAO extends BaseDAO {
         }
     }
 
-    public boolean delete(Scores scores) {
+    public boolean delete(Mark scores) {
         boolean status = false;
         con = db.getConnection();
         String sqlcommand = "delete from Scores where id like ?";

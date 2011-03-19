@@ -13,21 +13,21 @@ import com.hueic.CerGS.component.PropertyIndex;
  *
  * Lop Scores mo ta danh sach diem cua moi sinh vien trong lop hoc va mon hoc tuong ung
  */
-public class Scores implements PropertyIndex {
+public class Mark implements PropertyIndex {
 
     private int id;
     private String studentId;
     private String subjectId;
-    private float score;
+    private float mark;
 
-    public Scores() {
+    public Mark() {
     }
 
-    public Scores(int id, String studentId, String subjectId, float score) {
+    public Mark(int id, String studentId, String subjectId, float mark) {
         setId(id);
         setStudentId(studentId);
         setSubjectId(subjectId);
-        setScore(score);
+        setMark(mark);
     }
 
     /**
@@ -75,15 +75,15 @@ public class Scores implements PropertyIndex {
     /**
      * @return the score
      */
-    public float getScore() {
-        return score;
+    public float getMark() {
+        return mark;
     }
 
     /**
      * @param score the score to set
      */
-    public void setScore(float score) {
-        this.score = score;
+    public void setMark(float mark) {
+        this.mark = mark;
     }
 
     public Object getPropertyValue(int index) {
@@ -99,7 +99,7 @@ public class Scores implements PropertyIndex {
                 value = this.getSubjectId();
                 break;
             case 4:
-                value = String.valueOf(this.getScore());
+                value = String.valueOf(this.getMark());
                 break;
         }
         return value;
