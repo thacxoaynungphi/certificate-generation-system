@@ -115,14 +115,13 @@ public class frmEmployee extends javax.swing.JFrame {
                 }
                 return returnValue;
             }
-
-             boolean[] canEdit = new boolean [] {
-                false, false, false,false, false, false
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false, false, false
             };
 
             @Override
             public boolean isCellEditable(int row, int column) {
-                return canEdit [column];
+                return canEdit[column];
             }
         };
         tableContent = new JTable(model);
@@ -700,14 +699,16 @@ public class frmEmployee extends javax.swing.JFrame {
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
-        String text = filterText.getText();
-        if (text.length() == 0) {
-            sorter.setRowFilter(null);
-        } else {
-            try {
-                sorter.setRowFilter(RowFilter.regexFilter(text));
-            } catch (PatternSyntaxException pse) {
-                System.err.println("Bad regex pattern");
+        if (listEmp.size() != 0) {
+            String text = filterText.getText();
+            if (text.length() == 0) {
+                sorter.setRowFilter(null);
+            } else {
+                try {
+                    sorter.setRowFilter(RowFilter.regexFilter(text));
+                } catch (PatternSyntaxException pse) {
+                    System.err.println("Bad regex pattern");
+                }
             }
         }
     }//GEN-LAST:event_btnFilterActionPerformed

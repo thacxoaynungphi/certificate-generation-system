@@ -64,20 +64,17 @@ public class frmAccount extends javax.swing.JFrame {
                 }
                 return returnValue;
             }
-
-           boolean[] canEdit = new boolean [] {
+            boolean[] canEdit = new boolean[]{
                 false, false, false
             };
 
             @Override
             public boolean isCellEditable(int row, int column) {
-                return canEdit [column];
+                return canEdit[column];
             }
-
-
         };
         tableContent = new JTable(model);
-        
+        tableContent.getTableHeader().setReorderingAllowed(false);
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
 
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -383,32 +380,44 @@ public class frmAccount extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public Account find(String value) {
+        for (int i = 0; i < listAccounts.size(); i++) {
+            if (listAccounts.get(i).getUsername().equalsIgnoreCase(value)) {
+                return listAccounts.get(i);
+            }
+        }
+        return null;
+    }
+
     private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
         try {
             // TODO add your handling code here:
             int index = tableContent.getSelectedRow();
-            Account acc = new Account();
-            acc.setUsername((String) tableContent.getValueAt(index, 0));
-            acc.setPassword((String) tableContent.getValueAt(index, 1));
-            acc.setPermission(Integer.parseInt(tableContent.getValueAt(index, 2).toString()));
+
             if (index != -1) {
-                loadDetails(listAccounts.get(index));
+                String value = tableContent.getValueAt(index, 0).toString();
+                Account acc = find(value);
+                if (acc != null) {
+                    loadDetails(acc);
+                }
             }
         } catch (Exception ex) {
-           //TODO: chua xu ly
+            //TODO: chua xu ly
         }
     }//GEN-LAST:event_tableContentMouseClicked
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
-        String text = filterText.getText();
-        if (text.length() == 0) {
-            sorter.setRowFilter(null);
-        } else {
-            try {
-                sorter.setRowFilter(RowFilter.regexFilter(text));
-            } catch (PatternSyntaxException pse) {
-                System.err.println("Bad regex pattern");
+        if (listAccounts.size() != 0) {
+            String text = filterText.getText();
+            if (text.length() == 0) {
+                sorter.setRowFilter(null);
+            } else {
+                try {
+                    sorter.setRowFilter(RowFilter.regexFilter(text));
+                } catch (PatternSyntaxException pse) {
+                    System.err.println("Bad regex pattern");
+                }
             }
         }
     }//GEN-LAST:event_btnFilterActionPerformed
