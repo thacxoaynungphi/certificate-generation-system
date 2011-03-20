@@ -57,6 +57,8 @@ public class frmEmployee extends javax.swing.JFrame {
         setSize(1100, 700);
         setLocationRelativeTo(null);
         listEmp = empDao.readByAll();
+       
+        loadTable(listEmp);
         enableEvents(AWTEvent.MOUSE_EVENT_MASK);
         tableContent.addMouseListener(new MouseAdapter() {
 
@@ -86,7 +88,6 @@ public class frmEmployee extends javax.swing.JFrame {
                 maybeShowPopup(e);
             }
         });
-        loadTable(listEmp);
     }
 
     public void loadTable(ArrayList<Employee> listEmp) {
