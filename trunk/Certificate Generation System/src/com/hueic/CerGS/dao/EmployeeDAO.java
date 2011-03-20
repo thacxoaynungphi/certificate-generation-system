@@ -19,8 +19,7 @@ import java.util.logging.Logger;
  */
 public class EmployeeDAO extends BaseDAO {
 
-    public EmployeeDAO()
-    {
+    public EmployeeDAO() {
         super();
     }
 

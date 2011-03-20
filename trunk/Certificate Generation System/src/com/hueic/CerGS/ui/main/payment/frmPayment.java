@@ -10,20 +10,21 @@
  */
 package com.hueic.CerGS.ui.main.payment;
 
-import com.hueic.CerGS.component.ColumnData;
-import com.hueic.CerGS.component.ObjectTableModel;
-import com.hueic.CerGS.dao.AccountDAO;
 import com.hueic.CerGS.dao.CourseDAO;
 import com.hueic.CerGS.dao.PaymentDAO;
-import com.hueic.CerGS.entity.Account;
 import com.hueic.CerGS.entity.Course;
 import com.hueic.CerGS.entity.Payment;
+import com.l2fprod.common.swing.ObjectTableModel;
 import java.util.ArrayList;
+import java.util.regex.PatternSyntaxException;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
+import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -35,6 +36,7 @@ public class frmPayment extends javax.swing.JFrame {
     private ObjectTableModel tableModel;
     private ArrayList<Payment> listPayments = new ArrayList<Payment>();
     private PaymentDAO paymentDao;
+    TableRowSorter<TableModel> sorter;
 
     public frmPayment() {
         initComponents();
@@ -46,21 +48,44 @@ public class frmPayment extends javax.swing.JFrame {
     }
 
     public void loadData(ArrayList<Payment> listPayments) {
-        ColumnData[] columns = {
-            new ColumnData("Id", 20, SwingConstants.LEFT, 1),
-            new ColumnData("StudentId", 30, SwingConstants.LEFT, 2),
-            new ColumnData("Money", 20, SwingConstants.LEFT, 3),
-            new ColumnData("Payday", 20, SwingConstants.LEFT, 3),};
-        tableModel = new ObjectTableModel(tableContent, columns, listPayments);
-        JTable headerTable = tableModel.getHeaderTable();
-        headerTable.createDefaultColumnsFromModel();
-        tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        String[] columns = {"Id", "StudentId", "Money", "Payday"};
+        Object[][] rows = new Object[listPayments.size()][4];
+        int index = 0;
+        for (int i = 0; i < listPayments.size(); i++) {
+            Payment payment = listPayments.get(i);
+            rows[index][0] = payment.getId();
+            rows[index][1] = payment.getStudentId();
+            rows[index][2] = payment.getMoney();
+            rows[index][3] = payment.getPayday();
+            index++;
+        }
+        TableModel model = new DefaultTableModel(rows, columns) {
 
+            public Class getColumnClass(int column) {
+                Class returnValue;
+                if ((column >= 0) && (column < getColumnCount())) {
+                    returnValue = getValueAt(0, column).getClass();
+                } else {
+                    returnValue = Object.class;
+                }
+                return returnValue;
+            }
+        };
+        tableContent = new JTable(model);
+        tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
+
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableContentMouseClicked(evt);
+            }
+        });
+        sorter = new TableRowSorter<TableModel>(model);
+        tableContent.setRowSorter(sorter);
+        tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JViewport viewPort = new JViewport();
-        viewPort.setView(headerTable);
-        viewPort.setPreferredSize(headerTable.getMaximumSize());
+        viewPort.setView(tableContent);
+        viewPort.setPreferredSize(tableContent.getMaximumSize());
         srcPanelAccount.setRowHeader(viewPort);
-        srcPanelAccount.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, headerTable.getTableHeader());
+        srcPanelAccount.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
     }
 
     public void loadDetails(Payment payment) {
@@ -68,23 +93,19 @@ public class frmPayment extends javax.swing.JFrame {
 //        txtPassword.setText(acc.getPassword());
     }
 
-    public void loadCourse()
-    {
+    public void loadCourse() {
         cbxCourse.removeAllItems();
         CourseDAO courseDao = new CourseDAO();
         ArrayList<Course> listCourse = new ArrayList<Course>();
         listCourse = courseDao.readByAll();
-        if(listCourse != null)
-        {
-            for(int i = 0;i<listCourse.size();i++)
-            {
+        if (listCourse != null) {
+            for (int i = 0; i < listCourse.size(); i++) {
                 cbxCourse.addItem(listCourse.get(i).getId());
             }
         }
     }
 
-    public void loadStudentId()
-    {
+    public void loadStudentId() {
         //TODO : thuc hien list ra danh sach sinh vien de nop tien
     }
 
@@ -119,6 +140,8 @@ public class frmPayment extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         cbxCourse = new javax.swing.JComboBox();
         DateChPayDay = new com.toedter.calendar.JDateChooser();
+        filterText = new javax.swing.JTextField();
+        btnFilter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Managment Account");
@@ -278,9 +301,19 @@ public class frmPayment extends javax.swing.JFrame {
         panelDetailsLayout.setVerticalGroup(
             panelDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDetailsLayout.createSequentialGroup()
-                .addContainerGap(143, Short.MAX_VALUE)
+                .addContainerGap(150, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        btnFilter.setText("Filter");
+        btnFilter.setMaximumSize(new java.awt.Dimension(73, 20));
+        btnFilter.setMinimumSize(new java.awt.Dimension(73, 20));
+        btnFilter.setPreferredSize(new java.awt.Dimension(73, 20));
+        btnFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFilterActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelRightLayout = new javax.swing.GroupLayout(panelRight);
         panelRight.setLayout(panelRightLayout);
@@ -288,16 +321,27 @@ public class frmPayment extends javax.swing.JFrame {
             panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRightLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(srcPanelAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelRightLayout.createSequentialGroup()
+                        .addComponent(srcPanelAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(panelRightLayout.createSequentialGroup()
+                        .addComponent(filterText, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addComponent(panelDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         panelRightLayout.setVerticalGroup(
             panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRightLayout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addComponent(srcPanelAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE))
             .addComponent(panelDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRightLayout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addGroup(panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(filterText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(srcPanelAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -327,6 +371,20 @@ public class frmPayment extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tableContentMouseClicked
 
+    private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
+        // TODO add your handling code here:
+        String text = filterText.getText();
+        if (text.length() == 0) {
+            sorter.setRowFilter(null);
+        } else {
+            try {
+                sorter.setRowFilter(RowFilter.regexFilter(text));
+            } catch (PatternSyntaxException pse) {
+                System.err.println("Bad regex pattern");
+            }
+        }
+    }//GEN-LAST:event_btnFilterActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -342,9 +400,11 @@ public class frmPayment extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser DateChPayDay;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnFilter;
     private javax.swing.JButton btnReset;
     private javax.swing.JComboBox cbxCourse;
     private javax.swing.JComboBox cbxStudentID;
+    private javax.swing.JTextField filterText;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
