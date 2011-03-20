@@ -20,7 +20,6 @@ import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -68,6 +67,14 @@ public class frmCertificate extends javax.swing.JFrame {
                 }
                 return returnValue;
             }
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false
+            };
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return canEdit[column];
+            }
         };
         tableContent = new JTable(model);
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -87,7 +94,6 @@ public class frmCertificate extends javax.swing.JFrame {
     }
 
     public void loadDetails(Certificate certificate) {
-        
     }
 
     /** This method is called from within the constructor to
@@ -355,7 +361,7 @@ public class frmCertificate extends javax.swing.JFrame {
 
     private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
         // TODO add your handling code here:
-         try {
+        try {
             // TODO add your handling code here:
             int index = tableContent.getSelectedRow();
             Certificate cer = new Certificate();

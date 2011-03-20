@@ -66,6 +66,14 @@ public class frmCourse extends javax.swing.JFrame {
                 }
                 return returnValue;
             }
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false
+            };
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return canEdit[column];
+            }
         };
         tableContent = new JTable(model);
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
