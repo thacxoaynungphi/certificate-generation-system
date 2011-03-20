@@ -13,8 +13,6 @@ package com.hueic.CerGS.ui.main.account;
 import com.hueic.CerGS.dao.AccountDAO;
 import com.hueic.CerGS.entity.Account;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.PatternSyntaxException;
 import javax.swing.JTable;
 import javax.swing.JViewport;
@@ -66,8 +64,20 @@ public class frmAccount extends javax.swing.JFrame {
                 }
                 return returnValue;
             }
+
+           boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return canEdit [column];
+            }
+
+
         };
         tableContent = new JTable(model);
+        
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
 
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -130,8 +140,6 @@ public class frmAccount extends javax.swing.JFrame {
         setTitle("Managment Account");
         setResizable(false);
 
-        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/account4.png"))); // NOI18N
-
         javax.swing.GroupLayout panelLeftLayout = new javax.swing.GroupLayout(panelLeft);
         panelLeft.setLayout(panelLeftLayout);
         panelLeftLayout.setHorizontalGroup(
@@ -153,13 +161,22 @@ public class frmAccount extends javax.swing.JFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, true, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableContentMouseClicked(evt);
             }
         });
         srcPanelAccount.setViewportView(tableContent);
+        tableContent.getColumnModel().getColumn(2).setResizable(false);
 
         panel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Management Account", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         panel1.setLayout(new java.awt.GridBagLayout());

@@ -115,6 +115,15 @@ public class frmEmployee extends javax.swing.JFrame {
                 }
                 return returnValue;
             }
+
+             boolean[] canEdit = new boolean [] {
+                false, false, false,false, false, false
+            };
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return canEdit [column];
+            }
         };
         tableContent = new JTable(model);
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -230,6 +239,7 @@ public class frmEmployee extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
+        jTaskPane1.setBackground(new java.awt.Color(153, 153, 255));
         com.l2fprod.common.swing.PercentLayout percentLayout1 = new com.l2fprod.common.swing.PercentLayout();
         percentLayout1.setGap(14);
         percentLayout1.setOrientation(1);
@@ -317,6 +327,9 @@ public class frmEmployee extends javax.swing.JFrame {
         lblHienthi1.setText("Tổng số nhân viên là : ");
 
         btnFilter.setText("Filter");
+        btnFilter.setMaximumSize(new java.awt.Dimension(57, 20));
+        btnFilter.setMinimumSize(new java.awt.Dimension(57, 20));
+        btnFilter.setPreferredSize(new java.awt.Dimension(57, 20));
         btnFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFilterActionPerformed(evt);
@@ -347,9 +360,9 @@ public class frmEmployee extends javax.swing.JFrame {
                     .addComponent(lblCount, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(17, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnFilter)
+                    .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(filterText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
