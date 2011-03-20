@@ -10,16 +10,19 @@
  */
 package com.hueic.CerGS.ui.main.course;
 
-import com.hueic.CerGS.component.ColumnData;
-import com.hueic.CerGS.component.ObjectTableModel;
 import com.hueic.CerGS.dao.CourseDAO;
 import com.hueic.CerGS.entity.Course;
 import java.util.ArrayList;
+import java.util.regex.PatternSyntaxException;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
+import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -28,9 +31,9 @@ import javax.swing.SwingConstants;
 public class frmCourse extends javax.swing.JFrame {
 
     /** Creates new form frmCourse */
-    private ObjectTableModel tableModel;
     private ArrayList<Course> listCourses = new ArrayList<Course>();
     private CourseDAO accDao;
+    TableRowSorter<TableModel> sorter;
 
     public frmCourse() {
         initComponents();
@@ -41,21 +44,44 @@ public class frmCourse extends javax.swing.JFrame {
     }
 
     public void loadData(ArrayList<Course> listCourses) {
-        ColumnData[] columns = {
-            new ColumnData("ID", 20, SwingConstants.LEFT, 1),
-            new ColumnData("Name", 30, SwingConstants.LEFT, 2),
-            new ColumnData("Total Fees", 20, SwingConstants.LEFT, 3),
-            new ColumnData("Status", 20, SwingConstants.LEFT, 4),};
-        tableModel = new ObjectTableModel(tableContent, columns, listCourses);
-        JTable headerTable = tableModel.getHeaderTable();
-        headerTable.createDefaultColumnsFromModel();
-        tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        String[] columns = {"ID", "Name", "Total Fees", "Status"};
+        Object[][] rows = new Object[listCourses.size()][4];
+        int index = 0;
+        for (int i = 0; i < listCourses.size(); i++) {
+            Course course = listCourses.get(i);
+            rows[index][0] = course.getId();
+            rows[index][1] = course.getName();
+            rows[index][2] = course.getTotalFees();
+            rows[index][3] = course.getStatus();
+            index++;
+        }
+        TableModel model = new DefaultTableModel(rows, columns) {
 
+            public Class getColumnClass(int column) {
+                Class returnValue;
+                if ((column >= 0) && (column < getColumnCount())) {
+                    returnValue = getValueAt(0, column).getClass();
+                } else {
+                    returnValue = Object.class;
+                }
+                return returnValue;
+            }
+        };
+        tableContent = new JTable(model);
+        tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
+
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableContentMouseClicked(evt);
+            }
+        });
+        sorter = new TableRowSorter<TableModel>(model);
+        tableContent.setRowSorter(sorter);
+        tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JViewport viewPort = new JViewport();
-        viewPort.setView(headerTable);
-        viewPort.setPreferredSize(headerTable.getMaximumSize());
+        viewPort.setView(tableContent);
+        viewPort.setPreferredSize(tableContent.getMaximumSize());
         jScrollPane1.setRowHeader(viewPort);
-        jScrollPane1.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, headerTable.getTableHeader());
+        jScrollPane1.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
     }
 
     public void loadDetails(Course course) {
@@ -100,6 +126,8 @@ public class frmCourse extends javax.swing.JFrame {
         radioEnable = new javax.swing.JRadioButton();
         radioDisable = new javax.swing.JRadioButton();
         txtName = new javax.swing.JTextField();
+        filterText = new javax.swing.JTextField();
+        btnFilter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Managment Account");
@@ -264,9 +292,19 @@ public class frmCourse extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        btnFilter.setText("Filter");
+        btnFilter.setMaximumSize(new java.awt.Dimension(57, 20));
+        btnFilter.setMinimumSize(new java.awt.Dimension(57, 20));
+        btnFilter.setPreferredSize(new java.awt.Dimension(57, 20));
+        btnFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFilterActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -274,18 +312,29 @@ public class frmCourse extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(filterText, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)))
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(9, 9, 9)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(filterText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -309,9 +358,24 @@ public class frmCourse extends javax.swing.JFrame {
     private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
         // TODO add your handling code here:
         int index = tableContent.getSelectedRow();
-        if(index != -1)
+        if (index != -1) {
             loadDetails(listCourses.get(index));
+        }
     }//GEN-LAST:event_tableContentMouseClicked
+
+    private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
+        // TODO add your handling code here:
+        String text = filterText.getText();
+        if (text.length() == 0) {
+            sorter.setRowFilter(null);
+        } else {
+            try {
+                sorter.setRowFilter(RowFilter.regexFilter(text));
+            } catch (PatternSyntaxException pse) {
+                System.err.println("Bad regex pattern");
+            }
+        }
+    }//GEN-LAST:event_btnFilterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -327,7 +391,9 @@ public class frmCourse extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnFilter;
     private javax.swing.JButton btnReset;
+    private javax.swing.JTextField filterText;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

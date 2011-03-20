@@ -10,19 +10,20 @@
  */
 package com.hueic.CerGS.ui.main.certificate;
 
-import com.hueic.CerGS.ui.main.account.*;
-import com.hueic.CerGS.component.ColumnData;
-import com.hueic.CerGS.component.ObjectTableModel;
-import com.hueic.CerGS.dao.AccountDAO;
 import com.hueic.CerGS.dao.CertificateDAO;
-import com.hueic.CerGS.entity.Account;
 import com.hueic.CerGS.entity.Certificate;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.regex.PatternSyntaxException;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
+import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -31,9 +32,9 @@ import javax.swing.SwingConstants;
 public class frmCertificate extends javax.swing.JFrame {
 
     /** Creates new form frmAccount */
-    private ObjectTableModel tableModel;
     private ArrayList<Certificate> listCertificate = new ArrayList<Certificate>();
     private CertificateDAO certificateDao;
+    TableRowSorter<TableModel> sorter;
 
     public frmCertificate() {
         initComponents();
@@ -44,24 +45,49 @@ public class frmCertificate extends javax.swing.JFrame {
     }
 
     public void loadData(ArrayList<Certificate> listCertificate) {
-        ColumnData[] columns = {
-            new ColumnData("Id", 20, SwingConstants.LEFT, 1),
-            new ColumnData("StudentId", 30, SwingConstants.LEFT, 2),
-            new ColumnData("Score", 20, SwingConstants.LEFT, 3),
-            new ColumnData("DegreeDay", 20, SwingConstants.LEFT, 4),};
-        tableModel = new ObjectTableModel(tableContent, columns, listCertificate);
-        JTable headerTable = tableModel.getHeaderTable();
-        headerTable.createDefaultColumnsFromModel();
-        tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
+        String[] columns = {"Id", "Student Id", "Mark", "DegreeDay"};
+        Object[][] rows = new Object[listCertificate.size()][3];
+        int index = 0;
+        for (int i = 0; i < listCertificate.size(); i++) {
+            Certificate cer = listCertificate.get(i);
+            rows[index][0] = cer.getId();
+            rows[index][1] = cer.getStudentID();
+            rows[index][2] = cer.getMark();
+            rows[index][3] = cer.getDegreeDay();
+            index++;
+        }
+        TableModel model = new DefaultTableModel(rows, columns) {
+
+            public Class getColumnClass(int column) {
+                Class returnValue;
+                if ((column >= 0) && (column < getColumnCount())) {
+                    returnValue = getValueAt(0, column).getClass();
+                } else {
+                    returnValue = Object.class;
+                }
+                return returnValue;
+            }
+        };
+        tableContent = new JTable(model);
+        tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
+
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableContentMouseClicked(evt);
+            }
+        });
+        sorter = new TableRowSorter<TableModel>(model);
+        tableContent.setRowSorter(sorter);
+        tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JViewport viewPort = new JViewport();
-        viewPort.setView(headerTable);
-        viewPort.setPreferredSize(headerTable.getMaximumSize());
+        viewPort.setView(tableContent);
+        viewPort.setPreferredSize(tableContent.getMaximumSize());
         srcPanelAccount.setRowHeader(viewPort);
-        srcPanelAccount.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, headerTable.getTableHeader());
+        srcPanelAccount.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
     }
 
     public void loadDetails(Certificate certificate) {
+        
     }
 
     /** This method is called from within the constructor to
@@ -95,6 +121,8 @@ public class frmCertificate extends javax.swing.JFrame {
         lblID = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
         DateChooseDegreeDay = new com.toedter.calendar.JDateChooser();
+        filterText = new javax.swing.JTextField();
+        btnFilter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Managment Account");
@@ -264,9 +292,19 @@ public class frmCertificate extends javax.swing.JFrame {
         panelDetailsLayout.setVerticalGroup(
             panelDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDetailsLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        btnFilter.setText("Filter");
+        btnFilter.setMaximumSize(new java.awt.Dimension(57, 20));
+        btnFilter.setMinimumSize(new java.awt.Dimension(57, 20));
+        btnFilter.setPreferredSize(new java.awt.Dimension(57, 20));
+        btnFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFilterActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelRightLayout = new javax.swing.GroupLayout(panelRight);
         panelRight.setLayout(panelRightLayout);
@@ -274,7 +312,12 @@ public class frmCertificate extends javax.swing.JFrame {
             panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRightLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(srcPanelAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
+                .addGroup(panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelRightLayout.createSequentialGroup()
+                        .addComponent(filterText, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(srcPanelAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -282,8 +325,12 @@ public class frmCertificate extends javax.swing.JFrame {
             panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRightLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(srcPanelAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+                .addGap(6, 6, 6)
+                .addGroup(panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(filterText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(srcPanelAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11))
         );
 
@@ -308,9 +355,19 @@ public class frmCertificate extends javax.swing.JFrame {
 
     private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
         // TODO add your handling code here:
-        int index = tableContent.getSelectedRow();
-        if (index != -1) {
-            loadDetails(listCertificate.get(index));
+         try {
+            // TODO add your handling code here:
+            int index = tableContent.getSelectedRow();
+            Certificate cer = new Certificate();
+            cer.setId(Integer.parseInt(tableContent.getValueAt(index, 0).toString()));
+            cer.setStudentID(tableContent.getValueAt(index, 1).toString());
+            cer.setMark(Integer.parseInt(tableContent.getValueAt(index, 2).toString()));
+            cer.setDegreeDay(new Date(tableContent.getValueAt(index, 3).toString()));
+            if (index != -1) {
+                loadDetails(cer);
+            }
+        } catch (Exception ex) {
+            //TODO: chua xu ly
         }
     }//GEN-LAST:event_tableContentMouseClicked
 
@@ -322,6 +379,20 @@ public class frmCertificate extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
 }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
+        // TODO add your handling code here:
+        String text = filterText.getText();
+        if (text.length() == 0) {
+            sorter.setRowFilter(null);
+        } else {
+            try {
+                sorter.setRowFilter(RowFilter.regexFilter(text));
+            } catch (PatternSyntaxException pse) {
+                System.err.println("Bad regex pattern");
+            }
+        }
+    }//GEN-LAST:event_btnFilterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -338,8 +409,10 @@ public class frmCertificate extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser DateChooseDegreeDay;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnFilter;
     private javax.swing.JButton btnReset;
     private javax.swing.JComboBox cbxStudentID;
+    private javax.swing.JTextField filterText;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblDegreeDay;

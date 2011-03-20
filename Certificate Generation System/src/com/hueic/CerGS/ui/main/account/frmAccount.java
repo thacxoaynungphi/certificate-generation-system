@@ -10,16 +10,20 @@
  */
 package com.hueic.CerGS.ui.main.account;
 
-import com.hueic.CerGS.component.ColumnData;
-import com.hueic.CerGS.component.ObjectTableModel;
 import com.hueic.CerGS.dao.AccountDAO;
 import com.hueic.CerGS.entity.Account;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.PatternSyntaxException;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
+import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -28,9 +32,9 @@ import javax.swing.SwingConstants;
 public class frmAccount extends javax.swing.JFrame {
 
     /** Creates new form frmAccount */
-    private ObjectTableModel tableModel;
     private ArrayList<Account> listAccounts = new ArrayList<Account>();
     private AccountDAO accDao;
+    TableRowSorter<TableModel> sorter;
 
     public frmAccount() {
         initComponents();
@@ -41,20 +45,43 @@ public class frmAccount extends javax.swing.JFrame {
     }
 
     public void loadData(ArrayList<Account> listAccounts) {
-        ColumnData[] columns = {
-            new ColumnData("Username", 20, SwingConstants.LEFT, 1),
-            new ColumnData("Password", 30, SwingConstants.LEFT, 2),
-            new ColumnData("Permission", 20, SwingConstants.LEFT, 3),};
-        tableModel = new ObjectTableModel(tableContent, columns, listAccounts);
-        JTable headerTable = tableModel.getHeaderTable();
-        headerTable.createDefaultColumnsFromModel();
-        tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        String[] columns = {"Username", "Password", "Permisison"};
+        Object[][] rows = new Object[listAccounts.size()][3];
+        int index = 0;
+        for (int i = 0; i < listAccounts.size(); i++) {
+            Account acc = listAccounts.get(i);
+            rows[index][0] = acc.getUsername();
+            rows[index][1] = acc.getPassword();
+            rows[index][2] = acc.getPermission();
+            index++;
+        }
+        TableModel model = new DefaultTableModel(rows, columns) {
 
+            public Class getColumnClass(int column) {
+                Class returnValue;
+                if ((column >= 0) && (column < getColumnCount())) {
+                    returnValue = getValueAt(0, column).getClass();
+                } else {
+                    returnValue = Object.class;
+                }
+                return returnValue;
+            }
+        };
+        tableContent = new JTable(model);
+        tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
+
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableContentMouseClicked(evt);
+            }
+        });
+        sorter = new TableRowSorter<TableModel>(model);
+        tableContent.setRowSorter(sorter);
+        tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JViewport viewPort = new JViewport();
-        viewPort.setView(headerTable);
-        viewPort.setPreferredSize(headerTable.getMaximumSize());
+        viewPort.setView(tableContent);
+        viewPort.setPreferredSize(tableContent.getMaximumSize());
         srcPanelAccount.setRowHeader(viewPort);
-        srcPanelAccount.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, headerTable.getTableHeader());
+        srcPanelAccount.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
     }
 
     public void loadDetails(Account acc) {
@@ -96,6 +123,8 @@ public class frmAccount extends javax.swing.JFrame {
         lblcheck3 = new javax.swing.JLabel();
         lblType = new javax.swing.JLabel();
         cbxType = new javax.swing.JComboBox();
+        filterText = new javax.swing.JTextField();
+        btnFilter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Managment Account");
@@ -195,6 +224,7 @@ public class frmAccount extends javax.swing.JFrame {
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
         btnCancel.setText("Cancel");
         btnCancel.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnCancel.setMaximumSize(new java.awt.Dimension(70, 23));
         btnCancel.setPreferredSize(new java.awt.Dimension(70, 23));
         panel2.add(btnCancel);
 
@@ -202,7 +232,8 @@ public class frmAccount extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel1.add(panel2, gridBagConstraints);
 
         txtUsername.setPreferredSize(new java.awt.Dimension(200, 20));
@@ -275,9 +306,19 @@ public class frmAccount extends javax.swing.JFrame {
         panelDetailsLayout.setVerticalGroup(
             panelDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDetailsLayout.createSequentialGroup()
-                .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+                .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        btnFilter.setText("Filter");
+        btnFilter.setMaximumSize(new java.awt.Dimension(57, 20));
+        btnFilter.setMinimumSize(new java.awt.Dimension(57, 20));
+        btnFilter.setPreferredSize(new java.awt.Dimension(57, 20));
+        btnFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFilterActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelRightLayout = new javax.swing.GroupLayout(panelRight);
         panelRight.setLayout(panelRightLayout);
@@ -285,17 +326,26 @@ public class frmAccount extends javax.swing.JFrame {
             panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRightLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(srcPanelAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelRightLayout.createSequentialGroup()
+                        .addComponent(filterText, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(srcPanelAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         panelRightLayout.setVerticalGroup(
             panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(panelRightLayout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addComponent(srcPanelAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRightLayout.createSequentialGroup()
+                .addGap(9, 9, 9)
+                .addGroup(panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(filterText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(srcPanelAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -317,12 +367,34 @@ public class frmAccount extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
-        // TODO add your handling code here:
-        int index = tableContent.getSelectedRow();
-        if (index != -1) {
-            loadDetails(listAccounts.get(index));
+        try {
+            // TODO add your handling code here:
+            int index = tableContent.getSelectedRow();
+            Account acc = new Account();
+            acc.setUsername((String) tableContent.getValueAt(index, 0));
+            acc.setPassword((String) tableContent.getValueAt(index, 1));
+            acc.setPermission(Integer.parseInt(tableContent.getValueAt(index, 2).toString()));
+            if (index != -1) {
+                loadDetails(listAccounts.get(index));
+            }
+        } catch (Exception ex) {
+           //TODO: chua xu ly
         }
     }//GEN-LAST:event_tableContentMouseClicked
+
+    private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
+        // TODO add your handling code here:
+        String text = filterText.getText();
+        if (text.length() == 0) {
+            sorter.setRowFilter(null);
+        } else {
+            try {
+                sorter.setRowFilter(RowFilter.regexFilter(text));
+            } catch (PatternSyntaxException pse) {
+                System.err.println("Bad regex pattern");
+            }
+        }
+    }//GEN-LAST:event_btnFilterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -338,8 +410,10 @@ public class frmAccount extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnFilter;
     private javax.swing.JButton btnReset;
     private javax.swing.JComboBox cbxType;
+    private javax.swing.JTextField filterText;
     private javax.swing.JLabel lblConfirmPass;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblPassword;

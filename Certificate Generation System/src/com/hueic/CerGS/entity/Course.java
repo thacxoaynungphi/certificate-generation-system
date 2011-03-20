@@ -4,7 +4,6 @@
  */
 package com.hueic.CerGS.entity;
 
-import com.hueic.CerGS.component.PropertyIndex;
 
 /**
  *
@@ -13,7 +12,7 @@ import com.hueic.CerGS.component.PropertyIndex;
  * lop Course mo ta cac khoa hoc.
  * ngay 13/3/11
  */
-public class Course implements PropertyIndex {
+public class Course {
 
     private String id;
     private String name;
@@ -86,31 +85,5 @@ public class Course implements PropertyIndex {
      */
     public void setTotalFees(float totalFees) {
         this.totalFees = totalFees;
-    }
-
-    public Object getPropertyValue(int index) {
-        String value = "";
-        switch (index) {
-            case 1:
-                value = String.valueOf(this.getId());
-                break;
-            case 2:
-                value = this.getName();
-                break;
-            case 3:
-                value = String.valueOf(this.getTotalFees());
-                break;
-            case 4:
-                value = String.valueOf(this.getStatus());
-                break;
-        }
-        return value;
-    }
-
-    public void setPropertyValue(int index, Object value) {
-    }
-
-    public Class getPropertyClass(int index) {
-        return String.class;
     }
 }

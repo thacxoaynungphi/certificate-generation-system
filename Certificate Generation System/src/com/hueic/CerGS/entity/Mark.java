@@ -1,7 +1,5 @@
 package com.hueic.CerGS.entity;
 
-import com.hueic.CerGS.component.PropertyIndex;
-
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -13,7 +11,7 @@ import com.hueic.CerGS.component.PropertyIndex;
  *
  * Lop Scores mo ta danh sach diem cua moi sinh vien trong lop hoc va mon hoc tuong ung
  */
-public class Mark implements PropertyIndex {
+public class Mark{
 
     private int id;
     private String studentId;
@@ -84,31 +82,5 @@ public class Mark implements PropertyIndex {
      */
     public void setMark(float mark) {
         this.mark = mark;
-    }
-
-    public Object getPropertyValue(int index) {
-        String value = "";
-        switch (index) {
-            case 1:
-                value = String.valueOf(this.getId());
-                break;
-            case 2:
-                value = this.getStudentId();
-                break;
-            case 3:
-                value = this.getSubjectId();
-                break;
-            case 4:
-                value = String.valueOf(this.getMark());
-                break;
-        }
-        return value;
-    }
-
-    public void setPropertyValue(int index, Object value) {
-    }
-
-    public Class getPropertyClass(int index) {
-        return String.class;
     }
 }

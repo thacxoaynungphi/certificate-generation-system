@@ -10,8 +10,6 @@
  */
 package com.hueic.CerGS.ui.main.employee;
 
-import com.hueic.CerGS.component.ColumnData;
-import com.hueic.CerGS.component.ObjectTableModel;
 import com.hueic.CerGS.dao.EmployeeDAO;
 import com.hueic.CerGS.entity.Employee;
 import java.awt.AWTEvent;
@@ -25,16 +23,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 import javax.swing.CellEditor;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
+import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -46,11 +46,11 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 public class frmEmployee extends javax.swing.JFrame {
 
     /** Creates new form EmployeeFrm */
-    private ObjectTableModel tableModel;
     private ArrayList<Employee> listEmp = new ArrayList<Employee>();
     private ArrayList<Employee> listEmpTemp = new ArrayList<Employee>();
     private ArrayList<Employee> listEmpSearch = new ArrayList<Employee>();
     private EmployeeDAO empDao = new EmployeeDAO();
+    TableRowSorter<TableModel> sorter;
 
     public frmEmployee() {
         initComponents();
@@ -91,23 +91,46 @@ public class frmEmployee extends javax.swing.JFrame {
 
     public void loadTable(ArrayList<Employee> listEmp) {
         lblCount.setText(String.valueOf(listEmp.size()));
-        ColumnData[] columns = {
-            new ColumnData("Id", 20, SwingConstants.LEFT, 1),
-            new ColumnData("First Name", 30, SwingConstants.LEFT, 2),
-            new ColumnData("Last Name", 20, SwingConstants.LEFT, 3),
-            new ColumnData("Birthday", 20, SwingConstants.LEFT, 4),
-            new ColumnData("Gender", 20, SwingConstants.LEFT, 5),
-            new ColumnData("Phone", 20, SwingConstants.LEFT, 6),};
-        tableModel = new ObjectTableModel(tableContent, columns, listEmp);
-        JTable headerTable = tableModel.getHeaderTable();
-        headerTable.createDefaultColumnsFromModel();
-        tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        String[] columns = {"ID", "First Name", "Last Name", "Birthday", "Gender", "Phone"};
+        Object[][] rows = new Object[listEmp.size()][6];
+        int index = 0;
+        for (int i = 0; i < listEmp.size(); i++) {
+            Employee emp = listEmp.get(i);
+            rows[index][0] = emp.getId();
+            rows[index][1] = emp.getFirstName();
+            rows[index][2] = emp.getLastName();
+            rows[index][3] = emp.getBirthDay().toString();
+            rows[index][4] = emp.getGender();
+            rows[index][5] = emp.getPhone();
+            index++;
+        }
+        TableModel model = new DefaultTableModel(rows, columns) {
 
+            public Class getColumnClass(int column) {
+                Class returnValue;
+                if ((column >= 0) && (column < getColumnCount())) {
+                    returnValue = getValueAt(0, column).getClass();
+                } else {
+                    returnValue = Object.class;
+                }
+                return returnValue;
+            }
+        };
+        tableContent = new JTable(model);
+        tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
+
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableContentMouseClicked(evt);
+            }
+        });
+        sorter = new TableRowSorter<TableModel>(model);
+        tableContent.setRowSorter(sorter);
+        tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JViewport viewPort = new JViewport();
-        viewPort.setView(headerTable);
-        viewPort.setPreferredSize(headerTable.getMaximumSize());
+        viewPort.setView(tableContent);
+        viewPort.setPreferredSize(tableContent.getMaximumSize());
         jScrollPane1.setRowHeader(viewPort);
-        jScrollPane1.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, headerTable.getTableHeader());
+        jScrollPane1.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
     }
 
     /** This method is called from within the constructor to
@@ -141,11 +164,10 @@ public class frmEmployee extends javax.swing.JFrame {
         linkButtonExport = new com.l2fprod.common.swing.JLinkButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        comboSearch = new javax.swing.JComboBox();
-        txtSearch = new javax.swing.JTextField();
         lblHienthi1 = new javax.swing.JLabel();
         lblCount = new javax.swing.JLabel();
-        lblSearch = new javax.swing.JLabel();
+        btnFilter = new javax.swing.JButton();
+        filterText = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
@@ -292,21 +314,12 @@ public class frmEmployee extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        comboSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All Employee", "Employee ID", "First Name", "Last Name", "Birthday", "Gender", "Phone Number" }));
-        comboSearch.setToolTipText("Choose type to search");
-        comboSearch.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                comboSearchItemStateChanged(evt);
-            }
-        });
-
         lblHienthi1.setText("Tổng số nhân viên là : ");
 
-        lblSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/view.png"))); // NOI18N
-        lblSearch.setToolTipText("Click to search!");
-        lblSearch.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblSearchMouseClicked(evt);
+        btnFilter.setText("Filter");
+        btnFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFilterActionPerformed(evt);
             }
         });
 
@@ -314,17 +327,15 @@ public class frmEmployee extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblHienthi1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblCount, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 323, Short.MAX_VALUE)
-                .addComponent(comboSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 485, Short.MAX_VALUE)
+                .addComponent(filterText, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -333,11 +344,13 @@ public class frmEmployee extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHienthi1)
-                    .addComponent(lblCount, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(6, Short.MAX_VALUE))
+                    .addComponent(lblCount, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnFilter)
+                    .addComponent(filterText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -455,7 +468,7 @@ public class frmEmployee extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
                 .addContainerGap())
@@ -645,76 +658,6 @@ public class frmEmployee extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
-    private void lblSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSearchMouseClicked
-        // TODO add your handling code here:
-        String choose = comboSearch.getSelectedItem().toString().trim();
-        if (choose.equalsIgnoreCase("All Employee")) {
-            loadTable(listEmp);
-            return;
-        } else if (choose.equalsIgnoreCase("Employee ID")) {
-            listEmpSearch.clear();
-            for (int i = 0; i < listEmp.size(); i++) {
-                if (listEmp.get(i).getId().contentEquals(txtSearch.getText())) {
-                    listEmpSearch.add(listEmp.get(i));
-                }
-            }
-        } else if (choose.equalsIgnoreCase("First Name")) {
-            listEmpSearch.clear();
-            for (int i = 0; i < listEmp.size(); i++) {
-                if (listEmp.get(i).getFirstName().contentEquals(txtSearch.getText())) {
-                    listEmpSearch.add(listEmp.get(i));
-                }
-            }
-        } else if (choose.equalsIgnoreCase("Last Name")) {
-            listEmpSearch.clear();
-            for (int i = 0; i < listEmp.size(); i++) {
-                if (listEmp.get(i).getLastName().contentEquals(txtSearch.getText())) {
-                    listEmpSearch.add(listEmp.get(i));
-                }
-            }
-        } else if (choose.equalsIgnoreCase("Birthday")) {
-            String text = txtSearch.getText();
-            Pattern pattern = Pattern.compile("{\\d}\\{\\d}\\{\\d}4 - {\\d}\\{\\d}\\{\\d}4");
-            Matcher matcher = pattern.matcher(text);
-            if (matcher.matches()) {
-                System.out.println("Duoc");
-            } else {
-                System.out.println("Khong duoc");
-            }
-        } else if (choose.equalsIgnoreCase("Gender")) {
-            String text = txtSearch.getText();
-            int gender = 0;
-            if (text.equalsIgnoreCase("Male")) {
-                gender = 0;
-            } else if (text.equalsIgnoreCase("FeMale")) {
-                gender = 1;
-            } else {
-                return;
-            }
-            listEmpSearch.clear();
-            for (int i = 0; i < listEmp.size(); i++) {
-                if (listEmp.get(i).getGender() == gender) {
-                    listEmpSearch.add(listEmp.get(i));
-                }
-            }
-        } else if (choose.equalsIgnoreCase("Phone")) {
-            listEmpSearch.clear();
-            for (int i = 0; i < listEmp.size(); i++) {
-                if (listEmp.get(i).getPhone().contentEquals(txtSearch.getText())) {
-                    listEmpSearch.add(listEmp.get(i));
-                }
-            }
-        }
-        loadTable(listEmpSearch);
-    }//GEN-LAST:event_lblSearchMouseClicked
-
-    private void comboSearchItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboSearchItemStateChanged
-        // TODO add your handling code here:
-        if (comboSearch.getSelectedItem().toString().equalsIgnoreCase("All Employee")) {
-            loadTable(listEmp);
-        }
-    }//GEN-LAST:event_comboSearchItemStateChanged
-
     private void menuIAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIAddActionPerformed
         // TODO add your handling code here:
         frmAddEmployee addEmployee = new frmAddEmployee();
@@ -741,6 +684,20 @@ public class frmEmployee extends javax.swing.JFrame {
             detailsEmployee.setVisible(true);
         }
     }//GEN-LAST:event_mnuIDetailsActionPerformed
+
+    private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
+        // TODO add your handling code here:
+        String text = filterText.getText();
+        if (text.length() == 0) {
+            sorter.setRowFilter(null);
+        } else {
+            try {
+                sorter.setRowFilter(RowFilter.regexFilter(text));
+            } catch (PatternSyntaxException pse) {
+                System.err.println("Bad regex pattern");
+            }
+        }
+    }//GEN-LAST:event_btnFilterActionPerformed
 
     public boolean isExist(Employee emp) {
         for (int i = 0; i < listEmp.size(); i++) {
@@ -773,9 +730,10 @@ public class frmEmployee extends javax.swing.JFrame {
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnExport;
+    private javax.swing.JButton btnFilter;
     private javax.swing.JButton btnImport;
     private javax.swing.JButton btnSave;
-    private javax.swing.JComboBox comboSearch;
+    private javax.swing.JTextField filterText;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -788,7 +746,6 @@ public class frmEmployee extends javax.swing.JFrame {
     private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroup3;
     private javax.swing.JLabel lblCount;
     private javax.swing.JLabel lblHienthi1;
-    private javax.swing.JLabel lblSearch;
     private com.l2fprod.common.swing.JLinkButton linkButtonAddEmp;
     private com.l2fprod.common.swing.JLinkButton linkButtonDeleteEmp;
     private com.l2fprod.common.swing.JLinkButton linkButtonDetailsEmp;
@@ -804,6 +761,5 @@ public class frmEmployee extends javax.swing.JFrame {
     private javax.swing.JPanel panelBanner;
     private javax.swing.JPopupMenu popupMenuTable;
     private javax.swing.JTable tableContent;
-    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }
