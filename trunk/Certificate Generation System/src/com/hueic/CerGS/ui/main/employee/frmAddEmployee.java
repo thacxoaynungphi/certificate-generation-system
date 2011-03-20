@@ -444,20 +444,18 @@ public class frmAddEmployee extends javax.swing.JFrame {
             emp.setBirthDay(DateChBirthday.getDate());
             if (radioMale.isSelected()) {
                 emp.setGender(0);
-
             } else if (radioFemale.isSelected()) {
                 emp.setGender(1);
-
             }
             emp.setPhone(txtPhone.getText());
             emp.setEmail(txtEmail.getText());
             emp.setAddress(txtAddress.getText());
             emp.setImage(txtImage.getText());
             emp.setStatus(1);
-
             EmployeeDAO empDao = new EmployeeDAO();
             empDao.create(emp);
         } catch (Exception ex) {
+            System.out.println(ex.toString());
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
