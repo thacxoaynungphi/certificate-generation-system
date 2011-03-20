@@ -77,6 +77,7 @@ public class frmCertificate extends javax.swing.JFrame {
             }
         };
         tableContent = new JTable(model);
+        tableContent.getTableHeader().setReorderingAllowed(false);
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
 
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -93,7 +94,11 @@ public class frmCertificate extends javax.swing.JFrame {
         srcPanelAccount.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
     }
 
-    public void loadDetails(Certificate certificate) {
+    public void loadDetails(Certificate cer) {
+        txtID.setText(String.valueOf(cer.getId()));
+        txtScore.setText(String.valueOf(cer.getMark()));
+        DateChooseDegreeDay.setDate(cer.getDegreeDay());
+
     }
 
     /** This method is called from within the constructor to
@@ -133,8 +138,6 @@ public class frmCertificate extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Managment Account");
         setResizable(false);
-
-        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/account4.png"))); // NOI18N
 
         javax.swing.GroupLayout panelLeftLayout = new javax.swing.GroupLayout(panelLeft);
         panelLeft.setLayout(panelLeftLayout);
@@ -359,18 +362,26 @@ public class frmCertificate extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public Certificate find(int value) {
+        for (int i = 0; i < listCertificate.size(); i++) {
+            if (listCertificate.get(i).getId() == value) {
+                return listCertificate.get(i);
+            }
+        }
+        return null;
+    }
+
     private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
         // TODO add your handling code here:
         try {
             // TODO add your handling code here:
             int index = tableContent.getSelectedRow();
-            Certificate cer = new Certificate();
-            cer.setId(Integer.parseInt(tableContent.getValueAt(index, 0).toString()));
-            cer.setStudentID(tableContent.getValueAt(index, 1).toString());
-            cer.setMark(Integer.parseInt(tableContent.getValueAt(index, 2).toString()));
-            cer.setDegreeDay(new Date(tableContent.getValueAt(index, 3).toString()));
             if (index != -1) {
-                loadDetails(cer);
+                int value = Integer.parseInt(tableContent.getValueAt(index, 0).toString());
+                Certificate cer = find(value);
+                if (cer != null) {
+                    loadDetails(cer);
+                }
             }
         } catch (Exception ex) {
             //TODO: chua xu ly
@@ -388,14 +399,16 @@ public class frmCertificate extends javax.swing.JFrame {
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
-        String text = filterText.getText();
-        if (text.length() == 0) {
-            sorter.setRowFilter(null);
-        } else {
-            try {
-                sorter.setRowFilter(RowFilter.regexFilter(text));
-            } catch (PatternSyntaxException pse) {
-                System.err.println("Bad regex pattern");
+        if (listCertificate.size() != 0) {
+            String text = filterText.getText();
+            if (text.length() == 0) {
+                sorter.setRowFilter(null);
+            } else {
+                try {
+                    sorter.setRowFilter(RowFilter.regexFilter(text));
+                } catch (PatternSyntaxException pse) {
+                    System.err.println("Bad regex pattern");
+                }
             }
         }
     }//GEN-LAST:event_btnFilterActionPerformed

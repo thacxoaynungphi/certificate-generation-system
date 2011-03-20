@@ -19,7 +19,6 @@ import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -76,6 +75,7 @@ public class frmCourse extends javax.swing.JFrame {
             }
         };
         tableContent = new JTable(model);
+        tableContent.getTableHeader().setReorderingAllowed(false);
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
 
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -163,6 +163,7 @@ public class frmCourse extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableContent.getTableHeader().setReorderingAllowed(false);
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableContentMouseClicked(evt);
@@ -363,24 +364,40 @@ public class frmCourse extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public Course find(String value) {
+        for (int i = 0; i < listCourses.size(); i++) {
+            if (listCourses.get(i).getId().equalsIgnoreCase(value)) {
+                return listCourses.get(i);
+            }
+        }
+        return null;
+    }
+
     private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
         // TODO add your handling code here:
         int index = tableContent.getSelectedRow();
         if (index != -1) {
-            loadDetails(listCourses.get(index));
+            String id = tableContent.getValueAt(index, 0).toString();
+            Course course = find(id);
+            if (course != null) {
+                loadDetails(course);
+            }
         }
     }//GEN-LAST:event_tableContentMouseClicked
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
-        String text = filterText.getText();
-        if (text.length() == 0) {
-            sorter.setRowFilter(null);
-        } else {
-            try {
-                sorter.setRowFilter(RowFilter.regexFilter(text));
-            } catch (PatternSyntaxException pse) {
-                System.err.println("Bad regex pattern");
+
+        if (listCourses.size() != 0) {
+            String text = filterText.getText();
+            if (text.length() == 0) {
+                sorter.setRowFilter(null);
+            } else {
+                try {
+                    sorter.setRowFilter(RowFilter.regexFilter(text));
+                } catch (PatternSyntaxException pse) {
+                    System.err.println("Bad regex pattern");
+                }
             }
         }
     }//GEN-LAST:event_btnFilterActionPerformed
