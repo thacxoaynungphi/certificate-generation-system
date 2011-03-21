@@ -13,6 +13,7 @@ package com.hueic.CerGS.ui.main.employee;
 import com.hueic.CerGS.dao.EmployeeDAO;
 import com.hueic.CerGS.entity.Employee;
 import java.awt.AWTEvent;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -25,6 +26,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.PatternSyntaxException;
 import javax.swing.CellEditor;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -57,7 +59,6 @@ public class frmEmployee extends javax.swing.JFrame {
         setSize(1100, 700);
         setLocationRelativeTo(null);
         listEmp = empDao.readByAll();
-       
         loadTable(listEmp);
         enableEvents(AWTEvent.MOUSE_EVENT_MASK);
         tableContent.addMouseListener(new MouseAdapter() {
