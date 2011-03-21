@@ -32,7 +32,7 @@ public class frmMain extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         guidao = new GUIDAO(this);
         guip = new GUIProperties();
-        guidao.setGUI(guip.PLAF_MAC);
+        guidao.setGUI(guip.PLAF_JGOODIES);
         bindingLang();
         setSize(995, 700);
     }
@@ -75,19 +75,6 @@ public class frmMain extends javax.swing.JFrame {
         radioMetal = new javax.swing.JRadioButtonMenuItem();
         radioNimbus = new javax.swing.JRadioButtonMenuItem();
         radioMotif = new javax.swing.JRadioButtonMenuItem();
-        radioLiquid = new javax.swing.JRadioButtonMenuItem();
-        radioAcryl = new javax.swing.JRadioButtonMenuItem();
-        radioAero = new javax.swing.JRadioButtonMenuItem();
-        radioAluminium = new javax.swing.JRadioButtonMenuItem();
-        radioBernstein = new javax.swing.JRadioButtonMenuItem();
-        radioFast = new javax.swing.JRadioButtonMenuItem();
-        radioGraphite = new javax.swing.JRadioButtonMenuItem();
-        radioHiFi = new javax.swing.JRadioButtonMenuItem();
-        radioLuna = new javax.swing.JRadioButtonMenuItem();
-        radioMcWin = new javax.swing.JRadioButtonMenuItem();
-        radioMint = new javax.swing.JRadioButtonMenuItem();
-        radioNoire = new javax.swing.JRadioButtonMenuItem();
-        radioSmart = new javax.swing.JRadioButtonMenuItem();
         mnuHelp = new javax.swing.JMenu();
         mnuIHelpContents = new javax.swing.JMenuItem();
         mnuIAbout = new javax.swing.JMenuItem();
@@ -209,123 +196,6 @@ public class frmMain extends javax.swing.JFrame {
         });
         jMenu3.add(radioMotif);
 
-        buttonGroupSkin.add(radioLiquid);
-        radioLiquid.setText("Liquid");
-        radioLiquid.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioLiquidActionPerformed(evt);
-            }
-        });
-        jMenu3.add(radioLiquid);
-
-        buttonGroupSkin.add(radioAcryl);
-        radioAcryl.setText("Acryl");
-        radioAcryl.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioAcrylActionPerformed(evt);
-            }
-        });
-        jMenu3.add(radioAcryl);
-
-        buttonGroupSkin.add(radioAero);
-        radioAero.setText("Aero");
-        radioAero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioAeroActionPerformed(evt);
-            }
-        });
-        jMenu3.add(radioAero);
-
-        buttonGroupSkin.add(radioAluminium);
-        radioAluminium.setText("Aluminium");
-        radioAluminium.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioAluminiumActionPerformed(evt);
-            }
-        });
-        jMenu3.add(radioAluminium);
-
-        buttonGroupSkin.add(radioBernstein);
-        radioBernstein.setText("Bernstein");
-        radioBernstein.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioBernsteinActionPerformed(evt);
-            }
-        });
-        jMenu3.add(radioBernstein);
-
-        buttonGroupSkin.add(radioFast);
-        radioFast.setText("Fast");
-        radioFast.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioFastActionPerformed(evt);
-            }
-        });
-        jMenu3.add(radioFast);
-
-        buttonGroupSkin.add(radioGraphite);
-        radioGraphite.setText("Graphite");
-        radioGraphite.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioGraphiteActionPerformed(evt);
-            }
-        });
-        jMenu3.add(radioGraphite);
-
-        buttonGroupSkin.add(radioHiFi);
-        radioHiFi.setText("HiFi");
-        radioHiFi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioHiFiActionPerformed(evt);
-            }
-        });
-        jMenu3.add(radioHiFi);
-
-        buttonGroupSkin.add(radioLuna);
-        radioLuna.setText("Luna");
-        radioLuna.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioLunaActionPerformed(evt);
-            }
-        });
-        jMenu3.add(radioLuna);
-
-        buttonGroupSkin.add(radioMcWin);
-        radioMcWin.setText("McWin");
-        radioMcWin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioMcWinActionPerformed(evt);
-            }
-        });
-        jMenu3.add(radioMcWin);
-
-        buttonGroupSkin.add(radioMint);
-        radioMint.setText("Mint");
-        radioMint.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioMintActionPerformed(evt);
-            }
-        });
-        jMenu3.add(radioMint);
-
-        buttonGroupSkin.add(radioNoire);
-        radioNoire.setText("Noire");
-        radioNoire.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioNoireActionPerformed(evt);
-            }
-        });
-        jMenu3.add(radioNoire);
-
-        buttonGroupSkin.add(radioSmart);
-        radioSmart.setText("Smart");
-        radioSmart.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioSmartActionPerformed(evt);
-            }
-        });
-        jMenu3.add(radioSmart);
-
         jMenu1.add(jMenu3);
 
         mnuBSystem.add(jMenu1);
@@ -390,97 +260,6 @@ public class frmMain extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_radioMotifActionPerformed
 
-    private void radioLiquidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioLiquidActionPerformed
-        // TODO add your handling code here:
-        if (radioLiquid.isSelected()) {
-            guidao.setGUI(guip.PLAF_MAC);
-        }
-    }//GEN-LAST:event_radioLiquidActionPerformed
-
-    private void radioAcrylActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAcrylActionPerformed
-        // TODO add your handling code here:
-        if (radioAcryl.isSelected()) {
-            guidao.setGUI(guip.PLAF_ACRYL);
-        }
-    }//GEN-LAST:event_radioAcrylActionPerformed
-
-    private void radioAeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAeroActionPerformed
-        // TODO add your handling code here:
-        if (radioAero.isSelected()) {
-            guidao.setGUI(guip.PLAF_AERO);
-        }
-    }//GEN-LAST:event_radioAeroActionPerformed
-
-    private void radioAluminiumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAluminiumActionPerformed
-        // TODO add your handling code here:
-        if (radioAluminium.isSelected()) {
-            guidao.setGUI(guip.PLAF_ALUMINIUM);
-        }
-    }//GEN-LAST:event_radioAluminiumActionPerformed
-
-    private void radioBernsteinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBernsteinActionPerformed
-        // TODO add your handling code here:
-        if (radioBernstein.isSelected()) {
-            guidao.setGUI(guip.PLAF_BERNSTEIN);
-        }
-    }//GEN-LAST:event_radioBernsteinActionPerformed
-
-    private void radioFastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioFastActionPerformed
-        // TODO add your handling code here:
-        if (radioFast.isSelected()) {
-            guidao.setGUI(guip.PLAF_FAST);
-        }
-    }//GEN-LAST:event_radioFastActionPerformed
-
-    private void radioGraphiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioGraphiteActionPerformed
-        // TODO add your handling code here:
-        if (radioGraphite.isSelected()) {
-            guidao.setGUI(guip.PLAF_GRAPHITE);
-        }
-    }//GEN-LAST:event_radioGraphiteActionPerformed
-
-    private void radioHiFiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioHiFiActionPerformed
-        // TODO add your handling code here:
-        if (radioHiFi.isSelected()) {
-            guidao.setGUI(guip.PLAF_HIFI);
-        }
-    }//GEN-LAST:event_radioHiFiActionPerformed
-
-    private void radioLunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioLunaActionPerformed
-        // TODO add your handling code here:
-        if (radioLuna.isSelected()) {
-            guidao.setGUI(guip.PLAF_LUNA);
-        }
-    }//GEN-LAST:event_radioLunaActionPerformed
-
-    private void radioMcWinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMcWinActionPerformed
-        // TODO add your handling code here:
-        if (radioMcWin.isSelected()) {
-            guidao.setGUI(guip.PLAF_MCWIN);
-        }
-    }//GEN-LAST:event_radioMcWinActionPerformed
-
-    private void radioMintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMintActionPerformed
-        // TODO add your handling code here:
-        if (radioMint.isSelected()) {
-            guidao.setGUI(guip.PLAF_MINT);
-        }
-    }//GEN-LAST:event_radioMintActionPerformed
-
-    private void radioNoireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNoireActionPerformed
-        // TODO add your handling code here:
-        if (radioNoire.isSelected()) {
-            guidao.setGUI(guip.PLAF_NOIRE);
-        }
-    }//GEN-LAST:event_radioNoireActionPerformed
-
-    private void radioSmartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSmartActionPerformed
-        // TODO add your handling code here:
-        if (radioSmart.isSelected()) {
-            guidao.setGUI(guip.PLAF_SMART);
-        }
-    }//GEN-LAST:event_radioSmartActionPerformed
-
     private void menuIChangePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIChangePassActionPerformed
         // TODO add your handling code here:
         frmChangePass changePass = new frmChangePass();
@@ -525,26 +304,13 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuIViewInformation;
     private javax.swing.JMenu mnuStudent;
     private javax.swing.JMenu mnuSystem;
-    private javax.swing.JRadioButtonMenuItem radioAcryl;
-    private javax.swing.JRadioButtonMenuItem radioAero;
-    private javax.swing.JRadioButtonMenuItem radioAluminium;
-    private javax.swing.JRadioButtonMenuItem radioBernstein;
     private javax.swing.JRadioButtonMenuItem radioChina;
     private javax.swing.JRadioButtonMenuItem radioEnglish;
-    private javax.swing.JRadioButtonMenuItem radioFast;
-    private javax.swing.JRadioButtonMenuItem radioGraphite;
-    private javax.swing.JRadioButtonMenuItem radioHiFi;
     private javax.swing.JRadioButtonMenuItem radioJapan;
-    private javax.swing.JRadioButtonMenuItem radioLiquid;
-    private javax.swing.JRadioButtonMenuItem radioLuna;
-    private javax.swing.JRadioButtonMenuItem radioMcWin;
     private javax.swing.JRadioButtonMenuItem radioMetal;
-    private javax.swing.JRadioButtonMenuItem radioMint;
     private javax.swing.JRadioButtonMenuItem radioMotif;
     private javax.swing.JRadioButtonMenuItem radioNimbus;
-    private javax.swing.JRadioButtonMenuItem radioNoire;
     private javax.swing.JRadioButtonMenuItem radioPhap;
-    private javax.swing.JRadioButtonMenuItem radioSmart;
     private javax.swing.JRadioButtonMenuItem radioVietnamese;
     private javax.swing.JRadioButtonMenuItem radioWindows;
     // End of variables declaration//GEN-END:variables
