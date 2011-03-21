@@ -16,6 +16,10 @@ import com.hueic.CerGS.component.GUIProperties;
 import com.hueic.CerGS.dao.GUIDAO;
 import com.hueic.CerGS.ui.main.employee.frmEmployee;
 import com.hueic.CerGS.ui.system.frmChangePass;
+import java.net.URL;
+import javax.help.CSH;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
 
 /**
  *
@@ -35,6 +39,25 @@ public class frmMain extends javax.swing.JFrame {
         guidao.setGUI(guip.PLAF_JGOODIES);
         bindingLang();
         setSize(995, 700);
+        HelpSet hs = getHelpSet("com/hueic/CerGS/myhelp/sample.hs");
+        HelpBroker hb = hs.createHelpBroker();
+
+        // 2. assign help to components
+        CSH.setHelpIDString(mnuIHelpContent, "top");
+        mnuIHelpContent.addActionListener(new CSH.DisplayHelpFromSource(hb));
+    }
+
+    public HelpSet getHelpSet(String helpsetfile) {
+        HelpSet hs = null;
+        ClassLoader cl = this.getClass().getClassLoader();
+        try {
+            URL hsURL = HelpSet.findHelpSet(cl, helpsetfile);
+            hs = new HelpSet(null, hsURL);
+        } catch (Exception ee) {
+            System.out.println("HelpSet: " + ee.getMessage());
+            System.out.println("HelpSet: " + helpsetfile + " not found");
+        }
+        return hs;
     }
 
     public void bindingLang() {
@@ -76,7 +99,7 @@ public class frmMain extends javax.swing.JFrame {
         radioNimbus = new javax.swing.JRadioButtonMenuItem();
         radioMotif = new javax.swing.JRadioButtonMenuItem();
         mnuHelp = new javax.swing.JMenu();
-        mnuIHelpContents = new javax.swing.JMenuItem();
+        mnuIHelpContent = new javax.swing.JMenuItem();
         mnuIAbout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -202,8 +225,13 @@ public class frmMain extends javax.swing.JFrame {
 
         mnuHelp.setText("Help");
 
-        mnuIHelpContents.setText("Help Contents");
-        mnuHelp.add(mnuIHelpContents);
+        mnuIHelpContent.setText("Help Contents");
+        mnuIHelpContent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuIHelpContentActionPerformed(evt);
+            }
+        });
+        mnuHelp.add(mnuIHelpContent);
 
         mnuIAbout.setText("About");
         mnuIAbout.addActionListener(new java.awt.event.ActionListener() {
@@ -272,6 +300,10 @@ public class frmMain extends javax.swing.JFrame {
         employee.setVisible(true);
     }//GEN-LAST:event_mnuIManagmentEmpActionPerformed
 
+    private void mnuIHelpContentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuIHelpContentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mnuIHelpContentActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -297,7 +329,7 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JMenu mnuHelp;
     private javax.swing.JMenuItem mnuIAbout;
     private javax.swing.JMenuItem mnuIExit;
-    private javax.swing.JMenuItem mnuIHelpContents;
+    private javax.swing.JMenuItem mnuIHelpContent;
     private javax.swing.JMenuItem mnuILoginSystem;
     private javax.swing.JMenuItem mnuIManagmentEmp;
     private javax.swing.JMenuItem mnuISwitchUser;
