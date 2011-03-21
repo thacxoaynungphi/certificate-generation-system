@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE map
+  PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp Map Version 1.0//EN"
+         "http://java.sun.com/javase/technologies/desktop/javahelp/map_1_0.dtd">
+
+<map version="1.0">
+        <mapID target="toplevelfolder" url="images/toplevel.gif" />
+	  <mapID target="top" url="help/Account.htm" />
+      <mapID target="topic" url="image/topic.gif" />
+      <mapID target="openbook" url="image/openbook.gif" />
+      <mapID target="chapter" url="image/chapTopic.gif" />
+	  
+       <mapID target="Account" url="help/Account.html" />
+	   <mapID target="Admin" url="help/Admin.html" />
+	   <mapID target="AccountLogin" url="help/AccountLogin.html" />
+	   <mapID target="CallCentre" url="help/CallCentre.html" />
+	   <mapID target="customer" url="help/customer.html" />
+	   <mapID target="Dispatcher" url="help/Dispatcher.html" />
+</map>

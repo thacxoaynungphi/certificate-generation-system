@@ -11,9 +11,14 @@
 package com.hueic.CerGS.ui.main.account;
 
 import com.hueic.CerGS.dao.AccountDAO;
+import com.hueic.CerGS.dao.PermissionDAO;
+import com.hueic.CerGS.dao.PersonDAO;
 import com.hueic.CerGS.entity.Account;
+import com.hueic.CerGS.entity.Permission;
+import com.hueic.CerGS.entity.Person;
 import java.util.ArrayList;
 import java.util.regex.PatternSyntaxException;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
@@ -33,13 +38,36 @@ public class frmAccount extends javax.swing.JFrame {
     private ArrayList<Account> listAccounts = new ArrayList<Account>();
     private AccountDAO accDao;
     TableRowSorter<TableModel> sorter;
+    boolean isAdd = false;
+    private PermissionDAO permissionDao;
+    private PersonDAO personDao;
 
     public frmAccount() {
         initComponents();
         setLocationRelativeTo(null);
         accDao = new AccountDAO();
+        permissionDao = new PermissionDAO();
+        personDao = new PersonDAO();
         listAccounts = accDao.readByAll();
+        loadDataCBXPermission();
+        loadDataCBXUsername();
         loadData(listAccounts);
+    }
+
+    public void loadDataCBXPermission() {
+        cbxType.removeAllItems();
+        ArrayList<Permission> listPermission = permissionDao.readByAll();
+        for (int i = 0; i < listPermission.size(); i++) {
+            cbxType.addItem(listPermission.get(i).getName());
+        }
+    }
+
+    public void loadDataCBXUsername() {
+        cbxUsername.removeAllItems();
+        ArrayList<Person> listPerson = personDao.readByAll();
+        for (int i = 0; i < listPerson.size(); i++) {
+            cbxUsername.addItem(listPerson.get(i).getId());
+        }
     }
 
     public void loadData(ArrayList<Account> listAccounts) {
@@ -106,6 +134,7 @@ public class frmAccount extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        jToggleButton1 = new javax.swing.JToggleButton();
         panelLeft = new javax.swing.JPanel();
         lblLogo = new javax.swing.JLabel();
         panelRight = new javax.swing.JPanel();
@@ -120,8 +149,8 @@ public class frmAccount extends javax.swing.JFrame {
         lblConfirmPass = new javax.swing.JLabel();
         panel2 = new javax.swing.JPanel();
         btnAdd = new javax.swing.JButton();
-        btnReset = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         txtUsername = new javax.swing.JTextField();
         txtPassword = new javax.swing.JTextField();
@@ -131,8 +160,11 @@ public class frmAccount extends javax.swing.JFrame {
         lblcheck3 = new javax.swing.JLabel();
         lblType = new javax.swing.JLabel();
         cbxType = new javax.swing.JComboBox();
+        cbxUsername = new javax.swing.JComboBox();
         filterText = new javax.swing.JTextField();
         btnFilter = new javax.swing.JButton();
+
+        jToggleButton1.setText("jToggleButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Managment Account");
@@ -184,7 +216,7 @@ public class frmAccount extends javax.swing.JFrame {
         lblTitle.setText("Info Account");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 0);
@@ -193,7 +225,7 @@ public class frmAccount extends javax.swing.JFrame {
         sepaAccount.setPreferredSize(new java.awt.Dimension(300, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 10, 0);
         panel1.add(sepaAccount, gridBagConstraints);
@@ -201,7 +233,7 @@ public class frmAccount extends javax.swing.JFrame {
         lblUsername.setText("Username:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
         panel1.add(lblUsername, gridBagConstraints);
@@ -209,7 +241,7 @@ public class frmAccount extends javax.swing.JFrame {
         lblPassword.setText("Password:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
         panel1.add(lblPassword, gridBagConstraints);
@@ -217,7 +249,7 @@ public class frmAccount extends javax.swing.JFrame {
         lblConfirmPass.setText("Confirm password:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
         panel1.add(lblConfirmPass, gridBagConstraints);
@@ -228,16 +260,28 @@ public class frmAccount extends javax.swing.JFrame {
         btnAdd.setText("Add");
         btnAdd.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnAdd.setPreferredSize(new java.awt.Dimension(70, 23));
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
         panel2.add(btnAdd);
 
-        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
-        btnReset.setText("Update");
-        btnReset.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnReset.setPreferredSize(new java.awt.Dimension(70, 23));
-        panel2.add(btnReset);
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
+        btnUpdate.setText("Update");
+        btnUpdate.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnUpdate.setPreferredSize(new java.awt.Dimension(70, 23));
+        panel2.add(btnUpdate);
 
-        jButton1.setText("Delete");
-        panel2.add(jButton1);
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
+        btnDelete.setText("Delete");
+        btnDelete.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+        panel2.add(btnDelete);
 
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
         btnCancel.setText("Cancel");
@@ -248,7 +292,7 @@ public class frmAccount extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -257,73 +301,82 @@ public class frmAccount extends javax.swing.JFrame {
         txtUsername.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel1.add(txtUsername, gridBagConstraints);
 
         txtPassword.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel1.add(txtPassword, gridBagConstraints);
 
         txtConfirmPass.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel1.add(txtConfirmPass, gridBagConstraints);
 
         lblcheck1.setText("(*)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 10);
         panel1.add(lblcheck1, gridBagConstraints);
 
         lblcheck2.setText("(*)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 10);
         panel1.add(lblcheck2, gridBagConstraints);
 
         lblcheck3.setText("(*)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 10);
         panel1.add(lblcheck3, gridBagConstraints);
 
         lblType.setText("Type:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
         panel1.add(lblType, gridBagConstraints);
 
-        cbxType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrator", "Employee", "Student", " " }));
         cbxType.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel1.add(cbxType, gridBagConstraints);
+
+        cbxUsername.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxUsername.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panel1.add(cbxUsername, gridBagConstraints);
 
         javax.swing.GroupLayout panelDetailsLayout = new javax.swing.GroupLayout(panelDetails);
         panelDetails.setLayout(panelDetailsLayout);
         panelDetailsLayout.setHorizontalGroup(
             panelDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDetailsLayout.createSequentialGroup()
-                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panelDetailsLayout.setVerticalGroup(
             panelDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+            .addGroup(panelDetailsLayout.createSequentialGroup()
+                .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         btnFilter.setText("Filter");
@@ -424,6 +477,32 @@ public class frmAccount extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnFilterActionPerformed
 
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        String username = txtUsername.getText();
+        if (accDao.delete(username)) {
+            JOptionPane.showMessageDialog(this, accDao.getLastError(), "Delete Account", JOptionPane.INFORMATION_MESSAGE, null);
+            listAccounts.remove(find(username));
+            loadData(listAccounts);
+            if (listAccounts.size() != 0) {
+                loadDetails(listAccounts.get(0));
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, accDao.getLastError(), "Delete Account", JOptionPane.ERROR_MESSAGE, null);
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        if (!isAdd) {
+            isAdd = true;
+            btnUpdate.setEnabled(false);
+            btnDelete.setEnabled(false);
+            txtUsername.setVisible(false);
+            cbxUsername.setVisible(true);
+        }
+    }//GEN-LAST:event_btnAddActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -438,11 +517,13 @@ public class frmAccount extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnFilter;
-    private javax.swing.JButton btnReset;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox cbxType;
+    private javax.swing.JComboBox cbxUsername;
     private javax.swing.JTextField filterText;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel lblConfirmPass;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblPassword;

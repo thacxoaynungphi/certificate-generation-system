@@ -145,13 +145,13 @@ public class AccountDAO extends BaseDAO {
         return status;
     }
 
-    public boolean delete(Account acc) {
+    public boolean delete(String username) {
         boolean status = false;
         try {
             con = db.getConnection();
             String sql = "delete from Account where username = ?";
             pst = con.prepareStatement(sql);
-            pst.setString(1, acc.getUsername());
+            pst.setString(1, username);
             if (pst.executeUpdate() > 0) {
                 setLastError("Delete Account successfully");
                 status = true;
