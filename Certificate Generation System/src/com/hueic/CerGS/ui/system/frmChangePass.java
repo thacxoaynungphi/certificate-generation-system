@@ -15,10 +15,10 @@ package com.hueic.CerGS.ui.system;
  *
  * @author qhvic
  */
-public class ChangePassFrm extends javax.swing.JFrame {
+public class frmChangePass extends javax.swing.JFrame {
 
     /** Creates new form ChangePassFrm */
-    public ChangePassFrm() {
+    public frmChangePass() {
         initComponents();
     }
 
@@ -143,7 +143,7 @@ public class ChangePassFrm extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(jPanel2, gridBagConstraints);
 
-        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 12));
         lblTitle.setForeground(new java.awt.Color(102, 0, 102));
         lblTitle.setText("Enter Information");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -199,7 +199,7 @@ public class ChangePassFrm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 379, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,7 +215,7 @@ public class ChangePassFrm extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ChangePassFrm().setVisible(true);
+                new frmChangePass().setVisible(true);
             }
         });
     }
