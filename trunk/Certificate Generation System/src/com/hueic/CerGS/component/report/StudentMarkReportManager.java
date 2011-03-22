@@ -33,6 +33,7 @@ public class StudentMarkReportManager extends ReportManager {
         this.studentId = studentId;
         this.studentName = studentName;
         this.courseName = courseName;
+        jasperFileName = "StudentMark.jasper";
         dataSource = getJRMapCollectionDataSource(markList, subList);
     }
 
@@ -77,6 +78,7 @@ public class StudentMarkReportManager extends ReportManager {
             else grade = "Unpass";
 
             row.put("GRADE", grade);
+            
             collection.add(row);
         }
         row = new HashMap();
