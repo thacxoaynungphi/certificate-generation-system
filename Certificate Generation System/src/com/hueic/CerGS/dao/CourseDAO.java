@@ -46,26 +46,25 @@ public class CourseDAO extends BaseDAO {
 
     }
 
-    public ArrayList<Course> readById(String id) {
-        ArrayList<Course> result = new ArrayList<Course>();
+    public Course readById(String id) {
+        Course course = null;
         con = db.getConnection();
         String sqlcommand = "select * from Course where id like ?";
         try {
             pst = con.prepareStatement(sqlcommand,  ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst.setString(1, id);
             rs = pst.executeQuery();
-            while (rs.next()) {
-                Course course = new Course();
+            if (rs.first()) {
+                course = new Course();
                 course.setId(rs.getString("Id"));
                 course.setName(rs.getString("Name"));
                 course.setStatus(rs.getInt("Status"));
-                result.add(course);
             }
         } catch (SQLException ex) {
             setLastError("SQL Error!!!");
         } finally {
             db.closeConnection();
-            return result;
+            return course;
         }
     }
 
