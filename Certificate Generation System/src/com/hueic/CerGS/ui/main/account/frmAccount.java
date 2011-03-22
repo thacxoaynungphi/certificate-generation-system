@@ -168,7 +168,12 @@ public class frmAccount extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Managment Account");
+        setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
+
+        panelLeft.setBackground(new java.awt.Color(255, 255, 255));
+
+        lblLogo.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout panelLeftLayout = new javax.swing.GroupLayout(panelLeft);
         panelLeft.setLayout(panelLeftLayout);
@@ -180,6 +185,8 @@ public class frmAccount extends javax.swing.JFrame {
             panelLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
+
+        panelRight.setBackground(new java.awt.Color(255, 255, 255));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -208,6 +215,9 @@ public class frmAccount extends javax.swing.JFrame {
         srcPanelAccount.setViewportView(tableContent);
         tableContent.getColumnModel().getColumn(2).setResizable(false);
 
+        panelDetails.setBackground(new java.awt.Color(255, 255, 255));
+
+        panel1.setBackground(new java.awt.Color(255, 255, 255));
         panel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Management Account", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         panel1.setLayout(new java.awt.GridBagLayout());
 
@@ -254,6 +264,7 @@ public class frmAccount extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
         panel1.add(lblConfirmPass, gridBagConstraints);
 
+        panel2.setBackground(new java.awt.Color(255, 255, 255));
         panel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
 
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
