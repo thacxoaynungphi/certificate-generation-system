@@ -138,7 +138,10 @@ public class frmCertificate extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Managment Account");
+        setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
+
+        panelLeft.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout panelLeftLayout = new javax.swing.GroupLayout(panelLeft);
         panelLeft.setLayout(panelLeftLayout);
@@ -150,6 +153,8 @@ public class frmCertificate extends javax.swing.JFrame {
             panelLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
+
+        panelRight.setBackground(new java.awt.Color(255, 255, 255));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -169,6 +174,7 @@ public class frmCertificate extends javax.swing.JFrame {
         });
         srcPanelAccount.setViewportView(tableContent);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Managment Certificate", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel1.setLayout(new java.awt.GridBagLayout());
 

@@ -39,7 +39,6 @@ public class frmSubject extends javax.swing.JFrame {
         txtStuName = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        lblBanner = new javax.swing.JLabel();
         panel2 = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
         lblNameSub = new javax.swing.JLabel();
@@ -55,11 +54,14 @@ public class frmSubject extends javax.swing.JFrame {
         txtSubjectId = new javax.swing.JTextField();
         sepa1 = new javax.swing.JSeparator();
         txtCoureID = new javax.swing.JTextField();
+        panel4 = new javax.swing.JPanel();
+        lblBanner = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Subject");
         setResizable(false);
 
+        panel1.setBackground(new java.awt.Color(255, 255, 255));
         panel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Subject", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
         panel1.setLayout(new java.awt.GridBagLayout());
 
@@ -115,9 +117,7 @@ public class frmSubject extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(15, 5, 5, 5);
         panel1.add(jScrollPane1, gridBagConstraints);
 
-        lblBanner.setMaximumSize(new java.awt.Dimension(200, 500));
-        lblBanner.setPreferredSize(new java.awt.Dimension(34, 200));
-
+        panel2.setBackground(new java.awt.Color(255, 255, 255));
         panel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "Add Subject", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14)))); // NOI18N
         panel2.setPreferredSize(new java.awt.Dimension(600, 233));
         panel2.setLayout(new java.awt.GridBagLayout());
@@ -157,6 +157,7 @@ public class frmSubject extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel2.add(lblCourseID, gridBagConstraints);
 
+        panel3.setBackground(new java.awt.Color(255, 255, 255));
         panel3.setPreferredSize(new java.awt.Dimension(265, 33));
 
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Edit_16.png"))); // NOI18N
@@ -248,20 +249,33 @@ public class frmSubject extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel2.add(txtCoureID, gridBagConstraints);
 
+        panel4.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout panel4Layout = new javax.swing.GroupLayout(panel4);
+        panel4.setLayout(panel4Layout);
+        panel4Layout.setHorizontalGroup(
+            panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblBanner, javax.swing.GroupLayout.DEFAULT_SIZE, 919, Short.MAX_VALUE)
+        );
+        panel4Layout.setVerticalGroup(
+            panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblBanner, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblBanner, javax.swing.GroupLayout.DEFAULT_SIZE, 919, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE))
+            .addComponent(panel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(lblBanner, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
@@ -313,6 +327,7 @@ public class frmSubject extends javax.swing.JFrame {
     private javax.swing.JPanel panel1;
     private javax.swing.JPanel panel2;
     private javax.swing.JPanel panel3;
+    private javax.swing.JPanel panel4;
     private javax.swing.JSeparator sepa1;
     private javax.swing.JTextField txtCoefficient;
     private javax.swing.JTextField txtCoureID;
