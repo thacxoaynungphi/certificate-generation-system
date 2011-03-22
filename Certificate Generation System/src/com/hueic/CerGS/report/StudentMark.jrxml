@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="StudentScore" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ID" class="java.lang.String"/>
+	<parameter name="NAME" class="java.lang.String"/>
+	<parameter name="SUBJECTID" class="java.lang.String"/>
+	<parameter name="SUBJECTNAME" class="java.lang.String"/>
+	<parameter name="MARK" class="java.lang.String"/>
+	<parameter name="GRADE" class="java.lang.String"/>
+	<parameter name="COURSE" class="java.lang.String"/>
+	<field name="SUBJECTID" class="java.lang.String"/>
+	<field name="SUBJECTNAME" class="java.lang.String"/>
+	<field name="MARK" class="java.lang.Float"/>
+	<field name="GRADE" class="java.lang.String"/>
+	<variable name="AVGMARK" class="java.lang.Float" resetType="Column" calculation="Average">
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="STUDENTGRADE" class="java.lang.String">
+		<variableExpression><![CDATA[( $V{AVGMARK} >= 75 ? "DISTINCTION" : ( $V{AVGMARK} >= 60 ? "A" : ( $V{AVGMARK} >= 50 ? "B" : ( $V{AVGMARK} >= 40 ? "C" : "FAILS" ) ) ) )]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="43" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="43"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[The List of Student Result in Course]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="79" splitType="Stretch">
+			<textField>
+				<reportElement x="455" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ID}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="355" y="0" width="100" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Student ID:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="455" y="23" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="355" y="23" width="100" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Student Name : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="455" y="47" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{COURSE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="355" y="47" width="100" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Course : ]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="11" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{SUBJECTID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="131" y="0" width="176" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{SUBJECTNAME}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="405" y="0" width="1" height="21"/>
+			</line>
+			<line>
+				<reportElement x="322" y="0" width="1" height="21"/>
+			</line>
+			<line>
+				<reportElement x="116" y="0" width="1" height="21"/>
+			</line>
+			<line>
+				<reportElement x="499" y="0" width="1" height="21"/>
+			</line>
+			<line>
+				<reportElement x="10" y="0" width="1" height="21"/>
+			</line>
+			<line>
+				<reportElement x="11" y="0" width="488" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="329" y="0" width="71" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{MARK}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="414" y="1" width="77" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{GRADE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<line>
+				<reportElement x="10" y="21" width="490" height="1"/>
+			</line>
+			<line>
+				<reportElement x="405" y="0" width="1" height="21"/>
+			</line>
+			<line>
+				<reportElement x="322" y="0" width="1" height="21"/>
+			</line>
+			<line>
+				<reportElement x="116" y="0" width="1" height="21"/>
+			</line>
+			<line>
+				<reportElement x="499" y="0" width="1" height="21"/>
+			</line>
+			<line>
+				<reportElement x="10" y="0" width="1" height="21"/>
+			</line>
+			<line>
+				<reportElement x="12" y="0" width="488" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="12" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{SUBJECTID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="131" y="2" width="151" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{SUBJECTNAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="329" y="1" width="71" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.Float"><![CDATA[$F{MARK}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="414" y="2" width="77" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{GRADE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<textField>
+				<reportElement x="414" y="25" width="100" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{STUDENTGRADE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="414" y="5" width="77" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.Float"><![CDATA[$V{AVGMARK}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="314" y="5" width="100" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Final Mark : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="314" y="25" width="100" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Grade : ]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
