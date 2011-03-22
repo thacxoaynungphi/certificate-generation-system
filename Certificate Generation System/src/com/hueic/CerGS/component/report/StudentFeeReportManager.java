@@ -4,7 +4,10 @@
  */
 package com.hueic.CerGS.component.report;
 
+import com.hueic.CerGS.entity.Payment;
+import java.util.ArrayList;
 import java.util.HashMap;
+import net.sf.jasperreports.engine.JRDataSource;
 
 /**
  *
@@ -13,10 +16,22 @@ import java.util.HashMap;
 public class StudentFeeReportManager extends ReportManager {
 
     public StudentFeeReportManager() {
-
     }
 
-     public JRDataSource getJRMapCollectionDataSource();
+    public JRDataSource getJRMapCollectionDataSource(ArrayList<Payment> payList) {
+
+        ArrayList collection = new ArrayList();
+
+        HashMap row = null;
+
+        for(Payment pay : payList){
+            row = new HashMap();
+
+            row.put("ID", pay.)
+        }
+
+        return dataSource;
+    }
 
     @Override
     public HashMap getParameterReport() {
@@ -30,6 +45,4 @@ public class StudentFeeReportManager extends ReportManager {
 
         return parameter;
     }
-
-    
 }
