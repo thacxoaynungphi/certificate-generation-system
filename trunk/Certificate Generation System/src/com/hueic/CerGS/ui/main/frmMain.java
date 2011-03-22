@@ -10,6 +10,7 @@
  */
 package com.hueic.CerGS.ui.main;
 
+import com.hueic.CerGS.entity.Account;
 import com.hueic.CerGS.ui.system.frmLogin;
 import com.hueic.CerGS.ui.system.frmAbout;
 import com.hueic.CerGS.component.GUIProperties;
@@ -30,6 +31,7 @@ public class frmMain extends javax.swing.JFrame {
     /** Creates new form MainFrm */
     GUIDAO guidao = null;
     GUIProperties guip = null;
+    public Account accCur;
 
     public frmMain() {
         initComponents();
@@ -280,7 +282,7 @@ public class frmMain extends javax.swing.JFrame {
 
     private void mnuILoginSystemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuILoginSystemActionPerformed
         // TODO add your handling code here:
-        frmLogin login = new frmLogin(this, true);
+        frmLogin login = new frmLogin();
         login.setVisible(true);
     }//GEN-LAST:event_mnuILoginSystemActionPerformed
 

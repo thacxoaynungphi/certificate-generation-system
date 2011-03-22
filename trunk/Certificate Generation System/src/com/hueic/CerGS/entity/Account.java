@@ -30,6 +30,11 @@ public class Account {
         setPassword(password);
         setPermission(permission);
     }
+
+    public Account(String username, String oldPassword) throws Exception {
+        setUsername(username);
+        setPassword(password);
+    }
     //method get-set
 
     /**
