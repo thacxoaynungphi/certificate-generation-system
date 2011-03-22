@@ -25,6 +25,7 @@ public class StudentReportManager extends ReportManager{
 
     public StudentReportManager(String course,ArrayList<Student> stList, ArrayList<Register> regisList) {
         this.course = course;
+        jasperFileName = "Student.jasper";
         dataSource = getJRMapCollectionDataSource(stList, regisList);
     }
 
@@ -62,6 +63,8 @@ public class StudentReportManager extends ReportManager{
             row.put("BIRTHDAY", DateFormat.getInstance().format(st.getBirthDay()));
             row.put("REGISTRATIONDAY",
                     DateFormat.getInstance().format(getRegistrationDateOfStudent(st.getId(), regisList)));
+            
+            collection.add(row);
         }
 
         dataSource = new JRMapCollectionDataSource(collection);

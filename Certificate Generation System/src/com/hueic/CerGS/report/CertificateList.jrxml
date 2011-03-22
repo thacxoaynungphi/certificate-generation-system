@@ -9,16 +9,13 @@
 	<parameter name="COURSE" class="java.lang.String"/>
 	<parameter name="FINALMARK" class="java.lang.Float"/>
 	<queryString>
-		<![CDATA[select * from Person, Student where Person.id like Student.id
-]]>
+		<![CDATA[]]>
 	</queryString>
 	<field name="ID" class="java.lang.String"/>
 	<field name="NAME" class="java.lang.String"/>
-	<field name="AGE" class="java.lang.Integer"/>
-	<field name="Gender" class="java.lang.String"/>
-	<field name="course" class="java.lang.String"/>
-	<field name="fee" class="java.lang.Double"/>
-	<field name="year" class="java.lang.Integer"/>
+	<field name="COURSE" class="java.lang.String"/>
+	<field name="FINALMARK" class="java.lang.String"/>
+	<field name="GRADE" class="java.lang.String"/>
 	<variable name="NUMSTUDENT" class="java.lang.Integer" resetType="Column" calculation="Count"/>
 	<background>
 		<band splitType="Stretch"/>

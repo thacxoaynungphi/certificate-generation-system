@@ -48,7 +48,7 @@ public abstract class ReportManager {
         return jasperPrint;
     }
 
-    public JPanel getJPanelViewer(String filename, ArrayList list){
+    public JPanel getJPanelViewer(){
         return new JRViewer(getJasperPrint());
     }
 

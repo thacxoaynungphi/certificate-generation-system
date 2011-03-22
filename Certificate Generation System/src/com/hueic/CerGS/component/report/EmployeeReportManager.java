@@ -17,12 +17,11 @@ import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
  */
 public class EmployeeReportManager extends ReportManager{
 
-    public static final String JASPERFILE = "EmployeeList1.jasper";
-
     public EmployeeReportManager() {
     }
 
     public EmployeeReportManager(ArrayList<Employee> empList){
+        jasperFileName = "EmployeeList.jasper";
         dataSource = getJRMapCollectionDataSource(empList);
     }
 
