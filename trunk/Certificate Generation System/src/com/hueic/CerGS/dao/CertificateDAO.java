@@ -93,7 +93,7 @@ public class CertificateDAO extends BaseDAO {
         boolean status = false;
         try {
             con = db.getConnection();
-            String sql = "insert into Certificate (Id,StudentId,Course,Crade,DegreeDay)" + " values (?,?,?,?,?); ";
+            String sql = "insert into Certificate (Id,StudentId,Course,Grade,DegreeDay)" + " values (?,?,?,?,?); ";
             pst = con.prepareStatement(sql);
             pst.setInt(1, cer.getId());
             pst.setString(2, cer.getStudentID());

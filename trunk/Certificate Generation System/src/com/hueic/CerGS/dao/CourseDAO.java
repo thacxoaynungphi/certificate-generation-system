@@ -6,6 +6,7 @@ package com.hueic.CerGS.dao;
 
 import com.hueic.CerGS.entity.Course;
 import com.hueic.CerGS.util.Configure;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -27,7 +28,7 @@ public class CourseDAO extends BaseDAO {
         con = db.getConnection();
         String sqlcommand = "select * from Course";
         try {
-            pst = con.prepareCall(sqlcommand);
+            pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             rs = pst.executeQuery();
             while (rs.next()) {
                 Course course = new Course();
@@ -50,7 +51,7 @@ public class CourseDAO extends BaseDAO {
         con = db.getConnection();
         String sqlcommand = "select * from Course where id like ?";
         try {
-            pst = con.prepareCall(sqlcommand);
+            pst = con.prepareStatement(sqlcommand,  ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst.setString(1, id);
             rs = pst.executeQuery();
             while (rs.next()) {
@@ -73,7 +74,7 @@ public class CourseDAO extends BaseDAO {
         con = db.getConnection();
         String sqlcommand = "insert into Course values(?, ?, ?)";
         try {
-            pst = con.prepareCall(sqlcommand);
+            pst = con.prepareStatement(sqlcommand);
             pst.setString(1, course.getId());
             pst.setString(2, course.getName());
             pst.setInt(3, course.getStatus());
@@ -97,7 +98,7 @@ public class CourseDAO extends BaseDAO {
         con = db.getConnection();
         String sqlcommand = "select * from Course where id like ?";
         try {
-            pst = con.prepareCall(sqlcommand);
+            pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst.setString(1, course.getId());
             rs = pst.executeQuery();
             if (rs.first()) {
@@ -119,7 +120,7 @@ public class CourseDAO extends BaseDAO {
         con = db.getConnection();
         String sqlcommand = "delete from Course where id like ?";
         try{
-            pst = con.prepareCall(sqlcommand);
+            pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst.setString(1, course.getId());
             if(pst.execute()){
                 setLastError("Delete Course successful");

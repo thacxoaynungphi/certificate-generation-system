@@ -6,16 +6,17 @@ package com.hueic.CerGS.dao;
 
 import com.hueic.CerGS.entity.Mark;
 import com.hueic.CerGS.util.Configure;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
  *
- * @author Wind
+ * @author HuuBien
  */
-public class ScoresDAO extends BaseDAO {
+public class MarkDAO extends BaseDAO {
 
-    public ScoresDAO() {
+    public MarkDAO() {
         db = new Configure();
     }
 
@@ -25,7 +26,7 @@ public class ScoresDAO extends BaseDAO {
         String sqlcommand = "select * from Scores";
 
         try {
-            pst = con.prepareCall(sqlcommand);
+            pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             rs = pst.executeQuery();
 
             while (rs.next()) {
@@ -46,24 +47,21 @@ public class ScoresDAO extends BaseDAO {
         }
     }
 
-    public ArrayList<Mark> readByID(int id) {
-        ArrayList<Mark> result = new ArrayList<Mark>();
+    public Mark readByID(int id) {
+        Mark result = new Mark();
         con = db.getConnection();
         String sqlcommand = "select * from Scores where id like ?";
 
         try {
-            pst = con.prepareCall(sqlcommand);
+            pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst.setInt(1, id);
             rs = pst.executeQuery();
 
-            while (rs.next()) {
-                Mark scores = new Mark();
-                scores.setId(rs.getInt("Id"));
-                scores.setStudentId(rs.getString("StudentId"));
-                scores.setSubjectId(rs.getString("SubjectId"));
-                scores.setMark(rs.getFloat("Score"));
-
-                result.add(scores);
+            while (rs.first()) {
+                result.setId(rs.getInt("Id"));
+                result.setStudentId(rs.getString("StudentId"));
+                result.setSubjectId(rs.getString("SubjectId"));
+                result.setMark(rs.getFloat("Score"));
             }
 
             setLastError("read data successful");
@@ -81,7 +79,7 @@ public class ScoresDAO extends BaseDAO {
         String sqlcommand = "insert into Scores values(?, ?, ?, ?, ?, ?, ?)";
 
         try {
-            pst = con.prepareCall(sqlcommand);
+            pst = con.prepareStatement(sqlcommand);
             pst.setInt(1, scores.getId());
             pst.setString(2, scores.getStudentId());
             pst.setString(3, scores.getSubjectId());
@@ -106,7 +104,7 @@ public class ScoresDAO extends BaseDAO {
         String sqlcommand = "select * from Scores where id like ?";
 
         try {
-            pst = con.prepareCall(sqlcommand);
+            pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst.setInt(1, scores.getId());
 
             rs = pst.executeQuery();
@@ -135,7 +133,7 @@ public class ScoresDAO extends BaseDAO {
         String sqlcommand = "delete from Scores where id like ?";
 
         try {
-            pst = con.prepareCall(sqlcommand);
+            pst = con.prepareStatement(sqlcommand,  ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst.setInt(1, scores.getId());
 
             if (pst.execute()) {

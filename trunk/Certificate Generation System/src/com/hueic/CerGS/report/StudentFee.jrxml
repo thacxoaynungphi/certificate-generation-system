@@ -4,12 +4,12 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="ID" class="java.lang.String"/>
-	<parameter name="FULLNAME" class="java.lang.String"/>
+	<parameter name="NAME" class="java.lang.String"/>
 	<parameter name="COURSE" class="java.lang.String"/>
 	<parameter name="FEE" class="java.lang.String"/>
 	<parameter name="ARREARS" class="java.lang.String"/>
 	<field name="ID" class="java.lang.String"/>
-	<field name="FULLNAME" class="java.lang.String"/>
+	<field name="NAME" class="java.lang.String"/>
 	<field name="COURSE" class="java.lang.String"/>
 	<field name="FEE" class="java.lang.String"/>
 	<field name="ARREARS" class="java.lang.String"/>
@@ -26,10 +26,18 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="34" splitType="Stretch"/>
+		<band height="22" splitType="Stretch"/>
 	</title>
 	<pageHeader>
-		<band height="24" splitType="Stretch"/>
+		<band height="51" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="51"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[The Report Fee Payment of Student]]></text>
+			</staticText>
+		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="23" splitType="Stretch">
@@ -59,7 +67,7 @@
 			<textField>
 				<reportElement x="106" y="0" width="150" height="23"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{FULLNAME}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="256" y="0" width="60" height="23"/>
@@ -125,7 +133,7 @@
 			<textField>
 				<reportElement x="106" y="0" width="149" height="22"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{FULLNAME}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="33" y="2" width="72" height="20"/>

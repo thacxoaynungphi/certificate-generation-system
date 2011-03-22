@@ -6,6 +6,7 @@ package com.hueic.CerGS.dao;
 
 import com.hueic.CerGS.entity.Payment;
 import com.hueic.CerGS.util.Configure;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -25,7 +26,7 @@ public class PaymentDAO extends BaseDAO {
         String sqlcommand = "select * from Payment";
 
         try {
-            pst = con.prepareCall(sqlcommand);
+            pst = con.prepareStatement(sqlcommand,  ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             rs = pst.executeQuery();
             while (rs.next()) {
                 Payment pay = new Payment();
@@ -51,7 +52,7 @@ public class PaymentDAO extends BaseDAO {
         String sqlcommand = "select * from Payment where id like ?";
 
         try {
-            pst = con.prepareCall(sqlcommand);
+            pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst.setInt(1, id);
             rs = pst.executeQuery();
 
@@ -80,7 +81,7 @@ public class PaymentDAO extends BaseDAO {
         String sqlcommand = "insert into Payment values(?, ?, ?, ?, ?)";
 
         try {
-            pst = con.prepareCall(sqlcommand);
+            pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst.setInt(1, pay.getId());
             pst.setString(2, pay.getStudentId());
             pst.setFloat(3, pay.getMoney());
@@ -106,7 +107,7 @@ public class PaymentDAO extends BaseDAO {
         String sqlcommand = "select * from Payment where id like ?";
 
         try {
-            pst = con.prepareCall(sqlcommand);
+            pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst.setInt(1, pay.getId());
 
             rs = pst.executeQuery();
@@ -136,7 +137,7 @@ public class PaymentDAO extends BaseDAO {
         String sqlcommand = "delete from Payment where id like ?";
 
         try {
-            pst = con.prepareCall(sqlcommand);
+            pst = con.prepareStatement(sqlcommand,  ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst.setInt(1, pay.getId());
 
             if (pst.execute()) {

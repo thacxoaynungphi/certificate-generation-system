@@ -4,21 +4,21 @@
  */
 
 /*
- * frmAccountReport.java
+ * frmStudentFeeReport.java
  *
- * Created on Mar 14, 2011, 7:31:11 AM
+ * Created on Mar 22, 2011, 9:26:11 PM
  */
 
 package com.hueic.CerGS.ui.main.report;
 
 /**
  *
- * @author nhchung
+ * @author Wind
  */
-public class frmAccountReport extends javax.swing.JFrame {
+public class frmStudentFeeReport extends javax.swing.JFrame {
 
-    /** Creates new form frmAccountReport */
-    public frmAccountReport() {
+    /** Creates new form frmStudentFeeReport */
+    public frmStudentFeeReport() {
         initComponents();
     }
 
@@ -53,7 +53,7 @@ public class frmAccountReport extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmAccountReport().setVisible(true);
+                new frmStudentFeeReport().setVisible(true);
             }
         });
     }

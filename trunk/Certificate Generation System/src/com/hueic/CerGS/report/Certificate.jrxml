@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Certificate" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="32"/>
+	<parameter name="NAME" class="java.lang.String"/>
+	<parameter name="DAY" class="java.lang.String"/>
+	<parameter name="MONTH" class="java.lang.String"/>
+	<parameter name="YEAR" class="java.lang.String"/>
+	<parameter name="CENTER" class="java.lang.String"/>
+	<parameter name="GRADE" class="java.lang.String"/>
+	<parameter name="CURRENTDATE" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="103" splitType="Stretch">
+			<staticText>
+				<reportElement x="222" y="28" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[logo]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="79"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Certificate of $F{COURSE}]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="306" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="44" width="555" height="40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{NAME}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="83" width="555" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="8" y="98" width="49" height="40"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="UVN Ke Chuyen2" size="20"/>
+				</textElement>
+				<text><![CDATA[on the ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="57" y="98" width="63" height="40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{DAY}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="120" y="98" width="135" height="40"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="UVN Ke Chuyen2" size="20"/>
+				</textElement>
+				<text><![CDATA[day of the month of]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="255" y="98" width="100" height="40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{MONTH}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="355" y="98" width="100" height="40"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="UVN Ke Chuyen2" size="20"/>
+				</textElement>
+				<text><![CDATA[in the year]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="455" y="98" width="100" height="40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{YEAR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="37"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="UVN Ke Chuyen2" size="20" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[This credential is award to]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="138" width="271" height="40"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="UVN Ke Chuyen2" size="20"/>
+				</textElement>
+				<text><![CDATA[for successfully completing the course at the]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="279" y="138" width="176" height="40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{CENTER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="455" y="138" width="100" height="40"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="UVN Ke Chuyen2" size="20"/>
+				</textElement>
+				<text><![CDATA[center]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="178" width="100" height="40"/>
+				<textElement>
+					<font fontName="UVN Ke Chuyen2" size="20"/>
+				</textElement>
+				<text><![CDATA[with grade of]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="108" y="178" width="100" height="40"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{GRADE}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="57" y="129" width="63" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="255" y="128" width="100" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="455" y="129" width="100" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="108" y="204" width="100" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="279" y="167" width="176" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="429" y="218" width="100" height="88"/>
+				<textElement/>
+				<text><![CDATA[the seals and signature]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="122" y="256" width="65" height="30"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="UVN Ke Chuyen2" size="20"/>
+				</textElement>
+				<text><![CDATA[Dated ]]></text>
+			</staticText>
+			<textField pattern="dd-MMM-yy">
+				<reportElement x="187" y="256" width="100" height="30"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
