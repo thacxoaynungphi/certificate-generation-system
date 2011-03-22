@@ -118,6 +118,9 @@
 			<line>
 				<reportElement key="line-6" x="11" y="0" width="488" height="1"/>
 			</line>
+			<line>
+				<reportElement key="line-13" x="11" y="1" width="488" height="1"/>
+			</line>
 		</band>
 	</columnHeader>
 	<detail>
@@ -191,9 +194,6 @@
 			</line>
 			<line>
 				<reportElement key="line-12" x="11" y="0" width="488" height="1"/>
-			</line>
-			<line>
-				<reportElement key="line-13" x="11" y="-60" width="488" height="1"/>
 			</line>
 		</band>
 	</detail>
