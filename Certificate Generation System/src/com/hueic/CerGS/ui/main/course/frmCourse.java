@@ -215,6 +215,7 @@ public class frmCourse extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 10, 5);
         jPanel4.add(lblTotalFees, gridBagConstraints);
 
+        txtTotalFees.setBackground(new java.awt.Color(255, 255, 255));
         txtTotalFees.setEditable(false);
         txtTotalFees.setPreferredSize(new java.awt.Dimension(180, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -224,6 +225,8 @@ public class frmCourse extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 10, 5);
         jPanel4.add(txtTotalFees, gridBagConstraints);
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
         btnAdd.setText("Add");
@@ -277,6 +280,7 @@ public class frmCourse extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel4.add(lblStatus, gridBagConstraints);
 
+        radioEnable.setBackground(new java.awt.Color(255, 255, 255));
         radioEnable.setText("Enable");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -285,6 +289,7 @@ public class frmCourse extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel4.add(radioEnable, gridBagConstraints);
 
+        radioDisable.setBackground(new java.awt.Color(255, 255, 255));
         radioDisable.setText("Disable");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
