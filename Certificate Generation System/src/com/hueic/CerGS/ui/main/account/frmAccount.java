@@ -52,6 +52,9 @@ public class frmAccount extends javax.swing.JFrame {
         loadDataCBXPermission();
         loadDataCBXUsername();
         loadData(listAccounts);
+        if (listAccounts.size() != 0) {
+            loadDetails(listAccounts.get(0));
+        }
     }
 
     public void loadDataCBXPermission() {
@@ -71,14 +74,13 @@ public class frmAccount extends javax.swing.JFrame {
     }
 
     public void loadData(ArrayList<Account> listAccounts) {
-        String[] columns = {"Username", "Password", "Permisison"};
+        String[] columns = {"Username", "Permisison"};
         Object[][] rows = new Object[listAccounts.size()][3];
         int index = 0;
         for (int i = 0; i < listAccounts.size(); i++) {
             Account acc = listAccounts.get(i);
             rows[index][0] = acc.getUsername();
-            rows[index][1] = acc.getPassword();
-            rows[index][2] = acc.getPermission();
+            rows[index][1] = getNamePermission(acc.getPermission());
             index++;
         }
         TableModel model = new DefaultTableModel(rows, columns) {
@@ -93,7 +95,7 @@ public class frmAccount extends javax.swing.JFrame {
                 return returnValue;
             }
             boolean[] canEdit = new boolean[]{
-                false, false, false
+                false, false
             };
 
             @Override
@@ -122,6 +124,28 @@ public class frmAccount extends javax.swing.JFrame {
     public void loadDetails(Account acc) {
         txtUsername.setText(acc.getUsername());
         txtPassword.setText(acc.getPassword());
+        txtConfirmPassword.setText(acc.getPassword());
+        String permissionName = getNamePermission(acc.getPermission());
+        if (permissionName != null) {
+            for (int i = 0; i < cbxType.getItemCount(); i++) {
+                if (cbxType.getItemAt(i).toString().equals(permissionName)) {
+                    cbxType.setSelectedIndex(i);
+
+                }
+            }
+        }
+    }
+
+    public String getNamePermission(int id) {
+        PermissionDAO permissionDAO = new PermissionDAO();
+        Permission per = permissionDAO.readByID(id);
+        if (per != null) {
+            return per.getName();
+
+        } else {
+            return null;
+
+        }
     }
 
     /** This method is called from within the constructor to
@@ -153,14 +177,14 @@ public class frmAccount extends javax.swing.JFrame {
         btnDelete = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         txtUsername = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JTextField();
-        txtConfirmPass = new javax.swing.JTextField();
         lblcheck1 = new javax.swing.JLabel();
         lblcheck2 = new javax.swing.JLabel();
         lblcheck3 = new javax.swing.JLabel();
         lblType = new javax.swing.JLabel();
         cbxType = new javax.swing.JComboBox();
         cbxUsername = new javax.swing.JComboBox();
+        txtPassword = new javax.swing.JPasswordField();
+        txtConfirmPassword = new javax.swing.JPasswordField();
         filterText = new javax.swing.JTextField();
         btnFilter = new javax.swing.JButton();
 
@@ -282,6 +306,11 @@ public class frmAccount extends javax.swing.JFrame {
         btnUpdate.setText("Update");
         btnUpdate.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnUpdate.setPreferredSize(new java.awt.Dimension(70, 23));
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
         panel2.add(btnUpdate);
 
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
@@ -299,6 +328,11 @@ public class frmAccount extends javax.swing.JFrame {
         btnCancel.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnCancel.setMaximumSize(new java.awt.Dimension(70, 23));
         btnCancel.setPreferredSize(new java.awt.Dimension(70, 23));
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
         panel2.add(btnCancel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -315,20 +349,6 @@ public class frmAccount extends javax.swing.JFrame {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel1.add(txtUsername, gridBagConstraints);
-
-        txtPassword.setPreferredSize(new java.awt.Dimension(200, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(txtPassword, gridBagConstraints);
-
-        txtConfirmPass.setPreferredSize(new java.awt.Dimension(200, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(txtConfirmPass, gridBagConstraints);
 
         lblcheck1.setText("(*)");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -374,6 +394,22 @@ public class frmAccount extends javax.swing.JFrame {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel1.add(cbxUsername, gridBagConstraints);
+
+        txtPassword.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panel1.add(txtPassword, gridBagConstraints);
+
+        txtConfirmPassword.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panel1.add(txtConfirmPassword, gridBagConstraints);
 
         javax.swing.GroupLayout panelDetailsLayout = new javax.swing.GroupLayout(panelDetails);
         panelDetails.setLayout(panelDetailsLayout);
@@ -505,14 +541,88 @@ public class frmAccount extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        if (!isAdd) {
-            isAdd = true;
-            btnUpdate.setEnabled(false);
-            btnDelete.setEnabled(false);
-            txtUsername.setVisible(false);
-            cbxUsername.setVisible(true);
+        try {
+            if (!isAdd) {
+                isAdd = true;
+                btnUpdate.setEnabled(false);
+                btnDelete.setEnabled(false);
+                txtUsername.setVisible(false);
+                cbxUsername.setVisible(true);
+            } else {
+                String username = cbxUsername.getSelectedItem().toString();
+                String password = String.valueOf(txtPassword.getPassword());
+                String confirmPass = String.valueOf(txtConfirmPassword.getPassword());
+                String permissionName = cbxType.getSelectedItem().toString();
+                if (password.equals(confirmPass) && password.length() != 0) {
+                    PermissionDAO permissionDao = new PermissionDAO();
+                    Permission per = permissionDao.readByName(permissionName);
+                    if (per != null) {
+                        Account acc = new Account(username, password, per.getId());
+                        AccountDAO accDao = new AccountDAO();
+                        if (accDao.create(acc)) {
+                            JOptionPane.showMessageDialog(this, accDao.getLastError(), "Create Account", JOptionPane.INFORMATION_MESSAGE);
+                            listAccounts.add(acc);
+                            loadData(listAccounts);
+                            loadDetails(acc);
+                            isAdd = false;
+                            btnUpdate.setEnabled(true);
+                            btnDelete.setEnabled(true);
+                            txtUsername.setVisible(true);
+                            cbxUsername.setVisible(false);
+                        } else {
+                            JOptionPane.showMessageDialog(this, accDao.getLastError(), "Create Account", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Password not match", "Create Account", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, toString(), "Create Account", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        if (isAdd) {
+            isAdd = false;
+            btnUpdate.setEnabled(true);
+            btnDelete.setEnabled(true);
+            txtUsername.setVisible(true);
+            cbxUsername.setVisible(false);
+        } else {
+            loadDetails(listAccounts.get(0));
+        }
+    }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        try {
+            String username = txtUsername.getText();
+            String password = String.valueOf(txtPassword.getPassword());
+            String confirmPass = String.valueOf(txtConfirmPassword.getPassword());
+            String permissionName = cbxType.getSelectedItem().toString();
+            if (password.equals(confirmPass) && password.length() != 0) {
+                PermissionDAO permissionDao = new PermissionDAO();
+                Permission per = permissionDao.readByName(permissionName);
+                if (per != null) {
+                    Account acc = new Account(username, password, per.getId());
+                    AccountDAO accDao = new AccountDAO();
+                    if (accDao.update(acc)) {
+                        JOptionPane.showMessageDialog(this, accDao.getLastError(), "Update Account", JOptionPane.INFORMATION_MESSAGE);
+                        listAccounts.add(acc);
+                        loadData(listAccounts);
+                        loadDetails(acc);
+                    } else {
+                        JOptionPane.showMessageDialog(this, accDao.getLastError(), "Update Account", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Password not match", "Create Account", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -552,8 +662,8 @@ public class frmAccount extends javax.swing.JFrame {
     private javax.swing.JSeparator sepaAccount;
     private javax.swing.JScrollPane srcPanelAccount;
     private javax.swing.JTable tableContent;
-    private javax.swing.JTextField txtConfirmPass;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtConfirmPassword;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

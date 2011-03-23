@@ -101,7 +101,7 @@ public class AccountDAO extends BaseDAO {
         boolean status = false;
         try {
             con = db.getConnection();
-            String sql = "insert into Account (username,password,permmison) " + " values (?,?,?);";
+            String sql = "insert into Account (username,password,permission) " + " values (?,?,?);";
             pst = con.prepareStatement(sql);
             pst.setString(1, acc.getUsername());
             pst.setString(2, acc.getPassword());
