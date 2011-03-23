@@ -26,7 +26,7 @@ public class CertificateDevelopedReportManager extends ReportManager{
     }
 
     @Override
-    public HashMap getParameterReport() {
+    protected HashMap getParameterReport() {
         parameter = new HashMap();
 
         parameter.put("ID", "Student Code");
@@ -40,18 +40,15 @@ public class CertificateDevelopedReportManager extends ReportManager{
 
     private String getNameStudent(String StudentId){
         String stId = new RegisterDAO().readByStudentId(StudentId).getId();
-        Student student = new StudentDAO().readByID(stId);
-        
-        String fullName = student.getFirstName() + " " + student.getLastName();
-        
-        return fullName;
+
+        return new StudentDAO().readByID(stId).getFullName();
     }
 
     private String getCourseName(String StudentId){
         String courseId = new RegisterDAO().readByStudentId(StudentId).getCourseId();
         return new CourseDAO().readById(courseId).getName();
     }
-    public JRDataSource getJRMapCollectionDataSource(ArrayList<Certificate> cerList){
+    private JRDataSource getJRMapCollectionDataSource(ArrayList<Certificate> cerList){
         ArrayList collection = new ArrayList();
         HashMap row = null;
 

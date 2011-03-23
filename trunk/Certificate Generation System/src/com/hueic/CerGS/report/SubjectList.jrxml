@@ -6,11 +6,14 @@
 	<parameter name="COURSE" class="java.lang.String"/>
 	<parameter name="ID" class="java.lang.String"/>
 	<parameter name="SUBJECTNAME" class="java.lang.String"/>
-	<parameter name="FEE" class="java.lang.String"/>
+	<parameter name="COEFFICIENT" class="java.lang.String"/>
 	<field name="ID" class="java.lang.String"/>
 	<field name="SUBJECTNAME" class="java.lang.String"/>
-	<field name="FEE" class="java.lang.Float"/>
-	<variable name="SUMFEE" class="java.lang.Float" resetType="Column" calculation="Sum"/>
+	<field name="COEFFICIENT" class="java.lang.String"/>
+	<variable name="COUNTSUB" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{ID}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -79,7 +82,7 @@
 				<textElement>
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{FEE}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{COEFFICIENT}]]></textFieldExpression>
 			</textField>
 		</band>
 	</columnHeader>
@@ -122,27 +125,12 @@
 				<textElement>
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Float"><![CDATA[$F{FEE}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Float"><![CDATA[$F{COEFFICIENT}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch">
-			<textField>
-				<reportElement x="380" y="0" width="119" height="20"/>
-				<textElement>
-					<font size="14"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Float"><![CDATA[$V{SUMFEE}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="280" y="0" width="100" height="20"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="14"/>
-				</textElement>
-				<text><![CDATA[Total Fees : ]]></text>
-			</staticText>
-		</band>
+		<band height="35" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
 		<band height="54" splitType="Stretch"/>

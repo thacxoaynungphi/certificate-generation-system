@@ -73,6 +73,33 @@ public class MarkDAO extends BaseDAO {
         }
     }
 
+    public Mark readByStudentID(String studentId) {
+        Mark result = new Mark();
+        con = db.getConnection();
+        String sqlcommand = "select * from Scores where Studentid like ?";
+
+        try {
+            pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            pst.setString(1, studentId);
+            rs = pst.executeQuery();
+
+            while (rs.first()) {
+                result.setId(rs.getInt("Id"));
+                result.setStudentId(rs.getString("StudentId"));
+                result.setSubjectId(rs.getString("SubjectId"));
+                result.setMark(rs.getFloat("Mark"));
+
+            }
+
+            setLastError("read data successful");
+        } catch (SQLException ex) {
+            setLastError("SQL Error");
+        } finally {
+            db.closeConnection();
+            return result;
+        }
+    }
+
     public boolean create(Mark scores) {
         boolean status = false;
         con = db.getConnection();

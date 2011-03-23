@@ -222,4 +222,8 @@ public class Person {
         }
         this.status = status;
     }
+
+    public String getFullName(){
+        return getFirstName() + " " + getLastName();
+    }
 }

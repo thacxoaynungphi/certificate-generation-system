@@ -4,6 +4,8 @@
  */
 package com.hueic.CerGS.component.report;
 
+import com.hueic.CerGS.dao.CourseDAO;
+import com.hueic.CerGS.dao.StudentDAO;
 import com.hueic.CerGS.entity.Mark;
 import com.hueic.CerGS.entity.Subject;
 import java.util.ArrayList;
@@ -19,31 +21,31 @@ public class StudentMarkReportManager extends ReportManager {
 
     private String studentId;
     private String studentName;
-    private String courseName;
+    private String courseId;
 
     public StudentMarkReportManager() {
         studentId = "";
-        studentName = "";
-        courseName = "";
+        courseId = "";
 
     }
 
-    public StudentMarkReportManager(String studentId, String studentName,
-            String courseName, ArrayList<Mark> markList, ArrayList<Subject> subList) {
+    private StudentMarkReportManager(String studentId,
+            String courseId, ArrayList<Mark> markList, ArrayList<Subject> subList) {
         this.studentId = studentId;
-        this.studentName = studentName;
-        this.courseName = courseName;
+        this.courseId = courseId;
         jasperFileName = "StudentMark.jasper";
         dataSource = getJRMapCollectionDataSource(markList, subList);
     }
 
+    
+
     @Override
-    public HashMap getParameterReport() {
+    protected  HashMap getParameterReport() {
         parameter = new HashMap();
         
         parameter.put("ID", studentId);
-        parameter.put("NAME", studentName);
-        parameter.put("COURSE", courseName);
+        parameter.put("NAME", new StudentDAO().readByID(studentId).getFullName());
+        parameter.put("COURSE", new CourseDAO().readById(courseId).getName());
         parameter.put("SUBJECTID", "Subject Code");
         parameter.put("SUBJECTNAME", "Subject Name");
         parameter.put("MARK", "Final Mark");
@@ -52,13 +54,13 @@ public class StudentMarkReportManager extends ReportManager {
         return parameter;
     }
 
-    public String getSubjectName(String subID, ArrayList<Subject> subList){
+    private String getSubjectName(String subID, ArrayList<Subject> subList){
         for(Subject sub : subList){
             if(sub.getId().compareTo(subID) == 0) return sub.getName();
         }
         return null;
     }
-    public JRDataSource getJRMapCollectionDataSource(ArrayList<Mark> markList, ArrayList<Subject> subList) {
+    private JRDataSource getJRMapCollectionDataSource(ArrayList<Mark> markList, ArrayList<Subject> subList) {
         ArrayList collection = new ArrayList();
 
         HashMap row = null;

@@ -2,22 +2,24 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.hueic.CerGS.component.report;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JRViewer;
 
 /**
@@ -29,18 +31,50 @@ public abstract class ReportManager {
     protected String jasperFileName;
     protected HashMap parameter;
     protected JRDataSource dataSource;
+    protected JasperReport jasperReport;
     protected InputStream input;
 
-    public abstract HashMap getParameterReport();
-    
-    public JasperPrint getJasperPrint(){
-        JasperPrint jasperPrint = null;
+    protected abstract HashMap getParameterReport();
 
-        input = getInputStream();
-        parameter = getParameterReport();
-        
+    protected JasperReport getReport(String filename) throws JRException {
+        if (System.getProperty("DEBUG") != null) {
+            System.out.println("JasperReportUtils-> Checking report: " + filename);
+        }
+
+        String jasperFilename = filename;
+        if (filename.indexOf(".xml") > -1) {
+            jasperFilename = filename.substring(
+                    0, filename.lastIndexOf(".xml"));
+        }
+        if (filename.indexOf(".jrxml") > -1) {
+            jasperFilename = filename.substring(
+                    0, filename.lastIndexOf(".jrxml"));
+        }
+        File jasperFile = new File(jasperFilename + ".jasper");
+        if (!jasperFile.exists()) {
+            //The XML should exist so compile that
+            File xmlFile = new File(filename);
+            if (!xmlFile.exists()) {
+                return null;
+            }
+            JasperCompileManager.compileReportToFile(
+                    xmlFile.getPath(), jasperFile.getPath());
+        }
+        if (!jasperFile.exists()) {
+            return null;
+        }
+        //Load and return the report
+        return (JasperReport) JRLoader.loadObject(jasperFile.getPath());
+    }
+
+    private JasperPrint getJasperPrint() {
+        JasperPrint jasperPrint = null;
         try {
-            jasperPrint = JasperFillManager.fillReport(input, parameter, dataSource);
+            input = getInputStream();
+            parameter = getParameterReport();
+            jasperReport = getReport(jasperFileName);
+
+            jasperPrint = JasperFillManager.fillReport(jasperReport, parameter, dataSource);
         } catch (JRException ex) {
             Logger.getLogger(ReportManager.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -48,15 +82,15 @@ public abstract class ReportManager {
         return jasperPrint;
     }
 
-    public JPanel getJPanelViewer(){
+    public JPanel getJPanelViewer() {
         return new JRViewer(getJasperPrint());
     }
 
-    public void exportToPdfFile(String pdfFileName) throws JRException{
+    public void exportToPdfFile(String pdfFileName) throws JRException {
         JasperExportManager.exportReportToPdfFile(getJasperPrint(), pdfFileName);
     }
 
-    public InputStream getInputStream(){
+    private InputStream getInputStream() {
         URL url = getClass().getResource("../../report/" + jasperFileName);
         try {
             input = url.openStream();
@@ -66,5 +100,4 @@ public abstract class ReportManager {
             return input;
         }
     }
-
 }
