@@ -20,7 +20,6 @@ import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
  */
 public class StudentReportManager extends ReportManager{
 
-    public static final String JASPERFILE = "Student.jasper";
     private String course;
 
     public StudentReportManager(String course,ArrayList<Student> stList, ArrayList<Register> regisList) {
@@ -30,7 +29,7 @@ public class StudentReportManager extends ReportManager{
     }
 
     @Override
-    public HashMap getParameterReport() {
+    protected  HashMap getParameterReport() {
         parameter = new HashMap();
 
         parameter.put("ID", "STUDENT ID");
@@ -42,7 +41,7 @@ public class StudentReportManager extends ReportManager{
         return parameter;
     }
 
-    public Date getRegistrationDateOfStudent(String id, ArrayList<Register> regisList){
+    private Date getRegistrationDateOfStudent(String id, ArrayList<Register> regisList){
         
         for(Register regis : regisList){
             if(regis.getId().compareTo(id) == 0) return regis.getRegisDate();
@@ -50,7 +49,7 @@ public class StudentReportManager extends ReportManager{
         return null;
     }
 
-    public JRDataSource getJRMapCollectionDataSource(ArrayList<Student> stList, ArrayList<Register> regisList) {
+    private JRDataSource getJRMapCollectionDataSource(ArrayList<Student> stList, ArrayList<Register> regisList) {
         ArrayList collection = new ArrayList();
 
         HashMap row = null;

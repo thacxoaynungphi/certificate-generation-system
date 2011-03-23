@@ -26,7 +26,7 @@ public class EmployeeReportManager extends ReportManager{
     }
 
     @Override
-    public HashMap getParameterReport() {
+    protected HashMap getParameterReport() {
         parameter = new HashMap();
 
         parameter.put("ID", "ID");
@@ -37,7 +37,7 @@ public class EmployeeReportManager extends ReportManager{
         return parameter;
     }
 
-    public JRDataSource getJRMapCollectionDataSource(ArrayList<Employee> empList) {
+    private JRDataSource getJRMapCollectionDataSource(ArrayList<Employee> empList) {
         HashMap row = null;
         ArrayList collection = new ArrayList();
         

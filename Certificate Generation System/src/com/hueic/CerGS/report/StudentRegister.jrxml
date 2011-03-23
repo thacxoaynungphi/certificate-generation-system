@@ -4,12 +4,12 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="ID" class="java.lang.String" isForPrompting="false"/>
-	<parameter name="FULLNAME" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="NAME" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="BIRTHDAY" class="java.lang.String"/>
 	<parameter name="COURSE" class="java.lang.String"/>
 	<parameter name="REGISTRATIONDAY" class="java.lang.String"/>
 	<field name="ID" class="java.lang.String"/>
-	<field name="FULLNAME" class="java.lang.String"/>
+	<field name="NAME" class="java.lang.String"/>
 	<field name="BIRTHDAY" class="java.lang.String"/>
 	<field name="RESTRATIONDAY" class="java.lang.String"/>
 	<variable name="NUMSTUDENT" class="java.lang.Integer" resetType="Column" calculation="Count">
@@ -20,13 +20,13 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="50">
+		<band height="70">
 			<staticText>
-				<reportElement x="0" y="0" width="555" height="50"/>
+				<reportElement x="0" y="0" width="555" height="70"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="26" isBold="true"/>
 				</textElement>
-				<text><![CDATA[The List of Student in Course]]></text>
+				<text><![CDATA[The List of Student New Registration in Course]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -44,7 +44,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{FULLNAME}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement mode="Opaque" x="301" y="3" width="60" height="20"/>
@@ -82,7 +82,7 @@
 				<reportElement x="541" y="2" width="1" height="21"/>
 			</line>
 			<textField>
-				<reportElement mode="Opaque" x="479" y="0" width="62" height="23"/>
+				<reportElement mode="Opaque" x="479" y="1" width="62" height="23"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
@@ -104,7 +104,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{FULLNAME}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="301" y="0" width="60" height="20"/>
@@ -114,7 +114,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{BIRTHDAY}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="410" y="1" width="60" height="20"/>
+				<reportElement x="401" y="1" width="60" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>

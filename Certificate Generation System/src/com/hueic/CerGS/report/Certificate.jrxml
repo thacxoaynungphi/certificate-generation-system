@@ -2,12 +2,12 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Certificate" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="32"/>
+	<property name="ireport.y" value="185"/>
 	<parameter name="NAME" class="java.lang.String"/>
 	<parameter name="DAY" class="java.lang.String"/>
 	<parameter name="MONTH" class="java.lang.String"/>
 	<parameter name="YEAR" class="java.lang.String"/>
-	<parameter name="CENTER" class="java.lang.String"/>
+	<parameter name="COURSE" class="java.lang.String"/>
 	<parameter name="GRADE" class="java.lang.String"/>
 	<parameter name="CURRENTDATE" class="java.lang.String"/>
 	<background>
@@ -109,7 +109,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="20" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{CENTER}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{COURSE}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="455" y="138" width="100" height="40"/>
