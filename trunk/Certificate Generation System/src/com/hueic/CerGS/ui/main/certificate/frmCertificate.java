@@ -11,9 +11,11 @@
 package com.hueic.CerGS.ui.main.certificate;
 
 import com.hueic.CerGS.dao.CertificateDAO;
+import com.hueic.CerGS.dao.RegisterDAO;
+import com.hueic.CerGS.dao.StudentDAO;
 import com.hueic.CerGS.entity.Certificate;
+import com.hueic.CerGS.entity.Register;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.regex.PatternSyntaxException;
 import javax.swing.JTable;
 import javax.swing.JViewport;
@@ -34,6 +36,7 @@ public class frmCertificate extends javax.swing.JFrame {
     private ArrayList<Certificate> listCertificate = new ArrayList<Certificate>();
     private CertificateDAO certificateDao;
     TableRowSorter<TableModel> sorter;
+    RegisterDAO registerDAO = new RegisterDAO();
 
     public frmCertificate() {
         initComponents();
@@ -41,6 +44,7 @@ public class frmCertificate extends javax.swing.JFrame {
         certificateDao = new CertificateDAO();
         listCertificate = certificateDao.readByAll();
         loadData(listCertificate);
+        LoadStudent();
     }
 
     public void loadData(ArrayList<Certificate> listCertificate) {
@@ -99,6 +103,15 @@ public class frmCertificate extends javax.swing.JFrame {
         txtScore.setText(String.valueOf(cer.getMark()));
         DateChooseDegreeDay.setDate(cer.getDegreeDay());
 
+    }
+
+    public void LoadStudent() {
+        ArrayList<Register> listRegister = registerDAO.readByAll();
+        if (listRegister != null) {
+            for (int i = 0; i < listRegister.size(); i++) {
+                cbxStudentID.addItem(listRegister.get(i).getStudentId());
+            }
+        }
     }
 
     /** This method is called from within the constructor to

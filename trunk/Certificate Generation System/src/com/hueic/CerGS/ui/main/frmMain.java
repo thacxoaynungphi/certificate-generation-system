@@ -16,6 +16,7 @@ import com.hueic.CerGS.ui.system.frmAbout;
 import com.hueic.CerGS.component.GUIProperties;
 import com.hueic.CerGS.dao.GUIDAO;
 import com.hueic.CerGS.ui.main.employee.frmEmployee;
+import com.hueic.CerGS.ui.main.student.frmStudent;
 import com.hueic.CerGS.ui.system.frmChangePass;
 import java.net.URL;
 import javax.help.CSH;
@@ -40,7 +41,7 @@ public class frmMain extends javax.swing.JFrame {
         guip = new GUIProperties();
         guidao.setGUI(guip.PLAF_JGOODIES);
         bindingLang();
-        setSize(995, 700);
+        setSize(1100, 700);
         HelpSet hs = getHelpSet("com/hueic/CerGS/myhelp/sample.hs");
         HelpBroker hb = hs.createHelpBroker();
 
@@ -77,7 +78,27 @@ public class frmMain extends javax.swing.JFrame {
         buttonGroupLanguage = new javax.swing.ButtonGroup();
         buttonGroupSkin = new javax.swing.ButtonGroup();
         jPopupMenu1 = new javax.swing.JPopupMenu();
-        jPanel1 = new javax.swing.JPanel();
+        jTaskPane1 = new com.l2fprod.common.swing.JTaskPane();
+        jTaskPaneGroupManagementStudent = new com.l2fprod.common.swing.JTaskPaneGroup();
+        jTaskPaneGroupManagementEmployee = new com.l2fprod.common.swing.JTaskPaneGroup();
+        jTaskPaneGroup3 = new com.l2fprod.common.swing.JTaskPaneGroup();
+        jTaskPaneGroup4 = new com.l2fprod.common.swing.JTaskPaneGroup();
+        jTaskPaneGroup5 = new com.l2fprod.common.swing.JTaskPaneGroup();
+        jTaskPaneGroup6 = new com.l2fprod.common.swing.JTaskPaneGroup();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         mnuBSystem = new javax.swing.JMenuBar();
         mnuSystem = new javax.swing.JMenu();
@@ -88,6 +109,7 @@ public class frmMain extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         mnuIExit = new javax.swing.JMenuItem();
         mnuAdministrator = new javax.swing.JMenu();
+        mnuIManagementStudent = new javax.swing.JMenuItem();
         mnuEmployee = new javax.swing.JMenu();
         mnuIManagmentEmp = new javax.swing.JMenuItem();
         mnuStudent = new javax.swing.JMenu();
@@ -111,21 +133,130 @@ public class frmMain extends javax.swing.JFrame {
         setTitle("Certificate Generation System");
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jTaskPaneGroupManagementStudent.setTitle("Management Student");
+        jTaskPane1.add(jTaskPaneGroupManagementStudent);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Main1 copy.png"))); // NOI18N
+        jTaskPaneGroupManagementEmployee.setTitle("Management Employee");
+        jTaskPaneGroupManagementEmployee.setToolTipText("Management Employee");
+        jTaskPane1.add(jTaskPaneGroupManagementEmployee);
+        jTaskPane1.add(jTaskPaneGroup3);
+        jTaskPane1.add(jTaskPaneGroup4);
+        jTaskPane1.add(jTaskPaneGroup5);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(119, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 909, javax.swing.GroupLayout.PREFERRED_SIZE))
+        jTaskPaneGroup6.setTitle("Management Report");
+        jTaskPaneGroup6.setToolTipText("Management Report");
+        jTaskPane1.add(jTaskPaneGroup6);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Dollar.png"))); // NOI18N
+
+        jLabel3.setText("Test thu");
+
+        jLabel4.setText("Test thu");
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Dollar.png"))); // NOI18N
+
+        jLabel6.setText("Test thu");
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Dollar.png"))); // NOI18N
+
+        jLabel8.setText("Test thu");
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Dollar.png"))); // NOI18N
+
+        jLabel10.setText("Test thu");
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Dollar.png"))); // NOI18N
+
+        jLabel12.setText("Test thu");
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Dollar.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(108, 108, 108)
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(108, 108, 108)
+                        .addComponent(jLabel11)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(106, 106, 106))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addComponent(jLabel3))
+                            .addComponent(jLabel2)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addComponent(jLabel4))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel7)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(jLabel6)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addComponent(jLabel12))
+                            .addComponent(jLabel13)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addComponent(jLabel10))
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel9)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(147, 147, 147)
+                        .addComponent(jLabel8)))
+                .addContainerGap(249, Short.MAX_VALUE))
+        );
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/banner copy.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         mnuSystem.setText("System");
@@ -154,17 +285,33 @@ public class frmMain extends javax.swing.JFrame {
         mnuSystem.add(jSeparator1);
 
         mnuIExit.setText("Exit");
+        mnuIExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuIExitActionPerformed(evt);
+            }
+        });
         mnuSystem.add(mnuIExit);
 
         mnuBSystem.add(mnuSystem);
 
         mnuAdministrator.setText("Student");
+
+        mnuIManagementStudent.setText("Management Student");
+        mnuIManagementStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuIManagementStudentActionPerformed(evt);
+            }
+        });
+        mnuAdministrator.add(mnuIManagementStudent);
+
         mnuBSystem.add(mnuAdministrator);
 
-        mnuIManagmentEmp.setText("Managment Employee");
+        mnuEmployee.setText("Employe");
+
+        mnuIManagmentEmp.setText("Management Employee");
         mnuIManagmentEmp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuIManagmentEmpActionPerformed(evt);
+                mnuIManagmentEmpActionPerformed1(evt);
             }
         });
         mnuEmployee.add(mnuIManagmentEmp);
@@ -270,11 +417,21 @@ public class frmMain extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jTaskPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTaskPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
@@ -336,6 +493,23 @@ public class frmMain extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_mnuIHelpContentActionPerformed
 
+    private void mnuIExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuIExitActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_mnuIExitActionPerformed
+
+    private void mnuIManagementStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuIManagementStudentActionPerformed
+        // TODO add your handling code here:
+        frmStudent student = new frmStudent();
+        student.setVisible(true);
+    }//GEN-LAST:event_mnuIManagementStudentActionPerformed
+
+    private void mnuIManagmentEmpActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuIManagmentEmpActionPerformed1
+        // TODO add your handling code here:
+        frmEmployee employee = new frmEmployee();
+        employee.setVisible(true);
+    }//GEN-LAST:event_mnuIManagmentEmpActionPerformed1
+
     /**
      * @param args the command line arguments
      */
@@ -351,12 +525,33 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroupLanguage;
     private javax.swing.ButtonGroup buttonGroupSkin;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private com.l2fprod.common.swing.JTaskPane jTaskPane1;
+    private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroup3;
+    private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroup4;
+    private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroup5;
+    private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroup6;
+    private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroupManagementEmployee;
+    private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroupManagementStudent;
     private javax.swing.JMenuItem menuIChangePass;
     private javax.swing.JMenu mnuAdministrator;
     private javax.swing.JMenuBar mnuBSystem;
@@ -366,6 +561,7 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuIExit;
     private javax.swing.JMenuItem mnuIHelpContent;
     private javax.swing.JMenuItem mnuILoginSystem;
+    private javax.swing.JMenuItem mnuIManagementStudent;
     private javax.swing.JMenuItem mnuIManagmentEmp;
     private javax.swing.JMenuItem mnuISwitchUser;
     private javax.swing.JMenuItem mnuIViewInformation;
