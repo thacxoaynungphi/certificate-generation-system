@@ -11,9 +11,16 @@
 
 package com.hueic.CerGS.ui.main.payment;
 
+import com.hueic.CerGS.dao.PaymentDAO;
+import com.hueic.CerGS.entity.Payment;
+
 /**
  *
  * @author qhvic
+ *
+ *
+ * con cai Combobox Course hinh nhu bi du. chang co tac dung chi ca
+ *
  */
 public class frmAddPayment extends javax.swing.JFrame {
 
@@ -46,7 +53,7 @@ public class frmAddPayment extends javax.swing.JFrame {
         lblTitle = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         cbxCourse = new javax.swing.JComboBox();
-        DateChPayDay = new com.toedter.calendar.JDateChooser();
+        dateChPayDay = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Add Payment");
@@ -123,12 +130,22 @@ public class frmAddPayment extends javax.swing.JFrame {
         btnReset.setText("Reset");
         btnReset.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnReset.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnReset);
 
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
         btnCancel.setText("Cancel");
         btnCancel.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnCancel.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnCancel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -165,13 +182,13 @@ public class frmAddPayment extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(cbxCourse, gridBagConstraints);
 
-        DateChPayDay.setPreferredSize(new java.awt.Dimension(200, 20));
+        dateChPayDay.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 10, 5);
-        jPanel1.add(DateChPayDay, gridBagConstraints);
+        jPanel1.add(dateChPayDay, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -189,7 +206,27 @@ public class frmAddPayment extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
+        Payment pay = new Payment();
+        pay.setId(new PaymentDAO().readByAll().size() + 1);
+        pay.setMoney(Float.parseFloat(txtMoney.getText()));
+        pay.setPayday(dateChPayDay.getDate());
+        pay.setStudentId((String)cbxStudentID.getSelectedItem());
+
+        new PaymentDAO().create(pay);
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+        cbxCourse.setSelectedIndex(-1);
+        cbxStudentID.setSelectedIndex(-1);
+        txtMoney.setText("");
+        dateChPayDay.setDate(null);
+    }//GEN-LAST:event_btnResetActionPerformed
 
     /**
     * @param args the command line arguments
@@ -203,12 +240,12 @@ public class frmAddPayment extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser DateChPayDay;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnReset;
     private javax.swing.JComboBox cbxCourse;
     private javax.swing.JComboBox cbxStudentID;
+    private com.toedter.calendar.JDateChooser dateChPayDay;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;

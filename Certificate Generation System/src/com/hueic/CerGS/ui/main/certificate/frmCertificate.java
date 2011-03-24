@@ -103,7 +103,7 @@ public class frmCertificate extends javax.swing.JFrame {
     public void loadDetails(Certificate cer) {
         txtID.setText(String.valueOf(cer.getId()));
         txtScore.setText(String.valueOf(cer.getMark()));
-        DateChooseDegreeDay.setDate(cer.getDegreeDay());
+        dateChooseDegreeDay.setDate(cer.getDegreeDay());
 
     }
 
@@ -147,7 +147,7 @@ public class frmCertificate extends javax.swing.JFrame {
         sepaCertificate = new javax.swing.JSeparator();
         lblID = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
-        DateChooseDegreeDay = new com.toedter.calendar.JDateChooser();
+        dateChooseDegreeDay = new com.toedter.calendar.JDateChooser();
         srcPanelAccount = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
         filterText = new javax.swing.JTextField();
@@ -318,13 +318,13 @@ public class frmCertificate extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(txtID, gridBagConstraints);
 
-        DateChooseDegreeDay.setPreferredSize(new java.awt.Dimension(200, 20));
+        dateChooseDegreeDay.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jPanel1.add(DateChooseDegreeDay, gridBagConstraints);
+        jPanel1.add(dateChooseDegreeDay, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -463,7 +463,7 @@ public class frmCertificate extends javax.swing.JFrame {
 
         if(i1 == i2){
             listCertificate.get(i2).setMark(new MarkDAO().getStudentMark((String) cbxStudentID.getSelectedItem()));
-            listCertificate.get(i2).setDegreeDay(DateChooseDegreeDay.getDate());
+            listCertificate.get(i2).setDegreeDay(dateChooseDegreeDay.getDate());
             new CertificateDAO().update(listCertificate.get(i2));
         }
 }//GEN-LAST:event_btnUpdateActionPerformed
@@ -495,7 +495,7 @@ public class frmCertificate extends javax.swing.JFrame {
         Certificate certificate = new Certificate();
         certificate.setId(Integer.parseInt(txtID.getText().trim()));
         certificate.setMark(new MarkDAO().getStudentMark((String)cbxStudentID.getSelectedItem()));
-        certificate.setDegreeDay(DateChooseDegreeDay.getDate());
+        certificate.setDegreeDay(dateChooseDegreeDay.getDate());
         certificate.setStudentID((String)cbxStudentID.getSelectedItem());
 
         listCertificate.add(certificate);
@@ -530,13 +530,13 @@ public class frmCertificate extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser DateChooseDegreeDay;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnFilter;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox cbxStudentID;
+    private com.toedter.calendar.JDateChooser dateChooseDegreeDay;
     private javax.swing.JTextField filterText;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

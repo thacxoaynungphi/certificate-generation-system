@@ -36,6 +36,7 @@ public class frmPayment extends javax.swing.JFrame {
 
     /** Creates new form frmAccount */
     private ObjectTableModel tableModel;
+    private int currentId;
     private ArrayList<Payment> listPayments = new ArrayList<Payment>();
     private PaymentDAO paymentDao;
     TableRowSorter<TableModel> sorter;
@@ -99,8 +100,11 @@ public class frmPayment extends javax.swing.JFrame {
     }
 
     public void loadDetails(Payment payment) {
-//        txtUsername.setText(acc.getUsername());
-//        txtPassword.setText(acc.getPassword());
+        currentId = payment.getId();
+        txtMoney.setText(String.valueOf(payment.getMoney()));
+        cbxCourse.setSelectedItem(new RegisterDAO().readByStudentId(payment.getStudentId()).getCourseId());
+        cbxStudentID.setSelectedItem(payment.getStudentId());
+        dateChPayDay.setDate(payment.getPayday());
     }
 
     public void loadCourse() {
@@ -151,7 +155,7 @@ public class frmPayment extends javax.swing.JFrame {
         lblTitle = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         cbxCourse = new javax.swing.JComboBox();
-        DateChPayDay = new com.toedter.calendar.JDateChooser();
+        dateChPayDay = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Managment Account");
@@ -320,12 +324,22 @@ public class frmPayment extends javax.swing.JFrame {
         jPanel2.add(btnUpdate);
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnDelete);
 
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
         btnCancel.setText("Cancel");
         btnCancel.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnCancel.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnCancel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -369,14 +383,14 @@ public class frmPayment extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(cbxCourse, gridBagConstraints);
 
-        DateChPayDay.setPreferredSize(new java.awt.Dimension(200, 20));
+        dateChPayDay.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 10, 5);
-        jPanel1.add(DateChPayDay, gridBagConstraints);
+        jPanel1.add(dateChPayDay, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -439,7 +453,7 @@ public class frmPayment extends javax.swing.JFrame {
 
         payment.setId(listPayments.size() + 1);
         payment.setMoney(Float.parseFloat(txtMoney.getText()));
-        payment.setPayday(DateChPayDay.getDate());
+        payment.setPayday(dateChPayDay.getDate());
         payment.setStudentId((String) cbxStudentID.getSelectedItem());
 
         listPayments.add(payment);
@@ -456,10 +470,8 @@ public class frmPayment extends javax.swing.JFrame {
         for (int i = 0; i < listPayments.size(); i++) {
             if (listPayments.get(i).getId() == id) {
                 return i;
-                
             }
         }
-
         return -1;
     }
     private void cbxCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCourseActionPerformed
@@ -482,7 +494,25 @@ public class frmPayment extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+        int index = getIndexOfPaymentInList(currentId);
+        listPayments.get(index).setMoney(Float.parseFloat(txtMoney.getText()));
+        listPayments.get(index).setPayday(dateChPayDay.getDate());
+
+        loadData(listPayments);
+        new PaymentDAO().update(listPayments.get(index));
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        Payment pay = listPayments.remove(getIndexOfPaymentInList(currentId));
+        new PaymentDAO().delete(pay);
+        loadData(listPayments);
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -496,7 +526,6 @@ public class frmPayment extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser DateChPayDay;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnDelete;
@@ -504,6 +533,7 @@ public class frmPayment extends javax.swing.JFrame {
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox cbxCourse;
     private javax.swing.JComboBox cbxStudentID;
+    private com.toedter.calendar.JDateChooser dateChPayDay;
     private javax.swing.JTextField filterText;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
