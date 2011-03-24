@@ -464,6 +464,7 @@ public class frmCertificate extends javax.swing.JFrame {
         if(i1 == i2){
             listCertificate.get(i2).setMark(new MarkDAO().getStudentMark((String) cbxStudentID.getSelectedItem()));
             listCertificate.get(i2).setDegreeDay(DateChooseDegreeDay.getDate());
+            new CertificateDAO().update(listCertificate.get(i2));
         }
 }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -499,6 +500,7 @@ public class frmCertificate extends javax.swing.JFrame {
 
         listCertificate.add(certificate);
 
+        new CertificateDAO().create(certificate);
         loadData(listCertificate);
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -508,7 +510,8 @@ public class frmCertificate extends javax.swing.JFrame {
         int i2 = getIndexCertificateInListByStudentId((String) cbxStudentID.getSelectedItem());
 
         if(i1 == i2){
-            listCertificate.remove(i2);
+            Certificate cer = listCertificate.remove(i2);
+            new CertificateDAO().update(cer);
             loadData(listCertificate);
         } else {
             JOptionPane.showMessageDialog(this, "Please select StudentId and enter ID of Certificate", "Message", JOptionPane.INFORMATION_MESSAGE);

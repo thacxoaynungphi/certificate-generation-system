@@ -12,8 +12,10 @@ package com.hueic.CerGS.ui.main.payment;
 
 import com.hueic.CerGS.dao.CourseDAO;
 import com.hueic.CerGS.dao.PaymentDAO;
+import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.entity.Course;
 import com.hueic.CerGS.entity.Payment;
+import com.hueic.CerGS.entity.Register;
 import com.l2fprod.common.swing.ObjectTableModel;
 import java.util.ArrayList;
 import java.util.regex.PatternSyntaxException;
@@ -270,6 +272,11 @@ public class frmPayment extends javax.swing.JFrame {
 
         cbxStudentID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxStudentID.setPreferredSize(new java.awt.Dimension(200, 20));
+        cbxStudentID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxStudentIDActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -294,12 +301,22 @@ public class frmPayment extends javax.swing.JFrame {
         btnAdd.setText("Add");
         btnAdd.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnAdd.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnAdd);
 
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
         btnUpdate.setText("Update");
         btnUpdate.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnUpdate.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnUpdate);
 
         btnDelete.setText("Delete");
@@ -339,6 +356,11 @@ public class frmPayment extends javax.swing.JFrame {
 
         cbxCourse.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxCourse.setPreferredSize(new java.awt.Dimension(200, 20));
+        cbxCourse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxCourseActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -386,7 +408,7 @@ public class frmPayment extends javax.swing.JFrame {
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
-        if (listPayments.size() != 0) {
+        if (!listPayments.isEmpty()) {
             String text = filterText.getText();
             if (text.length() == 0) {
                 sorter.setRowFilter(null);
@@ -399,6 +421,54 @@ public class frmPayment extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnFilterActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        Payment payment = new Payment();
+
+        payment.setId(listPayments.size() + 1);
+        payment.setMoney(Float.parseFloat(txtMoney.getText()));
+        payment.setPayday(DateChPayDay.getDate());
+        payment.setStudentId((String) cbxStudentID.getSelectedItem());
+
+        listPayments.add(payment);
+        new PaymentDAO().create(payment);
+
+        loadData(listPayments);
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void cbxStudentIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxStudentIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxStudentIDActionPerformed
+
+    public int getIndexOfPaymentInList(int id){
+        for(int i = 0; i < listPayments.size(); i++){
+            if(listPayments.get(i).getId() == id) return i;
+        }
+
+        return -1;
+    }
+    private void cbxCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCourseActionPerformed
+        // TODO add your handling code here:
+        String courseId = (String) cbxCourse.getSelectedItem();
+        ArrayList<Register> resList = new RegisterDAO().readByCourseId(courseId);
+
+        listPayments.clear();
+
+        for(Register res : resList){
+            ArrayList<Payment> payList = new PaymentDAO().readByStudentId(res.getStudentId());
+
+            for(Payment pay : payList){
+                listPayments.add(pay);
+            }
+        }
+
+        loadData(listPayments);
+    }//GEN-LAST:event_cbxCourseActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     /**
      * @param args the command line arguments

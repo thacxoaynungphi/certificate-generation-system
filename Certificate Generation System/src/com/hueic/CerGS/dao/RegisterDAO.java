@@ -76,7 +76,7 @@ public class RegisterDAO extends BaseDAO {
             pst.setString(1, studentID);
 
             rs = pst.executeQuery();
-            if (rs.next()) {
+            if (rs.first()) {
                 regis = new Register();
 
                 regis.setId(rs.getString("Id"));
@@ -91,6 +91,33 @@ public class RegisterDAO extends BaseDAO {
             setLastError("SQL Error!");
         }
         return regis;
+    }
+
+    public ArrayList<Register> readByCourseId(String courseId) {
+        ArrayList<Register> resList = new ArrayList<Register>();
+        Register regis = null;
+        try {
+            con = db.getConnection();
+            String sql = "select * from Register where CourseId = ?";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, courseId);
+
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                regis = new Register();
+
+                regis.setId(rs.getString("Id"));
+                regis.setCourseId(rs.getString("CourseId"));
+                regis.setFeeStructe(rs.getInt("FeeStructe"));
+                regis.setRegisDate(rs.getDate("RegistrationDate"));
+                regis.setStudentId(rs.getString("StudentId"));
+
+                resList.add(regis);
+            }
+        } catch (SQLException ex) {
+            setLastError("SQL Error!");
+        }
+        return resList;
     }
 
     public boolean create(Register regis) {

@@ -6,6 +6,7 @@ package com.hueic.CerGS.dao;
 
 import com.hueic.CerGS.entity.Payment;
 import com.hueic.CerGS.util.Configure;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class PaymentDAO extends BaseDAO {
                 pay.setId(rs.getInt("Id"));
                 pay.setStudentId(rs.getString("StudentId"));
                 pay.setMoney(rs.getFloat("Money"));
-                pay.setPayday(rs.getString("Payday"));
+                pay.setPayday(rs.getDate("Payday"));
                 result.add(pay);
             }
 
@@ -61,7 +62,7 @@ public class PaymentDAO extends BaseDAO {
                 pay.setId(rs.getInt("Id"));
                 pay.setStudentId(rs.getString("StudentId"));
                 pay.setMoney(rs.getFloat("Money"));
-                pay.setPayday(rs.getString("Payday"));
+                pay.setPayday(rs.getDate("Payday"));
 
                 result.add(pay);
             }
@@ -75,6 +76,32 @@ public class PaymentDAO extends BaseDAO {
         }
     }
 
+    public ArrayList<Payment> readByStudentId(String studentID) {
+        ArrayList<Payment> payList = new ArrayList<Payment>();
+        Payment pay = null;
+        try {
+            con = db.getConnection();
+            String sql = "select * from Payment where StudentId = ?";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, studentID);
+
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                pay = new Payment();
+
+                pay.setId(rs.getInt("Id"));
+                pay.setStudentId(rs.getString("StudentId"));
+                pay.setMoney(rs.getFloat("Money"));
+                pay.setPayday(rs.getDate("Payday"));
+
+                payList.add(pay);
+            }
+        } catch (SQLException ex) {
+            setLastError("SQL Error!");
+        }
+        return payList;
+    }
+
     public boolean create(Payment pay) {
         boolean status = false;
         con = db.getConnection();
@@ -85,7 +112,7 @@ public class PaymentDAO extends BaseDAO {
             pst.setInt(1, pay.getId());
             pst.setString(2, pay.getStudentId());
             pst.setFloat(3, pay.getMoney());
-            pst.setString(4, pay.getPayday());
+            pst.setDate(4, (Date) pay.getPayday());
 
             if (pst.execute()) {
                 setLastError("Add fee successful");
@@ -115,7 +142,7 @@ public class PaymentDAO extends BaseDAO {
                 rs.updateInt("Id", pay.getId());
                 rs.updateString("StudentId", pay.getStudentId());
                 rs.updateFloat("Money", pay.getMoney());
-                rs.updateString("Payday", pay.getPayday());
+                rs.updateDate("Payday", (Date) pay.getPayday());
                 rs.updateRow();
 
                 setLastError("Add fee successful");

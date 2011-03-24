@@ -4,6 +4,8 @@
  */
 package com.hueic.CerGS.entity;
 
+import java.util.Date;
+
 
 /**
  *
@@ -18,7 +20,7 @@ public class Payment{
     private int id;
     private String studentId;
     private float money;
-    private String payday;
+    private Date payday;
 
     public Payment() {
         setId(0);
@@ -27,7 +29,7 @@ public class Payment{
         setPayday(null);
     }
 
-    public Payment(int id, String studentId, float money, String payday) {
+    public Payment(int id, String studentId, float money, Date payday) {
         setId(id);
         setStudentId(studentId);
         setMoney(money);
@@ -79,14 +81,14 @@ public class Payment{
     /**
      * @return the payday
      */
-    public String getPayday() {
+    public Date getPayday() {
         return payday;
     }
 
     /**
      * @param payday the payday to set
      */
-    public void setPayday(String payday) {
+    public void setPayday(Date payday) {
         this.payday = payday;
     }
 }
