@@ -115,7 +115,7 @@ public class frmMark extends javax.swing.JFrame {
         panelBanner.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/banner 832.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/BannerMark.png"))); // NOI18N
 
         javax.swing.GroupLayout panelBannerLayout = new javax.swing.GroupLayout(panelBanner);
         panelBanner.setLayout(panelBannerLayout);

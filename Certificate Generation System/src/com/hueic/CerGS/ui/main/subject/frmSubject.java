@@ -277,7 +277,7 @@ public class frmSubject extends javax.swing.JFrame {
         panel4.setBackground(new java.awt.Color(255, 255, 255));
         panel4.setLayout(new java.awt.GridBagLayout());
 
-        lblBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/banner 832.png"))); // NOI18N
+        lblBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/BannerSubject.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
