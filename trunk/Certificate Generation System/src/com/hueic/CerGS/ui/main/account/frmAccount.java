@@ -220,7 +220,7 @@ public class frmAccount extends javax.swing.JFrame {
         panelRight.setMinimumSize(new java.awt.Dimension(832, 321));
         panelRight.setLayout(new java.awt.GridBagLayout());
 
-        srcPanelAccount.setPreferredSize(new java.awt.Dimension(400, 200));
+        srcPanelAccount.setPreferredSize(new java.awt.Dimension(350, 200));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -241,7 +241,7 @@ public class frmAccount extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tableContent.setPreferredSize(new java.awt.Dimension(400, 200));
+        tableContent.setPreferredSize(new java.awt.Dimension(350, 200));
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableContentMouseClicked(evt);
