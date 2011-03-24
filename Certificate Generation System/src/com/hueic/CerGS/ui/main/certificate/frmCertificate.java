@@ -144,14 +144,13 @@ public class frmCertificate extends javax.swing.JFrame {
         lblID = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
         DateChooseDegreeDay = new com.toedter.calendar.JDateChooser();
-        jPanel4 = new javax.swing.JPanel();
         srcPanelAccount = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
         filterText = new javax.swing.JTextField();
         btnFilter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Managment Account");
+        setTitle("Managment Certificate");
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(831, 100));
         setResizable(false);
@@ -321,17 +320,13 @@ public class frmCertificate extends javax.swing.JFrame {
         panelDetails.add(jPanel1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 3;
         gridBagConstraints.ipadx = 40;
         gridBagConstraints.ipady = 20;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 6, 0, 0);
         panelRight.add(panelDetails, gridBagConstraints);
-
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setPreferredSize(new java.awt.Dimension(370, 200));
-        jPanel4.setLayout(new java.awt.GridBagLayout());
 
         srcPanelAccount.setPreferredSize(new java.awt.Dimension(200, 256));
 
@@ -360,24 +355,25 @@ public class frmCertificate extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 440;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
-        jPanel4.add(srcPanelAccount, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 10, 5);
+        panelRight.add(srcPanelAccount, gridBagConstraints);
 
-        filterText.setPreferredSize(new java.awt.Dimension(200, 20));
+        filterText.setPreferredSize(new java.awt.Dimension(10, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 100;
+        gridBagConstraints.ipadx = 150;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jPanel4.add(filterText, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(5, 200, 5, 5);
+        panelRight.add(filterText, gridBagConstraints);
 
         btnFilter.setText("Filter");
-        btnFilter.setMaximumSize(new java.awt.Dimension(57, 20));
-        btnFilter.setMinimumSize(new java.awt.Dimension(57, 20));
+        btnFilter.setMaximumSize(new java.awt.Dimension(90, 20));
+        btnFilter.setMinimumSize(new java.awt.Dimension(90, 20));
         btnFilter.setPreferredSize(new java.awt.Dimension(90, 20));
         btnFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -389,14 +385,7 @@ public class frmCertificate extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jPanel4.add(btnFilter, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 300;
-        gridBagConstraints.ipady = 170;
-        panelRight.add(jPanel4, gridBagConstraints);
+        panelRight.add(btnFilter, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -485,7 +474,6 @@ public class frmCertificate extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lblDegreeDay;
     private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblLogo;
