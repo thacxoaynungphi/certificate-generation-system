@@ -114,13 +114,13 @@ public class CourseDAO extends BaseDAO {
         }
     }
 
-    public boolean delete(Course course){
+    public boolean delete(String id){
         boolean status = false;
         con = db.getConnection();
         String sqlcommand = "delete from Course where id like ?";
         try{
             pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            pst.setString(1, course.getId());
+            pst.setString(1, id);
             if(pst.execute()){
                 setLastError("Delete Course successful");
             } else {

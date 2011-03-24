@@ -31,6 +31,13 @@ public class Course {
         setStatus(1);
     }
 
+     public Course(String id, String name,float totalFees,int status) {
+        setId(id);
+        setName(name);
+        setTotalFees(totalFees);
+        setStatus(status);
+    }
+
     /**
      * @return the id
      */

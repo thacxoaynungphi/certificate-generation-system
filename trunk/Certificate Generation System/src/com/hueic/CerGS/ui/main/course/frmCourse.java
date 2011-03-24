@@ -14,6 +14,7 @@ import com.hueic.CerGS.dao.CourseDAO;
 import com.hueic.CerGS.entity.Course;
 import java.util.ArrayList;
 import java.util.regex.PatternSyntaxException;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
@@ -31,15 +32,19 @@ public class frmCourse extends javax.swing.JFrame {
 
     /** Creates new form frmCourse */
     private ArrayList<Course> listCourses = new ArrayList<Course>();
-    private CourseDAO accDao;
+    private CourseDAO courseDao;
     TableRowSorter<TableModel> sorter;
+    boolean isAdd = false;
 
     public frmCourse() {
         initComponents();
         setLocationRelativeTo(null);
-        accDao = new CourseDAO();
-        listCourses = accDao.readByAll();
+        courseDao = new CourseDAO();
+        listCourses = courseDao.readByAll();
         loadData(listCourses);
+        if (listCourses.size() != 0) {
+            loadDetails(listCourses.get(0));
+        }
     }
 
     public void loadData(ArrayList<Course> listCourses) {
@@ -255,23 +260,43 @@ public class frmCourse extends javax.swing.JFrame {
         btnAdd.setText("Add");
         btnAdd.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnAdd.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
         jPanel5.add(btnAdd);
 
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
         btnUpdate.setText("Update");
         btnUpdate.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnUpdate.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
         jPanel5.add(btnUpdate);
 
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
         btnDelete.setText("Delete");
         btnDelete.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
         jPanel5.add(btnDelete);
 
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
         btnCancel.setText("Cancel");
         btnCancel.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnCancel.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
         jPanel5.add(btnCancel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -417,6 +442,99 @@ public class frmCourse extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnFilterActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        if (isAdd) {
+            isAdd = false;
+            btnUpdate.setEnabled(true);
+            btnDelete.setEnabled(true);
+        } else {
+            loadDetails(listCourses.get(0));
+        }
+    }//GEN-LAST:event_btnCancelActionPerformed
+
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        String id = txtID.getText();
+        if (courseDao.delete(id)) {
+            JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Delete Course", JOptionPane.INFORMATION_MESSAGE, null);
+            listCourses.remove(find(id));
+            loadData(listCourses);
+            if (listCourses.size() != 0) {
+                loadDetails(listCourses.get(0));
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Delete Course", JOptionPane.ERROR_MESSAGE, null);
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        try {
+            String id = txtID.getText();
+            String name = txtName.getText();
+            float totalFees = Float.parseFloat(txtTotalFees.getText());
+            int status = 0;
+            if (radioEnable.isSelected()) {
+                status = 1;
+
+            } else {
+                status = 0;
+
+            }
+            Course course = new Course(id, name, totalFees, status);
+            if (courseDao.update(course)) {
+                JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Update Course", JOptionPane.INFORMATION_MESSAGE);
+                listCourses.remove(find(course.getId()));
+                listCourses.add(course);
+                loadData(listCourses);
+                loadDetails(course);
+
+            } else {
+                JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Update Course", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+
+        try {
+            if (!isAdd) {
+                isAdd = true;
+                btnUpdate.setEnabled(false);
+                btnDelete.setEnabled(false);
+            } else {
+                String id = txtID.getText();
+                String name = txtName.getText();
+                float totalFees = Float.parseFloat(txtTotalFees.getText());
+                int status = 0;
+                if (radioEnable.isSelected()) {
+                    status = 1;
+
+                } else {
+                    status = 0;
+                }
+                Course course = new Course(id, name, totalFees, status);
+                if (courseDao.create(course)) {
+                    JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Create Course", JOptionPane.INFORMATION_MESSAGE);
+                    listCourses.remove(find(course.getId()));
+                    listCourses.add(course);
+                    loadData(listCourses);
+                    loadDetails(course);
+                    isAdd = false;
+                    btnUpdate.setEnabled(true);
+                    btnDelete.setEnabled(true);
+                } else {
+                    JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Create Course", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnAddActionPerformed
 
     /**
      * @param args the command line arguments
