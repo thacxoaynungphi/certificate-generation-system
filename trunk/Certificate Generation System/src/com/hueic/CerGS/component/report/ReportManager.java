@@ -28,7 +28,8 @@ import net.sf.jasperreports.view.JRViewer;
  */
 public abstract class ReportManager {
 
-    protected String jasperFileName;
+    protected String jrxmlFileName;
+    protected String jrxmlFolderName;
     protected HashMap parameter;
     protected JRDataSource dataSource;
     protected JasperReport jasperReport;
@@ -72,7 +73,10 @@ public abstract class ReportManager {
         try {
             input = getInputStream();
             parameter = getParameterReport();
-            jasperReport = getReport(jasperFileName);
+            jasperReport = getReport("\\" + jrxmlFileName);
+
+            if(jasperReport != null) System.out.println(jasperReport.getColumnCount());
+            else System.out.println("123");
 
             jasperPrint = JasperFillManager.fillReport(jasperReport, parameter, dataSource);
         } catch (JRException ex) {
@@ -91,7 +95,7 @@ public abstract class ReportManager {
     }
 
     private InputStream getInputStream() {
-        URL url = getClass().getResource("../../report/" + jasperFileName);
+        URL url = getClass().getResource("../../report/" + jrxmlFileName);
         try {
             input = url.openStream();
         } catch (IOException ex) {

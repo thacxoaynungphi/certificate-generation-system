@@ -21,7 +21,7 @@ public class EmployeeReportManager extends ReportManager{
     }
 
     public EmployeeReportManager(ArrayList<Employee> empList){
-        jasperFileName = "EmployeeList.jasper";
+        jrxmlFileName = "EmployeeList.jrxml";
         dataSource = getJRMapCollectionDataSource(empList);
     }
 
