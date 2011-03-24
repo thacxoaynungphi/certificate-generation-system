@@ -12,7 +12,6 @@ package com.hueic.CerGS.ui.main.certificate;
 
 import com.hueic.CerGS.dao.CertificateDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
-import com.hueic.CerGS.dao.StudentDAO;
 import com.hueic.CerGS.entity.Certificate;
 import com.hueic.CerGS.entity.Register;
 import java.util.ArrayList;
@@ -124,11 +123,10 @@ public class frmCertificate extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        jPanel3 = new javax.swing.JPanel();
         panelLeft = new javax.swing.JPanel();
         lblLogo = new javax.swing.JLabel();
         panelRight = new javax.swing.JPanel();
-        srcPanelAccount = new javax.swing.JScrollPane();
-        tableContent = new javax.swing.JTable();
         panelDetails = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         lblStudentID = new javax.swing.JLabel();
@@ -146,46 +144,46 @@ public class frmCertificate extends javax.swing.JFrame {
         lblID = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
         DateChooseDegreeDay = new com.toedter.calendar.JDateChooser();
+        jPanel4 = new javax.swing.JPanel();
+        srcPanelAccount = new javax.swing.JScrollPane();
+        tableContent = new javax.swing.JTable();
         filterText = new javax.swing.JTextField();
         btnFilter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Managment Account");
         setBackground(new java.awt.Color(255, 255, 255));
+        setMinimumSize(new java.awt.Dimension(831, 100));
         setResizable(false);
+        getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        jPanel3.setMinimumSize(new java.awt.Dimension(831, 300));
+        jPanel3.setPreferredSize(new java.awt.Dimension(831, 350));
+        jPanel3.setLayout(new java.awt.GridBagLayout());
 
         panelLeft.setBackground(new java.awt.Color(255, 255, 255));
+        panelLeft.setPreferredSize(new java.awt.Dimension(832, 100));
+        panelLeft.setLayout(new java.awt.GridBagLayout());
 
-        javax.swing.GroupLayout panelLeftLayout = new javax.swing.GroupLayout(panelLeft);
-        panelLeft.setLayout(panelLeftLayout);
-        panelLeftLayout.setHorizontalGroup(
-            panelLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 760, Short.MAX_VALUE)
-        );
-        panelLeftLayout.setVerticalGroup(
-            panelLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-        );
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/banner 832.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        panelLeft.add(lblLogo, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel3.add(panelLeft, gridBagConstraints);
 
         panelRight.setBackground(new java.awt.Color(255, 255, 255));
+        panelRight.setPreferredSize(new java.awt.Dimension(832, 416));
+        panelRight.setLayout(new java.awt.GridBagLayout());
 
-        tableContent.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableContentMouseClicked(evt);
-            }
-        });
-        srcPanelAccount.setViewportView(tableContent);
+        panelDetails.setBackground(new java.awt.Color(255, 255, 255));
+        panelDetails.setLayout(new java.awt.GridBagLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Managment Certificate", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
@@ -315,71 +313,100 @@ public class frmCertificate extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(DateChooseDegreeDay, gridBagConstraints);
 
-        javax.swing.GroupLayout panelDetailsLayout = new javax.swing.GroupLayout(panelDetails);
-        panelDetails.setLayout(panelDetailsLayout);
-        panelDetailsLayout.setHorizontalGroup(
-            panelDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
-        );
-        panelDetailsLayout.setVerticalGroup(
-            panelDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelDetails.add(jPanel1, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 40;
+        gridBagConstraints.ipady = 20;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 6, 0, 0);
+        panelRight.add(panelDetails, gridBagConstraints);
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setPreferredSize(new java.awt.Dimension(370, 200));
+        jPanel4.setLayout(new java.awt.GridBagLayout());
+
+        srcPanelAccount.setPreferredSize(new java.awt.Dimension(200, 256));
+
+        tableContent.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tableContent.setPreferredSize(new java.awt.Dimension(300, 100));
+        tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableContentMouseClicked(evt);
+            }
+        });
+        srcPanelAccount.setViewportView(tableContent);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
+        jPanel4.add(srcPanelAccount, gridBagConstraints);
+
+        filterText.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 100;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel4.add(filterText, gridBagConstraints);
 
         btnFilter.setText("Filter");
         btnFilter.setMaximumSize(new java.awt.Dimension(57, 20));
         btnFilter.setMinimumSize(new java.awt.Dimension(57, 20));
-        btnFilter.setPreferredSize(new java.awt.Dimension(57, 20));
+        btnFilter.setPreferredSize(new java.awt.Dimension(90, 20));
         btnFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFilterActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel4.add(btnFilter, gridBagConstraints);
 
-        javax.swing.GroupLayout panelRightLayout = new javax.swing.GroupLayout(panelRight);
-        panelRight.setLayout(panelRightLayout);
-        panelRightLayout.setHorizontalGroup(
-            panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRightLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelRightLayout.createSequentialGroup()
-                        .addComponent(filterText, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(srcPanelAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        panelRightLayout.setVerticalGroup(
-            panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRightLayout.createSequentialGroup()
-                .addGroup(panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelRightLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(filterText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(srcPanelAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(panelDetails, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 300;
+        gridBagConstraints.ipady = 170;
+        panelRight.add(jPanel4, gridBagConstraints);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelLeft, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(panelRight, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelLeft, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelRight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel3.add(panelRight, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        getContentPane().add(jPanel3, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -457,6 +484,8 @@ public class frmCertificate extends javax.swing.JFrame {
     private javax.swing.JTextField filterText;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lblDegreeDay;
     private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblLogo;

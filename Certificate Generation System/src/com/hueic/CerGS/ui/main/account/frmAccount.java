@@ -193,24 +193,34 @@ public class frmAccount extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Managment Account");
         setBackground(new java.awt.Color(255, 255, 255));
+        setMinimumSize(new java.awt.Dimension(832, 421));
         setResizable(false);
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
         panelLeft.setBackground(new java.awt.Color(255, 255, 255));
+        panelLeft.setPreferredSize(new java.awt.Dimension(832, 100));
+        panelLeft.setLayout(new java.awt.GridBagLayout());
 
         lblLogo.setBackground(new java.awt.Color(255, 255, 255));
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/banner 832.png"))); // NOI18N
+        lblLogo.setPreferredSize(new java.awt.Dimension(831, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        panelLeft.add(lblLogo, gridBagConstraints);
 
-        javax.swing.GroupLayout panelLeftLayout = new javax.swing.GroupLayout(panelLeft);
-        panelLeft.setLayout(panelLeftLayout);
-        panelLeftLayout.setHorizontalGroup(
-            panelLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 831, Short.MAX_VALUE)
-        );
-        panelLeftLayout.setVerticalGroup(
-            panelLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        getContentPane().add(panelLeft, gridBagConstraints);
 
         panelRight.setBackground(new java.awt.Color(255, 255, 255));
+        panelRight.setMinimumSize(new java.awt.Dimension(832, 321));
+        panelRight.setLayout(new java.awt.GridBagLayout());
+
+        srcPanelAccount.setPreferredSize(new java.awt.Dimension(400, 200));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -231,6 +241,7 @@ public class frmAccount extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tableContent.setPreferredSize(new java.awt.Dimension(400, 200));
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableContentMouseClicked(evt);
@@ -239,7 +250,19 @@ public class frmAccount extends javax.swing.JFrame {
         srcPanelAccount.setViewportView(tableContent);
         tableContent.getColumnModel().getColumn(2).setResizable(false);
 
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight.add(srcPanelAccount, gridBagConstraints);
+
         panelDetails.setBackground(new java.awt.Color(255, 255, 255));
+        panelDetails.setLayout(new java.awt.GridBagLayout());
 
         panel1.setBackground(new java.awt.Color(255, 255, 255));
         panel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Management Account", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
@@ -411,73 +434,53 @@ public class frmAccount extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel1.add(txtConfirmPassword, gridBagConstraints);
 
-        javax.swing.GroupLayout panelDetailsLayout = new javax.swing.GroupLayout(panelDetails);
-        panelDetails.setLayout(panelDetailsLayout);
-        panelDetailsLayout.setHorizontalGroup(
-            panelDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelDetailsLayout.createSequentialGroup()
-                .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        panelDetailsLayout.setVerticalGroup(
-            panelDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelDetailsLayout.createSequentialGroup()
-                .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 63;
+        gridBagConstraints.ipady = 44;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelDetails.add(panel1, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight.add(panelDetails, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 132;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 170, 5, 5);
+        panelRight.add(filterText, gridBagConstraints);
 
         btnFilter.setText("Filter");
         btnFilter.setMaximumSize(new java.awt.Dimension(57, 20));
         btnFilter.setMinimumSize(new java.awt.Dimension(57, 20));
-        btnFilter.setPreferredSize(new java.awt.Dimension(57, 20));
+        btnFilter.setPreferredSize(new java.awt.Dimension(90, 20));
         btnFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFilterActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 18;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight.add(btnFilter, gridBagConstraints);
 
-        javax.swing.GroupLayout panelRightLayout = new javax.swing.GroupLayout(panelRight);
-        panelRight.setLayout(panelRightLayout);
-        panelRightLayout.setHorizontalGroup(
-            panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRightLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelRightLayout.createSequentialGroup()
-                        .addComponent(filterText, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(srcPanelAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panelDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        panelRightLayout.setVerticalGroup(
-            panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRightLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addGroup(panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(filterText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(srcPanelAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelLeft, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(panelRight, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelLeft, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelRight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
+        getContentPane().add(panelRight, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
