@@ -33,6 +33,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -210,6 +211,11 @@ public class frmStudent extends javax.swing.JFrame {
         popupMenuTable.add(mnuISearch);
 
         mnuIDetails.setText("Details");
+        mnuIDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuIDetailsActionPerformed(evt);
+            }
+        });
         popupMenuTable.add(mnuIDetails);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -660,6 +666,28 @@ public class frmStudent extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnFilterActionPerformed
+
+    public Student find(String id)
+    {
+        for(int i = 0;i<liststudent.size();i++)
+        {
+            if(liststudent.get(i).getId().equals(id))
+                return liststudent.get(i);
+        }
+        return null;
+    }
+    private void mnuIDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuIDetailsActionPerformed
+        // TODO add your handling code here:
+        int index = tableContent.getSelectedRow();
+        if(index !=- 1)
+        {
+            String id = String.valueOf(tableContent.getValueAt(index, 0));
+            Student student = find(id);
+            frmDetailsStudent detailsStudent = new frmDetailsStudent(student);
+            detailsStudent.setVisible(true);
+        }
+        
+    }//GEN-LAST:event_mnuIDetailsActionPerformed
 
     public boolean isExist(Student student) {
         for (int i = 0; i < liststudent.size(); i++) {
