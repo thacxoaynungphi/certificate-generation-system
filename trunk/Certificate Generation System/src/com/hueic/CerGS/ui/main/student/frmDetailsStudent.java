@@ -12,6 +12,7 @@ package com.hueic.CerGS.ui.main.student;
 
 import com.hueic.CerGS.ui.main.employee.*;
 import com.hueic.CerGS.entity.Employee;
+import com.hueic.CerGS.entity.Student;
 
 /**
  *
@@ -20,31 +21,30 @@ import com.hueic.CerGS.entity.Employee;
 public class frmDetailsStudent extends javax.swing.JFrame {
 
     /** Creates new form ViewEmpFrm */
-    private Employee emp;
+    private Student student;
 
     public frmDetailsStudent() {
         initComponents();
         setLocationRelativeTo(null);
     }
 
-    public frmDetailsStudent(Employee emp) {
+    public frmDetailsStudent(Student student) {
         initComponents();
         setLocationRelativeTo(null);
-        this.emp = emp;
-        loadDetails(emp);
+        this.student = student;
+        loadDetails(student);
     }
 
-    public void loadDetails(Employee emp) {
-        lblEmployeeIDInfo.setText(emp.getId());
-        lblFirstnameInfo.setText(emp.getFirstName());
-        lblLastnameInfo.setText(emp.getLastName());
-        lblBirthdayInfo.setText(emp.getBirthDay().toString());
-        lblPhoneInfo.setText(emp.getPhone());
-        lblEmailInfo.setText(emp.getEmail());
-        lblAddressInfo.setText(emp.getAddress());
+    public void loadDetails(Student student) {
+        lblEmployeeIDInfo.setText(student.getId());
+        lblFirstnameInfo.setText(student.getFirstName());
+        lblLastnameInfo.setText(student.getLastName());
+        lblBirthdayInfo.setText(student.getBirthDay().toString());
+        lblPhoneInfo.setText(student.getPhone());
+        lblEmailInfo.setText(student.getEmail());
+        lblAddressInfo.setText(student.getAddress());
         //  lblImageInfo.se
         //TODO: chua set icon cho lblImagesInfo
-        lblBeginWorkInfo.setText(emp.getBeginWork().toString());
     }
 
     /** This method is called from within the constructor to
@@ -321,8 +321,8 @@ public class frmDetailsStudent extends javax.swing.JFrame {
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
-        frmEditEmployee editEmployee = new frmEditEmployee(emp);
-        editEmployee.setVisible(true);
+        frmEditStudent editStudent = new frmEditStudent(student);
+        editStudent.setVisible(true);
     }//GEN-LAST:event_btnEditActionPerformed
 
     /**
