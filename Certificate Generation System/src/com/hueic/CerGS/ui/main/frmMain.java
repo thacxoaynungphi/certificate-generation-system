@@ -15,8 +15,14 @@ import com.hueic.CerGS.ui.system.frmLogin;
 import com.hueic.CerGS.ui.system.frmAbout;
 import com.hueic.CerGS.component.GUIProperties;
 import com.hueic.CerGS.dao.GUIDAO;
+import com.hueic.CerGS.ui.main.account.frmAccount;
+import com.hueic.CerGS.ui.main.certificate.frmCertificate;
+import com.hueic.CerGS.ui.main.course.frmCourse;
 import com.hueic.CerGS.ui.main.employee.frmEmployee;
+import com.hueic.CerGS.ui.main.mark.frmScoure;
+import com.hueic.CerGS.ui.main.payment.frmPayment;
 import com.hueic.CerGS.ui.main.student.frmStudent;
+import com.hueic.CerGS.ui.main.subject.frmSubject;
 import com.hueic.CerGS.ui.system.frmChangePass;
 import java.net.URL;
 import javax.help.CSH;
@@ -44,7 +50,7 @@ public class frmMain extends javax.swing.JFrame {
         setSize(1100, 700);
         HelpSet hs = getHelpSet("com/hueic/CerGS/myhelp/sample.hs");
         HelpBroker hb = hs.createHelpBroker();
-       
+
         // 2. assign help to components
         CSH.setHelpIDString(mnuIHelpContent, "top");
         mnuIHelpContent.addActionListener(new CSH.DisplayHelpFromSource(hb));
@@ -104,12 +110,14 @@ public class frmMain extends javax.swing.JFrame {
         jLinkButton6 = new com.l2fprod.common.swing.JLinkButton();
         jLinkButton7 = new com.l2fprod.common.swing.JLinkButton();
         jTaskPaneGroup2 = new com.l2fprod.common.swing.JTaskPaneGroup();
-        jLinkButton1 = new com.l2fprod.common.swing.JLinkButton();
-        jLinkButton2 = new com.l2fprod.common.swing.JLinkButton();
-        jLinkButton3 = new com.l2fprod.common.swing.JLinkButton();
-        jLinkButton4 = new com.l2fprod.common.swing.JLinkButton();
-        jLinkButton10 = new com.l2fprod.common.swing.JLinkButton();
-        jLinkButton11 = new com.l2fprod.common.swing.JLinkButton();
+        linkBtnEmployee = new com.l2fprod.common.swing.JLinkButton();
+        linkBtnStudent = new com.l2fprod.common.swing.JLinkButton();
+        linkBtnCertificate = new com.l2fprod.common.swing.JLinkButton();
+        linkBtnPayment = new com.l2fprod.common.swing.JLinkButton();
+        linkBtnMark = new com.l2fprod.common.swing.JLinkButton();
+        linkBtnSubject = new com.l2fprod.common.swing.JLinkButton();
+        linkBtnAccount = new com.l2fprod.common.swing.JLinkButton();
+        linkBtnCourse = new com.l2fprod.common.swing.JLinkButton();
         jTaskPaneGroup3 = new com.l2fprod.common.swing.JTaskPaneGroup();
         jLinkButton8 = new com.l2fprod.common.swing.JLinkButton();
         jLinkButton9 = new com.l2fprod.common.swing.JLinkButton();
@@ -287,16 +295,7 @@ public class frmMain extends javax.swing.JFrame {
             .addComponent(jLabel1)
         );
 
-        com.l2fprod.common.swing.PercentLayout percentLayout10 = new com.l2fprod.common.swing.PercentLayout();
-        percentLayout10.setGap(14);
-        percentLayout10.setOrientation(1);
-        jTaskPane1.setLayout(percentLayout10);
-
         jTaskPaneGroup1.setTitle("Overview");
-        com.l2fprod.common.swing.PercentLayout percentLayout11 = new com.l2fprod.common.swing.PercentLayout();
-        percentLayout11.setGap(2);
-        percentLayout11.setOrientation(1);
-        jTaskPaneGroup1.getContentPane().setLayout(percentLayout11);
 
         jLinkButton5.setText("Students");
         jTaskPaneGroup1.getContentPane().add(jLinkButton5);
@@ -310,36 +309,74 @@ public class frmMain extends javax.swing.JFrame {
         jTaskPane1.add(jTaskPaneGroup1);
 
         jTaskPaneGroup2.setTitle("Administration");
-        com.l2fprod.common.swing.PercentLayout percentLayout1 = new com.l2fprod.common.swing.PercentLayout();
-        percentLayout1.setGap(2);
-        percentLayout1.setOrientation(1);
-        jTaskPaneGroup2.getContentPane().setLayout(percentLayout1);
 
-        jLinkButton1.setText("Management Employee");
-        jTaskPaneGroup2.getContentPane().add(jLinkButton1);
+        linkBtnEmployee.setText("Management Employee");
+        linkBtnEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                linkBtnEmployeeActionPerformed(evt);
+            }
+        });
+        jTaskPaneGroup2.getContentPane().add(linkBtnEmployee);
 
-        jLinkButton2.setText("Management Student");
-        jTaskPaneGroup2.getContentPane().add(jLinkButton2);
+        linkBtnStudent.setText("Management Student");
+        linkBtnStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                linkBtnStudentActionPerformed(evt);
+            }
+        });
+        jTaskPaneGroup2.getContentPane().add(linkBtnStudent);
 
-        jLinkButton3.setText("Management Certificate");
-        jTaskPaneGroup2.getContentPane().add(jLinkButton3);
+        linkBtnCertificate.setText("Management Certificate");
+        linkBtnCertificate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                linkBtnCertificateActionPerformed(evt);
+            }
+        });
+        jTaskPaneGroup2.getContentPane().add(linkBtnCertificate);
 
-        jLinkButton4.setText("Management Payment");
-        jTaskPaneGroup2.getContentPane().add(jLinkButton4);
+        linkBtnPayment.setText("Management Payment");
+        linkBtnPayment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                linkBtnPaymentActionPerformed(evt);
+            }
+        });
+        jTaskPaneGroup2.getContentPane().add(linkBtnPayment);
 
-        jLinkButton10.setText("Management Mark");
-        jTaskPaneGroup2.getContentPane().add(jLinkButton10);
+        linkBtnMark.setText("Management Mark");
+        linkBtnMark.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                linkBtnMarkActionPerformed(evt);
+            }
+        });
+        jTaskPaneGroup2.getContentPane().add(linkBtnMark);
 
-        jLinkButton11.setText("Management Subject");
-        jTaskPaneGroup2.getContentPane().add(jLinkButton11);
+        linkBtnSubject.setText("Management Subject");
+        linkBtnSubject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                linkBtnSubjectActionPerformed(evt);
+            }
+        });
+        jTaskPaneGroup2.getContentPane().add(linkBtnSubject);
+
+        linkBtnAccount.setText("Management Account");
+        linkBtnAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                linkBtnAccountActionPerformed(evt);
+            }
+        });
+        jTaskPaneGroup2.getContentPane().add(linkBtnAccount);
+
+        linkBtnCourse.setText("Management Course");
+        linkBtnCourse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                linkBtnCourseActionPerformed(evt);
+            }
+        });
+        jTaskPaneGroup2.getContentPane().add(linkBtnCourse);
 
         jTaskPane1.add(jTaskPaneGroup2);
 
         jTaskPaneGroup3.setTitle("Search");
-        com.l2fprod.common.swing.PercentLayout percentLayout2 = new com.l2fprod.common.swing.PercentLayout();
-        percentLayout2.setGap(2);
-        percentLayout2.setOrientation(1);
-        jTaskPaneGroup3.getContentPane().setLayout(percentLayout2);
 
         jLinkButton8.setText("Chua nghi ra");
         jTaskPaneGroup3.getContentPane().add(jLinkButton8);
@@ -608,6 +645,54 @@ public class frmMain extends javax.swing.JFrame {
         employee.setVisible(true);
     }//GEN-LAST:event_mnuIManagmentEmpActionPerformed1
 
+    private void linkBtnEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnEmployeeActionPerformed
+        // TODO add your handling code here:
+        frmEmployee employee = new frmEmployee();
+        employee.setVisible(true);
+    }//GEN-LAST:event_linkBtnEmployeeActionPerformed
+
+    private void linkBtnStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnStudentActionPerformed
+        // TODO add your handling code here:
+        frmStudent student = new frmStudent();
+        student.setVisible(true);
+    }//GEN-LAST:event_linkBtnStudentActionPerformed
+
+    private void linkBtnCertificateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnCertificateActionPerformed
+        // TODO add your handling code here:
+        frmCertificate certificate = new frmCertificate();
+        certificate.setVisible(true);
+    }//GEN-LAST:event_linkBtnCertificateActionPerformed
+
+    private void linkBtnPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnPaymentActionPerformed
+        // TODO add your handling code here:
+        frmPayment payment = new frmPayment();
+        payment.setVisible(true);
+    }//GEN-LAST:event_linkBtnPaymentActionPerformed
+
+    private void linkBtnSubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnSubjectActionPerformed
+        // TODO add your handling code here:
+        frmSubject subject = new frmSubject();
+        subject.setVisible(true);
+    }//GEN-LAST:event_linkBtnSubjectActionPerformed
+
+    private void linkBtnMarkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnMarkActionPerformed
+        // TODO add your handling code here:
+        frmScoure scoure = new frmScoure();
+        scoure.setVisible(true);
+    }//GEN-LAST:event_linkBtnMarkActionPerformed
+
+    private void linkBtnAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnAccountActionPerformed
+        // TODO add your handling code here:
+        frmAccount account = new frmAccount();
+        account.setVisible(true);
+    }//GEN-LAST:event_linkBtnAccountActionPerformed
+
+    private void linkBtnCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnCourseActionPerformed
+        // TODO add your handling code here:
+        frmCourse course = new frmCourse();
+        course.setVisible(true);
+    }//GEN-LAST:event_linkBtnCourseActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -638,12 +723,6 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private com.l2fprod.common.swing.JLinkButton jLinkButton1;
-    private com.l2fprod.common.swing.JLinkButton jLinkButton10;
-    private com.l2fprod.common.swing.JLinkButton jLinkButton11;
-    private com.l2fprod.common.swing.JLinkButton jLinkButton2;
-    private com.l2fprod.common.swing.JLinkButton jLinkButton3;
-    private com.l2fprod.common.swing.JLinkButton jLinkButton4;
     private com.l2fprod.common.swing.JLinkButton jLinkButton5;
     private com.l2fprod.common.swing.JLinkButton jLinkButton6;
     private com.l2fprod.common.swing.JLinkButton jLinkButton7;
@@ -661,6 +740,14 @@ public class frmMain extends javax.swing.JFrame {
     private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroup1;
     private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroup2;
     private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroup3;
+    private com.l2fprod.common.swing.JLinkButton linkBtnAccount;
+    private com.l2fprod.common.swing.JLinkButton linkBtnCertificate;
+    private com.l2fprod.common.swing.JLinkButton linkBtnCourse;
+    private com.l2fprod.common.swing.JLinkButton linkBtnEmployee;
+    private com.l2fprod.common.swing.JLinkButton linkBtnMark;
+    private com.l2fprod.common.swing.JLinkButton linkBtnPayment;
+    private com.l2fprod.common.swing.JLinkButton linkBtnStudent;
+    private com.l2fprod.common.swing.JLinkButton linkBtnSubject;
     private javax.swing.JMenuItem menuIChangePass;
     private javax.swing.JMenu mnuAdministrator;
     private javax.swing.JMenuBar mnuBSystem;

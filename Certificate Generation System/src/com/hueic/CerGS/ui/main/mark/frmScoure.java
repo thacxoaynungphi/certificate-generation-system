@@ -8,7 +8,7 @@
  *
  * Created on Mar 13, 2011, 5:38:22 PM
  */
-package com.hueic.CerGS.ui.main.scoure;
+package com.hueic.CerGS.ui.main.mark;
 
 import com.hueic.CerGS.ui.main.employee.*;
 import java.awt.AWTEvent;
@@ -115,7 +115,7 @@ public class frmScoure extends javax.swing.JFrame {
         panelBanner.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/dispatcher.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/banner 832.png"))); // NOI18N
 
         javax.swing.GroupLayout panelBannerLayout = new javax.swing.GroupLayout(panelBanner);
         panelBanner.setLayout(panelBannerLayout);
@@ -130,16 +130,6 @@ public class frmScoure extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        com.l2fprod.common.swing.PercentLayout percentLayout1 = new com.l2fprod.common.swing.PercentLayout();
-        percentLayout1.setGap(14);
-        percentLayout1.setOrientation(1);
-        jTaskPane1.setLayout(percentLayout1);
-
-        com.l2fprod.common.swing.PercentLayout percentLayout2 = new com.l2fprod.common.swing.PercentLayout();
-        percentLayout2.setGap(2);
-        percentLayout2.setOrientation(1);
-        jTaskPaneGroup1.getContentPane().setLayout(percentLayout2);
-
         jLinkButton1.setText("jLinkButton1");
         jTaskPaneGroup1.getContentPane().add(jLinkButton1);
 
@@ -153,11 +143,6 @@ public class frmScoure extends javax.swing.JFrame {
         jTaskPaneGroup1.getContentPane().add(jLinkButton4);
 
         jTaskPane1.add(jTaskPaneGroup1);
-
-        com.l2fprod.common.swing.PercentLayout percentLayout3 = new com.l2fprod.common.swing.PercentLayout();
-        percentLayout3.setGap(2);
-        percentLayout3.setOrientation(1);
-        jTaskPaneGroup2.getContentPane().setLayout(percentLayout3);
         jTaskPane1.add(jTaskPaneGroup2);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

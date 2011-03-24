@@ -20,6 +20,7 @@ public class frmSubject extends javax.swing.JFrame {
     /** Creates new form SubjectFrm */
     public frmSubject() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /** This method is called from within the constructor to
