@@ -49,6 +49,7 @@ public class frmSubject extends javax.swing.JFrame {
         btnAdd = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         txtName = new javax.swing.JTextField();
         txtCoefficient = new javax.swing.JTextField();
@@ -120,7 +121,7 @@ public class frmSubject extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.insets = new java.awt.Insets(15, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel1.add(jScrollPane1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -174,8 +175,8 @@ public class frmSubject extends javax.swing.JFrame {
         panel3.setBackground(new java.awt.Color(255, 255, 255));
         panel3.setPreferredSize(new java.awt.Dimension(265, 33));
 
-        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Edit_16.png"))); // NOI18N
-        btnAdd.setText("Edit");
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add.png"))); // NOI18N
+        btnAdd.setText("Add");
         btnAdd.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnAdd.setPreferredSize(new java.awt.Dimension(75, 23));
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -199,6 +200,9 @@ public class frmSubject extends javax.swing.JFrame {
         });
         panel3.add(btnReset);
 
+        jButton2.setText("jButton2");
+        panel3.add(jButton2);
+
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
         btnCancel.setText("Cancel");
         btnCancel.setMargin(new java.awt.Insets(2, 5, 2, 5));
@@ -214,23 +218,26 @@ public class frmSubject extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 5);
         panel2.add(panel3, gridBagConstraints);
 
         txtName.setPreferredSize(new java.awt.Dimension(180, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 9, 5, 5);
         panel2.add(txtName, gridBagConstraints);
 
         txtCoefficient.setPreferredSize(new java.awt.Dimension(180, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 9, 5, 5);
         panel2.add(txtCoefficient, gridBagConstraints);
 
         lblSubjectID.setText("Subject ID:");
@@ -245,8 +252,9 @@ public class frmSubject extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(3, 9, 5, 5);
         panel2.add(txtSubjectId, gridBagConstraints);
 
         sepa1.setPreferredSize(new java.awt.Dimension(280, 10));
@@ -255,15 +263,16 @@ public class frmSubject extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 44, 10, 0);
         panel2.add(sepa1, gridBagConstraints);
 
         txtCoureID.setPreferredSize(new java.awt.Dimension(180, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 9, 5, 5);
         panel2.add(txtCoureID, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -324,6 +333,7 @@ public class frmSubject extends javax.swing.JFrame {
     private javax.swing.JButton btnReset;
     private javax.swing.JComboBox cbxCourse;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblBanner;
