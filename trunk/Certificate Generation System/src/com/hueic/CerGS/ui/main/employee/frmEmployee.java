@@ -385,7 +385,7 @@ public class frmEmployee extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.ipadx = 91;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
         panelRight.add(jPanel3, gridBagConstraints);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -507,9 +507,8 @@ public class frmEmployee extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipady = -4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 0, 11, 10);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 11, 5);
         panelRight.add(jPanel4, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
