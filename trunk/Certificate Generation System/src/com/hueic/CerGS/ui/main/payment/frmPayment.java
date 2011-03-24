@@ -398,11 +398,22 @@ public class frmPayment extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public Payment getPaymentById(int id) {
+        for (int i = 0; i < listPayments.size(); i++) {
+            if (listPayments.get(i).getId() == id) {
+                return listPayments.get(i);
+                
+            }
+        }
+        return null;
+    }
     private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
         // TODO add your handling code here:
         int index = tableContent.getSelectedRow();
         if (index != -1) {
-            loadDetails(listPayments.get(index));
+            int id = Integer.parseInt(String.valueOf(tableContent.getValueAt(index, 0)));
+            Payment payment = getPaymentById(id);
+            loadDetails(payment);
         }
     }//GEN-LAST:event_tableContentMouseClicked
 
@@ -441,9 +452,12 @@ public class frmPayment extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxStudentIDActionPerformed
 
-    public int getIndexOfPaymentInList(int id){
-        for(int i = 0; i < listPayments.size(); i++){
-            if(listPayments.get(i).getId() == id) return i;
+    public int getIndexOfPaymentInList(int id) {
+        for (int i = 0; i < listPayments.size(); i++) {
+            if (listPayments.get(i).getId() == id) {
+                return i;
+                
+            }
         }
 
         return -1;
@@ -455,10 +469,10 @@ public class frmPayment extends javax.swing.JFrame {
 
         listPayments.clear();
 
-        for(Register res : resList){
+        for (Register res : resList) {
             ArrayList<Payment> payList = new PaymentDAO().readByStudentId(res.getStudentId());
 
-            for(Payment pay : payList){
+            for (Payment pay : payList) {
                 listPayments.add(pay);
             }
         }
