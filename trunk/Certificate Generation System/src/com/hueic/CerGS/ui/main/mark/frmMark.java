@@ -21,10 +21,10 @@ import javax.swing.CellEditor;
  *
  * @author nhchung
  */
-public class frmScoure extends javax.swing.JFrame {
+public class frmMark extends javax.swing.JFrame {
 
     /** Creates new form EmployeeFrm */
-    public frmScoure() {
+    public frmMark() {
         initComponents();
         System.out.println(getWidth() + "," + getHeight());
         setSize(1100, 700);
@@ -306,7 +306,7 @@ public class frmScoure extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new frmScoure().setVisible(true);
+                new frmMark().setVisible(true);
             }
         });
     }

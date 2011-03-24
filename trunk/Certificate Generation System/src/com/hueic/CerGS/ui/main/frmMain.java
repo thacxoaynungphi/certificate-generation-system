@@ -19,7 +19,7 @@ import com.hueic.CerGS.ui.main.account.frmAccount;
 import com.hueic.CerGS.ui.main.certificate.frmCertificate;
 import com.hueic.CerGS.ui.main.course.frmCourse;
 import com.hueic.CerGS.ui.main.employee.frmEmployee;
-import com.hueic.CerGS.ui.main.mark.frmScoure;
+import com.hueic.CerGS.ui.main.mark.frmMark;
 import com.hueic.CerGS.ui.main.payment.frmPayment;
 import com.hueic.CerGS.ui.main.student.frmStudent;
 import com.hueic.CerGS.ui.main.subject.frmSubject;
@@ -677,7 +677,7 @@ public class frmMain extends javax.swing.JFrame {
 
     private void linkBtnMarkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnMarkActionPerformed
         // TODO add your handling code here:
-        frmScoure scoure = new frmScoure();
+        frmMark scoure = new frmMark();
         scoure.setVisible(true);
     }//GEN-LAST:event_linkBtnMarkActionPerformed
 
