@@ -73,22 +73,25 @@ public class MarkDAO extends BaseDAO {
         }
     }
 
-    public Mark readByStudentID(String studentId) {
-        Mark result = new Mark();
+    public ArrayList<Mark> readByStudentID(String studentId) {
+        ArrayList<Mark> result = new ArrayList<Mark>();
         con = db.getConnection();
         String sqlcommand = "select * from Scores where Studentid like ?";
-
+        Mark mark = null;
         try {
             pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst.setString(1, studentId);
             rs = pst.executeQuery();
 
-            while (rs.first()) {
-                result.setId(rs.getInt("Id"));
-                result.setStudentId(rs.getString("StudentId"));
-                result.setSubjectId(rs.getString("SubjectId"));
-                result.setMark(rs.getFloat("Mark"));
+            while (rs.next()) {
+                mark = new Mark();
 
+                mark.setId(rs.getInt("Id"));
+                mark.setStudentId(rs.getString("StudentId"));
+                mark.setSubjectId(rs.getString("SubjectId"));
+                mark.setMark(rs.getFloat("Mark"));
+
+                result.add(mark);
             }
 
             setLastError("read data successful");
@@ -175,5 +178,18 @@ public class MarkDAO extends BaseDAO {
             db.closeConnection();
             return status;
         }
+    }
+
+     public float getStudentMark(String studentID){
+        float totalMark = 0.0f;
+        float avgMark = 0.0f;
+        ArrayList<Mark> markList = readByStudentID(studentID);
+
+        for(Mark mark : markList){
+            totalMark += mark.getMark();
+        }
+        avgMark = totalMark/markList.size();
+
+        return avgMark;
     }
 }
