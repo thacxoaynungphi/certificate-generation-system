@@ -19,6 +19,17 @@ public class SubjectInCourseReportManager extends ReportManager {
 
     private String courseId;
 
+    public SubjectInCourseReportManager() {
+    }
+
+    public SubjectInCourseReportManager(String courseId, ArrayList<Subject> subList) {
+        jrxmlFileName = "SubjectList.jrxml";
+        this.courseId = courseId;
+        dataSource = getJRMapCollectionDataSourse(subList);
+    }
+
+
+
     @Override
     protected HashMap getParameterReport() {
         parameter = new HashMap();

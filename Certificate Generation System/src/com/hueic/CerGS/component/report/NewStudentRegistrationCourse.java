@@ -27,7 +27,7 @@ public class NewStudentRegistrationCourse extends ReportManager{
 
     public NewStudentRegistrationCourse(String courseId) {
         this.courseId = courseId;
-        jasperFileName = "StudentRegister.jasper";
+        jrxmlFileName = "StudentRegister.jrxml";
     }
 
     @Override

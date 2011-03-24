@@ -24,7 +24,7 @@ public class StudentReportManager extends ReportManager{
 
     public StudentReportManager(String course,ArrayList<Student> stList, ArrayList<Register> regisList) {
         this.course = course;
-        jasperFileName = "Student.jasper";
+        jrxmlFileName = "Student.jrxml";
         dataSource = getJRMapCollectionDataSource(stList, regisList);
     }
 

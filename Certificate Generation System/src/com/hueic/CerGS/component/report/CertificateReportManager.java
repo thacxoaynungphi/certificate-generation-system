@@ -22,7 +22,7 @@ public class CertificateReportManager extends ReportManager{
     private String grade;
 
     public CertificateReportManager() {
-        jasperFileName = "Certificate.jasper";
+        jrxmlFileName = "Certificate.jrxml";
         dataSource = null;
     }
 

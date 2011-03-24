@@ -33,7 +33,7 @@ public class StudentMarkReportManager extends ReportManager {
             String courseId, ArrayList<Mark> markList, ArrayList<Subject> subList) {
         this.studentId = studentId;
         this.courseId = courseId;
-        jasperFileName = "StudentMark.jasper";
+        jrxmlFileName = "StudentMark.jrxml";
         dataSource = getJRMapCollectionDataSource(markList, subList);
     }
 

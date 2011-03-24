@@ -21,7 +21,7 @@ import net.sf.jasperreports.engine.JRDataSource;
 public class CertificateDevelopedReportManager extends ReportManager{
 
     public CertificateDevelopedReportManager(ArrayList<Certificate> cerList) {
-        jasperFileName = "CertificateList.jasper";
+        jrxmlFileName = "CertificateList.jrxml";
         dataSource = getJRMapCollectionDataSource(cerList);
     }
 
