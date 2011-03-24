@@ -48,7 +48,7 @@ public class NewStudentRegistrationCourse extends ReportManager{
         HashMap row = new HashMap();
 
         for(Register res : regisList){
-            if(new MarkDAO().readByStudentID(res.getStudentId()).getMark() == -1){
+            if(new MarkDAO().getStudentMark(res.getStudentId()) == -1){
                 row = new HashMap();
                 
                 row.put("ID", res.getId());

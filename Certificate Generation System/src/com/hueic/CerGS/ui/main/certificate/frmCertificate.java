@@ -11,11 +11,14 @@
 package com.hueic.CerGS.ui.main.certificate;
 
 import com.hueic.CerGS.dao.CertificateDAO;
+import com.hueic.CerGS.dao.MarkDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.entity.Certificate;
+import com.hueic.CerGS.entity.Mark;
 import com.hueic.CerGS.entity.Register;
 import java.util.ArrayList;
 import java.util.regex.PatternSyntaxException;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
@@ -104,6 +107,7 @@ public class frmCertificate extends javax.swing.JFrame {
 
     }
 
+   
     public void LoadStudent() {
         ArrayList<Register> listRegister = registerDAO.readByAll();
         if (listRegister != null) {
@@ -234,6 +238,11 @@ public class frmCertificate extends javax.swing.JFrame {
         btnAdd.setText("Add");
         btnAdd.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnAdd.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnAdd);
 
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
@@ -248,6 +257,11 @@ public class frmCertificate extends javax.swing.JFrame {
         jPanel2.add(btnUpdate);
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnDelete);
 
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
@@ -400,6 +414,23 @@ public class frmCertificate extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
+    public int getIndexCertificateInListById(int id){
+        for(int i = 0; i < listCertificate.size(); i++){
+            if(listCertificate.get(i).getId() == id) return i;
+        }
+
+        return -1;
+    }
+
+    public int getIndexCertificateInListByStudentId(String studentId){
+        for(int i = 0; i < listCertificate.size(); i++){
+            if(listCertificate.get(i).getStudentID().compareTo(studentId) == 0) return i;
+        }
+
+        return -1;
+    }
+
     public Certificate find(int value) {
         for (int i = 0; i < listCertificate.size(); i++) {
             if (listCertificate.get(i).getId() == value) {
@@ -427,7 +458,13 @@ public class frmCertificate extends javax.swing.JFrame {
     }//GEN-LAST:event_tableContentMouseClicked
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
+        int i1 = getIndexCertificateInListById(Integer.parseInt(txtID.getText()));
+        int i2 = getIndexCertificateInListByStudentId((String)cbxStudentID.getSelectedItem());
+
+        if(i1 == i2){
+            listCertificate.get(i2).setMark(new MarkDAO().getStudentMark((String) cbxStudentID.getSelectedItem()));
+            listCertificate.get(i2).setDegreeDay(DateChooseDegreeDay.getDate());
+        }
 }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
@@ -437,7 +474,7 @@ public class frmCertificate extends javax.swing.JFrame {
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
-        if (listCertificate.size() != 0) {
+        if (!listCertificate.isEmpty()) {
             String text = filterText.getText();
             if (text.length() == 0) {
                 sorter.setRowFilter(null);
@@ -450,6 +487,33 @@ public class frmCertificate extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnFilterActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+
+        Certificate certificate = new Certificate();
+        certificate.setId(Integer.parseInt(txtID.getText().trim()));
+        certificate.setMark(new MarkDAO().getStudentMark((String)cbxStudentID.getSelectedItem()));
+        certificate.setDegreeDay(DateChooseDegreeDay.getDate());
+        certificate.setStudentID((String)cbxStudentID.getSelectedItem());
+
+        listCertificate.add(certificate);
+
+        loadData(listCertificate);
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int i1 = getIndexCertificateInListById(Integer.parseInt(txtID.getText()));
+        int i2 = getIndexCertificateInListByStudentId((String) cbxStudentID.getSelectedItem());
+
+        if(i1 == i2){
+            listCertificate.remove(i2);
+            loadData(listCertificate);
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select StudentId and enter ID of Certificate", "Message", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
      * @param args the command line arguments
