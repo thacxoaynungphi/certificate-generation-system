@@ -13,7 +13,12 @@
        <mapID target="Account" url="help/Account.html" />
 	   <mapID target="Admin" url="help/Admin.html" />
 	   <mapID target="AccountLogin" url="help/AccountLogin.html" />
-	   <mapID target="CallCentre" url="help/CallCentre.html" />
-	   <mapID target="customer" url="help/customer.html" />
-	   <mapID target="Dispatcher" url="help/Dispatcher.html" />
+	   <mapID target="Course" url="help/Course.html" />
+	   <mapID target="Employee" url="help/Employee.html" />
+	   <mapID target="Mark" url="help/Mark.html" />
+            <mapID target="Payment" url="help/Payment.html" />
+            <mapID target="Permission" url="help/Permission.html" />
+            <mapID target="Search" url="help/Search.html" />
+            <mapID target="Student" url="help/Student.html" />
+            <mapID target="Subject" url="help/Subject.html" />
 </map>

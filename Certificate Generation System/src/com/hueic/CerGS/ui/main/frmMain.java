@@ -44,7 +44,7 @@ public class frmMain extends javax.swing.JFrame {
         setSize(1100, 700);
         HelpSet hs = getHelpSet("com/hueic/CerGS/myhelp/sample.hs");
         HelpBroker hb = hs.createHelpBroker();
-
+       
         // 2. assign help to components
         CSH.setHelpIDString(mnuIHelpContent, "top");
         mnuIHelpContent.addActionListener(new CSH.DisplayHelpFromSource(hb));
