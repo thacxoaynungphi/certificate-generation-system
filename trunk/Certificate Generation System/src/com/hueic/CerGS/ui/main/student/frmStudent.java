@@ -219,7 +219,7 @@ public class frmStudent extends javax.swing.JFrame {
 
         panelBanner.setLayout(new java.awt.GridBagLayout());
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/banner copy.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/BannerStudent.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -291,6 +291,8 @@ public class frmStudent extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         getContentPane().add(jPanel1, gridBagConstraints);
 
+        jPanel2.setMinimumSize(new java.awt.Dimension(600, 550));
+        jPanel2.setPreferredSize(new java.awt.Dimension(600, 600));
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -344,6 +346,7 @@ public class frmStudent extends javax.swing.JFrame {
         jPanel2.add(jPanel3, gridBagConstraints);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setPreferredSize(new java.awt.Dimension(600, 893));
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
