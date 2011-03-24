@@ -28,7 +28,7 @@
      <name>main window</name>
      <size width="700" height="400" />
      <location x="200" y="200" />
-     <title>Bug Reporting System Help</title>
+     <title>Certifical Genareal System</title>
      <image>toplevelfolder</image>
      <toolbar>
 	<helpaction>javax.help.BackAction</helpaction>

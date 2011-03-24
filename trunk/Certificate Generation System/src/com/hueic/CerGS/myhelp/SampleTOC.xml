@@ -3,14 +3,14 @@
   PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp TOC Version 2.0//EN"
          "../dtd/toc_2_0.dtd">
 <toc version="2.0">
-<tocitem text="Bug Reporting System" image="openbook">
+<tocitem text="Certifical Genranel System" image="openbook">
    <tocitem text="Tutorial" target="start" expand="true" image="chapter">
-	   <tocitem text="Account Login" target="AccountLogin" image="topic"/>      
+	   <tocitem text="Account Login" target="AccountLogin" image="topic"/>
 	   <tocitem text="Tutorial Admin" target="Admin" image="topic"/>
 	   <tocitem text="Tutorial Account" target="Account" image="topic"/>
-       <tocitem text="Tutorial CallCentre" target="CallCentre" image="topic"/>
-       <tocitem text="Tutorial Dispatcher" target="Dispatcher" image="topic"/>
-       <tocitem text="Tutorial Customer" target="customer" image="topic"/>
+       <tocitem text="Tutorial Student" target="Student" image="topic"/>
+       <tocitem text="Tutorial Employee" target="Employee" image="topic"/>
+       <tocitem text="Tutorial Search" target="Search" image="topic"/>
    </tocitem>
 </tocitem>
 </toc>
