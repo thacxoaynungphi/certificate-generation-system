@@ -28,7 +28,8 @@ public class frmEmployeeReport extends javax.swing.JFrame {
     public frmEmployeeReport() {
         initComponents();
         ArrayList<Employee> empList = new EmployeeDAO().readByAll();
-        panel = new EmployeeReportManager().getJPanelViewer();
+        EmployeeReportManager empReportManager = new EmployeeReportManager(empList);
+        panel = empReportManager.getJPanelViewer();
         this.add(panel);
         panel.setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);

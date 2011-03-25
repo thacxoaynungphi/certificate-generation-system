@@ -57,11 +57,14 @@ public class StudentReportManager extends ReportManager{
         for(Student st : stList){
             row = new HashMap();
 
+            Date regisDate = getRegistrationDateOfStudent(st.getId(), regisList);
+            if(regisDate == null) continue;
+            
             row.put("ID", st.getId());
             row.put("NAME", st.getFirstName() + " " + st.getLastName());
             row.put("BIRTHDAY", DateFormat.getInstance().format(st.getBirthDay()));
             row.put("REGISTRATIONDAY",
-                    DateFormat.getInstance().format(getRegistrationDateOfStudent(st.getId(), regisList)));
+                    DateFormat.getInstance().format(regisDate));
             
             collection.add(row);
         }
