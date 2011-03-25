@@ -29,7 +29,7 @@ import net.sf.jasperreports.view.JRViewer;
 public abstract class ReportManager {
 
     protected String jrxmlFileName;
-    protected String jrxmlFolderName;
+    protected String jrxmlFolderName = "src\\hueic\\CerGS\\report";
     protected HashMap parameter;
     protected JRDataSource dataSource;
     protected JasperReport jasperReport;
@@ -73,7 +73,7 @@ public abstract class ReportManager {
         try {
             input = getInputStream();
             parameter = getParameterReport();
-            jasperReport = getReport("\\" + jrxmlFileName);
+            jasperReport = getReport(jrxmlFolderName + "\\" + jrxmlFileName);
 
             if(jasperReport != null) System.out.println(jasperReport.getColumnCount());
             else System.out.println("123");

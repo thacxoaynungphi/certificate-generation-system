@@ -11,6 +11,13 @@
 
 package com.hueic.CerGS.ui.main.report;
 
+import com.hueic.CerGS.component.report.StudentReportManager;
+import com.hueic.CerGS.dao.RegisterDAO;
+import com.hueic.CerGS.dao.StudentDAO;
+import com.hueic.CerGS.entity.Register;
+import com.hueic.CerGS.entity.Student;
+import java.util.ArrayList;
+
 /**
  *
  * @author nhchung
@@ -18,7 +25,13 @@ package com.hueic.CerGS.ui.main.report;
 public class frmStudentReport extends javax.swing.JFrame {
 
     /** Creates new form frmStudentReport */
-    public frmStudentReport() {
+    public frmStudentReport(String courseId) {
+        ArrayList<Student> studentList = new StudentDAO().readByAll();
+        ArrayList<Register> resList = new RegisterDAO().readByAll();
+        StudentReportManager studentReport = new StudentReportManager(courseId, studentList, resList);
+
+        this.add(studentReport.getJPanelViewer());
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         initComponents();
     }
 
@@ -53,7 +66,7 @@ public class frmStudentReport extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmStudentReport().setVisible(true);
+                new frmStudentReport("CPISM").setVisible(true);
             }
         });
     }
