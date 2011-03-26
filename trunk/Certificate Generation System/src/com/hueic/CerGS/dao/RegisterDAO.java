@@ -76,16 +76,13 @@ public class RegisterDAO extends BaseDAO {
             pst.setString(1, studentID);
 
             rs = pst.executeQuery();
-            if (rs.first()) {
+            if (rs.next()) {
                 regis = new Register();
-
                 regis.setId(rs.getString("Id"));
                 regis.setCourseId(rs.getString("CourseId"));
-                regis.setFeeStructe(rs.getInt("FeeStructe"));
+                regis.setFeeStructe(rs.getInt("FeesStructe"));
                 regis.setRegisDate(rs.getDate("RegistrationDate"));
                 regis.setStudentId(rs.getString("StudentId"));
-
-
             }
         } catch (SQLException ex) {
             setLastError("SQL Error!");

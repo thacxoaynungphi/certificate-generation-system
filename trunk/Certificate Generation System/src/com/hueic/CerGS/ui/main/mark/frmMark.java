@@ -10,6 +10,7 @@
  */
 package com.hueic.CerGS.ui.main.mark;
 
+import com.hueic.CerGS.component.IconSystem;
 import com.hueic.CerGS.dao.CourseDAO;
 import com.hueic.CerGS.dao.MarkDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
@@ -46,6 +47,17 @@ public class frmMark extends javax.swing.JFrame {
     /** Creates new form MarkFrm */
     public frmMark() {
         initComponents();
+        new IconSystem(this);
+        resDAO = new RegisterDAO();
+        markDAO = new MarkDAO();
+        studentDAO = new StudentDAO();
+        subjectDAO = new SubjectDAO();
+        courseDAO = new CourseDAO();
+        markList = markDAO.readByAll();
+
+        loadStudent();
+        loadCourse();
+        loadData(markList);
     }
 
     public void loadData(ArrayList<Mark> listMark) {
