@@ -12,6 +12,7 @@
 package com.hueic.CerGS.ui.main.mark;
 
 import com.hueic.CerGS.component.IconSystem;
+import java.util.Locale;
 
 /**
  *
@@ -23,6 +24,7 @@ public class frmViewMark extends javax.swing.JFrame {
     public frmViewMark() {
         initComponents();
         new IconSystem(this);
+        setLocationRelativeTo(null);
     }
 
     /** This method is called from within the constructor to
@@ -48,7 +50,9 @@ public class frmViewMark extends javax.swing.JFrame {
         btnReport = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("View Mark Student - Certificate Generation System");
+        setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         lblBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/ViewMark.png"))); // NOI18N

@@ -19,6 +19,10 @@ public class Mark{
     private float mark;
 
     public Mark() {
+        id = 0;
+        studentId = null;
+        subjectId = null;
+        mark = 0;
     }
 
     public Mark(int id, String studentId, String subjectId, float mark) {

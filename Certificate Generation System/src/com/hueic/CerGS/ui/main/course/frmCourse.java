@@ -120,6 +120,7 @@ public class frmCourse extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        buttonGroupCourse = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         lbllogo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -365,6 +366,7 @@ public class frmCourse extends javax.swing.JFrame {
         jPanel4.add(lblStatus, gridBagConstraints);
 
         radioEnable.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroupCourse.add(radioEnable);
         radioEnable.setText("Enable");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -374,6 +376,7 @@ public class frmCourse extends javax.swing.JFrame {
         jPanel4.add(radioEnable, gridBagConstraints);
 
         radioDisable.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroupCourse.add(radioDisable);
         radioDisable.setText("Disable");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -546,6 +549,7 @@ public class frmCourse extends javax.swing.JFrame {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnFilter;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.ButtonGroup buttonGroupCourse;
     private javax.swing.JTextField filterText;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
