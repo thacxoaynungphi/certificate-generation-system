@@ -244,7 +244,6 @@ public class frmEmployee extends javax.swing.JFrame {
         jTaskPane1.setBackground(new java.awt.Color(153, 153, 255));
         jTaskPane1.setMinimumSize(new java.awt.Dimension(210, 500));
         jTaskPane1.setPreferredSize(new java.awt.Dimension(210, 500));
-        jTaskPane1.setLayout(null);
 
         jTaskPaneGroup1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/users1.png"))); // NOI18N
         jTaskPaneGroup1.setTitle("Managment Employee");
@@ -280,13 +279,28 @@ public class frmEmployee extends javax.swing.JFrame {
         linkButtonSearchEmp.setToolTipText("Search Employee");
         jTaskPaneGroup1.getContentPane().add(linkButtonSearchEmp);
 
-        jTaskPane1.add(jTaskPaneGroup1);
-        jTaskPaneGroup1.setBounds(14, 153, 189, 148);
-
         jTaskPaneGroup2.setTitle("Report");
         jTaskPaneGroup2.setToolTipText("Report");
-        jTaskPane1.add(jTaskPaneGroup2);
-        jTaskPaneGroup2.setBounds(14, 311, 189, 46);
+
+        javax.swing.GroupLayout jTaskPane1Layout = new javax.swing.GroupLayout(jTaskPane1);
+        jTaskPane1.setLayout(jTaskPane1Layout);
+        jTaskPane1Layout.setHorizontalGroup(
+            jTaskPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jTaskPane1Layout.createSequentialGroup()
+                .addGap(4, 4, 4)
+                .addComponent(jTaskPaneGroup1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jTaskPane1Layout.createSequentialGroup()
+                .addGap(4, 4, 4)
+                .addComponent(jTaskPaneGroup2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jTaskPane1Layout.setVerticalGroup(
+            jTaskPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jTaskPane1Layout.createSequentialGroup()
+                .addGap(143, 143, 143)
+                .addComponent(jTaskPaneGroup1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jTaskPaneGroup2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
