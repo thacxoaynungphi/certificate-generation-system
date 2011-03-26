@@ -14,6 +14,7 @@ import com.hueic.CerGS.entity.Account;
 import com.hueic.CerGS.ui.system.frmLogin;
 import com.hueic.CerGS.ui.system.frmAbout;
 import com.hueic.CerGS.component.GUIProperties;
+import com.hueic.CerGS.component.IconSystem;
 import com.hueic.CerGS.dao.GUIDAO;
 import com.hueic.CerGS.ui.main.account.frmAccount;
 import com.hueic.CerGS.ui.main.certificate.frmCertificate;
@@ -49,6 +50,7 @@ public class frmMain extends javax.swing.JFrame {
         guip = new GUIProperties();
         guidao.setGUI(guip.PLAF_JGOODIES);
         bindingLang();
+        new IconSystem(this);
         HelpSet hs = getHelpSet("com/hueic/CerGS/myhelp/sample.hs");
         HelpBroker hb = hs.createHelpBroker();
 
@@ -485,6 +487,7 @@ public class frmMain extends javax.swing.JFrame {
         mnuSystem.add(mnuIViewInformation);
 
         mnuOptions.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/gear.png"))); // NOI18N
+        mnuOptions.setText("Options");
 
         mnuLang.setText("Language");
 

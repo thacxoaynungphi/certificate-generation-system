@@ -10,6 +10,7 @@
  */
 package com.hueic.CerGS.ui.main.student;
 
+import com.hueic.CerGS.component.IconSystem;
 import com.hueic.CerGS.dao.StudentDAO;
 import com.hueic.CerGS.entity.Student;
 import javax.swing.JOptionPane;
@@ -23,6 +24,7 @@ public class frmAddStudent extends javax.swing.JFrame {
     /** Creates new form AddStuFrm */
     public frmAddStudent() {
         initComponents();
+        new IconSystem(this);
         setLocationRelativeTo(null);
     }
 

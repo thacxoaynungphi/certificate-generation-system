@@ -1,5 +1,7 @@
 package com.hueic.CerGS.ui.system;
 
+import com.hueic.CerGS.component.IconSystem;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -19,6 +21,7 @@ public class frmAbout extends javax.swing.JFrame {
     /** Creates new form AboutFrm */
     public frmAbout() {
         initComponents();
+        new IconSystem(this);
         setLocationRelativeTo(null);
     }
 

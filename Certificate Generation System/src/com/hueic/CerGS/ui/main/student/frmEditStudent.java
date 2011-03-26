@@ -10,6 +10,7 @@
  */
 package com.hueic.CerGS.ui.main.student;
 
+import com.hueic.CerGS.component.IconSystem;
 import com.hueic.CerGS.entity.Student;
 
 /**
@@ -23,11 +24,13 @@ public class frmEditStudent extends javax.swing.JFrame {
 
     public frmEditStudent() {
         initComponents();
+        new IconSystem(this);
         setLocationRelativeTo(null);
     }
 
     public frmEditStudent(Student student) {
         initComponents();
+        new IconSystem(this);
         setLocationRelativeTo(null);
         this.student = student;
         loadData();

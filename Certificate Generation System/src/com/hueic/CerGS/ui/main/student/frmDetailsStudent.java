@@ -10,9 +10,8 @@
  */
 package com.hueic.CerGS.ui.main.student;
 
+import com.hueic.CerGS.component.IconSystem;
 import com.hueic.CerGS.dao.StudentDAO;
-import com.hueic.CerGS.ui.main.employee.*;
-import com.hueic.CerGS.entity.Employee;
 import com.hueic.CerGS.entity.Student;
 
 /**
@@ -26,11 +25,13 @@ public class frmDetailsStudent extends javax.swing.JFrame {
 
     public frmDetailsStudent() {
         initComponents();
+        new IconSystem(this);
         setLocationRelativeTo(null);
     }
 
     public frmDetailsStudent(Student student) {
         initComponents();
+        new IconSystem(this);
         setLocationRelativeTo(null);
         this.student = student;
         loadDetails(student);

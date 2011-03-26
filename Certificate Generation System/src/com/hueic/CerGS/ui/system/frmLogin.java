@@ -10,6 +10,7 @@
  */
 package com.hueic.CerGS.ui.system;
 
+import com.hueic.CerGS.component.IconSystem;
 import com.hueic.CerGS.dao.AccountDAO;
 import com.hueic.CerGS.dao.PermissionDAO;
 import com.hueic.CerGS.dao.RememberAccount;
@@ -32,12 +33,14 @@ public class frmLogin extends javax.swing.JFrame {
     frmMain  main;
     public frmLogin() {
         initComponents();
+        new IconSystem(this);
         setLocationRelativeTo(null);
         bindingData();
     }
 
      public frmLogin(frmMain  main) {
         initComponents();
+        new IconSystem(this);
         this.main = main;
         setLocationRelativeTo(null);
         bindingData();

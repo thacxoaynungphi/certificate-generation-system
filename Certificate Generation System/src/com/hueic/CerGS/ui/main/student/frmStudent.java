@@ -10,6 +10,7 @@
  */
 package com.hueic.CerGS.ui.main.student;
 
+import com.hueic.CerGS.component.IconSystem;
 import com.hueic.CerGS.dao.StudentDAO;
 import com.hueic.CerGS.entity.Student;
 import java.awt.AWTEvent;
@@ -33,7 +34,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -55,6 +55,7 @@ public class frmStudent extends javax.swing.JFrame {
 
     public frmStudent() {
         initComponents();
+        new IconSystem(this);
         setLocationRelativeTo(null);
         liststudent = studentDao.readByAll();
         loadTable(liststudent);

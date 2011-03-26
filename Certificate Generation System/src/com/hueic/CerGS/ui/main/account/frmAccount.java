@@ -10,6 +10,7 @@
  */
 package com.hueic.CerGS.ui.main.account;
 
+import com.hueic.CerGS.component.IconSystem;
 import com.hueic.CerGS.dao.AccountDAO;
 import com.hueic.CerGS.dao.PermissionDAO;
 import com.hueic.CerGS.dao.PersonDAO;
@@ -44,6 +45,7 @@ public class frmAccount extends javax.swing.JFrame {
 
     public frmAccount() {
         initComponents();
+        new IconSystem(this);
         setLocationRelativeTo(null);
         accDao = new AccountDAO();
         permissionDao = new PermissionDAO();
