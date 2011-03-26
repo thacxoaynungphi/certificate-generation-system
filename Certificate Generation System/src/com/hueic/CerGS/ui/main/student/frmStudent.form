@@ -114,37 +114,38 @@
           <SubComponents>
             <Container class="com.l2fprod.common.swing.JTaskPaneGroup" name="jTaskPaneGroup1">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/hueic/CerGS/images/user1.png"/>
+                </Property>
                 <Property name="title" type="java.lang.String" value="Managment Student"/>
                 <Property name="toolTipText" type="java.lang.String" value="Managment Student"/>
               </Properties>
               <SubComponents>
                 <Component class="com.l2fprod.common.swing.JLinkButton" name="linkButtonAddStudent">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/com/hueic/CerGS/images/add - 16.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Add Student"/>
                     <Property name="toolTipText" type="java.lang.String" value="Add Employee"/>
                   </Properties>
                 </Component>
                 <Component class="com.l2fprod.common.swing.JLinkButton" name="linkButtonEditStudent">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/com/hueic/CerGS/images/edit.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Edit Student"/>
                     <Property name="toolTipText" type="java.lang.String" value="Edit Employee"/>
                   </Properties>
                 </Component>
                 <Component class="com.l2fprod.common.swing.JLinkButton" name="linkButtonDeleteStudent">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/com/hueic/CerGS/images/delete.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Delete Student"/>
                     <Property name="toolTipText" type="java.lang.String" value="Delete Employee"/>
-                  </Properties>
-                </Component>
-                <Component class="com.l2fprod.common.swing.JLinkButton" name="linkButtonSearchStudent">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Search Student"/>
-                    <Property name="toolTipText" type="java.lang.String" value="Search Employee"/>
-                  </Properties>
-                </Component>
-                <Component class="com.l2fprod.common.swing.JLinkButton" name="linkButtonDetails">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Details Student"/>
                   </Properties>
                 </Component>
               </SubComponents>

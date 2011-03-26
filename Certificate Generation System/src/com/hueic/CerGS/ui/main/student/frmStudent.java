@@ -167,8 +167,6 @@ public class frmStudent extends javax.swing.JFrame {
         linkButtonAddStudent = new com.l2fprod.common.swing.JLinkButton();
         linkButtonEditStudent = new com.l2fprod.common.swing.JLinkButton();
         linkButtonDeleteStudent = new com.l2fprod.common.swing.JLinkButton();
-        linkButtonSearchStudent = new com.l2fprod.common.swing.JLinkButton();
-        linkButtonDetails = new com.l2fprod.common.swing.JLinkButton();
         jTaskPaneGroup2 = new com.l2fprod.common.swing.JTaskPaneGroup();
         jTaskPaneGroup3 = new com.l2fprod.common.swing.JTaskPaneGroup();
         linkButtonImport = new com.l2fprod.common.swing.JLinkButton();
@@ -242,27 +240,24 @@ public class frmStudent extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
+        jTaskPaneGroup1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/user1.png"))); // NOI18N
         jTaskPaneGroup1.setTitle("Managment Student");
         jTaskPaneGroup1.setToolTipText("Managment Student");
 
+        linkButtonAddStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
         linkButtonAddStudent.setText("Add Student");
         linkButtonAddStudent.setToolTipText("Add Employee");
         jTaskPaneGroup1.getContentPane().add(linkButtonAddStudent);
 
+        linkButtonEditStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/edit.png"))); // NOI18N
         linkButtonEditStudent.setText("Edit Student");
         linkButtonEditStudent.setToolTipText("Edit Employee");
         jTaskPaneGroup1.getContentPane().add(linkButtonEditStudent);
 
+        linkButtonDeleteStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
         linkButtonDeleteStudent.setText("Delete Student");
         linkButtonDeleteStudent.setToolTipText("Delete Employee");
         jTaskPaneGroup1.getContentPane().add(linkButtonDeleteStudent);
-
-        linkButtonSearchStudent.setText("Search Student");
-        linkButtonSearchStudent.setToolTipText("Search Employee");
-        jTaskPaneGroup1.getContentPane().add(linkButtonSearchStudent);
-
-        linkButtonDetails.setText("Details Student");
-        jTaskPaneGroup1.getContentPane().add(linkButtonDetails);
 
         jTaskPane1.add(jTaskPaneGroup1);
 
@@ -738,11 +733,9 @@ public class frmStudent extends javax.swing.JFrame {
     private javax.swing.JLabel lblHienthi1;
     private com.l2fprod.common.swing.JLinkButton linkButtonAddStudent;
     private com.l2fprod.common.swing.JLinkButton linkButtonDeleteStudent;
-    private com.l2fprod.common.swing.JLinkButton linkButtonDetails;
     private com.l2fprod.common.swing.JLinkButton linkButtonEditStudent;
     private com.l2fprod.common.swing.JLinkButton linkButtonExport;
     private com.l2fprod.common.swing.JLinkButton linkButtonImport;
-    private com.l2fprod.common.swing.JLinkButton linkButtonSearchStudent;
     private javax.swing.JMenuItem menuIAdd;
     private javax.swing.JMenuItem menuIDelete;
     private javax.swing.JMenuItem menuIEdit;
