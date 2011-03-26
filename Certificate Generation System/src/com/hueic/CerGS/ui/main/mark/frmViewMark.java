@@ -8,11 +8,27 @@
  *
  * Created on Mar 26, 2011, 1:48:50 PM
  */
-
 package com.hueic.CerGS.ui.main.mark;
 
 import com.hueic.CerGS.component.IconSystem;
-import java.util.Locale;
+import com.hueic.CerGS.dao.CourseDAO;
+import com.hueic.CerGS.dao.MarkDAO;
+import com.hueic.CerGS.dao.PaymentDAO;
+import com.hueic.CerGS.dao.RegisterDAO;
+import com.hueic.CerGS.dao.StudentDAO;
+import com.hueic.CerGS.entity.Course;
+import com.hueic.CerGS.entity.Mark;
+import com.hueic.CerGS.entity.Payment;
+import com.hueic.CerGS.entity.Register;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import javax.swing.JTable;
+import javax.swing.JViewport;
+import javax.swing.ListSelectionModel;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -21,10 +37,108 @@ import java.util.Locale;
 public class frmViewMark extends javax.swing.JFrame {
 
     /** Creates new form frmViewMark */
+    private ArrayList<Mark> listMarks = new ArrayList<Mark>();
+    private MarkDAO markDAO;
+    TableRowSorter<TableModel> sorter;
+    private CourseDAO courseDao;
+    private RegisterDAO registerDao;
+    public ArrayList<Course> listCourse;
+    public ArrayList<Register> listRegister;
+
     public frmViewMark() {
         initComponents();
         new IconSystem(this);
         setLocationRelativeTo(null);
+        markDAO = new MarkDAO();
+        courseDao = new CourseDAO();
+        registerDao = new RegisterDAO();
+        listMarks = markDAO.readByAll();
+        loadData(listMarks);
+        loadDataCBXCourse();
+        loadDataCBXStudent();
+    }
+
+    public void loadData(ArrayList<Mark> listMarks) {
+        String[] columns = {"Id", "StudentId", "StudentName", "SubjectId", "Mark"};
+        Object[][] rows = new Object[listMarks.size()][5];
+        int index = 0;
+        for (int i = 0; i < listMarks.size(); i++) {
+            Mark mark = listMarks.get(i);
+            String id = new RegisterDAO().readByStudentId(mark.getStudentId()).getId();
+            rows[index][0] = mark.getId();
+            rows[index][1] = mark.getStudentId();
+            rows[index][2] = new StudentDAO().readByID(id).getFullName();
+            rows[index][3] = mark.getSubjectId();
+            rows[index][4] = mark.getMark();
+            index++;
+        }
+        TableModel model = new DefaultTableModel(rows, columns) {
+
+            public Class getColumnClass(int column) {
+                Class returnValue;
+                if ((column >= 0) && (column < getColumnCount())) {
+                    returnValue = getValueAt(0, column).getClass();
+                } else {
+                    returnValue = Object.class;
+                }
+                return returnValue;
+            }
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false, false
+            };
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return canEdit[column];
+            }
+        };
+        tableContent = new JTable(model);
+        tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
+
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableContentMouseClicked(evt);
+            }
+        });
+        sorter = new TableRowSorter<TableModel>(model);
+        tableContent.setRowSorter(sorter);
+        tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        JViewport viewPort = new JViewport();
+        viewPort.setView(tableContent);
+        viewPort.setPreferredSize(tableContent.getMaximumSize());
+        srcPanelViewMark.setRowHeader(viewPort);
+        srcPanelViewMark.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
+    }
+
+    public void load(ArrayList<Mark> listMarks, String courseId, String studentid) {
+
+        listMarks = markDAO.readByStudentID(studentid);
+        if (listMarks != null) {
+            loadData(listMarks);
+        }
+    }
+
+    private void tableContentMouseClicked(MouseEvent evt) {
+       
+    }
+
+    public void loadDataCBXCourse() {
+        cbxCourseID.removeAllItems();
+        listCourse = courseDao.readByAll();
+        if (listCourse != null) {
+            for (int i = 0; i < listCourse.size(); i++) {
+                cbxCourseID.addItem(listCourse.get(i).getId());
+            }
+        }
+    }
+
+    public void loadDataCBXStudent() {
+        cbxStudentID.removeAllItems();
+        listRegister = registerDao.readByAll();
+        if (listRegister != null) {
+            for (int i = 0; i < listRegister.size(); i++) {
+                cbxStudentID.addItem(listRegister.get(i).getStudentId());
+            }
+        }
     }
 
     /** This method is called from within the constructor to
@@ -74,6 +188,7 @@ public class frmViewMark extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         getContentPane().add(panel1, gridBagConstraints);
 
+        panel2.setBackground(new java.awt.Color(255, 255, 255));
         panel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "View Mark", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
         panel2.setPreferredSize(new java.awt.Dimension(832, 310));
         panel2.setLayout(new java.awt.GridBagLayout());
@@ -128,14 +243,24 @@ public class frmViewMark extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel2.add(srcPanelViewMark, gridBagConstraints);
 
+        panel3.setBackground(new java.awt.Color(255, 255, 255));
         panel3.setPreferredSize(new java.awt.Dimension(160, 30));
 
+        btnReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
         btnReport.setText("Report");
+        btnReport.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnReport.setPreferredSize(new java.awt.Dimension(75, 23));
         panel3.add(btnReport);
 
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
         btnCancel.setText("Cancel");
+        btnCancel.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnCancel.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
         panel3.add(btnCancel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -153,17 +278,22 @@ public class frmViewMark extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnCancelActionPerformed
+
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new frmViewMark().setVisible(true);
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnReport;
@@ -178,5 +308,4 @@ public class frmViewMark extends javax.swing.JFrame {
     private javax.swing.JScrollPane srcPanelViewMark;
     private javax.swing.JTable tableContent;
     // End of variables declaration//GEN-END:variables
-
 }
