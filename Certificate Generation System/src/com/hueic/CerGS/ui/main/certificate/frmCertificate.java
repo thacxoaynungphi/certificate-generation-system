@@ -53,7 +53,7 @@ public class frmCertificate extends javax.swing.JFrame {
     public void loadData(ArrayList<Certificate> listCertificate) {
 
         String[] columns = {"Id", "Student Id", "Mark", "DegreeDay"};
-        Object[][] rows = new Object[listCertificate.size()][3];
+        Object[][] rows = new Object[listCertificate.size()][4];
         int index = 0;
         for (int i = 0; i < listCertificate.size(); i++) {
             Certificate cer = listCertificate.get(i);

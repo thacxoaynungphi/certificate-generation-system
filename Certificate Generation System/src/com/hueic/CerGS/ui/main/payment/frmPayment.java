@@ -40,10 +40,14 @@ public class frmPayment extends javax.swing.JFrame {
     private ArrayList<Payment> listPayments = new ArrayList<Payment>();
     private PaymentDAO paymentDao;
     TableRowSorter<TableModel> sorter;
+    RegisterDAO registerDAO;
+    StudentDAO studentDAO;
 
     public frmPayment() {
         initComponents();
         new IconSystem(this);
+        registerDAO = new RegisterDAO();
+        studentDAO = new StudentDAO();
         setLocationRelativeTo(null);
         paymentDao = new PaymentDAO();
         listPayments = paymentDao.readByAll();
@@ -53,15 +57,15 @@ public class frmPayment extends javax.swing.JFrame {
 
     public void loadData(ArrayList<Payment> listPayments) {
         String[] columns = {"Id", "StudentId", "StudentName", "Money", "Payday"};
-        Object[][] rows = new Object[listPayments.size()][4];
+        Object[][] rows = new Object[listPayments.size()][5];
         int index = 0;
         for (int i = 0; i < listPayments.size(); i++) {
             Payment payment = listPayments.get(i);
-            String id = new RegisterDAO().readByStudentId(payment.getStudentId()).getId();
+            String id = registerDAO.readByStudentId(payment.getStudentId()).getId();
 
             rows[index][0] = payment.getId();
             rows[index][1] = payment.getStudentId();
-            rows[index][2] = new StudentDAO().readByID(id).getFullName();
+            rows[index][2] = studentDAO.readByID(id).getFullName();
             rows[index][3] = payment.getMoney();
             rows[index][4] = payment.getPayday();
             index++;
