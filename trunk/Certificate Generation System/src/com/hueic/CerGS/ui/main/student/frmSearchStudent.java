@@ -36,8 +36,9 @@ public class frmSearchStudent extends javax.swing.JFrame {
     private CourseDAO courseDAO;
     private StudentDAO studentDAO;
     private RegisterDAO registerDAO;
-    private ArrayList<Register> listStudent;
-    TableRowSorter<TableModel> sorter;
+    private ArrayList<Register> listRegister;
+    private TableRowSorter<TableModel> sorter;
+    private ArrayList<Student> listStudent;
 
     /** Creates new form frmSearchStudent */
     public frmSearchStudent() {
@@ -56,7 +57,7 @@ public class frmSearchStudent extends javax.swing.JFrame {
 
     public void loadStudentId(ArrayList<Register> listRegis) {
         cbxStudent.removeAllItems();
-        for(Register regis : listRegis){
+        for (Register regis : listRegis) {
             cbxStudent.addItem(regis.getStudentId());
         }
     }
@@ -159,8 +160,7 @@ public class frmSearchStudent extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         srcPanelAccount = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
-        btnCancel = new javax.swing.JButton();
-        btnOk = new javax.swing.JButton();
+        btnClose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -198,6 +198,11 @@ public class frmSearchStudent extends javax.swing.JFrame {
         cbxCourse.setMinimumSize(new java.awt.Dimension(150, 20));
         cbxCourse.setOpaque(false);
         cbxCourse.setPreferredSize(new java.awt.Dimension(150, 20));
+        cbxCourse.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxCourseItemStateChanged(evt);
+            }
+        });
         cbxCourse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxCourseActionPerformed(evt);
@@ -389,27 +394,21 @@ public class frmSearchStudent extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel3.add(srcPanelAccount, gridBagConstraints);
 
-        btnCancel.setText("Cancel");
-        btnCancel.setMaximumSize(new java.awt.Dimension(90, 23));
-        btnCancel.setMinimumSize(new java.awt.Dimension(90, 23));
-        btnCancel.setPreferredSize(new java.awt.Dimension(90, 23));
+        btnClose.setText("Close");
+        btnClose.setMaximumSize(new java.awt.Dimension(90, 23));
+        btnClose.setMinimumSize(new java.awt.Dimension(90, 23));
+        btnClose.setPreferredSize(new java.awt.Dimension(90, 23));
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jPanel3.add(btnCancel, gridBagConstraints);
-
-        btnOk.setText("Ok");
-        btnOk.setMaximumSize(new java.awt.Dimension(90, 23));
-        btnOk.setMinimumSize(new java.awt.Dimension(90, 23));
-        btnOk.setPreferredSize(new java.awt.Dimension(90, 23));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 650, 5, 5);
-        jPanel3.add(btnOk, gridBagConstraints);
+        jPanel3.add(btnClose, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -422,22 +421,12 @@ public class frmSearchStudent extends javax.swing.JFrame {
 
     private void cbxCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCourseActionPerformed
         // TODO add your handling code here:
-        String courseId = (String) cbxCourse.getSelectedItem();
-        listStudent.clear();
-        listStudent.addAll(registerDAO.readByCourseId(courseId));
-
-        loadData(listStudent);
-        loadStudentId(listStudent);
-    }//GEN-LAST:event_cbxCourseActionPerformed
         
+    }//GEN-LAST:event_cbxCourseActionPerformed
+
     private void cbxStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxStudentActionPerformed
         // TODO add your handling code here:
-        String studentId = (String) cbxStudent.getSelectedItem();
-        listStudent.clear();
-        listStudent.add(registerDAO.readByStudentId(studentId));
-
-        loadData(listStudent);
-        loadStudentId(registerDAO.readByAll());
+        
     }//GEN-LAST:event_cbxStudentActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
@@ -447,12 +436,38 @@ public class frmSearchStudent extends javax.swing.JFrame {
         Date startDate = dateChooserDateStart.getDate();
         Date endDate = dateChooserDateEnd.getDate();
         int gender = 0;
-        if(radioFemale.isSelected()) gender = 1;
+        if (radioFemale.isSelected()) {
+            gender = 1;
+        }
 
-        ArrayList<Student> listStudent = studentDAO.readByCommand(firstName, lastName, startDate, endDate, gender);
+        listRegister.clear();
+        listStudent = studentDAO.readByCommand(firstName, lastName, startDate, endDate, gender);
 
-        
+        if (!listStudent.isEmpty()) {
+            for (Student student : listStudent) {
+                ArrayList<Register> listregis = registerDAO.readByStudentIdOfPerson(student.getId());
+                listRegister.addAll(listregis);
+            }
+        }
+
+        loadData(listRegister);
+
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void cbxCourseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxCourseItemStateChanged
+        // TODO add your handling code here:
+        String courseId = (String) cbxCourse.getSelectedItem();
+        listRegister.clear();
+        listRegister.addAll(registerDAO.readByCourseId(courseId));
+
+        loadData(listRegister);
+        loadStudentId(listRegister);
+    }//GEN-LAST:event_cbxCourseItemStateChanged
+
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnCloseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -466,8 +481,7 @@ public class frmSearchStudent extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancel;
-    private javax.swing.JButton btnOk;
+    private javax.swing.JButton btnClose;
     private javax.swing.JButton btnSearch;
     private javax.swing.ButtonGroup buttonGroupGender;
     private javax.swing.JComboBox cbxCourse;
