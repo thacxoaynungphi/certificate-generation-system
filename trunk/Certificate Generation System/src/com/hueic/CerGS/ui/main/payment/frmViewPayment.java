@@ -58,7 +58,7 @@ public class frmViewPayment extends javax.swing.JFrame {
 
     public void loadData(ArrayList<Payment> listPayments) {
         String[] columns = {"Id", "StudentId", "StudentName", "Money", "Payday"};
-        Object[][] rows = new Object[listPayments.size()][4];
+        Object[][] rows = new Object[listPayments.size()][5];
         int index = 0;
         for (int i = 0; i < listPayments.size(); i++) {
             Payment payment = listPayments.get(i);
@@ -165,7 +165,9 @@ public class frmViewPayment extends javax.swing.JFrame {
         lblTotalTheDeposit = new javax.swing.JLabel();
         lblAmountRemaining = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("View Payment - Certificate Generation System");
+        setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/ViewPayment.png"))); // NOI18N
@@ -257,11 +259,15 @@ public class frmViewPayment extends javax.swing.JFrame {
         panel3.setBackground(new java.awt.Color(255, 255, 255));
         panel3.setPreferredSize(new java.awt.Dimension(160, 30));
 
+        btnReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
         btnReport.setText("Report");
+        btnReport.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnReport.setPreferredSize(new java.awt.Dimension(75, 23));
         panel3.add(btnReport);
 
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
         btnCancel.setText("Cancel");
+        btnCancel.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnCancel.setPreferredSize(new java.awt.Dimension(75, 23));
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

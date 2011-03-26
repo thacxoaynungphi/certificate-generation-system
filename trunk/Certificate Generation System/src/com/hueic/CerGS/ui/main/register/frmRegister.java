@@ -17,7 +17,6 @@ import com.hueic.CerGS.dao.SubjectDAO;
 import com.hueic.CerGS.entity.Course;
 import com.hueic.CerGS.entity.Register;
 import com.hueic.CerGS.entity.Student;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.JViewport;
