@@ -38,36 +38,37 @@ public class frmPayment extends javax.swing.JFrame {
     /** Creates new form frmAccount */
     private int currentId;
     private ArrayList<Payment> listPayments = new ArrayList<Payment>();
+    ArrayList<Course> listCourse = new ArrayList<Course>();
     private PaymentDAO paymentDao;
     TableRowSorter<TableModel> sorter;
     RegisterDAO registerDAO;
     StudentDAO studentDAO;
+    CourseDAO courseDao;
 
     public frmPayment() {
         initComponents();
         new IconSystem(this);
         registerDAO = new RegisterDAO();
         studentDAO = new StudentDAO();
+        courseDao = new CourseDAO();
         setLocationRelativeTo(null);
         paymentDao = new PaymentDAO();
         listPayments = paymentDao.readByAll();
+        listCourse = courseDao.readByAll();
         loadData(listPayments);
         loadCourse();
     }
 
     public void loadData(ArrayList<Payment> listPayments) {
-        String[] columns = {"Id", "StudentId", "StudentName", "Money", "Payday"};
-        Object[][] rows = new Object[listPayments.size()][5];
+        String[] columns = {"Id", "StudentId", "Money", "Payday"};
+        Object[][] rows = new Object[listPayments.size()][4];
         int index = 0;
         for (int i = 0; i < listPayments.size(); i++) {
             Payment payment = listPayments.get(i);
-            String id = registerDAO.readByStudentId(payment.getStudentId()).getId();
-
             rows[index][0] = payment.getId();
             rows[index][1] = payment.getStudentId();
-            rows[index][2] = studentDAO.readByID(id).getFullName();
-            rows[index][3] = payment.getMoney();
-            rows[index][4] = payment.getPayday();
+            rows[index][2] = payment.getMoney();
+            rows[index][3] = payment.getPayday();
             index++;
         }
         TableModel model = new DefaultTableModel(rows, columns) {
@@ -110,16 +111,13 @@ public class frmPayment extends javax.swing.JFrame {
     public void loadDetails(Payment payment) {
         currentId = payment.getId();
         txtMoney.setText(String.valueOf(payment.getMoney()));
-        cbxCourse.setSelectedItem(new RegisterDAO().readByStudentId(payment.getStudentId()).getCourseId());
+        cbxCourse.setSelectedItem(registerDAO.readByStudentId(payment.getStudentId()).getCourseId());
         cbxStudentID.setSelectedItem(payment.getStudentId());
         dateChPayDay.setDate(payment.getPayday());
     }
 
     public void loadCourse() {
         cbxCourse.removeAllItems();
-        CourseDAO courseDao = new CourseDAO();
-        ArrayList<Course> listCourse = new ArrayList<Course>();
-        listCourse = courseDao.readByAll();
         if (listCourse != null) {
             for (int i = 0; i < listCourse.size(); i++) {
                 cbxCourse.addItem(listCourse.get(i).getId());
@@ -482,20 +480,17 @@ public class frmPayment extends javax.swing.JFrame {
     }
     private void cbxCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCourseActionPerformed
         // TODO add your handling code here:
-        String courseId = (String) cbxCourse.getSelectedItem();
-        ArrayList<Register> resList = new RegisterDAO().readByCourseId(courseId);
-
-        listPayments.clear();
-
-        for (Register res : resList) {
-            ArrayList<Payment> payList = new PaymentDAO().readByStudentId(res.getStudentId());
-
-            for (Payment pay : payList) {
-                listPayments.add(pay);
-            }
-        }
-
-        loadData(listPayments);
+        //TODO: kiem tra lai phuong thuc nay
+//        String courseId = (String) cbxCourse.getSelectedItem();
+//        ArrayList<Register> resList = new RegisterDAO().readByCourseId(courseId);
+//        listPayments.clear();
+//        for (Register res : resList) {
+//            ArrayList<Payment> payList = paymentDao.readByStudentId(res.getStudentId());
+//            for (Payment pay : payList) {
+//                listPayments.add(pay);
+//            }
+//        }
+//        loadData(listPayments);
     }//GEN-LAST:event_cbxCourseActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -503,7 +498,6 @@ public class frmPayment extends javax.swing.JFrame {
         int index = getIndexOfPaymentInList(currentId);
         listPayments.get(index).setMoney(Float.parseFloat(txtMoney.getText()));
         listPayments.get(index).setPayday(dateChPayDay.getDate());
-
         loadData(listPayments);
         new PaymentDAO().update(listPayments.get(index));
     }//GEN-LAST:event_btnUpdateActionPerformed
