@@ -14,6 +14,7 @@ import com.hueic.CerGS.dao.EmployeeDAO;
 import com.hueic.CerGS.entity.Employee;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -454,7 +455,12 @@ public class frmAddEmployee extends javax.swing.JFrame {
             emp.setImage(txtImage.getText());
             emp.setStatus(1);
             EmployeeDAO empDao = new EmployeeDAO();
-            empDao.create(emp);
+            if (empDao.create(emp)) {
+                JOptionPane.showMessageDialog(this, empDao.getLastError(), "Create Employee", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+            } else {
+                 JOptionPane.showMessageDialog(this, empDao.getLastError(), "Create Employee", JOptionPane.ERROR_MESSAGE);
+            }
         } catch (Exception ex) {
             System.out.println(ex.toString());
         }
