@@ -173,7 +173,7 @@ public class frmRegister extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         panel1.add(sepa1, gridBagConstraints);
 
-        lblID.setText("Student Scores ID:");
+        lblID.setText("Student Coures ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
