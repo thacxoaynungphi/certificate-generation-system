@@ -99,7 +99,8 @@ public class frmSubject extends javax.swing.JFrame {
 
         panel1.setBackground(new java.awt.Color(255, 255, 255));
         panel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Subject", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
-        panel1.setPreferredSize(new java.awt.Dimension(150, 150));
+        panel1.setMinimumSize(new java.awt.Dimension(450, 320));
+        panel1.setPreferredSize(new java.awt.Dimension(450, 320));
         panel1.setLayout(new java.awt.GridBagLayout());
 
         lblCourse.setText("Choose Subject ID:");
@@ -168,14 +169,13 @@ public class frmSubject extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 300;
-        gridBagConstraints.ipady = 110;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         getContentPane().add(panel1, gridBagConstraints);
 
         panel2.setBackground(new java.awt.Color(255, 255, 255));
         panel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14)), "Management Subject", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
-        panel2.setPreferredSize(new java.awt.Dimension(235, 233));
+        panel2.setMinimumSize(new java.awt.Dimension(380, 320));
+        panel2.setPreferredSize(new java.awt.Dimension(380, 320));
         panel2.setLayout(new java.awt.GridBagLayout());
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 12));
@@ -332,8 +332,6 @@ public class frmSubject extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 150;
-        gridBagConstraints.ipady = 26;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         getContentPane().add(panel2, gridBagConstraints);
 

@@ -87,7 +87,8 @@ public class frmRegister extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Register", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
-        jPanel2.setPreferredSize(new java.awt.Dimension(500, 320));
+        jPanel2.setMinimumSize(new java.awt.Dimension(450, 320));
+        jPanel2.setPreferredSize(new java.awt.Dimension(450, 320));
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
         jLabel2.setText("Choose course:");
@@ -105,13 +106,13 @@ public class frmRegister extends javax.swing.JFrame {
         jPanel2.add(jLabel3, gridBagConstraints);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setPreferredSize(new java.awt.Dimension(180, 20));
+        jComboBox1.setPreferredSize(new java.awt.Dimension(150, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jComboBox1, gridBagConstraints);
 
-        jTextField1.setPreferredSize(new java.awt.Dimension(180, 20));
+        jTextField1.setPreferredSize(new java.awt.Dimension(150, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -119,7 +120,7 @@ public class frmRegister extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jTextField1, gridBagConstraints);
 
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(440, 200));
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(400, 200));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -149,7 +150,9 @@ public class frmRegister extends javax.swing.JFrame {
 
         panel1.setBackground(new java.awt.Color(255, 255, 255));
         panel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Management Register", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
-        panel1.setPreferredSize(new java.awt.Dimension(330, 320));
+        panel1.setMinimumSize(new java.awt.Dimension(380, 320));
+        panel1.setPreferredSize(new java.awt.Dimension(380, 320));
+        panel1.setRequestFocusEnabled(false);
         panel1.setLayout(new java.awt.GridBagLayout());
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 12));
