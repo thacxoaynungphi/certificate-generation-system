@@ -166,11 +166,7 @@ public class frmEmployee extends javax.swing.JFrame {
         linkButtonEditEmp = new com.l2fprod.common.swing.JLinkButton();
         linkButtonDeleteEmp = new com.l2fprod.common.swing.JLinkButton();
         linkButtonSearchEmp = new com.l2fprod.common.swing.JLinkButton();
-        linkButtonDetailsEmp = new com.l2fprod.common.swing.JLinkButton();
         jTaskPaneGroup2 = new com.l2fprod.common.swing.JTaskPaneGroup();
-        jTaskPaneGroup3 = new com.l2fprod.common.swing.JTaskPaneGroup();
-        linkButtonImport = new com.l2fprod.common.swing.JLinkButton();
-        linkButtonExport = new com.l2fprod.common.swing.JLinkButton();
         panelRight = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         lblHienthi1 = new javax.swing.JLabel();
@@ -250,6 +246,7 @@ public class frmEmployee extends javax.swing.JFrame {
         jTaskPaneGroup1.setTitle("Managment Employee");
         jTaskPaneGroup1.setToolTipText("Managment Employee");
 
+        linkButtonAddEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
         linkButtonAddEmp.setText("Add Employee");
         linkButtonAddEmp.setToolTipText("Add Employee");
         linkButtonAddEmp.addActionListener(new java.awt.event.ActionListener() {
@@ -259,6 +256,7 @@ public class frmEmployee extends javax.swing.JFrame {
         });
         jTaskPaneGroup1.getContentPane().add(linkButtonAddEmp);
 
+        linkButtonEditEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/edit.png"))); // NOI18N
         linkButtonEditEmp.setText("Edit Employee");
         linkButtonEditEmp.setToolTipText("Edit Employee");
         linkButtonEditEmp.addActionListener(new java.awt.event.ActionListener() {
@@ -268,16 +266,15 @@ public class frmEmployee extends javax.swing.JFrame {
         });
         jTaskPaneGroup1.getContentPane().add(linkButtonEditEmp);
 
+        linkButtonDeleteEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
         linkButtonDeleteEmp.setText("Delete Employee");
         linkButtonDeleteEmp.setToolTipText("Delete Employee");
         jTaskPaneGroup1.getContentPane().add(linkButtonDeleteEmp);
 
+        linkButtonSearchEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/view.png"))); // NOI18N
         linkButtonSearchEmp.setText("Search Employee");
         linkButtonSearchEmp.setToolTipText("Search Employee");
         jTaskPaneGroup1.getContentPane().add(linkButtonSearchEmp);
-
-        linkButtonDetailsEmp.setText("Details Employee");
-        jTaskPaneGroup1.getContentPane().add(linkButtonDetailsEmp);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -295,23 +292,6 @@ public class frmEmployee extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         jTaskPane1.add(jTaskPaneGroup2, gridBagConstraints);
-
-        jTaskPaneGroup3.setTitle("Managment Data");
-        jTaskPaneGroup3.setToolTipText("Managment Data");
-
-        linkButtonImport.setText("Import Data");
-        jTaskPaneGroup3.getContentPane().add(linkButtonImport);
-
-        linkButtonExport.setText("Export Data");
-        jTaskPaneGroup3.getContentPane().add(linkButtonExport);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
-        jTaskPane1.add(jTaskPaneGroup3, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -762,15 +742,11 @@ public class frmEmployee extends javax.swing.JFrame {
     private com.l2fprod.common.swing.JTaskPane jTaskPane1;
     private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroup1;
     private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroup2;
-    private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroup3;
     private javax.swing.JLabel lblCount;
     private javax.swing.JLabel lblHienthi1;
     private com.l2fprod.common.swing.JLinkButton linkButtonAddEmp;
     private com.l2fprod.common.swing.JLinkButton linkButtonDeleteEmp;
-    private com.l2fprod.common.swing.JLinkButton linkButtonDetailsEmp;
     private com.l2fprod.common.swing.JLinkButton linkButtonEditEmp;
-    private com.l2fprod.common.swing.JLinkButton linkButtonExport;
-    private com.l2fprod.common.swing.JLinkButton linkButtonImport;
     private com.l2fprod.common.swing.JLinkButton linkButtonSearchEmp;
     private javax.swing.JMenuItem menuIAdd;
     private javax.swing.JMenuItem menuIDelete;

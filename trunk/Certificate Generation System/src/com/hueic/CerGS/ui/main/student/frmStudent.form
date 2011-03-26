@@ -148,28 +148,55 @@
                     <Property name="toolTipText" type="java.lang.String" value="Delete Employee"/>
                   </Properties>
                 </Component>
+                <Component class="com.l2fprod.common.swing.JLinkButton" name="jLinkButton1">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/com/hueic/CerGS/images/view.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Search Student"/>
+                  </Properties>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="com.l2fprod.common.swing.JTaskPaneGroup" name="jTaskPaneGroup2">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/hueic/CerGS/images/reports-icon.png"/>
+                </Property>
                 <Property name="title" type="java.lang.String" value="Report"/>
                 <Property name="toolTipText" type="java.lang.String" value="Report"/>
               </Properties>
-            </Container>
-            <Container class="com.l2fprod.common.swing.JTaskPaneGroup" name="jTaskPaneGroup3">
-              <Properties>
-                <Property name="title" type="java.lang.String" value="Managment Data"/>
-                <Property name="toolTipText" type="java.lang.String" value="Managment Data"/>
-              </Properties>
               <SubComponents>
-                <Component class="com.l2fprod.common.swing.JLinkButton" name="linkButtonImport">
+                <Component class="com.l2fprod.common.swing.JLinkButton" name="linkBtnFeesReport">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Import Data"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/com/hueic/CerGS/images/arrow_right_green.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Fees Report"/>
                   </Properties>
                 </Component>
-                <Component class="com.l2fprod.common.swing.JLinkButton" name="linkButtonExport">
+                <Component class="com.l2fprod.common.swing.JLinkButton" name="linkBtnMarkReport">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Export Data"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/com/hueic/CerGS/images/arrow_right_green.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Mark Report"/>
+                  </Properties>
+                </Component>
+                <Component class="com.l2fprod.common.swing.JLinkButton" name="jLinkButton2">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/com/hueic/CerGS/images/arrow_right_green.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Student Report"/>
+                  </Properties>
+                </Component>
+                <Component class="com.l2fprod.common.swing.JLinkButton" name="jLinkButton3">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/com/hueic/CerGS/images/arrow_right_green.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="New Registration Report"/>
                   </Properties>
                 </Component>
               </SubComponents>
