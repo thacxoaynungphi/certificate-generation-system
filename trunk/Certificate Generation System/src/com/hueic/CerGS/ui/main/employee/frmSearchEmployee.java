@@ -8,10 +8,22 @@
  *
  * Created on Mar 26, 2011, 1:45:05 PM
  */
-
 package com.hueic.CerGS.ui.main.employee;
 
-import com.hueic.CerGS.ui.main.student.*;
+import com.hueic.CerGS.dao.EmployeeDAO;
+import com.hueic.CerGS.entity.Employee;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JViewport;
+import javax.swing.ListSelectionModel;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+import org.apache.commons.jocl.JOCLContentHandler;
 
 /**
  *
@@ -19,10 +31,90 @@ import com.hueic.CerGS.ui.main.student.*;
  */
 public class frmSearchEmployee extends javax.swing.JFrame {
 
+    private ArrayList<Employee> listEmp;
+    private TableRowSorter<TableModel> sorter;
+    private EmployeeDAO employeeDAO;
+
     /** Creates new form frmSearchStudent */
     public frmSearchEmployee() {
         initComponents();
         setLocationRelativeTo(null);
+        employeeDAO = new EmployeeDAO();
+        listEmp = employeeDAO.readByAll();
+
+        if (!listEmp.isEmpty()) {
+            loadData(listEmp);
+            loadEmployeeId();
+        } else JOptionPane.showMessageDialog(this, "no emp");
+    }
+
+    public void loadEmployeeId() {
+        cbxEmployeeId.removeAllItems();
+        if (!listEmp.isEmpty()) {
+            for (Employee emp : listEmp) {
+                cbxEmployeeId.addItem(emp.getId());
+            }
+        }
+    }
+
+    public void loadData(ArrayList<Employee> listEmp) {
+        String[] column = {"Employee Id", "Employee Name", "Birthday", "Gender", "Phone", "Email", "Address"};
+        Object[][] rows = new Object[listEmp.size()][7];
+
+        int index = 0;
+        for (int i = 0; i < listEmp.size(); i++) {
+
+            rows[index][0] = listEmp.get(i).getId();
+            rows[index][1] = listEmp.get(i).getFullName();
+            rows[index][2] = listEmp.get(i).getBirthDay();
+            rows[index][3] = listEmp.get(i).getGender();
+            rows[index][4] = listEmp.get(i).getPhone();
+            rows[index][5] = listEmp.get(i).getEmail();
+            rows[index][6] = listEmp.get(i).getAddress();
+
+        }
+
+        TableModel model = new DefaultTableModel(rows, column) {
+
+            public Class getColumnClass(int column) {
+                Class returnValue;
+                if ((column >= 0) && (column < getColumnCount())) {
+                    returnValue = getValueAt(0, column).getClass();
+                } else {
+                    returnValue = Object.class;
+                }
+                return returnValue;
+            }
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false, false, false, false, false
+            };
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return canEdit[column];
+            }
+        };
+
+        tableContent = new JTable(model);
+        tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
+
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableContentMouseClicked(evt);
+            }
+
+            private void tableContentMouseClicked(MouseEvent evt) {
+                throw new UnsupportedOperationException("Not yet implemented");
+            }
+        });
+        sorter = new TableRowSorter<TableModel>(model);
+        tableContent.setRowSorter(sorter);
+        tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        JViewport viewPort = new JViewport();
+        viewPort.setView(tableContent);
+        viewPort.setPreferredSize(tableContent.getMaximumSize());
+        srcPanelAccount.setRowHeader(viewPort);
+        srcPanelAccount.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
+
     }
 
     /** This method is called from within the constructor to
@@ -40,28 +132,25 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lblLogo = new javax.swing.JLabel();
         panelInfo = new javax.swing.JPanel();
-        lblCourse = new javax.swing.JLabel();
-        comboCourse = new javax.swing.JComboBox();
-        comboStudent = new javax.swing.JComboBox();
+        cbxEmployeeId = new javax.swing.JComboBox();
         lblStudentId = new javax.swing.JLabel();
         lblFirstName = new javax.swing.JLabel();
-        comboFirstName = new javax.swing.JTextField();
+        txtFirstName = new javax.swing.JTextField();
         lblLastName = new javax.swing.JLabel();
         txtLastName = new javax.swing.JTextField();
         lblBirthday = new javax.swing.JLabel();
-        DateChooserDateStart = new com.toedter.calendar.JDateChooser();
-        DateChooserDateEnd = new com.toedter.calendar.JDateChooser();
+        dateChooserDateStart = new com.toedter.calendar.JDateChooser();
+        dateChooserDateEnd = new com.toedter.calendar.JDateChooser();
         lblGender = new javax.swing.JLabel();
-        lblMale = new javax.swing.JRadioButton();
-        lblFemale = new javax.swing.JRadioButton();
+        radioMale = new javax.swing.JRadioButton();
+        radioFemale = new javax.swing.JRadioButton();
         lblTitle = new javax.swing.JLabel();
         sepaCourse = new javax.swing.JSeparator();
         btnSearch = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        srcPanelAccount = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
-        btnCancel = new javax.swing.JButton();
-        btnOk = new javax.swing.JButton();
+        btnClose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -87,36 +176,22 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         panelInfo.setPreferredSize(new java.awt.Dimension(250, 435));
         panelInfo.setLayout(new java.awt.GridBagLayout());
 
-        lblCourse.setText("Course ID: ");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelInfo.add(lblCourse, gridBagConstraints);
-
-        comboCourse.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        comboCourse.setMinimumSize(new java.awt.Dimension(150, 20));
-        comboCourse.setOpaque(false);
-        comboCourse.setPreferredSize(new java.awt.Dimension(150, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelInfo.add(comboCourse, gridBagConstraints);
-
-        comboStudent.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        comboStudent.setMinimumSize(new java.awt.Dimension(150, 20));
-        comboStudent.setPreferredSize(new java.awt.Dimension(150, 20));
+        cbxEmployeeId.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxEmployeeId.setMinimumSize(new java.awt.Dimension(150, 20));
+        cbxEmployeeId.setPreferredSize(new java.awt.Dimension(150, 20));
+        cbxEmployeeId.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxEmployeeIdItemStateChanged(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelInfo.add(comboStudent, gridBagConstraints);
+        panelInfo.add(cbxEmployeeId, gridBagConstraints);
 
-        lblStudentId.setText("Student ID:");
+        lblStudentId.setText("Employee ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -132,15 +207,15 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(lblFirstName, gridBagConstraints);
 
-        comboFirstName.setMinimumSize(new java.awt.Dimension(150, 20));
-        comboFirstName.setPreferredSize(new java.awt.Dimension(150, 20));
-        comboFirstName.setRequestFocusEnabled(false);
+        txtFirstName.setMinimumSize(new java.awt.Dimension(150, 20));
+        txtFirstName.setPreferredSize(new java.awt.Dimension(150, 20));
+        txtFirstName.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelInfo.add(comboFirstName, gridBagConstraints);
+        panelInfo.add(txtFirstName, gridBagConstraints);
 
         lblLastName.setText("Last Name: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -167,23 +242,23 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(lblBirthday, gridBagConstraints);
 
-        DateChooserDateStart.setMinimumSize(new java.awt.Dimension(150, 20));
-        DateChooserDateStart.setPreferredSize(new java.awt.Dimension(150, 20));
+        dateChooserDateStart.setMinimumSize(new java.awt.Dimension(150, 20));
+        dateChooserDateStart.setPreferredSize(new java.awt.Dimension(150, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelInfo.add(DateChooserDateStart, gridBagConstraints);
+        panelInfo.add(dateChooserDateStart, gridBagConstraints);
 
-        DateChooserDateEnd.setMinimumSize(new java.awt.Dimension(150, 20));
-        DateChooserDateEnd.setPreferredSize(new java.awt.Dimension(150, 20));
+        dateChooserDateEnd.setMinimumSize(new java.awt.Dimension(150, 20));
+        dateChooserDateEnd.setPreferredSize(new java.awt.Dimension(150, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 11;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelInfo.add(DateChooserDateEnd, gridBagConstraints);
+        panelInfo.add(dateChooserDateEnd, gridBagConstraints);
 
         lblGender.setText("Gender:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -193,23 +268,23 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(lblGender, gridBagConstraints);
 
-        buttonGroupGender.add(lblMale);
-        lblMale.setText("Male");
+        buttonGroupGender.add(radioMale);
+        radioMale.setText("Male");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 12;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelInfo.add(lblMale, gridBagConstraints);
+        panelInfo.add(radioMale, gridBagConstraints);
 
-        buttonGroupGender.add(lblFemale);
-        lblFemale.setText("FeMale");
+        buttonGroupGender.add(radioFemale);
+        radioFemale.setText("FeMale");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 13;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelInfo.add(lblFemale, gridBagConstraints);
+        panelInfo.add(radioFemale, gridBagConstraints);
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 12));
         lblTitle.setForeground(new java.awt.Color(102, 0, 102));
@@ -233,6 +308,11 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         panelInfo.add(sepaCourse, gridBagConstraints);
 
         btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 15;
@@ -250,8 +330,8 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         jPanel3.setPreferredSize(new java.awt.Dimension(840, 430));
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
-        jScrollPane1.setMinimumSize(new java.awt.Dimension(830, 380));
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(830, 380));
+        srcPanelAccount.setMinimumSize(new java.awt.Dimension(830, 380));
+        srcPanelAccount.setPreferredSize(new java.awt.Dimension(830, 380));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -264,7 +344,7 @@ public class frmSearchEmployee extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tableContent);
+        srcPanelAccount.setViewportView(tableContent);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -273,29 +353,18 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jPanel3.add(jScrollPane1, gridBagConstraints);
+        jPanel3.add(srcPanelAccount, gridBagConstraints);
 
-        btnCancel.setText("Cancel");
-        btnCancel.setMaximumSize(new java.awt.Dimension(90, 23));
-        btnCancel.setMinimumSize(new java.awt.Dimension(90, 23));
-        btnCancel.setPreferredSize(new java.awt.Dimension(90, 23));
+        btnClose.setText("Close");
+        btnClose.setMaximumSize(new java.awt.Dimension(90, 23));
+        btnClose.setMinimumSize(new java.awt.Dimension(90, 23));
+        btnClose.setPreferredSize(new java.awt.Dimension(90, 23));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jPanel3.add(btnCancel, gridBagConstraints);
-
-        btnOk.setText("Ok");
-        btnOk.setMaximumSize(new java.awt.Dimension(90, 23));
-        btnOk.setMinimumSize(new java.awt.Dimension(90, 23));
-        btnOk.setPreferredSize(new java.awt.Dimension(90, 23));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 650, 5, 5);
-        jPanel3.add(btnOk, gridBagConstraints);
+        jPanel3.add(btnClose, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -306,45 +375,61 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cbxEmployeeIdItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxEmployeeIdItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxEmployeeIdItemStateChanged
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+        String firstName = txtFirstName.getText();
+        String lastName = txtLastName.getText();
+        Date startDate = dateChooserDateStart.getDate();
+        Date endDate = dateChooserDateEnd.getDate();
+        int gender = 0;
+        if (radioFemale.isSelected()) {
+            gender = 1;
+        }
+
+        listEmp.clear();
+        listEmp = employeeDAO.readByCommand(firstName, lastName, startDate, endDate, gender);
+        loadData(listEmp);
+    }//GEN-LAST:event_btnSearchActionPerformed
+
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new frmSearchEmployee().setVisible(true);
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser DateChooserDateEnd;
-    private com.toedter.calendar.JDateChooser DateChooserDateStart;
-    private javax.swing.JButton btnCancel;
-    private javax.swing.JButton btnOk;
+    private javax.swing.JButton btnClose;
     private javax.swing.JButton btnSearch;
     private javax.swing.ButtonGroup buttonGroupGender;
-    private javax.swing.JComboBox comboCourse;
-    private javax.swing.JTextField comboFirstName;
-    private javax.swing.JComboBox comboStudent;
+    private javax.swing.JComboBox cbxEmployeeId;
+    private com.toedter.calendar.JDateChooser dateChooserDateEnd;
+    private com.toedter.calendar.JDateChooser dateChooserDateStart;
     private javax.help.JHelp jHelp1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBirthday;
-    private javax.swing.JLabel lblCourse;
-    private javax.swing.JRadioButton lblFemale;
     private javax.swing.JLabel lblFirstName;
     private javax.swing.JLabel lblGender;
     private javax.swing.JLabel lblLastName;
     private javax.swing.JLabel lblLogo;
-    private javax.swing.JRadioButton lblMale;
     private javax.swing.JLabel lblStudentId;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JPanel panelInfo;
+    private javax.swing.JRadioButton radioFemale;
+    private javax.swing.JRadioButton radioMale;
     private javax.swing.JSeparator sepaCourse;
+    private javax.swing.JScrollPane srcPanelAccount;
     private javax.swing.JTable tableContent;
+    private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtLastName;
     // End of variables declaration//GEN-END:variables
-
 }

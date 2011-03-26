@@ -437,7 +437,7 @@ public class frmSearchStudent extends javax.swing.JFrame {
         Date endDate = dateChooserDateEnd.getDate();
         int gender = 0;
         if (radioFemale.isSelected()) {
-            gender = 1;
+            gender = 0;
         }
 
         listRegister.clear();
