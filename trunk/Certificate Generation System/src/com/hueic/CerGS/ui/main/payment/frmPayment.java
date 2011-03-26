@@ -17,7 +17,6 @@ import com.hueic.CerGS.dao.StudentDAO;
 import com.hueic.CerGS.entity.Course;
 import com.hueic.CerGS.entity.Payment;
 import com.hueic.CerGS.entity.Register;
-import com.l2fprod.common.swing.ObjectTableModel;
 import java.util.ArrayList;
 import java.util.regex.PatternSyntaxException;
 import javax.swing.JTable;
@@ -36,7 +35,6 @@ import javax.swing.table.TableRowSorter;
 public class frmPayment extends javax.swing.JFrame {
 
     /** Creates new form frmAccount */
-    private ObjectTableModel tableModel;
     private int currentId;
     private ArrayList<Payment> listPayments = new ArrayList<Payment>();
     private PaymentDAO paymentDao;
@@ -99,8 +97,8 @@ public class frmPayment extends javax.swing.JFrame {
         JViewport viewPort = new JViewport();
         viewPort.setView(tableContent);
         viewPort.setPreferredSize(tableContent.getMaximumSize());
-        srcPanelAccount.setRowHeader(viewPort);
-        srcPanelAccount.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
+        srcPanelPayment.setRowHeader(viewPort);
+        srcPanelPayment.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
     }
 
     public void loadDetails(Payment payment) {
@@ -140,7 +138,7 @@ public class frmPayment extends javax.swing.JFrame {
         panelLeft = new javax.swing.JPanel();
         lblLogo = new javax.swing.JLabel();
         panelRight = new javax.swing.JPanel();
-        srcPanelAccount = new javax.swing.JScrollPane();
+        srcPanelPayment = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
         filterText = new javax.swing.JTextField();
         btnFilter = new javax.swing.JButton();
@@ -192,7 +190,7 @@ public class frmPayment extends javax.swing.JFrame {
         panelRight.setPreferredSize(new java.awt.Dimension(450, 320));
         panelRight.setLayout(new java.awt.GridBagLayout());
 
-        srcPanelAccount.setPreferredSize(new java.awt.Dimension(300, 200));
+        srcPanelPayment.setPreferredSize(new java.awt.Dimension(300, 200));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -210,7 +208,7 @@ public class frmPayment extends javax.swing.JFrame {
                 tableContentMouseClicked(evt);
             }
         });
-        srcPanelAccount.setViewportView(tableContent);
+        srcPanelPayment.setViewportView(tableContent);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -219,7 +217,7 @@ public class frmPayment extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 0, 5);
-        panelRight.add(srcPanelAccount, gridBagConstraints);
+        panelRight.add(srcPanelPayment, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -548,7 +546,7 @@ public class frmPayment extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitle;
     private javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelRight;
-    private javax.swing.JScrollPane srcPanelAccount;
+    private javax.swing.JScrollPane srcPanelPayment;
     private javax.swing.JTable tableContent;
     private javax.swing.JTextField txtMoney;
     // End of variables declaration//GEN-END:variables
