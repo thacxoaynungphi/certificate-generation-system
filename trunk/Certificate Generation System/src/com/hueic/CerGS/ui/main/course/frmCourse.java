@@ -123,7 +123,8 @@ public class frmCourse extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
+        filterText = new javax.swing.JTextField();
+        btnFilter = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
         sepaCourse = new javax.swing.JSeparator();
@@ -141,12 +142,10 @@ public class frmCourse extends javax.swing.JFrame {
         radioEnable = new javax.swing.JRadioButton();
         radioDisable = new javax.swing.JRadioButton();
         txtName = new javax.swing.JTextField();
-        filterText = new javax.swing.JTextField();
-        btnFilter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Managment Account");
-        setMinimumSize(new java.awt.Dimension(832, 391));
+        setMinimumSize(new java.awt.Dimension(427, 261));
         setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
@@ -163,11 +162,15 @@ public class frmCourse extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         getContentPane().add(jPanel1, gridBagConstraints);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setPreferredSize(new java.awt.Dimension(832, 291));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Course"));
+        jPanel2.setMinimumSize(new java.awt.Dimension(450, 320));
+        jPanel2.setPreferredSize(new java.awt.Dimension(450, 320));
+        jPanel2.setRequestFocusEnabled(false);
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
         jScrollPane1.setPreferredSize(new java.awt.Dimension(430, 150));
@@ -204,11 +207,41 @@ public class frmCourse extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
         jPanel2.add(jScrollPane1, gridBagConstraints);
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setLayout(new java.awt.GridBagLayout());
+        filterText.setPreferredSize(new java.awt.Dimension(250, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 150;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 200, 5, 5);
+        jPanel2.add(filterText, gridBagConstraints);
+
+        btnFilter.setText("Filter");
+        btnFilter.setMaximumSize(new java.awt.Dimension(100, 20));
+        btnFilter.setMinimumSize(new java.awt.Dimension(100, 20));
+        btnFilter.setPreferredSize(new java.awt.Dimension(100, 20));
+        btnFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFilterActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 5);
+        jPanel2.add(btnFilter, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        getContentPane().add(jPanel2, gridBagConstraints);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Managment Course", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel4.setMinimumSize(new java.awt.Dimension(380, 320));
+        jPanel4.setPreferredSize(new java.awt.Dimension(380, 320));
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 12));
@@ -355,52 +388,10 @@ public class frmCourse extends javax.swing.JFrame {
         jPanel4.add(txtName, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 62;
-        gridBagConstraints.ipady = 38;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jPanel3.add(jPanel4, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 5);
-        jPanel2.add(jPanel3, gridBagConstraints);
-
-        filterText.setPreferredSize(new java.awt.Dimension(250, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 150;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 200, 5, 5);
-        jPanel2.add(filterText, gridBagConstraints);
-
-        btnFilter.setText("Filter");
-        btnFilter.setMaximumSize(new java.awt.Dimension(100, 20));
-        btnFilter.setMinimumSize(new java.awt.Dimension(100, 20));
-        btnFilter.setPreferredSize(new java.awt.Dimension(100, 20));
-        btnFilter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFilterActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 5);
-        jPanel2.add(btnFilter, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(jPanel2, gridBagConstraints);
+        getContentPane().add(jPanel4, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -556,7 +547,6 @@ public class frmCourse extends javax.swing.JFrame {
     private javax.swing.JTextField filterText;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;

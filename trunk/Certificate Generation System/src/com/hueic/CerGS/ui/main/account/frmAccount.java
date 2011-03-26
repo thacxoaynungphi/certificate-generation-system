@@ -164,7 +164,8 @@ public class frmAccount extends javax.swing.JFrame {
         panelRight = new javax.swing.JPanel();
         srcPanelAccount = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
-        panelDetails = new javax.swing.JPanel();
+        filterText = new javax.swing.JTextField();
+        btnFilter = new javax.swing.JButton();
         panel1 = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
         sepaAccount = new javax.swing.JSeparator();
@@ -185,8 +186,6 @@ public class frmAccount extends javax.swing.JFrame {
         cbxUsername = new javax.swing.JComboBox();
         txtPassword = new javax.swing.JPasswordField();
         txtConfirmPassword = new javax.swing.JPasswordField();
-        filterText = new javax.swing.JTextField();
-        btnFilter = new javax.swing.JButton();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -213,11 +212,14 @@ public class frmAccount extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         getContentPane().add(panelLeft, gridBagConstraints);
 
         panelRight.setBackground(new java.awt.Color(255, 255, 255));
-        panelRight.setMinimumSize(new java.awt.Dimension(832, 321));
+        panelRight.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Account", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        panelRight.setMinimumSize(new java.awt.Dimension(450, 320));
+        panelRight.setPreferredSize(new java.awt.Dimension(450, 320));
         panelRight.setLayout(new java.awt.GridBagLayout());
 
         srcPanelAccount.setPreferredSize(new java.awt.Dimension(350, 200));
@@ -260,12 +262,41 @@ public class frmAccount extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(srcPanelAccount, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 132;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 170, 5, 5);
+        panelRight.add(filterText, gridBagConstraints);
 
-        panelDetails.setBackground(new java.awt.Color(255, 255, 255));
-        panelDetails.setLayout(new java.awt.GridBagLayout());
+        btnFilter.setText("Filter");
+        btnFilter.setMaximumSize(new java.awt.Dimension(57, 20));
+        btnFilter.setMinimumSize(new java.awt.Dimension(57, 20));
+        btnFilter.setPreferredSize(new java.awt.Dimension(90, 20));
+        btnFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFilterActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 18;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight.add(btnFilter, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        getContentPane().add(panelRight, gridBagConstraints);
 
         panel1.setBackground(new java.awt.Color(255, 255, 255));
         panel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Management Account", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        panel1.setMinimumSize(new java.awt.Dimension(380, 320));
+        panel1.setPreferredSize(new java.awt.Dimension(380, 320));
         panel1.setLayout(new java.awt.GridBagLayout());
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 13));
@@ -435,52 +466,10 @@ public class frmAccount extends javax.swing.JFrame {
         panel1.add(txtConfirmPassword, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 63;
-        gridBagConstraints.ipady = 44;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelDetails.add(panel1, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(panelDetails, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 132;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 170, 5, 5);
-        panelRight.add(filterText, gridBagConstraints);
-
-        btnFilter.setText("Filter");
-        btnFilter.setMaximumSize(new java.awt.Dimension(57, 20));
-        btnFilter.setMinimumSize(new java.awt.Dimension(57, 20));
-        btnFilter.setPreferredSize(new java.awt.Dimension(90, 20));
-        btnFilter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFilterActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 18;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(btnFilter, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
-        getContentPane().add(panelRight, gridBagConstraints);
+        getContentPane().add(panel1, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -659,7 +648,6 @@ public class frmAccount extends javax.swing.JFrame {
     private javax.swing.JLabel lblcheck3;
     private javax.swing.JPanel panel1;
     private javax.swing.JPanel panel2;
-    private javax.swing.JPanel panelDetails;
     private javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelRight;
     private javax.swing.JSeparator sepaAccount;
