@@ -134,6 +134,7 @@ public class frmMain extends javax.swing.JFrame {
         mnuEmployee = new javax.swing.JMenu();
         mnuIManagmentEmp = new javax.swing.JMenuItem();
         mnuStudent = new javax.swing.JMenu();
+        mnuIManagementPayment = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         radioVietnamese = new javax.swing.JRadioButtonMenuItem();
@@ -457,6 +458,10 @@ public class frmMain extends javax.swing.JFrame {
         mnuBSystem.add(mnuEmployee);
 
         mnuStudent.setText("Payment");
+
+        mnuIManagementPayment.setText("Management Payment");
+        mnuStudent.add(mnuIManagementPayment);
+
         mnuBSystem.add(mnuStudent);
 
         jMenu1.setText("Option");
@@ -760,6 +765,7 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuIExit;
     private javax.swing.JMenuItem mnuIHelpContent;
     private javax.swing.JMenuItem mnuILoginSystem;
+    private javax.swing.JMenuItem mnuIManagementPayment;
     private javax.swing.JMenuItem mnuIManagementStudent;
     private javax.swing.JMenuItem mnuIManagmentEmp;
     private javax.swing.JMenuItem mnuISwitchUser;

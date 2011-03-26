@@ -10,6 +10,7 @@
  */
 package com.hueic.CerGS.ui.main.employee;
 
+import com.hueic.CerGS.dao.EmployeeDAO;
 import com.hueic.CerGS.entity.Employee;
 
 /**
@@ -290,6 +291,11 @@ public class frmDetailsEmployee extends javax.swing.JFrame {
         btnDelete.setText("Delete");
         btnDelete.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnDelete.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
         panel2.add(btnDelete);
 
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
@@ -321,6 +327,12 @@ public class frmDetailsEmployee extends javax.swing.JFrame {
         frmEditEmployee editEmployee = new frmEditEmployee(emp);
         editEmployee.setVisible(true);
     }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        EmployeeDAO empDao = new EmployeeDAO();
+        empDao.delete(emp.getId());
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
      * @param args the command line arguments

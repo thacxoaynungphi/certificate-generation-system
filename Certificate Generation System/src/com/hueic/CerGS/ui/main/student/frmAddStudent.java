@@ -10,6 +10,10 @@
  */
 package com.hueic.CerGS.ui.main.student;
 
+import com.hueic.CerGS.dao.StudentDAO;
+import com.hueic.CerGS.entity.Student;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author qhvic
@@ -239,18 +243,33 @@ public class frmAddStudent extends javax.swing.JFrame {
         btnAdd.setText("Add");
         btnAdd.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnAdd.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
         panel2.add(btnAdd);
 
         btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
         btnReset.setText("Reset");
         btnReset.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnReset.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
         panel2.add(btnReset);
 
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
         btnCancel.setText("Cancel");
         btnCancel.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnCancel.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
         panel2.add(btnCancel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -346,6 +365,53 @@ public class frmAddStudent extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+        txtID.setText(null);
+        txtFirstname.setText(null);
+        txtLastname.setText(null);
+        txtPhone.setText(null);
+        txtEmail.setText(null);
+        txtAddress.setText(null);
+        txtImage.setText(null);
+    }//GEN-LAST:event_btnResetActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            Student student = new Student();
+            student.setId(txtID.getText());
+            student.setFirstName(txtFirstname.getText());
+            student.setLastName(txtLastname.getText());
+            student.setBirthDay(DateChBirthday.getDate());
+            if (radioMale.isSelected()) {
+                student.setGender(0);
+            } else if (radioFemale.isSelected()) {
+                student.setGender(1);
+            }
+            student.setPhone(txtPhone.getText());
+            student.setEmail(txtEmail.getText());
+            student.setAddress(txtAddress.getText());
+            student.setImage(txtImage.getText());
+            student.setStatus(1);
+            StudentDAO studentDao = new StudentDAO();
+            if (studentDao.create(student)) {
+                JOptionPane.showMessageDialog(this, studentDao.getLastError(), "Create Student", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, studentDao.getLastError(), "Create Student", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        }
+    }//GEN-LAST:event_btnAddActionPerformed
 
     /**
      * @param args the command line arguments
