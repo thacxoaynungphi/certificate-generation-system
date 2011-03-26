@@ -59,11 +59,13 @@ public class frmChangePass extends javax.swing.JFrame {
         txtConfirmPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Change Password - Certificate Generation System");
         setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Change Password", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        jPanel1.setMinimumSize(new java.awt.Dimension(362, 225));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         lblUsername.setText("Username:");
@@ -224,8 +226,6 @@ public class frmChangePass extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 57;
-        gridBagConstraints.ipady = 38;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         getContentPane().add(jPanel1, gridBagConstraints);
 
