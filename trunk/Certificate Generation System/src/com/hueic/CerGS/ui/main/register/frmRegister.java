@@ -333,6 +333,8 @@ public class frmRegister extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel1.add(txtStudentID, gridBagConstraints);
 
+		txtStudentID.setText("Student ID :");
+		
         cbxCourseID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxCourseID.setPreferredSize(new java.awt.Dimension(180, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
