@@ -152,7 +152,7 @@ public class frmPermission extends javax.swing.JFrame {
         panelLeft.setLayout(new java.awt.GridBagLayout());
 
         lblLogo.setBackground(new java.awt.Color(255, 255, 255));
-        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/BannerAccount.png"))); // NOI18N
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/BannerPermission.png"))); // NOI18N
         lblLogo.setPreferredSize(new java.awt.Dimension(831, 100));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
