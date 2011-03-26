@@ -27,7 +27,7 @@ public class RegisterDAO extends BaseDAO {
                 Register regis = new Register();
                 regis.setId(rs.getString("Id"));
                 regis.setCourseId(rs.getString("CourseId"));
-                regis.setFeeStructe(rs.getInt("FeeStructe"));
+                regis.setFeeStructe(rs.getInt("FeesStructe"));
                 regis.setRegisDate(rs.getDate("RegistrationDate"));
                 regis.setStudentId(rs.getString("StudentId"));
                 list.add(regis);
