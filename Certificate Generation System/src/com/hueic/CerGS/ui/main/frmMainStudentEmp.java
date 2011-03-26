@@ -112,19 +112,13 @@ public class frmMainStudentEmp extends javax.swing.JFrame {
         linkBtnSwitchUser = new com.l2fprod.common.swing.JLinkButton();
         linkBtnSingout = new com.l2fprod.common.swing.JLinkButton();
         jTaskPaneGroup2 = new com.l2fprod.common.swing.JTaskPaneGroup();
-        linkBtnEmployee = new com.l2fprod.common.swing.JLinkButton();
-        linkBtnStudent = new com.l2fprod.common.swing.JLinkButton();
-        linkBtnCertificate = new com.l2fprod.common.swing.JLinkButton();
-        linkBtnPayment = new com.l2fprod.common.swing.JLinkButton();
-        linkBtnMark = new com.l2fprod.common.swing.JLinkButton();
-        linkBtnSubject = new com.l2fprod.common.swing.JLinkButton();
-        linkBtnAccount = new com.l2fprod.common.swing.JLinkButton();
-        linkBtnCourse = new com.l2fprod.common.swing.JLinkButton();
-        linkBtnPermisison = new com.l2fprod.common.swing.JLinkButton();
-        linkBtnRegister = new com.l2fprod.common.swing.JLinkButton();
+        jLinkButton3 = new com.l2fprod.common.swing.JLinkButton();
+        jLinkButton4 = new com.l2fprod.common.swing.JLinkButton();
+        jTaskPaneGroup4 = new com.l2fprod.common.swing.JTaskPaneGroup();
+        jLinkButton1 = new com.l2fprod.common.swing.JLinkButton();
+        jLinkButton2 = new com.l2fprod.common.swing.JLinkButton();
         jTaskPaneGroup3 = new com.l2fprod.common.swing.JTaskPaneGroup();
         linkBtnSearchStudent = new com.l2fprod.common.swing.JLinkButton();
-        linkBtnSearchEmp = new com.l2fprod.common.swing.JLinkButton();
         mnuBSystem = new javax.swing.JMenuBar();
         mnuSystem = new javax.swing.JMenu();
         menuIChangePass = new javax.swing.JMenuItem();
@@ -338,99 +332,26 @@ public class frmMainStudentEmp extends javax.swing.JFrame {
         jTaskPaneMenu.add(jTaskPaneGroup1);
 
         jTaskPaneGroup2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/users1.png"))); // NOI18N
-        jTaskPaneGroup2.setTitle("Administration");
+        jTaskPaneGroup2.setTitle("Employee");
 
-        linkBtnEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/application_view_detail.png"))); // NOI18N
-        linkBtnEmployee.setText("Management Employee");
-        linkBtnEmployee.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                linkBtnEmployeeActionPerformed(evt);
-            }
-        });
-        jTaskPaneGroup2.getContentPane().add(linkBtnEmployee);
+        jLinkButton3.setText("Devolop Degree");
+        jTaskPaneGroup2.getContentPane().add(jLinkButton3);
 
-        linkBtnStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/application_view_detail.png"))); // NOI18N
-        linkBtnStudent.setText("Management Student");
-        linkBtnStudent.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                linkBtnStudentActionPerformed(evt);
-            }
-        });
-        jTaskPaneGroup2.getContentPane().add(linkBtnStudent);
-
-        linkBtnCertificate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/application_view_detail.png"))); // NOI18N
-        linkBtnCertificate.setText("Management Certificate");
-        linkBtnCertificate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                linkBtnCertificateActionPerformed(evt);
-            }
-        });
-        jTaskPaneGroup2.getContentPane().add(linkBtnCertificate);
-
-        linkBtnPayment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/application_view_detail.png"))); // NOI18N
-        linkBtnPayment.setText("Management Payment");
-        linkBtnPayment.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                linkBtnPaymentActionPerformed(evt);
-            }
-        });
-        jTaskPaneGroup2.getContentPane().add(linkBtnPayment);
-
-        linkBtnMark.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/application_view_detail.png"))); // NOI18N
-        linkBtnMark.setText("Management Mark");
-        linkBtnMark.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                linkBtnMarkActionPerformed(evt);
-            }
-        });
-        jTaskPaneGroup2.getContentPane().add(linkBtnMark);
-
-        linkBtnSubject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/application_view_detail.png"))); // NOI18N
-        linkBtnSubject.setText("Management Subject");
-        linkBtnSubject.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                linkBtnSubjectActionPerformed(evt);
-            }
-        });
-        jTaskPaneGroup2.getContentPane().add(linkBtnSubject);
-
-        linkBtnAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/application_view_detail.png"))); // NOI18N
-        linkBtnAccount.setText("Management Account");
-        linkBtnAccount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                linkBtnAccountActionPerformed(evt);
-            }
-        });
-        jTaskPaneGroup2.getContentPane().add(linkBtnAccount);
-
-        linkBtnCourse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/application_view_detail.png"))); // NOI18N
-        linkBtnCourse.setText("Management Course");
-        linkBtnCourse.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                linkBtnCourseActionPerformed(evt);
-            }
-        });
-        jTaskPaneGroup2.getContentPane().add(linkBtnCourse);
-
-        linkBtnPermisison.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/application_view_detail.png"))); // NOI18N
-        linkBtnPermisison.setText("Management Permission");
-        linkBtnPermisison.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                linkBtnPermisisonActionPerformed(evt);
-            }
-        });
-        jTaskPaneGroup2.getContentPane().add(linkBtnPermisison);
-
-        linkBtnRegister.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/application_view_detail.png"))); // NOI18N
-        linkBtnRegister.setText("Management Register");
-        linkBtnRegister.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                linkBtnRegisterActionPerformed(evt);
-            }
-        });
-        jTaskPaneGroup2.getContentPane().add(linkBtnRegister);
+        jLinkButton4.setText("View Info Student");
+        jTaskPaneGroup2.getContentPane().add(jLinkButton4);
 
         jTaskPaneMenu.add(jTaskPaneGroup2);
+
+        jTaskPaneGroup4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/user1.png"))); // NOI18N
+        jTaskPaneGroup4.setTitle("Student");
+
+        jLinkButton1.setText("View Payment");
+        jTaskPaneGroup4.getContentPane().add(jLinkButton1);
+
+        jLinkButton2.setText("View Mark");
+        jTaskPaneGroup4.getContentPane().add(jLinkButton2);
+
+        jTaskPaneMenu.add(jTaskPaneGroup4);
 
         jTaskPaneGroup3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/view.png"))); // NOI18N
         jTaskPaneGroup3.setTitle("Search");
@@ -438,10 +359,6 @@ public class frmMainStudentEmp extends javax.swing.JFrame {
         linkBtnSearchStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow_right_green.png"))); // NOI18N
         linkBtnSearchStudent.setText("Student");
         jTaskPaneGroup3.getContentPane().add(linkBtnSearchStudent);
-
-        linkBtnSearchEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow_right_green.png"))); // NOI18N
-        linkBtnSearchEmp.setText("Employee");
-        jTaskPaneGroup3.getContentPane().add(linkBtnSearchEmp);
 
         jTaskPaneMenu.add(jTaskPaneGroup3);
 
@@ -659,66 +576,6 @@ public class frmMainStudentEmp extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_mnuIExitActionPerformed
 
-    private void linkBtnEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnEmployeeActionPerformed
-        // TODO add your handling code here:
-        frmEmployee employee = new frmEmployee();
-        employee.setVisible(true);
-    }//GEN-LAST:event_linkBtnEmployeeActionPerformed
-
-    private void linkBtnStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnStudentActionPerformed
-        // TODO add your handling code here:
-        frmStudent student = new frmStudent();
-        student.setVisible(true);
-    }//GEN-LAST:event_linkBtnStudentActionPerformed
-
-    private void linkBtnCertificateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnCertificateActionPerformed
-        // TODO add your handling code here:
-        frmCertificate certificate = new frmCertificate();
-        certificate.setVisible(true);
-    }//GEN-LAST:event_linkBtnCertificateActionPerformed
-
-    private void linkBtnPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnPaymentActionPerformed
-        // TODO add your handling code here:
-        frmPayment payment = new frmPayment();
-        payment.setVisible(true);
-    }//GEN-LAST:event_linkBtnPaymentActionPerformed
-
-    private void linkBtnSubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnSubjectActionPerformed
-        // TODO add your handling code here:
-        frmSubject subject = new frmSubject();
-        subject.setVisible(true);
-    }//GEN-LAST:event_linkBtnSubjectActionPerformed
-
-    private void linkBtnMarkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnMarkActionPerformed
-        // TODO add your handling code here:
-        frmMark scoure = new frmMark();
-        scoure.setVisible(true);
-    }//GEN-LAST:event_linkBtnMarkActionPerformed
-
-    private void linkBtnAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnAccountActionPerformed
-        // TODO add your handling code here:
-        frmAccount account = new frmAccount();
-        account.setVisible(true);
-    }//GEN-LAST:event_linkBtnAccountActionPerformed
-
-    private void linkBtnCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnCourseActionPerformed
-        // TODO add your handling code here:
-        frmCourse course = new frmCourse();
-        course.setVisible(true);
-    }//GEN-LAST:event_linkBtnCourseActionPerformed
-
-    private void linkBtnPermisisonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnPermisisonActionPerformed
-        // TODO add your handling code here:
-        frmPermission permission = new frmPermission();
-        permission.setVisible(true);
-    }//GEN-LAST:event_linkBtnPermisisonActionPerformed
-
-    private void linkBtnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnRegisterActionPerformed
-        // TODO add your handling code here:
-        frmRegister register = new frmRegister();
-        register.setVisible(true);
-    }//GEN-LAST:event_linkBtnRegisterActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -748,27 +605,21 @@ public class frmMainStudentEmp extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private com.l2fprod.common.swing.JLinkButton jLinkButton1;
+    private com.l2fprod.common.swing.JLinkButton jLinkButton2;
+    private com.l2fprod.common.swing.JLinkButton jLinkButton3;
+    private com.l2fprod.common.swing.JLinkButton jLinkButton4;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroup1;
     private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroup2;
     private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroup3;
+    private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroup4;
     private com.l2fprod.common.swing.JTaskPane jTaskPaneMenu;
     private javax.swing.JLabel lblLogo;
-    private com.l2fprod.common.swing.JLinkButton linkBtnAccount;
-    private com.l2fprod.common.swing.JLinkButton linkBtnCertificate;
     private com.l2fprod.common.swing.JLinkButton linkBtnChangePassword;
-    private com.l2fprod.common.swing.JLinkButton linkBtnCourse;
-    private com.l2fprod.common.swing.JLinkButton linkBtnEmployee;
-    private com.l2fprod.common.swing.JLinkButton linkBtnMark;
-    private com.l2fprod.common.swing.JLinkButton linkBtnPayment;
-    private com.l2fprod.common.swing.JLinkButton linkBtnPermisison;
-    private com.l2fprod.common.swing.JLinkButton linkBtnRegister;
-    private com.l2fprod.common.swing.JLinkButton linkBtnSearchEmp;
     private com.l2fprod.common.swing.JLinkButton linkBtnSearchStudent;
     private com.l2fprod.common.swing.JLinkButton linkBtnSingout;
-    private com.l2fprod.common.swing.JLinkButton linkBtnStudent;
-    private com.l2fprod.common.swing.JLinkButton linkBtnSubject;
     private com.l2fprod.common.swing.JLinkButton linkBtnSwitchUser;
     private com.l2fprod.common.swing.JLinkButton linkBtnViewInformation;
     private javax.swing.JMenuItem menuIChangePass;

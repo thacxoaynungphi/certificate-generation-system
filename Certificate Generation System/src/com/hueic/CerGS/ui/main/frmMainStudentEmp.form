@@ -545,118 +545,38 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/com/hueic/CerGS/images/users1.png"/>
                 </Property>
-                <Property name="title" type="java.lang.String" value="Administration"/>
+                <Property name="title" type="java.lang.String" value="Employee"/>
               </Properties>
               <SubComponents>
-                <Component class="com.l2fprod.common.swing.JLinkButton" name="linkBtnEmployee">
+                <Component class="com.l2fprod.common.swing.JLinkButton" name="jLinkButton3">
                   <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/com/hueic/CerGS/images/application_view_detail.png"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Management Employee"/>
+                    <Property name="text" type="java.lang.String" value="Devolop Degree"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="linkBtnEmployeeActionPerformed"/>
-                  </Events>
                 </Component>
-                <Component class="com.l2fprod.common.swing.JLinkButton" name="linkBtnStudent">
+                <Component class="com.l2fprod.common.swing.JLinkButton" name="jLinkButton4">
                   <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/com/hueic/CerGS/images/application_view_detail.png"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Management Student"/>
+                    <Property name="text" type="java.lang.String" value="View Info Student"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="linkBtnStudentActionPerformed"/>
-                  </Events>
                 </Component>
-                <Component class="com.l2fprod.common.swing.JLinkButton" name="linkBtnCertificate">
+              </SubComponents>
+            </Container>
+            <Container class="com.l2fprod.common.swing.JTaskPaneGroup" name="jTaskPaneGroup4">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/hueic/CerGS/images/user1.png"/>
+                </Property>
+                <Property name="title" type="java.lang.String" value="Student"/>
+              </Properties>
+              <SubComponents>
+                <Component class="com.l2fprod.common.swing.JLinkButton" name="jLinkButton1">
                   <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/com/hueic/CerGS/images/application_view_detail.png"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Management Certificate"/>
+                    <Property name="text" type="java.lang.String" value="View Payment"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="linkBtnCertificateActionPerformed"/>
-                  </Events>
                 </Component>
-                <Component class="com.l2fprod.common.swing.JLinkButton" name="linkBtnPayment">
+                <Component class="com.l2fprod.common.swing.JLinkButton" name="jLinkButton2">
                   <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/com/hueic/CerGS/images/application_view_detail.png"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Management Payment"/>
+                    <Property name="text" type="java.lang.String" value="View Mark"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="linkBtnPaymentActionPerformed"/>
-                  </Events>
-                </Component>
-                <Component class="com.l2fprod.common.swing.JLinkButton" name="linkBtnMark">
-                  <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/com/hueic/CerGS/images/application_view_detail.png"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Management Mark"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="linkBtnMarkActionPerformed"/>
-                  </Events>
-                </Component>
-                <Component class="com.l2fprod.common.swing.JLinkButton" name="linkBtnSubject">
-                  <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/com/hueic/CerGS/images/application_view_detail.png"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Management Subject"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="linkBtnSubjectActionPerformed"/>
-                  </Events>
-                </Component>
-                <Component class="com.l2fprod.common.swing.JLinkButton" name="linkBtnAccount">
-                  <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/com/hueic/CerGS/images/application_view_detail.png"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Management Account"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="linkBtnAccountActionPerformed"/>
-                  </Events>
-                </Component>
-                <Component class="com.l2fprod.common.swing.JLinkButton" name="linkBtnCourse">
-                  <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/com/hueic/CerGS/images/application_view_detail.png"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Management Course"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="linkBtnCourseActionPerformed"/>
-                  </Events>
-                </Component>
-                <Component class="com.l2fprod.common.swing.JLinkButton" name="linkBtnPermisison">
-                  <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/com/hueic/CerGS/images/application_view_detail.png"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Management Permission"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="linkBtnPermisisonActionPerformed"/>
-                  </Events>
-                </Component>
-                <Component class="com.l2fprod.common.swing.JLinkButton" name="linkBtnRegister">
-                  <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/com/hueic/CerGS/images/application_view_detail.png"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Management Register"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="linkBtnRegisterActionPerformed"/>
-                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -674,14 +594,6 @@
                       <Image iconType="3" name="/com/hueic/CerGS/images/arrow_right_green.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Student"/>
-                  </Properties>
-                </Component>
-                <Component class="com.l2fprod.common.swing.JLinkButton" name="linkBtnSearchEmp">
-                  <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/com/hueic/CerGS/images/arrow_right_green.png"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Employee"/>
                   </Properties>
                 </Component>
               </SubComponents>
