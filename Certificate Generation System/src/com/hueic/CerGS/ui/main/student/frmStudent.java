@@ -167,10 +167,12 @@ public class frmStudent extends javax.swing.JFrame {
         linkButtonAddStudent = new com.l2fprod.common.swing.JLinkButton();
         linkButtonEditStudent = new com.l2fprod.common.swing.JLinkButton();
         linkButtonDeleteStudent = new com.l2fprod.common.swing.JLinkButton();
+        jLinkButton1 = new com.l2fprod.common.swing.JLinkButton();
         jTaskPaneGroup2 = new com.l2fprod.common.swing.JTaskPaneGroup();
-        jTaskPaneGroup3 = new com.l2fprod.common.swing.JTaskPaneGroup();
-        linkButtonImport = new com.l2fprod.common.swing.JLinkButton();
-        linkButtonExport = new com.l2fprod.common.swing.JLinkButton();
+        linkBtnFeesReport = new com.l2fprod.common.swing.JLinkButton();
+        linkBtnMarkReport = new com.l2fprod.common.swing.JLinkButton();
+        jLinkButton2 = new com.l2fprod.common.swing.JLinkButton();
+        jLinkButton3 = new com.l2fprod.common.swing.JLinkButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         lblHienthi1 = new javax.swing.JLabel();
@@ -259,22 +261,33 @@ public class frmStudent extends javax.swing.JFrame {
         linkButtonDeleteStudent.setToolTipText("Delete Employee");
         jTaskPaneGroup1.getContentPane().add(linkButtonDeleteStudent);
 
+        jLinkButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/view.png"))); // NOI18N
+        jLinkButton1.setText("Search Student");
+        jTaskPaneGroup1.getContentPane().add(jLinkButton1);
+
         jTaskPane1.add(jTaskPaneGroup1);
 
+        jTaskPaneGroup2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
         jTaskPaneGroup2.setTitle("Report");
         jTaskPaneGroup2.setToolTipText("Report");
+
+        linkBtnFeesReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow_right_green.png"))); // NOI18N
+        linkBtnFeesReport.setText("Fees Report");
+        jTaskPaneGroup2.getContentPane().add(linkBtnFeesReport);
+
+        linkBtnMarkReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow_right_green.png"))); // NOI18N
+        linkBtnMarkReport.setText("Mark Report");
+        jTaskPaneGroup2.getContentPane().add(linkBtnMarkReport);
+
+        jLinkButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow_right_green.png"))); // NOI18N
+        jLinkButton2.setText("Student Report");
+        jTaskPaneGroup2.getContentPane().add(jLinkButton2);
+
+        jLinkButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow_right_green.png"))); // NOI18N
+        jLinkButton3.setText("New Registration Report");
+        jTaskPaneGroup2.getContentPane().add(jLinkButton3);
+
         jTaskPane1.add(jTaskPaneGroup2);
-
-        jTaskPaneGroup3.setTitle("Managment Data");
-        jTaskPaneGroup3.setToolTipText("Managment Data");
-
-        linkButtonImport.setText("Import Data");
-        jTaskPaneGroup3.getContentPane().add(linkButtonImport);
-
-        linkButtonExport.setText("Export Data");
-        jTaskPaneGroup3.getContentPane().add(linkButtonExport);
-
-        jTaskPane1.add(jTaskPaneGroup3);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -720,6 +733,9 @@ public class frmStudent extends javax.swing.JFrame {
     private javax.swing.JButton btnSave;
     private javax.swing.JTextField filterText;
     private javax.swing.JLabel jLabel2;
+    private com.l2fprod.common.swing.JLinkButton jLinkButton1;
+    private com.l2fprod.common.swing.JLinkButton jLinkButton2;
+    private com.l2fprod.common.swing.JLinkButton jLinkButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -728,14 +744,13 @@ public class frmStudent extends javax.swing.JFrame {
     private com.l2fprod.common.swing.JTaskPane jTaskPane1;
     private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroup1;
     private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroup2;
-    private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroup3;
     private javax.swing.JLabel lblCount;
     private javax.swing.JLabel lblHienthi1;
+    private com.l2fprod.common.swing.JLinkButton linkBtnFeesReport;
+    private com.l2fprod.common.swing.JLinkButton linkBtnMarkReport;
     private com.l2fprod.common.swing.JLinkButton linkButtonAddStudent;
     private com.l2fprod.common.swing.JLinkButton linkButtonDeleteStudent;
     private com.l2fprod.common.swing.JLinkButton linkButtonEditStudent;
-    private com.l2fprod.common.swing.JLinkButton linkButtonExport;
-    private com.l2fprod.common.swing.JLinkButton linkButtonImport;
     private javax.swing.JMenuItem menuIAdd;
     private javax.swing.JMenuItem menuIDelete;
     private javax.swing.JMenuItem menuIEdit;
