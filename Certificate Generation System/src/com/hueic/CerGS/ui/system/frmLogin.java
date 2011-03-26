@@ -85,10 +85,16 @@ public class frmLogin extends javax.swing.JFrame {
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         panel1.setBackground(new java.awt.Color(255, 255, 255));
+        panel1.setMinimumSize(new java.awt.Dimension(380, 100));
+        panel1.setPreferredSize(new java.awt.Dimension(380, 100));
+        panel1.setRequestFocusEnabled(false);
         panel1.setLayout(new java.awt.GridBagLayout());
 
         lblBannerLogin.setBackground(new java.awt.Color(255, 255, 255));
         lblBannerLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/banner login.png"))); // NOI18N
+        lblBannerLogin.setMaximumSize(new java.awt.Dimension(380, 100));
+        lblBannerLogin.setMinimumSize(new java.awt.Dimension(380, 100));
+        lblBannerLogin.setPreferredSize(new java.awt.Dimension(380, 100));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -99,10 +105,12 @@ public class frmLogin extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(2, 0, 0, 0);
         getContentPane().add(panel1, gridBagConstraints);
 
         panel2.setBackground(new java.awt.Color(255, 255, 255));
+        panel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Login System", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        panel2.setMinimumSize(new java.awt.Dimension(380, 214));
+        panel2.setPreferredSize(new java.awt.Dimension(380, 214));
         panel2.setLayout(new java.awt.GridBagLayout());
 
         lblUsername.setText("Username:");
@@ -212,8 +220,6 @@ public class frmLogin extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 152;
-        gridBagConstraints.ipady = 15;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         getContentPane().add(panel2, gridBagConstraints);
 

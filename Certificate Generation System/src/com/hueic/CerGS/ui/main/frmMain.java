@@ -150,7 +150,7 @@ public class frmMain extends javax.swing.JFrame {
         mnuIHelpContent = new javax.swing.JMenuItem();
         mnuIAbout = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Certificate Generation System");
         setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
