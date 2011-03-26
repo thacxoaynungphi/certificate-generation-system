@@ -21,39 +21,38 @@ public class MarkDAO extends BaseDAO {
     }
 
     public ArrayList<Mark> readByAll() {
-        ArrayList<Mark> result = new ArrayList<Mark>();
+        ArrayList<Mark> listMark = new ArrayList<Mark>();
         con = db.getConnection();
-        String sqlcommand = "select * from Scores";
+        String sqlcommand = "select * from Mark";
 
         try {
-            pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            pst = con.prepareStatement(sqlcommand);
             rs = pst.executeQuery();
 
             while (rs.next()) {
-                Mark scores = new Mark();
-                scores.setId(rs.getInt("Id"));
-                scores.setStudentId(rs.getString("StudentId"));
-                scores.setSubjectId(rs.getString("SubjectId"));
-                scores.setMark(rs.getFloat("Score"));
-                result.add(scores);
+                Mark mark = new Mark();
+                mark.setId(rs.getInt("Id"));
+                mark.setStudentId(rs.getString("StudentId"));
+                mark.setSubjectId(rs.getString("SubjectId"));
+                mark.setMark(rs.getFloat("Mark"));
+                listMark.add(mark);
             }
-
-            setLastError("read data successful");
+            setLastError("Read data successful");
         } catch (SQLException ex) {
             setLastError("SQL Error");
         } finally {
             db.closeConnection();
-            return result;
         }
+        return listMark;
     }
 
     public Mark readByID(int id) {
         Mark result = new Mark();
         con = db.getConnection();
-        String sqlcommand = "select * from Scores where id like ?";
+        String sqlcommand = "select * from Marks where id like ?";
 
         try {
-            pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            pst = con.prepareStatement(sqlcommand);
             pst.setInt(1, id);
             rs = pst.executeQuery();
 
@@ -61,7 +60,7 @@ public class MarkDAO extends BaseDAO {
                 result.setId(rs.getInt("Id"));
                 result.setStudentId(rs.getString("StudentId"));
                 result.setSubjectId(rs.getString("SubjectId"));
-                result.setMark(rs.getFloat("Score"));
+                result.setMark(rs.getFloat("Mark"));
             }
 
             setLastError("read data successful");
@@ -76,7 +75,7 @@ public class MarkDAO extends BaseDAO {
     public ArrayList<Mark> readByStudentID(String studentId) {
         ArrayList<Mark> result = new ArrayList<Mark>();
         con = db.getConnection();
-        String sqlcommand = "select * from Scores where Studentid like ?";
+        String sqlcommand = "select * from Marks where Studentid like ?";
         Mark mark = null;
         try {
             pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -103,17 +102,17 @@ public class MarkDAO extends BaseDAO {
         }
     }
 
-    public boolean create(Mark scores) {
+    public boolean create(Mark Marks) {
         boolean status = false;
         con = db.getConnection();
-        String sqlcommand = "insert into Scores values(?, ?, ?, ?, ?, ?, ?)";
+        String sqlcommand = "insert into Marks values(?, ?, ?, ?, ?, ?, ?)";
 
         try {
             pst = con.prepareStatement(sqlcommand);
-            pst.setInt(1, scores.getId());
-            pst.setString(2, scores.getStudentId());
-            pst.setString(3, scores.getSubjectId());
-            pst.setFloat(4, scores.getMark());
+            pst.setInt(1, Marks.getId());
+            pst.setString(2, Marks.getStudentId());
+            pst.setString(3, Marks.getSubjectId());
+            pst.setFloat(4, Marks.getMark());
             if (pst.execute()) {
                 setLastError("Add fee successful");
                 status = true;
@@ -128,20 +127,20 @@ public class MarkDAO extends BaseDAO {
         }
     }
 
-    public boolean update(Mark scores) {
+    public boolean update(Mark Marks) {
         boolean status = false;
         con = db.getConnection();
-        String sqlcommand = "select * from Scores where id like ?";
+        String sqlcommand = "select * from Marks where id like ?";
 
         try {
             pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            pst.setInt(1, scores.getId());
+            pst.setInt(1, Marks.getId());
 
             rs = pst.executeQuery();
             if (rs.first()) {
-                rs.updateString("StudentId", scores.getStudentId());
-                rs.updateString("SubjectId", scores.getSubjectId());
-                rs.updateFloat("Score1L1", scores.getMark());
+                rs.updateString("StudentId", Marks.getStudentId());
+                rs.updateString("SubjectId", Marks.getSubjectId());
+                rs.updateFloat("Mark1L1", Marks.getMark());
                 rs.updateRow();
 
                 setLastError("Add fee successful");
@@ -157,14 +156,14 @@ public class MarkDAO extends BaseDAO {
         }
     }
 
-    public boolean delete(Mark scores) {
+    public boolean delete(Mark Marks) {
         boolean status = false;
         con = db.getConnection();
-        String sqlcommand = "delete from Scores where id like ?";
+        String sqlcommand = "delete from Marks where id like ?";
 
         try {
             pst = con.prepareStatement(sqlcommand,  ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            pst.setInt(1, scores.getId());
+            pst.setInt(1, Marks.getId());
 
             if (pst.execute()) {
                 setLastError("Add fee successful");
