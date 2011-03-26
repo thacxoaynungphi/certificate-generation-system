@@ -34,7 +34,7 @@ import javax.swing.table.TableRowSorter;
  */
 public class frmSubject extends javax.swing.JFrame {
 
-    private boolean isAdd;
+    private boolean isAdd = false;
     CourseDAO courseDAO = new CourseDAO();
     SubjectDAO subjectDao = new SubjectDAO();
     ArrayList<Subject> listSubject = new ArrayList<Subject>();
@@ -49,6 +49,7 @@ public class frmSubject extends javax.swing.JFrame {
         listCourses = courseDAO.readByAll();
         listSubject = subjectDao.readByAll();
         loadDataCBXCouseId();
+        loadDataCBXCouse();
         loadData(listSubject);
         if (listSubject.size() != 0) {
             loadDetails(listSubject.get(0));
@@ -105,13 +106,18 @@ public class frmSubject extends javax.swing.JFrame {
         panel1.setPreferredSize(new java.awt.Dimension(450, 320));
         panel1.setLayout(new java.awt.GridBagLayout());
 
-        lblCourse.setText("Choose Subject ID:");
+        lblCourse.setText("Choose Course ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 5, 5);
         panel1.add(lblCourse, gridBagConstraints);
 
         cbxCourse.setPreferredSize(new java.awt.Dimension(180, 20));
+        cbxCourse.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxCourseItemStateChanged(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 5, 5, 5);
@@ -221,7 +227,9 @@ public class frmSubject extends javax.swing.JFrame {
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add.png"))); // NOI18N
         btnAdd.setText("Add");
         btnAdd.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnAdd.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnAdd.setMaximumSize(new java.awt.Dimension(70, 23));
+        btnAdd.setMinimumSize(new java.awt.Dimension(70, 23));
+        btnAdd.setPreferredSize(new java.awt.Dimension(70, 23));
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
@@ -232,6 +240,9 @@ public class frmSubject extends javax.swing.JFrame {
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
         btnUpdate.setText("Update");
         btnUpdate.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnUpdate.setMaximumSize(new java.awt.Dimension(70, 23));
+        btnUpdate.setMinimumSize(new java.awt.Dimension(70, 23));
+        btnUpdate.setPreferredSize(new java.awt.Dimension(70, 23));
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
@@ -242,7 +253,9 @@ public class frmSubject extends javax.swing.JFrame {
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
         btnDelete.setText("Delete");
         btnDelete.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnDelete.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnDelete.setMaximumSize(new java.awt.Dimension(70, 23));
+        btnDelete.setMinimumSize(new java.awt.Dimension(70, 23));
+        btnDelete.setPreferredSize(new java.awt.Dimension(70, 23));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
@@ -253,7 +266,9 @@ public class frmSubject extends javax.swing.JFrame {
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
         btnCancel.setText("Cancel");
         btnCancel.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnCancel.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnCancel.setMaximumSize(new java.awt.Dimension(70, 23));
+        btnCancel.setMinimumSize(new java.awt.Dimension(70, 23));
+        btnCancel.setPreferredSize(new java.awt.Dimension(70, 23));
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelActionPerformed(evt);
@@ -365,6 +380,14 @@ public class frmSubject extends javax.swing.JFrame {
         }
     }
 
+    public void loadDataCBXCouse() {
+        cbxCourse.removeAllItems();
+
+        for (int i = 0; i < listCourses.size(); i++) {
+            cbxCourse.addItem(listCourses.get(i).getId());
+        }
+    }
+
     public void loadData(ArrayList<Subject> listSubjects) {
         String[] columns = {"ID", "Name", "Coefficient", "Course"};
         Object[][] rows = new Object[listSubjects.size()][4];
@@ -374,7 +397,7 @@ public class frmSubject extends javax.swing.JFrame {
             rows[index][0] = subject.getId();
             rows[index][1] = subject.getName();
             rows[index][2] = subject.getCoefficient();
-            rows[index][3] = find(subject.getCourseID()).getName();
+            rows[index][3] = subject.getCourseID();
             index++;
         }
         TableModel model = new DefaultTableModel(rows, columns) {
@@ -389,7 +412,7 @@ public class frmSubject extends javax.swing.JFrame {
                 return returnValue;
             }
             boolean[] canEdit = new boolean[]{
-                false, false
+                false, false, false, false
             };
 
             @Override
@@ -403,10 +426,6 @@ public class frmSubject extends javax.swing.JFrame {
 
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableContentMouseClicked(evt);
-            }
-
-            private void tableContentMouseClicked(MouseEvent evt) {
-                throw new UnsupportedOperationException("Not yet implemented");
             }
         });
         sorter = new TableRowSorter<TableModel>(model);
@@ -423,12 +442,12 @@ public class frmSubject extends javax.swing.JFrame {
         txtSubjectId.setText(subject.getId());
         txtName.setText(subject.getName());
         txtCoefficient.setText(String.valueOf(subject.getCoefficient()));
-        String courseName = find(subject.getId()).getName();
+        String courseName = find(subject.getCourseID()).getName();
+        txtCoureID.setText(subject.getCourseID());
         if (courseName != null) {
             for (int i = 0; i < cbxCourseID.getItemCount(); i++) {
                 if (cbxCourseID.getItemAt(i).toString().equals(courseName)) {
                     cbxCourseID.setSelectedIndex(i);
-
                 }
             }
         }
@@ -578,6 +597,18 @@ public class frmSubject extends javax.swing.JFrame {
             //TODO: chua xu ly
         }
     }//GEN-LAST:event_tableContentMouseClicked
+
+    private void cbxCourseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxCourseItemStateChanged
+        // TODO add your handling code here:
+        String courseId = cbxCourse.getSelectedItem().toString();
+        if (courseId != null) {
+            listSubject = subjectDao.readByCourseId(courseId);
+            loadData(listSubject);
+            if (listSubject.size() != 0) {
+                loadDetails(listSubject.get(0));
+            }
+        }
+    }//GEN-LAST:event_cbxCourseItemStateChanged
 
     /**
      * @param args the command line arguments

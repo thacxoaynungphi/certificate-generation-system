@@ -44,11 +44,36 @@ public class SubjectDAO extends BaseDAO {
         return list;
     }
 
+      public ArrayList<Subject> readByCourseId(String id) {
+        ArrayList<Subject> list = new ArrayList<Subject>();
+        con = db.getConnection();
+        String sql = "select * from Subject where CourseId = ?";
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setString(1, id);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                Subject sub = new Subject();
+                sub.setId(rs.getString(1));
+                sub.setName(rs.getString(2));
+                sub.setCoefficient(rs.getInt(3));
+                sub.setCourseID(rs.getString(4));
+                sub.setStatus(rs.getInt(5));
+                list.add(sub);
+            }
+        } catch (SQLException ex) {
+            setLastError("SQL Error!");
+        } finally {
+            db.closeConnection();
+        }
+        return list;
+    }
+
     public Subject readByID(String id) {
         Subject sub = null;
         try {
             con = db.getConnection();
-            String sql = "select * fromSubject where Id = ?";
+            String sql = "select * from Subject where Id = ?";
             pst = con.prepareStatement(sql);
             pst.setString(1, id);
             rs = pst.executeQuery();
@@ -65,6 +90,7 @@ public class SubjectDAO extends BaseDAO {
         }
         return sub;
     }
+
 
     public boolean create(Subject sub) {
         boolean status = false;

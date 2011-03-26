@@ -40,6 +40,8 @@ import javax.swing.table.TableRowSorter;
 public class frmMark extends javax.swing.JFrame {
 
     private ArrayList<Mark> listMark = new ArrayList<Mark>();
+    ArrayList<Register> resList = new ArrayList<Register>();
+    ArrayList<Course> courseList = new ArrayList<Course>();
     private String courseId;
     private TableRowSorter<TableModel> sorter;
     private int currentMark;
@@ -53,32 +55,33 @@ public class frmMark extends javax.swing.JFrame {
     public frmMark() {
         initComponents();
         new IconSystem(this);
+        setLocationRelativeTo(null);
         resDAO = new RegisterDAO();
         markDAO = new MarkDAO();
         studentDAO = new StudentDAO();
         subjectDAO = new SubjectDAO();
         courseDAO = new CourseDAO();
+        resList = resDAO.readByAll();
         listMark = markDAO.readByAll();
+        courseList = courseDAO.readByAll();
+        if (listMark != null) {
+            loadData(listMark);
+        }
         loadStudent();
         loadCourse();
-        loadData(listMark);
     }
 
     public void loadData(ArrayList<Mark> listMark) {
-        String[] columns = {"Id", "StudentId", "StudentName", "CourseName", "SubjectName", "Mark"};
-        Object[][] rows = new Object[listMark.size()][6];
+        String[] columns = {"Id", "StudentId", "SubjectId", "Mark"};
+        Object[][] rows = new Object[listMark.size()][4];
         int index = 0;
         System.out.println("Size :" + listMark.size());
         for (int i = 0; i < listMark.size(); i++) {
             Mark mark = listMark.get(i);
-            System.out.println(mark.getId());
-            String stId = resDAO.readByStudentId(mark.getStudentId()).getId();
             rows[index][0] = mark.getId();
             rows[index][1] = mark.getStudentId();
-            rows[index][2] = studentDAO.readByID(stId).getFullName();
-            rows[index][3] = subjectDAO.readByID(mark.getSubjectId()).getName();
-            rows[index][4] = courseDAO.readById(courseId).getName();
-            rows[index][5] = mark.getMark();
+            rows[index][2] = mark.getSubjectId();
+            rows[index][3] = mark.getMark();
             index++;
         }
         TableModel model = new DefaultTableModel(rows, columns) {
@@ -93,7 +96,7 @@ public class frmMark extends javax.swing.JFrame {
                 return returnValue;
             }
             boolean[] canEdit = new boolean[]{
-                false, false, false, false, false, false
+                false, false, false, false
             };
 
             @Override
@@ -106,10 +109,6 @@ public class frmMark extends javax.swing.JFrame {
 
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableContentMouseClicked(evt);
-            }
-
-            private void tableContentMouseClicked(MouseEvent evt) {
-                throw new UnsupportedOperationException("Not yet implemented");
             }
         });
         sorter = new TableRowSorter<TableModel>(model);
@@ -129,23 +128,25 @@ public class frmMark extends javax.swing.JFrame {
 
         String stId = resDAO.readByStudentId(mark.getStudentId()).getId();
         cbxStudentId.setSelectedItem(mark.getStudentId());
-        txtStudentName.setText(studentDAO.readByID(stId).getFullName());
         txtSubjectName.setText(subjectDAO.readByID(mark.getSubjectId()).getName());
     }
 
     public void loadStudent() {
         cbxStudentId.removeAllItems();
-        ArrayList<Register> resList = resDAO.readByAll();
-        for (Register res : resList) {
-            cbxStudentId.addItem(res.getStudentId());
+        if (resList.size() != 0) {
+            for (Register res : resList) {
+                cbxStudentId.addItem(res.getStudentId());
+            }
         }
     }
 
     public void loadCourse() {
         cbxCourseChooser.removeAllItems();
-        ArrayList<Course> courseList = courseDAO.readByAll();
-        for (Course course : courseList) {
-            cbxCourseChooser.addItem(course.getId());
+        if (courseList.size() != 0) {
+            for (Course course : courseList) {
+                cbxCourseChooser.addItem(course.getId());
+                System.out.println("hi");
+            }
         }
     }
 
@@ -539,22 +540,25 @@ public class frmMark extends javax.swing.JFrame {
 
     private void cbxStudentIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxStudentIdActionPerformed
         // TODO add your handling code here:
-        listMark = markDAO.readByStudentID((String) cbxStudentId.getSelectedItem());
-        loadData(listMark);
+//        listMark = markDAO.readByStudentID((String) cbxStudentId.getSelectedItem());
+//        loadData(listMark);
     }//GEN-LAST:event_cbxStudentIdActionPerformed
 
     private void cbxCourseChooserItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxCourseChooserItemStateChanged
         // TODO add your handling code here:
-        String courseId = (String) cbxCourseChooser.getSelectedItem();
-        ArrayList<Register> resList = resDAO.readByCourseId(courseId);
-
-        listMark.clear();
-        for (Register res : resList) {
-            ArrayList<Mark> marks = markDAO.readByStudentID(res.getStudentId());
-            listMark.addAll(marks);
-        }
-
-        loadData(listMark);
+        //TODO : chua chay duoc
+//        String courseId = (String) cbxCourseChooser.getSelectedItem();
+//        if (courseId != null) {
+//            ArrayList<Register> resList = resDAO.readByCourseId(courseId);
+//
+//            listMark.clear();
+//            for (Register res : resList) {
+//                ArrayList<Mark> marks = markDAO.readByStudentID(res.getStudentId());
+//                listMark.addAll(marks);
+//            }
+//
+//            loadData(listMark);
+//        }
     }//GEN-LAST:event_cbxCourseChooserItemStateChanged
 
     /**

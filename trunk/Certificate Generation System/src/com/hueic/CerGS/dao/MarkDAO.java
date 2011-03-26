@@ -28,14 +28,25 @@ public class MarkDAO extends BaseDAO {
         try {
             pst = con.prepareStatement(sqlcommand);
             rs = pst.executeQuery();
-
+            Mark mark = null;
             while (rs.next()) {
-                Mark mark = new Mark();
-                mark.setId(rs.getInt("Id"));
-                mark.setStudentId(rs.getString("StudentId"));
-                mark.setSubjectId(rs.getString("SubjectId"));
-                mark.setMark(rs.getFloat("Mark"));
+//                System.out.println(rs.getInt("Id"));
+//                System.out.println(rs.getString("StudentId"));
+//                System.out.println(rs.getString("SubjectId"));
+//                System.out.println(rs.getFloat("Mark"));
+
+                mark = new Mark();
+                mark.setId(rs.getInt(1));
+                mark.setStudentId(rs.getString(2));
+                mark.setSubjectId(rs.getString(3));
+                mark.setMark(rs.getFloat(4));
                 listMark.add(mark);
+//                mark = new Mark();
+//                mark.setId(rs.getInt("Id"));
+//                mark.setStudentId(rs.getString("StudentId"));
+//                mark.setSubjectId(rs.getString("SubjectId"));
+//                mark.setMark(rs.getFloat("Mark"));
+//                listMark.add(mark);
             }
             setLastError("Read data successful");
         } catch (SQLException ex) {
@@ -162,7 +173,7 @@ public class MarkDAO extends BaseDAO {
         String sqlcommand = "delete from Marks where id like ?";
 
         try {
-            pst = con.prepareStatement(sqlcommand,  ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst.setInt(1, Marks.getId());
 
             if (pst.execute()) {
@@ -179,19 +190,19 @@ public class MarkDAO extends BaseDAO {
         }
     }
 
-     public float getStudentMark(String studentID){
+    public float getStudentMark(String studentID) {
         float totalMark = 0.0f;
         float avgMark = 0.0f;
         int total = 0;
         ArrayList<Mark> markList = readByStudentID(studentID);
         SubjectDAO subDAO = new SubjectDAO();
 
-        for(Mark mark : markList){
+        for (Mark mark : markList) {
             totalMark += mark.getMark();
             total += subDAO.readByID(mark.getSubjectId()).getCoefficient();
         }
 
-        avgMark = totalMark/total;
+        avgMark = totalMark / total;
 
         return avgMark;
     }
