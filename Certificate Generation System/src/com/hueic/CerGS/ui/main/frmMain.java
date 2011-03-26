@@ -22,6 +22,7 @@ import com.hueic.CerGS.ui.main.employee.frmEmployee;
 import com.hueic.CerGS.ui.main.mark.frmMark;
 import com.hueic.CerGS.ui.main.payment.frmPayment;
 import com.hueic.CerGS.ui.main.permission.frmPermission;
+import com.hueic.CerGS.ui.main.register.frmRegister;
 import com.hueic.CerGS.ui.main.student.frmStudent;
 import com.hueic.CerGS.ui.main.subject.frmSubject;
 import com.hueic.CerGS.ui.system.frmChangePass;
@@ -120,6 +121,7 @@ public class frmMain extends javax.swing.JFrame {
         linkBtnAccount = new com.l2fprod.common.swing.JLinkButton();
         linkBtnCourse = new com.l2fprod.common.swing.JLinkButton();
         linkBtnPermisison = new com.l2fprod.common.swing.JLinkButton();
+        linkBtnRegister = new com.l2fprod.common.swing.JLinkButton();
         jTaskPaneGroup3 = new com.l2fprod.common.swing.JTaskPaneGroup();
         linkBtnSearchStudent = new com.l2fprod.common.swing.JLinkButton();
         linkBtnSearchEmp = new com.l2fprod.common.swing.JLinkButton();
@@ -406,6 +408,15 @@ public class frmMain extends javax.swing.JFrame {
         });
         jTaskPaneGroup2.getContentPane().add(linkBtnPermisison);
 
+        linkBtnRegister.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/application_view_detail.png"))); // NOI18N
+        linkBtnRegister.setText("Management Register");
+        linkBtnRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                linkBtnRegisterActionPerformed(evt);
+            }
+        });
+        jTaskPaneGroup2.getContentPane().add(linkBtnRegister);
+
         jTaskPane1.add(jTaskPaneGroup2);
 
         jTaskPaneGroup3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/view.png"))); // NOI18N
@@ -429,7 +440,7 @@ public class frmMain extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTaskPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
+            .addComponent(jTaskPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -694,6 +705,12 @@ public class frmMain extends javax.swing.JFrame {
         permission.setVisible(true);
     }//GEN-LAST:event_linkBtnPermisisonActionPerformed
 
+    private void linkBtnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnRegisterActionPerformed
+        // TODO add your handling code here:
+        frmRegister register = new frmRegister();
+        register.setVisible(true);
+    }//GEN-LAST:event_linkBtnRegisterActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -743,6 +760,7 @@ public class frmMain extends javax.swing.JFrame {
     private com.l2fprod.common.swing.JLinkButton linkBtnMark;
     private com.l2fprod.common.swing.JLinkButton linkBtnPayment;
     private com.l2fprod.common.swing.JLinkButton linkBtnPermisison;
+    private com.l2fprod.common.swing.JLinkButton linkBtnRegister;
     private com.l2fprod.common.swing.JLinkButton linkBtnSearchEmp;
     private com.l2fprod.common.swing.JLinkButton linkBtnSearchStudent;
     private com.l2fprod.common.swing.JLinkButton linkBtnStudent;
