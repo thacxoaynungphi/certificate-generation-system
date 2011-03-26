@@ -40,6 +40,33 @@ public class RegisterDAO extends BaseDAO {
         return list;
     }
 
+    public ArrayList<Register> readByStudentIdOfPerson(String studentId){
+        ArrayList<Register> listRegister = new ArrayList<Register>();
+         Register regis = null;
+        try {
+            con = db.getConnection();
+            String sql = "select * from Register where Id = ?";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, studentId);
+            
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                regis = new Register();
+
+                regis.setId(rs.getString("Id"));
+                regis.setCourseId(rs.getString("CourseId"));
+                regis.setFeeStructe(rs.getInt("FeeStructe"));
+                regis.setRegisDate(rs.getDate("RegistrationDate"));
+                regis.setStudentId(rs.getString("StudentId"));
+
+                listRegister.add(regis);
+            }
+        } catch (SQLException ex) {
+            setLastError("SQL Error!");
+        }
+        return listRegister;
+    }
+
     public ArrayList<Register> readById(String id, String courseId) {
         ArrayList<Register> listRegis = new ArrayList<Register>();
         Register regis = null;
