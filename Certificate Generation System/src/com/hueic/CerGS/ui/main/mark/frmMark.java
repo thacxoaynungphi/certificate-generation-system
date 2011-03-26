@@ -164,7 +164,7 @@ public class frmMark extends javax.swing.JFrame {
         txtMark = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         btnAdd = new javax.swing.JButton();
-        btnEdit = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
 
@@ -196,7 +196,8 @@ public class frmMark extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Mark", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
-        jPanel2.setPreferredSize(new java.awt.Dimension(500, 320));
+        jPanel2.setMinimumSize(new java.awt.Dimension(450, 320));
+        jPanel2.setPreferredSize(new java.awt.Dimension(450, 320));
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
         jLabel2.setText("Choose course:");
@@ -243,7 +244,7 @@ public class frmMark extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(txtStudentName, gridBagConstraints);
 
-        srcPanelAccount.setPreferredSize(new java.awt.Dimension(440, 200));
+        srcPanelAccount.setPreferredSize(new java.awt.Dimension(400, 200));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -278,7 +279,8 @@ public class frmMark extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Management Mark", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
-        jPanel3.setPreferredSize(new java.awt.Dimension(332, 320));
+        jPanel3.setMinimumSize(new java.awt.Dimension(380, 320));
+        jPanel3.setPreferredSize(new java.awt.Dimension(380, 320));
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12));
@@ -378,14 +380,14 @@ public class frmMark extends javax.swing.JFrame {
         });
         jPanel4.add(btnAdd);
 
-        btnEdit.setText("Edit");
-        btnEdit.setPreferredSize(new java.awt.Dimension(75, 23));
-        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdate.setText("Edit");
+        btnUpdate.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditActionPerformed(evt);
+                btnUpdateActionPerformed(evt);
             }
         });
-        jPanel4.add(btnEdit);
+        jPanel4.add(btnUpdate);
 
         btnDelete.setText("Delete");
         btnDelete.setPreferredSize(new java.awt.Dimension(75, 23));
@@ -473,13 +475,13 @@ public class frmMark extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tableContentMouseClicked
 
-    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         Mark mark = getMarkById(currentMark);
 
         mark.setMark(Float.parseFloat(txtMark.getText()));
         new MarkDAO().update(mark);
-    }//GEN-LAST:event_btnEditActionPerformed
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
@@ -545,7 +547,7 @@ public class frmMark extends javax.swing.JFrame {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox cbxCourseChooser;
     private javax.swing.JComboBox cbxStudentId;
     private javax.swing.JLabel jLabel1;

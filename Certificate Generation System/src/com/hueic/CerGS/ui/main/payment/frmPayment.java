@@ -20,7 +20,6 @@ import com.hueic.CerGS.entity.Register;
 import com.l2fprod.common.swing.ObjectTableModel;
 import java.util.ArrayList;
 import java.util.regex.PatternSyntaxException;
-import javax.mail.search.OrTerm;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
