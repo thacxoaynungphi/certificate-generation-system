@@ -34,6 +34,8 @@ import javax.swing.table.TableRowSorter;
 public class frmRegister extends javax.swing.JFrame {
 
     private ArrayList<Register> regisList;
+    ArrayList<Student> studentList;
+    ArrayList<Course> courseIdList;
     private CourseDAO courseDAO;
     private RegisterDAO regisDAO;
     private StudentDAO studentDAO;
@@ -48,46 +50,53 @@ public class frmRegister extends javax.swing.JFrame {
         studentDAO = new StudentDAO();
         subjectDAO = new SubjectDAO();
         regisList = regisDAO.readByAll();
-        loadCourseChoose();
+        studentList = studentDAO.readByAll();
+        courseIdList = courseDAO.readByAll();
+        loadCourse();
         loadCourseID();
         loadStudentId();
         loadData(regisList);
     }
 
-    public void loadCourseChoose() {
-        ArrayList<Course> courseIdList = courseDAO.readByAll();
-        for (Course course : courseIdList) {
-            cbxCourseChoose.addItem(course.getName());
+    public void loadCourse() {
+        if (courseIdList.size() != 0) {
+            cbxCourseChoose.removeAllItems();
+            for (Course course : courseIdList) {
+                cbxCourseChoose.addItem(course.getId());
+            }
         }
     }
 
     public void loadCourseID() {
-        ArrayList<Course> courseIdList = courseDAO.readByAll();
-        for (Course course : courseIdList) {
-            cbxCourseChoose.addItem(course.getId());
+        if (courseIdList.size() != 0) {
+            cbxCourseID.removeAllItems();
+            for (Course course : courseIdList) {
+                cbxCourseID.addItem(course.getId());
+            }
         }
     }
 
     public void loadStudentId() {
-        ArrayList<Student> studentList = studentDAO.readByAll();
-        for (Student student : studentList) {
-            cbxStudentID.addItem(student.getId());
+        if (studentList.size() != 0) {
+            cbxStudentID.removeAllItems();
+            for (Student student : studentList) {
+                cbxStudentID.addItem(student.getId());
+            }
         }
     }
 
     public void loadData(ArrayList<Register> regisList) {
-        String[] columns = {"Id", "StudentId", "StudentName", "CourseName", "FeeStructe", "Registration Date"};
-        Object[][] rows = new Object[regisList.size()][6];
+        String[] columns = {"Id", "StudentId", "CourseId", "FeeStructe", "Registration Date"};
+        Object[][] rows = new Object[regisList.size()][5];
         int index = 0;
         for (int i = 0; i < regisList.size(); i++) {
             Register regis = regisList.get(i);
 
             rows[index][0] = regis.getId();
             rows[index][1] = regis.getStudentId();
-            rows[index][2] = studentDAO.readByID(regis.getId()).getFullName();
-            rows[index][3] = courseDAO.readById(regis.getCourseId()).getName();
-            rows[index][4] = regis.getFeeStructe();
-            rows[index][5] = regis.getRegisDate();
+            rows[index][2] = regis.getCourseId();
+            rows[index][3] = regis.getFeeStructe();
+            rows[index][4] = regis.getRegisDate();
             index++;
         }
         TableModel model = new DefaultTableModel(rows, columns) {
@@ -102,7 +111,7 @@ public class frmRegister extends javax.swing.JFrame {
                 return returnValue;
             }
             boolean[] canEdit = new boolean[]{
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             @Override
@@ -116,10 +125,6 @@ public class frmRegister extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableContentMouseClicked(evt);
             }
-
-            private void tableContentMouseClicked(MouseEvent evt) {
-                throw new UnsupportedOperationException("Not yet implemented");
-            }
         });
         sorter = new TableRowSorter<TableModel>(model);
         tableContent.setRowSorter(sorter);
@@ -129,6 +134,11 @@ public class frmRegister extends javax.swing.JFrame {
         viewPort.setPreferredSize(tableContent.getMaximumSize());
         srcPanelAccount.setRowHeader(viewPort);
         srcPanelAccount.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
+    }
+
+    private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {
+        // TODO add your handling code here:
+        
     }
 
     /** This method is called from within the constructor to
