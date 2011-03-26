@@ -27,7 +27,7 @@ public class Splasher {
         try {
             //TODO: chua tim duoc duong dan anh
             SplashWindow.splash(Splasher.class.getResource("src/com/hueic/CerGS/images/plashScreen.jpg"));
-            SplashWindow.invokeMain("com.hueic.CerGS.ui.frmLogin", args);
+            SplashWindow.invokeMain("com.hueic.CerGS.ui.system.frmLogin", args);
             SplashWindow.disposeSplash();
             Thread.sleep(2500);
         } catch (InterruptedException ex) {

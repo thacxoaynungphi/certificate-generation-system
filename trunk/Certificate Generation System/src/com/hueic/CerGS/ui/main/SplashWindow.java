@@ -150,12 +150,6 @@ public class SplashWindow extends Window {
 
             // Show the window.
             instance.setVisible(true);
-
-            // Note: To make sure the user gets a chance to see the
-            // splash window we wait until its paint method has been
-            // called at least once by the AWT event dispatcher thread.
-            // If more than one processor is available, we don't wait,
-            // and maximize CPU throughput instead.
             if (!EventQueue.isDispatchThread()
                     && Runtime.getRuntime().availableProcessors() == 1) {
                 synchronized (instance) {

@@ -21,6 +21,7 @@ import com.hueic.CerGS.ui.main.course.frmCourse;
 import com.hueic.CerGS.ui.main.employee.frmEmployee;
 import com.hueic.CerGS.ui.main.mark.frmMark;
 import com.hueic.CerGS.ui.main.payment.frmPayment;
+import com.hueic.CerGS.ui.main.permission.frmPermission;
 import com.hueic.CerGS.ui.main.student.frmStudent;
 import com.hueic.CerGS.ui.main.subject.frmSubject;
 import com.hueic.CerGS.ui.system.frmChangePass;
@@ -118,35 +119,31 @@ public class frmMain extends javax.swing.JFrame {
         linkBtnSubject = new com.l2fprod.common.swing.JLinkButton();
         linkBtnAccount = new com.l2fprod.common.swing.JLinkButton();
         linkBtnCourse = new com.l2fprod.common.swing.JLinkButton();
+        linkBtnPermisison = new com.l2fprod.common.swing.JLinkButton();
         jTaskPaneGroup3 = new com.l2fprod.common.swing.JTaskPaneGroup();
-        jLinkButton8 = new com.l2fprod.common.swing.JLinkButton();
-        jLinkButton9 = new com.l2fprod.common.swing.JLinkButton();
+        linkBtnSearchStudent = new com.l2fprod.common.swing.JLinkButton();
+        linkBtnSearchEmp = new com.l2fprod.common.swing.JLinkButton();
         mnuBSystem = new javax.swing.JMenuBar();
         mnuSystem = new javax.swing.JMenu();
         menuIChangePass = new javax.swing.JMenuItem();
         mnuILoginSystem = new javax.swing.JMenuItem();
+        mnuILogoutSystem = new javax.swing.JMenuItem();
         mnuIViewInformation = new javax.swing.JMenuItem();
-        mnuISwitchUser = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        mnuIExit = new javax.swing.JMenuItem();
-        mnuAdministrator = new javax.swing.JMenu();
-        mnuIManagementStudent = new javax.swing.JMenuItem();
-        mnuEmployee = new javax.swing.JMenu();
-        mnuIManagmentEmp = new javax.swing.JMenuItem();
-        mnuStudent = new javax.swing.JMenu();
-        mnuIManagementPayment = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        mnuOptions = new javax.swing.JMenu();
+        mnuLang = new javax.swing.JMenu();
         radioVietnamese = new javax.swing.JRadioButtonMenuItem();
         radioEnglish = new javax.swing.JRadioButtonMenuItem();
         radioJapan = new javax.swing.JRadioButtonMenuItem();
         radioChina = new javax.swing.JRadioButtonMenuItem();
         radioPhap = new javax.swing.JRadioButtonMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        mnuSkin = new javax.swing.JMenu();
         radioWindows = new javax.swing.JRadioButtonMenuItem();
         radioMetal = new javax.swing.JRadioButtonMenuItem();
         radioNimbus = new javax.swing.JRadioButtonMenuItem();
         radioMotif = new javax.swing.JRadioButtonMenuItem();
+        mnuISwitchUser = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        mnuIExit = new javax.swing.JMenuItem();
         mnuHelp = new javax.swing.JMenu();
         mnuIHelpContent = new javax.swing.JMenuItem();
         mnuIAbout = new javax.swing.JMenuItem();
@@ -154,6 +151,7 @@ public class frmMain extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Certificate Generation System");
         setResizable(false);
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new java.awt.GridBagLayout());
@@ -283,6 +281,14 @@ public class frmMain extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 20, 0, 0);
         jPanel2.add(jLabel16, gridBagConstraints);
 
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 31;
+        gridBagConstraints.ipady = 50;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        getContentPane().add(jPanel2, gridBagConstraints);
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/banner copy.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -295,6 +301,13 @@ public class frmMain extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1)
         );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        getContentPane().add(jPanel3, gridBagConstraints);
 
         jTaskPaneGroup1.setTitle("Overview");
 
@@ -309,8 +322,10 @@ public class frmMain extends javax.swing.JFrame {
 
         jTaskPane1.add(jTaskPaneGroup1);
 
+        jTaskPaneGroup2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/users1.png"))); // NOI18N
         jTaskPaneGroup2.setTitle("Administration");
 
+        linkBtnEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/application_view_detail.png"))); // NOI18N
         linkBtnEmployee.setText("Management Employee");
         linkBtnEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -319,6 +334,7 @@ public class frmMain extends javax.swing.JFrame {
         });
         jTaskPaneGroup2.getContentPane().add(linkBtnEmployee);
 
+        linkBtnStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/application_view_detail.png"))); // NOI18N
         linkBtnStudent.setText("Management Student");
         linkBtnStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -327,6 +343,7 @@ public class frmMain extends javax.swing.JFrame {
         });
         jTaskPaneGroup2.getContentPane().add(linkBtnStudent);
 
+        linkBtnCertificate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/application_view_detail.png"))); // NOI18N
         linkBtnCertificate.setText("Management Certificate");
         linkBtnCertificate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -335,6 +352,7 @@ public class frmMain extends javax.swing.JFrame {
         });
         jTaskPaneGroup2.getContentPane().add(linkBtnCertificate);
 
+        linkBtnPayment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/application_view_detail.png"))); // NOI18N
         linkBtnPayment.setText("Management Payment");
         linkBtnPayment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -343,6 +361,7 @@ public class frmMain extends javax.swing.JFrame {
         });
         jTaskPaneGroup2.getContentPane().add(linkBtnPayment);
 
+        linkBtnMark.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/application_view_detail.png"))); // NOI18N
         linkBtnMark.setText("Management Mark");
         linkBtnMark.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -351,6 +370,7 @@ public class frmMain extends javax.swing.JFrame {
         });
         jTaskPaneGroup2.getContentPane().add(linkBtnMark);
 
+        linkBtnSubject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/application_view_detail.png"))); // NOI18N
         linkBtnSubject.setText("Management Subject");
         linkBtnSubject.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -359,6 +379,7 @@ public class frmMain extends javax.swing.JFrame {
         });
         jTaskPaneGroup2.getContentPane().add(linkBtnSubject);
 
+        linkBtnAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/application_view_detail.png"))); // NOI18N
         linkBtnAccount.setText("Management Account");
         linkBtnAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -367,6 +388,7 @@ public class frmMain extends javax.swing.JFrame {
         });
         jTaskPaneGroup2.getContentPane().add(linkBtnAccount);
 
+        linkBtnCourse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/application_view_detail.png"))); // NOI18N
         linkBtnCourse.setText("Management Course");
         linkBtnCourse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -375,15 +397,27 @@ public class frmMain extends javax.swing.JFrame {
         });
         jTaskPaneGroup2.getContentPane().add(linkBtnCourse);
 
+        linkBtnPermisison.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/application_view_detail.png"))); // NOI18N
+        linkBtnPermisison.setText("Management Permission");
+        linkBtnPermisison.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                linkBtnPermisisonActionPerformed(evt);
+            }
+        });
+        jTaskPaneGroup2.getContentPane().add(linkBtnPermisison);
+
         jTaskPane1.add(jTaskPaneGroup2);
 
+        jTaskPaneGroup3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/view.png"))); // NOI18N
         jTaskPaneGroup3.setTitle("Search");
 
-        jLinkButton8.setText("Chua nghi ra");
-        jTaskPaneGroup3.getContentPane().add(jLinkButton8);
+        linkBtnSearchStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow_right_green.png"))); // NOI18N
+        linkBtnSearchStudent.setText("Student");
+        jTaskPaneGroup3.getContentPane().add(linkBtnSearchStudent);
 
-        jLinkButton9.setText("Chua nghi ra");
-        jTaskPaneGroup3.getContentPane().add(jLinkButton9);
+        linkBtnSearchEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow_right_green.png"))); // NOI18N
+        linkBtnSearchEmp.setText("Employee");
+        jTaskPaneGroup3.getContentPane().add(linkBtnSearchEmp);
 
         jTaskPane1.add(jTaskPaneGroup3);
 
@@ -395,12 +429,21 @@ public class frmMain extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTaskPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
+            .addComponent(jTaskPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
         );
 
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 11;
+        gridBagConstraints.ipady = 14;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        getContentPane().add(jPanel1, gridBagConstraints);
+
+        mnuSystem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/gear.png"))); // NOI18N
         mnuSystem.setText("System");
 
-        menuIChangePass.setText("Change Pass");
+        menuIChangePass.setText("Change Password");
         menuIChangePass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuIChangePassActionPerformed(evt);
@@ -416,9 +459,84 @@ public class frmMain extends javax.swing.JFrame {
         });
         mnuSystem.add(mnuILoginSystem);
 
+        mnuILogoutSystem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/signout.png"))); // NOI18N
+        mnuILogoutSystem.setText("Logout System");
+        mnuSystem.add(mnuILogoutSystem);
+
         mnuIViewInformation.setText("View Information");
         mnuSystem.add(mnuIViewInformation);
 
+        mnuOptions.setText("Options");
+
+        mnuLang.setText("Language");
+
+        buttonGroupLanguage.add(radioVietnamese);
+        radioVietnamese.setSelected(true);
+        radioVietnamese.setText("Vietnamese");
+        mnuLang.add(radioVietnamese);
+
+        buttonGroupLanguage.add(radioEnglish);
+        radioEnglish.setText("English");
+        mnuLang.add(radioEnglish);
+
+        buttonGroupLanguage.add(radioJapan);
+        radioJapan.setText("Japan");
+        mnuLang.add(radioJapan);
+
+        buttonGroupLanguage.add(radioChina);
+        radioChina.setText("China");
+        mnuLang.add(radioChina);
+
+        buttonGroupLanguage.add(radioPhap);
+        radioPhap.setText("Phap");
+        mnuLang.add(radioPhap);
+
+        mnuOptions.add(mnuLang);
+
+        mnuSkin.setText("Skin");
+
+        buttonGroupSkin.add(radioWindows);
+        radioWindows.setSelected(true);
+        radioWindows.setText("Windows");
+        radioWindows.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioWindowsActionPerformed(evt);
+            }
+        });
+        mnuSkin.add(radioWindows);
+
+        buttonGroupSkin.add(radioMetal);
+        radioMetal.setText("Metal");
+        radioMetal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioMetalActionPerformed(evt);
+            }
+        });
+        mnuSkin.add(radioMetal);
+
+        buttonGroupSkin.add(radioNimbus);
+        radioNimbus.setText("Nimbus");
+        radioNimbus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioNimbusActionPerformed(evt);
+            }
+        });
+        mnuSkin.add(radioNimbus);
+
+        buttonGroupSkin.add(radioMotif);
+        radioMotif.setText("Motif");
+        radioMotif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioMotifActionPerformed(evt);
+            }
+        });
+        mnuSkin.add(radioMotif);
+
+        mnuOptions.add(mnuSkin);
+
+        mnuSystem.add(mnuOptions);
+
+        mnuISwitchUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
         mnuISwitchUser.setText("Switch User");
         mnuSystem.add(mnuISwitchUser);
         mnuSystem.add(jSeparator1);
@@ -433,109 +551,10 @@ public class frmMain extends javax.swing.JFrame {
 
         mnuBSystem.add(mnuSystem);
 
-        mnuAdministrator.setText("Student");
-
-        mnuIManagementStudent.setText("Management Student");
-        mnuIManagementStudent.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuIManagementStudentActionPerformed(evt);
-            }
-        });
-        mnuAdministrator.add(mnuIManagementStudent);
-
-        mnuBSystem.add(mnuAdministrator);
-
-        mnuEmployee.setText("Employe");
-
-        mnuIManagmentEmp.setText("Management Employee");
-        mnuIManagmentEmp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuIManagmentEmpActionPerformed1(evt);
-            }
-        });
-        mnuEmployee.add(mnuIManagmentEmp);
-
-        mnuBSystem.add(mnuEmployee);
-
-        mnuStudent.setText("Payment");
-
-        mnuIManagementPayment.setText("Management Payment");
-        mnuStudent.add(mnuIManagementPayment);
-
-        mnuBSystem.add(mnuStudent);
-
-        jMenu1.setText("Option");
-
-        jMenu2.setText("Language");
-
-        buttonGroupLanguage.add(radioVietnamese);
-        radioVietnamese.setSelected(true);
-        radioVietnamese.setText("Vietnamese");
-        jMenu2.add(radioVietnamese);
-
-        buttonGroupLanguage.add(radioEnglish);
-        radioEnglish.setText("English");
-        jMenu2.add(radioEnglish);
-
-        buttonGroupLanguage.add(radioJapan);
-        radioJapan.setText("Japan");
-        jMenu2.add(radioJapan);
-
-        buttonGroupLanguage.add(radioChina);
-        radioChina.setText("China");
-        jMenu2.add(radioChina);
-
-        buttonGroupLanguage.add(radioPhap);
-        radioPhap.setText("Phap");
-        jMenu2.add(radioPhap);
-
-        jMenu1.add(jMenu2);
-
-        jMenu3.setText("Skin");
-
-        buttonGroupSkin.add(radioWindows);
-        radioWindows.setSelected(true);
-        radioWindows.setText("Windows");
-        radioWindows.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioWindowsActionPerformed(evt);
-            }
-        });
-        jMenu3.add(radioWindows);
-
-        buttonGroupSkin.add(radioMetal);
-        radioMetal.setText("Metal");
-        radioMetal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioMetalActionPerformed(evt);
-            }
-        });
-        jMenu3.add(radioMetal);
-
-        buttonGroupSkin.add(radioNimbus);
-        radioNimbus.setText("Nimbus");
-        radioNimbus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioNimbusActionPerformed(evt);
-            }
-        });
-        jMenu3.add(radioNimbus);
-
-        buttonGroupSkin.add(radioMotif);
-        radioMotif.setText("Motif");
-        radioMotif.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioMotifActionPerformed(evt);
-            }
-        });
-        jMenu3.add(radioMotif);
-
-        jMenu1.add(jMenu3);
-
-        mnuBSystem.add(jMenu1);
-
+        mnuHelp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/help.png"))); // NOI18N
         mnuHelp.setText("Help");
 
+        mnuIHelpContent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/help (2).png"))); // NOI18N
         mnuIHelpContent.setText("Help Contents");
         mnuIHelpContent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -544,6 +563,7 @@ public class frmMain extends javax.swing.JFrame {
         });
         mnuHelp.add(mnuIHelpContent);
 
+        mnuIAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/about.png"))); // NOI18N
         mnuIAbout.setText("About");
         mnuIAbout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -555,27 +575,6 @@ public class frmMain extends javax.swing.JFrame {
         mnuBSystem.add(mnuHelp);
 
         setJMenuBar(mnuBSystem);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 874, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
-        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -641,18 +640,6 @@ public class frmMain extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_mnuIExitActionPerformed
 
-    private void mnuIManagementStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuIManagementStudentActionPerformed
-        // TODO add your handling code here:
-        frmStudent student = new frmStudent();
-        student.setVisible(true);
-    }//GEN-LAST:event_mnuIManagementStudentActionPerformed
-
-    private void mnuIManagmentEmpActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuIManagmentEmpActionPerformed1
-        // TODO add your handling code here:
-        frmEmployee employee = new frmEmployee();
-        employee.setVisible(true);
-    }//GEN-LAST:event_mnuIManagmentEmpActionPerformed1
-
     private void linkBtnEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnEmployeeActionPerformed
         // TODO add your handling code here:
         frmEmployee employee = new frmEmployee();
@@ -701,6 +688,12 @@ public class frmMain extends javax.swing.JFrame {
         course.setVisible(true);
     }//GEN-LAST:event_linkBtnCourseActionPerformed
 
+    private void linkBtnPermisisonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnPermisisonActionPerformed
+        // TODO add your handling code here:
+        frmPermission permission = new frmPermission();
+        permission.setVisible(true);
+    }//GEN-LAST:event_linkBtnPermisisonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -734,11 +727,6 @@ public class frmMain extends javax.swing.JFrame {
     private com.l2fprod.common.swing.JLinkButton jLinkButton5;
     private com.l2fprod.common.swing.JLinkButton jLinkButton6;
     private com.l2fprod.common.swing.JLinkButton jLinkButton7;
-    private com.l2fprod.common.swing.JLinkButton jLinkButton8;
-    private com.l2fprod.common.swing.JLinkButton jLinkButton9;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -754,23 +742,24 @@ public class frmMain extends javax.swing.JFrame {
     private com.l2fprod.common.swing.JLinkButton linkBtnEmployee;
     private com.l2fprod.common.swing.JLinkButton linkBtnMark;
     private com.l2fprod.common.swing.JLinkButton linkBtnPayment;
+    private com.l2fprod.common.swing.JLinkButton linkBtnPermisison;
+    private com.l2fprod.common.swing.JLinkButton linkBtnSearchEmp;
+    private com.l2fprod.common.swing.JLinkButton linkBtnSearchStudent;
     private com.l2fprod.common.swing.JLinkButton linkBtnStudent;
     private com.l2fprod.common.swing.JLinkButton linkBtnSubject;
     private javax.swing.JMenuItem menuIChangePass;
-    private javax.swing.JMenu mnuAdministrator;
     private javax.swing.JMenuBar mnuBSystem;
-    private javax.swing.JMenu mnuEmployee;
     private javax.swing.JMenu mnuHelp;
     private javax.swing.JMenuItem mnuIAbout;
     private javax.swing.JMenuItem mnuIExit;
     private javax.swing.JMenuItem mnuIHelpContent;
     private javax.swing.JMenuItem mnuILoginSystem;
-    private javax.swing.JMenuItem mnuIManagementPayment;
-    private javax.swing.JMenuItem mnuIManagementStudent;
-    private javax.swing.JMenuItem mnuIManagmentEmp;
+    private javax.swing.JMenuItem mnuILogoutSystem;
     private javax.swing.JMenuItem mnuISwitchUser;
     private javax.swing.JMenuItem mnuIViewInformation;
-    private javax.swing.JMenu mnuStudent;
+    private javax.swing.JMenu mnuLang;
+    private javax.swing.JMenu mnuOptions;
+    private javax.swing.JMenu mnuSkin;
     private javax.swing.JMenu mnuSystem;
     private javax.swing.JRadioButtonMenuItem radioChina;
     private javax.swing.JRadioButtonMenuItem radioEnglish;
