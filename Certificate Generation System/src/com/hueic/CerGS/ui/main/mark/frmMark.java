@@ -42,10 +42,25 @@ public class frmMark extends javax.swing.JFrame {
     private String courseId;
     private TableRowSorter<TableModel> sorter;
     private int currentMark;
+    private RegisterDAO resDAO;
+    private MarkDAO markDAO;
+    private StudentDAO studentDAO;
+    private SubjectDAO subjectDAO;
+    private CourseDAO courseDAO;
 
     /** Creates new form MarkFrm */
     public frmMark() {
         initComponents();
+        resDAO = new RegisterDAO();
+        markDAO = new MarkDAO();
+        studentDAO = new StudentDAO();
+        subjectDAO = new SubjectDAO();
+        courseDAO = new CourseDAO();
+        markList = markDAO.readByAll();
+
+        loadStudent();
+        loadCourse();
+        loadData(markList);
     }
 
     public void loadData(ArrayList<Mark> listMark) {
@@ -58,9 +73,9 @@ public class frmMark extends javax.swing.JFrame {
 
             rows[index][0] = mark.getId();
             rows[index][1] = mark.getStudentId();
-            rows[index][2] = new StudentDAO().readByID(stId).getFullName();
-            rows[index][3] = new SubjectDAO().readByID(mark.getSubjectId()).getName();
-            rows[index][4] = new CourseDAO().readById(courseId).getName();
+            rows[index][2] = studentDAO.readByID(stId).getFullName();
+            rows[index][3] = courseDAO.readById(courseId).getName();
+            rows[index][4] = subjectDAO.readByID(mark.getSubjectId()).getName();
             rows[index][5] = mark.getMark();
             index++;
         }
@@ -112,13 +127,13 @@ public class frmMark extends javax.swing.JFrame {
 
         String stId = new RegisterDAO().readByStudentId(mark.getStudentId()).getId();
         cbxStudentId.setSelectedItem(mark.getStudentId());
-        txtStudentName.setText(new StudentDAO().readByID(stId).getFullName());
-        txtSubjectName.setText(new SubjectDAO().readByID(mark.getSubjectId()).getName());
+        txtStudentName.setText(studentDAO.readByID(stId).getFullName());
+        txtSubjectName.setText(subjectDAO.readByID(mark.getSubjectId()).getName());
     }
 
     public void loadStudent() {
         cbxStudentId.removeAllItems();
-        ArrayList<Register> resList = new RegisterDAO().readByAll();
+        ArrayList<Register> resList = resDAO.readByAll();
         for (Register res : resList) {
             cbxStudentId.addItem(res.getStudentId());
         }
@@ -126,7 +141,7 @@ public class frmMark extends javax.swing.JFrame {
 
     public void loadCourse() {
         cbxCourseChooser.removeAllItems();
-        ArrayList<Course> courseList = new CourseDAO().readByAll();
+        ArrayList<Course> courseList = courseDAO.readByAll();
         for (Course course : courseList) {
             cbxCourseChooser.addItem(course.getId());
         }
@@ -425,15 +440,13 @@ public class frmMark extends javax.swing.JFrame {
     private void cbxCourseChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCourseChooserActionPerformed
         // TODO add your handling code here:
         String courseId = (String) cbxCourseChooser.getSelectedItem();
-        ArrayList<Register> resList = new RegisterDAO().readByCourseId(courseId);
+        ArrayList<Register> resList = resDAO.readByCourseId(courseId);
 
         markList.clear();
         for (Register res : resList) {
-            ArrayList<Mark> marks = new MarkDAO().readByStudentID(res.getStudentId());
-
+            ArrayList<Mark> marks = markDAO.readByStudentID(res.getStudentId());
             markList.addAll(marks);
         }
-
         loadData(markList);
     }//GEN-LAST:event_cbxCourseChooserActionPerformed
 
@@ -487,7 +500,7 @@ public class frmMark extends javax.swing.JFrame {
         // TODO add your handling code here:
         String subId = "";
         String subName = txtSubjectName.getText();
-        ArrayList<Subject> subList = new SubjectDAO().readByAll();
+        ArrayList<Subject> subList = subjectDAO.readByAll();
         for (Subject sub : subList) {
             if (subName.compareTo(sub.getName()) == 0) {
                 subId = sub.getId();
@@ -501,12 +514,12 @@ public class frmMark extends javax.swing.JFrame {
         }
 
         Mark mark = new Mark();
-        mark.setId(new MarkDAO().readByAll().size() + 1);
+        mark.setId(markDAO.readByAll().size() + 1);
         mark.setStudentId((String) cbxStudentId.getSelectedItem());
         mark.setMark(Float.parseFloat(txtMark.getText()));
         mark.setSubjectId(subId);
 
-        new MarkDAO().create(mark);
+        markDAO.create(mark);
 
         markList.add(mark);
 
@@ -518,7 +531,7 @@ public class frmMark extends javax.swing.JFrame {
         Mark mark = getMarkById(currentMark);
 
         markList.remove(mark);
-        new MarkDAO().delete(mark);
+        markDAO.delete(mark);
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
@@ -528,7 +541,7 @@ public class frmMark extends javax.swing.JFrame {
 
     private void cbxStudentIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxStudentIdActionPerformed
         // TODO add your handling code here:
-        markList = new MarkDAO().readByStudentID((String)cbxStudentId.getSelectedItem());
+        markList = markDAO.readByStudentID((String)cbxStudentId.getSelectedItem());
         loadData(markList);
     }//GEN-LAST:event_cbxStudentIdActionPerformed
 
