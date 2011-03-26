@@ -23,7 +23,6 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import org.apache.commons.jocl.JOCLContentHandler;
 
 /**
  *
@@ -152,7 +151,9 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         tableContent = new javax.swing.JTable();
         btnClose = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Search Employee");
+        setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
