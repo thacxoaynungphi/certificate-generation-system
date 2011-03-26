@@ -10,6 +10,7 @@
  */
 package com.hueic.CerGS.ui.main.subject;
 
+import com.hueic.CerGS.component.IconSystem;
 import com.hueic.CerGS.dao.CourseDAO;
 import com.hueic.CerGS.dao.SubjectDAO;
 import com.hueic.CerGS.entity.Course;
@@ -43,6 +44,7 @@ public class frmSubject extends javax.swing.JFrame {
     /** Creates new form SubjectFrm */
     public frmSubject() {
         initComponents();
+        new IconSystem(this);
         setLocationRelativeTo(null);
         listCourses = courseDAO.readByAll();
         listSubject = subjectDao.readByAll();

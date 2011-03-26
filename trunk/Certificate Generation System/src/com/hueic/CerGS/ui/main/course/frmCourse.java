@@ -10,6 +10,7 @@
  */
 package com.hueic.CerGS.ui.main.course;
 
+import com.hueic.CerGS.component.IconSystem;
 import com.hueic.CerGS.dao.CourseDAO;
 import com.hueic.CerGS.entity.Course;
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ public class frmCourse extends javax.swing.JFrame {
 
     public frmCourse() {
         initComponents();
+        new IconSystem(this);
         setLocationRelativeTo(null);
         courseDao = new CourseDAO();
         listCourses = courseDao.readByAll();

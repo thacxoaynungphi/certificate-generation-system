@@ -10,6 +10,7 @@
  */
 package com.hueic.CerGS.ui.system;
 
+import com.hueic.CerGS.component.IconSystem;
 import com.hueic.CerGS.dao.AccountDAO;
 import com.hueic.CerGS.entity.Account;
 import java.util.logging.Level;
@@ -25,6 +26,7 @@ public class frmChangePass extends javax.swing.JFrame {
     /** Creates new form ChangePassFrm */
     public frmChangePass() {
         initComponents();
+        new IconSystem(this);
         setLocationRelativeTo(null);
     }
 

@@ -10,6 +10,7 @@
  */
 package com.hueic.CerGS.ui.main.employee;
 
+import com.hueic.CerGS.component.IconSystem;
 import com.hueic.CerGS.dao.EmployeeDAO;
 import com.hueic.CerGS.entity.Employee;
 import javax.swing.ImageIcon;
@@ -26,6 +27,7 @@ public class frmEditEmployee extends javax.swing.JFrame {
 
     public frmEditEmployee() {
         initComponents();
+        new IconSystem(this);
         setLocationRelativeTo(null);
     }
 

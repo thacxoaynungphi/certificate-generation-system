@@ -10,6 +10,7 @@
  */
 package com.hueic.CerGS.ui.main.certificate;
 
+import com.hueic.CerGS.component.IconSystem;
 import com.hueic.CerGS.dao.CertificateDAO;
 import com.hueic.CerGS.dao.MarkDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
@@ -41,6 +42,7 @@ public class frmCertificate extends javax.swing.JFrame {
 
     public frmCertificate() {
         initComponents();
+        new IconSystem(this);
         setLocationRelativeTo(null);
         certificateDao = new CertificateDAO();
         listCertificate = certificateDao.readByAll();

@@ -59,6 +59,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/com/hueic/CerGS/images/gear.png"/>
                 </Property>
+                <Property name="text" type="java.lang.String" value="Options"/>
               </Properties>
               <SubComponents>
                 <Menu class="javax.swing.JMenu" name="mnuLang">

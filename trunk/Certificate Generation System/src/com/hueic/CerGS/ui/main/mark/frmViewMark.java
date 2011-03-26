@@ -11,6 +11,8 @@
 
 package com.hueic.CerGS.ui.main.mark;
 
+import com.hueic.CerGS.component.IconSystem;
+
 /**
  *
  * @author qhvic
@@ -20,6 +22,7 @@ public class frmViewMark extends javax.swing.JFrame {
     /** Creates new form frmViewMark */
     public frmViewMark() {
         initComponents();
+        new IconSystem(this);
     }
 
     /** This method is called from within the constructor to

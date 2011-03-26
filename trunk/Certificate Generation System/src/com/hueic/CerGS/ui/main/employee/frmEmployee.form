@@ -145,12 +145,11 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="4" pref="4" max="4" attributes="0"/>
-                      <Component id="jTaskPaneGroup1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="4" pref="4" max="4" attributes="0"/>
-                      <Component id="jTaskPaneGroup2" min="-2" pref="189" max="-2" attributes="0"/>
+                      <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jTaskPaneGroup1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTaskPaneGroup2" min="-2" pref="189" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
             </DimensionLayout>

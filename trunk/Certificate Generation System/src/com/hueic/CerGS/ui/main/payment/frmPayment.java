@@ -10,6 +10,7 @@
  */
 package com.hueic.CerGS.ui.main.payment;
 
+import com.hueic.CerGS.component.IconSystem;
 import com.hueic.CerGS.dao.CourseDAO;
 import com.hueic.CerGS.dao.PaymentDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
@@ -42,6 +43,7 @@ public class frmPayment extends javax.swing.JFrame {
 
     public frmPayment() {
         initComponents();
+        new IconSystem(this);
         setLocationRelativeTo(null);
         paymentDao = new PaymentDAO();
         listPayments = paymentDao.readByAll();

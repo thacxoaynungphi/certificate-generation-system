@@ -10,6 +10,7 @@
  */
 package com.hueic.CerGS.ui.main.employee;
 
+import com.hueic.CerGS.component.IconSystem;
 import com.hueic.CerGS.dao.EmployeeDAO;
 import com.hueic.CerGS.entity.Employee;
 import java.awt.AWTEvent;
@@ -54,6 +55,7 @@ public class frmEmployee extends javax.swing.JFrame {
 
     public frmEmployee() {
         initComponents();
+        new IconSystem(this);
         setLocationRelativeTo(null);
         listEmp = empDao.readByAll();
         loadTable(listEmp);
