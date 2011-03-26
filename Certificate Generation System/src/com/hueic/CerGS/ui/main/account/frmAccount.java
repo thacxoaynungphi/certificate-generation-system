@@ -219,7 +219,7 @@ public class frmAccount extends javax.swing.JFrame {
         getContentPane().add(panelLeft, gridBagConstraints);
 
         panelRight.setBackground(new java.awt.Color(255, 255, 255));
-        panelRight.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Account", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        panelRight.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Account", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
         panelRight.setMinimumSize(new java.awt.Dimension(450, 320));
         panelRight.setPreferredSize(new java.awt.Dimension(450, 320));
         panelRight.setLayout(new java.awt.GridBagLayout());
@@ -296,27 +296,27 @@ public class frmAccount extends javax.swing.JFrame {
         getContentPane().add(panelRight, gridBagConstraints);
 
         panel1.setBackground(new java.awt.Color(255, 255, 255));
-        panel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Management Account", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        panel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Management Account", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
         panel1.setMinimumSize(new java.awt.Dimension(380, 320));
         panel1.setPreferredSize(new java.awt.Dimension(380, 320));
         panel1.setLayout(new java.awt.GridBagLayout());
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 13));
         lblTitle.setForeground(new java.awt.Color(102, 0, 102));
-        lblTitle.setText("Info Account");
+        lblTitle.setText("Information Account");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 0);
         panel1.add(lblTitle, gridBagConstraints);
 
-        sepaAccount.setPreferredSize(new java.awt.Dimension(300, 10));
+        sepaAccount.setPreferredSize(new java.awt.Dimension(350, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 10, 0);
         panel1.add(sepaAccount, gridBagConstraints);
 
