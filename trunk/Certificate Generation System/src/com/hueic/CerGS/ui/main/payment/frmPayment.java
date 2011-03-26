@@ -13,12 +13,14 @@ package com.hueic.CerGS.ui.main.payment;
 import com.hueic.CerGS.dao.CourseDAO;
 import com.hueic.CerGS.dao.PaymentDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
+import com.hueic.CerGS.dao.StudentDAO;
 import com.hueic.CerGS.entity.Course;
 import com.hueic.CerGS.entity.Payment;
 import com.hueic.CerGS.entity.Register;
 import com.l2fprod.common.swing.ObjectTableModel;
 import java.util.ArrayList;
 import java.util.regex.PatternSyntaxException;
+import javax.mail.search.OrTerm;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
@@ -51,15 +53,18 @@ public class frmPayment extends javax.swing.JFrame {
     }
 
     public void loadData(ArrayList<Payment> listPayments) {
-        String[] columns = {"Id", "StudentId", "Money", "Payday"};
+        String[] columns = {"Id", "StudentId", "StudentName", "Money", "Payday"};
         Object[][] rows = new Object[listPayments.size()][4];
         int index = 0;
         for (int i = 0; i < listPayments.size(); i++) {
             Payment payment = listPayments.get(i);
+            String id = new RegisterDAO().readByStudentId(payment.getStudentId()).getId();
+
             rows[index][0] = payment.getId();
             rows[index][1] = payment.getStudentId();
-            rows[index][2] = payment.getMoney();
-            rows[index][3] = payment.getPayday();
+            rows[index][2] = new StudentDAO().readByID(id).getFullName();
+            rows[index][3] = payment.getMoney();
+            rows[index][4] = payment.getPayday();
             index++;
         }
         TableModel model = new DefaultTableModel(rows, columns) {
@@ -74,7 +79,7 @@ public class frmPayment extends javax.swing.JFrame {
                 return returnValue;
             }
             boolean[] canEdit = new boolean[]{
-                false, false, false, false
+                false, false, false, false, false
             };
 
             @Override
@@ -415,7 +420,6 @@ public class frmPayment extends javax.swing.JFrame {
         for (int i = 0; i < listPayments.size(); i++) {
             if (listPayments.get(i).getId() == id) {
                 return listPayments.get(i);
-                
             }
         }
         return null;

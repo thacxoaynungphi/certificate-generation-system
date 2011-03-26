@@ -20,6 +20,7 @@ public class frmCertificate extends javax.swing.JFrame {
     /** Creates new form frmCertificate */
     public frmCertificate() {
         initComponents();
+
     }
 
     /** This method is called from within the constructor to

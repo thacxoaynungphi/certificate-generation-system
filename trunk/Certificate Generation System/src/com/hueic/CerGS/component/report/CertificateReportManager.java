@@ -5,6 +5,11 @@
 
 package com.hueic.CerGS.component.report;
 
+import com.hueic.CerGS.dao.CertificateDAO;
+import com.hueic.CerGS.dao.CourseDAO;
+import com.hueic.CerGS.dao.RegisterDAO;
+import com.hueic.CerGS.dao.StudentDAO;
+import com.hueic.CerGS.entity.Certificate;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -26,8 +31,13 @@ public class CertificateReportManager extends ReportManager{
         dataSource = null;
     }
 
-    public CertificateReportManager(String studentName, String courseName, Date degreeDate, String grade) {
-        this.studentName = studentName;
+    public CertificateReportManager(String studentId, String courseId, Date degreeDate, String grade) {
+        String personId = new RegisterDAO().readByStudentId(studentId).getId();
+        String stName = new StudentDAO().readByID(personId).getFullName();
+
+        String courseName = new CourseDAO().readById(courseId).getName();
+
+        this.studentName = stName;
         this.courseName = courseName;
         this.degreeDate = degreeDate;
         this.currentDate = Calendar.getInstance().getTime();
