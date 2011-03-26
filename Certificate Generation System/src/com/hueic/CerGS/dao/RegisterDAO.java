@@ -40,7 +40,8 @@ public class RegisterDAO extends BaseDAO {
         return list;
     }
 
-    public Register readById(String id, String courseId) {
+    public ArrayList<Register> readById(String id, String courseId) {
+        ArrayList<Register> listRegis = new ArrayList<Register>();
         Register regis = null;
         try {
             con = db.getConnection();
@@ -50,7 +51,7 @@ public class RegisterDAO extends BaseDAO {
             pst.setString(2, courseId);
 
             rs = pst.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
                 regis = new Register();
 
                 regis.setId(rs.getString("Id"));
@@ -59,12 +60,12 @@ public class RegisterDAO extends BaseDAO {
                 regis.setRegisDate(rs.getDate("RegistrationDate"));
                 regis.setStudentId(rs.getString("StudentId"));
 
-
+                listRegis.add(regis);
             }
         } catch (SQLException ex) {
             setLastError("SQL Error!");
         }
-        return regis;
+        return listRegis;
     }
 
     public Register readByStudentId(String studentID) {

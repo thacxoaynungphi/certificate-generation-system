@@ -182,12 +182,16 @@ public class MarkDAO extends BaseDAO {
      public float getStudentMark(String studentID){
         float totalMark = 0.0f;
         float avgMark = 0.0f;
+        int total = 0;
         ArrayList<Mark> markList = readByStudentID(studentID);
+        SubjectDAO subDAO = new SubjectDAO();
 
         for(Mark mark : markList){
             totalMark += mark.getMark();
+            total += subDAO.readByID(mark.getSubjectId()).getCoefficient();
         }
-        avgMark = totalMark/markList.size();
+
+        avgMark = totalMark/total;
 
         return avgMark;
     }
