@@ -6,7 +6,7 @@ package com.hueic.CerGS.dao;
 
 import com.hueic.CerGS.entity.Employee;
 import com.hueic.CerGS.entity.Person;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -53,6 +53,48 @@ public class EmployeeDAO extends BaseDAO {
         return list;
     }
 
+    public ArrayList<Employee> readByCommand(String fname, String lname, Date startDate, Date endDate, int gender) {
+        ArrayList<Employee> listEmp = new ArrayList<Employee>();
+
+        try {
+            con = db.getConnection();
+            String sqlCommand = "select e.Id,p.FirstName,p.LastName,p.BirthDay,p.Gender,p.Phone,p.Email,p.Address,p.Image,p.Status,e.BeginWork"
+                    + " from Employee e inner join Person p on e.Id = p.Id "
+                    + " where p.FirstName = ? and p.LastName = ? and p.birthday > ? and p.birthday < ? and p.gender = ?";
+
+            pst = con.prepareStatement(sqlCommand);
+            pst.setString(1, fname);
+            pst.setString(2, lname);
+            pst.setDate(3, (java.sql.Date) startDate);
+            pst.setDate(4, (java.sql.Date) endDate);
+            pst.setInt(5, gender);
+
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                Employee emp = new Employee();
+
+                emp.setId(rs.getString(1));
+                emp.setFirstName(rs.getString(2));
+                emp.setLastName(rs.getString(3));
+                emp.setBirthDay(rs.getDate(4));
+                emp.setGender(rs.getInt(5));
+                emp.setPhone(rs.getString(6));
+                emp.setEmail(rs.getString(7));
+                emp.setAddress(rs.getString(8));
+                emp.setImage(rs.getString(9));
+                emp.setStatus(rs.getInt(10));
+                emp.setBeginWork(rs.getDate(11));
+
+                listEmp.add(emp);
+            }
+
+        } catch (Exception ex) {
+            setLastError("SQL Error!");
+        }
+
+        return listEmp;
+    }
     public Employee readByID(String id) {
         Employee emp = null;
         try {
@@ -91,7 +133,7 @@ public class EmployeeDAO extends BaseDAO {
                 String sql = "insert into Employee(Id,BeginWork)" + " values (?,?); ";
                 pst = con.prepareStatement(sql);
                 pst.setString(1, emp.getId());
-                pst.setDate(2, (Date) emp.getBeginWork());
+                pst.setDate(2, (java.sql.Date) emp.getBeginWork());
                 if (pst.executeUpdate() > 0) {
                     setLastError("Add Employee Successfully");
                     status = true;
@@ -121,7 +163,7 @@ public class EmployeeDAO extends BaseDAO {
                 pst.setString(1, person.getId());
                 rs = pst.executeQuery();
                 if (rs.first()) {
-                    rs.updateDate(2, (Date) emp.getBeginWork());
+                    rs.updateDate(2, (java.sql.Date) emp.getBeginWork());
                     rs.updateRow();
                     setLastError("Update Employee successfully");
                     status = true;
