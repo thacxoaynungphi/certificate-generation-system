@@ -139,6 +139,7 @@ public class frmEditEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         panelContent.add(sepaAddStu, gridBagConstraints);
 
+        lblFirstname.setForeground(new java.awt.Color(3, 3, 3));
         lblFirstname.setText("Firstname:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -147,6 +148,7 @@ public class frmEditEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(lblFirstname, gridBagConstraints);
 
+        lblLastname.setForeground(new java.awt.Color(3, 3, 3));
         lblLastname.setText("Lastname:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -155,6 +157,7 @@ public class frmEditEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(lblLastname, gridBagConstraints);
 
+        lblGender.setForeground(new java.awt.Color(3, 3, 3));
         lblGender.setText("Gender:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -163,6 +166,7 @@ public class frmEditEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(lblGender, gridBagConstraints);
 
+        lblBirthday.setForeground(new java.awt.Color(3, 3, 3));
         lblBirthday.setText("Birthday:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -171,6 +175,7 @@ public class frmEditEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(lblBirthday, gridBagConstraints);
 
+        lblEmail.setForeground(new java.awt.Color(3, 3, 3));
         lblEmail.setText("Email:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -179,6 +184,7 @@ public class frmEditEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(lblEmail, gridBagConstraints);
 
+        lblAddress.setForeground(new java.awt.Color(3, 3, 3));
         lblAddress.setText("Address:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -187,6 +193,7 @@ public class frmEditEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(lblAddress, gridBagConstraints);
 
+        lblImage1.setForeground(new java.awt.Color(3, 3, 3));
         lblImage1.setText("Image:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -223,6 +230,7 @@ public class frmEditEmployee extends javax.swing.JFrame {
 
         radioMale.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroupGender.add(radioMale);
+        radioMale.setForeground(new java.awt.Color(3, 3, 3));
         radioMale.setSelected(true);
         radioMale.setText("Male");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -234,6 +242,7 @@ public class frmEditEmployee extends javax.swing.JFrame {
 
         radioFemale.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroupGender.add(radioFemale);
+        radioFemale.setForeground(new java.awt.Color(3, 3, 3));
         radioFemale.setText("Female");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -360,6 +369,7 @@ public class frmEditEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(lblStart4, gridBagConstraints);
 
+        lblEmployeeID.setForeground(new java.awt.Color(3, 3, 3));
         lblEmployeeID.setText("Employee ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -396,6 +406,7 @@ public class frmEditEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(DateChBirthday, gridBagConstraints);
 
+        lblBeginwork.setForeground(new java.awt.Color(3, 3, 3));
         lblBeginwork.setText("Begin work:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -414,6 +425,7 @@ public class frmEditEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(DateChBeginWork, gridBagConstraints);
 
+        lblPhone.setForeground(new java.awt.Color(3, 3, 3));
         lblPhone.setText("Phone: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;

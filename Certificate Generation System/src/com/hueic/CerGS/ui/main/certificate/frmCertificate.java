@@ -254,6 +254,7 @@ public class frmCertificate extends javax.swing.JFrame {
         panelRight.setPreferredSize(new java.awt.Dimension(380, 320));
         panelRight.setLayout(new java.awt.GridBagLayout());
 
+        lblStudentID.setForeground(new java.awt.Color(3, 3, 3));
         lblStudentID.setText("Student ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -262,6 +263,7 @@ public class frmCertificate extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(lblStudentID, gridBagConstraints);
 
+        lblScore.setForeground(new java.awt.Color(3, 3, 3));
         lblScore.setText("Score:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -270,6 +272,7 @@ public class frmCertificate extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(lblScore, gridBagConstraints);
 
+        lblDegreeDay.setForeground(new java.awt.Color(3, 3, 3));
         lblDegreeDay.setText("DegreeDay:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -364,6 +367,7 @@ public class frmCertificate extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         panelRight.add(sepaCertificate, gridBagConstraints);
 
+        lblID.setForeground(new java.awt.Color(3, 3, 3));
         lblID.setText("ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;

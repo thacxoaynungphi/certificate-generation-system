@@ -206,16 +206,19 @@ public class frmViewMark extends javax.swing.JFrame {
         getContentPane().add(panelLogo, gridBagConstraints);
 
         panelContent.setBackground(new java.awt.Color(255, 255, 255));
-        panelContent.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "View Mark", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        panelContent.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "View Mark", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
+        panelContent.setForeground(new java.awt.Color(3, 3, 3));
         panelContent.setPreferredSize(new java.awt.Dimension(832, 310));
         panelContent.setLayout(new java.awt.GridBagLayout());
 
+        lblCourseID.setForeground(new java.awt.Color(3, 3, 3));
         lblCourseID.setText("Choose Course ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(lblCourseID, gridBagConstraints);
 
+        lblStudentID.setForeground(new java.awt.Color(3, 3, 3));
         lblStudentID.setText("Choose Student ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -300,6 +303,7 @@ public class frmViewMark extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 5);
         panelContent.add(panel3, gridBagConstraints);
 
+        lblFilter.setForeground(new java.awt.Color(3, 3, 3));
         lblFilter.setText("Enter Filter:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;

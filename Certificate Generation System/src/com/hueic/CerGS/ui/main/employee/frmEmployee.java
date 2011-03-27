@@ -329,6 +329,7 @@ public class frmEmployee extends javax.swing.JFrame {
         panelDisplay.setPreferredSize(new java.awt.Dimension(870, 30));
         panelDisplay.setLayout(new java.awt.GridBagLayout());
 
+        lblHienthi1.setForeground(new java.awt.Color(3, 3, 3));
         lblHienthi1.setText("Tổng số nhân viên là : ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -338,6 +339,7 @@ public class frmEmployee extends javax.swing.JFrame {
         panelDisplay.add(lblHienthi1, gridBagConstraints);
 
         lblCount.setBackground(new java.awt.Color(255, 255, 255));
+        lblCount.setForeground(new java.awt.Color(3, 3, 3));
         lblCount.setPreferredSize(new java.awt.Dimension(20, 14));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;

@@ -165,7 +165,7 @@ public class frmPermission extends javax.swing.JFrame {
         getContentPane().add(panelLogo, gridBagConstraints);
 
         panelLeft.setBackground(new java.awt.Color(255, 255, 255));
-        panelLeft.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Permission", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        panelLeft.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Permission", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(3, 3, 3))); // NOI18N
         panelLeft.setMinimumSize(new java.awt.Dimension(450, 320));
         panelLeft.setPreferredSize(new java.awt.Dimension(450, 320));
         panelLeft.setLayout(new java.awt.GridBagLayout());
@@ -248,7 +248,7 @@ public class frmPermission extends javax.swing.JFrame {
         getContentPane().add(panelLeft, gridBagConstraints);
 
         panelRight.setBackground(new java.awt.Color(255, 255, 255));
-        panelRight.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Management Permission", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        panelRight.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Management Permission", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(3, 3, 3))); // NOI18N
         panelRight.setMinimumSize(new java.awt.Dimension(380, 320));
         panelRight.setPreferredSize(new java.awt.Dimension(380, 320));
         panelRight.setLayout(new java.awt.GridBagLayout());
@@ -272,6 +272,7 @@ public class frmPermission extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 10, 0);
         panelRight.add(sepaAccount, gridBagConstraints);
 
+        lblUsername.setForeground(new java.awt.Color(3, 3, 3));
         lblUsername.setText("ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -280,6 +281,7 @@ public class frmPermission extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
         panelRight.add(lblUsername, gridBagConstraints);
 
+        lblPassword.setForeground(new java.awt.Color(3, 3, 3));
         lblPassword.setText("Name:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;

@@ -324,6 +324,7 @@ public class frmAccount extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 10, 0);
         panel1.add(sepaAccount, gridBagConstraints);
 
+        lblUsername.setForeground(new java.awt.Color(3, 3, 3));
         lblUsername.setText("Username:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -332,6 +333,7 @@ public class frmAccount extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
         panel1.add(lblUsername, gridBagConstraints);
 
+        lblPassword.setForeground(new java.awt.Color(3, 3, 3));
         lblPassword.setText("Password:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -340,6 +342,7 @@ public class frmAccount extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
         panel1.add(lblPassword, gridBagConstraints);
 
+        lblConfirmPass.setForeground(new java.awt.Color(3, 3, 3));
         lblConfirmPass.setText("Confirm password:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -432,6 +435,7 @@ public class frmAccount extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 10);
         panel1.add(lblcheck3, gridBagConstraints);
 
+        lblType.setForeground(new java.awt.Color(3, 3, 3));
         lblType.setText("Type:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;

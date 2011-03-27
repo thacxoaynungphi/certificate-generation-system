@@ -264,6 +264,7 @@ public class frmCourse extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         panelRight.add(sepaCourse, gridBagConstraints);
 
+        lblName.setForeground(new java.awt.Color(3, 3, 3));
         lblName.setText("Name course:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -272,6 +273,7 @@ public class frmCourse extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(lblName, gridBagConstraints);
 
+        lblTotalFees.setForeground(new java.awt.Color(3, 3, 3));
         lblTotalFees.setText("Total Fees:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -341,6 +343,7 @@ public class frmCourse extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 5;
         panelRight.add(panelButton, gridBagConstraints);
 
+        lblID.setForeground(new java.awt.Color(3, 3, 3));
         lblID.setText("Course ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -358,10 +361,12 @@ public class frmCourse extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(txtID, gridBagConstraints);
 
+        lblStatus.setForeground(new java.awt.Color(3, 3, 3));
         lblStatus.setText("Status:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(lblStatus, gridBagConstraints);
 

@@ -50,10 +50,11 @@ public class frmAbout extends javax.swing.JFrame {
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         panelContent.setBackground(new java.awt.Color(255, 255, 255));
-        panelContent.setMinimumSize(new java.awt.Dimension(450, 320));
+        panelContent.setMinimumSize(new java.awt.Dimension(440, 120));
         panelContent.setPreferredSize(new java.awt.Dimension(440, 120));
         panelContent.setLayout(new java.awt.GridBagLayout());
 
+        lblInfoSoft.setForeground(new java.awt.Color(3, 3, 3));
         lblInfoSoft.setText("<html> <body> Certificate Generation System<br/>Version 1.0<br/>© 2011 ConnectPlus.<br/>All rights reserved.<br/> </body> </html>");
         lblInfoSoft.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         lblInfoSoft.setPreferredSize(new java.awt.Dimension(150, 56));
@@ -66,6 +67,7 @@ public class frmAbout extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 20, 5, 5);
         panelContent.add(lblInfoSoft, gridBagConstraints);
 
+        lblInfoGroup.setForeground(new java.awt.Color(3, 3, 3));
         lblInfoGroup.setText("<html> <body> Develop by: Connec tPlus <br/> Contact: example@gmail.com </body> </html>");
         lblInfoGroup.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         gridBagConstraints = new java.awt.GridBagConstraints();

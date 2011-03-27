@@ -33,6 +33,7 @@
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder title="Change Password">
               <Font PropertyName="font" name="Tahoma" size="14" style="1"/>
+              <Color PropertyName="color" blue="3" green="3" red="3" type="rgb"/>
             </TitledBorder>
           </Border>
         </Property>
@@ -50,6 +51,9 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="lblUsername">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Username:"/>
           </Properties>
           <Constraints>
@@ -60,6 +64,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblOldpass">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Old password:"/>
           </Properties>
           <Constraints>
@@ -70,6 +77,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblNewpass">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="New password:"/>
           </Properties>
           <Constraints>
@@ -80,6 +90,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblConfirmpass">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Confirm password:"/>
           </Properties>
           <Constraints>
