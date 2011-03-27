@@ -46,6 +46,7 @@
                 <TitledBorder/>
               </Border>
               <Font PropertyName="font" name="Tahoma" size="14" style="1"/>
+              <Color PropertyName="color" blue="3" green="3" red="3" type="rgb"/>
             </TitledBorder>
           </Border>
         </Property>

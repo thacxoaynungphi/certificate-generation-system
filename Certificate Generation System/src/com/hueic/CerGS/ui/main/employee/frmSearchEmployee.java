@@ -174,7 +174,7 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         getContentPane().add(jPanel1, gridBagConstraints);
 
         panelInfo.setBackground(new java.awt.Color(255, 255, 255));
-        panelInfo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search Employee", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        panelInfo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search Employee", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(3, 3, 3))); // NOI18N
         panelInfo.setMinimumSize(new java.awt.Dimension(250, 435));
         panelInfo.setPreferredSize(new java.awt.Dimension(250, 435));
         panelInfo.setLayout(new java.awt.GridBagLayout());
