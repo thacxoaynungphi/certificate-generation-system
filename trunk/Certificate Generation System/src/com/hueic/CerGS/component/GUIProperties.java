@@ -10,9 +10,7 @@ package com.hueic.CerGS.component;
 public class GUIProperties {
 
     public static final String PLAF_NIMBUS = "com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel";
-    //public static final String PLAF_WINDOWS = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
     public static final String PLAF_WINDOWS = "com.jgoodies.looks.windows.WindowsLookAndFeel";
-    public static final String PLAF_MAC = "com.birosoft.liquid.LiquidLookAndFeel";
     public static final String PLAF_JGOODIES = "com.jgoodies.looks.plastic.Plastic3DLookAndFeel";
     public static final String PLAF_METAL = "com.jgoodies.looks.plastic.PlasticLookAndFeel";
     private String lookAndFeel = PLAF_JGOODIES;
@@ -47,9 +45,5 @@ public class GUIProperties {
 
     public boolean isWindowsLook() {
         return lookAndFeel.equals(PLAF_WINDOWS);
-    }
-
-    public boolean isMacLook() {
-        return lookAndFeel.equals(PLAF_MAC);
     }
 }
