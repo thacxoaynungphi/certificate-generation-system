@@ -52,6 +52,35 @@ public class PersonDAO extends BaseDAO {
         return list;
     }
 
+     public ArrayList<Person> readByAllNotAcc() {
+        ArrayList<Person> list = new ArrayList<Person>();
+        con = db.getConnection();
+        String sql = "select * from Person where Id not in (select username from Account);";
+        try {
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                Person person = new Person();
+                person.setId(rs.getString(1));
+                person.setFirstName(rs.getString(2));
+                person.setLastName(rs.getString(3));
+                person.setBirthDay(rs.getDate(4));
+                person.setGender(rs.getInt(5));
+                person.setPhone(rs.getString(6));
+                person.setEmail(rs.getString(7));
+                person.setAddress(rs.getString(8));
+                person.setImage(rs.getString(9));
+                person.setStatus(rs.getInt(10));
+                list.add(person);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(PersonDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            db.closeConnection();
+        }
+        return list;
+    }
+
     public Person readByID(String id) {
         Person person = null;
         try {

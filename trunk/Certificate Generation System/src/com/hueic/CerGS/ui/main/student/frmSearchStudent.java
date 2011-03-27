@@ -459,7 +459,6 @@ public class frmSearchStudent extends javax.swing.JFrame {
         String courseId = (String) cbxCourse.getSelectedItem();
         listRegister.clear();
         listRegister.addAll(registerDAO.readByCourseId(courseId));
-
         loadData(listRegister);
         loadStudentId(listRegister);
     }//GEN-LAST:event_cbxCourseItemStateChanged
