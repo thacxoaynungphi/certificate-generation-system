@@ -8,8 +8,10 @@
  *
  * Created on Mar 26, 2011, 2:53:04 PM
  */
-
 package com.hueic.CerGS.ui.main.employee;
+
+import com.hueic.CerGS.dao.PersonDAO;
+import com.hueic.CerGS.entity.Person;
 
 /**
  *
@@ -18,8 +20,34 @@ package com.hueic.CerGS.ui.main.employee;
 public class frmViewInfo extends javax.swing.JFrame {
 
     /** Creates new form frmViewInfo */
+    public Person person;
+
     public frmViewInfo() {
         initComponents();
+        setLocationRelativeTo(null);
+    }
+
+    public frmViewInfo(Person person) {
+        initComponents();
+        setLocationRelativeTo(null);
+        this.person = person;
+        dataBinding();
+    }
+
+    public void dataBinding() {
+        txtUsername.setText(person.getId());
+        txtFirstname.setText(person.getFirstName());
+        txtLastname.setText(person.getLastName());
+        if (person.getGender() == 0) {
+            radioFemale.setSelected(true);
+        } else {
+            radioMale.setSelected(true);
+        }
+        DateChBirthday.setDate(person.getBirthDay());
+        txtEmail.setText(person.getEmail());
+        txtPhone.setText(person.getPhone());
+        txtAddress.setText(person.getAddress());
+        txtImage.setText(person.getImage());
     }
 
     /** This method is called from within the constructor to
@@ -167,6 +195,7 @@ public class frmViewInfo extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(txtLastname, gridBagConstraints);
 
+        radioMale.setBackground(new java.awt.Color(255, 255, 255));
         radioMale.setText("Male");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -175,6 +204,7 @@ public class frmViewInfo extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         panelContent.add(radioMale, gridBagConstraints);
 
+        radioFemale.setBackground(new java.awt.Color(255, 255, 255));
         radioFemale.setText("Female");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -225,16 +255,37 @@ public class frmViewInfo extends javax.swing.JFrame {
         panelButton.setBackground(new java.awt.Color(255, 255, 255));
         panelButton.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
 
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Edit_16.png"))); // NOI18N
         btnUpdate.setText("Update");
+        btnUpdate.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnUpdate.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
         panelButton.add(btnUpdate);
 
+        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
         btnReset.setText("Reset");
+        btnReset.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnReset.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
         panelButton.add(btnReset);
 
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
         btnCancel.setText("Cancel");
+        btnCancel.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnCancel.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
         panelButton.add(btnCancel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -299,17 +350,54 @@ public class frmViewInfo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            Person person = new Person();
+            person.setId(txtUsername.getText());
+            person.setFirstName(txtFirstname.getText());
+            person.setLastName(txtLastname.getText());
+            person.setBirthDay(DateChBirthday.getDate());
+            if (radioMale.isSelected()) {
+                person.setGender(1);
+
+            } else if (radioFemale.isSelected()) {
+                person.setGender(0);
+            }
+            person.setPhone(txtPhone.getText());
+            person.setEmail(txtEmail.getText());
+            person.setAddress(txtAddress.getText());
+            person.setImage(txtImage.getText());
+            person.setStatus(1);
+
+            PersonDAO personDao = new PersonDAO();
+            personDao.create(person);
+        } catch (Exception ex) {
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+        dataBinding();
+    }//GEN-LAST:event_btnResetActionPerformed
+
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new frmViewInfo().setVisible(true);
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser DateChBirthday;
     private javax.swing.JButton btnBrowse;
@@ -340,5 +428,4 @@ public class frmViewInfo extends javax.swing.JFrame {
     private javax.swing.JTextField txtPhone;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
-
 }
