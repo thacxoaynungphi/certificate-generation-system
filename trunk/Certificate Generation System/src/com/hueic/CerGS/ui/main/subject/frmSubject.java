@@ -73,6 +73,7 @@ public class frmSubject extends javax.swing.JFrame {
         srcPanelSubject = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
         btnFilter = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         panelRight = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
         lblNameSub = new javax.swing.JLabel();
@@ -124,6 +125,11 @@ public class frmSubject extends javax.swing.JFrame {
         panelLeft.add(cbxCourse, gridBagConstraints);
 
         filterText.setPreferredSize(new java.awt.Dimension(180, 20));
+        filterText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                filterTextKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -156,7 +162,7 @@ public class frmSubject extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelLeft.add(srcPanelSubject, gridBagConstraints);
 
@@ -168,11 +174,19 @@ public class frmSubject extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
         panelLeft.add(btnFilter, gridBagConstraints);
+
+        jLabel1.setText("Enter Filter:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 5, 5);
+        panelLeft.add(jLabel1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -566,18 +580,7 @@ public class frmSubject extends javax.swing.JFrame {
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
-        if (listSubject.size() != 0) {
-            String text = filterText.getText();
-            if (text.length() == 0) {
-                sorter.setRowFilter(null);
-            } else {
-                try {
-                    sorter.setRowFilter(RowFilter.regexFilter(text));
-                } catch (PatternSyntaxException pse) {
-                    System.err.println("Bad regex pattern");
-                }
-            }
-        }
+        searchStart();
     }//GEN-LAST:event_btnFilterActionPerformed
 
     private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
@@ -610,6 +613,26 @@ public class frmSubject extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cbxCourseItemStateChanged
 
+    public void searchStart() {
+        if (listSubject.size() != 0) {
+            String text = filterText.getText();
+            if (text.length() == 0) {
+                sorter.setRowFilter(null);
+            } else {
+                try {
+                    sorter.setRowFilter(RowFilter.regexFilter(text));
+                } catch (PatternSyntaxException pse) {
+                    System.err.println("Bad regex pattern");
+                }
+            }
+        }
+    }
+
+    private void filterTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextKeyPressed
+        // TODO add your handling code here:
+        searchStart();
+    }//GEN-LAST:event_filterTextKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -630,6 +653,7 @@ public class frmSubject extends javax.swing.JFrame {
     private javax.swing.JComboBox cbxCourse;
     private javax.swing.JComboBox cbxCourseID;
     private javax.swing.JTextField filterText;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblBanner;
     private javax.swing.JLabel lblCoefficient;
     private javax.swing.JLabel lblCourse;
