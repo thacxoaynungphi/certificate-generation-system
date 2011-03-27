@@ -27,7 +27,7 @@ public class PaymentDAO extends BaseDAO {
         String sqlcommand = "select * from Payment";
 
         try {
-            pst = con.prepareStatement(sqlcommand,  ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             rs = pst.executeQuery();
             while (rs.next()) {
                 Payment pay = new Payment();
@@ -102,6 +102,25 @@ public class PaymentDAO extends BaseDAO {
         return payList;
     }
 
+    public float totalDiposit(String studentId) {
+        float money = 0.0f;
+        con = db.getConnection();
+        String sqlcommand = "select sum(Money) from Payment where StudentId = ?";
+        try {
+            pst = con.prepareStatement(sqlcommand);
+            pst.setString(1, studentId);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                money = rs.getFloat(1);
+            } 
+        } catch (SQLException ex) {
+            setLastError("SQL Error!!!");
+        } finally {
+            db.closeConnection();
+        }
+        return  money;
+    }
+
     public boolean create(Payment pay) {
         boolean status = false;
         con = db.getConnection();
@@ -114,7 +133,7 @@ public class PaymentDAO extends BaseDAO {
             pst.setFloat(3, pay.getMoney());
             pst.setDate(4, (Date) pay.getPayday());
 
-            if (pst.execute()) {
+            if (pst.executeUpdate() > 0) {
                 setLastError("Add fee successful");
                 status = true;
             } else {
@@ -164,10 +183,10 @@ public class PaymentDAO extends BaseDAO {
         String sqlcommand = "delete from Payment where id like ?";
 
         try {
-            pst = con.prepareStatement(sqlcommand,  ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst.setInt(1, pay.getId());
 
-            if (pst.execute()) {
+            if (pst.executeUpdate() > 0) {
                 setLastError("Add fee successful");
                 status = true;
             } else {

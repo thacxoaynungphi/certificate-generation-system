@@ -51,6 +51,8 @@ public class frmViewPayment extends javax.swing.JFrame {
         courseDao = new CourseDAO();
         registerDao = new RegisterDAO();
         listPayments = paymentDao.readByAll();
+        listCourse = courseDao.readByAll();
+        listRegister = registerDao.readByAll();
         loadData(listPayments);
         loadDataCBXCourse();
         loadDataCBXStudent();
@@ -104,23 +106,37 @@ public class frmViewPayment extends javax.swing.JFrame {
         JViewport viewPort = new JViewport();
         viewPort.setView(tableContent);
         viewPort.setPreferredSize(tableContent.getMaximumSize());
+
         srcPanelPayment.setRowHeader(viewPort);
         srcPanelPayment.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
     }
 
     public void load(ArrayList<Payment> listPayments, String courseId, String studentid) {
-
-        listPayments = paymentDao.readByStudentId(studentid);
+        if (studentid.equals("------")) {
+            listPayments = paymentDao.readByAll();
+        } else {
+            listPayments = paymentDao.readByStudentId(studentid);
+        }
         if (listPayments != null) {
             loadData(listPayments);
-            lblTotalTheDeposit.setText(String.valueOf(totalPayment(courseId) - totalDiposit()));
-            lblAmountRemaining.setText(String.valueOf(totalDiposit()));
+            float money = paymentDao.totalDiposit(studentid);
+            if (studentid.equals("------")) {
+                lblTitleAmount.setVisible(false);
+                lblTitleTotal.setVisible(false);
+            } else {
+                lblTotalTheDeposit.setText(String.valueOf(courseDao.readById(registerDao.readByStudentId(studentid).getCourseId()).getTotalFees() - money));
+                lblAmountRemaining.setText(String.valueOf(money));
+            }
         }
     }
 
     public void loadDataCBXCourse() {
-        cbxCourseID.removeAllItems();
-        listCourse = courseDao.readByAll();
+
+        if (cbxCourseID.getItemCount() != 0) {
+            cbxCourseID.removeAllItems();
+        }
+        cbxCourseID.addItem("-- All --");
+        cbxCourseID.setSelectedIndex(0);
         if (listCourse != null) {
             for (int i = 0; i < listCourse.size(); i++) {
                 cbxCourseID.addItem(listCourse.get(i).getId());
@@ -129,8 +145,11 @@ public class frmViewPayment extends javax.swing.JFrame {
     }
 
     public void loadDataCBXStudent() {
-        cbxStudentID.removeAllItems();
-        listRegister = registerDao.readByAll();
+        if (cbxStudentID.getItemCount() != 0) {
+            cbxStudentID.removeAllItems();
+        }
+        cbxStudentID.addItem("------");
+        cbxStudentID.setSelectedIndex(0);
         if (listRegister != null) {
             for (int i = 0; i < listRegister.size(); i++) {
                 cbxStudentID.addItem(listRegister.get(i).getStudentId());
@@ -208,6 +227,11 @@ public class frmViewPayment extends javax.swing.JFrame {
 
         cbxCourseID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxCourseID.setPreferredSize(new java.awt.Dimension(200, 20));
+        cbxCourseID.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxCourseIDItemStateChanged(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -327,29 +351,26 @@ public class frmViewPayment extends javax.swing.JFrame {
 
     private void cbxStudentIDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxStudentIDItemStateChanged
         // TODO add your handling code here:
-        if (cbxStudentID.getItemCount() != 0) {
-            String studentid = cbxStudentID.getSelectedItem().toString();
+        if (cbxStudentID.getItemCount() - 1 == listRegister.size()) {
             String courseid = cbxCourseID.getSelectedItem().toString();
+            String studentid = cbxStudentID.getSelectedItem().toString();
             load(listPayments, courseid, studentid);
         }
     }//GEN-LAST:event_cbxStudentIDItemStateChanged
 
-    public float totalPayment(String value) {
-        for (Course course : listCourse) {
-            if (course.getId().equals(value)) {
-                return course.getTotalFees();
-            }
+private void cbxCourseIDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxCourseIDItemStateChanged
+    // TODO add your handling code here:
+    if (cbxCourseID.getItemCount() - 1 == listCourse.size()) {
+        String coursid = cbxCourseID.getSelectedItem().toString();
+        if (coursid.equals("-- All --")) {
+            listRegister = registerDao.readByAll();
+            loadDataCBXStudent();
+        } else {
+            listRegister = registerDao.readByCourseId(coursid);
+            loadDataCBXStudent();
         }
-        return 0;
     }
-
-    public float totalDiposit() {
-        float total = 0;
-        for (Payment payment : listPayments) {
-            total += payment.getMoney();
-        }
-        return total;
-    }
+}//GEN-LAST:event_cbxCourseIDItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -359,8 +380,12 @@ public class frmViewPayment extends javax.swing.JFrame {
 
             public void run() {
                 new frmViewPayment().setVisible(true);
+
+
             }
         });
+
+
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;

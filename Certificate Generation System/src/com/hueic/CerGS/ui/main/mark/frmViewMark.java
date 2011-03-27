@@ -18,7 +18,6 @@ import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.dao.StudentDAO;
 import com.hueic.CerGS.entity.Course;
 import com.hueic.CerGS.entity.Mark;
-import com.hueic.CerGS.entity.Payment;
 import com.hueic.CerGS.entity.Register;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -53,6 +52,8 @@ public class frmViewMark extends javax.swing.JFrame {
         courseDao = new CourseDAO();
         registerDao = new RegisterDAO();
         listMarks = markDAO.readByAll();
+        listCourse = courseDao.readByAll();
+        listRegister = registerDao.readByAll();
         loadData(listMarks);
         loadDataCBXCourse();
         loadDataCBXStudent();
@@ -106,24 +107,33 @@ public class frmViewMark extends javax.swing.JFrame {
         viewPort.setView(tableContent);
         viewPort.setPreferredSize(tableContent.getMaximumSize());
         srcPanelViewMark.setRowHeader(viewPort);
+        srcPanelViewMark.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        srcPanelViewMark.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         srcPanelViewMark.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
     }
 
     public void load(ArrayList<Mark> listMarks, String courseId, String studentid) {
 
-        listMarks = markDAO.readByStudentID(studentid);
+        if (studentid.equals("------")) {
+            listMarks = markDAO.readByAll();
+        } else {
+            listMarks = markDAO.readByStudentID(studentid);
+        }
         if (listMarks != null) {
             loadData(listMarks);
         }
+
     }
 
     private void tableContentMouseClicked(MouseEvent evt) {
-       
     }
 
     public void loadDataCBXCourse() {
-        cbxCourseID.removeAllItems();
-        listCourse = courseDao.readByAll();
+        if (cbxCourseID.getItemCount() != 0) {
+            cbxCourseID.removeAllItems();
+        }
+        cbxCourseID.addItem("-- All --");
+        cbxCourseID.setSelectedIndex(0);
         if (listCourse != null) {
             for (int i = 0; i < listCourse.size(); i++) {
                 cbxCourseID.addItem(listCourse.get(i).getId());
@@ -132,8 +142,11 @@ public class frmViewMark extends javax.swing.JFrame {
     }
 
     public void loadDataCBXStudent() {
-        cbxStudentID.removeAllItems();
-        listRegister = registerDao.readByAll();
+        if (cbxStudentID.getItemCount() != 0) {
+            cbxStudentID.removeAllItems();
+        }
+        cbxStudentID.addItem("------");
+        cbxStudentID.setSelectedIndex(0);
         if (listRegister != null) {
             for (int i = 0; i < listRegister.size(); i++) {
                 cbxStudentID.addItem(listRegister.get(i).getStudentId());
@@ -207,9 +220,9 @@ public class frmViewMark extends javax.swing.JFrame {
 
         cbxCourseID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxCourseID.setPreferredSize(new java.awt.Dimension(200, 20));
-        cbxCourseID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxCourseIDActionPerformed(evt);
+        cbxCourseID.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxCourseIDItemStateChanged(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -219,6 +232,11 @@ public class frmViewMark extends javax.swing.JFrame {
 
         cbxStudentID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxStudentID.setPreferredSize(new java.awt.Dimension(200, 20));
+        cbxStudentID.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxStudentIDItemStateChanged(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -288,9 +306,28 @@ public class frmViewMark extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
 
-    private void cbxCourseIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCourseIDActionPerformed
+    private void cbxCourseIDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxCourseIDItemStateChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbxCourseIDActionPerformed
+        if (cbxCourseID.getItemCount() - 1 == listCourse.size()) {
+            String coursid = cbxCourseID.getSelectedItem().toString();
+            if (coursid.equals("-- All --")) {
+                listRegister = registerDao.readByAll();
+                loadDataCBXStudent();
+            } else {
+                listRegister = registerDao.readByCourseId(coursid);
+                loadDataCBXStudent();
+            }
+        }
+    }//GEN-LAST:event_cbxCourseIDItemStateChanged
+
+    private void cbxStudentIDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxStudentIDItemStateChanged
+        // TODO add your handling code here:
+        if (cbxStudentID.getItemCount() - 1 == listRegister.size()) {
+            String courseid = cbxCourseID.getSelectedItem().toString();
+            String studentid = cbxStudentID.getSelectedItem().toString();
+            load(listMarks, courseid, studentid);
+        }
+    }//GEN-LAST:event_cbxStudentIDItemStateChanged
 
     /**
      * @param args the command line arguments
