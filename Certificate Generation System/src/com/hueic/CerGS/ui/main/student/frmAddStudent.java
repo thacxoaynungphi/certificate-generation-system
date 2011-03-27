@@ -183,6 +183,7 @@ public class frmAddStudent extends javax.swing.JFrame {
         panelContent.add(txtLastname, gridBagConstraints);
 
         radioMale.setBackground(new java.awt.Color(255, 255, 255));
+        btnGGender.add(radioMale);
         radioMale.setText("Male");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -192,6 +193,7 @@ public class frmAddStudent extends javax.swing.JFrame {
         panelContent.add(radioMale, gridBagConstraints);
 
         radioFemale.setBackground(new java.awt.Color(255, 255, 255));
+        btnGGender.add(radioFemale);
         radioFemale.setText("Female");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;

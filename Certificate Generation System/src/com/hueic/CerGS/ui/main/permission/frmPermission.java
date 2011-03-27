@@ -133,7 +133,6 @@ public class frmPermission extends javax.swing.JFrame {
         txtId = new javax.swing.JTextField();
         lblcheck1 = new javax.swing.JLabel();
         lblcheck2 = new javax.swing.JLabel();
-        lblcheck3 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
 
         jToggleButton1.setText("jToggleButton1");
@@ -193,7 +192,6 @@ public class frmPermission extends javax.swing.JFrame {
             }
         });
         tableContent.setPreferredSize(new java.awt.Dimension(350, 200));
-        tableContent.setPreferredSize(new java.awt.Dimension(350, 200));
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableContentMouseClicked(evt);
@@ -251,7 +249,7 @@ public class frmPermission extends javax.swing.JFrame {
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 13));
         lblTitle.setForeground(new java.awt.Color(102, 0, 102));
-        lblTitle.setText("Info Permission");
+        lblTitle.setText("Information Permission");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -268,7 +266,7 @@ public class frmPermission extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 10, 0);
         panelRight.add(sepaAccount, gridBagConstraints);
 
-        lblUsername.setText("ID");
+        lblUsername.setText("ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -360,13 +358,6 @@ public class frmPermission extends javax.swing.JFrame {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 10);
         panelRight.add(lblcheck2, gridBagConstraints);
-
-        lblcheck3.setText("(*)");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 10);
-        panelRight.add(lblcheck3, gridBagConstraints);
 
         txtName.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -529,7 +520,6 @@ public class frmPermission extends javax.swing.JFrame {
     private javax.swing.JLabel lblUsername;
     private javax.swing.JLabel lblcheck1;
     private javax.swing.JLabel lblcheck2;
-    private javax.swing.JLabel lblcheck3;
     private javax.swing.JPanel panelButton;
     private javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelLogo;

@@ -270,7 +270,7 @@ public class frmRegister extends javax.swing.JFrame {
         panelRight.setBackground(new java.awt.Color(255, 255, 255));
         panelRight.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Management Register", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
         panelRight.setMinimumSize(new java.awt.Dimension(380, 320));
-        panelRight.setPreferredSize(new java.awt.Dimension(380, 320));
+        panelRight.setPreferredSize(new java.awt.Dimension(382, 320));
         panelRight.setRequestFocusEnabled(false);
         panelRight.setLayout(new java.awt.GridBagLayout());
 

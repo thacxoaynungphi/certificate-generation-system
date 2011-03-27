@@ -243,7 +243,7 @@ public class frmAccount extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tableContent.setPreferredSize(new java.awt.Dimension(350, 200));
+        tableContent.setPreferredSize(new java.awt.Dimension(350, 222));
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableContentMouseClicked(evt);
