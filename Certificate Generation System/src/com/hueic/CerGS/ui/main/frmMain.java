@@ -139,12 +139,6 @@ public class frmMain extends javax.swing.JFrame {
         mnuILogoutSystem = new javax.swing.JMenuItem();
         menuIChangePass = new javax.swing.JMenuItem();
         mnuOptions = new javax.swing.JMenu();
-        mnuLang = new javax.swing.JMenu();
-        radioVietnamese = new javax.swing.JRadioButtonMenuItem();
-        radioEnglish = new javax.swing.JRadioButtonMenuItem();
-        radioJapan = new javax.swing.JRadioButtonMenuItem();
-        radioChina = new javax.swing.JRadioButtonMenuItem();
-        radioPhap = new javax.swing.JRadioButtonMenuItem();
         mnuSkin = new javax.swing.JMenu();
         radioWindows = new javax.swing.JRadioButtonMenuItem();
         radioMetal = new javax.swing.JRadioButtonMenuItem();
@@ -520,31 +514,6 @@ public class frmMain extends javax.swing.JFrame {
         mnuOptions.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/gear.png"))); // NOI18N
         mnuOptions.setText("Options");
 
-        mnuLang.setText("Language");
-
-        buttonGroupLanguage.add(radioVietnamese);
-        radioVietnamese.setSelected(true);
-        radioVietnamese.setText("Vietnamese");
-        mnuLang.add(radioVietnamese);
-
-        buttonGroupLanguage.add(radioEnglish);
-        radioEnglish.setText("English");
-        mnuLang.add(radioEnglish);
-
-        buttonGroupLanguage.add(radioJapan);
-        radioJapan.setText("Japan");
-        mnuLang.add(radioJapan);
-
-        buttonGroupLanguage.add(radioChina);
-        radioChina.setText("China");
-        mnuLang.add(radioChina);
-
-        buttonGroupLanguage.add(radioPhap);
-        radioPhap.setText("Phap");
-        mnuLang.add(radioPhap);
-
-        mnuOptions.add(mnuLang);
-
         mnuSkin.setText("Skin");
 
         buttonGroupSkin.add(radioWindows);
@@ -873,21 +842,15 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuILogoutSystem;
     private javax.swing.JMenuItem mnuISwitchUser;
     private javax.swing.JMenuItem mnuIViewInformation;
-    private javax.swing.JMenu mnuLang;
     private javax.swing.JMenu mnuOptions;
     private javax.swing.JMenu mnuSkin;
     private javax.swing.JMenu mnuSystem;
     private javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelLogo;
     private javax.swing.JPanel panelRight;
-    private javax.swing.JRadioButtonMenuItem radioChina;
-    private javax.swing.JRadioButtonMenuItem radioEnglish;
-    private javax.swing.JRadioButtonMenuItem radioJapan;
     private javax.swing.JRadioButtonMenuItem radioMetal;
     private javax.swing.JRadioButtonMenuItem radioMotif;
     private javax.swing.JRadioButtonMenuItem radioNimbus;
-    private javax.swing.JRadioButtonMenuItem radioPhap;
-    private javax.swing.JRadioButtonMenuItem radioVietnamese;
     private javax.swing.JRadioButtonMenuItem radioWindows;
     private com.l2fprod.common.swing.JTaskPaneGroup taskPaneGroupSystem;
     private com.l2fprod.common.swing.JTaskPaneGroup taskPanelGroupAdministration;

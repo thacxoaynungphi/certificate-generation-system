@@ -86,54 +86,6 @@
                 <Property name="text" type="java.lang.String" value="Options"/>
               </Properties>
               <SubComponents>
-                <Menu class="javax.swing.JMenu" name="mnuLang">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Language"/>
-                  </Properties>
-                  <SubComponents>
-                    <MenuItem class="javax.swing.JRadioButtonMenuItem" name="radioVietnamese">
-                      <Properties>
-                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                          <ComponentRef name="buttonGroupLanguage"/>
-                        </Property>
-                        <Property name="selected" type="boolean" value="true"/>
-                        <Property name="text" type="java.lang.String" value="Vietnamese"/>
-                      </Properties>
-                    </MenuItem>
-                    <MenuItem class="javax.swing.JRadioButtonMenuItem" name="radioEnglish">
-                      <Properties>
-                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                          <ComponentRef name="buttonGroupLanguage"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="English"/>
-                      </Properties>
-                    </MenuItem>
-                    <MenuItem class="javax.swing.JRadioButtonMenuItem" name="radioJapan">
-                      <Properties>
-                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                          <ComponentRef name="buttonGroupLanguage"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="Japan"/>
-                      </Properties>
-                    </MenuItem>
-                    <MenuItem class="javax.swing.JRadioButtonMenuItem" name="radioChina">
-                      <Properties>
-                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                          <ComponentRef name="buttonGroupLanguage"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="China"/>
-                      </Properties>
-                    </MenuItem>
-                    <MenuItem class="javax.swing.JRadioButtonMenuItem" name="radioPhap">
-                      <Properties>
-                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                          <ComponentRef name="buttonGroupLanguage"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="Phap"/>
-                      </Properties>
-                    </MenuItem>
-                  </SubComponents>
-                </Menu>
                 <Menu class="javax.swing.JMenu" name="mnuSkin">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Skin"/>
