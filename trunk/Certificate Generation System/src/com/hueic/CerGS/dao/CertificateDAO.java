@@ -98,6 +98,7 @@ public class CertificateDAO extends BaseDAO {
             pst.setInt(1, cer.getId());
             pst.setString(2, cer.getStudentID());
             pst.setFloat(3, cer.getMark());
+            //TODO: chuyen java.sql.Date sang java.util.Date
             pst.setDate(4, (Date) cer.getDegreeDay());
             if (pst.executeUpdate() > 0) {
                 setLastError("Add Certificate Successfully");
