@@ -8,8 +8,23 @@
  *
  * Created on Mar 26, 2011, 3:08:08 PM
  */
-
 package com.hueic.CerGS.ui.main.employee;
+
+import com.hueic.CerGS.component.IconSystem;
+import com.hueic.CerGS.dao.CourseDAO;
+import com.hueic.CerGS.dao.MarkDAO;
+import com.hueic.CerGS.dao.RegisterDAO;
+import com.hueic.CerGS.entity.Course;
+import com.hueic.CerGS.entity.Mark;
+import com.hueic.CerGS.entity.Register;
+import java.util.ArrayList;
+import javax.swing.JTable;
+import javax.swing.JViewport;
+import javax.swing.ListSelectionModel;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -18,8 +33,94 @@ package com.hueic.CerGS.ui.main.employee;
 public class frmDevelopDegree extends javax.swing.JFrame {
 
     /** Creates new form frmDevelopDegree */
+    private CourseDAO courseDAO;
+    private RegisterDAO registerDAO;
+    private MarkDAO markDAO;
+    private ArrayList<Course> listCourse;
+    private ArrayList<Register> listRegister;
+    private TableRowSorter<TableModel> sorter;
+    private ArrayList<Mark> listMark;
+
     public frmDevelopDegree() {
         initComponents();
+        setLocationRelativeTo(null);
+        new IconSystem(this);
+        courseDAO = new CourseDAO();
+        registerDAO = new RegisterDAO();
+        markDAO = new MarkDAO();
+        listCourse = courseDAO.readByAll();
+        listRegister = registerDAO.readByAll();
+        loadCBXCourse();
+        loadCBXStudent();
+    }
+
+    public void loadCBXCourse() {
+        if (!listCourse.isEmpty()) {
+            if (cbxCourseID.getItemCount() != 0) {
+                cbxCourseID.removeAllItems();
+            }
+            cbxCourseID.addItem("----All----");
+            cbxCourseID.setSelectedIndex(0);
+            for (int i = 0; i < listCourse.size(); i++) {
+                cbxCourseID.addItem(listCourse.get(i).getId());
+            }
+        }
+    }
+
+    public void loadCBXStudent() {
+        if (!listRegister.isEmpty()) {
+            if (cbxStudentID.getItemCount() != 0) {
+                cbxStudentID.removeAllItems();
+            }
+            cbxStudentID.addItem("----All----");
+            cbxStudentID.setSelectedIndex(0);
+            for (int i = 0; i < listRegister.size(); i++) {
+                cbxStudentID.addItem(listRegister.get(i).getStudentId());
+            }
+        }
+    }
+
+    public void loadData(ArrayList<Mark> listMark) {
+        String[] columns = {"Id", "StudentId", "SubjectId", "Mark"};
+        Object[][] rows = new Object[listMark.size()][4];
+        int index = 0;
+        for (int i = 0; i < listMark.size(); i++) {
+            Mark mark = listMark.get(i);
+            rows[index][0] = mark.getId();
+            rows[index][1] = mark.getStudentId();
+            rows[index][2] = mark.getSubjectId();
+            rows[index][3] = mark.getMark();
+            index++;
+        }
+        TableModel model = new DefaultTableModel(rows, columns) {
+
+            public Class getColumnClass(int column) {
+                Class returnValue;
+                if ((column >= 0) && (column < getColumnCount())) {
+                    returnValue = getValueAt(0, column).getClass();
+                } else {
+                    returnValue = Object.class;
+                }
+                return returnValue;
+            }
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false
+            };
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return canEdit[column];
+            }
+        };
+        tableContent = new JTable(model);
+        sorter = new TableRowSorter<TableModel>(model);
+        tableContent.setRowSorter(sorter);
+        tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        JViewport viewPort = new JViewport();
+        viewPort.setView(tableContent);
+        viewPort.setPreferredSize(tableContent.getMaximumSize());
+        srcPanelViewMark.setRowHeader(viewPort);
+        srcPanelViewMark.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
     }
 
     /** This method is called from within the constructor to
@@ -43,6 +144,7 @@ public class frmDevelopDegree extends javax.swing.JFrame {
         tableContent = new javax.swing.JTable();
         panelButton = new javax.swing.JPanel();
         btnCreate = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         lblTitleAverageMark = new javax.swing.JLabel();
         lblTitleGrade = new javax.swing.JLabel();
@@ -51,6 +153,7 @@ public class frmDevelopDegree extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Develop Degree");
+        setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         lblBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/DevelopDegree.png"))); // NOI18N
@@ -93,6 +196,11 @@ public class frmDevelopDegree extends javax.swing.JFrame {
 
         cbxCourseID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxCourseID.setPreferredSize(new java.awt.Dimension(200, 20));
+        cbxCourseID.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxCourseIDItemStateChanged(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -101,6 +209,11 @@ public class frmDevelopDegree extends javax.swing.JFrame {
 
         cbxStudentID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxStudentID.setPreferredSize(new java.awt.Dimension(200, 20));
+        cbxStudentID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxStudentIDActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -132,13 +245,22 @@ public class frmDevelopDegree extends javax.swing.JFrame {
         panelContent.add(srcPanelViewMark, gridBagConstraints);
 
         panelButton.setBackground(new java.awt.Color(255, 255, 255));
-        panelButton.setPreferredSize(new java.awt.Dimension(160, 30));
+        panelButton.setPreferredSize(new java.awt.Dimension(280, 30));
 
+        btnCreate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
         btnCreate.setText("Create");
+        btnCreate.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnCreate.setPreferredSize(new java.awt.Dimension(75, 23));
         panelButton.add(btnCreate);
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
+        jButton1.setText("Report Mark");
+        jButton1.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        panelButton.add(jButton1);
+
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
         btnCancel.setText("Cancel");
+        btnCancel.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnCancel.setPreferredSize(new java.awt.Dimension(75, 23));
         panelButton.add(btnCancel);
 
@@ -182,22 +304,60 @@ public class frmDevelopDegree extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cbxStudentIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxStudentIDActionPerformed
+        // TODO add your handling code here:
+        if (cbxStudentID.getItemCount() - 1 == listRegister.size()) {
+            String studentId = cbxStudentID.getSelectedItem().toString();
+            if (studentId != null && !studentId.equals("----Id----")) {
+                listMark = markDAO.readByStudentID(studentId);
+                loadData(listMark);
+                if (markDAO.isCompleteCourse(registerDAO.readByStudentId(studentId).getCourseId(), studentId)) {
+                    float mark = markDAO.avgMark(studentId);
+                    lblTotalMark.setText(String.valueOf(mark));
+                    lblGrade.setText(markDAO.getGrades(mark));
+                } else {
+                    lblTotalMark.setText("NA");
+                    lblGrade.setText("NA");
+                }
+            }
+        }
+    }//GEN-LAST:event_cbxStudentIDActionPerformed
+
+    private void cbxCourseIDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxCourseIDItemStateChanged
+        // TODO add your handling code here:
+        if (cbxCourseID.getItemCount() - 1 == listCourse.size()) {
+            String courid = cbxCourseID.getSelectedItem().toString();
+            if (courid != null && !courid.equals("----All----")) {
+                listRegister = registerDAO.readByCourseId(courid);
+                if (listRegister != null) {
+                    loadCBXStudent();
+                }
+            } else {
+                listRegister = registerDAO.readByAll();
+                if (listRegister != null) {
+                    loadCBXStudent();
+                }
+            }
+        }
+    }//GEN-LAST:event_cbxCourseIDItemStateChanged
+
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new frmDevelopDegree().setVisible(true);
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnCreate;
     private javax.swing.JComboBox cbxCourseID;
     private javax.swing.JComboBox cbxStudentID;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lblBanner;
     private javax.swing.JLabel lblCourseID;
     private javax.swing.JLabel lblGrade;
@@ -211,5 +371,4 @@ public class frmDevelopDegree extends javax.swing.JFrame {
     private javax.swing.JScrollPane srcPanelViewMark;
     private javax.swing.JTable tableContent;
     // End of variables declaration//GEN-END:variables
-
 }
