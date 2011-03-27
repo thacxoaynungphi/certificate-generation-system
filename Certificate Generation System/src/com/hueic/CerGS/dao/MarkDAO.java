@@ -105,7 +105,7 @@ public class MarkDAO extends BaseDAO {
     public ArrayList<Mark> readByStudentID(String studentId) {
         ArrayList<Mark> result = new ArrayList<Mark>();
         con = db.getConnection();
-        String sqlcommand = "select * from Mark where Studentid like ?";
+        String sqlcommand = "select * from Mark where StudentId = ? ";
         Mark mark = null;
         try {
             pst = con.prepareStatement(sqlcommand);
@@ -118,10 +118,8 @@ public class MarkDAO extends BaseDAO {
                 mark.setStudentId(rs.getString("StudentId"));
                 mark.setSubjectId(rs.getString("SubjectId"));
                 mark.setMark(rs.getFloat("Mark"));
-
                 result.add(mark);
             }
-
             setLastError("read data successful");
         } catch (SQLException ex) {
             setLastError("SQL Error");
@@ -131,11 +129,70 @@ public class MarkDAO extends BaseDAO {
         return result;
     }
 
+    public boolean isCompleteCourse(String courseId, String studentId) {
+        boolean status = true;
+        con = db.getConnection();
+        String sqlcommand = "select * from Subject s where s.CourseId = ? and s.Id not in (select m.SubjectId from Mark m where m.StudentId = ?) ";
+        try {
+            pst = con.prepareStatement(sqlcommand);
+            pst.setString(1, courseId);
+            pst.setString(2, studentId);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                status = false;
+            }
+            setLastError("read data successful");
+        } catch (SQLException ex) {
+            setLastError("SQL Error");
+        } finally {
+            db.closeConnection();
+        }
+        return status;
+    }
+
+    public float avgMark(String studentId) {
+        float dtb = 0.0f;
+        con = db.getConnection();
+        String sqlcommand = "select avg(Mark) from Mark m where m.StudentId = ? ";
+        try {
+            pst = con.prepareStatement(sqlcommand);
+            pst.setString(1, studentId);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                dtb = rs.getFloat(1);
+            }
+            setLastError("read data successful");
+        } catch (SQLException ex) {
+            setLastError("SQL Error");
+        } finally {
+            db.closeConnection();
+        }
+        return dtb;
+    }
+
+    public String getGrades(float mark) {
+        String grades = "";
+        if (mark < 40) {
+            grades = "";
+        } else if (mark < 50) {
+            grades = "C";
+        } else if (mark < 60) {
+            grades = "B";
+        } else if (mark < 75) {
+            grades = "A";
+        } else if (mark > 75) {
+            grades = "Distinction";
+        }
+
+        return grades;
+    }
+
     public boolean create(Mark Marks) {
         boolean status = false;
         con = db.getConnection();
         String sqlcommand = "insert into Mark values(?, ?, ?, ?, ?, ?, ?)";
-
         try {
             pst = con.prepareStatement(sqlcommand);
             pst.setInt(1, Marks.getId());
