@@ -183,7 +183,7 @@ public class frmSubject extends javax.swing.JFrame {
         panelRight.setBackground(new java.awt.Color(255, 255, 255));
         panelRight.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14)), "Management Subject", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
         panelRight.setMinimumSize(new java.awt.Dimension(380, 320));
-        panelRight.setPreferredSize(new java.awt.Dimension(380, 320));
+        panelRight.setPreferredSize(new java.awt.Dimension(382, 320));
         panelRight.setLayout(new java.awt.GridBagLayout());
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 12));
@@ -229,7 +229,7 @@ public class frmSubject extends javax.swing.JFrame {
         btnAdd.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnAdd.setMaximumSize(new java.awt.Dimension(70, 23));
         btnAdd.setMinimumSize(new java.awt.Dimension(70, 23));
-        btnAdd.setPreferredSize(new java.awt.Dimension(70, 23));
+        btnAdd.setPreferredSize(new java.awt.Dimension(72, 23));
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
@@ -242,7 +242,7 @@ public class frmSubject extends javax.swing.JFrame {
         btnUpdate.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnUpdate.setMaximumSize(new java.awt.Dimension(70, 23));
         btnUpdate.setMinimumSize(new java.awt.Dimension(70, 23));
-        btnUpdate.setPreferredSize(new java.awt.Dimension(70, 23));
+        btnUpdate.setPreferredSize(new java.awt.Dimension(72, 23));
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
@@ -255,7 +255,7 @@ public class frmSubject extends javax.swing.JFrame {
         btnDelete.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnDelete.setMaximumSize(new java.awt.Dimension(70, 23));
         btnDelete.setMinimumSize(new java.awt.Dimension(70, 23));
-        btnDelete.setPreferredSize(new java.awt.Dimension(70, 23));
+        btnDelete.setPreferredSize(new java.awt.Dimension(72, 23));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
@@ -268,7 +268,7 @@ public class frmSubject extends javax.swing.JFrame {
         btnCancel.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnCancel.setMaximumSize(new java.awt.Dimension(70, 23));
         btnCancel.setMinimumSize(new java.awt.Dimension(70, 23));
-        btnCancel.setPreferredSize(new java.awt.Dimension(70, 23));
+        btnCancel.setPreferredSize(new java.awt.Dimension(72, 23));
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelActionPerformed(evt);
@@ -319,13 +319,13 @@ public class frmSubject extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(3, 9, 5, 5);
         panelRight.add(txtSubjectId, gridBagConstraints);
 
-        sepa1.setPreferredSize(new java.awt.Dimension(280, 10));
+        sepa1.setPreferredSize(new java.awt.Dimension(330, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 44, 10, 0);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         panelRight.add(sepa1, gridBagConstraints);
 
         txtCoureID.setPreferredSize(new java.awt.Dimension(180, 20));

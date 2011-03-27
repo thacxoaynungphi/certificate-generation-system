@@ -115,7 +115,7 @@ public class frmChangePass extends javax.swing.JFrame {
         panelButton.setPreferredSize(new java.awt.Dimension(320, 33));
 
         btnChange.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/button_ok - 16x16.png"))); // NOI18N
-        btnChange.setText("Change");
+        btnChange.setText("Confirm");
         btnChange.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnChange.setPreferredSize(new java.awt.Dimension(77, 23));
         btnChange.addActionListener(new java.awt.event.ActionListener() {
@@ -166,7 +166,7 @@ public class frmChangePass extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
         panelContent.add(lblTitle, gridBagConstraints);
 
-        jSeparator1.setPreferredSize(new java.awt.Dimension(350, 10));
+        jSeparator1.setPreferredSize(new java.awt.Dimension(340, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
