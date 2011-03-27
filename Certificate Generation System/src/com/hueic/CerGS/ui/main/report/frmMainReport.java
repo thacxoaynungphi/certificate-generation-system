@@ -11,9 +11,6 @@
 
 package com.hueic.CerGS.ui.main.report;
 
-import com.birosoft.liquid.util.Panel;
-import com.l2fprod.common.swing.plaf.windows.WindowsOutlookBarUI.ThinScrollBarUI;
-import java.awt.Component;
 import javax.swing.JOptionPane;
 
 /**
