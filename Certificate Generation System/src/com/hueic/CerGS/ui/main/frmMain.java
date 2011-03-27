@@ -22,11 +22,13 @@ import com.hueic.CerGS.ui.main.account.frmAccount;
 import com.hueic.CerGS.ui.main.certificate.frmCertificate;
 import com.hueic.CerGS.ui.main.course.frmCourse;
 import com.hueic.CerGS.ui.main.employee.frmEmployee;
+import com.hueic.CerGS.ui.main.employee.frmSearchEmployee;
 import com.hueic.CerGS.ui.main.employee.frmViewInfo;
 import com.hueic.CerGS.ui.main.mark.frmMark;
 import com.hueic.CerGS.ui.main.payment.frmPayment;
 import com.hueic.CerGS.ui.main.permission.frmPermission;
 import com.hueic.CerGS.ui.main.register.frmRegister;
+import com.hueic.CerGS.ui.main.student.frmSearchStudent;
 import com.hueic.CerGS.ui.main.student.frmStudent;
 import com.hueic.CerGS.ui.main.subject.frmSubject;
 import com.hueic.CerGS.ui.system.frmChangePass;
@@ -442,10 +444,20 @@ public class frmMain extends javax.swing.JFrame {
 
         linkBtnSearchStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow_right_green.png"))); // NOI18N
         linkBtnSearchStudent.setText("Student");
+        linkBtnSearchStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                linkBtnSearchStudentActionPerformed(evt);
+            }
+        });
         taskPanelGroupSearch.getContentPane().add(linkBtnSearchStudent);
 
         linkBtnSearchEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow_right_green.png"))); // NOI18N
         linkBtnSearchEmp.setText("Employee");
+        linkBtnSearchEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                linkBtnSearchEmpActionPerformed(evt);
+            }
+        });
         taskPanelGroupSearch.getContentPane().add(linkBtnSearchEmp);
 
         taskPanelMenu.add(taskPanelGroupSearch);
@@ -761,6 +773,9 @@ public class frmMain extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (this.accCur != null) {
             accCur = null;
+            this.setVisible(false);
+            frmLogin login = new frmLogin(this);
+            login.setVisible(true);
         }
     }//GEN-LAST:event_mnuISwitchUserActionPerformed
 
@@ -768,8 +783,37 @@ public class frmMain extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (this.accCur != null) {
             accCur = null;
+            this.setVisible(false);
+            frmLogin login = new frmLogin(this);
+            login.setVisible(true);
         }
     }//GEN-LAST:event_mnuILogoutSystemActionPerformed
+
+    private void linkBtnSearchStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnSearchStudentActionPerformed
+        // TODO add your handling code here:
+        frmSearchStudent searchStudent = new frmSearchStudent();
+        searchStudent.setVisible(true);
+    }//GEN-LAST:event_linkBtnSearchStudentActionPerformed
+
+    private void linkBtnSearchEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnSearchEmpActionPerformed
+        // TODO add your handling code here:
+        frmSearchEmployee searchEmployee = new frmSearchEmployee();
+        searchEmployee.setVisible(true);
+    }//GEN-LAST:event_linkBtnSearchEmpActionPerformed
+
+    public void isLogin() {
+        if (this.accCur != null) {
+            mnuILogoutSystem.setVisible(true);
+            mnuISwitchUser.setVisible(true);
+            mnuIViewInformation.setVisible(true);
+            mnuILoginSystem.setVisible(false);
+        } else {
+            mnuILogoutSystem.setVisible(false);
+            mnuISwitchUser.setVisible(false);
+            mnuIViewInformation.setVisible(false);
+            mnuILoginSystem.setVisible(true);
+        }
+    }
 
     /**
      * @param args the command line arguments

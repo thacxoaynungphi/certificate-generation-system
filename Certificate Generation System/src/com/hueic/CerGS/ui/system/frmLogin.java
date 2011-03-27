@@ -30,7 +30,8 @@ public class frmLogin extends javax.swing.JFrame {
 
     /** Creates new form LoginFrm */
     PermissionDAO perDao = new PermissionDAO();
-    frmMain  main;
+    frmMain main;
+
     public frmLogin() {
         initComponents();
         new IconSystem(this);
@@ -38,7 +39,7 @@ public class frmLogin extends javax.swing.JFrame {
         bindingData();
     }
 
-     public frmLogin(frmMain  main) {
+    public frmLogin(frmMain main) {
         initComponents();
         new IconSystem(this);
         this.main = main;
@@ -259,6 +260,7 @@ public class frmLogin extends javax.swing.JFrame {
                     RememberAccount rememberAccount = new RememberAccount();
                     rememberAccount.writeFile(acc);
                 }
+                main.isLogin();
                 this.dispose();
             } else {
                 JOptionPane.showMessageDialog(this, accDao.getLastError(), "Login", JOptionPane.ERROR_MESSAGE);
