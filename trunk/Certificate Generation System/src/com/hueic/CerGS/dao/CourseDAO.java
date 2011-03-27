@@ -49,23 +49,24 @@ public class CourseDAO extends BaseDAO {
     public Course readById(String id) {
         Course course = null;
         con = db.getConnection();
-        String sqlcommand = "select * from Course where id = ?";
+        String sqlcommand = "select * from Course where Id = ?";
         try {
-            pst = con.prepareStatement(sqlcommand,  ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            pst = con.prepareStatement(sqlcommand);
             pst.setString(1, id);
             rs = pst.executeQuery();
-            if (rs.first()) {
+            if (rs.next()) {
                 course = new Course();
                 course.setId(rs.getString("Id"));
                 course.setName(rs.getString("Name"));
+                course.setTotalFees(rs.getFloat("TotalFees"));
                 course.setStatus(rs.getInt("Status"));
             }
         } catch (SQLException ex) {
             setLastError("SQL Error!!!");
         } finally {
             db.closeConnection();
-            return course;
         }
+        return course;
     }
 
     public Course readByName(String name) {
@@ -137,19 +138,19 @@ public class CourseDAO extends BaseDAO {
         return status;
     }
 
-    public boolean delete(String id){
+    public boolean delete(String id) {
         boolean status = false;
         con = db.getConnection();
         String sqlcommand = "delete from Course where id like ?";
-        try{
+        try {
             pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst.setString(1, id);
-            if(pst.execute()){
+            if (pst.execute()) {
                 setLastError("Delete Course successful");
             } else {
                 setLastError("Delete Course unsuccessful");
             }
-        }catch (SQLException ex) {
+        } catch (SQLException ex) {
             setLastError("SQL Error!!!");
         } finally {
             db.closeConnection();
