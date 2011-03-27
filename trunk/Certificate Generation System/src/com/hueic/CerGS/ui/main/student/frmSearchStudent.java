@@ -329,7 +329,6 @@ public class frmSearchStudent extends javax.swing.JFrame {
         panelInfo.add(lblGender, gridBagConstraints);
 
         buttonGroupGender.add(radioMale);
-        radioMale.setSelected(true);
         radioMale.setText("Male");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -455,9 +454,11 @@ public class frmSearchStudent extends javax.swing.JFrame {
         String lastName = txtLastName.getText();
         Date startDate = dateChooserDateStart.getDate();
         Date endDate = dateChooserDateEnd.getDate();
-        int gender = 1;
+        int gender = -1;
         if (radioFemale.isSelected()) {
             gender = 0;
+        } else if(radioMale.isSelected()) {
+            gender = 1;
         }
 
         listRegister.clear();
