@@ -712,6 +712,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Student"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="linkBtnSearchStudentActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="com.l2fprod.common.swing.JLinkButton" name="linkBtnSearchEmp">
                   <Properties>
@@ -720,6 +723,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Employee"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="linkBtnSearchEmpActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
