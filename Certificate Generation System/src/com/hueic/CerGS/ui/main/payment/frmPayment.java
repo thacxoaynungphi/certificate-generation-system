@@ -292,11 +292,6 @@ public class frmPayment extends javax.swing.JFrame {
 
         cbxStudentID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxStudentID.setPreferredSize(new java.awt.Dimension(200, 20));
-        cbxStudentID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxStudentIDActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -386,11 +381,6 @@ public class frmPayment extends javax.swing.JFrame {
 
         cbxCourse.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxCourse.setPreferredSize(new java.awt.Dimension(200, 20));
-        cbxCourse.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxCourseActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -466,10 +456,6 @@ public class frmPayment extends javax.swing.JFrame {
         loadData(listPayments);
     }//GEN-LAST:event_btnAddActionPerformed
 
-    private void cbxStudentIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxStudentIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxStudentIDActionPerformed
-
     public int getIndexOfPaymentInList(int id) {
         for (int i = 0; i < listPayments.size(); i++) {
             if (listPayments.get(i).getId() == id) {
@@ -478,28 +464,13 @@ public class frmPayment extends javax.swing.JFrame {
         }
         return -1;
     }
-    private void cbxCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCourseActionPerformed
-        // TODO add your handling code here:
-        //TODO: kiem tra lai phuong thuc nay
-//        String courseId = (String) cbxCourse.getSelectedItem();
-//        ArrayList<Register> resList = new RegisterDAO().readByCourseId(courseId);
-//        listPayments.clear();
-//        for (Register res : resList) {
-//            ArrayList<Payment> payList = paymentDao.readByStudentId(res.getStudentId());
-//            for (Payment pay : payList) {
-//                listPayments.add(pay);
-//            }
-//        }
-//        loadData(listPayments);
-    }//GEN-LAST:event_cbxCourseActionPerformed
-
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         int index = getIndexOfPaymentInList(currentId);
         listPayments.get(index).setMoney(Float.parseFloat(txtMoney.getText()));
         listPayments.get(index).setPayday(dateChPayDay.getDate());
         loadData(listPayments);
-        new PaymentDAO().update(listPayments.get(index));
+        paymentDao.update(listPayments.get(index));
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed

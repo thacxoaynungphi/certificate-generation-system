@@ -30,23 +30,12 @@ public class MarkDAO extends BaseDAO {
             rs = pst.executeQuery();
             Mark mark = null;
             while (rs.next()) {
-//                System.out.println(rs.getInt("Id"));
-//                System.out.println(rs.getString("StudentId"));
-//                System.out.println(rs.getString("SubjectId"));
-//                System.out.println(rs.getFloat("Mark"));
-
                 mark = new Mark();
                 mark.setId(rs.getInt(1));
                 mark.setStudentId(rs.getString(2));
                 mark.setSubjectId(rs.getString(3));
                 mark.setMark(rs.getFloat(4));
                 listMark.add(mark);
-//                mark = new Mark();
-//                mark.setId(rs.getInt("Id"));
-//                mark.setStudentId(rs.getString("StudentId"));
-//                mark.setSubjectId(rs.getString("SubjectId"));
-//                mark.setMark(rs.getFloat("Mark"));
-//                listMark.add(mark);
             }
             setLastError("Read data successful");
         } catch (SQLException ex) {
@@ -60,7 +49,7 @@ public class MarkDAO extends BaseDAO {
     public Mark readByID(int id) {
         Mark result = new Mark();
         con = db.getConnection();
-        String sqlcommand = "select * from Marks where id like ?";
+        String sqlcommand = "select * from Mark where id like ?";
 
         try {
             pst = con.prepareStatement(sqlcommand);
@@ -83,19 +72,19 @@ public class MarkDAO extends BaseDAO {
         }
     }
 
-    public ArrayList<Mark> readByStudentID(String studentId) {
+    public ArrayList<Mark> readBYCourseID(String courseId) {
         ArrayList<Mark> result = new ArrayList<Mark>();
         con = db.getConnection();
-        String sqlcommand = "select * from Marks where Studentid like ?";
+        String sqlcommand = "select m.* from Mark m inner join Register r on m.StudentId = r.StudentId  where r.CourseId = ?";
         Mark mark = null;
         try {
-            pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            pst.setString(1, studentId);
+            pst = con.prepareStatement(sqlcommand);
+            pst.setString(1, courseId);
             rs = pst.executeQuery();
 
             while (rs.next()) {
+                System.out.println("Hi");
                 mark = new Mark();
-
                 mark.setId(rs.getInt("Id"));
                 mark.setStudentId(rs.getString("StudentId"));
                 mark.setSubjectId(rs.getString("SubjectId"));
@@ -109,14 +98,43 @@ public class MarkDAO extends BaseDAO {
             setLastError("SQL Error");
         } finally {
             db.closeConnection();
-            return result;
         }
+        return result;
+    }
+
+    public ArrayList<Mark> readByStudentID(String studentId) {
+        ArrayList<Mark> result = new ArrayList<Mark>();
+        con = db.getConnection();
+        String sqlcommand = "select * from Mark where Studentid like ?";
+        Mark mark = null;
+        try {
+            pst = con.prepareStatement(sqlcommand);
+            pst.setString(1, studentId);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                mark = new Mark();
+                mark.setId(rs.getInt("Id"));
+                mark.setStudentId(rs.getString("StudentId"));
+                mark.setSubjectId(rs.getString("SubjectId"));
+                mark.setMark(rs.getFloat("Mark"));
+
+                result.add(mark);
+            }
+
+            setLastError("read data successful");
+        } catch (SQLException ex) {
+            setLastError("SQL Error");
+        } finally {
+            db.closeConnection();
+        }
+        return result;
     }
 
     public boolean create(Mark Marks) {
         boolean status = false;
         con = db.getConnection();
-        String sqlcommand = "insert into Marks values(?, ?, ?, ?, ?, ?, ?)";
+        String sqlcommand = "insert into Mark values(?, ?, ?, ?, ?, ?, ?)";
 
         try {
             pst = con.prepareStatement(sqlcommand);
@@ -141,7 +159,7 @@ public class MarkDAO extends BaseDAO {
     public boolean update(Mark Marks) {
         boolean status = false;
         con = db.getConnection();
-        String sqlcommand = "select * from Marks where id like ?";
+        String sqlcommand = "select * from Mark where id like ?";
 
         try {
             pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -170,7 +188,7 @@ public class MarkDAO extends BaseDAO {
     public boolean delete(Mark Marks) {
         boolean status = false;
         con = db.getConnection();
-        String sqlcommand = "delete from Marks where id like ?";
+        String sqlcommand = "delete from Mark where id like ?";
 
         try {
             pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
