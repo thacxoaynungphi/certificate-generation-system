@@ -402,7 +402,6 @@ public class frmCertificate extends javax.swing.JFrame {
         for(int i = 0; i < listCertificate.size(); i++){
             if(listCertificate.get(i).getId() == id) return i;
         }
-
         return -1;
     }
 
@@ -410,7 +409,6 @@ public class frmCertificate extends javax.swing.JFrame {
         for(int i = 0; i < listCertificate.size(); i++){
             if(listCertificate.get(i).getStudentID().compareTo(studentId) == 0) return i;
         }
-
         return -1;
     }
 
@@ -436,14 +434,13 @@ public class frmCertificate extends javax.swing.JFrame {
                 }
             }
         } catch (Exception ex) {
-            //TODO: chua xu ly
+            JOptionPane.showMessageDialog(this, ex.toString(), "Error!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_tableContentMouseClicked
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         int i1 = getIndexCertificateInListById(Integer.parseInt(txtID.getText()));
         int i2 = getIndexCertificateInListByStudentId((String)cbxStudentID.getSelectedItem());
-
         if(i1 == i2){
             listCertificate.get(i2).setMark(new MarkDAO().getStudentMark((String) cbxStudentID.getSelectedItem()));
             listCertificate.get(i2).setDegreeDay(dateChooseDegreeDay.getDate());
@@ -480,9 +477,7 @@ public class frmCertificate extends javax.swing.JFrame {
         certificate.setMark(new MarkDAO().getStudentMark((String)cbxStudentID.getSelectedItem()));
         certificate.setDegreeDay(dateChooseDegreeDay.getDate());
         certificate.setStudentID((String)cbxStudentID.getSelectedItem());
-
         listCertificate.add(certificate);
-
         new CertificateDAO().create(certificate);
         loadData(listCertificate);
     }//GEN-LAST:event_btnAddActionPerformed
@@ -491,7 +486,6 @@ public class frmCertificate extends javax.swing.JFrame {
         // TODO add your handling code here:
         int i1 = getIndexCertificateInListById(Integer.parseInt(txtID.getText()));
         int i2 = getIndexCertificateInListByStudentId((String) cbxStudentID.getSelectedItem());
-
         if(i1 == i2){
             Certificate cer = listCertificate.remove(i2);
             new CertificateDAO().update(cer);

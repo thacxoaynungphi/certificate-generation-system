@@ -69,7 +69,7 @@ public class frmAccount extends javax.swing.JFrame {
 
     public void loadDataCBXUsername() {
         cbxUsername.removeAllItems();
-        ArrayList<Person> listPerson = personDao.readByAll();
+        ArrayList<Person> listPerson = personDao.readByAllNotAcc();
         for (int i = 0; i < listPerson.size(); i++) {
             cbxUsername.addItem(listPerson.get(i).getId());
         }
@@ -132,7 +132,6 @@ public class frmAccount extends javax.swing.JFrame {
             for (int i = 0; i < cbxType.getItemCount(); i++) {
                 if (cbxType.getItemAt(i).toString().equals(permissionName)) {
                     cbxType.setSelectedIndex(i);
-
                 }
             }
         }
@@ -143,7 +142,6 @@ public class frmAccount extends javax.swing.JFrame {
         Permission per = permissionDAO.readByID(id);
         if (per != null) {
             return per.getName();
-
         } else {
             return null;
 
@@ -399,6 +397,7 @@ public class frmAccount extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel1.add(panel2, gridBagConstraints);
 
+        txtUsername.setEnabled(false);
         txtUsername.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -489,7 +488,6 @@ public class frmAccount extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             int index = tableContent.getSelectedRow();
-
             if (index != -1) {
                 String value = tableContent.getValueAt(index, 0).toString();
                 Account acc = find(value);
@@ -498,7 +496,7 @@ public class frmAccount extends javax.swing.JFrame {
                 }
             }
         } catch (Exception ex) {
-            //TODO: chua xu ly
+            JOptionPane.showMessageDialog(this, ex.toString(), "Error!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_tableContentMouseClicked
 
@@ -520,16 +518,21 @@ public class frmAccount extends javax.swing.JFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        String username = txtUsername.getText();
-        if (accDao.delete(username)) {
-            JOptionPane.showMessageDialog(this, accDao.getLastError(), "Delete Account", JOptionPane.INFORMATION_MESSAGE, null);
-            listAccounts.remove(find(username));
-            loadData(listAccounts);
-            if (listAccounts.size() != 0) {
-                loadDetails(listAccounts.get(0));
+        try {
+            String username = txtUsername.getText();
+            if (accDao.delete(username)) {
+                JOptionPane.showMessageDialog(this, accDao.getLastError(), "Delete Account", JOptionPane.INFORMATION_MESSAGE, null);
+                listAccounts.remove(find(username));
+                loadData(listAccounts);
+                if (listAccounts.size() != 0) {
+                    loadDataCBXUsername();
+                    loadDetails(listAccounts.get(0));
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, accDao.getLastError(), "Delete Account", JOptionPane.ERROR_MESSAGE, null);
             }
-        } else {
-            JOptionPane.showMessageDialog(this, accDao.getLastError(), "Delete Account", JOptionPane.ERROR_MESSAGE, null);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.toString(), "Error!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -542,6 +545,11 @@ public class frmAccount extends javax.swing.JFrame {
                 btnDelete.setEnabled(false);
                 txtUsername.setVisible(false);
                 cbxUsername.setVisible(true);
+                txtPassword.setText(null);
+                txtConfirmPassword.setText(null);
+                if (cbxType.getItemCount() != 0) {
+                    cbxType.setSelectedIndex(0);
+                }
             } else {
                 String username = cbxUsername.getSelectedItem().toString();
                 String password = String.valueOf(txtPassword.getPassword());
@@ -615,6 +623,7 @@ public class frmAccount extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Password not match", "Create Account", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.toString(), "Error!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 

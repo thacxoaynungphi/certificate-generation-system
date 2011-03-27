@@ -117,7 +117,7 @@ public class CourseDAO extends BaseDAO {
     public boolean update(Course course) {
         boolean status = false;
         con = db.getConnection();
-        String sqlcommand = "select * from Course where id like ?";
+        String sqlcommand = "select * from Course where id = ?";
         try {
             pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst.setString(1, course.getId());
@@ -125,6 +125,7 @@ public class CourseDAO extends BaseDAO {
             if (rs.first()) {
                 rs.updateString("Name", course.getName());
                 rs.updateInt("Status", course.getStatus());
+                rs.updateFloat("TotalFees", course.getTotalFees());
                 rs.updateRow();
                 setLastError("Update Course successful");
             }
@@ -132,8 +133,8 @@ public class CourseDAO extends BaseDAO {
             setLastError("SQL Error!!!");
         } finally {
             db.closeConnection();
-            return status;
         }
+        return status;
     }
 
     public boolean delete(String id){

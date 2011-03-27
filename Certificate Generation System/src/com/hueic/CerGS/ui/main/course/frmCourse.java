@@ -475,23 +475,22 @@ public class frmCourse extends javax.swing.JFrame {
             int status = 0;
             if (radioEnable.isSelected()) {
                 status = 1;
-
             } else {
                 status = 0;
-
             }
             Course course = new Course(id, name, totalFees, status);
             if (courseDao.update(course)) {
-                JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Update Course", JOptionPane.INFORMATION_MESSAGE);
                 listCourses.remove(find(course.getId()));
                 listCourses.add(course);
                 loadData(listCourses);
                 loadDetails(course);
+                JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Update Course", JOptionPane.INFORMATION_MESSAGE);
 
             } else {
                 JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Update Course", JOptionPane.ERROR_MESSAGE);
             }
-        } catch (Exception e) {
+        } catch (Exception ex) {
+             JOptionPane.showMessageDialog(this, ex.toString(), "Error!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
