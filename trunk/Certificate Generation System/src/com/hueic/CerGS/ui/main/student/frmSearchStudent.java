@@ -184,7 +184,8 @@ public class frmSearchStudent extends javax.swing.JFrame {
         tableContent = new javax.swing.JTable();
         btnClose = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Search Student");
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
@@ -334,6 +335,7 @@ public class frmSearchStudent extends javax.swing.JFrame {
         panelInfo.add(lblGender, gridBagConstraints);
 
         buttonGroupGender.add(radioMale);
+        radioMale.setSelected(true);
         radioMale.setText("Male");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -475,7 +477,7 @@ public class frmSearchStudent extends javax.swing.JFrame {
         String lastName = txtLastName.getText();
         Date startDate = dateChooserDateStart.getDate();
         Date endDate = dateChooserDateEnd.getDate();
-        int gender = 0;
+        int gender = 1;
         if (radioFemale.isSelected()) {
             gender = 0;
         }

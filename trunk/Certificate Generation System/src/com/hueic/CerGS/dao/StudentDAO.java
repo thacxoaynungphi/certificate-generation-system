@@ -80,23 +80,31 @@ public class StudentDAO extends BaseDAO {
             con = db.getConnection();
             String sqlCommand = "select s.Id,p.FirstName,p.LastName,p.BirthDay,p.Gender,p.Phone,p.Email,p.Address,p.Image,p.Status"
                     + " from Student s inner join Person p on s.Id = p.Id where ";
-            if(fname.length() != 0) sqlCommand += " s.FirstName =  " + fname;
-            if(lname.length() != 0) sqlCommand += " and s.LastName =  " + lname;
-            if(startDate != null) sqlCommand += " and s.birthday > ? ";
-            if(endDate != null) sqlCommand += " and s.birthday < ? and ";
+            if (fname.length() != 0) {
+                sqlCommand += " p.FirstName =  '" + fname + "' and ";
+            }
+            if (lname.length() != 0) {
+                sqlCommand += " p.LastName =  '" + lname + "' and ";
+            }
+            if (startDate != null) {
+                sqlCommand += " p.birthday > ? and ";
+            }
+            if (endDate != null) {
+                sqlCommand += "  p.birthday < ? and ";
+            }
 
-            sqlCommand +=  " gender = " + gender;
+            sqlCommand += " gender = " + gender;
 
+            System.out.println("sqlcommand : " + sqlCommand);
             pst = con.prepareStatement(sqlCommand);
-            if(startDate != null){
+            if (startDate != null) {
                 pst.setDate(1, (java.sql.Date) startDate);
-                if(endDate != null){
+                if (endDate != null) {
                     pst.setDate(2, (java.sql.Date) endDate);
                 }
-            }
-            else{
-                if(endDate != null){
-                     pst.setDate(1, (java.sql.Date) endDate);
+            } else {
+                if (endDate != null) {
+                    pst.setDate(1, (java.sql.Date) endDate);
                 }
             }
             rs = pst.executeQuery();
