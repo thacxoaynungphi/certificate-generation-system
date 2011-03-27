@@ -16,10 +16,13 @@ import com.hueic.CerGS.ui.system.frmAbout;
 import com.hueic.CerGS.component.GUIProperties;
 import com.hueic.CerGS.component.IconSystem;
 import com.hueic.CerGS.dao.GUIDAO;
+import com.hueic.CerGS.dao.PersonDAO;
+import com.hueic.CerGS.entity.Person;
 import com.hueic.CerGS.ui.main.account.frmAccount;
 import com.hueic.CerGS.ui.main.certificate.frmCertificate;
 import com.hueic.CerGS.ui.main.course.frmCourse;
 import com.hueic.CerGS.ui.main.employee.frmEmployee;
+import com.hueic.CerGS.ui.main.employee.frmViewInfo;
 import com.hueic.CerGS.ui.main.mark.frmMark;
 import com.hueic.CerGS.ui.main.payment.frmPayment;
 import com.hueic.CerGS.ui.main.permission.frmPermission;
@@ -129,10 +132,10 @@ public class frmMain extends javax.swing.JFrame {
         linkBtnSearchEmp = new com.l2fprod.common.swing.JLinkButton();
         mnuBSystem = new javax.swing.JMenuBar();
         mnuSystem = new javax.swing.JMenu();
-        menuIChangePass = new javax.swing.JMenuItem();
+        mnuISwitchUser = new javax.swing.JMenuItem();
         mnuILoginSystem = new javax.swing.JMenuItem();
         mnuILogoutSystem = new javax.swing.JMenuItem();
-        mnuIViewInformation = new javax.swing.JMenuItem();
+        menuIChangePass = new javax.swing.JMenuItem();
         mnuOptions = new javax.swing.JMenu();
         mnuLang = new javax.swing.JMenu();
         radioVietnamese = new javax.swing.JRadioButtonMenuItem();
@@ -145,7 +148,7 @@ public class frmMain extends javax.swing.JFrame {
         radioMetal = new javax.swing.JRadioButtonMenuItem();
         radioNimbus = new javax.swing.JRadioButtonMenuItem();
         radioMotif = new javax.swing.JRadioButtonMenuItem();
-        mnuISwitchUser = new javax.swing.JMenuItem();
+        mnuIViewInformation = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         mnuIExit = new javax.swing.JMenuItem();
         mnuHelp = new javax.swing.JMenu();
@@ -462,14 +465,18 @@ public class frmMain extends javax.swing.JFrame {
         mnuSystem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/gear.png"))); // NOI18N
         mnuSystem.setText("System");
 
-        menuIChangePass.setText("Change Password");
-        menuIChangePass.addActionListener(new java.awt.event.ActionListener() {
+        mnuISwitchUser.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
+        mnuISwitchUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
+        mnuISwitchUser.setText("Switch User");
+        mnuISwitchUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuIChangePassActionPerformed(evt);
+                mnuISwitchUserActionPerformed(evt);
             }
         });
-        mnuSystem.add(menuIChangePass);
+        mnuSystem.add(mnuISwitchUser);
 
+        mnuILoginSystem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.ALT_MASK));
+        mnuILoginSystem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/IconLogin.png"))); // NOI18N
         mnuILoginSystem.setText("Login System");
         mnuILoginSystem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -478,13 +485,25 @@ public class frmMain extends javax.swing.JFrame {
         });
         mnuSystem.add(mnuILoginSystem);
 
+        mnuILogoutSystem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.ALT_MASK));
         mnuILogoutSystem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/signout.png"))); // NOI18N
         mnuILogoutSystem.setText("Logout System");
+        mnuILogoutSystem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuILogoutSystemActionPerformed(evt);
+            }
+        });
         mnuSystem.add(mnuILogoutSystem);
 
-        mnuIViewInformation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/businessman_find.png"))); // NOI18N
-        mnuIViewInformation.setText("View Information");
-        mnuSystem.add(mnuIViewInformation);
+        menuIChangePass.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK));
+        menuIChangePass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/iconchangepassword.png"))); // NOI18N
+        menuIChangePass.setText("Change Password");
+        menuIChangePass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuIChangePassActionPerformed(evt);
+            }
+        });
+        mnuSystem.add(menuIChangePass);
 
         mnuOptions.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/gear.png"))); // NOI18N
         mnuOptions.setText("Options");
@@ -557,11 +576,18 @@ public class frmMain extends javax.swing.JFrame {
 
         mnuSystem.add(mnuOptions);
 
-        mnuISwitchUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
-        mnuISwitchUser.setText("Switch User");
-        mnuSystem.add(mnuISwitchUser);
+        mnuIViewInformation.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.ALT_MASK));
+        mnuIViewInformation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/businessman_find.png"))); // NOI18N
+        mnuIViewInformation.setText("View Information");
+        mnuIViewInformation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuIViewInformationActionPerformed(evt);
+            }
+        });
+        mnuSystem.add(mnuIViewInformation);
         mnuSystem.add(jSeparator1);
 
+        mnuIExit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK));
         mnuIExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/exit.png"))); // NOI18N
         mnuIExit.setText("Exit");
         mnuIExit.addActionListener(new java.awt.event.ActionListener() {
@@ -576,15 +602,12 @@ public class frmMain extends javax.swing.JFrame {
         mnuHelp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/help.png"))); // NOI18N
         mnuHelp.setText("Help");
 
+        mnuIHelpContent.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.ALT_MASK));
         mnuIHelpContent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/help (2).png"))); // NOI18N
         mnuIHelpContent.setText("Help Contents");
-        mnuIHelpContent.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuIHelpContentActionPerformed(evt);
-            }
-        });
         mnuHelp.add(mnuIHelpContent);
 
+        mnuIAbout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_MASK));
         mnuIAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/about.png"))); // NOI18N
         mnuIAbout.setText("About");
         mnuIAbout.addActionListener(new java.awt.event.ActionListener() {
@@ -603,7 +626,7 @@ public class frmMain extends javax.swing.JFrame {
 
     private void mnuILoginSystemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuILoginSystemActionPerformed
         // TODO add your handling code here:
-        frmLogin login = new frmLogin();
+        frmLogin login = new frmLogin(this);
         login.setVisible(true);
     }//GEN-LAST:event_mnuILoginSystemActionPerformed
 
@@ -643,8 +666,10 @@ public class frmMain extends javax.swing.JFrame {
 
     private void menuIChangePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIChangePassActionPerformed
         // TODO add your handling code here:
-        frmChangePass changePass = new frmChangePass();
-        changePass.setVisible(true);
+        if (accCur != null) {
+            frmChangePass changePass = new frmChangePass();
+            changePass.setVisible(true);
+        }
     }//GEN-LAST:event_menuIChangePassActionPerformed
 
     private void mnuIManagmentEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuIManagmentEmpActionPerformed
@@ -721,6 +746,30 @@ public class frmMain extends javax.swing.JFrame {
         frmRegister register = new frmRegister();
         register.setVisible(true);
     }//GEN-LAST:event_linkBtnRegisterActionPerformed
+
+    private void mnuIViewInformationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuIViewInformationActionPerformed
+        // TODO add your handling code here:
+        if (accCur != null) {
+            PersonDAO personDao = new PersonDAO();
+            Person person = personDao.readByID(this.accCur.getUsername());
+            frmViewInfo viewInfo = new frmViewInfo(person);
+            viewInfo.setVisible(true);
+        }
+    }//GEN-LAST:event_mnuIViewInformationActionPerformed
+
+    private void mnuISwitchUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuISwitchUserActionPerformed
+        // TODO add your handling code here:
+        if (this.accCur != null) {
+            accCur = null;
+        }
+    }//GEN-LAST:event_mnuISwitchUserActionPerformed
+
+    private void mnuILogoutSystemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuILogoutSystemActionPerformed
+        // TODO add your handling code here:
+        if (this.accCur != null) {
+            accCur = null;
+        }
+    }//GEN-LAST:event_mnuILogoutSystemActionPerformed
 
     /**
      * @param args the command line arguments
