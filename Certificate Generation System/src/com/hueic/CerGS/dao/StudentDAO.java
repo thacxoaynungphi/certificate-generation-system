@@ -9,6 +9,7 @@ import com.hueic.CerGS.entity.Person;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -75,38 +76,29 @@ public class StudentDAO extends BaseDAO {
 
     public ArrayList<Student> readByCommand(String fname, String lname, Date startDate, Date endDate, int gender) {
         ArrayList<Student> listStudent = new ArrayList<Student>();
-
         try {
             con = db.getConnection();
             String sqlCommand = "select s.Id,p.FirstName,p.LastName,p.BirthDay,p.Gender,p.Phone,p.Email,p.Address,p.Image,p.Status"
-                    + " from Student s inner join Person p on s.Id = p.Id where ";
+                    + " from Student s inner join Person p on s.Id = p.Id";
+            String sqlTemp = " where ";
             if (fname.length() != 0) {
-                sqlCommand += " p.FirstName =  '" + fname + "' and ";
+                sqlTemp += " p.FirstName =  '" + fname + "' and ";
             }
             if (lname.length() != 0) {
-                sqlCommand += " p.LastName =  '" + lname + "' and ";
+                sqlTemp += " p.LastName =  '" + lname + "' and ";
             }
-            if (startDate != null) {
-                sqlCommand += " p.birthday > ? and ";
+            if (startDate != null && endDate != null) {
+                sqlTemp += " p.Birthday between '" + convertDate(startDate) + "' and '" + convertDate(endDate) + "'";
             }
-            if (endDate != null) {
-                sqlCommand += "  p.birthday < ? and ";
+            if (gender != -1) {
+                if (sqlTemp.equals(" where ")) {
+                    sqlTemp += " Gender = " + gender;
+                } else {
+                    sqlTemp += " and  Gender = " + gender;
+                }
             }
-
-            sqlCommand += " gender = " + gender;
-
-            System.out.println("sqlcommand : " + sqlCommand);
+            sqlCommand += sqlTemp;
             pst = con.prepareStatement(sqlCommand);
-            if (startDate != null) {
-                pst.setDate(1, (java.sql.Date) startDate);
-                if (endDate != null) {
-                    pst.setDate(2, (java.sql.Date) endDate);
-                }
-            } else {
-                if (endDate != null) {
-                    pst.setDate(1, (java.sql.Date) endDate);
-                }
-            }
             rs = pst.executeQuery();
 
             while (rs.next()) {
@@ -131,6 +123,13 @@ public class StudentDAO extends BaseDAO {
         }
 
         return listStudent;
+    }
+
+    public String convertDate(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        String str = calendar.get(calendar.MONTH) + 1 + "/" + calendar.get(calendar.DAY_OF_MONTH) + "/" + calendar.get(calendar.YEAR);
+        return str;
     }
 
     public boolean create(Student student) {
