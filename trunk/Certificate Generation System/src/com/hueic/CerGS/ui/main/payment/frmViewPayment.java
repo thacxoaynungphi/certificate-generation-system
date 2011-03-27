@@ -19,9 +19,11 @@ import com.hueic.CerGS.entity.Course;
 import com.hueic.CerGS.entity.Payment;
 import com.hueic.CerGS.entity.Register;
 import java.util.ArrayList;
+import java.util.regex.PatternSyntaxException;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
+import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -183,6 +185,9 @@ public class frmViewPayment extends javax.swing.JFrame {
         lblTitleAmount = new javax.swing.JLabel();
         lblTotalTheDeposit = new javax.swing.JLabel();
         lblAmountRemaining = new javax.swing.JLabel();
+        lblFilter = new javax.swing.JLabel();
+        filterText = new javax.swing.JTextField();
+        btnFilter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("View Payment - Certificate Generation System");
@@ -276,7 +281,7 @@ public class frmViewPayment extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridwidth = 6;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(srcPanelPayment, gridBagConstraints);
 
@@ -303,9 +308,10 @@ public class frmViewPayment extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 5);
         panelContent.add(panelButton, gridBagConstraints);
 
         lblTitleTotal.setText("Total the deposit:");
@@ -331,6 +337,44 @@ public class frmViewPayment extends javax.swing.JFrame {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
         panelContent.add(lblAmountRemaining, gridBagConstraints);
+
+        lblFilter.setText("Enter Filter:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 150, 5, 5);
+        panelContent.add(lblFilter, gridBagConstraints);
+
+        filterText.setMinimumSize(new java.awt.Dimension(150, 20));
+        filterText.setPreferredSize(new java.awt.Dimension(150, 20));
+        filterText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                filterTextKeyPressed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelContent.add(filterText, gridBagConstraints);
+
+        btnFilter.setText("Filter");
+        btnFilter.setMaximumSize(new java.awt.Dimension(90, 23));
+        btnFilter.setMinimumSize(new java.awt.Dimension(90, 23));
+        btnFilter.setPreferredSize(new java.awt.Dimension(90, 23));
+        btnFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFilterActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelContent.add(btnFilter, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -372,6 +416,34 @@ private void cbxCourseIDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FI
     }
 }//GEN-LAST:event_cbxCourseIDItemStateChanged
 
+    public void searchStart() {
+        if (!listPayments.isEmpty()) {
+            String text = filterText.getText();
+            System.out.println("Text :" + text);
+            if (text.length() == 0) {
+                sorter.setRowFilter(null);
+            } else {
+                try {
+                    sorter.setRowFilter(RowFilter.regexFilter(text));
+                } catch (PatternSyntaxException pse) {
+                    System.err.println("Bad regex pattern");
+                }
+            }
+        }
+    }
+
+private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
+    // TODO add your handling code here:
+    searchStart();
+}//GEN-LAST:event_btnFilterActionPerformed
+
+private void filterTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextKeyPressed
+    // TODO add your handling code here:
+    if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+        searchStart();
+    }
+}//GEN-LAST:event_filterTextKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -389,11 +461,14 @@ private void cbxCourseIDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FI
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnFilter;
     private javax.swing.JButton btnReport;
     private javax.swing.JComboBox cbxCourseID;
     private javax.swing.JComboBox cbxStudentID;
+    private javax.swing.JTextField filterText;
     private javax.swing.JLabel lblAmountRemaining;
     private javax.swing.JLabel lblCourseID;
+    private javax.swing.JLabel lblFilter;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblStudentID;
     private javax.swing.JLabel lblTitleAmount;

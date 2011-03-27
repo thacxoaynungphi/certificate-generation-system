@@ -18,9 +18,11 @@ import com.hueic.CerGS.entity.Course;
 import com.hueic.CerGS.entity.Register;
 import com.hueic.CerGS.entity.Student;
 import java.util.ArrayList;
+import java.util.regex.PatternSyntaxException;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
+import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -137,7 +139,6 @@ public class frmRegister extends javax.swing.JFrame {
 
     private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
-        
     }
 
     /** This method is called from within the constructor to
@@ -156,9 +157,10 @@ public class frmRegister extends javax.swing.JFrame {
         lblChooseCourse = new javax.swing.JLabel();
         lblEnterNameStudent = new javax.swing.JLabel();
         cbxCourseChoose = new javax.swing.JComboBox();
-        txtStudentNameSearch = new javax.swing.JTextField();
+        filterText = new javax.swing.JTextField();
         srcPanelRegister = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
+        btnFilter = new javax.swing.JButton();
         panelRight = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
         sepa1 = new javax.swing.JSeparator();
@@ -216,7 +218,7 @@ public class frmRegister extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelLeft.add(lblChooseCourse, gridBagConstraints);
 
-        lblEnterNameStudent.setText("Enter name student:");
+        lblEnterNameStudent.setText("Enter Filter:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -231,13 +233,18 @@ public class frmRegister extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelLeft.add(cbxCourseChoose, gridBagConstraints);
 
-        txtStudentNameSearch.setPreferredSize(new java.awt.Dimension(150, 20));
+        filterText.setPreferredSize(new java.awt.Dimension(150, 20));
+        filterText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                filterTextKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelLeft.add(txtStudentNameSearch, gridBagConstraints);
+        panelLeft.add(filterText, gridBagConstraints);
 
         srcPanelRegister.setPreferredSize(new java.awt.Dimension(400, 200));
 
@@ -257,9 +264,23 @@ public class frmRegister extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
         panelLeft.add(srcPanelRegister, gridBagConstraints);
+
+        btnFilter.setText("Filter");
+        btnFilter.setMaximumSize(new java.awt.Dimension(90, 23));
+        btnFilter.setMinimumSize(new java.awt.Dimension(90, 23));
+        btnFilter.setPreferredSize(new java.awt.Dimension(90, 23));
+        btnFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFilterActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        panelLeft.add(btnFilter, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -456,6 +477,33 @@ public class frmRegister extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
 
+    private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
+        // TODO add your handling code here:
+        searchStart();
+    }//GEN-LAST:event_btnFilterActionPerformed
+
+    private void filterTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            searchStart();
+        }
+    }//GEN-LAST:event_filterTextKeyPressed
+
+    public void searchStart() {
+        if (regisList.size() != 0) {
+            String text = filterText.getText();
+            if (text.length() == 0) {
+                sorter.setRowFilter(null);
+            } else {
+                try {
+                    sorter.setRowFilter(RowFilter.regexFilter(text));
+                } catch (PatternSyntaxException pse) {
+                    System.err.println("Bad regex pattern");
+                }
+            }
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -472,10 +520,12 @@ public class frmRegister extends javax.swing.JFrame {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnFilter;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox cbxCourseChoose;
     private javax.swing.JComboBox cbxCourseID;
     private javax.swing.JComboBox cbxStudentID;
+    private javax.swing.JTextField filterText;
     private javax.swing.JLabel lblChooseCourse;
     private javax.swing.JLabel lblCourseID;
     private javax.swing.JLabel lblEnterNameStudent;
@@ -494,6 +544,5 @@ public class frmRegister extends javax.swing.JFrame {
     private javax.swing.JTable tableContent;
     private javax.swing.JTextField txtFeesStructe;
     private javax.swing.JTextField txtId;
-    private javax.swing.JTextField txtStudentNameSearch;
     // End of variables declaration//GEN-END:variables
 }

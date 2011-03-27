@@ -263,6 +263,11 @@ public class frmMark extends javax.swing.JFrame {
         panelLeft.add(cbxCourseChooser, gridBagConstraints);
 
         filterText.setPreferredSize(new java.awt.Dimension(180, 20));
+        filterText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                filterTextKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -591,6 +596,17 @@ public class frmMark extends javax.swing.JFrame {
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
+        searchStart();
+    }//GEN-LAST:event_btnFilterActionPerformed
+
+    private void filterTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            searchStart();
+        }
+    }//GEN-LAST:event_filterTextKeyPressed
+
+    public void searchStart() {
         if (!listMark.isEmpty()) {
             String text = filterText.getText();
             System.out.println("Text :" + text);
@@ -604,7 +620,7 @@ public class frmMark extends javax.swing.JFrame {
                 }
             }
         }
-    }//GEN-LAST:event_btnFilterActionPerformed
+    }
 
     /**
      * @param args the command line arguments
