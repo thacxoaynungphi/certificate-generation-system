@@ -92,4 +92,5 @@ public class Certificate {
     public void setDegreeDay(Date degreeDay) {
         this.degreeDay = degreeDay;
     }
+
 }

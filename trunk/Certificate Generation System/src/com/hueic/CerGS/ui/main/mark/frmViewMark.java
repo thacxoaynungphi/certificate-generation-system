@@ -207,6 +207,11 @@ public class frmViewMark extends javax.swing.JFrame {
 
         cbxCourseID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxCourseID.setPreferredSize(new java.awt.Dimension(200, 20));
+        cbxCourseID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxCourseIDActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -282,6 +287,10 @@ public class frmViewMark extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void cbxCourseIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCourseIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxCourseIDActionPerformed
 
     /**
      * @param args the command line arguments
