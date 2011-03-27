@@ -262,6 +262,12 @@ public class frmAccount extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(srcPanelAccount, gridBagConstraints);
+
+        filterText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                filterTextKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -500,8 +506,7 @@ public class frmAccount extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tableContentMouseClicked
 
-    private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
-        // TODO add your handling code here:
+    public void searchStart(){
         if (listAccounts.size() != 0) {
             String text = filterText.getText();
             if (text.length() == 0) {
@@ -514,6 +519,10 @@ public class frmAccount extends javax.swing.JFrame {
                 }
             }
         }
+    }
+    private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
+        // TODO add your handling code here:
+        searchStart();
     }//GEN-LAST:event_btnFilterActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -605,14 +614,15 @@ public class frmAccount extends javax.swing.JFrame {
             String confirmPass = String.valueOf(txtConfirmPassword.getPassword());
             String permissionName = cbxType.getSelectedItem().toString();
             if (password.equals(confirmPass) && password.length() != 0) {
-                PermissionDAO permissionDao = new PermissionDAO();
+                //PermissionDAO permissionDao = new PermissionDAO();
                 Permission per = permissionDao.readByName(permissionName);
                 if (per != null) {
                     Account acc = new Account(username, password, per.getId());
                     AccountDAO accDao = new AccountDAO();
                     if (accDao.update(acc)) {
                         JOptionPane.showMessageDialog(this, accDao.getLastError(), "Update Account", JOptionPane.INFORMATION_MESSAGE);
-                        listAccounts.add(acc);
+                        //listAccounts.remove(find(acc.getUsername()));
+                        listAccounts.set(listAccounts.indexOf(find(acc.getUsername())),acc);
                         loadData(listAccounts);
                         loadDetails(acc);
                     } else {
@@ -626,6 +636,13 @@ public class frmAccount extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, e.toString(), "Error!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void filterTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER){
+            searchStart();
+        }
+    }//GEN-LAST:event_filterTextKeyPressed
 
     /**
      * @param args the command line arguments
