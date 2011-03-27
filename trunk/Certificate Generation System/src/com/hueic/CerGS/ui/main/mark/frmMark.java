@@ -39,16 +39,16 @@ import javax.swing.table.TableRowSorter;
 public class frmMark extends javax.swing.JFrame {
 
     private ArrayList<Mark> listMark = new ArrayList<Mark>();
-    ArrayList<Register> resList = new ArrayList<Register>();
-    ArrayList<Course> courseList = new ArrayList<Course>();
+    private ArrayList<Register> resList = new ArrayList<Register>();
+    private ArrayList<Course> courseList = new ArrayList<Course>();
+    private ArrayList<Subject> listSubject = new ArrayList<Subject>();
     private String courseId;
     private TableRowSorter<TableModel> sorter;
-    private int currentMark;
     private RegisterDAO resDAO;
     private MarkDAO markDAO;
-    private StudentDAO studentDAO;
     private SubjectDAO subjectDAO;
     private CourseDAO courseDAO;
+    boolean isAdd = false;
 
     /** Creates new form MarkFrm */
     public frmMark() {
@@ -57,18 +57,21 @@ public class frmMark extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         resDAO = new RegisterDAO();
         markDAO = new MarkDAO();
-        studentDAO = new StudentDAO();
         subjectDAO = new SubjectDAO();
         courseDAO = new CourseDAO();
         resList = resDAO.readByAll();
         listMark = markDAO.readByAll();
         courseList = courseDAO.readByAll();
+        listSubject = subjectDAO.readByAll();
         if (listMark != null) {
             loadData(listMark);
             loadDetails(listMark.get(0));
         }
-        loadStudent();
+        loadStudent(resList);
         loadCourse();
+        loadSubject(listSubject);
+        cbxStudentId.setVisible(false);
+        cbxStudentId.setVisible(false);
     }
 
     public void loadData(ArrayList<Mark> listMark) {
@@ -123,17 +126,29 @@ public class frmMark extends javax.swing.JFrame {
     public void loadDetails(Mark mark) {
         txtMarkId.setText(String.valueOf(mark.getId()));
         txtMark.setText(String.valueOf((mark.getMark())));
-
-        String stId = resDAO.readByStudentId(mark.getStudentId()).getId();
         cbxStudentId.setSelectedItem(mark.getStudentId());
-        txtSubjectName.setText(subjectDAO.readByID(mark.getSubjectId()).getName());
+        txtStudentId.setText(mark.getStudentId());
+        txtSubjectName.setText(mark.getSubjectId());
     }
 
-    public void loadStudent() {
-        cbxStudentId.removeAllItems();
+    public void loadStudent(ArrayList<Register> resList) {
+        if (cbxStudentId.getItemCount() != 0) {
+            cbxStudentId.removeAllItems();
+        }
         if (resList.size() != 0) {
             for (Register res : resList) {
                 cbxStudentId.addItem(res.getStudentId());
+            }
+        }
+    }
+
+    public void loadSubject(ArrayList<Subject> listSubject) {
+        if (cbxSubjectID.getItemCount() != 0) {
+            cbxSubjectID.removeAllItems();
+        }
+        if (listSubject.size() != 0) {
+            for (int i = 0; i < listSubject.size(); i++) {
+                cbxSubjectID.addItem(listSubject.get(i).getId());
             }
         }
     }
@@ -186,6 +201,8 @@ public class frmMark extends javax.swing.JFrame {
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
+        txtStudentId = new javax.swing.JTextField();
+        cbxSubjectID = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Management Mark");
@@ -235,11 +252,6 @@ public class frmMark extends javax.swing.JFrame {
 
         cbxCourseChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxCourseChooser.setPreferredSize(new java.awt.Dimension(180, 20));
-        cbxCourseChooser.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbxCourseChooserItemStateChanged(evt);
-            }
-        });
         cbxCourseChooser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxCourseChooserActionPerformed(evt);
@@ -286,8 +298,8 @@ public class frmMark extends javax.swing.JFrame {
         panelLeft.add(srcPanelMark, gridBagConstraints);
 
         btnFilter.setText("Filter");
-        btnFilter.setMaximumSize(new java.awt.Dimension(70, 23));
-        btnFilter.setMinimumSize(new java.awt.Dimension(70, 23));
+        btnFilter.setMaximumSize(new java.awt.Dimension(80, 23));
+        btnFilter.setMinimumSize(new java.awt.Dimension(80, 23));
         btnFilter.setPreferredSize(new java.awt.Dimension(70, 23));
         btnFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -360,6 +372,7 @@ public class frmMark extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(lblMark, gridBagConstraints);
 
+        txtMarkId.setEnabled(false);
         txtMarkId.setPreferredSize(new java.awt.Dimension(180, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -445,6 +458,26 @@ public class frmMark extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 5, 5, 5);
         panelRight.add(panelButton, gridBagConstraints);
 
+        txtStudentId.setText("jTextField1");
+        txtStudentId.setMinimumSize(new java.awt.Dimension(180, 20));
+        txtStudentId.setPreferredSize(new java.awt.Dimension(180, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight.add(txtStudentId, gridBagConstraints);
+
+        cbxSubjectID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxSubjectID.setMinimumSize(new java.awt.Dimension(180, 20));
+        cbxSubjectID.setPreferredSize(new java.awt.Dimension(180, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight.add(cbxSubjectID, gridBagConstraints);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -458,9 +491,17 @@ public class frmMark extends javax.swing.JFrame {
         String courseId = (String) cbxCourseChooser.getSelectedItem();
         if (courseId != null && !courseId.equals("All")) {
             listMark = markDAO.readBYCourseID(courseId);
+            listSubject = subjectDAO.readByCourseId(courseId);
+            loadSubject(listSubject);
+            resList = resDAO.readByCourseId(courseId);
+            loadStudent(resList);
             loadData(listMark);
         } else {
             listMark = markDAO.readByAll();
+            listSubject = subjectDAO.readByAll();
+            loadSubject(listSubject);
+            resList = resDAO.readByAll();
+            loadStudent(resList);
             loadData(listMark);
         }
     }//GEN-LAST:event_cbxCourseChooserActionPerformed
@@ -485,66 +526,68 @@ public class frmMark extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        Mark mark = getMarkById(Integer.parseInt(txtMarkId.getText()));
-        mark.setMark(Float.parseFloat(txtMark.getText()));
-        markDAO.update(mark);
+        try {
+            Mark mark = getMarkById(Integer.parseInt(txtMarkId.getText()));
+            if (mark != null) {
+                mark.setMark(Float.parseFloat(txtMark.getText()));
+                if (markDAO.update(mark)) {
+                    loadData(listMark);
+                }
+            }
+        } catch (Exception ex) {
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
         try {
-            String subId = "";
-            String subName = txtSubjectName.getText();
-            ArrayList<Subject> subList = new SubjectDAO().readByAll();
-            for (Subject sub : subList) {
-                if (subName.compareTo(sub.getName()) == 0) {
-                    subId = sub.getId();
-                    break;
+            if (!isAdd) {
+                isAdd = true;
+                cbxStudentId.setVisible(true);
+                cbxSubjectID.setVisible(true);
+                txtStudentId.setVisible(false);
+                txtSubjectName.setVisible(false);
+                btnUpdate.setEnabled(false);
+                btnDelete.setEnabled(false);
+            } else {
+                Mark mark = new Mark();
+                mark.setStudentId(cbxStudentId.getSelectedItem().toString());
+                mark.setMark(Float.parseFloat(txtMark.getText()));
+                mark.setSubjectId(cbxSubjectID.getSelectedItem().toString());
+                if (markDAO.create(mark)) {
+                    isAdd = false;
+                    cbxStudentId.setVisible(false);
+                    cbxSubjectID.setVisible(false);
+                    txtStudentId.setVisible(true);
+                    txtSubjectName.setVisible(true);
+                    btnUpdate.setEnabled(true);
+                    btnDelete.setEnabled(true);
+                    listMark.add(mark);
+                    loadData(listMark);
                 }
             }
-            if (subId.equals("")) {
-                JOptionPane.showMessageDialog(this, "can't find subject hava name is " + subName, "Message", JOptionPane.INFORMATION_MESSAGE);
-                return;
-            }
-            Mark mark = new Mark();
-            mark.setId(new MarkDAO().readByAll().size() + 1);
-            mark.setStudentId((String) cbxStudentId.getSelectedItem());
-            mark.setMark(Float.parseFloat(txtMark.getText()));
-            mark.setSubjectId(subId);
-            markDAO.create(mark);
-            listMark.add(mark);
-            loadData(listMark);
         } catch (Exception ex) {
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        Mark mark = getMarkById(currentMark);
-        listMark.remove(mark);
-        markDAO.delete(mark);
+        try {
+            Mark mark = getMarkById(Integer.parseInt(txtMarkId.getText()));
+            if (mark != null) {
+                if (markDAO.delete(mark)) {
+                    listMark.remove(mark);
+                    loadData(listMark);
+                }
+            }
+        } catch (Exception ex) {
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
-
-    private void cbxCourseChooserItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxCourseChooserItemStateChanged
-        // TODO add your handling code here:
-//        String courseId = (String) cbxCourseChooser.getSelectedItem();
-//        if (courseId != null) {
-//            ArrayList<Register> resList = resDAO.readByCourseId(courseId);
-//
-//            listMark.clear();
-//            for (Register res : resList) {
-//                ArrayList<Mark> marks = markDAO.readByStudentID(res.getStudentId());
-//                listMark.addAll(marks);
-//            }
-//
-//            loadData(listMark);
-//        }
-    }//GEN-LAST:event_cbxCourseChooserItemStateChanged
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
@@ -582,6 +625,7 @@ public class frmMark extends javax.swing.JFrame {
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox cbxCourseChooser;
     private javax.swing.JComboBox cbxStudentId;
+    private javax.swing.JComboBox cbxSubjectID;
     private javax.swing.JTextField filterText;
     private javax.swing.JLabel lblChooseCourse;
     private javax.swing.JLabel lblEnterNameStudent;
@@ -600,6 +644,7 @@ public class frmMark extends javax.swing.JFrame {
     private javax.swing.JTable tableContent;
     private javax.swing.JTextField txtMark;
     private javax.swing.JTextField txtMarkId;
+    private javax.swing.JTextField txtStudentId;
     private javax.swing.JTextField txtSubjectName;
     // End of variables declaration//GEN-END:variables
 }

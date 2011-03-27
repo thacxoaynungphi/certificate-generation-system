@@ -13,7 +13,6 @@ package com.hueic.CerGS.ui.main.mark;
 import com.hueic.CerGS.component.IconSystem;
 import com.hueic.CerGS.dao.CourseDAO;
 import com.hueic.CerGS.dao.MarkDAO;
-import com.hueic.CerGS.dao.PaymentDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.dao.StudentDAO;
 import com.hueic.CerGS.entity.Course;
@@ -21,9 +20,11 @@ import com.hueic.CerGS.entity.Mark;
 import com.hueic.CerGS.entity.Register;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.regex.PatternSyntaxException;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
+import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -115,7 +116,7 @@ public class frmViewMark extends javax.swing.JFrame {
     public void load(ArrayList<Mark> listMarks, String courseId, String studentid) {
 
         if (studentid.equals("------")) {
-            listMarks = markDAO.readByAll();
+            listMarks = markDAO.readBYCourseID(courseId);
         } else {
             listMarks = markDAO.readByStudentID(studentid);
         }
@@ -176,6 +177,9 @@ public class frmViewMark extends javax.swing.JFrame {
         panel3 = new javax.swing.JPanel();
         btnReport = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
+        lblFilter = new javax.swing.JLabel();
+        filterText = new javax.swing.JTextField();
+        btnFilter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("View Mark Student - Certificate Generation System");
@@ -208,6 +212,7 @@ public class frmViewMark extends javax.swing.JFrame {
 
         lblCourseID.setText("Choose Course ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(lblCourseID, gridBagConstraints);
 
@@ -215,6 +220,7 @@ public class frmViewMark extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(lblStudentID, gridBagConstraints);
 
@@ -262,7 +268,7 @@ public class frmViewMark extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(srcPanelViewMark, gridBagConstraints);
 
@@ -287,11 +293,45 @@ public class frmViewMark extends javax.swing.JFrame {
         panel3.add(btnCancel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 5);
         panelContent.add(panel3, gridBagConstraints);
+
+        lblFilter.setText("Enter Filter:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 150, 5, 5);
+        panelContent.add(lblFilter, gridBagConstraints);
+
+        filterText.setMinimumSize(new java.awt.Dimension(150, 20));
+        filterText.setPreferredSize(new java.awt.Dimension(150, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelContent.add(filterText, gridBagConstraints);
+
+        btnFilter.setText("Filter");
+        btnFilter.setMaximumSize(new java.awt.Dimension(90, 23));
+        btnFilter.setMinimumSize(new java.awt.Dimension(90, 23));
+        btnFilter.setPreferredSize(new java.awt.Dimension(90, 23));
+        btnFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFilterActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelContent.add(btnFilter, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -311,9 +351,13 @@ public class frmViewMark extends javax.swing.JFrame {
         if (cbxCourseID.getItemCount() - 1 == listCourse.size()) {
             String coursid = cbxCourseID.getSelectedItem().toString();
             if (coursid.equals("-- All --")) {
+                listMarks = markDAO.readByAll();
+                loadData(listMarks);
                 listRegister = registerDao.readByAll();
                 loadDataCBXStudent();
             } else {
+                listMarks = markDAO.readBYCourseID(coursid);
+                loadData(listMarks);
                 listRegister = registerDao.readByCourseId(coursid);
                 loadDataCBXStudent();
             }
@@ -329,6 +373,23 @@ public class frmViewMark extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cbxStudentIDItemStateChanged
 
+    private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
+        // TODO add your handling code here:
+        if (!listMarks.isEmpty()) {
+            String text = filterText.getText();
+            System.out.println("Text :" + text);
+            if (text.length() == 0) {
+                sorter.setRowFilter(null);
+            } else {
+                try {
+                    sorter.setRowFilter(RowFilter.regexFilter(text));
+                } catch (PatternSyntaxException pse) {
+                    System.err.println("Bad regex pattern");
+                }
+            }
+        }
+    }//GEN-LAST:event_btnFilterActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -342,11 +403,14 @@ public class frmViewMark extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnFilter;
     private javax.swing.JButton btnReport;
     private javax.swing.JComboBox cbxCourseID;
     private javax.swing.JComboBox cbxStudentID;
+    private javax.swing.JTextField filterText;
     private javax.swing.JLabel lblBanner;
     private javax.swing.JLabel lblCourseID;
+    private javax.swing.JLabel lblFilter;
     private javax.swing.JLabel lblStudentID;
     private javax.swing.JPanel panel3;
     private javax.swing.JPanel panelContent;
