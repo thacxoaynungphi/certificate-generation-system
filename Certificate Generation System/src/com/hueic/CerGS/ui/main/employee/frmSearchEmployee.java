@@ -45,8 +45,9 @@ public class frmSearchEmployee extends javax.swing.JFrame {
 
         if (!listEmp.isEmpty()) {
             System.out.println("1");
-            loadData(listEmp);
             loadEmployeeId();
+            loadData(listEmp);
+
         } 
     }
 
@@ -213,7 +214,6 @@ public class frmSearchEmployee extends javax.swing.JFrame {
 
         txtFirstName.setMinimumSize(new java.awt.Dimension(150, 20));
         txtFirstName.setPreferredSize(new java.awt.Dimension(150, 20));
-        txtFirstName.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 6;
@@ -389,7 +389,6 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         String empId = (String) cbxEmployeeId.getSelectedItem();
         listEmpTemp = new ArrayList<Employee>();
         Employee emp = employeeDAO.readByID(empId);
-        
 
         if (emp != null) {
             listEmpTemp.add(employeeDAO.readByID(empId));
