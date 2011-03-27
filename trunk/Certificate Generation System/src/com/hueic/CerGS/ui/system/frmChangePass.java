@@ -66,10 +66,11 @@ public class frmChangePass extends javax.swing.JFrame {
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         panelContent.setBackground(new java.awt.Color(255, 255, 255));
-        panelContent.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Change Password", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        panelContent.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Change Password", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
         panelContent.setMinimumSize(new java.awt.Dimension(362, 225));
         panelContent.setLayout(new java.awt.GridBagLayout());
 
+        lblUsername.setForeground(new java.awt.Color(3, 3, 3));
         lblUsername.setText("Username:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -78,6 +79,7 @@ public class frmChangePass extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(lblUsername, gridBagConstraints);
 
+        lblOldpass.setForeground(new java.awt.Color(3, 3, 3));
         lblOldpass.setText("Old password:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -86,6 +88,7 @@ public class frmChangePass extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(lblOldpass, gridBagConstraints);
 
+        lblNewpass.setForeground(new java.awt.Color(3, 3, 3));
         lblNewpass.setText("New password:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -94,6 +97,7 @@ public class frmChangePass extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(lblNewpass, gridBagConstraints);
 
+        lblConfirmpass.setForeground(new java.awt.Color(3, 3, 3));
         lblConfirmpass.setText("Confirm password:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;

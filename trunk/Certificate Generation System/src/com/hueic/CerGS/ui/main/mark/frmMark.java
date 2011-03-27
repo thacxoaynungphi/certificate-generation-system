@@ -231,17 +231,21 @@ public class frmMark extends javax.swing.JFrame {
         getContentPane().add(panelLogo, gridBagConstraints);
 
         panelLeft.setBackground(new java.awt.Color(255, 255, 255));
-        panelLeft.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Mark", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        panelLeft.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Mark", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
+        panelLeft.setForeground(new java.awt.Color(3, 3, 3));
         panelLeft.setMinimumSize(new java.awt.Dimension(450, 320));
         panelLeft.setPreferredSize(new java.awt.Dimension(450, 320));
         panelLeft.setLayout(new java.awt.GridBagLayout());
 
+        lblChooseCourse.setForeground(new java.awt.Color(3, 3, 3));
         lblChooseCourse.setText("Choose course:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelLeft.add(lblChooseCourse, gridBagConstraints);
 
+        lblEnterNameStudent.setBackground(new java.awt.Color(255, 255, 255));
+        lblEnterNameStudent.setForeground(new java.awt.Color(3, 3, 3));
         lblEnterNameStudent.setText("Enter Filter:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -323,7 +327,7 @@ public class frmMark extends javax.swing.JFrame {
         getContentPane().add(panelLeft, gridBagConstraints);
 
         panelRight.setBackground(new java.awt.Color(255, 255, 255));
-        panelRight.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Management Mark", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        panelRight.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Management Mark", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
         panelRight.setMinimumSize(new java.awt.Dimension(380, 320));
         panelRight.setPreferredSize(new java.awt.Dimension(382, 320));
         panelRight.setLayout(new java.awt.GridBagLayout());
@@ -345,6 +349,7 @@ public class frmMark extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         panelRight.add(seqarator1, gridBagConstraints);
 
+        lblMarkID.setForeground(new java.awt.Color(3, 3, 3));
         lblMarkID.setText("Mark ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -353,6 +358,7 @@ public class frmMark extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(lblMarkID, gridBagConstraints);
 
+        lblStudentID.setForeground(new java.awt.Color(3, 3, 3));
         lblStudentID.setText("Student Id:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -361,6 +367,7 @@ public class frmMark extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(lblStudentID, gridBagConstraints);
 
+        lblSubjectName.setForeground(new java.awt.Color(3, 3, 3));
         lblSubjectName.setText("Subject Name:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -369,6 +376,7 @@ public class frmMark extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(lblSubjectName, gridBagConstraints);
 
+        lblMark.setForeground(new java.awt.Color(3, 3, 3));
         lblMark.setText("Mark:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;

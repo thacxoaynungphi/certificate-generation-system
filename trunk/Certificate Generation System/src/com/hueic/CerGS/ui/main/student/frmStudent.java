@@ -319,6 +319,7 @@ public class frmStudent extends javax.swing.JFrame {
         panelTop.setPreferredSize(new java.awt.Dimension(870, 30));
         panelTop.setLayout(new java.awt.GridBagLayout());
 
+        lblHienthi1.setForeground(new java.awt.Color(3, 3, 3));
         lblHienthi1.setText("Tổng số sinh viên là : ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -327,6 +328,7 @@ public class frmStudent extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelTop.add(lblHienthi1, gridBagConstraints);
 
+        lblCount.setForeground(new java.awt.Color(3, 3, 3));
         lblCount.setPreferredSize(new java.awt.Dimension(20, 14));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;

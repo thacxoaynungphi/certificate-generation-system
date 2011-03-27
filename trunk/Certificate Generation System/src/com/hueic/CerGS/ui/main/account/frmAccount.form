@@ -256,6 +256,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblUsername">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Username:"/>
           </Properties>
           <Constraints>
@@ -266,6 +269,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblPassword">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Password:"/>
           </Properties>
           <Constraints>
@@ -276,6 +282,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblConfirmPass">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Confirm password:"/>
           </Properties>
           <Constraints>
@@ -415,6 +424,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblType">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Type:"/>
           </Properties>
           <Constraints>

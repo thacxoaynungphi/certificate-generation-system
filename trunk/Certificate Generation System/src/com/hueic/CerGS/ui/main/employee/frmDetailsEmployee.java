@@ -116,6 +116,7 @@ public class frmDetailsEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         panelContent.add(separator1, gridBagConstraints);
 
+        lblEmployeeID.setForeground(new java.awt.Color(3, 3, 3));
         lblEmployeeID.setText("Employee ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -124,6 +125,7 @@ public class frmDetailsEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 30, 5, 5);
         panelContent.add(lblEmployeeID, gridBagConstraints);
 
+        lblFirstname.setForeground(new java.awt.Color(3, 3, 3));
         lblFirstname.setText("Firstname:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -132,6 +134,7 @@ public class frmDetailsEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 30, 5, 5);
         panelContent.add(lblFirstname, gridBagConstraints);
 
+        lblLastname.setForeground(new java.awt.Color(3, 3, 3));
         lblLastname.setText("Lastname:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -140,6 +143,7 @@ public class frmDetailsEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 30, 5, 5);
         panelContent.add(lblLastname, gridBagConstraints);
 
+        lblGender.setForeground(new java.awt.Color(3, 3, 3));
         lblGender.setText("Gender:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -148,6 +152,7 @@ public class frmDetailsEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 30, 5, 5);
         panelContent.add(lblGender, gridBagConstraints);
 
+        lblBirthday.setForeground(new java.awt.Color(3, 3, 3));
         lblBirthday.setText("Birthday:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -156,6 +161,7 @@ public class frmDetailsEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 30, 5, 5);
         panelContent.add(lblBirthday, gridBagConstraints);
 
+        lblEmail.setForeground(new java.awt.Color(3, 3, 3));
         lblEmail.setText("Email:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
@@ -164,6 +170,7 @@ public class frmDetailsEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
         panelContent.add(lblEmail, gridBagConstraints);
 
+        lblPhone.setForeground(new java.awt.Color(3, 3, 3));
         lblPhone.setText("Phone:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
@@ -172,6 +179,7 @@ public class frmDetailsEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
         panelContent.add(lblPhone, gridBagConstraints);
 
+        lblAddress.setForeground(new java.awt.Color(3, 3, 3));
         lblAddress.setText("Address:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
@@ -180,6 +188,7 @@ public class frmDetailsEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
         panelContent.add(lblAddress, gridBagConstraints);
 
+        lblBeginWork.setForeground(new java.awt.Color(3, 3, 3));
         lblBeginWork.setText("Begin work:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
@@ -188,6 +197,7 @@ public class frmDetailsEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
         panelContent.add(lblBeginWork, gridBagConstraints);
 
+        lblImage.setForeground(new java.awt.Color(3, 3, 3));
         lblImage.setText("Image:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;

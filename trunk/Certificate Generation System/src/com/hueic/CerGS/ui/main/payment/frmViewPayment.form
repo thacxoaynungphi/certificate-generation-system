@@ -62,6 +62,7 @@
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder title="View Payment">
               <Font PropertyName="font" name="Tahoma" size="14" style="1"/>
+              <Color PropertyName="color" blue="3" green="3" red="3" type="rgb"/>
             </TitledBorder>
           </Border>
         </Property>
@@ -79,6 +80,9 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="lblCourseID">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Choose Course ID:"/>
           </Properties>
           <Constraints>
@@ -89,6 +93,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblStudentID">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Choose Student ID:"/>
           </Properties>
           <Constraints>
@@ -226,6 +233,9 @@
         </Container>
         <Component class="javax.swing.JLabel" name="lblTitleTotal">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Total the deposit:"/>
           </Properties>
           <Constraints>
@@ -236,6 +246,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblTitleAmount">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Amount remaining:"/>
           </Properties>
           <Constraints>
@@ -245,6 +258,11 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JLabel" name="lblTotalTheDeposit">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
               <GridBagConstraints gridX="1" gridY="3" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
@@ -252,6 +270,11 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JLabel" name="lblAmountRemaining">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
               <GridBagConstraints gridX="1" gridY="4" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
@@ -260,6 +283,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblFilter">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Enter Filter:"/>
           </Properties>
           <Constraints>

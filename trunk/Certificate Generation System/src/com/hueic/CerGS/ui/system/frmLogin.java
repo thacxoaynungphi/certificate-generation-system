@@ -114,17 +114,19 @@ public class frmLogin extends javax.swing.JFrame {
         getContentPane().add(panelLogo, gridBagConstraints);
 
         panelContent.setBackground(new java.awt.Color(255, 255, 255));
-        panelContent.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Login System", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        panelContent.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Login System", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(3, 3, 3))); // NOI18N
         panelContent.setMinimumSize(new java.awt.Dimension(380, 214));
         panelContent.setPreferredSize(new java.awt.Dimension(380, 214));
         panelContent.setLayout(new java.awt.GridBagLayout());
 
+        lblUsername.setForeground(new java.awt.Color(3, 3, 3));
         lblUsername.setText("Username:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 5, 5, 5);
         panelContent.add(lblUsername, gridBagConstraints);
 
+        lblPassword.setForeground(new java.awt.Color(3, 3, 3));
         lblPassword.setText("Password:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -133,6 +135,7 @@ public class frmLogin extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(lblPassword, gridBagConstraints);
 
+        lblType.setForeground(new java.awt.Color(3, 3, 3));
         lblType.setText("Type:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -142,6 +145,7 @@ public class frmLogin extends javax.swing.JFrame {
         panelContent.add(lblType, gridBagConstraints);
 
         chbRepass.setBackground(new java.awt.Color(255, 255, 255));
+        chbRepass.setForeground(new java.awt.Color(3, 3, 3));
         chbRepass.setText("Remember password");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;

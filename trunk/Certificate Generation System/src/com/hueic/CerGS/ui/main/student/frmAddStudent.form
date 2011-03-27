@@ -43,6 +43,7 @@
                 <TitledBorder/>
               </Border>
               <Font PropertyName="font" name="Tahoma" size="14" style="1"/>
+              <Color PropertyName="color" blue="3" green="3" red="3" type="rgb"/>
             </TitledBorder>
           </Border>
         </Property>
@@ -85,6 +86,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblFirstname">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Firstname:"/>
           </Properties>
           <Constraints>
@@ -95,6 +99,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblLastname">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Lastname:"/>
           </Properties>
           <Constraints>
@@ -105,6 +112,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblGender">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Gender:"/>
           </Properties>
           <Constraints>
@@ -115,6 +125,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblBirthday">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Birthday:"/>
           </Properties>
           <Constraints>
@@ -125,6 +138,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblEmail">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Email:"/>
           </Properties>
           <Constraints>
@@ -135,6 +151,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblAddress">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Address:"/>
           </Properties>
           <Constraints>
@@ -145,6 +164,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblImage1">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Image:"/>
           </Properties>
           <Constraints>
@@ -197,6 +219,9 @@
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="btnGGender"/>
             </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Male"/>
           </Properties>
           <Constraints>
@@ -212,6 +237,9 @@
             </Property>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="btnGGender"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Female"/>
           </Properties>
@@ -389,6 +417,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblStudentID">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Student ID:"/>
           </Properties>
           <Constraints>
@@ -437,6 +468,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblPhone">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Phone: "/>
           </Properties>
           <Constraints>

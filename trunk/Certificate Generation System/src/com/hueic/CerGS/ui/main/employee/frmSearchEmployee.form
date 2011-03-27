@@ -55,6 +55,9 @@
     </Container>
     <Container class="javax.swing.JPanel" name="panelInfo">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder title="Search Employee">
@@ -105,6 +108,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblStudentId">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Employee ID:"/>
           </Properties>
           <Constraints>
@@ -115,6 +121,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblFirstName">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="First Name:"/>
           </Properties>
           <Constraints>
@@ -140,6 +149,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblLastName">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Last Name: "/>
           </Properties>
           <Constraints>
@@ -165,6 +177,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblBirthday">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Birthday: "/>
           </Properties>
           <Constraints>
@@ -205,6 +220,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblGender">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Gender:"/>
           </Properties>
           <Constraints>
@@ -215,8 +233,14 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="radioMale">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="buttonGroupGender"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Male"/>
           </Properties>
@@ -228,8 +252,14 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="radioFemale">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="buttonGroupGender"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="FeMale"/>
           </Properties>
@@ -287,6 +317,9 @@
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel3">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[840, 430]"/>
         </Property>

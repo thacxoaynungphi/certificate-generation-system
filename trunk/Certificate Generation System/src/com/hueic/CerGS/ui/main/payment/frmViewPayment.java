@@ -214,15 +214,17 @@ public class frmViewPayment extends javax.swing.JFrame {
         getContentPane().add(panelLogo, gridBagConstraints);
 
         panelContent.setBackground(new java.awt.Color(255, 255, 255));
-        panelContent.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "View Payment", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        panelContent.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "View Payment", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
         panelContent.setPreferredSize(new java.awt.Dimension(832, 310));
         panelContent.setLayout(new java.awt.GridBagLayout());
 
+        lblCourseID.setForeground(new java.awt.Color(3, 3, 3));
         lblCourseID.setText("Choose Course ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(lblCourseID, gridBagConstraints);
 
+        lblStudentID.setForeground(new java.awt.Color(3, 3, 3));
         lblStudentID.setText("Choose Student ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -314,6 +316,7 @@ public class frmViewPayment extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 5);
         panelContent.add(panelButton, gridBagConstraints);
 
+        lblTitleTotal.setForeground(new java.awt.Color(3, 3, 3));
         lblTitleTotal.setText("Total the deposit:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -322,6 +325,7 @@ public class frmViewPayment extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
         panelContent.add(lblTitleTotal, gridBagConstraints);
 
+        lblTitleAmount.setForeground(new java.awt.Color(3, 3, 3));
         lblTitleAmount.setText("Amount remaining:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -329,15 +333,20 @@ public class frmViewPayment extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
         panelContent.add(lblTitleAmount, gridBagConstraints);
+
+        lblTotalTheDeposit.setForeground(new java.awt.Color(3, 3, 3));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         panelContent.add(lblTotalTheDeposit, gridBagConstraints);
+
+        lblAmountRemaining.setForeground(new java.awt.Color(3, 3, 3));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
         panelContent.add(lblAmountRemaining, gridBagConstraints);
 
+        lblFilter.setForeground(new java.awt.Color(3, 3, 3));
         lblFilter.setText("Enter Filter:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;

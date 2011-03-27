@@ -67,6 +67,7 @@
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder title="Payment">
               <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
+              <Color PropertyName="color" blue="3" green="3" red="3" type="rgb"/>
             </TitledBorder>
           </Border>
         </Property>
@@ -162,6 +163,7 @@
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder title="Management Payment">
               <Font PropertyName="font" name="Tahoma" size="14" style="1"/>
+              <Color PropertyName="color" blue="3" green="3" red="3" type="rgb"/>
             </TitledBorder>
           </Border>
         </Property>
@@ -182,6 +184,9 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="lblCourse">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Course:"/>
           </Properties>
           <Constraints>
@@ -192,6 +197,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblStudentID">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Student ID:"/>
           </Properties>
           <Constraints>
@@ -202,6 +210,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblMoney">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Money:"/>
           </Properties>
           <Constraints>
@@ -212,6 +223,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblPayDay">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="3" green="3" red="3" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Pay day:"/>
           </Properties>
           <Constraints>

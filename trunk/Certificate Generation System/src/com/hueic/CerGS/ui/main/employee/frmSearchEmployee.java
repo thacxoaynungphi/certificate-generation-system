@@ -173,6 +173,7 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         getContentPane().add(jPanel1, gridBagConstraints);
 
+        panelInfo.setBackground(new java.awt.Color(255, 255, 255));
         panelInfo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search Employee", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         panelInfo.setMinimumSize(new java.awt.Dimension(250, 435));
         panelInfo.setPreferredSize(new java.awt.Dimension(250, 435));
@@ -193,6 +194,7 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(cbxEmployeeId, gridBagConstraints);
 
+        lblStudentId.setForeground(new java.awt.Color(3, 3, 3));
         lblStudentId.setText("Employee ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -201,6 +203,7 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(lblStudentId, gridBagConstraints);
 
+        lblFirstName.setForeground(new java.awt.Color(3, 3, 3));
         lblFirstName.setText("First Name:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -218,6 +221,7 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(txtFirstName, gridBagConstraints);
 
+        lblLastName.setForeground(new java.awt.Color(3, 3, 3));
         lblLastName.setText("Last Name: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -235,6 +239,7 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(txtLastName, gridBagConstraints);
 
+        lblBirthday.setForeground(new java.awt.Color(3, 3, 3));
         lblBirthday.setText("Birthday: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -261,6 +266,7 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(dateChooserDateEnd, gridBagConstraints);
 
+        lblGender.setForeground(new java.awt.Color(3, 3, 3));
         lblGender.setText("Gender:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -269,7 +275,9 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(lblGender, gridBagConstraints);
 
+        radioMale.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroupGender.add(radioMale);
+        radioMale.setForeground(new java.awt.Color(3, 3, 3));
         radioMale.setText("Male");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -278,7 +286,9 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(radioMale, gridBagConstraints);
 
+        radioFemale.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroupGender.add(radioFemale);
+        radioFemale.setForeground(new java.awt.Color(3, 3, 3));
         radioFemale.setText("FeMale");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -327,6 +337,7 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         getContentPane().add(panelInfo, gridBagConstraints);
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setMinimumSize(new java.awt.Dimension(840, 430));
         jPanel3.setPreferredSize(new java.awt.Dimension(840, 430));
         jPanel3.setLayout(new java.awt.GridBagLayout());
