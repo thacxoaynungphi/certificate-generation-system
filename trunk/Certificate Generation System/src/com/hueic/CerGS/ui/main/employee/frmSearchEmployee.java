@@ -42,22 +42,19 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         employeeDAO = new EmployeeDAO();
         listEmp = employeeDAO.readByAll();
+        listEmpTemp = new ArrayList<Employee>();
 
         if (!listEmp.isEmpty()) {
-            System.out.println("1");
             loadEmployeeId();
             loadData(listEmp);
 
-        } 
+        }
     }
 
     public void loadEmployeeId() {
-        System.out.println("3");
         cbxEmployeeId.removeAllItems();
-        if (!listEmp.isEmpty()) {
-            for (Employee emp : listEmp) {
-                cbxEmployeeId.addItem(emp.getId());
-            }
+        for (int i = 0; i < listEmp.size(); i++) {
+            cbxEmployeeId.addItem(listEmp.get(i).getId());
         }
     }
 
@@ -387,12 +384,12 @@ public class frmSearchEmployee extends javax.swing.JFrame {
     private void cbxEmployeeIdItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxEmployeeIdItemStateChanged
         // TODO add your handling code here:
         String empId = (String) cbxEmployeeId.getSelectedItem();
-        listEmpTemp = new ArrayList<Employee>();
         Employee emp = employeeDAO.readByID(empId);
 
         if (emp != null) {
-            listEmpTemp.add(employeeDAO.readByID(empId));
-            System.out.println("2");
+            listEmpTemp.clear();
+            listEmpTemp.add(emp);
+
             loadData(listEmpTemp);
         }
     }//GEN-LAST:event_cbxEmployeeIdItemStateChanged
@@ -403,13 +400,17 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         String lastName = txtLastName.getText();
         Date startDate = dateChooserDateStart.getDate();
         Date endDate = dateChooserDateEnd.getDate();
-        int gender = 0;
+        int gender = -1;
         if (radioFemale.isSelected()) {
+            gender = 0;
+        } else if(radioMale.isSelected()) {
             gender = 1;
         }
 
+
         listEmp.clear();
         listEmp = employeeDAO.readByCommand(firstName, lastName, startDate, endDate, gender);
+
         loadData(listEmp);
     }//GEN-LAST:event_btnSearchActionPerformed
 

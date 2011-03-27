@@ -10,6 +10,7 @@ import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -58,29 +59,34 @@ public class EmployeeDAO extends BaseDAO {
 
         try {
             con = db.getConnection();
-            String sqlCommand = "select s.Id,p.FirstName,p.LastName,p.BirthDay,p.Gender,p.Phone,p.Email,p.Address,p.Image,p.Status,e.BeginWork"
-                    + " from Student s inner join Person p on s.Id = p.Id where ";
-            if(fname.length() != 0) sqlCommand += " s.FirstName =  " + fname;
-            if(lname.length() != 0) sqlCommand += " and s.LastName =  " + lname;
-            if(startDate != null) sqlCommand += " and s.birthday > ? ";
-            if(endDate != null) sqlCommand += " and s.birthday < ? and ";
+            String sqlCommand = "select e.Id,p.FirstName,p.LastName,p.BirthDay,p.Gender,p.Phone,p.Email,p.Address,p.Image,p.Status,e.BeginWork"
+                    + " from Employee e inner join Person p on e.Id = p.Id";
+            String sqlTemp = " where ";
+            if (fname.length() != 0) {
+                sqlTemp += " p.FirstName =  '" + fname + "' and ";
+            }
+            if (lname.length() != 0) {
+                sqlTemp += " p.LastName =  '" + lname + "' and ";
+            }
+            if (startDate != null && endDate != null) {
+                sqlTemp += " p.Birthday between '" + convertDate(startDate) + "' and '" + convertDate(endDate) + "' and ";
+            }
+            if (gender != -1) {
+                if (sqlTemp.equals(" where ")) {
+                    sqlTemp += " Gender = " + gender;
+                } else {
 
-            sqlCommand +=  " gender = " + gender;
+                    sqlTemp += " Gender = " + gender;
+                }
+            } else {
+                sqlTemp += " Gender in (0,1)";
+            }
+            sqlCommand += sqlTemp;
 
             pst = con.prepareStatement(sqlCommand);
-            if(startDate != null){
-                pst.setDate(1, (java.sql.Date) startDate);
-                if(endDate != null){
-                    pst.setDate(2, (java.sql.Date) endDate);
-                }
-            }
-            else{
-                if(endDate != null){
-                     pst.setDate(1, (java.sql.Date) endDate);
-                }
-            }
-
             rs = pst.executeQuery();
+
+            System.out.println(sqlCommand);
 
             while (rs.next()) {
                 Employee emp = new Employee();
@@ -106,6 +112,7 @@ public class EmployeeDAO extends BaseDAO {
 
         return listEmp;
     }
+
     public Employee readByID(String id) {
         Employee emp = null;
         try {
@@ -132,6 +139,13 @@ public class EmployeeDAO extends BaseDAO {
             Logger.getLogger(EmployeeDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return emp;
+    }
+
+    public String convertDate(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        String str = calendar.get(calendar.MONTH) + 1 + "/" + calendar.get(calendar.DAY_OF_MONTH) + "/" + calendar.get(calendar.YEAR);
+        return str;
     }
 
     public boolean create(Employee emp) {
