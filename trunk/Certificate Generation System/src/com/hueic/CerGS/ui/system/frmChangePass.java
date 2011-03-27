@@ -119,7 +119,7 @@ public class frmChangePass extends javax.swing.JFrame {
         panelButton.setPreferredSize(new java.awt.Dimension(320, 33));
 
         btnChange.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/button_ok - 16x16.png"))); // NOI18N
-        btnChange.setText("Confirm");
+        btnChange.setText("OK");
         btnChange.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnChange.setPreferredSize(new java.awt.Dimension(77, 23));
         btnChange.addActionListener(new java.awt.event.ActionListener() {

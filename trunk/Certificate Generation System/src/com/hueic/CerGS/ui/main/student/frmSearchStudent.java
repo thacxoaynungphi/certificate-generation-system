@@ -19,9 +19,11 @@ import com.hueic.CerGS.entity.Student;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.regex.PatternSyntaxException;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
+import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -177,6 +179,9 @@ public class frmSearchStudent extends javax.swing.JFrame {
         srcPanelAccount = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
         btnClose = new javax.swing.JButton();
+        lblFilter = new javax.swing.JLabel();
+        filterText = new javax.swing.JTextField();
+        btnFilter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Search Student");
@@ -402,8 +407,8 @@ public class frmSearchStudent extends javax.swing.JFrame {
         jPanel3.setPreferredSize(new java.awt.Dimension(840, 430));
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
-        srcPanelAccount.setMinimumSize(new java.awt.Dimension(830, 380));
-        srcPanelAccount.setPreferredSize(new java.awt.Dimension(830, 380));
+        srcPanelAccount.setMinimumSize(new java.awt.Dimension(830, 350));
+        srcPanelAccount.setPreferredSize(new java.awt.Dimension(830, 350));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -420,8 +425,8 @@ public class frmSearchStudent extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -438,10 +443,49 @@ public class frmSearchStudent extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel3.add(btnClose, gridBagConstraints);
+
+        lblFilter.setText("Enter Filter:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 520, 5, 5);
+        jPanel3.add(lblFilter, gridBagConstraints);
+
+        filterText.setMinimumSize(new java.awt.Dimension(150, 20));
+        filterText.setPreferredSize(new java.awt.Dimension(150, 20));
+        filterText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                filterTextKeyPressed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 0);
+        jPanel3.add(filterText, gridBagConstraints);
+
+        btnFilter.setText("Filter");
+        btnFilter.setMaximumSize(new java.awt.Dimension(90, 23));
+        btnFilter.setMinimumSize(new java.awt.Dimension(90, 23));
+        btnFilter.setPreferredSize(new java.awt.Dimension(90, 23));
+        btnFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFilterActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        jPanel3.add(btnFilter, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -469,7 +513,7 @@ public class frmSearchStudent extends javax.swing.JFrame {
         int gender = -1;
         if (radioFemale.isSelected()) {
             gender = 0;
-        } else if(radioMale.isSelected()) {
+        } else if (radioMale.isSelected()) {
             gender = 1;
         }
 
@@ -516,6 +560,34 @@ public class frmSearchStudent extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cbxStudentItemStateChanged
 
+    public void searchStart() {
+        if (!listStudent.isEmpty()) {
+            String text = filterText.getText();
+            System.out.println("Text :" + text);
+            if (text.length() == 0) {
+                sorter.setRowFilter(null);
+            } else {
+                try {
+                    sorter.setRowFilter(RowFilter.regexFilter(text));
+                } catch (PatternSyntaxException pse) {
+                    System.err.println("Bad regex pattern");
+                }
+            }
+        }
+    }
+
+    private void filterTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            searchStart();
+        }
+}//GEN-LAST:event_filterTextKeyPressed
+
+    private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
+        // TODO add your handling code here:
+        searchStart();
+}//GEN-LAST:event_btnFilterActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -529,17 +601,20 @@ public class frmSearchStudent extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
+    private javax.swing.JButton btnFilter;
     private javax.swing.JButton btnSearch;
     private javax.swing.ButtonGroup buttonGroupGender;
     private javax.swing.JComboBox cbxCourse;
     private javax.swing.JComboBox cbxStudent;
     private com.toedter.calendar.JDateChooser dateChooserDateEnd;
     private com.toedter.calendar.JDateChooser dateChooserDateStart;
+    private javax.swing.JTextField filterText;
     private javax.help.JHelp jHelp1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblBirthday;
     private javax.swing.JLabel lblCourse;
+    private javax.swing.JLabel lblFilter;
     private javax.swing.JLabel lblFirstName;
     private javax.swing.JLabel lblGender;
     private javax.swing.JLabel lblLastName;
