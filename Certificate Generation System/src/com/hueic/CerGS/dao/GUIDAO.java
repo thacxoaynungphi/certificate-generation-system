@@ -5,12 +5,14 @@
 package com.hueic.CerGS.dao;
 
 import com.hueic.CerGS.component.GUIProperties;
+import com.jgoodies.looks.plastic.theme.SkyGreen;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.plaf.metal.MetalLookAndFeel;
 
 /**
  *
@@ -27,6 +29,12 @@ public class GUIDAO {
     public void setGUI(String gui) {
         try {
             frame.setLocationRelativeTo(null);
+
+            ///SkyBlue skyBlue = new SkyBlue();
+            //Silver silver = new Silver();
+
+            SkyGreen green = new SkyGreen();
+            MetalLookAndFeel.setCurrentTheme(green);
             GUIProperties prop = new GUIProperties();
             UIManager.setLookAndFeel(gui);
             SwingUtilities.updateComponentTreeUI(frame);
@@ -40,9 +48,5 @@ public class GUIDAO {
             Logger.getLogger(GUIDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }
-
-    public void setLanguage(String lang) {
-        //TODO: thiet lap ngon ngu cho chuong trinh
     }
 }

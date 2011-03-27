@@ -9,12 +9,12 @@ package com.hueic.CerGS.component;
  */
 public class GUIProperties {
 
-    public static final String PLAF_METAL = "javax.swing.plaf.metal.MetalLookAndFeel";
     public static final String PLAF_NIMBUS = "com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel";
-    public static final String PLAF_WINDOWS = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
-    public static final String PLAF_MOTIF = "com.sun.java.swing.plaf.motif.MotifLookAndFeel";
+    //public static final String PLAF_WINDOWS = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
+    public static final String PLAF_WINDOWS = "com.jgoodies.looks.windows.WindowsLookAndFeel";
     public static final String PLAF_MAC = "com.birosoft.liquid.LiquidLookAndFeel";
     public static final String PLAF_JGOODIES = "com.jgoodies.looks.plastic.Plastic3DLookAndFeel";
+    public static final String PLAF_METAL = "com.jgoodies.looks.plastic.PlasticLookAndFeel";
     private String lookAndFeel = PLAF_JGOODIES;
     private String theme = "Default";
 
@@ -49,11 +49,7 @@ public class GUIProperties {
         return lookAndFeel.equals(PLAF_WINDOWS);
     }
 
-    public boolean isMotifLook() {
-        return lookAndFeel.equals(PLAF_MOTIF);
-    }
-
     public boolean isMacLook() {
         return lookAndFeel.equals(PLAF_MAC);
-        }
+    }
 }

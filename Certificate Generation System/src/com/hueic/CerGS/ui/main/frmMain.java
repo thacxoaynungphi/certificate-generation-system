@@ -143,7 +143,7 @@ public class frmMain extends javax.swing.JFrame {
         radioWindows = new javax.swing.JRadioButtonMenuItem();
         radioMetal = new javax.swing.JRadioButtonMenuItem();
         radioNimbus = new javax.swing.JRadioButtonMenuItem();
-        radioMotif = new javax.swing.JRadioButtonMenuItem();
+        radioJgoodies = new javax.swing.JRadioButtonMenuItem();
         mnuIViewInformation = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         mnuIExit = new javax.swing.JMenuItem();
@@ -544,14 +544,14 @@ public class frmMain extends javax.swing.JFrame {
         });
         mnuSkin.add(radioNimbus);
 
-        buttonGroupSkin.add(radioMotif);
-        radioMotif.setText("Motif");
-        radioMotif.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroupSkin.add(radioJgoodies);
+        radioJgoodies.setText("Jgoodies");
+        radioJgoodies.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioMotifActionPerformed(evt);
+                radioJgoodiesActionPerformed(evt);
             }
         });
-        mnuSkin.add(radioMotif);
+        mnuSkin.add(radioJgoodies);
 
         mnuOptions.add(mnuSkin);
 
@@ -637,13 +637,6 @@ public class frmMain extends javax.swing.JFrame {
             guidao.setGUI(guip.PLAF_NIMBUS);
         }
     }//GEN-LAST:event_radioNimbusActionPerformed
-
-    private void radioMotifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMotifActionPerformed
-        // TODO add your handling code here:
-        if (radioMotif.isSelected()) {
-            guidao.setGUI(guip.PLAF_MOTIF);
-        }
-    }//GEN-LAST:event_radioMotifActionPerformed
 
     private void menuIChangePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIChangePassActionPerformed
         // TODO add your handling code here:
@@ -770,6 +763,13 @@ public class frmMain extends javax.swing.JFrame {
         searchEmployee.setVisible(true);
     }//GEN-LAST:event_linkBtnSearchEmpActionPerformed
 
+    private void radioJgoodiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioJgoodiesActionPerformed
+        // TODO add your handling code here:
+        if (radioJgoodies.isSelected()) {
+            guidao.setGUI(guip.PLAF_JGOODIES);
+        }
+}//GEN-LAST:event_radioJgoodiesActionPerformed
+
     public void isLogin() {
         if (this.accCur != null) {
             mnuILogoutSystem.setVisible(true);
@@ -848,8 +848,8 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelLogo;
     private javax.swing.JPanel panelRight;
+    private javax.swing.JRadioButtonMenuItem radioJgoodies;
     private javax.swing.JRadioButtonMenuItem radioMetal;
-    private javax.swing.JRadioButtonMenuItem radioMotif;
     private javax.swing.JRadioButtonMenuItem radioNimbus;
     private javax.swing.JRadioButtonMenuItem radioWindows;
     private com.l2fprod.common.swing.JTaskPaneGroup taskPaneGroupSystem;
