@@ -63,7 +63,7 @@ public class MarkDAO extends BaseDAO {
                 result.setMark(rs.getFloat("Mark"));
             }
 
-            setLastError("read data successful");
+            setLastError("Read data successful");
         } catch (SQLException ex) {
             setLastError("SQL Error");
         } finally {
@@ -93,7 +93,7 @@ public class MarkDAO extends BaseDAO {
                 result.add(mark);
             }
 
-            setLastError("read data successful");
+            setLastError("Read data successful");
         } catch (SQLException ex) {
             setLastError("SQL Error");
         } finally {
@@ -120,7 +120,7 @@ public class MarkDAO extends BaseDAO {
                 mark.setMark(rs.getFloat("Mark"));
                 result.add(mark);
             }
-            setLastError("read data successful");
+            setLastError("Read data successful");
         } catch (SQLException ex) {
             setLastError("SQL Error");
         } finally {
@@ -142,7 +142,7 @@ public class MarkDAO extends BaseDAO {
             while (rs.next()) {
                 status = false;
             }
-            setLastError("read data successful");
+            setLastError("Read data successful");
         } catch (SQLException ex) {
             setLastError("SQL Error");
         } finally {
@@ -192,18 +192,17 @@ public class MarkDAO extends BaseDAO {
     public boolean create(Mark Marks) {
         boolean status = false;
         con = db.getConnection();
-        String sqlcommand = "insert into Mark values(?, ?, ?, ?, ?, ?, ?)";
+        String sqlcommand = "insert into Mark(StudentId,SubjectId,Mark) values(?, ?, ?)";
         try {
             pst = con.prepareStatement(sqlcommand);
-            pst.setInt(1, Marks.getId());
-            pst.setString(2, Marks.getStudentId());
-            pst.setString(3, Marks.getSubjectId());
-            pst.setFloat(4, Marks.getMark());
-            if (pst.execute()) {
-                setLastError("Add fee successful");
+            pst.setString(1, Marks.getStudentId());
+            pst.setString(2, Marks.getSubjectId());
+            pst.setFloat(3, Marks.getMark());
+            if (pst.executeUpdate() > 0) {
+                setLastError("Add mark successful");
                 status = true;
             } else {
-                setLastError("Add fee unsuccessful");
+                setLastError("Add mark unsuccessful");
             }
         } catch (SQLException ex) {
             setLastError("SQL Error!!!");
@@ -216,7 +215,7 @@ public class MarkDAO extends BaseDAO {
     public boolean update(Mark Marks) {
         boolean status = false;
         con = db.getConnection();
-        String sqlcommand = "select * from Mark where id like ?";
+        String sqlcommand = "select * from Mark where Id = ?";
 
         try {
             pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -226,13 +225,13 @@ public class MarkDAO extends BaseDAO {
             if (rs.first()) {
                 rs.updateString("StudentId", Marks.getStudentId());
                 rs.updateString("SubjectId", Marks.getSubjectId());
-                rs.updateFloat("Mark1L1", Marks.getMark());
+                rs.updateFloat("Mark", Marks.getMark());
                 rs.updateRow();
 
-                setLastError("Add fee successful");
+                setLastError("Add mark successful");
                 status = true;
             } else {
-                setLastError("Add fee unsuccessful");
+                setLastError("Add mark unsuccessful");
             }
         } catch (SQLException ex) {
             setLastError("SQL Error!!!");
@@ -245,24 +244,23 @@ public class MarkDAO extends BaseDAO {
     public boolean delete(Mark Marks) {
         boolean status = false;
         con = db.getConnection();
-        String sqlcommand = "delete from Mark where id like ?";
+        String sqlcommand = "delete from Mark where Id = ?";
 
         try {
             pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst.setInt(1, Marks.getId());
-
-            if (pst.execute()) {
-                setLastError("Add fee successful");
+            if (pst.executeUpdate() > 0) {
+                setLastError("Add mark successful");
                 status = true;
             } else {
-                setLastError("Add fee unsuccessful");
+                setLastError("Add mark unsuccessful");
             }
         } catch (SQLException ex) {
             setLastError("SQL Error!!!");
         } finally {
             db.closeConnection();
-            return status;
         }
+        return status;
     }
 
     public float getStudentMark(String studentID) {
