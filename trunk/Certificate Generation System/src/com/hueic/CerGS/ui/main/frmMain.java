@@ -45,15 +45,16 @@ public class frmMain extends javax.swing.JFrame {
 
     /** Creates new form MainFrm */
     GUIDAO guidao = null;
-    GUIProperties guip = null;
+    GUIProperties guip = new GUIProperties();
     public Account accCur;
+    String theme = "DarkStar";
+    String lookandfeel = guip.PLAF_JGOODIES;
 
     public frmMain() {
         initComponents();
         setLocationRelativeTo(null);
         guidao = new GUIDAO(this);
-        guip = new GUIProperties();
-        guidao.setGUI(guip.PLAF_JGOODIES);
+        guidao.setGUI(lookandfeel, theme);
         bindingLang();
         new IconSystem(this);
         HelpSet hs = getHelpSet("com/hueic/CerGS/myhelp/sample.hs");
@@ -90,9 +91,8 @@ public class frmMain extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        buttonGroupLanguage = new javax.swing.ButtonGroup();
         buttonGroupSkin = new javax.swing.ButtonGroup();
-        jPopupMenu1 = new javax.swing.JPopupMenu();
+        buttonGroupTheme = new javax.swing.ButtonGroup();
         panelRight = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -144,6 +144,22 @@ public class frmMain extends javax.swing.JFrame {
         radioMetal = new javax.swing.JRadioButtonMenuItem();
         radioNimbus = new javax.swing.JRadioButtonMenuItem();
         radioJgoodies = new javax.swing.JRadioButtonMenuItem();
+        mnuTheme = new javax.swing.JMenu();
+        radioDarkStar = new javax.swing.JRadioButtonMenuItem();
+        radioDesertBlue = new javax.swing.JRadioButtonMenuItem();
+        radioDesertGreen = new javax.swing.JRadioButtonMenuItem();
+        radioDesertYellow = new javax.swing.JRadioButtonMenuItem();
+        radioExperienceBlue = new javax.swing.JRadioButtonMenuItem();
+        radioExperienceGreen = new javax.swing.JRadioButtonMenuItem();
+        radioExperenceRoyale = new javax.swing.JRadioButtonMenuItem();
+        radioLightGray = new javax.swing.JRadioButtonMenuItem();
+        radioSilver = new javax.swing.JRadioButtonMenuItem();
+        radioSkyBlue = new javax.swing.JRadioButtonMenuItem();
+        radioSkyBluer = new javax.swing.JRadioButtonMenuItem();
+        radioSkyGreen = new javax.swing.JRadioButtonMenuItem();
+        radioSkyPink = new javax.swing.JRadioButtonMenuItem();
+        radioSkyRed = new javax.swing.JRadioButtonMenuItem();
+        radioSkyYellow = new javax.swing.JRadioButtonMenuItem();
         mnuIViewInformation = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         mnuIExit = new javax.swing.JMenuItem();
@@ -169,6 +185,7 @@ public class frmMain extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(30, 30, 20, 10);
         panelRight.add(jLabel2, gridBagConstraints);
 
+        jLabel3.setForeground(new java.awt.Color(3, 3, 3));
         jLabel3.setText("Add new employee");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -177,6 +194,7 @@ public class frmMain extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         panelRight.add(jLabel3, gridBagConstraints);
 
+        jLabel4.setForeground(new java.awt.Color(3, 3, 3));
         jLabel4.setText("Search");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
@@ -193,6 +211,7 @@ public class frmMain extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(30, 30, 20, 10);
         panelRight.add(jLabel5, gridBagConstraints);
 
+        jLabel6.setForeground(new java.awt.Color(3, 3, 3));
         jLabel6.setText("View");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
@@ -209,6 +228,7 @@ public class frmMain extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(30, 30, 20, 10);
         panelRight.add(jLabel7, gridBagConstraints);
 
+        jLabel8.setForeground(new java.awt.Color(3, 3, 3));
         jLabel8.setText("Exit");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
@@ -225,6 +245,7 @@ public class frmMain extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(30, 30, 20, 10);
         panelRight.add(jLabel9, gridBagConstraints);
 
+        jLabel10.setForeground(new java.awt.Color(3, 3, 3));
         jLabel10.setText("Logout");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
@@ -241,6 +262,7 @@ public class frmMain extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(30, 30, 20, 10);
         panelRight.add(jLabel11, gridBagConstraints);
 
+        jLabel12.setForeground(new java.awt.Color(3, 3, 3));
         jLabel12.setText("Add new student");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -277,6 +299,7 @@ public class frmMain extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
         panelRight.add(jLabel15, gridBagConstraints);
 
+        jLabel16.setForeground(new java.awt.Color(3, 3, 3));
         jLabel16.setText("<html>\n<body>\nThis is a Certificate Department which works for “ABC” institute for developing  the certificate for the<br/> students who had completed their course. This system also deals with the student  registration,<br/> checking the payment scenario, inputting the marks of the students and after all verification is<br/>  done they develop the certificate of completion of the course for the students.\n</body>\n</html>\n");
         jLabel16.setMinimumSize(new java.awt.Dimension(480, 56));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -555,6 +578,146 @@ public class frmMain extends javax.swing.JFrame {
 
         mnuOptions.add(mnuSkin);
 
+        mnuTheme.setText("Theme");
+
+        buttonGroupTheme.add(radioDarkStar);
+        radioDarkStar.setSelected(true);
+        radioDarkStar.setText("Dark Star");
+        radioDarkStar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioDarkStarActionPerformed(evt);
+            }
+        });
+        mnuTheme.add(radioDarkStar);
+
+        buttonGroupTheme.add(radioDesertBlue);
+        radioDesertBlue.setText("Deser Blue");
+        radioDesertBlue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioDesertBlueActionPerformed(evt);
+            }
+        });
+        mnuTheme.add(radioDesertBlue);
+
+        buttonGroupTheme.add(radioDesertGreen);
+        radioDesertGreen.setText("Deser Green");
+        radioDesertGreen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioDesertGreenActionPerformed(evt);
+            }
+        });
+        mnuTheme.add(radioDesertGreen);
+
+        buttonGroupTheme.add(radioDesertYellow);
+        radioDesertYellow.setText("Deser Yellow");
+        radioDesertYellow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioDesertYellowActionPerformed(evt);
+            }
+        });
+        mnuTheme.add(radioDesertYellow);
+
+        buttonGroupTheme.add(radioExperienceBlue);
+        radioExperienceBlue.setText("Experience Blue");
+        radioExperienceBlue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioExperienceBlueActionPerformed(evt);
+            }
+        });
+        mnuTheme.add(radioExperienceBlue);
+
+        buttonGroupTheme.add(radioExperienceGreen);
+        radioExperienceGreen.setText("Experience Green");
+        radioExperienceGreen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioExperienceGreenActionPerformed(evt);
+            }
+        });
+        mnuTheme.add(radioExperienceGreen);
+
+        buttonGroupTheme.add(radioExperenceRoyale);
+        radioExperenceRoyale.setText("Experence Royale");
+        radioExperenceRoyale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioExperenceRoyaleActionPerformed(evt);
+            }
+        });
+        mnuTheme.add(radioExperenceRoyale);
+
+        buttonGroupTheme.add(radioLightGray);
+        radioLightGray.setText("Light Gray");
+        radioLightGray.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioLightGrayActionPerformed(evt);
+            }
+        });
+        mnuTheme.add(radioLightGray);
+
+        buttonGroupTheme.add(radioSilver);
+        radioSilver.setText("Silver");
+        radioSilver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioSilverActionPerformed(evt);
+            }
+        });
+        mnuTheme.add(radioSilver);
+
+        buttonGroupTheme.add(radioSkyBlue);
+        radioSkyBlue.setText("Sky Blue");
+        radioSkyBlue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioSkyBlueActionPerformed(evt);
+            }
+        });
+        mnuTheme.add(radioSkyBlue);
+
+        buttonGroupTheme.add(radioSkyBluer);
+        radioSkyBluer.setText("Sky Bluer");
+        radioSkyBluer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioSkyBluerActionPerformed(evt);
+            }
+        });
+        mnuTheme.add(radioSkyBluer);
+
+        buttonGroupTheme.add(radioSkyGreen);
+        radioSkyGreen.setText("Sky Green");
+        radioSkyGreen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioSkyGreenActionPerformed(evt);
+            }
+        });
+        mnuTheme.add(radioSkyGreen);
+
+        buttonGroupTheme.add(radioSkyPink);
+        radioSkyPink.setText("Sky Pink");
+        radioSkyPink.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioSkyPinkActionPerformed(evt);
+            }
+        });
+        mnuTheme.add(radioSkyPink);
+
+        buttonGroupTheme.add(radioSkyRed);
+        radioSkyRed.setText("Sky Red");
+        radioSkyRed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioSkyRedActionPerformed(evt);
+            }
+        });
+        mnuTheme.add(radioSkyRed);
+
+        buttonGroupTheme.add(radioSkyYellow);
+        radioSkyYellow.setText("Sky Yellow");
+        radioSkyYellow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioSkyYellowActionPerformed(evt);
+            }
+        });
+        mnuTheme.add(radioSkyYellow);
+
+        mnuOptions.add(mnuTheme);
+
         mnuSystem.add(mnuOptions);
 
         mnuIViewInformation.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.ALT_MASK));
@@ -620,21 +783,24 @@ public class frmMain extends javax.swing.JFrame {
     private void radioWindowsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioWindowsActionPerformed
         // TODO add your handling code here:
         if (radioWindows.isSelected()) {
-            guidao.setGUI(guip.PLAF_WINDOWS);
+            lookandfeel = guip.PLAF_WINDOWS;
+            guidao.setGUI(lookandfeel, theme);
         }
     }//GEN-LAST:event_radioWindowsActionPerformed
 
     private void radioMetalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMetalActionPerformed
         // TODO add your handling code here:
         if (radioMetal.isSelected()) {
-            guidao.setGUI(guip.PLAF_METAL);
+            lookandfeel = guip.PLAF_METAL;
+            guidao.setGUI(lookandfeel, theme);
         }
     }//GEN-LAST:event_radioMetalActionPerformed
 
     private void radioNimbusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNimbusActionPerformed
         // TODO add your handling code here:
         if (radioNimbus.isSelected()) {
-            guidao.setGUI(guip.PLAF_NIMBUS);
+            lookandfeel = guip.PLAF_NIMBUS;
+            guidao.setGUI(lookandfeel, theme);
         }
     }//GEN-LAST:event_radioNimbusActionPerformed
 
@@ -766,9 +932,130 @@ public class frmMain extends javax.swing.JFrame {
     private void radioJgoodiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioJgoodiesActionPerformed
         // TODO add your handling code here:
         if (radioJgoodies.isSelected()) {
-            guidao.setGUI(guip.PLAF_JGOODIES);
+            lookandfeel = guip.PLAF_JGOODIES;
+            guidao.setGUI(lookandfeel, theme);
         }
 }//GEN-LAST:event_radioJgoodiesActionPerformed
+
+    private void radioDarkStarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioDarkStarActionPerformed
+        // TODO add your handling code here:
+        if (radioDarkStar.isSelected()) {
+            theme = "DarkStar";
+            guidao.setGUI(lookandfeel, theme);
+        }
+    }//GEN-LAST:event_radioDarkStarActionPerformed
+
+    private void radioDesertBlueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioDesertBlueActionPerformed
+        // TODO add your handling code here:
+        if (radioDesertBlue.isSelected()) {
+            theme = "DesertBlue";
+            guidao.setGUI(lookandfeel, theme);
+        }
+    }//GEN-LAST:event_radioDesertBlueActionPerformed
+
+    private void radioDesertGreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioDesertGreenActionPerformed
+        // TODO add your handling code here:
+        if (radioDesertGreen.isSelected()) {
+            theme = "DesertGreen";
+            guidao.setGUI(lookandfeel, theme);
+        }
+    }//GEN-LAST:event_radioDesertGreenActionPerformed
+
+    private void radioDesertYellowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioDesertYellowActionPerformed
+        // TODO add your handling code here:
+        if (radioDesertYellow.isSelected()) {
+            theme = "DesertYellow";
+            guidao.setGUI(lookandfeel, theme);
+        }
+    }//GEN-LAST:event_radioDesertYellowActionPerformed
+
+    private void radioExperienceBlueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioExperienceBlueActionPerformed
+        // TODO add your handling code here:
+        if (radioExperienceBlue.isSelected()) {
+            theme = "ExperienceBlue";
+            guidao.setGUI(lookandfeel, theme);
+        }
+    }//GEN-LAST:event_radioExperienceBlueActionPerformed
+
+    private void radioExperienceGreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioExperienceGreenActionPerformed
+        // TODO add your handling code here:
+        if (radioExperienceGreen.isSelected()) {
+            theme = "ExperienceGreen";
+            guidao.setGUI(lookandfeel, theme);
+        }
+    }//GEN-LAST:event_radioExperienceGreenActionPerformed
+
+    private void radioExperenceRoyaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioExperenceRoyaleActionPerformed
+        // TODO add your handling code here:
+        if (radioExperenceRoyale.isSelected()) {
+            theme = "ExperienceRoyale";
+            guidao.setGUI(lookandfeel, theme);
+        }
+    }//GEN-LAST:event_radioExperenceRoyaleActionPerformed
+
+    private void radioLightGrayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioLightGrayActionPerformed
+        // TODO add your handling code here:
+        if (radioLightGray.isSelected()) {
+            theme = "LightGray";
+            guidao.setGUI(lookandfeel, theme);
+        }
+    }//GEN-LAST:event_radioLightGrayActionPerformed
+
+    private void radioSilverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSilverActionPerformed
+        // TODO add your handling code here:
+        if (radioSilver.isSelected()) {
+            theme = "Silver";
+            guidao.setGUI(lookandfeel, theme);
+        }
+    }//GEN-LAST:event_radioSilverActionPerformed
+
+    private void radioSkyBlueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSkyBlueActionPerformed
+        // TODO add your handling code here:
+        if (radioSkyBlue.isSelected()) {
+            theme = "SkyBlue";
+            guidao.setGUI(lookandfeel, theme);
+        }
+    }//GEN-LAST:event_radioSkyBlueActionPerformed
+
+    private void radioSkyBluerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSkyBluerActionPerformed
+        // TODO add your handling code here:
+        if (radioSkyBluer.isSelected()) {
+            theme = "SkyBluer";
+            guidao.setGUI(lookandfeel, theme);
+        }
+    }//GEN-LAST:event_radioSkyBluerActionPerformed
+
+    private void radioSkyGreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSkyGreenActionPerformed
+        // TODO add your handling code here:
+        if (radioSkyGreen.isSelected()) {
+            theme = "SkyGreen";
+            guidao.setGUI(lookandfeel, theme);
+        }
+    }//GEN-LAST:event_radioSkyGreenActionPerformed
+
+    private void radioSkyPinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSkyPinkActionPerformed
+        // TODO add your handling code here:
+        if (radioSkyPink.isSelected()) {
+            theme = "SkyPink";
+            guidao.setGUI(lookandfeel, theme);
+        }
+    }//GEN-LAST:event_radioSkyPinkActionPerformed
+
+    private void radioSkyRedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSkyRedActionPerformed
+        // TODO add your handling code here:
+        if (radioSkyRed.isSelected()) {
+            theme = "SkyRed";
+            guidao.setGUI(lookandfeel, theme);
+        }
+    }//GEN-LAST:event_radioSkyRedActionPerformed
+
+    private void radioSkyYellowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSkyYellowActionPerformed
+        // TODO add your handling code here:
+        if (radioSkyYellow.isSelected()) {
+            theme = "SkyYellow";
+            guidao.setGUI(lookandfeel, theme);
+        }
+    }//GEN-LAST:event_radioSkyYellowActionPerformed
 
     public void isLogin() {
         if (this.accCur != null) {
@@ -796,8 +1083,8 @@ public class frmMain extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroupLanguage;
     private javax.swing.ButtonGroup buttonGroupSkin;
+    private javax.swing.ButtonGroup buttonGroupTheme;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -813,7 +1100,6 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel lblLogo;
     private com.l2fprod.common.swing.JLinkButton linkBtnAccount;
@@ -845,12 +1131,28 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JMenu mnuOptions;
     private javax.swing.JMenu mnuSkin;
     private javax.swing.JMenu mnuSystem;
+    private javax.swing.JMenu mnuTheme;
     private javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelLogo;
     private javax.swing.JPanel panelRight;
+    private javax.swing.JRadioButtonMenuItem radioDarkStar;
+    private javax.swing.JRadioButtonMenuItem radioDesertBlue;
+    private javax.swing.JRadioButtonMenuItem radioDesertGreen;
+    private javax.swing.JRadioButtonMenuItem radioDesertYellow;
+    private javax.swing.JRadioButtonMenuItem radioExperenceRoyale;
+    private javax.swing.JRadioButtonMenuItem radioExperienceBlue;
+    private javax.swing.JRadioButtonMenuItem radioExperienceGreen;
     private javax.swing.JRadioButtonMenuItem radioJgoodies;
+    private javax.swing.JRadioButtonMenuItem radioLightGray;
     private javax.swing.JRadioButtonMenuItem radioMetal;
     private javax.swing.JRadioButtonMenuItem radioNimbus;
+    private javax.swing.JRadioButtonMenuItem radioSilver;
+    private javax.swing.JRadioButtonMenuItem radioSkyBlue;
+    private javax.swing.JRadioButtonMenuItem radioSkyBluer;
+    private javax.swing.JRadioButtonMenuItem radioSkyGreen;
+    private javax.swing.JRadioButtonMenuItem radioSkyPink;
+    private javax.swing.JRadioButtonMenuItem radioSkyRed;
+    private javax.swing.JRadioButtonMenuItem radioSkyYellow;
     private javax.swing.JRadioButtonMenuItem radioWindows;
     private com.l2fprod.common.swing.JTaskPaneGroup taskPaneGroupSystem;
     private com.l2fprod.common.swing.JTaskPaneGroup taskPanelGroupAdministration;

@@ -14,7 +14,7 @@ public class GUIProperties {
     public static final String PLAF_JGOODIES = "com.jgoodies.looks.plastic.Plastic3DLookAndFeel";
     public static final String PLAF_METAL = "com.jgoodies.looks.plastic.PlasticLookAndFeel";
     private String lookAndFeel = PLAF_JGOODIES;
-    private String theme = "Default";
+    private String theme = "DarkStar";
 
     public GUIProperties() {
     }
