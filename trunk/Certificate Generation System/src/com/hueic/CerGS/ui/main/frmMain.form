@@ -125,15 +125,15 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioNimbusActionPerformed"/>
                       </Events>
                     </MenuItem>
-                    <MenuItem class="javax.swing.JRadioButtonMenuItem" name="radioMotif">
+                    <MenuItem class="javax.swing.JRadioButtonMenuItem" name="radioJgoodies">
                       <Properties>
                         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                           <ComponentRef name="buttonGroupSkin"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Motif"/>
+                        <Property name="text" type="java.lang.String" value="Jgoodies"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioMotifActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioJgoodiesActionPerformed"/>
                       </Events>
                     </MenuItem>
                   </SubComponents>

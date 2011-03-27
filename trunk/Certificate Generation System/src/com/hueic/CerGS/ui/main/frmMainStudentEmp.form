@@ -54,61 +54,22 @@
                 <Property name="text" type="java.lang.String" value="View Information"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuISwitchUser">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/hueic/CerGS/images/switch.jpg"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Switch User"/>
+              </Properties>
+            </MenuItem>
             <Menu class="javax.swing.JMenu" name="mnuOptions">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/com/hueic/CerGS/images/gear.png"/>
                 </Property>
+                <Property name="text" type="java.lang.String" value="Options"/>
               </Properties>
               <SubComponents>
-                <Menu class="javax.swing.JMenu" name="mnuLang">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Language"/>
-                  </Properties>
-                  <SubComponents>
-                    <MenuItem class="javax.swing.JRadioButtonMenuItem" name="radioVietnamese">
-                      <Properties>
-                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                          <ComponentRef name="buttonGroupLanguage"/>
-                        </Property>
-                        <Property name="selected" type="boolean" value="true"/>
-                        <Property name="text" type="java.lang.String" value="Vietnamese"/>
-                      </Properties>
-                    </MenuItem>
-                    <MenuItem class="javax.swing.JRadioButtonMenuItem" name="radioEnglish">
-                      <Properties>
-                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                          <ComponentRef name="buttonGroupLanguage"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="English"/>
-                      </Properties>
-                    </MenuItem>
-                    <MenuItem class="javax.swing.JRadioButtonMenuItem" name="radioJapan">
-                      <Properties>
-                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                          <ComponentRef name="buttonGroupLanguage"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="Japan"/>
-                      </Properties>
-                    </MenuItem>
-                    <MenuItem class="javax.swing.JRadioButtonMenuItem" name="radioChina">
-                      <Properties>
-                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                          <ComponentRef name="buttonGroupLanguage"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="China"/>
-                      </Properties>
-                    </MenuItem>
-                    <MenuItem class="javax.swing.JRadioButtonMenuItem" name="radioPhap">
-                      <Properties>
-                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                          <ComponentRef name="buttonGroupLanguage"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="Phap"/>
-                      </Properties>
-                    </MenuItem>
-                  </SubComponents>
-                </Menu>
                 <Menu class="javax.swing.JMenu" name="mnuSkin">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Skin"/>
@@ -116,9 +77,6 @@
                   <SubComponents>
                     <MenuItem class="javax.swing.JRadioButtonMenuItem" name="radioWindows">
                       <Properties>
-                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                          <ComponentRef name="buttonGroupSkin"/>
-                        </Property>
                         <Property name="selected" type="boolean" value="true"/>
                         <Property name="text" type="java.lang.String" value="Windows"/>
                       </Properties>
@@ -128,9 +86,6 @@
                     </MenuItem>
                     <MenuItem class="javax.swing.JRadioButtonMenuItem" name="radioMetal">
                       <Properties>
-                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                          <ComponentRef name="buttonGroupSkin"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Metal"/>
                       </Properties>
                       <Events>
@@ -139,38 +94,24 @@
                     </MenuItem>
                     <MenuItem class="javax.swing.JRadioButtonMenuItem" name="radioNimbus">
                       <Properties>
-                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                          <ComponentRef name="buttonGroupSkin"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Nimbus"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioNimbusActionPerformed"/>
                       </Events>
                     </MenuItem>
-                    <MenuItem class="javax.swing.JRadioButtonMenuItem" name="radioMotif">
+                    <MenuItem class="javax.swing.JRadioButtonMenuItem" name="radioJgoodies">
                       <Properties>
-                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                          <ComponentRef name="buttonGroupSkin"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="Motif"/>
+                        <Property name="text" type="java.lang.String" value="Jgoodies"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioMotifActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioJgoodiesActionPerformed"/>
                       </Events>
                     </MenuItem>
                   </SubComponents>
                 </Menu>
               </SubComponents>
             </Menu>
-            <MenuItem class="javax.swing.JMenuItem" name="mnuISwitchUser">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/com/hueic/CerGS/images/switch.jpg"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Switch User"/>
-              </Properties>
-            </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuIExit">

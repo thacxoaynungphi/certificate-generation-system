@@ -127,19 +127,13 @@ public class frmMainStudentEmp extends javax.swing.JFrame {
         mnuILoginSystem = new javax.swing.JMenuItem();
         mnuILogoutSystem = new javax.swing.JMenuItem();
         mnuIViewInformation = new javax.swing.JMenuItem();
+        mnuISwitchUser = new javax.swing.JMenuItem();
         mnuOptions = new javax.swing.JMenu();
-        mnuLang = new javax.swing.JMenu();
-        radioVietnamese = new javax.swing.JRadioButtonMenuItem();
-        radioEnglish = new javax.swing.JRadioButtonMenuItem();
-        radioJapan = new javax.swing.JRadioButtonMenuItem();
-        radioChina = new javax.swing.JRadioButtonMenuItem();
-        radioPhap = new javax.swing.JRadioButtonMenuItem();
         mnuSkin = new javax.swing.JMenu();
         radioWindows = new javax.swing.JRadioButtonMenuItem();
         radioMetal = new javax.swing.JRadioButtonMenuItem();
         radioNimbus = new javax.swing.JRadioButtonMenuItem();
-        radioMotif = new javax.swing.JRadioButtonMenuItem();
-        mnuISwitchUser = new javax.swing.JMenuItem();
+        radioJgoodies = new javax.swing.JRadioButtonMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         mnuIExit = new javax.swing.JMenuItem();
         mnuHelp = new javax.swing.JMenu();
@@ -403,36 +397,15 @@ public class frmMainStudentEmp extends javax.swing.JFrame {
         mnuIViewInformation.setText("View Information");
         mnuSystem.add(mnuIViewInformation);
 
+        mnuISwitchUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
+        mnuISwitchUser.setText("Switch User");
+        mnuSystem.add(mnuISwitchUser);
+
         mnuOptions.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/gear.png"))); // NOI18N
-
-        mnuLang.setText("Language");
-
-        buttonGroupLanguage.add(radioVietnamese);
-        radioVietnamese.setSelected(true);
-        radioVietnamese.setText("Vietnamese");
-        mnuLang.add(radioVietnamese);
-
-        buttonGroupLanguage.add(radioEnglish);
-        radioEnglish.setText("English");
-        mnuLang.add(radioEnglish);
-
-        buttonGroupLanguage.add(radioJapan);
-        radioJapan.setText("Japan");
-        mnuLang.add(radioJapan);
-
-        buttonGroupLanguage.add(radioChina);
-        radioChina.setText("China");
-        mnuLang.add(radioChina);
-
-        buttonGroupLanguage.add(radioPhap);
-        radioPhap.setText("Phap");
-        mnuLang.add(radioPhap);
-
-        mnuOptions.add(mnuLang);
+        mnuOptions.setText("Options");
 
         mnuSkin.setText("Skin");
 
-        buttonGroupSkin.add(radioWindows);
         radioWindows.setSelected(true);
         radioWindows.setText("Windows");
         radioWindows.addActionListener(new java.awt.event.ActionListener() {
@@ -442,7 +415,6 @@ public class frmMainStudentEmp extends javax.swing.JFrame {
         });
         mnuSkin.add(radioWindows);
 
-        buttonGroupSkin.add(radioMetal);
         radioMetal.setText("Metal");
         radioMetal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -451,7 +423,6 @@ public class frmMainStudentEmp extends javax.swing.JFrame {
         });
         mnuSkin.add(radioMetal);
 
-        buttonGroupSkin.add(radioNimbus);
         radioNimbus.setText("Nimbus");
         radioNimbus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -460,22 +431,17 @@ public class frmMainStudentEmp extends javax.swing.JFrame {
         });
         mnuSkin.add(radioNimbus);
 
-        buttonGroupSkin.add(radioMotif);
-        radioMotif.setText("Motif");
-        radioMotif.addActionListener(new java.awt.event.ActionListener() {
+        radioJgoodies.setText("Jgoodies");
+        radioJgoodies.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioMotifActionPerformed(evt);
+                radioJgoodiesActionPerformed(evt);
             }
         });
-        mnuSkin.add(radioMotif);
+        mnuSkin.add(radioJgoodies);
 
         mnuOptions.add(mnuSkin);
 
         mnuSystem.add(mnuOptions);
-
-        mnuISwitchUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
-        mnuISwitchUser.setText("Switch User");
-        mnuSystem.add(mnuISwitchUser);
         mnuSystem.add(jSeparator1);
 
         mnuIExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/exit.png"))); // NOI18N
@@ -529,34 +495,6 @@ public class frmMainStudentEmp extends javax.swing.JFrame {
         about.setVisible(true);
     }//GEN-LAST:event_mnuIAboutActionPerformed
 
-    private void radioWindowsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioWindowsActionPerformed
-        // TODO add your handling code here:
-        if (radioWindows.isSelected()) {
-            guidao.setGUI(guip.PLAF_WINDOWS);
-        }
-    }//GEN-LAST:event_radioWindowsActionPerformed
-
-    private void radioMetalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMetalActionPerformed
-        // TODO add your handling code here:
-        if (radioMetal.isSelected()) {
-            guidao.setGUI(guip.PLAF_METAL);
-        }
-    }//GEN-LAST:event_radioMetalActionPerformed
-
-    private void radioNimbusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNimbusActionPerformed
-        // TODO add your handling code here:
-        if (radioNimbus.isSelected()) {
-            guidao.setGUI(guip.PLAF_NIMBUS);
-        }
-    }//GEN-LAST:event_radioNimbusActionPerformed
-
-    private void radioMotifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMotifActionPerformed
-        // TODO add your handling code here:
-        if (radioMotif.isSelected()) {
-            guidao.setGUI(guip.PLAF_MOTIF);
-        }
-    }//GEN-LAST:event_radioMotifActionPerformed
-
     private void menuIChangePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIChangePassActionPerformed
         // TODO add your handling code here:
         frmChangePass changePass = new frmChangePass();
@@ -577,6 +515,34 @@ public class frmMainStudentEmp extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_mnuIExitActionPerformed
+
+    private void radioWindowsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioWindowsActionPerformed
+        // TODO add your handling code here:
+        if (radioWindows.isSelected()) {
+            guidao.setGUI(guip.PLAF_WINDOWS);
+        }
+}//GEN-LAST:event_radioWindowsActionPerformed
+
+    private void radioMetalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMetalActionPerformed
+        // TODO add your handling code here:
+        if (radioMetal.isSelected()) {
+            guidao.setGUI(guip.PLAF_METAL);
+        }
+}//GEN-LAST:event_radioMetalActionPerformed
+
+    private void radioNimbusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNimbusActionPerformed
+        // TODO add your handling code here:
+        if (radioNimbus.isSelected()) {
+            guidao.setGUI(guip.PLAF_NIMBUS);
+        }
+}//GEN-LAST:event_radioNimbusActionPerformed
+
+    private void radioJgoodiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioJgoodiesActionPerformed
+        // TODO add your handling code here:
+        if (radioJgoodies.isSelected()) {
+            guidao.setGUI(guip.PLAF_JGOODIES);
+        }
+}//GEN-LAST:event_radioJgoodiesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -629,21 +595,15 @@ public class frmMainStudentEmp extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuILogoutSystem;
     private javax.swing.JMenuItem mnuISwitchUser;
     private javax.swing.JMenuItem mnuIViewInformation;
-    private javax.swing.JMenu mnuLang;
     private javax.swing.JMenu mnuOptions;
     private javax.swing.JMenu mnuSkin;
     private javax.swing.JMenu mnuSystem;
     private javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelLogo;
     private javax.swing.JPanel panelRight;
-    private javax.swing.JRadioButtonMenuItem radioChina;
-    private javax.swing.JRadioButtonMenuItem radioEnglish;
-    private javax.swing.JRadioButtonMenuItem radioJapan;
+    private javax.swing.JRadioButtonMenuItem radioJgoodies;
     private javax.swing.JRadioButtonMenuItem radioMetal;
-    private javax.swing.JRadioButtonMenuItem radioMotif;
     private javax.swing.JRadioButtonMenuItem radioNimbus;
-    private javax.swing.JRadioButtonMenuItem radioPhap;
-    private javax.swing.JRadioButtonMenuItem radioVietnamese;
     private javax.swing.JRadioButtonMenuItem radioWindows;
     private com.l2fprod.common.swing.JTaskPaneGroup taskPanelEmployee;
     private com.l2fprod.common.swing.JTaskPaneGroup taskPanelGroupSearch;
