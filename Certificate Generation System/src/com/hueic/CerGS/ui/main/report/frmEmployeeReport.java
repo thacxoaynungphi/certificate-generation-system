@@ -23,16 +23,17 @@ import javax.swing.JPanel;
  */
 public class frmEmployeeReport extends javax.swing.JFrame {
 
-    private final JPanel panel;
+//    private final JPanel panel;
     /** Creates new form frmEmployee */
     public frmEmployeeReport() {
         initComponents();
-        ArrayList<Employee> empList = new EmployeeDAO().readByAll();
-        EmployeeReportManager empReportManager = new EmployeeReportManager(empList);
-        panel = empReportManager.getJPanelViewer();
-        this.add(panel);
-        panel.setVisible(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+//        ArrayList<Employee> empList = new EmployeeDAO().readByAll();
+//        EmployeeReportManager empReportManager = new EmployeeReportManager(empList);
+//        panel = empReportManager.getJPanelViewer();
+//        this.add(panel);
+//        panel.setVisible(true);
+//        setDefaultCloseOperation(EXIT_ON_CLOSE);
       //  javax.swing.JOptionPane.showMessageDialog(this, "Ok");
     }
 

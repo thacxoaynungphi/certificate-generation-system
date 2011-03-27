@@ -28,12 +28,13 @@ public class frmCertificateDevelopedReport extends javax.swing.JFrame {
     /** Creates new form frmCertificateDevelopedReport */
     public frmCertificateDevelopedReport() {
         initComponents();
-        cerDAO = new CertificateDAO();
-        
-        listCertificate = cerDAO.readByAll();
-        cerDevelopManager = new CertificateDevelopedReportManager(listCertificate);
-        this.add(cerDevelopManager.getJPanelViewer());
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+//        cerDAO = new CertificateDAO();
+//
+//        listCertificate = cerDAO.readByAll();
+//        cerDevelopManager = new CertificateDevelopedReportManager(listCertificate);
+//        this.add(cerDevelopManager.getJPanelViewer());
+//        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         
     }
 

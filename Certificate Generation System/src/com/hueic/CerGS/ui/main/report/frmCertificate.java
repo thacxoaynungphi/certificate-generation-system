@@ -48,7 +48,7 @@ public class frmCertificate extends javax.swing.JFrame {
         cerReportManager = new CertificateReportManager(cer.getStudentID(), courseId, cer.getDegreeDay(), markDAO.getGrades(cer.getMark()));
 
         this.add(cerReportManager.getJPanelViewer());
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /** This method is called from within the constructor to

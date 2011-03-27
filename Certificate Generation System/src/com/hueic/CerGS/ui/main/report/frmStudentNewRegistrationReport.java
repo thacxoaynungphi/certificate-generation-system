@@ -20,6 +20,8 @@ public class frmStudentNewRegistrationReport extends javax.swing.JFrame {
     /** Creates new form frmStudentNewRegistrationReport */
     public frmStudentNewRegistrationReport() {
         initComponents();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        
     }
 
     /** This method is called from within the constructor to
