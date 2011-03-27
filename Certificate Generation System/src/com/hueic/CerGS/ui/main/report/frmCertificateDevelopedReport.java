@@ -11,15 +11,30 @@
 
 package com.hueic.CerGS.ui.main.report;
 
+import com.hueic.CerGS.component.report.CertificateDevelopedReportManager;
+import com.hueic.CerGS.dao.CertificateDAO;
+import com.hueic.CerGS.entity.Certificate;
+import java.util.ArrayList;
+
 /**
  *
  * @author Wind
  */
 public class frmCertificateDevelopedReport extends javax.swing.JFrame {
 
+    private ArrayList<Certificate> listCertificate;
+    private CertificateDevelopedReportManager cerDevelopManager;
+    private CertificateDAO cerDAO;
     /** Creates new form frmCertificateDevelopedReport */
     public frmCertificateDevelopedReport() {
         initComponents();
+        cerDAO = new CertificateDAO();
+        
+        listCertificate = cerDAO.readByAll();
+        cerDevelopManager = new CertificateDevelopedReportManager(listCertificate);
+        this.add(cerDevelopManager.getJPanelViewer());
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        
     }
 
     /** This method is called from within the constructor to

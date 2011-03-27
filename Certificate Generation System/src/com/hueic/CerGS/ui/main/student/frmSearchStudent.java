@@ -67,9 +67,6 @@ public class frmSearchStudent extends javax.swing.JFrame {
 
     public void loadCourseId() {
         cbxCourse.removeAllItems();
-//        for (Course course : listCourseId) {
-//            cbxCourse.addItem(course.getId());
-//        }
         for (int i = 0; i < listCourseId.size(); i++) {
             cbxCourse.addItem(listCourseId.get(i).getId());
         }
@@ -78,9 +75,6 @@ public class frmSearchStudent extends javax.swing.JFrame {
 
     public void loadStudentId() {
         cbxStudent.removeAllItems();
-//        for (Register regis : listStudentRegis) {
-//            cbxStudent.addItem(regis.getStudentId());
-//        }
         for (int i = 0; i < listStudentRegis.size(); i++) {
             cbxStudent.addItem(listStudentRegis.get(i).getStudentId());
         }
@@ -449,26 +443,10 @@ public class frmSearchStudent extends javax.swing.JFrame {
 
     private void cbxCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCourseActionPerformed
         // TODO add your handling code here:
-        String courseId = (String) cbxCourse.getSelectedItem();
-        listRes = registerDAO.readByCourseId(courseId);
-        if (!listRes.isEmpty()) {
-            listResTemp.clear();
-            listResTemp.addAll(listRes);
-            loadData(listResTemp);
-        }
     }//GEN-LAST:event_cbxCourseActionPerformed
 
     private void cbxStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxStudentActionPerformed
         // TODO add your handling code here:
-        String studentId = (String) cbxStudent.getSelectedItem();
-        Register res = registerDAO.readByStudentId(studentId);
-
-        if (res != null) {
-            listResTemp.clear();
-            listResTemp.add(res);
-
-            loadData(listResTemp);
-        }
     }//GEN-LAST:event_cbxStudentActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
@@ -498,6 +476,13 @@ public class frmSearchStudent extends javax.swing.JFrame {
 
     private void cbxCourseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxCourseItemStateChanged
         // TODO add your handling code here:
+        String courseId = (String) cbxCourse.getSelectedItem();
+        listRes = registerDAO.readByCourseId(courseId);
+        if (!listRes.isEmpty()) {
+            listResTemp.clear();
+            listResTemp.addAll(listRes);
+            loadData(listResTemp);
+        }
     }//GEN-LAST:event_cbxCourseItemStateChanged
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
@@ -507,6 +492,15 @@ public class frmSearchStudent extends javax.swing.JFrame {
 
     private void cbxStudentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxStudentItemStateChanged
         // TODO add your handling code here:
+        String studentId = (String) cbxStudent.getSelectedItem();
+        Register res = registerDAO.readByStudentId(studentId);
+
+        if (res != null) {
+            listResTemp.clear();
+            listResTemp.add(res);
+
+            loadData(listResTemp);
+        }
     }//GEN-LAST:event_cbxStudentItemStateChanged
 
     /**

@@ -8,8 +8,15 @@
  *
  * Created on Mar 22, 2011, 9:25:46 PM
  */
-
 package com.hueic.CerGS.ui.main.report;
+
+import com.hueic.CerGS.component.report.CertificateReportManager;
+import com.hueic.CerGS.dao.CertificateDAO;
+import com.hueic.CerGS.dao.CourseDAO;
+import com.hueic.CerGS.dao.MarkDAO;
+import com.hueic.CerGS.dao.RegisterDAO;
+import com.hueic.CerGS.entity.Certificate;
+import java.util.Date;
 
 /**
  *
@@ -17,10 +24,31 @@ package com.hueic.CerGS.ui.main.report;
  */
 public class frmCertificate extends javax.swing.JFrame {
 
-    /** Creates new form frmCertificate */
-    public frmCertificate() {
-        initComponents();
+    private int certificateId;
+    private String courseId;
+    
+    private MarkDAO markDAO;
+    private RegisterDAO registerDAO;
+    private CertificateDAO cerDAO;
+    private Certificate cer;
+    
+    private CertificateReportManager cerReportManager;
 
+    /** Creates new form frmCertificate */
+    public frmCertificate(int certificateId) {
+        initComponents();
+        this.certificateId = certificateId;
+        registerDAO = new RegisterDAO();
+        cerDAO = new CertificateDAO();
+        cer = cerDAO.readById(this.certificateId);
+        markDAO = new MarkDAO();
+
+        courseId = registerDAO.readByStudentId(cer.getStudentID()).getCourseId();
+
+        cerReportManager = new CertificateReportManager(cer.getStudentID(), courseId, cer.getDegreeDay(), markDAO.getGrades(cer.getMark()));
+
+        this.add(cerReportManager.getJPanelViewer());
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     /** This method is called from within the constructor to
@@ -49,17 +77,16 @@ public class frmCertificate extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
-                new frmCertificate().setVisible(true);
+                //new frmCertificate().setVisible(true);
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-
 }
