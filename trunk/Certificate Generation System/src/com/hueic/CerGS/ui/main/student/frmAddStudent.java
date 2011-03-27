@@ -39,7 +39,7 @@ public class frmAddStudent extends javax.swing.JFrame {
         java.awt.GridBagConstraints gridBagConstraints;
 
         btnGGender = new javax.swing.ButtonGroup();
-        panel1 = new javax.swing.JPanel();
+        panelContent = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
         sepaAddStu = new javax.swing.JSeparator();
         lblFirstname = new javax.swing.JLabel();
@@ -58,16 +58,16 @@ public class frmAddStudent extends javax.swing.JFrame {
         txtAddress = new javax.swing.JTextField();
         btnBrowse = new javax.swing.JButton();
         txtImage = new javax.swing.JTextField();
-        panel2 = new javax.swing.JPanel();
+        panelButton = new javax.swing.JPanel();
         btnAdd = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblStart1 = new javax.swing.JLabel();
+        lblStart2 = new javax.swing.JLabel();
+        lblStart3 = new javax.swing.JLabel();
         lblStudentID = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        lblStart4 = new javax.swing.JLabel();
         DateChBirthday = new com.toedter.calendar.JDateChooser();
         lblPhone = new javax.swing.JLabel();
         txtPhone = new javax.swing.JTextField();
@@ -78,9 +78,9 @@ public class frmAddStudent extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        panel1.setBackground(new java.awt.Color(255, 255, 255));
-        panel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "Add Student", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
-        panel1.setLayout(new java.awt.GridBagLayout());
+        panelContent.setBackground(new java.awt.Color(255, 255, 255));
+        panelContent.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "Add Student", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        panelContent.setLayout(new java.awt.GridBagLayout());
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 13));
         lblTitle.setForeground(new java.awt.Color(102, 0, 102));
@@ -89,7 +89,7 @@ public class frmAddStudent extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
-        panel1.add(lblTitle, gridBagConstraints);
+        panelContent.add(lblTitle, gridBagConstraints);
 
         sepaAddStu.setPreferredSize(new java.awt.Dimension(320, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -98,7 +98,7 @@ public class frmAddStudent extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
-        panel1.add(sepaAddStu, gridBagConstraints);
+        panelContent.add(sepaAddStu, gridBagConstraints);
 
         lblFirstname.setText("Firstname:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -106,7 +106,7 @@ public class frmAddStudent extends javax.swing.JFrame {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(lblFirstname, gridBagConstraints);
+        panelContent.add(lblFirstname, gridBagConstraints);
 
         lblLastname.setText("Lastname:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -114,7 +114,7 @@ public class frmAddStudent extends javax.swing.JFrame {
         gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(lblLastname, gridBagConstraints);
+        panelContent.add(lblLastname, gridBagConstraints);
 
         lblGender.setText("Gender:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -122,7 +122,7 @@ public class frmAddStudent extends javax.swing.JFrame {
         gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(lblGender, gridBagConstraints);
+        panelContent.add(lblGender, gridBagConstraints);
 
         lblBirthday.setText("Birthday:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -130,7 +130,7 @@ public class frmAddStudent extends javax.swing.JFrame {
         gridBagConstraints.gridy = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(lblBirthday, gridBagConstraints);
+        panelContent.add(lblBirthday, gridBagConstraints);
 
         lblEmail.setText("Email:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -138,7 +138,7 @@ public class frmAddStudent extends javax.swing.JFrame {
         gridBagConstraints.gridy = 7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(lblEmail, gridBagConstraints);
+        panelContent.add(lblEmail, gridBagConstraints);
 
         lblAddress.setText("Address:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -146,7 +146,7 @@ public class frmAddStudent extends javax.swing.JFrame {
         gridBagConstraints.gridy = 9;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(lblAddress, gridBagConstraints);
+        panelContent.add(lblAddress, gridBagConstraints);
 
         lblImage1.setText("Image:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -154,7 +154,7 @@ public class frmAddStudent extends javax.swing.JFrame {
         gridBagConstraints.gridy = 11;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(lblImage1, gridBagConstraints);
+        panelContent.add(lblImage1, gridBagConstraints);
 
         lblImage2.setPreferredSize(new java.awt.Dimension(80, 80));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -162,7 +162,7 @@ public class frmAddStudent extends javax.swing.JFrame {
         gridBagConstraints.gridy = 12;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 10, 5);
-        panel1.add(lblImage2, gridBagConstraints);
+        panelContent.add(lblImage2, gridBagConstraints);
 
         txtFirstname.setPreferredSize(new java.awt.Dimension(200, 23));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -171,7 +171,7 @@ public class frmAddStudent extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(txtFirstname, gridBagConstraints);
+        panelContent.add(txtFirstname, gridBagConstraints);
 
         txtLastname.setPreferredSize(new java.awt.Dimension(200, 23));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -180,7 +180,7 @@ public class frmAddStudent extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(txtLastname, gridBagConstraints);
+        panelContent.add(txtLastname, gridBagConstraints);
 
         radioMale.setBackground(new java.awt.Color(255, 255, 255));
         radioMale.setText("Male");
@@ -189,7 +189,7 @@ public class frmAddStudent extends javax.swing.JFrame {
         gridBagConstraints.gridy = 5;
         gridBagConstraints.ipadx = 12;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
-        panel1.add(radioMale, gridBagConstraints);
+        panelContent.add(radioMale, gridBagConstraints);
 
         radioFemale.setBackground(new java.awt.Color(255, 255, 255));
         radioFemale.setText("Female");
@@ -197,7 +197,7 @@ public class frmAddStudent extends javax.swing.JFrame {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 2;
-        panel1.add(radioFemale, gridBagConstraints);
+        panelContent.add(radioFemale, gridBagConstraints);
 
         txtEmail.setPreferredSize(new java.awt.Dimension(200, 23));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -206,7 +206,7 @@ public class frmAddStudent extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(txtEmail, gridBagConstraints);
+        panelContent.add(txtEmail, gridBagConstraints);
 
         txtAddress.setPreferredSize(new java.awt.Dimension(200, 23));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -215,7 +215,7 @@ public class frmAddStudent extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(txtAddress, gridBagConstraints);
+        panelContent.add(txtAddress, gridBagConstraints);
 
         btnBrowse.setText("Browse");
         btnBrowse.setMargin(new java.awt.Insets(2, 10, 2, 10));
@@ -228,7 +228,7 @@ public class frmAddStudent extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 5);
-        panel1.add(btnBrowse, gridBagConstraints);
+        panelContent.add(btnBrowse, gridBagConstraints);
 
         txtImage.setPreferredSize(new java.awt.Dimension(120, 23));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -237,10 +237,10 @@ public class frmAddStudent extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 3, 5, 3);
-        panel1.add(txtImage, gridBagConstraints);
+        panelContent.add(txtImage, gridBagConstraints);
 
-        panel2.setBackground(new java.awt.Color(255, 255, 255));
-        panel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
+        panelButton.setBackground(new java.awt.Color(255, 255, 255));
+        panelButton.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
 
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
         btnAdd.setText("Add");
@@ -251,7 +251,7 @@ public class frmAddStudent extends javax.swing.JFrame {
                 btnAddActionPerformed(evt);
             }
         });
-        panel2.add(btnAdd);
+        panelButton.add(btnAdd);
 
         btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
         btnReset.setText("Reset");
@@ -262,7 +262,7 @@ public class frmAddStudent extends javax.swing.JFrame {
                 btnResetActionPerformed(evt);
             }
         });
-        panel2.add(btnReset);
+        panelButton.add(btnReset);
 
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
         btnCancel.setText("Cancel");
@@ -273,37 +273,37 @@ public class frmAddStudent extends javax.swing.JFrame {
                 btnCancelActionPerformed(evt);
             }
         });
-        panel2.add(btnCancel);
+        panelButton.add(btnCancel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 13;
         gridBagConstraints.gridwidth = 5;
-        panel1.add(panel2, gridBagConstraints);
+        panelContent.add(panelButton, gridBagConstraints);
 
-        jLabel17.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel17.setText("(*)");
+        lblStart1.setForeground(new java.awt.Color(255, 0, 0));
+        lblStart1.setText("(*)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 7;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(jLabel17, gridBagConstraints);
+        panelContent.add(lblStart1, gridBagConstraints);
 
-        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel2.setText("(*)");
+        lblStart2.setForeground(new java.awt.Color(255, 0, 0));
+        lblStart2.setText("(*)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(jLabel2, gridBagConstraints);
+        panelContent.add(lblStart2, gridBagConstraints);
 
-        jLabel3.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel3.setText("(*)");
+        lblStart3.setForeground(new java.awt.Color(255, 0, 0));
+        lblStart3.setText("(*)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(jLabel3, gridBagConstraints);
+        panelContent.add(lblStart3, gridBagConstraints);
 
         lblStudentID.setText("Student ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -311,7 +311,7 @@ public class frmAddStudent extends javax.swing.JFrame {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(lblStudentID, gridBagConstraints);
+        panelContent.add(lblStudentID, gridBagConstraints);
 
         txtID.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -320,15 +320,15 @@ public class frmAddStudent extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(txtID, gridBagConstraints);
+        panelContent.add(txtID, gridBagConstraints);
 
-        jLabel5.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel5.setText("(*)");
+        lblStart4.setForeground(new java.awt.Color(255, 0, 0));
+        lblStart4.setText("(*)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(jLabel5, gridBagConstraints);
+        panelContent.add(lblStart4, gridBagConstraints);
 
         DateChBirthday.setDateFormatString("MM\\dd\\yyyy");
         DateChBirthday.setPreferredSize(new java.awt.Dimension(200, 20));
@@ -338,7 +338,7 @@ public class frmAddStudent extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(DateChBirthday, gridBagConstraints);
+        panelContent.add(DateChBirthday, gridBagConstraints);
 
         lblPhone.setText("Phone: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -346,14 +346,14 @@ public class frmAddStudent extends javax.swing.JFrame {
         gridBagConstraints.gridy = 8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(lblPhone, gridBagConstraints);
+        panelContent.add(lblPhone, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(txtPhone, gridBagConstraints);
+        panelContent.add(txtPhone, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -361,7 +361,7 @@ public class frmAddStudent extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 95;
         gridBagConstraints.ipady = 99;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(panel1, gridBagConstraints);
+        getContentPane().add(panelContent, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -431,10 +431,6 @@ public class frmAddStudent extends javax.swing.JFrame {
     private javax.swing.JButton btnCancel;
     private javax.swing.ButtonGroup btnGGender;
     private javax.swing.JButton btnReset;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblBirthday;
     private javax.swing.JLabel lblEmail;
@@ -444,10 +440,14 @@ public class frmAddStudent extends javax.swing.JFrame {
     private javax.swing.JLabel lblImage2;
     private javax.swing.JLabel lblLastname;
     private javax.swing.JLabel lblPhone;
+    private javax.swing.JLabel lblStart1;
+    private javax.swing.JLabel lblStart2;
+    private javax.swing.JLabel lblStart3;
+    private javax.swing.JLabel lblStart4;
     private javax.swing.JLabel lblStudentID;
     private javax.swing.JLabel lblTitle;
-    private javax.swing.JPanel panel1;
-    private javax.swing.JPanel panel2;
+    private javax.swing.JPanel panelButton;
+    private javax.swing.JPanel panelContent;
     private javax.swing.JRadioButton radioFemale;
     private javax.swing.JRadioButton radioMale;
     private javax.swing.JSeparator sepaAddStu;

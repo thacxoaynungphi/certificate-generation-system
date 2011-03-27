@@ -160,9 +160,9 @@ public class frmStudent extends javax.swing.JFrame {
         mnuISearch = new javax.swing.JMenuItem();
         mnuIDetails = new javax.swing.JMenuItem();
         panelBanner = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        lblLogo = new javax.swing.JLabel();
         panelMenuRight = new javax.swing.JPanel();
-        jTaskPaneMenuRight = new com.l2fprod.common.swing.JTaskPane();
+        taskPanelMenu = new com.l2fprod.common.swing.JTaskPane();
         jTaskPaneGroupManagementStudent = new com.l2fprod.common.swing.JTaskPaneGroup();
         linkButtonAddStudent = new com.l2fprod.common.swing.JLinkButton();
         linkButtonEditStudent = new com.l2fprod.common.swing.JLinkButton();
@@ -227,12 +227,12 @@ public class frmStudent extends javax.swing.JFrame {
 
         panelBanner.setLayout(new java.awt.GridBagLayout());
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/BannerStudent.png"))); // NOI18N
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/BannerStudent.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        panelBanner.add(jLabel2, gridBagConstraints);
+        panelBanner.add(lblLogo, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -246,8 +246,8 @@ public class frmStudent extends javax.swing.JFrame {
         panelMenuRight.setPreferredSize(new java.awt.Dimension(230, 500));
         panelMenuRight.setLayout(new java.awt.GridBagLayout());
 
-        jTaskPaneMenuRight.setMinimumSize(new java.awt.Dimension(210, 500));
-        jTaskPaneMenuRight.setPreferredSize(new java.awt.Dimension(210, 500));
+        taskPanelMenu.setMinimumSize(new java.awt.Dimension(210, 500));
+        taskPanelMenu.setPreferredSize(new java.awt.Dimension(210, 500));
 
         jTaskPaneGroupManagementStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/user1.png"))); // NOI18N
         jTaskPaneGroupManagementStudent.setTitle("Management Student");
@@ -272,7 +272,7 @@ public class frmStudent extends javax.swing.JFrame {
         jLinkButton1.setText("Search Student");
         jTaskPaneGroupManagementStudent.getContentPane().add(jLinkButton1);
 
-        jTaskPaneMenuRight.add(jTaskPaneGroupManagementStudent);
+        taskPanelMenu.add(jTaskPaneGroupManagementStudent);
 
         jTaskPaneGroupReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
         jTaskPaneGroupReport.setTitle("Report");
@@ -294,7 +294,7 @@ public class frmStudent extends javax.swing.JFrame {
         jLinkButton3.setText("New Registration Report");
         jTaskPaneGroupReport.getContentPane().add(jLinkButton3);
 
-        jTaskPaneMenuRight.add(jTaskPaneGroupReport);
+        taskPanelMenu.add(jTaskPaneGroupReport);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -302,7 +302,7 @@ public class frmStudent extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-        panelMenuRight.add(jTaskPaneMenuRight, gridBagConstraints);
+        panelMenuRight.add(taskPanelMenu, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -741,15 +741,14 @@ public class frmStudent extends javax.swing.JFrame {
     private javax.swing.JButton btnImport;
     private javax.swing.JButton btnSave;
     private javax.swing.JTextField filterText;
-    private javax.swing.JLabel jLabel2;
     private com.l2fprod.common.swing.JLinkButton jLinkButton1;
     private com.l2fprod.common.swing.JLinkButton jLinkButton2;
     private com.l2fprod.common.swing.JLinkButton jLinkButton3;
     private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroupManagementStudent;
     private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroupReport;
-    private com.l2fprod.common.swing.JTaskPane jTaskPaneMenuRight;
     private javax.swing.JLabel lblCount;
     private javax.swing.JLabel lblHienthi1;
+    private javax.swing.JLabel lblLogo;
     private com.l2fprod.common.swing.JLinkButton linkBtnFeesReport;
     private com.l2fprod.common.swing.JLinkButton linkBtnMarkReport;
     private com.l2fprod.common.swing.JLinkButton linkButtonAddStudent;
@@ -768,5 +767,6 @@ public class frmStudent extends javax.swing.JFrame {
     private javax.swing.JPopupMenu popupMenuTable;
     private javax.swing.JScrollPane srcPanelContent;
     private javax.swing.JTable tableContent;
+    private com.l2fprod.common.swing.JTaskPane taskPanelMenu;
     // End of variables declaration//GEN-END:variables
 }

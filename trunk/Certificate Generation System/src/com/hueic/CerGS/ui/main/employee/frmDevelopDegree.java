@@ -32,16 +32,16 @@ public class frmDevelopDegree extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        panel1 = new javax.swing.JPanel();
+        panelLogo = new javax.swing.JPanel();
         lblBanner = new javax.swing.JLabel();
-        panel2 = new javax.swing.JPanel();
+        panelContent = new javax.swing.JPanel();
         lblCourseID = new javax.swing.JLabel();
         lblStudentID = new javax.swing.JLabel();
         cbxCourseID = new javax.swing.JComboBox();
         cbxStudentID = new javax.swing.JComboBox();
         srcPanelViewMark = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
-        panel3 = new javax.swing.JPanel();
+        panelButton = new javax.swing.JPanel();
         btnCreate = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         lblTitleAverageMark = new javax.swing.JLabel();
@@ -55,14 +55,14 @@ public class frmDevelopDegree extends javax.swing.JFrame {
 
         lblBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/DevelopDegree.png"))); // NOI18N
 
-        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
-        panel1.setLayout(panel1Layout);
-        panel1Layout.setHorizontalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelLogoLayout = new javax.swing.GroupLayout(panelLogo);
+        panelLogo.setLayout(panelLogoLayout);
+        panelLogoLayout.setHorizontalGroup(
+            panelLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblBanner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        panel1Layout.setVerticalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelLogoLayout.setVerticalGroup(
+            panelLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblBanner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -70,18 +70,18 @@ public class frmDevelopDegree extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(panel1, gridBagConstraints);
+        getContentPane().add(panelLogo, gridBagConstraints);
 
-        panel2.setBackground(new java.awt.Color(255, 255, 255));
-        panel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Develop Degree", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
-        panel2.setPreferredSize(new java.awt.Dimension(832, 310));
-        panel2.setLayout(new java.awt.GridBagLayout());
+        panelContent.setBackground(new java.awt.Color(255, 255, 255));
+        panelContent.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Develop Degree", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        panelContent.setPreferredSize(new java.awt.Dimension(832, 310));
+        panelContent.setLayout(new java.awt.GridBagLayout());
 
         lblCourseID.setText("Choose Course ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel2.add(lblCourseID, gridBagConstraints);
+        panelContent.add(lblCourseID, gridBagConstraints);
 
         lblStudentID.setText("Choose Student ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -89,7 +89,7 @@ public class frmDevelopDegree extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel2.add(lblStudentID, gridBagConstraints);
+        panelContent.add(lblStudentID, gridBagConstraints);
 
         cbxCourseID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxCourseID.setPreferredSize(new java.awt.Dimension(200, 20));
@@ -97,7 +97,7 @@ public class frmDevelopDegree extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel2.add(cbxCourseID, gridBagConstraints);
+        panelContent.add(cbxCourseID, gridBagConstraints);
 
         cbxStudentID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxStudentID.setPreferredSize(new java.awt.Dimension(200, 20));
@@ -107,7 +107,7 @@ public class frmDevelopDegree extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel2.add(cbxStudentID, gridBagConstraints);
+        panelContent.add(cbxStudentID, gridBagConstraints);
 
         srcPanelViewMark.setPreferredSize(new java.awt.Dimension(800, 150));
 
@@ -129,18 +129,18 @@ public class frmDevelopDegree extends javax.swing.JFrame {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel2.add(srcPanelViewMark, gridBagConstraints);
+        panelContent.add(srcPanelViewMark, gridBagConstraints);
 
-        panel3.setBackground(new java.awt.Color(255, 255, 255));
-        panel3.setPreferredSize(new java.awt.Dimension(160, 30));
+        panelButton.setBackground(new java.awt.Color(255, 255, 255));
+        panelButton.setPreferredSize(new java.awt.Dimension(160, 30));
 
         btnCreate.setText("Create");
         btnCreate.setPreferredSize(new java.awt.Dimension(75, 23));
-        panel3.add(btnCreate);
+        panelButton.add(btnCreate);
 
         btnCancel.setText("Cancel");
         btnCancel.setPreferredSize(new java.awt.Dimension(75, 23));
-        panel3.add(btnCancel);
+        panelButton.add(btnCancel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -148,7 +148,7 @@ public class frmDevelopDegree extends javax.swing.JFrame {
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
-        panel2.add(panel3, gridBagConstraints);
+        panelContent.add(panelButton, gridBagConstraints);
 
         lblTitleAverageMark.setText("Average Mark:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -156,7 +156,7 @@ public class frmDevelopDegree extends javax.swing.JFrame {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel2.add(lblTitleAverageMark, gridBagConstraints);
+        panelContent.add(lblTitleAverageMark, gridBagConstraints);
 
         lblTitleGrade.setText("Grade:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -164,20 +164,20 @@ public class frmDevelopDegree extends javax.swing.JFrame {
         gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 5);
-        panel2.add(lblTitleGrade, gridBagConstraints);
+        panelContent.add(lblTitleGrade, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
-        panel2.add(lblTotalMark, gridBagConstraints);
+        panelContent.add(lblTotalMark, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
-        panel2.add(lblGrade, gridBagConstraints);
+        panelContent.add(lblGrade, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        getContentPane().add(panel2, gridBagConstraints);
+        getContentPane().add(panelContent, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -205,9 +205,9 @@ public class frmDevelopDegree extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitleAverageMark;
     private javax.swing.JLabel lblTitleGrade;
     private javax.swing.JLabel lblTotalMark;
-    private javax.swing.JPanel panel1;
-    private javax.swing.JPanel panel2;
-    private javax.swing.JPanel panel3;
+    private javax.swing.JPanel panelButton;
+    private javax.swing.JPanel panelContent;
+    private javax.swing.JPanel panelLogo;
     private javax.swing.JScrollPane srcPanelViewMark;
     private javax.swing.JTable tableContent;
     // End of variables declaration//GEN-END:variables

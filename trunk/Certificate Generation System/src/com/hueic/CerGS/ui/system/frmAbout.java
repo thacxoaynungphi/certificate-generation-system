@@ -35,13 +35,13 @@ public class frmAbout extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
+        panelContent = new javax.swing.JPanel();
+        lblInfoSoft = new javax.swing.JLabel();
+        lblInfoGroup = new javax.swing.JLabel();
+        seqarator1 = new javax.swing.JSeparator();
         btnClose = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        panelBanner = new javax.swing.JPanel();
+        lblLogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("About - Certificate Generation System");
@@ -49,14 +49,14 @@ public class frmAbout extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setMinimumSize(new java.awt.Dimension(450, 320));
-        jPanel1.setPreferredSize(new java.awt.Dimension(440, 120));
-        jPanel1.setLayout(new java.awt.GridBagLayout());
+        panelContent.setBackground(new java.awt.Color(255, 255, 255));
+        panelContent.setMinimumSize(new java.awt.Dimension(450, 320));
+        panelContent.setPreferredSize(new java.awt.Dimension(440, 120));
+        panelContent.setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setText("<html> <body> Certificate Generation System<br/>Version 1.0<br/>© 2011 ConnectPlus.<br/>All rights reserved.<br/> </body> </html>");
-        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jLabel1.setPreferredSize(new java.awt.Dimension(150, 56));
+        lblInfoSoft.setText("<html> <body> Certificate Generation System<br/>Version 1.0<br/>© 2011 ConnectPlus.<br/>All rights reserved.<br/> </body> </html>");
+        lblInfoSoft.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        lblInfoSoft.setPreferredSize(new java.awt.Dimension(150, 56));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -64,22 +64,22 @@ public class frmAbout extends javax.swing.JFrame {
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 20, 5, 5);
-        jPanel1.add(jLabel1, gridBagConstraints);
+        panelContent.add(lblInfoSoft, gridBagConstraints);
 
-        jLabel3.setText("<html> <body> Develop by: Connec tPlus <br/> Contact: example@gmail.com </body> </html>");
-        jLabel3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        lblInfoGroup.setText("<html> <body> Develop by: Connec tPlus <br/> Contact: example@gmail.com </body> </html>");
+        lblInfoGroup.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 55, 5, 5);
-        jPanel1.add(jLabel3, gridBagConstraints);
+        panelContent.add(lblInfoGroup, gridBagConstraints);
 
-        jSeparator1.setPreferredSize(new java.awt.Dimension(440, 10));
+        seqarator1.setPreferredSize(new java.awt.Dimension(440, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
-        jPanel1.add(jSeparator1, gridBagConstraints);
+        panelContent.add(seqarator1, gridBagConstraints);
 
         btnClose.setText("Close");
         btnClose.setPreferredSize(new java.awt.Dimension(75, 23));
@@ -94,36 +94,36 @@ public class frmAbout extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
-        jPanel1.add(btnClose, gridBagConstraints);
+        panelContent.add(btnClose, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(jPanel1, gridBagConstraints);
+        getContentPane().add(panelContent, gridBagConstraints);
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setMinimumSize(new java.awt.Dimension(440, 122));
-        jPanel2.setPreferredSize(new java.awt.Dimension(440, 122));
+        panelBanner.setBackground(new java.awt.Color(255, 255, 255));
+        panelBanner.setMinimumSize(new java.awt.Dimension(440, 122));
+        panelBanner.setPreferredSize(new java.awt.Dimension(440, 122));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/AboutTam.png"))); // NOI18N
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/AboutTam.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+        javax.swing.GroupLayout panelBannerLayout = new javax.swing.GroupLayout(panelBanner);
+        panelBanner.setLayout(panelBannerLayout);
+        panelBannerLayout.setHorizontalGroup(
+            panelBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+        panelBannerLayout.setVerticalGroup(
+            panelBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(jPanel2, gridBagConstraints);
+        getContentPane().add(panelBanner, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -146,11 +146,11 @@ public class frmAbout extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblInfoGroup;
+    private javax.swing.JLabel lblInfoSoft;
+    private javax.swing.JLabel lblLogo;
+    private javax.swing.JPanel panelBanner;
+    private javax.swing.JPanel panelContent;
+    private javax.swing.JSeparator seqarator1;
     // End of variables declaration//GEN-END:variables
 }

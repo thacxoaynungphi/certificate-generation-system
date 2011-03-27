@@ -93,8 +93,8 @@ public class frmPermission extends javax.swing.JFrame {
         JViewport viewPort = new JViewport();
         viewPort.setView(tableContent);
         viewPort.setPreferredSize(tableContent.getMaximumSize());
-        srcPanelAccount.setRowHeader(viewPort);
-        srcPanelAccount.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
+        srcPanelPermission.setRowHeader(viewPort);
+        srcPanelPermission.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
     }
 
     public void loadDetails(Permission per) {
@@ -113,19 +113,19 @@ public class frmPermission extends javax.swing.JFrame {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jToggleButton1 = new javax.swing.JToggleButton();
-        panelLeft = new javax.swing.JPanel();
+        panelLogo = new javax.swing.JPanel();
         lblLogo = new javax.swing.JLabel();
-        panelRight = new javax.swing.JPanel();
-        srcPanelAccount = new javax.swing.JScrollPane();
+        panelLeft = new javax.swing.JPanel();
+        srcPanelPermission = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
         filterText = new javax.swing.JTextField();
         btnFilter = new javax.swing.JButton();
-        panel1 = new javax.swing.JPanel();
+        panelRight = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
         sepaAccount = new javax.swing.JSeparator();
         lblUsername = new javax.swing.JLabel();
         lblPassword = new javax.swing.JLabel();
-        panel2 = new javax.swing.JPanel();
+        panelButton = new javax.swing.JPanel();
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
@@ -145,9 +145,9 @@ public class frmPermission extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        panelLeft.setBackground(new java.awt.Color(255, 255, 255));
-        panelLeft.setPreferredSize(new java.awt.Dimension(832, 100));
-        panelLeft.setLayout(new java.awt.GridBagLayout());
+        panelLogo.setBackground(new java.awt.Color(255, 255, 255));
+        panelLogo.setPreferredSize(new java.awt.Dimension(832, 100));
+        panelLogo.setLayout(new java.awt.GridBagLayout());
 
         lblLogo.setBackground(new java.awt.Color(255, 255, 255));
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/BannerPermission.png"))); // NOI18N
@@ -156,22 +156,22 @@ public class frmPermission extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        panelLeft.add(lblLogo, gridBagConstraints);
+        panelLogo.add(lblLogo, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(panelLeft, gridBagConstraints);
+        getContentPane().add(panelLogo, gridBagConstraints);
 
-        panelRight.setBackground(new java.awt.Color(255, 255, 255));
-        panelRight.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Permission", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
-        panelRight.setMinimumSize(new java.awt.Dimension(450, 320));
-        panelRight.setPreferredSize(new java.awt.Dimension(450, 320));
-        panelRight.setLayout(new java.awt.GridBagLayout());
+        panelLeft.setBackground(new java.awt.Color(255, 255, 255));
+        panelLeft.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Permission", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        panelLeft.setMinimumSize(new java.awt.Dimension(450, 320));
+        panelLeft.setPreferredSize(new java.awt.Dimension(450, 320));
+        panelLeft.setLayout(new java.awt.GridBagLayout());
 
-        srcPanelAccount.setPreferredSize(new java.awt.Dimension(350, 200));
+        srcPanelPermission.setPreferredSize(new java.awt.Dimension(350, 200));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -193,12 +193,13 @@ public class frmPermission extends javax.swing.JFrame {
             }
         });
         tableContent.setPreferredSize(new java.awt.Dimension(350, 200));
+        tableContent.setPreferredSize(new java.awt.Dimension(350, 200));
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableContentMouseClicked(evt);
             }
         });
-        srcPanelAccount.setViewportView(tableContent);
+        srcPanelPermission.setViewportView(tableContent);
         tableContent.getColumnModel().getColumn(2).setResizable(false);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -210,14 +211,14 @@ public class frmPermission extends javax.swing.JFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(srcPanelAccount, gridBagConstraints);
+        panelLeft.add(srcPanelPermission, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.ipadx = 132;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 170, 5, 5);
-        panelRight.add(filterText, gridBagConstraints);
+        panelLeft.add(filterText, gridBagConstraints);
 
         btnFilter.setText("Filter");
         btnFilter.setMaximumSize(new java.awt.Dimension(57, 20));
@@ -234,19 +235,19 @@ public class frmPermission extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 18;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(btnFilter, gridBagConstraints);
+        panelLeft.add(btnFilter, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(panelRight, gridBagConstraints);
+        getContentPane().add(panelLeft, gridBagConstraints);
 
-        panel1.setBackground(new java.awt.Color(255, 255, 255));
-        panel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Management Permission", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
-        panel1.setMinimumSize(new java.awt.Dimension(380, 320));
-        panel1.setPreferredSize(new java.awt.Dimension(380, 320));
-        panel1.setLayout(new java.awt.GridBagLayout());
+        panelRight.setBackground(new java.awt.Color(255, 255, 255));
+        panelRight.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Management Permission", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        panelRight.setMinimumSize(new java.awt.Dimension(380, 320));
+        panelRight.setPreferredSize(new java.awt.Dimension(380, 320));
+        panelRight.setLayout(new java.awt.GridBagLayout());
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 13));
         lblTitle.setForeground(new java.awt.Color(102, 0, 102));
@@ -257,7 +258,7 @@ public class frmPermission extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 0);
-        panel1.add(lblTitle, gridBagConstraints);
+        panelRight.add(lblTitle, gridBagConstraints);
 
         sepaAccount.setPreferredSize(new java.awt.Dimension(300, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -265,7 +266,7 @@ public class frmPermission extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 10, 0);
-        panel1.add(sepaAccount, gridBagConstraints);
+        panelRight.add(sepaAccount, gridBagConstraints);
 
         lblUsername.setText("ID");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -273,7 +274,7 @@ public class frmPermission extends javax.swing.JFrame {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
-        panel1.add(lblUsername, gridBagConstraints);
+        panelRight.add(lblUsername, gridBagConstraints);
 
         lblPassword.setText("Name:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -281,10 +282,10 @@ public class frmPermission extends javax.swing.JFrame {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
-        panel1.add(lblPassword, gridBagConstraints);
+        panelRight.add(lblPassword, gridBagConstraints);
 
-        panel2.setBackground(new java.awt.Color(255, 255, 255));
-        panel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
+        panelButton.setBackground(new java.awt.Color(255, 255, 255));
+        panelButton.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
 
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
         btnAdd.setText("Add");
@@ -295,7 +296,7 @@ public class frmPermission extends javax.swing.JFrame {
                 btnAddActionPerformed(evt);
             }
         });
-        panel2.add(btnAdd);
+        panelButton.add(btnAdd);
 
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
         btnUpdate.setText("Update");
@@ -306,7 +307,7 @@ public class frmPermission extends javax.swing.JFrame {
                 btnUpdateActionPerformed(evt);
             }
         });
-        panel2.add(btnUpdate);
+        panelButton.add(btnUpdate);
 
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
         btnDelete.setText("Delete");
@@ -316,7 +317,7 @@ public class frmPermission extends javax.swing.JFrame {
                 btnDeleteActionPerformed(evt);
             }
         });
-        panel2.add(btnDelete);
+        panelButton.add(btnDelete);
 
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
         btnCancel.setText("Cancel");
@@ -328,7 +329,7 @@ public class frmPermission extends javax.swing.JFrame {
                 btnCancelActionPerformed(evt);
             }
         });
-        panel2.add(btnCancel);
+        panelButton.add(btnCancel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -336,7 +337,7 @@ public class frmPermission extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(panel2, gridBagConstraints);
+        panelRight.add(panelButton, gridBagConstraints);
 
         txtId.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -344,28 +345,28 @@ public class frmPermission extends javax.swing.JFrame {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(txtId, gridBagConstraints);
+        panelRight.add(txtId, gridBagConstraints);
 
         lblcheck1.setText("(*)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 10);
-        panel1.add(lblcheck1, gridBagConstraints);
+        panelRight.add(lblcheck1, gridBagConstraints);
 
         lblcheck2.setText("(*)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 10);
-        panel1.add(lblcheck2, gridBagConstraints);
+        panelRight.add(lblcheck2, gridBagConstraints);
 
         lblcheck3.setText("(*)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 10);
-        panel1.add(lblcheck3, gridBagConstraints);
+        panelRight.add(lblcheck3, gridBagConstraints);
 
         txtName.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -373,13 +374,13 @@ public class frmPermission extends javax.swing.JFrame {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(txtName, gridBagConstraints);
+        panelRight.add(txtName, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(panel1, gridBagConstraints);
+        getContentPane().add(panelRight, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -529,12 +530,12 @@ public class frmPermission extends javax.swing.JFrame {
     private javax.swing.JLabel lblcheck1;
     private javax.swing.JLabel lblcheck2;
     private javax.swing.JLabel lblcheck3;
-    private javax.swing.JPanel panel1;
-    private javax.swing.JPanel panel2;
+    private javax.swing.JPanel panelButton;
     private javax.swing.JPanel panelLeft;
+    private javax.swing.JPanel panelLogo;
     private javax.swing.JPanel panelRight;
     private javax.swing.JSeparator sepaAccount;
-    private javax.swing.JScrollPane srcPanelAccount;
+    private javax.swing.JScrollPane srcPanelPermission;
     private javax.swing.JTable tableContent;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtName;
