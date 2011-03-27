@@ -484,7 +484,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
       <SubComponents>
-        <Container class="com.l2fprod.common.swing.JTaskPane" name="jTaskPaneMenu">
+        <Container class="com.l2fprod.common.swing.JTaskPane" name="taskPanelMenu">
           <Properties>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[209, 600]"/>
@@ -499,7 +499,7 @@
             </Constraint>
           </Constraints>
           <SubComponents>
-            <Container class="com.l2fprod.common.swing.JTaskPaneGroup" name="jTaskPaneGroup1">
+            <Container class="com.l2fprod.common.swing.JTaskPaneGroup" name="taskPaneGroupSystem">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/com/hueic/CerGS/images/gear.png"/>
@@ -541,7 +541,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="com.l2fprod.common.swing.JTaskPaneGroup" name="jTaskPaneGroup2">
+            <Container class="com.l2fprod.common.swing.JTaskPaneGroup" name="taskPanelGroupAdministration">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/com/hueic/CerGS/images/users1.png"/>
@@ -661,7 +661,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="com.l2fprod.common.swing.JTaskPaneGroup" name="jTaskPaneGroup3">
+            <Container class="com.l2fprod.common.swing.JTaskPaneGroup" name="taskPanelGroupSearch">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/com/hueic/CerGS/images/view.png"/>

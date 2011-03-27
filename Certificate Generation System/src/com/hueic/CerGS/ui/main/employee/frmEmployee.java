@@ -138,8 +138,8 @@ public class frmEmployee extends javax.swing.JFrame {
         JViewport viewPort = new JViewport();
         viewPort.setView(tableContent);
         viewPort.setPreferredSize(tableContent.getMaximumSize());
-        jScrollPane1.setRowHeader(viewPort);
-        jScrollPane1.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
+        srcPanelEmployee.setRowHeader(viewPort);
+        srcPanelEmployee.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
     }
 
     /** This method is called from within the constructor to
@@ -159,23 +159,23 @@ public class frmEmployee extends javax.swing.JFrame {
         mnuIDetails = new javax.swing.JMenuItem();
         mnuISearch = new javax.swing.JMenuItem();
         panelBanner = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        lblLogo = new javax.swing.JLabel();
         panelLeft = new javax.swing.JPanel();
-        jTaskPane1 = new com.l2fprod.common.swing.JTaskPane();
-        jTaskPaneGroup1 = new com.l2fprod.common.swing.JTaskPaneGroup();
+        taskPanelMenu = new com.l2fprod.common.swing.JTaskPane();
+        taskPanelGroupManagementEmp = new com.l2fprod.common.swing.JTaskPaneGroup();
         linkButtonAddEmp = new com.l2fprod.common.swing.JLinkButton();
         linkButtonEditEmp = new com.l2fprod.common.swing.JLinkButton();
         linkButtonDeleteEmp = new com.l2fprod.common.swing.JLinkButton();
         linkButtonSearchEmp = new com.l2fprod.common.swing.JLinkButton();
-        jTaskPaneGroup2 = new com.l2fprod.common.swing.JTaskPaneGroup();
+        taskPanelGroupReport = new com.l2fprod.common.swing.JTaskPaneGroup();
         panelRight = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        panelDisplay = new javax.swing.JPanel();
         lblHienthi1 = new javax.swing.JLabel();
         lblCount = new javax.swing.JLabel();
         btnFilter = new javax.swing.JButton();
         filterText = new javax.swing.JTextField();
-        jPanel4 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        panelContent = new javax.swing.JPanel();
+        srcPanelEmployee = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
         btnImport = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
@@ -224,12 +224,12 @@ public class frmEmployee extends javax.swing.JFrame {
         panelBanner.setBackground(new java.awt.Color(255, 255, 255));
         panelBanner.setLayout(new java.awt.GridBagLayout());
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/BannerEmployee.png"))); // NOI18N
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/BannerEmployee.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        panelBanner.add(jLabel2, gridBagConstraints);
+        panelBanner.add(lblLogo, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -243,13 +243,13 @@ public class frmEmployee extends javax.swing.JFrame {
         panelLeft.setPreferredSize(new java.awt.Dimension(230, 500));
         panelLeft.setLayout(new java.awt.GridBagLayout());
 
-        jTaskPane1.setBackground(new java.awt.Color(153, 153, 255));
-        jTaskPane1.setMinimumSize(new java.awt.Dimension(210, 500));
-        jTaskPane1.setPreferredSize(new java.awt.Dimension(210, 500));
+        taskPanelMenu.setBackground(new java.awt.Color(153, 153, 255));
+        taskPanelMenu.setMinimumSize(new java.awt.Dimension(210, 500));
+        taskPanelMenu.setPreferredSize(new java.awt.Dimension(210, 500));
 
-        jTaskPaneGroup1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/users1.png"))); // NOI18N
-        jTaskPaneGroup1.setTitle("Managment Employee");
-        jTaskPaneGroup1.setToolTipText("Managment Employee");
+        taskPanelGroupManagementEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/users1.png"))); // NOI18N
+        taskPanelGroupManagementEmp.setTitle("Managment Employee");
+        taskPanelGroupManagementEmp.setToolTipText("Managment Employee");
 
         linkButtonAddEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
         linkButtonAddEmp.setText("Add Employee");
@@ -259,7 +259,7 @@ public class frmEmployee extends javax.swing.JFrame {
                 linkButtonAddEmpActionPerformed(evt);
             }
         });
-        jTaskPaneGroup1.getContentPane().add(linkButtonAddEmp);
+        taskPanelGroupManagementEmp.getContentPane().add(linkButtonAddEmp);
 
         linkButtonEditEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/edit.png"))); // NOI18N
         linkButtonEditEmp.setText("Edit Employee");
@@ -269,40 +269,40 @@ public class frmEmployee extends javax.swing.JFrame {
                 linkButtonEditEmpActionPerformed(evt);
             }
         });
-        jTaskPaneGroup1.getContentPane().add(linkButtonEditEmp);
+        taskPanelGroupManagementEmp.getContentPane().add(linkButtonEditEmp);
 
         linkButtonDeleteEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
         linkButtonDeleteEmp.setText("Delete Employee");
         linkButtonDeleteEmp.setToolTipText("Delete Employee");
-        jTaskPaneGroup1.getContentPane().add(linkButtonDeleteEmp);
+        taskPanelGroupManagementEmp.getContentPane().add(linkButtonDeleteEmp);
 
         linkButtonSearchEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/view.png"))); // NOI18N
         linkButtonSearchEmp.setText("Search Employee");
         linkButtonSearchEmp.setToolTipText("Search Employee");
-        jTaskPaneGroup1.getContentPane().add(linkButtonSearchEmp);
+        taskPanelGroupManagementEmp.getContentPane().add(linkButtonSearchEmp);
 
-        jTaskPaneGroup2.setTitle("Report");
-        jTaskPaneGroup2.setToolTipText("Report");
+        taskPanelGroupReport.setTitle("Report");
+        taskPanelGroupReport.setToolTipText("Report");
 
-        javax.swing.GroupLayout jTaskPane1Layout = new javax.swing.GroupLayout(jTaskPane1);
-        jTaskPane1.setLayout(jTaskPane1Layout);
-        jTaskPane1Layout.setHorizontalGroup(
-            jTaskPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jTaskPane1Layout.createSequentialGroup()
+        javax.swing.GroupLayout taskPanelMenuLayout = new javax.swing.GroupLayout(taskPanelMenu);
+        taskPanelMenu.setLayout(taskPanelMenuLayout);
+        taskPanelMenuLayout.setHorizontalGroup(
+            taskPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, taskPanelMenuLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTaskPaneGroup1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(taskPanelGroupManagementEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(jTaskPane1Layout.createSequentialGroup()
+            .addGroup(taskPanelMenuLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTaskPaneGroup2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(taskPanelGroupReport, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jTaskPane1Layout.setVerticalGroup(
-            jTaskPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jTaskPane1Layout.createSequentialGroup()
-                .addComponent(jTaskPaneGroup1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        taskPanelMenuLayout.setVerticalGroup(
+            taskPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(taskPanelMenuLayout.createSequentialGroup()
+                .addComponent(taskPanelGroupManagementEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTaskPaneGroup2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(taskPanelGroupReport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(285, 285, 285))
         );
 
@@ -311,7 +311,7 @@ public class frmEmployee extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.ipadx = 7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        panelLeft.add(jTaskPane1, gridBagConstraints);
+        panelLeft.add(taskPanelMenu, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -324,10 +324,10 @@ public class frmEmployee extends javax.swing.JFrame {
         panelRight.setPreferredSize(new java.awt.Dimension(870, 500));
         panelRight.setLayout(new java.awt.GridBagLayout());
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setMinimumSize(new java.awt.Dimension(870, 30));
-        jPanel3.setPreferredSize(new java.awt.Dimension(870, 30));
-        jPanel3.setLayout(new java.awt.GridBagLayout());
+        panelDisplay.setBackground(new java.awt.Color(255, 255, 255));
+        panelDisplay.setMinimumSize(new java.awt.Dimension(870, 30));
+        panelDisplay.setPreferredSize(new java.awt.Dimension(870, 30));
+        panelDisplay.setLayout(new java.awt.GridBagLayout());
 
         lblHienthi1.setText("Tổng số nhân viên là : ");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -335,7 +335,7 @@ public class frmEmployee extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 0);
-        jPanel3.add(lblHienthi1, gridBagConstraints);
+        panelDisplay.add(lblHienthi1, gridBagConstraints);
 
         lblCount.setBackground(new java.awt.Color(255, 255, 255));
         lblCount.setPreferredSize(new java.awt.Dimension(20, 14));
@@ -344,7 +344,7 @@ public class frmEmployee extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 6, 5, 0);
-        jPanel3.add(lblCount, gridBagConstraints);
+        panelDisplay.add(lblCount, gridBagConstraints);
 
         btnFilter.setText("Filter");
         btnFilter.setMaximumSize(new java.awt.Dimension(90, 20));
@@ -360,7 +360,7 @@ public class frmEmployee extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 6, 5, 10);
-        jPanel3.add(btnFilter, gridBagConstraints);
+        panelDisplay.add(btnFilter, gridBagConstraints);
 
         filterText.setMinimumSize(new java.awt.Dimension(200, 20));
         filterText.setPreferredSize(new java.awt.Dimension(200, 20));
@@ -369,19 +369,19 @@ public class frmEmployee extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 400, 5, 0);
-        jPanel3.add(filterText, gridBagConstraints);
+        panelDisplay.add(filterText, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 5);
-        panelRight.add(jPanel3, gridBagConstraints);
+        panelRight.add(panelDisplay, gridBagConstraints);
 
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setMinimumSize(new java.awt.Dimension(870, 470));
-        jPanel4.setPreferredSize(new java.awt.Dimension(870, 470));
-        jPanel4.setLayout(new java.awt.GridBagLayout());
+        panelContent.setBackground(new java.awt.Color(255, 255, 255));
+        panelContent.setMinimumSize(new java.awt.Dimension(870, 470));
+        panelContent.setPreferredSize(new java.awt.Dimension(870, 470));
+        panelContent.setLayout(new java.awt.GridBagLayout());
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -399,7 +399,7 @@ public class frmEmployee extends javax.swing.JFrame {
                 tableContentMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tableContent);
+        srcPanelEmployee.setViewportView(tableContent);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -407,7 +407,7 @@ public class frmEmployee extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel4.add(jScrollPane1, gridBagConstraints);
+        panelContent.add(srcPanelEmployee, gridBagConstraints);
 
         btnImport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/export1.png"))); // NOI18N
         btnImport.setText("Import");
@@ -425,7 +425,7 @@ public class frmEmployee extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
-        jPanel4.add(btnImport, gridBagConstraints);
+        panelContent.add(btnImport, gridBagConstraints);
 
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel.png"))); // NOI18N
         btnCancel.setText("Cancel");
@@ -443,7 +443,7 @@ public class frmEmployee extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 6, 5, 0);
-        jPanel4.add(btnCancel, gridBagConstraints);
+        panelContent.add(btnCancel, gridBagConstraints);
 
         btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/button_ok.png"))); // NOI18N
         btnSave.setText("Save");
@@ -460,7 +460,7 @@ public class frmEmployee extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 380, 5, 0);
-        jPanel4.add(btnSave, gridBagConstraints);
+        panelContent.add(btnSave, gridBagConstraints);
 
         btnExport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/export1.png"))); // NOI18N
         btnExport.setText("Export");
@@ -478,7 +478,7 @@ public class frmEmployee extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 6, 5, 0);
-        jPanel4.add(btnExport, gridBagConstraints);
+        panelContent.add(btnExport, gridBagConstraints);
 
         btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Close.jpg"))); // NOI18N
         btnExit.setText("Exit");
@@ -497,14 +497,14 @@ public class frmEmployee extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 6, 5, 0);
-        jPanel4.add(btnExit, gridBagConstraints);
+        panelContent.add(btnExit, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 5);
-        panelRight.add(jPanel4, gridBagConstraints);
+        panelRight.add(panelContent, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -752,15 +752,9 @@ public class frmEmployee extends javax.swing.JFrame {
     private javax.swing.JButton btnImport;
     private javax.swing.JButton btnSave;
     private javax.swing.JTextField filterText;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private com.l2fprod.common.swing.JTaskPane jTaskPane1;
-    private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroup1;
-    private com.l2fprod.common.swing.JTaskPaneGroup jTaskPaneGroup2;
     private javax.swing.JLabel lblCount;
     private javax.swing.JLabel lblHienthi1;
+    private javax.swing.JLabel lblLogo;
     private com.l2fprod.common.swing.JLinkButton linkButtonAddEmp;
     private com.l2fprod.common.swing.JLinkButton linkButtonDeleteEmp;
     private com.l2fprod.common.swing.JLinkButton linkButtonEditEmp;
@@ -771,9 +765,15 @@ public class frmEmployee extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuIDetails;
     private javax.swing.JMenuItem mnuISearch;
     private javax.swing.JPanel panelBanner;
+    private javax.swing.JPanel panelContent;
+    private javax.swing.JPanel panelDisplay;
     private javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelRight;
     private javax.swing.JPopupMenu popupMenuTable;
+    private javax.swing.JScrollPane srcPanelEmployee;
     private javax.swing.JTable tableContent;
+    private com.l2fprod.common.swing.JTaskPaneGroup taskPanelGroupManagementEmp;
+    private com.l2fprod.common.swing.JTaskPaneGroup taskPanelGroupReport;
+    private com.l2fprod.common.swing.JTaskPane taskPanelMenu;
     // End of variables declaration//GEN-END:variables
 }

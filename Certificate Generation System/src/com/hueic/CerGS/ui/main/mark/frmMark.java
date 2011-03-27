@@ -117,8 +117,8 @@ public class frmMark extends javax.swing.JFrame {
         JViewport viewPort = new JViewport();
         viewPort.setView(tableContent);
         viewPort.setPreferredSize(tableContent.getMaximumSize());
-        srcPanelAccount.setRowHeader(viewPort);
-        srcPanelAccount.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
+        srcPanelMark.setRowHeader(viewPort);
+        srcPanelMark.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
     }
 
     public void loadDetails(Mark mark) {
@@ -160,27 +160,27 @@ public class frmMark extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        panelLogo = new javax.swing.JPanel();
+        lblLogo = new javax.swing.JLabel();
+        panelLeft = new javax.swing.JPanel();
+        lblChooseCourse = new javax.swing.JLabel();
+        lblEnterNameStudent = new javax.swing.JLabel();
         cbxCourseChooser = new javax.swing.JComboBox();
         txtStudentName = new javax.swing.JTextField();
-        srcPanelAccount = new javax.swing.JScrollPane();
+        srcPanelMark = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        panelRight = new javax.swing.JPanel();
+        lblInfo = new javax.swing.JLabel();
+        seqarator1 = new javax.swing.JSeparator();
+        lblMarkID = new javax.swing.JLabel();
+        lblStudentID = new javax.swing.JLabel();
+        lblSubjectName = new javax.swing.JLabel();
+        lblMark = new javax.swing.JLabel();
         txtMarkId = new javax.swing.JTextField();
         cbxStudentId = new javax.swing.JComboBox();
         txtSubjectName = new javax.swing.JTextField();
         txtMark = new javax.swing.JTextField();
-        jPanel4 = new javax.swing.JPanel();
+        panelButton = new javax.swing.JPanel();
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
@@ -192,17 +192,17 @@ public class frmMark extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/BannerMark.png"))); // NOI18N
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/BannerMark.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1)
+        javax.swing.GroupLayout panelLogoLayout = new javax.swing.GroupLayout(panelLogo);
+        panelLogo.setLayout(panelLogoLayout);
+        panelLogoLayout.setHorizontalGroup(
+            panelLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblLogo)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+        panelLogoLayout.setVerticalGroup(
+            panelLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -210,27 +210,27 @@ public class frmMark extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(jPanel1, gridBagConstraints);
+        getContentPane().add(panelLogo, gridBagConstraints);
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Mark", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
-        jPanel2.setMinimumSize(new java.awt.Dimension(450, 320));
-        jPanel2.setPreferredSize(new java.awt.Dimension(450, 320));
-        jPanel2.setLayout(new java.awt.GridBagLayout());
+        panelLeft.setBackground(new java.awt.Color(255, 255, 255));
+        panelLeft.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Mark", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        panelLeft.setMinimumSize(new java.awt.Dimension(450, 320));
+        panelLeft.setPreferredSize(new java.awt.Dimension(450, 320));
+        panelLeft.setLayout(new java.awt.GridBagLayout());
 
-        jLabel2.setText("Choose course:");
+        lblChooseCourse.setText("Choose course:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jPanel2.add(jLabel2, gridBagConstraints);
+        panelLeft.add(lblChooseCourse, gridBagConstraints);
 
-        jLabel3.setText("Enter name student:");
+        lblEnterNameStudent.setText("Enter name student:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jPanel2.add(jLabel3, gridBagConstraints);
+        panelLeft.add(lblEnterNameStudent, gridBagConstraints);
 
         cbxCourseChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxCourseChooser.setPreferredSize(new java.awt.Dimension(180, 20));
@@ -247,7 +247,7 @@ public class frmMark extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jPanel2.add(cbxCourseChooser, gridBagConstraints);
+        panelLeft.add(cbxCourseChooser, gridBagConstraints);
 
         txtStudentName.setPreferredSize(new java.awt.Dimension(180, 20));
         txtStudentName.addActionListener(new java.awt.event.ActionListener() {
@@ -265,9 +265,9 @@ public class frmMark extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jPanel2.add(txtStudentName, gridBagConstraints);
+        panelLeft.add(txtStudentName, gridBagConstraints);
 
-        srcPanelAccount.setPreferredSize(new java.awt.Dimension(400, 200));
+        srcPanelMark.setPreferredSize(new java.awt.Dimension(400, 200));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -285,75 +285,75 @@ public class frmMark extends javax.swing.JFrame {
                 tableContentMouseClicked(evt);
             }
         });
-        srcPanelAccount.setViewportView(tableContent);
+        srcPanelMark.setViewportView(tableContent);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
-        jPanel2.add(srcPanelAccount, gridBagConstraints);
+        panelLeft.add(srcPanelMark, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        getContentPane().add(jPanel2, gridBagConstraints);
+        getContentPane().add(panelLeft, gridBagConstraints);
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Management Mark", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
-        jPanel3.setMinimumSize(new java.awt.Dimension(380, 320));
-        jPanel3.setPreferredSize(new java.awt.Dimension(380, 320));
-        jPanel3.setLayout(new java.awt.GridBagLayout());
+        panelRight.setBackground(new java.awt.Color(255, 255, 255));
+        panelRight.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Management Mark", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        panelRight.setMinimumSize(new java.awt.Dimension(380, 320));
+        panelRight.setPreferredSize(new java.awt.Dimension(380, 320));
+        panelRight.setLayout(new java.awt.GridBagLayout());
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel4.setForeground(new java.awt.Color(102, 0, 102));
-        jLabel4.setText("Information Mark");
+        lblInfo.setFont(new java.awt.Font("Tahoma", 1, 12));
+        lblInfo.setForeground(new java.awt.Color(102, 0, 102));
+        lblInfo.setText("Information Mark");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        jPanel3.add(jLabel4, gridBagConstraints);
+        panelRight.add(lblInfo, gridBagConstraints);
 
-        jSeparator1.setPreferredSize(new java.awt.Dimension(280, 10));
+        seqarator1.setPreferredSize(new java.awt.Dimension(280, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
-        jPanel3.add(jSeparator1, gridBagConstraints);
+        panelRight.add(seqarator1, gridBagConstraints);
 
-        jLabel5.setText("Mark ID:");
+        lblMarkID.setText("Mark ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jPanel3.add(jLabel5, gridBagConstraints);
+        panelRight.add(lblMarkID, gridBagConstraints);
 
-        jLabel6.setText("Student Id:");
+        lblStudentID.setText("Student Id:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jPanel3.add(jLabel6, gridBagConstraints);
+        panelRight.add(lblStudentID, gridBagConstraints);
 
-        jLabel7.setText("Subject Name:");
+        lblSubjectName.setText("Subject Name:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jPanel3.add(jLabel7, gridBagConstraints);
+        panelRight.add(lblSubjectName, gridBagConstraints);
 
-        jLabel8.setText("Mark:");
+        lblMark.setText("Mark:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jPanel3.add(jLabel8, gridBagConstraints);
+        panelRight.add(lblMark, gridBagConstraints);
 
         txtMarkId.setPreferredSize(new java.awt.Dimension(180, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -361,7 +361,7 @@ public class frmMark extends javax.swing.JFrame {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jPanel3.add(txtMarkId, gridBagConstraints);
+        panelRight.add(txtMarkId, gridBagConstraints);
 
         cbxStudentId.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxStudentId.setPreferredSize(new java.awt.Dimension(180, 20));
@@ -375,7 +375,7 @@ public class frmMark extends javax.swing.JFrame {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jPanel3.add(cbxStudentId, gridBagConstraints);
+        panelRight.add(cbxStudentId, gridBagConstraints);
 
         txtSubjectName.setPreferredSize(new java.awt.Dimension(180, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -383,7 +383,7 @@ public class frmMark extends javax.swing.JFrame {
         gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jPanel3.add(txtSubjectName, gridBagConstraints);
+        panelRight.add(txtSubjectName, gridBagConstraints);
 
         txtMark.setPreferredSize(new java.awt.Dimension(180, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -391,56 +391,64 @@ public class frmMark extends javax.swing.JFrame {
         gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jPanel3.add(txtMark, gridBagConstraints);
+        panelRight.add(txtMark, gridBagConstraints);
 
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        panelButton.setBackground(new java.awt.Color(255, 255, 255));
 
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
         btnAdd.setText("Add");
+        btnAdd.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
             }
         });
-        jPanel4.add(btnAdd);
+        panelButton.add(btnAdd);
 
-        btnUpdate.setText("Edit");
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
+        btnUpdate.setText("Update");
+        btnUpdate.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnUpdate.setPreferredSize(new java.awt.Dimension(75, 23));
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
             }
         });
-        jPanel4.add(btnUpdate);
+        panelButton.add(btnUpdate);
 
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
         btnDelete.setText("Delete");
+        btnDelete.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnDelete.setPreferredSize(new java.awt.Dimension(75, 23));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
-        jPanel4.add(btnDelete);
+        panelButton.add(btnDelete);
 
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
         btnCancel.setText("Cancel");
+        btnCancel.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnCancel.setPreferredSize(new java.awt.Dimension(75, 23));
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelActionPerformed(evt);
             }
         });
-        jPanel4.add(btnCancel);
+        panelButton.add(btnCancel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.insets = new java.awt.Insets(10, 5, 5, 5);
-        jPanel3.add(jPanel4, gridBagConstraints);
+        panelRight.add(panelButton, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        getContentPane().add(jPanel3, gridBagConstraints);
+        getContentPane().add(panelRight, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -579,20 +587,20 @@ public class frmMark extends javax.swing.JFrame {
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox cbxCourseChooser;
     private javax.swing.JComboBox cbxStudentId;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JScrollPane srcPanelAccount;
+    private javax.swing.JLabel lblChooseCourse;
+    private javax.swing.JLabel lblEnterNameStudent;
+    private javax.swing.JLabel lblInfo;
+    private javax.swing.JLabel lblLogo;
+    private javax.swing.JLabel lblMark;
+    private javax.swing.JLabel lblMarkID;
+    private javax.swing.JLabel lblStudentID;
+    private javax.swing.JLabel lblSubjectName;
+    private javax.swing.JPanel panelButton;
+    private javax.swing.JPanel panelLeft;
+    private javax.swing.JPanel panelLogo;
+    private javax.swing.JPanel panelRight;
+    private javax.swing.JSeparator seqarator1;
+    private javax.swing.JScrollPane srcPanelMark;
     private javax.swing.JTable tableContent;
     private javax.swing.JTextField txtMark;
     private javax.swing.JTextField txtMarkId;
