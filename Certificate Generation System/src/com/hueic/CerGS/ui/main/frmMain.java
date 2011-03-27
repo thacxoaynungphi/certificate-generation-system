@@ -614,7 +614,7 @@ public class frmMain extends javax.swing.JFrame {
         mnuHelp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/help.png"))); // NOI18N
         mnuHelp.setText("Help");
 
-        mnuIHelpContent.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.ALT_MASK));
+        mnuIHelpContent.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
         mnuIHelpContent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/help (2).png"))); // NOI18N
         mnuIHelpContent.setText("Help Contents");
         mnuHelp.add(mnuIHelpContent);
