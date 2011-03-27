@@ -49,7 +49,7 @@ public class CourseDAO extends BaseDAO {
     public Course readById(String id) {
         Course course = null;
         con = db.getConnection();
-        String sqlcommand = "select * from Course where id like ?";
+        String sqlcommand = "select * from Course where id = ?";
         try {
             pst = con.prepareStatement(sqlcommand,  ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst.setString(1, id);

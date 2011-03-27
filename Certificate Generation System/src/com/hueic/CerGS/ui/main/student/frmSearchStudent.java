@@ -36,7 +36,11 @@ public class frmSearchStudent extends javax.swing.JFrame {
     private CourseDAO courseDAO;
     private StudentDAO studentDAO;
     private RegisterDAO registerDAO;
+    private ArrayList<Course> listCourseId;
     private ArrayList<Register> listRegister;
+    private ArrayList<Register> listResTemp;
+    private ArrayList<Register> listStudentRegis;
+    private ArrayList<Register> listRes;
     private TableRowSorter<TableModel> sorter;
     private ArrayList<Student> listStudent;
 
@@ -44,21 +48,41 @@ public class frmSearchStudent extends javax.swing.JFrame {
     public frmSearchStudent() {
         initComponents();
         setLocationRelativeTo(null);
+        courseDAO = new CourseDAO();
+        studentDAO = new StudentDAO();
+        registerDAO = new RegisterDAO();
+
+
+        listStudentRegis = registerDAO.readByAll();
+        listRegister = registerDAO.readByAll();
+        listResTemp = new ArrayList<Register>();
+        listCourseId = courseDAO.readByAll();
+
+        if (!listRegister.isEmpty()) {
+            loadCourseId();
+            loadStudentId();
+            loadData(listRegister);
+        }
     }
 
     public void loadCourseId() {
         cbxCourse.removeAllItems();
-        ArrayList<Course> lisrCourse = courseDAO.readByAll();
-
-        for (Course course : lisrCourse) {
-            cbxCourse.addItem(course.getId());
+//        for (Course course : listCourseId) {
+//            cbxCourse.addItem(course.getId());
+//        }
+        for (int i = 0; i < listCourseId.size(); i++) {
+            cbxCourse.addItem(listCourseId.get(i).getId());
         }
+
     }
 
-    public void loadStudentId(ArrayList<Register> listRegis) {
+    public void loadStudentId() {
         cbxStudent.removeAllItems();
-        for (Register regis : listRegis) {
-            cbxStudent.addItem(regis.getStudentId());
+//        for (Register regis : listStudentRegis) {
+//            cbxStudent.addItem(regis.getStudentId());
+//        }
+        for (int i = 0; i < listStudentRegis.size(); i++) {
+            cbxStudent.addItem(listStudentRegis.get(i).getStudentId());
         }
     }
 
@@ -66,20 +90,19 @@ public class frmSearchStudent extends javax.swing.JFrame {
         String[] column = {"Student Id", "Student Name", "Birthday", "Gender", "Course Name", "Phone", "Email", "Address"};
         Object[][] rows = new Object[listRegis.size()][8];
 
-        int index = 0;
         for (int i = 0; i < listRegis.size(); i++) {
             String studentId = listRegis.get(i).getId();
             Student studentInfo = studentDAO.readByID(studentId);
+            String courseName = courseDAO.readById(listRegis.get(i).getCourseId()).getName();
 
-            rows[index][0] = listRegis.get(i).getId();
-            rows[index][1] = studentInfo.getFullName();
-            rows[index][2] = studentInfo.getBirthDay();
-            rows[index][3] = studentInfo.getGender();
-            rows[index][4] = courseDAO.readById(listRegis.get(i).getCourseId()).getName();
-            rows[index][5] = studentInfo.getPhone();
-            rows[index][6] = studentInfo.getEmail();
-            rows[index][7] = studentInfo.getAddress();
-
+            rows[i][0] = listRegis.get(i).getId();
+            rows[i][1] = studentInfo.getFullName();
+            rows[i][2] = studentInfo.getBirthDay();
+            rows[i][3] = studentInfo.getGender();
+            rows[i][4] = courseName;
+            rows[i][5] = studentInfo.getPhone();
+            rows[i][6] = studentInfo.getEmail();
+            rows[i][7] = studentInfo.getAddress();
         }
 
         TableModel model = new DefaultTableModel(rows, column) {
@@ -111,7 +134,6 @@ public class frmSearchStudent extends javax.swing.JFrame {
             }
 
             private void tableContentMouseClicked(MouseEvent evt) {
-                throw new UnsupportedOperationException("Not yet implemented");
             }
         });
         sorter = new TableRowSorter<TableModel>(model);
@@ -218,6 +240,11 @@ public class frmSearchStudent extends javax.swing.JFrame {
         cbxStudent.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxStudent.setMinimumSize(new java.awt.Dimension(150, 20));
         cbxStudent.setPreferredSize(new java.awt.Dimension(150, 20));
+        cbxStudent.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxStudentItemStateChanged(evt);
+            }
+        });
         cbxStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxStudentActionPerformed(evt);
@@ -248,7 +275,6 @@ public class frmSearchStudent extends javax.swing.JFrame {
 
         txtFirstName.setMinimumSize(new java.awt.Dimension(150, 20));
         txtFirstName.setPreferredSize(new java.awt.Dimension(150, 20));
-        txtFirstName.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 6;
@@ -421,12 +447,26 @@ public class frmSearchStudent extends javax.swing.JFrame {
 
     private void cbxCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCourseActionPerformed
         // TODO add your handling code here:
-        
+        String courseId = (String) cbxCourse.getSelectedItem();
+        listRes = registerDAO.readByCourseId(courseId);
+        if (!listRes.isEmpty()) {
+            listResTemp.clear();
+            listResTemp.addAll(listRes);
+            loadData(listResTemp);
+        }
     }//GEN-LAST:event_cbxCourseActionPerformed
 
     private void cbxStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxStudentActionPerformed
         // TODO add your handling code here:
-        
+        String studentId = (String) cbxStudent.getSelectedItem();
+        Register res = registerDAO.readByStudentId(studentId);
+
+        if (res != null) {
+            listResTemp.clear();
+            listResTemp.add(res);
+
+            loadData(listResTemp);
+        }
     }//GEN-LAST:event_cbxStudentActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
@@ -445,8 +485,8 @@ public class frmSearchStudent extends javax.swing.JFrame {
 
         if (!listStudent.isEmpty()) {
             for (Student student : listStudent) {
-                ArrayList<Register> listregis = registerDAO.readByStudentIdOfPerson(student.getId());
-                listRegister.addAll(listregis);
+                ArrayList<Register> listRes = registerDAO.readByStudentIdOfPerson(student.getId());
+                listRegister.addAll(listRes);
             }
         }
 
@@ -456,17 +496,16 @@ public class frmSearchStudent extends javax.swing.JFrame {
 
     private void cbxCourseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxCourseItemStateChanged
         // TODO add your handling code here:
-        String courseId = (String) cbxCourse.getSelectedItem();
-        listRegister.clear();
-        listRegister.addAll(registerDAO.readByCourseId(courseId));
-        loadData(listRegister);
-        loadStudentId(listRegister);
     }//GEN-LAST:event_cbxCourseItemStateChanged
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnCloseActionPerformed
+
+    private void cbxStudentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxStudentItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxStudentItemStateChanged
 
     /**
      * @param args the command line arguments

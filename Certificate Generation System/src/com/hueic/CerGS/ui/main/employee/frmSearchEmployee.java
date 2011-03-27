@@ -12,6 +12,7 @@ package com.hueic.CerGS.ui.main.employee;
 
 import com.hueic.CerGS.dao.EmployeeDAO;
 import com.hueic.CerGS.entity.Employee;
+import com.hueic.CerGS.entity.Register;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,6 +32,7 @@ import javax.swing.table.TableRowSorter;
 public class frmSearchEmployee extends javax.swing.JFrame {
 
     private ArrayList<Employee> listEmp;
+    private ArrayList<Employee> listEmpTemp;
     private TableRowSorter<TableModel> sorter;
     private EmployeeDAO employeeDAO;
 
@@ -42,12 +44,14 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         listEmp = employeeDAO.readByAll();
 
         if (!listEmp.isEmpty()) {
+            System.out.println("1");
             loadData(listEmp);
             loadEmployeeId();
-        } else JOptionPane.showMessageDialog(this, "no emp");
+        } 
     }
 
     public void loadEmployeeId() {
+        System.out.println("3");
         cbxEmployeeId.removeAllItems();
         if (!listEmp.isEmpty()) {
             for (Employee emp : listEmp) {
@@ -70,7 +74,7 @@ public class frmSearchEmployee extends javax.swing.JFrame {
             rows[index][4] = listEmp.get(i).getPhone();
             rows[index][5] = listEmp.get(i).getEmail();
             rows[index][6] = listEmp.get(i).getAddress();
-
+            index++;
         }
 
         TableModel model = new DefaultTableModel(rows, column) {
@@ -102,7 +106,6 @@ public class frmSearchEmployee extends javax.swing.JFrame {
             }
 
             private void tableContentMouseClicked(MouseEvent evt) {
-                throw new UnsupportedOperationException("Not yet implemented");
             }
         });
         sorter = new TableRowSorter<TableModel>(model);
@@ -360,6 +363,11 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         btnClose.setMaximumSize(new java.awt.Dimension(90, 23));
         btnClose.setMinimumSize(new java.awt.Dimension(90, 23));
         btnClose.setPreferredSize(new java.awt.Dimension(90, 23));
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -378,6 +386,16 @@ public class frmSearchEmployee extends javax.swing.JFrame {
 
     private void cbxEmployeeIdItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxEmployeeIdItemStateChanged
         // TODO add your handling code here:
+        String empId = (String) cbxEmployeeId.getSelectedItem();
+        listEmpTemp = new ArrayList<Employee>();
+        Employee emp = employeeDAO.readByID(empId);
+        
+
+        if (emp != null) {
+            listEmpTemp.add(employeeDAO.readByID(empId));
+            System.out.println("2");
+            loadData(listEmpTemp);
+        }
     }//GEN-LAST:event_cbxEmployeeIdItemStateChanged
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
@@ -395,6 +413,11 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         listEmp = employeeDAO.readByCommand(firstName, lastName, startDate, endDate, gender);
         loadData(listEmp);
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnCloseActionPerformed
 
     /**
      * @param args the command line arguments

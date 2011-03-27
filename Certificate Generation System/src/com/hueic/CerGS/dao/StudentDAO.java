@@ -79,16 +79,26 @@ public class StudentDAO extends BaseDAO {
         try {
             con = db.getConnection();
             String sqlCommand = "select s.Id,p.FirstName,p.LastName,p.BirthDay,p.Gender,p.Phone,p.Email,p.Address,p.Image,p.Status"
-                    + " from Student s inner join Person p on s.Id = p.Id "
-                    + " where s.FirstName = ? and s.LastName = ? and s.birthday > ? and s.birthday < ? and gender = ?";
+                    + " from Student s inner join Person p on s.Id = p.Id where ";
+            if(fname.length() != 0) sqlCommand += " s.FirstName =  " + fname;
+            if(lname.length() != 0) sqlCommand += " and s.LastName =  " + lname;
+            if(startDate != null) sqlCommand += " and s.birthday > ? ";
+            if(endDate != null) sqlCommand += " and s.birthday < ? and ";
+
+            sqlCommand +=  " gender = " + gender;
 
             pst = con.prepareStatement(sqlCommand);
-            pst.setString(1, fname);
-            pst.setString(2, lname);
-            pst.setDate(3, (java.sql.Date) startDate);
-            pst.setDate(4, (java.sql.Date) endDate);
-            pst.setInt(5, gender);
-
+            if(startDate != null){
+                pst.setDate(1, (java.sql.Date) startDate);
+                if(endDate != null){
+                    pst.setDate(2, (java.sql.Date) endDate);
+                }
+            }
+            else{
+                if(endDate != null){
+                     pst.setDate(1, (java.sql.Date) endDate);
+                }
+            }
             rs = pst.executeQuery();
 
             while (rs.next()) {
