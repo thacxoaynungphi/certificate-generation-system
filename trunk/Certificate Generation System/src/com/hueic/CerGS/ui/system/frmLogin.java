@@ -67,7 +67,7 @@ public class frmLogin extends javax.swing.JFrame {
         java.awt.GridBagConstraints gridBagConstraints;
 
         panel1 = new javax.swing.JPanel();
-        lblBannerLogin = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         panel2 = new javax.swing.JPanel();
         lblUsername = new javax.swing.JLabel();
         lblPassword = new javax.swing.JLabel();
@@ -91,18 +91,19 @@ public class frmLogin extends javax.swing.JFrame {
         panel1.setMinimumSize(new java.awt.Dimension(380, 100));
         panel1.setPreferredSize(new java.awt.Dimension(380, 100));
         panel1.setRequestFocusEnabled(false);
-        panel1.setLayout(new java.awt.GridBagLayout());
 
-        lblBannerLogin.setBackground(new java.awt.Color(255, 255, 255));
-        lblBannerLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/banner login.png"))); // NOI18N
-        lblBannerLogin.setMaximumSize(new java.awt.Dimension(380, 100));
-        lblBannerLogin.setMinimumSize(new java.awt.Dimension(380, 100));
-        lblBannerLogin.setPreferredSize(new java.awt.Dimension(380, 100));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        panel1.add(lblBannerLogin, gridBagConstraints);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/LoginFinal.png"))); // NOI18N
+
+        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
+        panel1.setLayout(panel1Layout);
+        panel1Layout.setHorizontalGroup(
+            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+        );
+        panel1Layout.setVerticalGroup(
+            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+        );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -286,8 +287,8 @@ public class frmLogin extends javax.swing.JFrame {
     private javax.swing.JButton btnReset;
     private javax.swing.JComboBox cbxPermission;
     private javax.swing.JCheckBox chbRepass;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel lblBannerLogin;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblType;
     private javax.swing.JLabel lblUsername;
