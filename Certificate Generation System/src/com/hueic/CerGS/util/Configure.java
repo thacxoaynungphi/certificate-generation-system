@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class Configure {
     Connection con = null;
     public Connection getConnection() {
-        //String url = "jdbc:sqlserver://localhost:1433;databaseName=CertificateGenerationSystem";
+        //String url = "jdbc:sqlserver://localhost:1433; databaseName='CertificateGenerationSystem'";
         String url = "jdbc:odbc:CertificateGenerationSystem";
         String user = "sa";
         String password = "123";

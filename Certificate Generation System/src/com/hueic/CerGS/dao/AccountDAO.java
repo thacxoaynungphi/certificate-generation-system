@@ -128,9 +128,11 @@ public class AccountDAO extends BaseDAO {
             pst = con.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst.setString(1, acc.getUsername());
             rs = pst.executeQuery();
+            System.out.println(sql);
             if (rs.first()) {
                 rs.updateString(2, acc.getPassword());
                 rs.updateInt(3, acc.getPermission());
+                
                 rs.updateRow();
                 setLastError("Update Person successfully");
                 status = true;
@@ -138,7 +140,7 @@ public class AccountDAO extends BaseDAO {
                 setLastError("Update Person unsuccessfully");
             }
         } catch (SQLException ex) {
-            setLastError("SQL Error!");
+            setLastError("SQLError!");
         } finally {
             db.closeConnection();
         }
