@@ -11,14 +11,27 @@
 
 package com.hueic.CerGS.ui.main.report;
 
+import com.birosoft.liquid.util.Panel;
+import com.l2fprod.common.swing.plaf.windows.WindowsOutlookBarUI.ThinScrollBarUI;
+import java.awt.Component;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author qhvic
  */
 public class frmMainReport extends javax.swing.JFrame {
 
+    private boolean createXML;
+    private boolean createPDF;
+    private boolean createMSWord;
+
     /** Creates new form frmMainReport */
     public frmMainReport() {
+        createMSWord = false;
+        createPDF = false;
+        createMSWord = false;
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         initComponents();
     }
 
@@ -37,12 +50,7 @@ public class frmMainReport extends javax.swing.JFrame {
         lblBanner = new javax.swing.JLabel();
         panel2 = new javax.swing.JPanel();
         tabpanel1 = new javax.swing.JTabbedPane();
-        panel3 = new javax.swing.JPanel();
-        lblTitle1 = new javax.swing.JLabel();
-        lblContent1 = new javax.swing.JLabel();
-        scrP1 = new javax.swing.JScrollPane();
-        txtA1 = new javax.swing.JTextArea();
-        pamel4 = new javax.swing.JPanel();
+        panel4 = new javax.swing.JPanel();
         lblTitle2 = new javax.swing.JLabel();
         lblContent2 = new javax.swing.JLabel();
         scrP2 = new javax.swing.JScrollPane();
@@ -82,6 +90,7 @@ public class frmMainReport extends javax.swing.JFrame {
         chbMSWord = new javax.swing.JCheckBox();
         panel11 = new javax.swing.JPanel();
         btnCreate = new javax.swing.JButton();
+        btnView = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         lblTitleChb = new javax.swing.JLabel();
 
@@ -113,48 +122,20 @@ public class frmMainReport extends javax.swing.JFrame {
         panel2.setLayout(new java.awt.GridBagLayout());
 
         tabpanel1.setPreferredSize(new java.awt.Dimension(830, 240));
+        tabpanel1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                tabpanel1StateChanged(evt);
+            }
+        });
 
-        panel3.setPreferredSize(new java.awt.Dimension(832, 172));
-        panel3.setLayout(new java.awt.GridBagLayout());
+        panel4.setLayout(new java.awt.GridBagLayout());
 
-        lblTitle1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblTitle1.setText("<html>\n<body>\n\nCertificate Report\n\n</body>\n</html>");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel3.add(lblTitle1, gridBagConstraints);
-
-        lblContent1.setText("ashdjkashdkjkahjslddddddddddddddddddddddddddddddddddddddddddddd");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel3.add(lblContent1, gridBagConstraints);
-
-        scrP1.setPreferredSize(new java.awt.Dimension(750, 100));
-
-        txtA1.setColumns(20);
-        txtA1.setRows(5);
-        txtA1.setPreferredSize(new java.awt.Dimension(750, 90));
-        scrP1.setViewportView(txtA1);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel3.add(scrP1, gridBagConstraints);
-
-        tabpanel1.addTab("Certificate", panel3);
-
-        pamel4.setLayout(new java.awt.GridBagLayout());
-
-        lblTitle2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblTitle2.setFont(new java.awt.Font("Tahoma", 1, 12));
         lblTitle2.setText("<html> <body>  Certificate Develop Report  </body> </html>");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pamel4.add(lblTitle2, gridBagConstraints);
+        panel4.add(lblTitle2, gridBagConstraints);
 
         lblContent2.setText("ashdjkashdkjkahjslddddddddddddddddddddddddddddddddddddddddddddd");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -162,7 +143,7 @@ public class frmMainReport extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pamel4.add(lblContent2, gridBagConstraints);
+        panel4.add(lblContent2, gridBagConstraints);
 
         scrP2.setPreferredSize(new java.awt.Dimension(750, 100));
 
@@ -175,13 +156,13 @@ public class frmMainReport extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pamel4.add(scrP2, gridBagConstraints);
+        panel4.add(scrP2, gridBagConstraints);
 
-        tabpanel1.addTab("Certificate Develop", pamel4);
+        tabpanel1.addTab("Certificate Develop", panel4);
 
         panel5.setLayout(new java.awt.GridBagLayout());
 
-        lblTitle3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblTitle3.setFont(new java.awt.Font("Tahoma", 1, 12));
         lblTitle3.setText("<html> <body>  Employee Report  </body> </html>");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -213,7 +194,7 @@ public class frmMainReport extends javax.swing.JFrame {
 
         panel6.setLayout(new java.awt.GridBagLayout());
 
-        lblTitle4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblTitle4.setFont(new java.awt.Font("Tahoma", 1, 12));
         lblTitle4.setText("<html> <body>  Student New Registration Report  </body> </html>");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -245,7 +226,7 @@ public class frmMainReport extends javax.swing.JFrame {
 
         panel7.setLayout(new java.awt.GridBagLayout());
 
-        lblTitle5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblTitle5.setFont(new java.awt.Font("Tahoma", 1, 12));
         lblTitle5.setText("<html> <body>  Student Report  </body> </html>");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -277,7 +258,7 @@ public class frmMainReport extends javax.swing.JFrame {
 
         panel8.setLayout(new java.awt.GridBagLayout());
 
-        lblTitle6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblTitle6.setFont(new java.awt.Font("Tahoma", 1, 12));
         lblTitle6.setText("<html> <body>  Student Fee Report  </body> </html>");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -309,7 +290,7 @@ public class frmMainReport extends javax.swing.JFrame {
 
         panel9.setLayout(new java.awt.GridBagLayout());
 
-        lblTitle7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblTitle7.setFont(new java.awt.Font("Tahoma", 1, 12));
         lblTitle7.setText("<html> <body>  Student Mark Report  </body> </html>");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -341,7 +322,7 @@ public class frmMainReport extends javax.swing.JFrame {
 
         panel10.setLayout(new java.awt.GridBagLayout());
 
-        lblTitle8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblTitle8.setFont(new java.awt.Font("Tahoma", 1, 12));
         lblTitle8.setText("<html> <body>  Student In Course Report  </body> </html>");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -375,6 +356,11 @@ public class frmMainReport extends javax.swing.JFrame {
 
         buttonGroup1.add(chbXML);
         chbXML.setText("XML");
+        chbXML.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbXMLActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -384,6 +370,11 @@ public class frmMainReport extends javax.swing.JFrame {
 
         buttonGroup1.add(chbPDF);
         chbPDF.setText("PDF");
+        chbPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbPDFActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -393,6 +384,11 @@ public class frmMainReport extends javax.swing.JFrame {
 
         buttonGroup1.add(chbMSWord);
         chbMSWord.setText("MS Word");
+        chbMSWord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbMSWordActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -401,9 +397,27 @@ public class frmMainReport extends javax.swing.JFrame {
         panel2.add(chbMSWord, gridBagConstraints);
 
         btnCreate.setText("Create");
+        btnCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateActionPerformed(evt);
+            }
+        });
         panel11.add(btnCreate);
 
+        btnView.setText("View");
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
+        panel11.add(btnView);
+
         btnCancel.setText("Cancel");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
         panel11.add(btnCancel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -430,6 +444,121 @@ public class frmMainReport extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void reportCertificateDevelop(){
+
+    }
+
+    public void reportEmployee(){
+
+    }
+
+    public void reportNewStudentRegistration(){
+
+    }
+
+    public void reportStudent(){
+
+    }
+
+    public void reportStudentFee(){
+
+    }
+
+    public void reportStudentMark(){
+
+    }
+
+    public void reportSubjectInCourse(){
+        
+    }
+
+    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+        // TODO add your handling code here:
+        int index = tabpanel1.getSelectedIndex();
+        switch(index){
+            case 0:
+                reportCertificateDevelop();
+                break;
+            case 1:
+                reportEmployee();
+                break;
+            case 2:
+                reportNewStudentRegistration();
+                break;
+            case 3:
+                reportStudent();
+                break;
+            case 4:
+                reportStudentFee();
+                break;
+            case 5:
+                reportStudentMark();
+                break;
+            case 6:
+                new frmSubjectInCourseReport().setVisible(true);
+                break;
+            default:
+                JOptionPane.showMessageDialog(this, "Selector Fails", "Message", JOptionPane.INFORMATION_MESSAGE);
+                break;
+        }
+
+    }//GEN-LAST:event_btnCreateActionPerformed
+
+    private void chbXMLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbXMLActionPerformed
+        // TODO add your handling code here:
+        createXML = !createXML;
+    }//GEN-LAST:event_chbXMLActionPerformed
+
+    private void chbPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbPDFActionPerformed
+        // TODO add your handling code here:
+        createPDF = !createPDF;
+    }//GEN-LAST:event_chbPDFActionPerformed
+
+    private void chbMSWordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbMSWordActionPerformed
+        // TODO add your handling code here:
+        createMSWord = !createMSWord;
+    }//GEN-LAST:event_chbMSWordActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void tabpanel1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabpanel1StateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tabpanel1StateChanged
+
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+        // TODO add your handling code here:
+        int index = tabpanel1.getSelectedIndex();
+        switch(index){
+            case 0:
+                new frmCertificateDevelopedReport().setVisible(true);
+                break;
+            case 1:
+                new frmEmployeeReport().setVisible(true);
+                break;
+            case 2:
+                new frmStudentNewRegistrationReport().setVisible(true);
+                break;
+            case 3:
+                new frmStudentReport("").setVisible(true);
+                break;
+            case 4:
+                new frmStudentFeeReport().setVisible(true);
+                break;
+            case 5:
+                new frmStudentMarkReport().setVisible(true);
+                break;
+            case 6:
+                new frmSubjectInCourseReport().setVisible(true);
+                break;
+            default:
+                JOptionPane.showMessageDialog(this, "Selector Fails", "Message", JOptionPane.INFORMATION_MESSAGE);
+                break;
+        }
+    }//GEN-LAST:event_btnViewActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -444,12 +573,12 @@ public class frmMainReport extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnCreate;
+    private javax.swing.JButton btnView;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox chbMSWord;
     private javax.swing.JCheckBox chbPDF;
     private javax.swing.JCheckBox chbXML;
     private javax.swing.JLabel lblBanner;
-    private javax.swing.JLabel lblContent1;
     private javax.swing.JLabel lblContent2;
     private javax.swing.JLabel lblContent3;
     private javax.swing.JLabel lblContent4;
@@ -457,7 +586,6 @@ public class frmMainReport extends javax.swing.JFrame {
     private javax.swing.JLabel lblContent6;
     private javax.swing.JLabel lblContent7;
     private javax.swing.JLabel lblContent8;
-    private javax.swing.JLabel lblTitle1;
     private javax.swing.JLabel lblTitle2;
     private javax.swing.JLabel lblTitle3;
     private javax.swing.JLabel lblTitle4;
@@ -466,18 +594,16 @@ public class frmMainReport extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitle7;
     private javax.swing.JLabel lblTitle8;
     private javax.swing.JLabel lblTitleChb;
-    private javax.swing.JPanel pamel4;
     private javax.swing.JPanel panel1;
     private javax.swing.JPanel panel10;
     private javax.swing.JPanel panel11;
     private javax.swing.JPanel panel2;
-    private javax.swing.JPanel panel3;
+    private javax.swing.JPanel panel4;
     private javax.swing.JPanel panel5;
     private javax.swing.JPanel panel6;
     private javax.swing.JPanel panel7;
     private javax.swing.JPanel panel8;
     private javax.swing.JPanel panel9;
-    private javax.swing.JScrollPane scrP1;
     private javax.swing.JScrollPane scrP2;
     private javax.swing.JScrollPane scrP3;
     private javax.swing.JScrollPane scrP4;
@@ -486,7 +612,6 @@ public class frmMainReport extends javax.swing.JFrame {
     private javax.swing.JScrollPane scrP7;
     private javax.swing.JScrollPane scrP8;
     private javax.swing.JTabbedPane tabpanel1;
-    private javax.swing.JTextArea txtA1;
     private javax.swing.JTextArea txtA2;
     private javax.swing.JTextArea txtA3;
     private javax.swing.JTextArea txtA4;
