@@ -174,8 +174,8 @@ public class frmMain extends javax.swing.JFrame {
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         panelRight.setBackground(new java.awt.Color(255, 255, 255));
-        panelRight.setMinimumSize(new java.awt.Dimension(880, 600));
-        panelRight.setPreferredSize(new java.awt.Dimension(880, 600));
+        panelRight.setMinimumSize(new java.awt.Dimension(780, 550));
+        panelRight.setPreferredSize(new java.awt.Dimension(780, 550));
         panelRight.setLayout(new java.awt.GridBagLayout());
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Dollar.png"))); // NOI18N
@@ -282,31 +282,32 @@ public class frmMain extends javax.swing.JFrame {
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/logoGroupMain.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.ipadx = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(30, 50, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 0, 20);
         panelRight.add(jLabel14, gridBagConstraints);
 
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 18));
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 0, 102));
         jLabel15.setText("<html>\n<body>\nCertificate Generator System\n</body>\n</html>");
+        jLabel15.setMinimumSize(new java.awt.Dimension(261, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.gridwidth = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
         panelRight.add(jLabel15, gridBagConstraints);
 
         jLabel16.setForeground(new java.awt.Color(3, 3, 3));
         jLabel16.setText("<html>\n<body>\nThis is a Certificate Department which works for “ABC” institute for developing  the certificate for the<br/> students who had completed their course. This system also deals with the student  registration,<br/> checking the payment scenario, inputting the marks of the students and after all verification is<br/>  done they develop the certificate of completion of the course for the students.\n</body>\n</html>\n");
-        jLabel16.setMinimumSize(new java.awt.Dimension(480, 56));
+        jLabel16.setMinimumSize(new java.awt.Dimension(600, 65));
+        jLabel16.setPreferredSize(new java.awt.Dimension(600, 65));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.gridwidth = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 20, 5, 0);
         panelRight.add(jLabel16, gridBagConstraints);
@@ -319,7 +320,7 @@ public class frmMain extends javax.swing.JFrame {
 
         panelLogo.setLayout(new java.awt.GridBagLayout());
 
-        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/banner copy.png"))); // NOI18N
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/BannerMain.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -334,12 +335,12 @@ public class frmMain extends javax.swing.JFrame {
         getContentPane().add(panelLogo, gridBagConstraints);
 
         panelLeft.setBackground(new java.awt.Color(255, 255, 255));
-        panelLeft.setMinimumSize(new java.awt.Dimension(220, 600));
-        panelLeft.setPreferredSize(new java.awt.Dimension(220, 600));
+        panelLeft.setMinimumSize(new java.awt.Dimension(220, 550));
+        panelLeft.setPreferredSize(new java.awt.Dimension(220, 550));
         panelLeft.setLayout(new java.awt.GridBagLayout());
 
-        taskPanelMenu.setMinimumSize(new java.awt.Dimension(209, 600));
-        taskPanelMenu.setPreferredSize(new java.awt.Dimension(209, 600));
+        taskPanelMenu.setMinimumSize(new java.awt.Dimension(220, 550));
+        taskPanelMenu.setPreferredSize(new java.awt.Dimension(220, 550));
 
         taskPaneGroupSystem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/gear.png"))); // NOI18N
         taskPaneGroupSystem.setTitle("System");
@@ -483,7 +484,7 @@ public class frmMain extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         panelLeft.add(taskPanelMenu, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
