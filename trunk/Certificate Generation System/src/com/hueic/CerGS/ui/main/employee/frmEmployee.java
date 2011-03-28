@@ -97,7 +97,7 @@ public class frmEmployee extends javax.swing.JFrame {
         int index = 0;
         for (int i = 0; i < listEmp.size(); i++) {
             Employee emp = listEmp.get(i);
-            rows[index][0] = emp.getId();
+            rows[index][0] = emp.getId().trim();
             rows[index][1] = emp.getFirstName();
             rows[index][2] = emp.getLastName();
             rows[index][3] = emp.getBirthDay().toString();
@@ -138,8 +138,8 @@ public class frmEmployee extends javax.swing.JFrame {
         JViewport viewPort = new JViewport();
         viewPort.setView(tableContent);
         viewPort.setPreferredSize(tableContent.getMaximumSize());
-        srcPanelEmployee.setRowHeader(viewPort);
-        srcPanelEmployee.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
+        srcPaneEmployee.setRowHeader(viewPort);
+        srcPaneEmployee.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
     }
 
     /** This method is called from within the constructor to
@@ -171,13 +171,13 @@ public class frmEmployee extends javax.swing.JFrame {
         btnFilter = new javax.swing.JButton();
         filterText = new javax.swing.JTextField();
         panelContent = new javax.swing.JPanel();
-        srcPanelEmployee = new javax.swing.JScrollPane();
-        tableContent = new javax.swing.JTable();
         btnImport = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         btnExport = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
+        srcPaneEmployee = new javax.swing.JScrollPane();
+        tableContent = new javax.swing.JTable();
 
         menuIAdd.setText("Add ");
         menuIAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -213,7 +213,7 @@ public class frmEmployee extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Management Employee");
         setBackground(new java.awt.Color(255, 255, 255));
-        setMinimumSize(new java.awt.Dimension(1100, 600));
+        setMinimumSize(new java.awt.Dimension(1000, 600));
         setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
@@ -253,8 +253,8 @@ public class frmEmployee extends javax.swing.JFrame {
         getContentPane().add(panelLeft, gridBagConstraints);
 
         panelRight.setBackground(new java.awt.Color(255, 255, 255));
-        panelRight.setMinimumSize(new java.awt.Dimension(870, 500));
-        panelRight.setPreferredSize(new java.awt.Dimension(870, 500));
+        panelRight.setMinimumSize(new java.awt.Dimension(770, 500));
+        panelRight.setPreferredSize(new java.awt.Dimension(770, 500));
         panelRight.setLayout(new java.awt.GridBagLayout());
 
         panelDisplay.setBackground(new java.awt.Color(255, 255, 255));
@@ -268,7 +268,7 @@ public class frmEmployee extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 0);
         panelDisplay.add(lblHienthi1, gridBagConstraints);
 
         lblCount.setBackground(new java.awt.Color(255, 255, 255));
@@ -303,7 +303,7 @@ public class frmEmployee extends javax.swing.JFrame {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 400, 5, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 280, 5, 0);
         panelDisplay.add(filterText, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -314,37 +314,9 @@ public class frmEmployee extends javax.swing.JFrame {
         panelRight.add(panelDisplay, gridBagConstraints);
 
         panelContent.setBackground(new java.awt.Color(255, 255, 255));
-        panelContent.setMinimumSize(new java.awt.Dimension(870, 470));
-        panelContent.setPreferredSize(new java.awt.Dimension(870, 470));
+        panelContent.setMinimumSize(new java.awt.Dimension(820, 470));
+        panelContent.setPreferredSize(new java.awt.Dimension(820, 470));
         panelContent.setLayout(new java.awt.GridBagLayout());
-
-        srcPanelEmployee.setMinimumSize(new java.awt.Dimension(452, 402));
-
-        tableContent.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableContentMouseClicked(evt);
-            }
-        });
-        srcPanelEmployee.setViewportView(tableContent);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        panelContent.add(srcPanelEmployee, gridBagConstraints);
 
         btnImport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/export1.png"))); // NOI18N
         btnImport.setText("Import");
@@ -396,7 +368,7 @@ public class frmEmployee extends javax.swing.JFrame {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 380, 5, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 280, 5, 0);
         panelContent.add(btnSave, gridBagConstraints);
 
         btnExport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/export1.png"))); // NOI18N
@@ -436,6 +408,31 @@ public class frmEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 6, 5, 0);
         panelContent.add(btnExit, gridBagConstraints);
 
+        srcPaneEmployee.setMinimumSize(new java.awt.Dimension(452, 402));
+
+        tableContent.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableContentMouseClicked(evt);
+            }
+        });
+        srcPaneEmployee.setViewportView(tableContent);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        panelContent.add(srcPaneEmployee, gridBagConstraints);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -461,10 +458,6 @@ public class frmEmployee extends javax.swing.JFrame {
             editEmployee.setVisible(true);
         }
     }//GEN-LAST:event_menuIEditActionPerformed
-
-    private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tableContentMouseClicked
 
     private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
         FileOutputStream fos = null;
@@ -642,6 +635,10 @@ public class frmEmployee extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnFilterActionPerformed
 
+    private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tableContentMouseClicked
+
     public boolean isExist(Employee emp) {
         for (int i = 0; i < listEmp.size(); i++) {
             if (listEmp.get(i).getId().equalsIgnoreCase(emp.getId())) {
@@ -694,7 +691,7 @@ public class frmEmployee extends javax.swing.JFrame {
     private javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelRight;
     private javax.swing.JPopupMenu popupMenuTable;
-    private javax.swing.JScrollPane srcPanelEmployee;
+    private javax.swing.JScrollPane srcPaneEmployee;
     private javax.swing.JTable tableContent;
     // End of variables declaration//GEN-END:variables
 }
