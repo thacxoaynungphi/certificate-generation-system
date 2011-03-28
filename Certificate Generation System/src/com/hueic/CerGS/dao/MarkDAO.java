@@ -263,6 +263,7 @@ public class MarkDAO extends BaseDAO {
         return status;
     }
 
+    //TODO: tim ham getStudentMark va thay no bang avgMark
     public float getStudentMark(String studentID) {
         float totalMark = 0.0f;
         float avgMark = 0.0f;
