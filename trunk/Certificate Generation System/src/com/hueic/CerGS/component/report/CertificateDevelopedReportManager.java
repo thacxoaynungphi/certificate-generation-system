@@ -9,7 +9,6 @@ import com.hueic.CerGS.dao.CourseDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.dao.StudentDAO;
 import com.hueic.CerGS.entity.Certificate;
-import com.hueic.CerGS.entity.Student;
 import java.util.ArrayList;
 import java.util.HashMap;
 import net.sf.jasperreports.engine.JRDataSource;
