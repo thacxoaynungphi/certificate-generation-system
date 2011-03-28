@@ -63,6 +63,7 @@ public class frmMain extends javax.swing.JFrame {
         // 2. assign help to components
         CSH.setHelpIDString(mnuIHelpContent, "top");
         mnuIHelpContent.addActionListener(new CSH.DisplayHelpFromSource(hb));
+        System.out.println("" + this.getWidth() + " " + this.getHeight());
     }
 
     public HelpSet getHelpSet(String helpsetfile) {
