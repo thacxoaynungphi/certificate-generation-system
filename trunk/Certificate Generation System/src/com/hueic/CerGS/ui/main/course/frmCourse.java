@@ -155,7 +155,7 @@ public class frmCourse extends javax.swing.JFrame {
         panelLogo.setBackground(new java.awt.Color(255, 255, 255));
         panelLogo.setLayout(new java.awt.GridBagLayout());
 
-        lbllogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/BannerCourse.png"))); // NOI18N
+        lbllogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Course.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;

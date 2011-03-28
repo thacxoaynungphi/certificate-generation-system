@@ -341,12 +341,12 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         getContentPane().add(panelInfo, gridBagConstraints);
 
         pannelContent.setBackground(new java.awt.Color(255, 255, 255));
-        pannelContent.setMinimumSize(new java.awt.Dimension(850, 435));
-        pannelContent.setPreferredSize(new java.awt.Dimension(850, 435));
+        pannelContent.setMinimumSize(new java.awt.Dimension(750, 435));
+        pannelContent.setPreferredSize(new java.awt.Dimension(750, 435));
         pannelContent.setLayout(new java.awt.GridBagLayout());
 
-        srcPanelAccount.setMinimumSize(new java.awt.Dimension(830, 350));
-        srcPanelAccount.setPreferredSize(new java.awt.Dimension(830, 350));
+        srcPanelAccount.setMinimumSize(new java.awt.Dimension(730, 350));
+        srcPanelAccount.setPreferredSize(new java.awt.Dimension(730, 350));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -392,7 +392,7 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 520, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 420, 5, 5);
         pannelContent.add(lblFilter, gridBagConstraints);
 
         filterText.setMinimumSize(new java.awt.Dimension(150, 20));

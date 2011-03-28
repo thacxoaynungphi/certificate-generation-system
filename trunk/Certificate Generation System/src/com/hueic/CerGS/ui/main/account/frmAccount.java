@@ -201,7 +201,7 @@ public class frmAccount extends javax.swing.JFrame {
         panelLeft.setLayout(new java.awt.GridBagLayout());
 
         lblLogo.setBackground(new java.awt.Color(255, 255, 255));
-        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/BannerAccount.png"))); // NOI18N
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Account.png"))); // NOI18N
         lblLogo.setPreferredSize(new java.awt.Dimension(831, 100));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -305,7 +305,7 @@ public class frmAccount extends javax.swing.JFrame {
         panel1.setPreferredSize(new java.awt.Dimension(380, 320));
         panel1.setLayout(new java.awt.GridBagLayout());
 
-        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 13));
         lblTitle.setForeground(new java.awt.Color(102, 0, 102));
         lblTitle.setText("Information Account");
         gridBagConstraints = new java.awt.GridBagConstraints();
