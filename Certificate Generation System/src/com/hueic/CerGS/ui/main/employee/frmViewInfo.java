@@ -60,6 +60,7 @@ public class frmViewInfo extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        buttonGroupGender = new javax.swing.ButtonGroup();
         panelContent = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
         sepaAddStu = new javax.swing.JSeparator();
@@ -205,6 +206,7 @@ public class frmViewInfo extends javax.swing.JFrame {
         panelContent.add(txtLastname, gridBagConstraints);
 
         radioMale.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroupGender.add(radioMale);
         radioMale.setForeground(new java.awt.Color(3, 3, 3));
         radioMale.setText("Male");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -215,6 +217,7 @@ public class frmViewInfo extends javax.swing.JFrame {
         panelContent.add(radioMale, gridBagConstraints);
 
         radioFemale.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroupGender.add(radioFemale);
         radioFemale.setForeground(new java.awt.Color(3, 3, 3));
         radioFemale.setText("Female");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -417,6 +420,7 @@ public class frmViewInfo extends javax.swing.JFrame {
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.ButtonGroup buttonGroupGender;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblBirthday;
     private javax.swing.JLabel lblEmail;
