@@ -211,6 +211,11 @@ public class frmCourse extends javax.swing.JFrame {
         panelLeft.add(jScrollPane1, gridBagConstraints);
 
         filterText.setPreferredSize(new java.awt.Dimension(250, 20));
+        filterText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                filterTextKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -455,7 +460,6 @@ public class frmCourse extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCancelActionPerformed
 
-
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         String id = txtID.getText();
@@ -492,10 +496,11 @@ public class frmCourse extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Update Course", JOptionPane.INFORMATION_MESSAGE);
 
             } else {
+                System.out.println(courseDao.getLastError());
                 JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Update Course", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
-             JOptionPane.showMessageDialog(this, ex.toString(), "Error!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, ex.toString(), "Error!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -507,6 +512,11 @@ public class frmCourse extends javax.swing.JFrame {
                 isAdd = true;
                 btnUpdate.setEnabled(false);
                 btnDelete.setEnabled(false);
+                txtTotalFees.setEditable(true);
+                
+                txtID.setText("");
+                txtName.setText("");
+                txtTotalFees.setText("");
             } else {
                 String id = txtID.getText();
                 String name = txtName.getText();
@@ -535,6 +545,13 @@ public class frmCourse extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void filterTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            btnFilterActionPerformed(null);
+        }
+    }//GEN-LAST:event_filterTextKeyPressed
 
     /**
      * @param args the command line arguments
