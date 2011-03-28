@@ -4,6 +4,7 @@
  */
 package com.hueic.CerGS.dao;
 
+import com.hueic.CerGS.dao.inteface.IBaseDAO;
 import com.hueic.CerGS.util.Configure;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +14,7 @@ import java.sql.ResultSet;
  *
  * @author nhchung
  */
-public class BaseDAO {
+public class BaseDAO implements IBaseDAO {
 
     protected Configure db;
     protected Connection con = null;

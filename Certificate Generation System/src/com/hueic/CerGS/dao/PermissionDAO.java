@@ -4,6 +4,7 @@
  */
 package com.hueic.CerGS.dao;
 
+import com.hueic.CerGS.dao.inteface.IPermissionDAO;
 import com.hueic.CerGS.entity.Permission;
 import com.hueic.CerGS.util.Configure;
 import java.sql.ResultSet;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
  *
  * @author nhchung
  */
-public class PermissionDAO  extends BaseDAO{
+public class PermissionDAO  extends BaseDAO implements IPermissionDAO{
 
     public PermissionDAO() {
         db = new Configure();

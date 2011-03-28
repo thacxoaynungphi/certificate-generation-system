@@ -4,6 +4,7 @@
  */
 package com.hueic.CerGS.dao;
 
+import com.hueic.CerGS.dao.inteface.IStudentDAO;
 import com.hueic.CerGS.entity.Student;
 import com.hueic.CerGS.entity.Person;
 import java.sql.ResultSet;
@@ -16,7 +17,7 @@ import java.util.Date;
  *
  * @author nhchung
  */
-public class StudentDAO extends BaseDAO {
+public class StudentDAO extends BaseDAO implements IStudentDAO {
 
     public ArrayList<Student> readByAll() {
         ArrayList<Student> list = new ArrayList<Student>();

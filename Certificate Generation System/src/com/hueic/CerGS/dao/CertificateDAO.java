@@ -4,6 +4,7 @@
  */
 package com.hueic.CerGS.dao;
 
+import com.hueic.CerGS.dao.inteface.ICertificateDAO;
 import com.hueic.CerGS.entity.Certificate;
 import com.hueic.CerGS.util.Configure;
 import java.sql.Date;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
  *
  * @author nhchung
  */
-public class CertificateDAO extends BaseDAO {
+public class CertificateDAO extends BaseDAO implements ICertificateDAO {
 
     public CertificateDAO() {
         db = new Configure();

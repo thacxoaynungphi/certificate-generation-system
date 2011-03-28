@@ -15,7 +15,6 @@ import com.hueic.CerGS.dao.CourseDAO;
 import com.hueic.CerGS.dao.SubjectDAO;
 import com.hueic.CerGS.entity.Course;
 import com.hueic.CerGS.entity.Subject;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.regex.PatternSyntaxException;
 import javax.swing.JOptionPane;
@@ -571,7 +570,9 @@ public class frmSubject extends javax.swing.JFrame {
             String subjectName = txtName.getName();
             int coefficient = Integer.parseInt(txtCoefficient.getText());
             String courseName = cbxCourse.getSelectedItem().toString();
+            //TODO: loi
             String id = findByName(courseName).getId();
+            System.out.println("Id" + id);
             Subject subject = new Subject(subjectId, subjectName, coefficient, id);
             if (subjectDao.update(subject)) {
                 JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Update Subject", JOptionPane.INFORMATION_MESSAGE);
@@ -582,6 +583,7 @@ public class frmSubject extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Update Subject", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
+            System.out.println(e.toString());
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 

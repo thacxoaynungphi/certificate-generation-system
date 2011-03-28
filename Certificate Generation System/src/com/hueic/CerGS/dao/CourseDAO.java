@@ -4,6 +4,7 @@
  */
 package com.hueic.CerGS.dao;
 
+import com.hueic.CerGS.dao.inteface.ICourseDAO;
 import com.hueic.CerGS.entity.Course;
 import com.hueic.CerGS.util.Configure;
 import java.sql.ResultSet;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
  * Date: 13/3/2011
  *
  */
-public class CourseDAO extends BaseDAO {
+public class CourseDAO extends BaseDAO implements ICourseDAO {
 
     public CourseDAO() {
         db = new Configure();

@@ -4,6 +4,7 @@
  */
 package com.hueic.CerGS.dao;
 
+import com.hueic.CerGS.dao.inteface.IEmployeeDAO;
 import com.hueic.CerGS.entity.Employee;
 import com.hueic.CerGS.entity.Person;
 import java.util.Date;
@@ -18,7 +19,7 @@ import java.util.logging.Logger;
  *
  * @author nhchung
  */
-public class EmployeeDAO extends BaseDAO {
+public class EmployeeDAO extends BaseDAO implements IEmployeeDAO {
 
     public EmployeeDAO() {
         super();
