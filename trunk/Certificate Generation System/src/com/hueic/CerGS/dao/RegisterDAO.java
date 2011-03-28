@@ -4,6 +4,7 @@
  */
 package com.hueic.CerGS.dao;
 
+import com.hueic.CerGS.dao.inteface.IRegisterDAO;
 import com.hueic.CerGS.entity.Register;
 import java.sql.Date;
 
@@ -15,7 +16,7 @@ import java.util.ArrayList;
  *
  * @author Wind
  */
-public class RegisterDAO extends BaseDAO {
+public class RegisterDAO extends BaseDAO implements IRegisterDAO {
 
     public ArrayList<Register> readByAll() {
         ArrayList<Register> list = new ArrayList<Register>();

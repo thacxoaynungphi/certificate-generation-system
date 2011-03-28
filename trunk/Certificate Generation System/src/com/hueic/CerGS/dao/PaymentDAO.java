@@ -4,6 +4,7 @@
  */
 package com.hueic.CerGS.dao;
 
+import com.hueic.CerGS.dao.inteface.IPaymentDAO;
 import com.hueic.CerGS.entity.Payment;
 import com.hueic.CerGS.util.Configure;
 import java.sql.Date;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
  *
  * @author Wind
  */
-public class PaymentDAO extends BaseDAO {
+public class PaymentDAO extends BaseDAO implements IPaymentDAO {
 
     public PaymentDAO() {
         db = new Configure();

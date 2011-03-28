@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hueic.CerGS.dao;
+package com.hueic.CerGS.component;
 
 import com.hueic.CerGS.entity.Account;
 import java.io.File;

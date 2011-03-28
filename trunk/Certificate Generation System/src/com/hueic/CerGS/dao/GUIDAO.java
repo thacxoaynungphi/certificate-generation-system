@@ -4,6 +4,7 @@
  */
 package com.hueic.CerGS.dao;
 
+import com.hueic.CerGS.dao.inteface.IGUIDAO;
 import com.jgoodies.looks.plastic.theme.DarkStar;
 import com.jgoodies.looks.plastic.theme.DesertBlue;
 import com.jgoodies.looks.plastic.theme.DesertGreen;
@@ -33,7 +34,7 @@ import javax.swing.plaf.metal.MetalTheme;
  *
  * @author nhchung
  */
-public class GUIDAO {
+public class GUIDAO implements IGUIDAO {
 
     JFrame frame = null;
 

@@ -4,6 +4,7 @@
  */
 package com.hueic.CerGS.dao;
 
+import com.hueic.CerGS.dao.inteface.ISubjectDAO;
 import com.hueic.CerGS.entity.Subject;
 import com.hueic.CerGS.util.Configure;
 import java.sql.ResultSet;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
  *
  * @author nhchung
  */
-public class SubjectDAO extends BaseDAO {
+public class SubjectDAO extends BaseDAO implements ISubjectDAO {
 
     public SubjectDAO() {
         db = new Configure();

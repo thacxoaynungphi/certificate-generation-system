@@ -4,6 +4,7 @@
  */
 package com.hueic.CerGS.dao;
 
+import com.hueic.CerGS.dao.inteface.IMarkDAO;
 import com.hueic.CerGS.entity.Mark;
 import com.hueic.CerGS.util.Configure;
 import java.sql.ResultSet;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
  *
  * @author HuuBien
  */
-public class MarkDAO extends BaseDAO {
+public class MarkDAO extends BaseDAO implements IMarkDAO {
 
     public MarkDAO() {
         db = new Configure();

@@ -4,6 +4,7 @@
  */
 package com.hueic.CerGS.dao;
 
+import com.hueic.CerGS.dao.inteface.IAccountDAO;
 import com.hueic.CerGS.entity.Account;
 import com.hueic.CerGS.util.Configure;
 import com.hueic.CerGS.util.PassEncryption;
@@ -17,7 +18,7 @@ import java.util.logging.Logger;
  *
  * @author nhchung
  */
-public class AccountDAO extends BaseDAO {
+public class AccountDAO extends BaseDAO implements IAccountDAO {
 
     PassEncryption passEncryption = null;
 
@@ -79,7 +80,7 @@ public class AccountDAO extends BaseDAO {
             String sql = "select * from Account where username = ? add password = ?";
             pst = con.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst.setString(1, acc.getUsername());
-            pst.setString(2, acc.getPassword());
+            pst.setString(2, passEncryption.encryptPass(oldPass));
             rs = pst.executeQuery();
             if (rs.first()) {
                 rs.updateString(2, passEncryption.encryptPass(acc.getPassword()));
@@ -104,7 +105,7 @@ public class AccountDAO extends BaseDAO {
             String sql = "insert into Account (username,password,permission) " + " values (?,?,?);";
             pst = con.prepareStatement(sql);
             pst.setString(1, acc.getUsername());
-            pst.setString(2, acc.getPassword());
+            pst.setString(2, passEncryption.encryptPass(acc.getPassword()));
             pst.setInt(3, acc.getPermission());
             if (pst.executeUpdate() > 0) {
                 setLastError("Create Account suceessfully");
@@ -130,14 +131,13 @@ public class AccountDAO extends BaseDAO {
             rs = pst.executeQuery();
             System.out.println(sql);
             if (rs.first()) {
-                rs.updateString(2, acc.getPassword());
+                rs.updateString(2, passEncryption.encryptPass(acc.getPassword()));
                 rs.updateInt(3, acc.getPermission());
-                
                 rs.updateRow();
-                setLastError("Update Person successfully");
+                setLastError("Update Account successfully");
                 status = true;
             } else {
-                setLastError("Update Person unsuccessfully");
+                setLastError("Update Account unsuccessfully");
             }
         } catch (SQLException ex) {
             setLastError("SQLError!");
