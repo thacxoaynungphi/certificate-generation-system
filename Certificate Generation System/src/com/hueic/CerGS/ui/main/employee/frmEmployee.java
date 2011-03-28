@@ -220,7 +220,7 @@ public class frmEmployee extends javax.swing.JFrame {
         panelBanner.setBackground(new java.awt.Color(255, 255, 255));
         panelBanner.setLayout(new java.awt.GridBagLayout());
 
-        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/BannerEmployee.png"))); // NOI18N
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Employee.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -692,8 +692,6 @@ public class frmEmployee extends javax.swing.JFrame {
     private javax.swing.JPanel panelContent;
     private javax.swing.JPanel panelDisplay;
     private javax.swing.JPanel panelLeft;
-    private javax.swing.JPanel panelMenuRight;
-    private javax.swing.JPanel panelMenuRight1;
     private javax.swing.JPanel panelRight;
     private javax.swing.JPopupMenu popupMenuTable;
     private javax.swing.JScrollPane srcPanelEmployee;

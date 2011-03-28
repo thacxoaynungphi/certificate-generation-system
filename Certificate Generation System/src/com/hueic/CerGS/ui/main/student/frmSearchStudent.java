@@ -155,7 +155,7 @@ public class frmSearchStudent extends javax.swing.JFrame {
 
         buttonGroupGender = new javax.swing.ButtonGroup();
         jHelp1 = new javax.help.JHelp();
-        jPanel1 = new javax.swing.JPanel();
+        panelLogo = new javax.swing.JPanel();
         lblLogo = new javax.swing.JLabel();
         panelInfo = new javax.swing.JPanel();
         lblCourse = new javax.swing.JLabel();
@@ -175,7 +175,7 @@ public class frmSearchStudent extends javax.swing.JFrame {
         lblTitle = new javax.swing.JLabel();
         sepaCourse = new javax.swing.JSeparator();
         btnSearch = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        panelContent = new javax.swing.JPanel();
         srcPanelAccount = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
         btnClose = new javax.swing.JButton();
@@ -187,26 +187,26 @@ public class frmSearchStudent extends javax.swing.JFrame {
         setTitle("Search Student");
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jPanel1.setLayout(new java.awt.GridBagLayout());
+        panelLogo.setLayout(new java.awt.GridBagLayout());
 
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/SearchStudent.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel1.add(lblLogo, gridBagConstraints);
+        panelLogo.add(lblLogo, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(jPanel1, gridBagConstraints);
+        getContentPane().add(panelLogo, gridBagConstraints);
 
         panelInfo.setBackground(new java.awt.Color(255, 255, 255));
         panelInfo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search Student", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
-        panelInfo.setMinimumSize(new java.awt.Dimension(250, 435));
-        panelInfo.setPreferredSize(new java.awt.Dimension(250, 435));
+        panelInfo.setMinimumSize(new java.awt.Dimension(250, 430));
+        panelInfo.setPreferredSize(new java.awt.Dimension(250, 430));
         panelInfo.setLayout(new java.awt.GridBagLayout());
 
         lblCourse.setForeground(new java.awt.Color(3, 3, 3));
@@ -402,13 +402,13 @@ public class frmSearchStudent extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         getContentPane().add(panelInfo, gridBagConstraints);
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setMinimumSize(new java.awt.Dimension(840, 430));
-        jPanel3.setPreferredSize(new java.awt.Dimension(840, 430));
-        jPanel3.setLayout(new java.awt.GridBagLayout());
+        panelContent.setBackground(new java.awt.Color(255, 255, 255));
+        panelContent.setMinimumSize(new java.awt.Dimension(750, 430));
+        panelContent.setPreferredSize(new java.awt.Dimension(750, 430));
+        panelContent.setLayout(new java.awt.GridBagLayout());
 
-        srcPanelAccount.setMinimumSize(new java.awt.Dimension(830, 350));
-        srcPanelAccount.setPreferredSize(new java.awt.Dimension(830, 350));
+        srcPanelAccount.setMinimumSize(new java.awt.Dimension(730, 350));
+        srcPanelAccount.setPreferredSize(new java.awt.Dimension(730, 350));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -430,7 +430,7 @@ public class frmSearchStudent extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jPanel3.add(srcPanelAccount, gridBagConstraints);
+        panelContent.add(srcPanelAccount, gridBagConstraints);
 
         btnClose.setText("Close");
         btnClose.setMaximumSize(new java.awt.Dimension(90, 23));
@@ -447,15 +447,15 @@ public class frmSearchStudent extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jPanel3.add(btnClose, gridBagConstraints);
+        panelContent.add(btnClose, gridBagConstraints);
 
         lblFilter.setText("Enter Filter:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 520, 5, 5);
-        jPanel3.add(lblFilter, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(5, 420, 5, 5);
+        panelContent.add(lblFilter, gridBagConstraints);
 
         filterText.setMinimumSize(new java.awt.Dimension(150, 20));
         filterText.setPreferredSize(new java.awt.Dimension(150, 20));
@@ -469,7 +469,7 @@ public class frmSearchStudent extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 0);
-        jPanel3.add(filterText, gridBagConstraints);
+        panelContent.add(filterText, gridBagConstraints);
 
         btnFilter.setText("Filter");
         btnFilter.setMaximumSize(new java.awt.Dimension(90, 23));
@@ -485,13 +485,13 @@ public class frmSearchStudent extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
-        jPanel3.add(btnFilter, gridBagConstraints);
+        panelContent.add(btnFilter, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(jPanel3, gridBagConstraints);
+        getContentPane().add(panelContent, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -610,8 +610,6 @@ public class frmSearchStudent extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser dateChooserDateStart;
     private javax.swing.JTextField filterText;
     private javax.help.JHelp jHelp1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblBirthday;
     private javax.swing.JLabel lblCourse;
     private javax.swing.JLabel lblFilter;
@@ -621,7 +619,9 @@ public class frmSearchStudent extends javax.swing.JFrame {
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblStudentId;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JPanel panelContent;
     private javax.swing.JPanel panelInfo;
+    private javax.swing.JPanel panelLogo;
     private javax.swing.JRadioButton radioFemale;
     private javax.swing.JRadioButton radioMale;
     private javax.swing.JSeparator sepaCourse;

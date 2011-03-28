@@ -115,6 +115,7 @@ public class frmMainReport extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         getContentPane().add(panel1, gridBagConstraints);
 
+        panel2.setBackground(new java.awt.Color(255, 255, 255));
         panel2.setPreferredSize(new java.awt.Dimension(832, 400));
         panel2.setLayout(new java.awt.GridBagLayout());
 
@@ -125,6 +126,7 @@ public class frmMainReport extends javax.swing.JFrame {
             }
         });
 
+        panel4.setBackground(new java.awt.Color(255, 255, 255));
         panel4.setLayout(new java.awt.GridBagLayout());
 
         lblTitle2.setFont(new java.awt.Font("Tahoma", 1, 12));
@@ -157,6 +159,7 @@ public class frmMainReport extends javax.swing.JFrame {
 
         tabpanel1.addTab("Certificate Develop", panel4);
 
+        panel5.setBackground(new java.awt.Color(255, 255, 255));
         panel5.setLayout(new java.awt.GridBagLayout());
 
         lblTitle3.setFont(new java.awt.Font("Tahoma", 1, 12));
@@ -189,6 +192,7 @@ public class frmMainReport extends javax.swing.JFrame {
 
         tabpanel1.addTab("Employee", panel5);
 
+        panel6.setBackground(new java.awt.Color(255, 255, 255));
         panel6.setLayout(new java.awt.GridBagLayout());
 
         lblTitle4.setFont(new java.awt.Font("Tahoma", 1, 12));
@@ -221,6 +225,7 @@ public class frmMainReport extends javax.swing.JFrame {
 
         tabpanel1.addTab("Student New Registration", panel6);
 
+        panel7.setBackground(new java.awt.Color(255, 255, 255));
         panel7.setLayout(new java.awt.GridBagLayout());
 
         lblTitle5.setFont(new java.awt.Font("Tahoma", 1, 12));
@@ -253,6 +258,7 @@ public class frmMainReport extends javax.swing.JFrame {
 
         tabpanel1.addTab("Student", panel7);
 
+        panel8.setBackground(new java.awt.Color(255, 255, 255));
         panel8.setLayout(new java.awt.GridBagLayout());
 
         lblTitle6.setFont(new java.awt.Font("Tahoma", 1, 12));
@@ -285,6 +291,7 @@ public class frmMainReport extends javax.swing.JFrame {
 
         tabpanel1.addTab("Student Fee", panel8);
 
+        panel9.setBackground(new java.awt.Color(255, 255, 255));
         panel9.setLayout(new java.awt.GridBagLayout());
 
         lblTitle7.setFont(new java.awt.Font("Tahoma", 1, 12));
@@ -317,6 +324,7 @@ public class frmMainReport extends javax.swing.JFrame {
 
         tabpanel1.addTab("Student Mark", panel9);
 
+        panel10.setBackground(new java.awt.Color(255, 255, 255));
         panel10.setLayout(new java.awt.GridBagLayout());
 
         lblTitle8.setFont(new java.awt.Font("Tahoma", 1, 12));
@@ -351,6 +359,7 @@ public class frmMainReport extends javax.swing.JFrame {
 
         panel2.add(tabpanel1, new java.awt.GridBagConstraints());
 
+        chbXML.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(chbXML);
         chbXML.setText("XML");
         chbXML.addActionListener(new java.awt.event.ActionListener() {
@@ -365,6 +374,7 @@ public class frmMainReport extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 50, 5, 5);
         panel2.add(chbXML, gridBagConstraints);
 
+        chbPDF.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(chbPDF);
         chbPDF.setText("PDF");
         chbPDF.addActionListener(new java.awt.event.ActionListener() {
@@ -379,6 +389,7 @@ public class frmMainReport extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 50, 5, 5);
         panel2.add(chbPDF, gridBagConstraints);
 
+        chbMSWord.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(chbMSWord);
         chbMSWord.setText("MS Word");
         chbMSWord.addActionListener(new java.awt.event.ActionListener() {
