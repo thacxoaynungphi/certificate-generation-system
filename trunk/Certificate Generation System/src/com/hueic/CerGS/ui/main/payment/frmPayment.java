@@ -10,17 +10,18 @@
  */
 package com.hueic.CerGS.ui.main.payment;
 
+import com.hueic.CerGS.component.ColumnData;
 import com.hueic.CerGS.component.IconSystem;
+import com.hueic.CerGS.component.ObjectTableModel;
 import com.hueic.CerGS.dao.CourseDAO;
 import com.hueic.CerGS.dao.PaymentDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.dao.StudentDAO;
 import com.hueic.CerGS.entity.Course;
+import com.hueic.CerGS.entity.Mark;
 import com.hueic.CerGS.entity.Payment;
 import com.hueic.CerGS.entity.Register;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.PatternSyntaxException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -28,7 +29,7 @@ import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.SwingConstants;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -50,6 +51,8 @@ public class frmPayment extends javax.swing.JFrame {
     CourseDAO courseDao;
     private boolean isUpdate = false;
     private boolean isAdd = false;
+    private ObjectTableModel tableModel;
+    private JTable headerTable;
 
     public frmPayment() {
         initComponents();
@@ -75,52 +78,34 @@ public class frmPayment extends javax.swing.JFrame {
     }
 
     public void loadData(ArrayList<Payment> listPayments) {
-        String[] columns = {"Id", "StudentId", "Money", "Payday"};
-        Object[][] rows = new Object[listPayments.size()][4];
-        int index = 0;
-        for (int i = 0; i < listPayments.size(); i++) {
-            Payment payment = listPayments.get(i);
-            rows[index][0] = payment.getId();
-            rows[index][1] = payment.getStudentId();
-            rows[index][2] = payment.getMoney();
-            rows[index][3] = payment.getPayday();
-            index++;
-        }
-        TableModel model = new DefaultTableModel(rows, columns) {
 
-            public Class getColumnClass(int column) {
-                Class returnValue;
-                if ((column >= 0) && (column < getColumnCount())) {
-                    returnValue = getValueAt(0, column).getClass();
-                } else {
-                    returnValue = Object.class;
-                }
-                return returnValue;
-            }
-            boolean[] canEdit = new boolean[]{
-                false, false, false, false, false
-            };
-
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return canEdit[column];
-            }
+        ColumnData[] columns = {
+            new ColumnData("ID", 100, SwingConstants.LEFT, 1),
+            new ColumnData("Student ID", 140, SwingConstants.LEFT, 2),
+            new ColumnData("Money", 170, SwingConstants.LEFT, 3),
+            new ColumnData("Pay Day", 260, SwingConstants.LEFT, 4)
         };
-        tableContent = new JTable(model);
+        tableModel = new ObjectTableModel(tableContent, columns, listPayments);
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
 
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableContentMouseClicked(evt);
             }
         });
-        sorter = new TableRowSorter<TableModel>(model);
+        sorter = new TableRowSorter<TableModel>(tableModel);
         tableContent.setRowSorter(sorter);
+        headerTable = tableModel.getHeaderTable();
+        // Create numbering column
+        headerTable.createDefaultColumnsFromModel();
         tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        JViewport viewPort = new JViewport();
-        viewPort.setView(tableContent);
-        viewPort.setPreferredSize(tableContent.getMaximumSize());
-        srcPanelPayment.setRowHeader(viewPort);
-        srcPanelPayment.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
+        // Put it in a viewport that we can control a bit
+        JViewport viewport = new JViewport();
+        // Display numbering column
+        viewport.setView(headerTable);
+        viewport.setPreferredSize(headerTable.getMaximumSize());
+        srcPanelPayment.setRowHeader(viewport);
+        srcPanelPayment.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, headerTable.getTableHeader());
     }
 
     public void loadDetails(Payment payment) {

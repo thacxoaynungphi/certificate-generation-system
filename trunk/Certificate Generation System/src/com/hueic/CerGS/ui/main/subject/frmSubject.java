@@ -10,7 +10,9 @@
  */
 package com.hueic.CerGS.ui.main.subject;
 
+import com.hueic.CerGS.component.ColumnData;
 import com.hueic.CerGS.component.IconSystem;
+import com.hueic.CerGS.component.ObjectTableModel;
 import com.hueic.CerGS.dao.CourseDAO;
 import com.hueic.CerGS.dao.SubjectDAO;
 import com.hueic.CerGS.entity.Course;
@@ -23,7 +25,7 @@ import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.SwingConstants;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -40,6 +42,8 @@ public class frmSubject extends javax.swing.JFrame {
     ArrayList<Course> listCourses = new ArrayList<Course>();
     TableRowSorter<TableModel> sorter;
     private boolean isUpdate = false;
+    private ObjectTableModel tableModel;
+    private JTable headerTable;
 
     /** Creates new form SubjectFrm */
     public frmSubject() {
@@ -409,54 +413,36 @@ public class frmSubject extends javax.swing.JFrame {
         }
     }
 
-    public void loadData(ArrayList<Subject> listSubjects) {
-        String[] columns = {"ID", "Name", "Coefficient", "Course"};
-        Object[][] rows = new Object[listSubjects.size()][4];
-        int index = 0;
-        for (int i = 0; i < listSubjects.size(); i++) {
-            Subject subject = listSubjects.get(i);
-            rows[index][0] = subject.getId();
-            rows[index][1] = subject.getName();
-            rows[index][2] = subject.getCoefficient();
-            rows[index][3] = subject.getCourseID();
-            index++;
-        }
-        TableModel model = new DefaultTableModel(rows, columns) {
+     public void loadData(ArrayList<Subject> listSubjects) {
 
-            public Class getColumnClass(int column) {
-                Class returnValue;
-                if ((column >= 0) && (column < getColumnCount())) {
-                    returnValue = getValueAt(0, column).getClass();
-                } else {
-                    returnValue = Object.class;
-                }
-                return returnValue;
-            }
-            boolean[] canEdit = new boolean[]{
-                false, false, false, false
-            };
-
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return canEdit[column];
-            }
+        ColumnData[] columns = {
+            new ColumnData("Student ID", 135, SwingConstants.LEFT, 5),
+            new ColumnData("ID", 100, SwingConstants.LEFT, 1),
+            new ColumnData("Course ID", 140, SwingConstants.LEFT, 2),
+            new ColumnData("Fees Structe", 170, SwingConstants.LEFT, 3),
+            new ColumnData("Registration Date", 260, SwingConstants.LEFT, 4)
         };
-        tableContent = new JTable(model);
-        tableContent.getTableHeader().setReorderingAllowed(false);
+        tableModel = new ObjectTableModel(tableContent, columns, listSubjects);
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
 
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableContentMouseClicked(evt);
             }
         });
-        sorter = new TableRowSorter<TableModel>(model);
+        sorter = new TableRowSorter<TableModel>(tableModel);
         tableContent.setRowSorter(sorter);
+        headerTable = tableModel.getHeaderTable();
+        // Create numbering column
+        headerTable.createDefaultColumnsFromModel();
         tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        JViewport viewPort = new JViewport();
-        viewPort.setView(tableContent);
-        viewPort.setPreferredSize(tableContent.getMaximumSize());
-        srcPanelSubject.setRowHeader(viewPort);
-        srcPanelSubject.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
+        // Put it in a viewport that we can control a bit
+        JViewport viewport = new JViewport();
+        // Display numbering column
+        viewport.setView(headerTable);
+        viewport.setPreferredSize(headerTable.getMaximumSize());
+        srcPanelSubject.setRowHeader(viewport);
+        srcPanelSubject.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, headerTable.getTableHeader());
     }
 
     public void loadDetails(Subject subject) {

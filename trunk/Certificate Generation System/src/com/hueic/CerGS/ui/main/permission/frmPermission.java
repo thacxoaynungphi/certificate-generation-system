@@ -10,7 +10,9 @@
  */
 package com.hueic.CerGS.ui.main.permission;
 
+import com.hueic.CerGS.component.ColumnData;
 import com.hueic.CerGS.component.IconSystem;
+import com.hueic.CerGS.component.ObjectTableModel;
 import com.hueic.CerGS.dao.PermissionDAO;
 import com.hueic.CerGS.entity.Permission;
 import java.util.ArrayList;
@@ -21,7 +23,7 @@ import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.SwingConstants;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -36,6 +38,8 @@ public class frmPermission extends javax.swing.JFrame {
     private PermissionDAO perDao;
     TableRowSorter<TableModel> sorter;
     boolean isAdd = false;
+    private ObjectTableModel tableModel;
+    private JTable headerTable;
 
     public frmPermission() {
         initComponents();
@@ -50,51 +54,31 @@ public class frmPermission extends javax.swing.JFrame {
     }
 
     public void loadData(ArrayList<Permission> listPermission) {
-        String[] columns = {"ID", "Name"};
-        Object[][] rows = new Object[listPermission.size()][2];
-        int index = 0;
-        for (int i = 0; i < listPermission.size(); i++) {
-            Permission per = listPermission.get(i);
-            rows[index][0] = per.getId();
-            rows[index][1] = per.getName();
-            index++;
-        }
-        TableModel model = new DefaultTableModel(rows, columns) {
 
-            public Class getColumnClass(int column) {
-                Class returnValue;
-                if ((column >= 0) && (column < getColumnCount())) {
-                    returnValue = getValueAt(0, column).getClass();
-                } else {
-                    returnValue = Object.class;
-                }
-                return returnValue;
-            }
-            boolean[] canEdit = new boolean[]{
-                false, false
-            };
-
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return canEdit[column];
-            }
-        };
-        tableContent = new JTable(model);
-        tableContent.getTableHeader().setReorderingAllowed(false);
+        ColumnData[] columns = {
+            new ColumnData("ID", 100, SwingConstants.LEFT, 1),
+            new ColumnData("Name", 140, SwingConstants.LEFT, 2),};
+        tableModel = new ObjectTableModel(tableContent, columns, listPermission);
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
 
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableContentMouseClicked(evt);
             }
         });
-        sorter = new TableRowSorter<TableModel>(model);
+        sorter = new TableRowSorter<TableModel>(tableModel);
         tableContent.setRowSorter(sorter);
+        headerTable = tableModel.getHeaderTable();
+        // Create numbering column
+        headerTable.createDefaultColumnsFromModel();
         tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        JViewport viewPort = new JViewport();
-        viewPort.setView(tableContent);
-        viewPort.setPreferredSize(tableContent.getMaximumSize());
-        srcPanelPermission.setRowHeader(viewPort);
-        srcPanelPermission.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
+        // Put it in a viewport that we can control a bit
+        JViewport viewport = new JViewport();
+        // Display numbering column
+        viewport.setView(headerTable);
+        viewport.setPreferredSize(headerTable.getMaximumSize());
+        srcPanelPermission.setRowHeader(viewport);
+        srcPanelPermission.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, headerTable.getTableHeader());
     }
 
     public void loadDetails(Permission per) {
