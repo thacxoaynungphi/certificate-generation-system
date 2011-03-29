@@ -100,7 +100,7 @@ public class SubjectDAO extends BaseDAO implements ISubjectDAO {
         boolean status = false;
         try {
             con = db.getConnection();
-            String sql = "insert into Subject(Id,Name,Coefficient,CourseId,Status,Fees)" + " values (?,?,?,?,?); ";
+            String sql = "insert into Subject(Id,Name,Coefficient,CourseId,Status)" + " values (?,?,?,?,?); ";
             pst = con.prepareStatement(sql);
             pst.setString(1, sub.getId());
             pst.setString(2, sub.getName());

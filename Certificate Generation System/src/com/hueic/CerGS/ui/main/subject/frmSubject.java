@@ -483,13 +483,15 @@ public class frmSubject extends javax.swing.JFrame {
                 btnDelete.setEnabled(false);
                 txtCoureID.setVisible(false);
                 cbxCourseID.setVisible(true);
+                txtSubjectId.setText(null);
+                txtName.setText(null);
+                txtCoefficient.setText(null);
             } else {
                 String subjectId = txtSubjectId.getText();
-                String subjectName = txtName.getName();
+                String subjectName = txtName.getText();
                 int coefficient = Integer.parseInt(txtCoefficient.getText());
-                String courseName = cbxCourse.getSelectedItem().toString();
-                String id = findByName(courseName).getId();
-                Subject subject = new Subject(subjectId, subjectName, coefficient, id);
+                String courseId = cbxCourseID.getSelectedItem().toString();
+                Subject subject = new Subject(subjectId, subjectName, coefficient, courseId);
                 if (subjectDao.create(subject)) {
                     JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Create Subject", JOptionPane.INFORMATION_MESSAGE);
                     listSubject.add(subject);
@@ -538,14 +540,14 @@ public class frmSubject extends javax.swing.JFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        String username = txtSubjectId.getText();
-        if (subjectDao.delete(username)) {
-            JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Delete Subject", JOptionPane.INFORMATION_MESSAGE, null);
-            listSubject.remove(find(username));
+        String subjectid = txtSubjectId.getText();
+        if (subjectDao.delete(subjectid)) {
+            listSubject.remove(findSubject(subjectid));
             loadData(listSubject);
             if (listSubject.size() != 0) {
                 loadDetails(listSubject.get(0));
             }
+            JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Delete Subject", JOptionPane.INFORMATION_MESSAGE, null);
         } else {
             JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Delete Subject", JOptionPane.ERROR_MESSAGE, null);
         }
@@ -559,6 +561,13 @@ public class frmSubject extends javax.swing.JFrame {
             btnDelete.setEnabled(true);
             txtCoureID.setVisible(true);
             cbxCourseID.setVisible(false);
+        } else if (isUpdate) {
+            isUpdate = false;
+            btnUpdate.setEnabled(true);
+            btnDelete.setEnabled(true);
+            txtCoureID.setVisible(true);
+            cbxCourseID.setVisible(false);
+            loadDetails(findSubject(txtSubjectId.getText()));
         } else {
             loadDetails(listSubject.get(0));
         }
@@ -574,14 +583,13 @@ public class frmSubject extends javax.swing.JFrame {
             } else {
                 isUpdate = false;
                 String subjectId = txtSubjectId.getText();
-                String subjectName = txtName.getName();
+                String subjectName = txtName.getText();
                 int coefficient = Integer.parseInt(txtCoefficient.getText());
                 String courseId = cbxCourseID.getSelectedItem().toString();
-                System.out.println("Sao the1");
                 Subject subject = new Subject(subjectId, subjectName, coefficient, courseId);
-                System.out.println("Sao the2");
                 if (subjectDao.update(subject)) {
                     JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Update Subject", JOptionPane.INFORMATION_MESSAGE);
+                    listSubject.remove(findSubject(subjectId));
                     listSubject.add(subject);
                     loadData(listSubject);
                     loadDetails(subject);
