@@ -345,6 +345,7 @@ public class frmPermission extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(panelButton, gridBagConstraints);
 
+        txtId.setEnabled(false);
         txtId.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -437,25 +438,27 @@ public class frmPermission extends javax.swing.JFrame {
                 isAdd = true;
                 btnUpdate.setEnabled(false);
                 btnDelete.setEnabled(false);
-                txtId.setVisible(false);
+                txtId.setText(null);
+                txtName.setText(null);
             } else {
-                int id = Integer.parseInt(txtId.getText());
+                int id = 0;
                 String name = txtName.getText();
                 Permission per = new Permission(id, name);
                 if (perDao.create(per)) {
-                    JOptionPane.showMessageDialog(this, perDao.getLastError(), "Create Permission", JOptionPane.INFORMATION_MESSAGE);
+                    per = perDao.readByName(name);
                     listPermssion.add(per);
                     loadData(listPermssion);
                     loadDetails(per);
                     isAdd = false;
                     btnUpdate.setEnabled(true);
                     btnDelete.setEnabled(true);
+                    JOptionPane.showMessageDialog(this, perDao.getLastError(), "Create Permission", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(this, perDao.getLastError(), "Create Permission", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, toString(), "Create Account", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, e.toString(), "Permission", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -479,6 +482,7 @@ public class frmPermission extends javax.swing.JFrame {
             Permission per = new Permission(id, name);
             if (perDao.update(per)) {
                 JOptionPane.showMessageDialog(this, perDao.getLastError(), "Update Permission", JOptionPane.INFORMATION_MESSAGE);
+                listPermssion.remove(find(id));
                 listPermssion.add(per);
                 loadData(listPermssion);
                 loadDetails(per);

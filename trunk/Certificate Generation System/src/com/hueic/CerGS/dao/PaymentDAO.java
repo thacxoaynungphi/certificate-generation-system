@@ -97,11 +97,11 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
 
                 payList.add(pay);
             }
-        }catch (SQLException ex) {
+        } catch (SQLException ex) {
             setLastError("SQL Error!");
-        }catch (Exception ex) {
-           setLastError("Data not valid");
-        } 
+        } catch (Exception ex) {
+            setLastError("Data not valid");
+        }
         return payList;
     }
 
@@ -127,15 +127,13 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
     public boolean create(Payment pay) {
         boolean status = false;
         con = db.getConnection();
-        String sqlcommand = "insert into Payment(Id,StudentId,Money,Payday) values(?, ?, ?, ?)";
+        String sqlcommand = "insert into Payment(StudentId,Money,Payday) values(?, ?, ?)";
 
         try {
             pst = con.prepareStatement(sqlcommand);
-            pst.setInt(1, pay.getId());
-            pst.setString(2, pay.getStudentId());
-            pst.setFloat(3, pay.getMoney());
-            pst.setDate(4, (Date) pay.getPayday());
-
+            pst.setString(1, pay.getStudentId());
+            pst.setFloat(2, pay.getMoney());
+            pst.setDate(3, (Date) pay.getPayday());
             if (pst.executeUpdate() > 0) {
                 setLastError("Add fee successful");
                 status = true;
@@ -180,15 +178,13 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
         }
     }
 
-    public boolean delete(Payment pay) {
+    public boolean delete(int id) {
         boolean status = false;
         con = db.getConnection();
         String sqlcommand = "delete from Payment where id = ?";
-
         try {
             pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            pst.setInt(1, pay.getId());
-
+            pst.setInt(1, id);
             if (pst.executeUpdate() > 0) {
                 setLastError("Delete fee successful");
                 status = true;

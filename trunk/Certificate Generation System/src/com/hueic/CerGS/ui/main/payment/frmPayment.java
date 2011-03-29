@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.PatternSyntaxException;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
@@ -41,24 +42,36 @@ public class frmPayment extends javax.swing.JFrame {
     private int currentId;
     private ArrayList<Payment> listPayments = new ArrayList<Payment>();
     ArrayList<Course> listCourse = new ArrayList<Course>();
+    ArrayList<Register> listRegister = new ArrayList<Register>();
     private PaymentDAO paymentDao;
     TableRowSorter<TableModel> sorter;
     RegisterDAO registerDAO;
     StudentDAO studentDAO;
     CourseDAO courseDao;
+    private boolean isUpdate = false;
+    private boolean isAdd = false;
 
     public frmPayment() {
         initComponents();
         new IconSystem(this);
+        setLocationRelativeTo(null);
         registerDAO = new RegisterDAO();
         studentDAO = new StudentDAO();
         courseDao = new CourseDAO();
-        setLocationRelativeTo(null);
+
         paymentDao = new PaymentDAO();
         listPayments = paymentDao.readByAll();
         listCourse = courseDao.readByAll();
-        loadData(listPayments);
-        loadCourse();
+        //TODO: chua kiem tra xem sinh vien do da nop tien chua
+        listRegister = registerDAO.readByAll();
+        cbxCourse.setVisible(false);
+        cbxStudentID.setVisible(false);
+        if (listPayments.size() != 0) {
+            loadData(listPayments);
+            loadCourse();
+            loadStudentId();
+            loadDetails(listPayments.get(0));
+        }
     }
 
     public void loadData(ArrayList<Payment> listPayments) {
@@ -116,6 +129,8 @@ public class frmPayment extends javax.swing.JFrame {
         cbxCourse.setSelectedItem(registerDAO.readByStudentId(payment.getStudentId()).getCourseId());
         cbxStudentID.setSelectedItem(payment.getStudentId());
         dateChPayDay.setDate(payment.getPayday());
+        txtCourseId.setText(registerDAO.readByStudentId(payment.getStudentId()).getCourseId());
+        txtStudentId.setText(payment.getStudentId());
     }
 
     public void loadCourse() {
@@ -128,7 +143,12 @@ public class frmPayment extends javax.swing.JFrame {
     }
 
     public void loadStudentId() {
-        //TODO : thuc hien list ra danh sach sinh vien de nop tien
+        if (listRegister.size() != 0) {
+            cbxStudentID.removeAllItems();
+            for (int i = 0; i < listRegister.size(); i++) {
+                cbxStudentID.addItem(listRegister.get(i).getStudentId());
+            }
+        }
     }
 
     /** This method is called from within the constructor to
@@ -164,6 +184,8 @@ public class frmPayment extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         cbxCourse = new javax.swing.JComboBox();
         dateChPayDay = new com.toedter.calendar.JDateChooser();
+        txtCourseId = new javax.swing.JTextField();
+        txtStudentId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Managment Account");
@@ -312,6 +334,7 @@ public class frmPayment extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(cbxStudentID, gridBagConstraints);
 
+        txtMoney.setMinimumSize(new java.awt.Dimension(200, 20));
         txtMoney.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -346,7 +369,9 @@ public class frmPayment extends javax.swing.JFrame {
         });
         panelButton.add(btnUpdate);
 
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
         btnDelete.setText("Delete");
+        btnDelete.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
@@ -410,6 +435,24 @@ public class frmPayment extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 10, 5);
         panelRight.add(dateChPayDay, gridBagConstraints);
 
+        txtCourseId.setMinimumSize(new java.awt.Dimension(200, 20));
+        txtCourseId.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight.add(txtCourseId, gridBagConstraints);
+
+        txtStudentId.setMinimumSize(new java.awt.Dimension(200, 20));
+        txtStudentId.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight.add(txtStudentId, gridBagConstraints);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -431,8 +474,8 @@ public class frmPayment extends javax.swing.JFrame {
         // TODO add your handling code here:
         int index = tableContent.getSelectedRow();
         if (index != -1) {
-            int id = Integer.parseInt(String.valueOf(tableContent.getValueAt(index, 0)));
-            Payment payment = getPaymentById(id);
+            int currentId = Integer.parseInt(String.valueOf(tableContent.getValueAt(index, 0)));
+            Payment payment = getPaymentById(currentId);
             loadDetails(payment);
         }
     }//GEN-LAST:event_tableContentMouseClicked
@@ -444,17 +487,38 @@ public class frmPayment extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         try {
-            // TODO add your handling code here:
-            Payment payment = new Payment();
-            payment.setId(listPayments.size() + 1);
-            payment.setMoney(Float.parseFloat(txtMoney.getText()));
-            payment.setPayday(new java.sql.Date(dateChPayDay.getDate().getTime()));
-            payment.setStudentId((String) cbxStudentID.getSelectedItem());
-            listPayments.add(payment);
-            new PaymentDAO().create(payment);
-            loadData(listPayments);
-        } catch (Exception ex) {
-            Logger.getLogger(frmPayment.class.getName()).log(Level.SEVERE, null, ex);
+            if (!isAdd) {
+                isAdd = true;
+                btnUpdate.setEnabled(false);
+                btnDelete.setEnabled(false);
+                txtCourseId.setVisible(true);
+                cbxCourse.setVisible(false);
+                cbxStudentID.setVisible(false);
+                txtStudentId.setVisible(true);
+            } else {
+                //TODO: chua lay duoc chi so tu tang cua ban ghi moi dua vo
+                Payment payment = new Payment();
+                payment.setMoney(Float.parseFloat(txtMoney.getText()));
+                payment.setPayday(new java.sql.Date(dateChPayDay.getDate().getTime()));
+                payment.setStudentId((String) cbxStudentID.getSelectedItem());
+                if (paymentDao.create(payment)) {
+                    JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Create Payment", JOptionPane.INFORMATION_MESSAGE);
+                    listPayments.add(payment);
+                    loadData(listPayments);
+                    loadDetails(payment);
+                    isAdd = false;
+                    btnUpdate.setEnabled(true);
+                    btnDelete.setEnabled(true);
+                    txtCourseId.setVisible(true);
+                    cbxCourse.setVisible(false);
+                    cbxStudentID.setVisible(false);
+                    txtStudentId.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Create Payment", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.toString(), "Create Payment", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -468,27 +532,62 @@ public class frmPayment extends javax.swing.JFrame {
     }
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         try {
-            // TODO add your handling code here:
-            int index = getIndexOfPaymentInList(currentId);
-            listPayments.get(index).setMoney(Float.parseFloat(txtMoney.getText()));
-            listPayments.get(index).setPayday(new java.sql.Date(dateChPayDay.getDate().getTime()));
-            loadData(listPayments);
-            paymentDao.update(listPayments.get(index));
-        } catch (Exception ex) {
-            Logger.getLogger(frmPayment.class.getName()).log(Level.SEVERE, null, ex);
+            if (!isUpdate) {
+                txtCourseId.setVisible(true);
+                txtStudentId.setVisible(true);
+                isUpdate = true;
+            } else {
+                isUpdate = false;
+                Payment pay = getPaymentById(currentId);
+                pay.setMoney(Float.parseFloat(txtMoney.getText()));
+                pay.setPayday(new java.sql.Date(dateChPayDay.getDate().getTime()));
+                if (paymentDao.update(pay)) {
+                    JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Update Payment", JOptionPane.INFORMATION_MESSAGE);
+                    loadData(listPayments);
+                    loadDetails(pay);
+                } else {
+                    JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Update Payment", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Update Payment", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        Payment pay = listPayments.remove(getIndexOfPaymentInList(currentId));
-        new PaymentDAO().delete(pay);
-        loadData(listPayments);
+        if (paymentDao.delete(currentId)) {
+            listPayments.remove(getPaymentById(currentId));
+            loadData(listPayments);
+            if (listPayments.size() != 0) {
+                loadDetails(listPayments.get(0));
+            }
+            JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Delete payment", JOptionPane.INFORMATION_MESSAGE, null);
+        } else {
+            JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Delete payment", JOptionPane.ERROR_MESSAGE, null);
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+        if (isAdd) {
+            isAdd = false;
+            btnUpdate.setEnabled(true);
+            btnDelete.setEnabled(true);
+            txtCourseId.setVisible(true);
+            cbxCourse.setVisible(false);
+            cbxStudentID.setVisible(false);
+            txtStudentId.setVisible(true);
+        } else if (isUpdate) {
+            isUpdate = false;
+            cbxCourse.setVisible(false);
+            cbxStudentID.setVisible(false);
+            txtCourseId.setVisible(true);
+            txtStudentId.setVisible(true);
+            loadDetails(getPaymentById(currentId));
+        } else {
+            loadDetails(listPayments.get(0));
+        }
     }//GEN-LAST:event_btnCancelActionPerformed
 
     public void searchStart() {
@@ -547,6 +646,8 @@ public class frmPayment extends javax.swing.JFrame {
     private javax.swing.JPanel panelRight;
     private javax.swing.JScrollPane srcPanelPayment;
     private javax.swing.JTable tableContent;
+    private javax.swing.JTextField txtCourseId;
     private javax.swing.JTextField txtMoney;
+    private javax.swing.JTextField txtStudentId;
     // End of variables declaration//GEN-END:variables
 }

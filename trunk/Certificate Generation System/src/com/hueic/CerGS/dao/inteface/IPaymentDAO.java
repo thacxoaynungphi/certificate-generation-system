@@ -16,7 +16,7 @@ public interface IPaymentDAO {
 
     boolean create(Payment pay);
 
-    boolean delete(Payment pay);
+    boolean delete(int id);
 
     ArrayList<Payment> readByAll();
 
