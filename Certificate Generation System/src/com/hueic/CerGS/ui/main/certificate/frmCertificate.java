@@ -50,6 +50,7 @@ public class frmCertificate extends javax.swing.JFrame {
         listCertificate = certificateDao.readByAll();
         loadData(listCertificate);
         LoadStudent();
+        loadDetails(listCertificate.get(0));
     }
 
     public void loadData(ArrayList<Certificate> listCertificate) {
@@ -457,7 +458,7 @@ public class frmCertificate extends javax.swing.JFrame {
         if (i1 == i2) {
             try {
                 Certificate cer = listCertificate.get(i2);
-                cer.setMark(new MarkDAO().getStudentMark((String) cbxStudentID.getSelectedItem()));
+                cer.setMark(Float.parseFloat(txtScore.getText()));
                 cer.setDegreeDay(dateChooseDegreeDay.getDate());
                 if (certificateDao.update(cer)) {
                     listCertificate.set(i2, cer);
@@ -536,15 +537,15 @@ public class frmCertificate extends javax.swing.JFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        int i1 = getIndexCertificateInListById(Integer.parseInt(txtID.getText()));
-        int i2 = getIndexCertificateInListByStudentId((String) cbxStudentID.getSelectedItem());
-        if (i1 == i2) {
-            Certificate cer = listCertificate.remove(i2);
-            new CertificateDAO().update(cer);
+        int id = Integer.parseInt(txtID.getText());
+        int index = getIndexCertificateInListById(id);
+        if (certificateDao.delete(id)) {
+            listCertificate.remove(index);
             loadData(listCertificate);
-        } else {
-            System.out.println(i1 + " " + i2);
-            JOptionPane.showMessageDialog(this, "Please select StudentId and enter ID of Certificate", "Message", JOptionPane.INFORMATION_MESSAGE);
+            LoadStudent();
+            JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Delete Certificate", JOptionPane.INFORMATION_MESSAGE);
+        }else {
+            JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Delete Certificate", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -552,20 +553,36 @@ public class frmCertificate extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             btnFilterActionPerformed(null);
-        }
+
+
+
+
+}
     }//GEN-LAST:event_filterTextKeyPressed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void
+
+main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
-            public void run() {
+            public void
+
+run() {
                 new frmCertificate().setVisible(true);
-            }
+
+
+
+
+}
         });
-    }
+
+
+
+
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelButton;
     private javax.swing.JButton btnAdd;
@@ -591,4 +608,6 @@ public class frmCertificate extends javax.swing.JFrame {
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtScore;
     // End of variables declaration//GEN-END:variables
+
+
 }
