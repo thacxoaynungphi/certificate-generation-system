@@ -36,7 +36,7 @@ public class PersonDAO extends BaseDAO implements IPersonDAO {
                 person.setId(rs.getString(1));
                 person.setFirstName(rs.getString(2));
                 person.setLastName(rs.getString(3));
-                person.setBirthDay(rs.getDate(4));
+                person.setBirthDay(new java.util.Date(rs.getDate(4).getTime()));
                 person.setGender(rs.getInt(5));
                 person.setPhone(rs.getString(6));
                 person.setEmail(rs.getString(7));
@@ -65,7 +65,7 @@ public class PersonDAO extends BaseDAO implements IPersonDAO {
                 person.setId(rs.getString(1));
                 person.setFirstName(rs.getString(2));
                 person.setLastName(rs.getString(3));
-                person.setBirthDay(rs.getDate(4));
+                person.setBirthDay(new java.util.Date(rs.getDate(4).getTime()));
                 person.setGender(rs.getInt(5));
                 person.setPhone(rs.getString(6));
                 person.setEmail(rs.getString(7));
@@ -95,7 +95,7 @@ public class PersonDAO extends BaseDAO implements IPersonDAO {
                 person.setId(rs.getString(1));
                 person.setFirstName(rs.getString(2));
                 person.setLastName(rs.getString(3));
-                person.setBirthDay(rs.getDate(4));
+                person.setBirthDay(new java.util.Date(rs.getDate(4).getTime()));
                 person.setGender(rs.getInt(5));
                 person.setPhone(rs.getString(6));
                 person.setEmail(rs.getString(7));
@@ -118,7 +118,7 @@ public class PersonDAO extends BaseDAO implements IPersonDAO {
             pst.setString(1, person.getId());
             pst.setString(2, person.getFirstName());
             pst.setString(3, person.getLastName());
-            pst.setDate(4, (Date) person.getBirthDay());
+            pst.setDate(4,  new java.sql.Date(person.getBirthDay().getTime()));
             pst.setInt(5, person.getGender());
             pst.setString(6, person.getPhone());
             pst.setString(7, person.getEmail());
@@ -150,7 +150,7 @@ public class PersonDAO extends BaseDAO implements IPersonDAO {
             if (rs.first()) {
                 rs.updateString(2, person.getFirstName());
                 rs.updateString(3, person.getLastName());
-                rs.updateDate(4, (Date) person.getBirthDay());
+                rs.updateDate(4,  new java.sql.Date(person.getBirthDay().getTime()));
                 rs.updateInt(5, person.getGender());
                 rs.updateString(6, person.getPhone());
                 rs.updateString(7, person.getEmail());
