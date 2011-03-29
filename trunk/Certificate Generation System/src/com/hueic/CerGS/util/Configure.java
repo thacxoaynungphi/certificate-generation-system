@@ -17,13 +17,13 @@ import java.util.logging.Logger;
 public class Configure {
     Connection con = null;
     public Connection getConnection() {
-       // String url = "jdbc:sqlserver://localhost:1433;databaseName=Certificate Generation System";
-        String url = "jdbc:odbc:CertificateGenerationSystem";
+        String url = "jdbc:sqlserver://localhost:1433;databaseName=Certificate Generation System";
+        //String url = "jdbc:odbc:CertificateGenerationSystem";
         String user = "sa";
         String password = "123";
         try {
-            //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            //Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             con = java.sql.DriverManager.getConnection(url, user, password);
         } catch (SQLException ex) {
             Logger.getLogger(Configure.class.getName()).log(Level.SEVERE, null, ex);

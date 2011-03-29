@@ -10,6 +10,8 @@ import com.hueic.CerGS.util.Configure;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -33,10 +35,10 @@ public class CourseDAO extends BaseDAO implements ICourseDAO {
             rs = pst.executeQuery();
             while (rs.next()) {
                 Course course = new Course();
-                course.setId(rs.getString("Id"));
-                course.setName(rs.getString("Name"));
-                course.setTotalFees(rs.getFloat("TotalFees"));
-                course.setStatus(rs.getInt("Status"));
+                course.setId(rs.getString(1));
+                course.setName(rs.getString(2));
+                course.setTotalFees(rs.getFloat(3));
+                course.setStatus(rs.getInt(4));
                 result.add(course);
             }
         } catch (SQLException ex) {
@@ -58,13 +60,15 @@ public class CourseDAO extends BaseDAO implements ICourseDAO {
             rs = pst.executeQuery();
             if (rs.next()) {
                 course = new Course();
-                course.setId(rs.getString("Id"));
-                course.setName(rs.getString("Name"));
-                course.setTotalFees(rs.getFloat("TotalFees"));
-                course.setStatus(rs.getInt("Status"));
+                course.setId(rs.getString(1));
+                course.setName(rs.getString(2));
+                course.setTotalFees(rs.getFloat(3));
+                course.setStatus(rs.getInt(4));
             }
         } catch (SQLException ex) {
             setLastError("SQL Error!!!");
+        } catch (Exception ex) {
+            setLastError("Data not valid");
         } finally {
             db.closeConnection();
         }
@@ -81,10 +85,10 @@ public class CourseDAO extends BaseDAO implements ICourseDAO {
             rs = pst.executeQuery();
             if (rs.first()) {
                 course = new Course();
-                course.setId(rs.getString("Id"));
-                course.setName(rs.getString("Name"));
-                course.setTotalFees(rs.getFloat("TotalFees"));
-                course.setStatus(rs.getInt("Status"));
+                course.setId(rs.getString(1));
+                course.setName(rs.getString(2));
+                course.setTotalFees(rs.getFloat(3));
+                course.setStatus(rs.getInt(4));
             }
         } catch (SQLException ex) {
             setLastError("SQL Error!!!");
@@ -128,21 +132,11 @@ public class CourseDAO extends BaseDAO implements ICourseDAO {
             pst.setString(1, course.getId());
             rs = pst.executeQuery();
             if (rs.first()) {
-                System.out.println(rs.getString(1));
-                System.out.println(rs.getString(2));
-                System.out.println(rs.getFloat(3));
-                System.out.println(rs.getInt(4));
-                System.out.println(course.getId());
-                System.out.println(course.getName());
-                System.out.println(course.getTotalFees());
-                System.out.println(course.getStatus());
-
-                rs.updateString("Name", course.getName());
-                rs.updateInt("Status", course.getStatus());
-                rs.updateFloat("TotalFees", course.getTotalFees());
-                System.out.println("123");
+                rs.updateString(2, course.getName());
+                rs.updateFloat(3, course.getTotalFees());
+                rs.updateInt(4, course.getStatus());
                 rs.updateRow();
-                System.out.println("456");
+
                 setLastError("Update Course successful");
             }
         } catch (SQLException ex) {
@@ -153,32 +147,6 @@ public class CourseDAO extends BaseDAO implements ICourseDAO {
         return status;
     }
 
-//     public boolean update(Course course) {
-//        boolean status = false;
-//        con = db.getConnection();
-//        String sqlcommand = "update Course "
-//                + "set Name = '?', TotalFees = ?, Status = ?"
-//                + "where id = ?";
-//        try {
-//            pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-//            pst.setString(1, course.getName());
-//            pst.setFloat(2, course.getTotalFees());
-//            pst.setInt(3, course.getStatus());
-//            pst.setString(4, course.getId());
-//
-//            if(pst.executeUpdate() != 0){
-//                setLastError("Update Successful");
-//            } else {
-//                setLastError("Update fails");
-//            }
-//
-//        } catch (SQLException ex) {
-//            setLastError(ex.toString());
-//        } finally {
-//            db.closeConnection();
-//        }
-//        return status;
-//    }
     public boolean delete(String id) {
         boolean status = false;
         con = db.getConnection();

@@ -36,6 +36,8 @@ public class PermissionDAO extends BaseDAO implements IPermissionDAO {
             }
         } catch (SQLException ex) {
             setLastError("SQL Error!");
+        } catch (Exception ex) {
+            setLastError("Data not valid");
         } finally {
             db.closeConnection();
         }
@@ -57,6 +59,8 @@ public class PermissionDAO extends BaseDAO implements IPermissionDAO {
             }
         } catch (SQLException ex) {
             setLastError("SQL Error!");
+        } catch (Exception ex) {
+            setLastError("Data not valid");
         } finally {
             db.closeConnection();
         }
@@ -78,6 +82,8 @@ public class PermissionDAO extends BaseDAO implements IPermissionDAO {
             }
         } catch (SQLException ex) {
             setLastError("SQL Error!");
+        } catch (Exception ex) {
+         setLastError("Data not valid");
         } finally {
             db.closeConnection();
         }

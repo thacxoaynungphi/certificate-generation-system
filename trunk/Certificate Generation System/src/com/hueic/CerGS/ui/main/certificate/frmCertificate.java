@@ -17,8 +17,6 @@ import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.entity.Certificate;
 import com.hueic.CerGS.entity.Register;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.PatternSyntaxException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -107,10 +105,9 @@ public class frmCertificate extends javax.swing.JFrame {
         txtID.setText(String.valueOf(cer.getId()));
         txtScore.setText(String.valueOf(cer.getMark()));
         dateChooseDegreeDay.setDate(cer.getDegreeDay());
-
+        cbxStudentID.setSelectedItem(cer.getStudentID());
     }
 
-   
     public void LoadStudent() {
         ArrayList<Register> listRegister = registerDAO.readByAll();
         if (listRegister != null) {
@@ -220,6 +217,11 @@ public class frmCertificate extends javax.swing.JFrame {
         panelLeft.add(srcPanelAccount, gridBagConstraints);
 
         filterText.setPreferredSize(new java.awt.Dimension(10, 20));
+        filterText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                filterTextKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -403,17 +405,20 @@ public class frmCertificate extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
-    public int getIndexCertificateInListById(int id){
-        for(int i = 0; i < listCertificate.size(); i++){
-            if(listCertificate.get(i).getId() == id) return i;
+    public int getIndexCertificateInListById(int id) {
+        for (int i = 0; i < listCertificate.size(); i++) {
+            if (listCertificate.get(i).getId() == id) {
+                return i;
+            }
         }
         return -1;
     }
 
-    public int getIndexCertificateInListByStudentId(String studentId){
-        for(int i = 0; i < listCertificate.size(); i++){
-            if(listCertificate.get(i).getStudentID().compareTo(studentId) == 0) return i;
+    public int getIndexCertificateInListByStudentId(String studentId) {
+        for (int i = 0; i < listCertificate.size(); i++) {
+            if (listCertificate.get(i).getStudentID().compareTo(studentId) == 0) {
+                return i;
+            }
         }
         return -1;
     }
@@ -446,15 +451,24 @@ public class frmCertificate extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         int i1 = getIndexCertificateInListById(Integer.parseInt(txtID.getText()));
-        int i2 = getIndexCertificateInListByStudentId((String)cbxStudentID.getSelectedItem());
-        if(i1 == i2){
+        int i2 = getIndexCertificateInListByStudentId((String) cbxStudentID.getSelectedItem());
+        if (i1 == i2) {
             try {
-                listCertificate.get(i2).setMark(new MarkDAO().getStudentMark((String) cbxStudentID.getSelectedItem()));
-                listCertificate.get(i2).setDegreeDay(dateChooseDegreeDay.getDate());
-                new CertificateDAO().update(listCertificate.get(i2));
+                Certificate cer = listCertificate.get(i2);
+                cer.setMark(new MarkDAO().getStudentMark((String) cbxStudentID.getSelectedItem()));
+                cer.setDegreeDay(dateChooseDegreeDay.getDate());
+                if (certificateDao.update(cer)) {
+                    listCertificate.set(i2, cer);
+                    loadData(listCertificate);
+                    JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Message", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Error", JOptionPane.ERROR_MESSAGE);
+                }
             } catch (Exception ex) {
-                Logger.getLogger(frmCertificate.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "data not valid", "Certificate Error", JOptionPane.ERROR_MESSAGE);
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "Can't update", "Certificate Error", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -480,26 +494,55 @@ public class frmCertificate extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFilterActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+
+        Certificate certificate = new Certificate();
         try {
-            // TODO add your handling code here:
-            Certificate certificate = new Certificate();
-            certificate.setId(Integer.parseInt(txtID.getText().trim()));
-            certificate.setMark(new MarkDAO().getStudentMark((String) cbxStudentID.getSelectedItem()));
-            certificate.setDegreeDay(dateChooseDegreeDay.getDate());
-            certificate.setStudentID((String) cbxStudentID.getSelectedItem());
-            listCertificate.add(certificate);
-            new CertificateDAO().create(certificate);
-            loadData(listCertificate);
+            if (!txtID.getText().equals("")) {
+                certificate.setId(Integer.parseInt(txtID.getText().trim()));
+            } else {
+                JOptionPane.showMessageDialog(this, "you must be enter Id of Cetificate", "Certificate Enter Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (cbxStudentID.getSelectedIndex() != -1) {
+                certificate.setMark(new MarkDAO().getStudentMark((String) cbxStudentID.getSelectedItem()));
+            } else {
+                JOptionPane.showMessageDialog(this, "you must be Select Student Id of Cetificate", "Certificate Enter Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (dateChooseDegreeDay.getDate() != null) {
+                certificate.setDegreeDay(dateChooseDegreeDay.getDate());
+            } else {
+                JOptionPane.showMessageDialog(this, "you must be select a degree date of Cetificate", "Certificate Enter Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (!txtID.getText().equals("")) {
+                certificate.setStudentID((String) cbxStudentID.getSelectedItem());
+            } else {
+                JOptionPane.showMessageDialog(this, "you must be enter Id of Cetificate", "Certificate Enter Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (certificateDao.create(certificate)) {
+                listCertificate.add(certificate);
+                loadData(listCertificate);
+            } else {
+                JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Error", JOptionPane.ERROR_MESSAGE);
+            }
         } catch (Exception ex) {
-            Logger.getLogger(frmCertificate.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "data not valid", "Certificate Error", JOptionPane.ERROR_MESSAGE);
         }
+
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         int i1 = getIndexCertificateInListById(Integer.parseInt(txtID.getText()));
         int i2 = getIndexCertificateInListByStudentId((String) cbxStudentID.getSelectedItem());
-        if(i1 == i2){
+        if (i1 == i2) {
             Certificate cer = listCertificate.remove(i2);
             new CertificateDAO().update(cer);
             loadData(listCertificate);
@@ -507,6 +550,13 @@ public class frmCertificate extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please select StudentId and enter ID of Certificate", "Message", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void filterTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            btnFilterActionPerformed(null);
+        }
+    }//GEN-LAST:event_filterTextKeyPressed
 
     /**
      * @param args the command line arguments

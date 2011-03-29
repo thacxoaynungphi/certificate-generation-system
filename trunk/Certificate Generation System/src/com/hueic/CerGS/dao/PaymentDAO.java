@@ -97,9 +97,11 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
 
                 payList.add(pay);
             }
-        } catch (SQLException ex) {
+        }catch (SQLException ex) {
             setLastError("SQL Error!");
-        }
+        }catch (Exception ex) {
+           setLastError("Data not valid");
+        } 
         return payList;
     }
 

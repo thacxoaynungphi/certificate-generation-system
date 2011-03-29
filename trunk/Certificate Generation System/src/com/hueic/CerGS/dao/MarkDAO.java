@@ -10,8 +10,6 @@ import com.hueic.CerGS.util.Configure;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -60,10 +58,10 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
             rs = pst.executeQuery();
 
             while (rs.first()) {
-                result.setId(rs.getInt("Id"));
-                result.setStudentId(rs.getString("StudentId"));
-                result.setSubjectId(rs.getString("SubjectId"));
-                result.setMark(rs.getFloat("Mark"));
+                result.setId(rs.getInt(1));
+                result.setStudentId(rs.getString(2));
+                result.setSubjectId(rs.getString(3));
+                result.setMark(rs.getFloat(4));
             }
 
             setLastError("Read data successful");
