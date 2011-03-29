@@ -455,7 +455,7 @@ public class frmAddEmployee extends javax.swing.JFrame {
             emp.setId(txtID.getText());
             emp.setFirstName(txtFirstname.getText());
             emp.setLastName(txtLastname.getText());
-            emp.setBirthDay(DateChBirthday.getDate());
+            emp.setBirthDay(new java.sql.Date(DateChBirthday.getDate().getTime()));
             if (radioMale.isSelected()) {
                 emp.setGender(0);
             } else if (radioFemale.isSelected()) {

@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -607,7 +608,7 @@ public class frmStudent extends javax.swing.JFrame {
                     student.setId(row.getCell(0).toString());
                     student.setFirstName(row.getCell(1).toString());
                     student.setLastName(row.getCell(2).toString());
-                    student.setBirthDay(row.getCell(3).getDateCellValue());
+                    student.setBirthDay(new java.sql.Date(row.getCell(3).getDateCellValue().getTime()));
                     student.setGender((int) Float.parseFloat(row.getCell(4).toString()));
                     student.setPhone(row.getCell(5).toString());
                     student.setEmail(row.getCell(6).toString());

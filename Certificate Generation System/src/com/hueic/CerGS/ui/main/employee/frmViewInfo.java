@@ -374,7 +374,7 @@ public class frmViewInfo extends javax.swing.JFrame {
             person.setId(txtUsername.getText());
             person.setFirstName(txtFirstname.getText());
             person.setLastName(txtLastname.getText());
-            person.setBirthDay(DateChBirthday.getDate());
+            person.setBirthDay(new java.sql.Date(DateChBirthday.getDate().getTime()));
             if (radioMale.isSelected()) {
                 person.setGender(1);
 

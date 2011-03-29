@@ -4,7 +4,7 @@
  */
 package com.hueic.CerGS.entity;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *

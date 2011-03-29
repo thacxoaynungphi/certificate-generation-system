@@ -459,7 +459,7 @@ public class frmCertificate extends javax.swing.JFrame {
             try {
                 Certificate cer = listCertificate.get(i2);
                 cer.setMark(Float.parseFloat(txtScore.getText()));
-                cer.setDegreeDay(dateChooseDegreeDay.getDate());
+                cer.setDegreeDay(new java.sql.Date(dateChooseDegreeDay.getDate().getTime()));
                 if (certificateDao.update(cer)) {
                     listCertificate.set(i2, cer);
                     loadData(listCertificate);
@@ -517,7 +517,7 @@ public class frmCertificate extends javax.swing.JFrame {
             }
 
             if (dateChooseDegreeDay.getDate() != null) {
-                certificate.setDegreeDay(dateChooseDegreeDay.getDate());
+                certificate.setDegreeDay(new java.sql.Date(dateChooseDegreeDay.getDate().getTime()));
             } else {
                 JOptionPane.showMessageDialog(this, "you must be select a degree date of Cetificate", "Certificate Enter Error", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -544,7 +544,7 @@ public class frmCertificate extends javax.swing.JFrame {
             loadData(listCertificate);
             LoadStudent();
             JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Delete Certificate", JOptionPane.INFORMATION_MESSAGE);
-        }else {
+        } else {
             JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Delete Certificate", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
@@ -557,32 +557,28 @@ public class frmCertificate extends javax.swing.JFrame {
 
 
 
-}
+        }
     }//GEN-LAST:event_filterTextKeyPressed
 
     /**
      * @param args the command line arguments
      */
-    public static void
-
-main(String args[]) {
+    public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
-            public void
-
-run() {
+            public void run() {
                 new frmCertificate().setVisible(true);
 
 
 
 
-}
+            }
         });
 
 
 
 
-}
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelButton;
     private javax.swing.JButton btnAdd;
@@ -608,6 +604,4 @@ run() {
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtScore;
     // End of variables declaration//GEN-END:variables
-
-
 }
