@@ -4,7 +4,6 @@
  */
 package com.hueic.CerGS.entity;
 
-
 /**
  *
  * @author nhchung
@@ -48,10 +47,11 @@ public class Account {
      * @param username the username to set
      */
     public void setUsername(String username) throws Exception {
-        if (username.length() > 10 || username.length() < 0) {
-            throw new Exception("length of ID properties can't greater than 10");
+        if (username.length() > 20 || username.length() <= 0) {
+            throw new Exception("Username invalidation");
+        } else {
+            this.username = username;
         }
-        this.username = username;
     }
 
     /**
@@ -65,10 +65,11 @@ public class Account {
      * @param password the password to set
      */
     public void setPassword(String password) throws Exception {
-//        if (password.length() > 100 || password.length() < 6) {
-//            throw new Exception("password must be more than 6 characters and not exceed 30 characters");
-//        }
-        this.password = password;
+        if (password.length() > 100 || password.length() <= 0) {
+            throw new Exception("Password invalidation");
+        } else {
+            this.password = password;
+        }
     }
 
     /**
@@ -82,6 +83,10 @@ public class Account {
      * @param permission the permission to set
      */
     public void setPermission(int permission) {
-        this.permission = permission;
+        if (permission < 0) {
+            System.out.println("Permission invalidation");
+        } else {
+            this.permission = permission;
+        }
     }
 }

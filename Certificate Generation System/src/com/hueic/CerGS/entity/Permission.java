@@ -4,14 +4,13 @@
  */
 package com.hueic.CerGS.entity;
 
-
 /**
  *
  * @author nhchung
  * Date: 13/03/2011
  * Version 1.0
  */
-public class Permission{
+public class Permission {
 
     //field
     private int id;
@@ -23,7 +22,7 @@ public class Permission{
         name = null;
     }
 
-    public Permission(int id, String name) {
+    public Permission(int id, String name) throws Exception {
         setId(id);
         setName(name);
     }
@@ -39,8 +38,13 @@ public class Permission{
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int id) throws Exception {
+        if (id < 0) {
+            throw new Exception("Id invalidation");
+        } else {
+            this.id = id;
+        }
+
     }
 
     /**
@@ -53,7 +57,11 @@ public class Permission{
     /**
      * @param name the name to set
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String name) throws Exception {
+        if (name.length() <= 0 || name.length() > 32) {
+            throw new Exception("Name invalidation");
+        } else {
+            this.name = name;
+        }
     }
 }

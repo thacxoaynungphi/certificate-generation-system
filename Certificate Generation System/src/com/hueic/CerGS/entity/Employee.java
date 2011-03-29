@@ -39,7 +39,11 @@ public class Employee extends Person {
      * @param beginWork the beginWork to set
      */
     //khi nhap beginwork thi se dua vao Commbobox de nhap
-    public void setBeginWork(Date beginWork) {
-        this.beginWork = beginWork;
+    public void setBeginWork(Date beginWork) throws Exception {
+        if (beginWork != null) {
+            throw new Exception("Beginwork invalidation");
+        } else {
+            this.beginWork = beginWork;
+        }
     }
 }

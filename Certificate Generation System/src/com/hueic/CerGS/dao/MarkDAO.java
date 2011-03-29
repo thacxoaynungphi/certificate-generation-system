@@ -10,6 +10,8 @@ import com.hueic.CerGS.util.Configure;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -39,8 +41,8 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
                 listMark.add(mark);
             }
             setLastError("Read data successful");
-        } catch (SQLException ex) {
-            setLastError("SQL Error");
+        } catch (Exception ex) {
+             setLastError("SQL Error");
         } finally {
             db.closeConnection();
         }
@@ -94,7 +96,7 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
             }
 
             setLastError("Read data successful");
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             setLastError("SQL Error");
         } finally {
             db.closeConnection();
@@ -121,8 +123,8 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
                 result.add(mark);
             }
             setLastError("Read data successful");
-        } catch (SQLException ex) {
-            setLastError("SQL Error");
+        } catch (Exception ex) {
+             setLastError("SQL Error");
         } finally {
             db.closeConnection();
         }

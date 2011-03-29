@@ -29,12 +29,12 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
                 Register regis = new Register();
                 regis.setId(rs.getString("Id"));
                 regis.setCourseId(rs.getString("CourseId"));
-                regis.setFeeStructe(rs.getInt("FeesStructe"));
+                regis.setFeesStructe(rs.getInt("FeesStructe"));
                 regis.setRegisDate(rs.getDate("RegistrationDate"));
                 regis.setStudentId(rs.getString("StudentId"));
                 list.add(regis);
             }
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             setLastError("SQL Error!");
         } finally {
             db.closeConnection();
@@ -57,14 +57,16 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
 
                 regis.setId(rs.getString("Id"));
                 regis.setCourseId(rs.getString("CourseId"));
-                regis.setFeeStructe(rs.getInt("FeesStructe"));
+                regis.setFeesStructe(rs.getInt("FeesStructe"));
                 regis.setRegisDate(rs.getDate("RegistrationDate"));
                 regis.setStudentId(rs.getString("StudentId"));
 
                 listRegister.add(regis);
             }
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             setLastError("SQL Error!");
+        } finally {
+            db.closeConnection();
         }
         return listRegister;
     }
@@ -85,14 +87,16 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
 
                 regis.setId(rs.getString("Id"));
                 regis.setCourseId(rs.getString("CourseId"));
-                regis.setFeeStructe(rs.getInt("FeesStructe"));
+                regis.setFeesStructe(rs.getInt("FeesStructe"));
                 regis.setRegisDate(rs.getDate("RegistrationDate"));
                 regis.setStudentId(rs.getString("StudentId"));
 
                 listRegis.add(regis);
             }
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             setLastError("SQL Error!");
+        }  finally {
+            db.closeConnection();
         }
         return listRegis;
     }
@@ -110,12 +114,14 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
                 regis = new Register();
                 regis.setId(rs.getString("Id"));
                 regis.setCourseId(rs.getString("CourseId"));
-                regis.setFeeStructe(rs.getInt("FeesStructe"));
+                regis.setFeesStructe(rs.getInt("FeesStructe"));
                 regis.setRegisDate(rs.getDate("RegistrationDate"));
                 regis.setStudentId(rs.getString("StudentId"));
             }
-        } catch (SQLException ex) {
-            setLastError("SQL Error!");
+        } catch (Exception ex) {
+             setLastError("SQL Error!");
+        } finally {
+            db.closeConnection();
         }
         return regis;
     }
@@ -134,14 +140,16 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
                 regis = new Register();
                 regis.setId(rs.getString("Id"));
                 regis.setCourseId(rs.getString("CourseId"));
-                regis.setFeeStructe(rs.getInt("FeesStructe"));
+                regis.setFeesStructe(rs.getInt("FeesStructe"));
                 java.util.Date date = (java.util.Date) rs.getDate("RegistrationDate");
                 regis.setRegisDate(date);
                 regis.setStudentId(rs.getString("StudentId"));
                 resList.add(regis);
             }
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             setLastError("SQL Error!");
+        } finally {
+            db.closeConnection();
         }
         return resList;
     }
@@ -155,7 +163,7 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
 
             pst.setString(1, regis.getId());
             pst.setString(2, regis.getCourseId());
-            pst.setInt(3, regis.getFeeStructe());
+            pst.setInt(3, regis.getFeesStructe());
             pst.setDate(4, (Date) regis.getRegisDate());
             pst.setString(5, regis.getStudentId());
 
@@ -182,8 +190,8 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
             pst.setString(1, res.getId());
             rs = pst.executeQuery();
             if (rs.first()) {
-                rs.updateString("CourseId",res.getCourseId());
-                rs.updateInt("FeesStructe", res.getFeeStructe());
+                rs.updateString("CourseId", res.getCourseId());
+                rs.updateInt("FeesStructe", res.getFeesStructe());
                 rs.updateDate("RegistrationDate", (Date) res.getRegisDate());
                 rs.updateString("StudentId", res.getStudentId());
 
