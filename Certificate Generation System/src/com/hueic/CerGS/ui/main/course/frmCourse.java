@@ -513,7 +513,7 @@ public class frmCourse extends javax.swing.JFrame {
                 btnUpdate.setEnabled(false);
                 btnDelete.setEnabled(false);
                 txtTotalFees.setEditable(true);
-                
+
                 txtID.setText("");
                 txtName.setText("");
                 txtTotalFees.setText("");
