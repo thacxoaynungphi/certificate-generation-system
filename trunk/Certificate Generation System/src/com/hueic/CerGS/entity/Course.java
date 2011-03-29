@@ -4,7 +4,6 @@
  */
 package com.hueic.CerGS.entity;
 
-
 /**
  *
  * @author HuuBien
@@ -20,18 +19,19 @@ public class Course {
     private int status;
 
     public Course() {
-        setId(null);
-        setStatus(1);
-        setName(null);
+        id = null;
+        status = 1;
+        totalFees = 0;
+        name = null;
     }
 
-    public Course(String id, String name) {
+    public Course(String id, String name) throws Exception {
         setId(id);
         setName(name);
         setStatus(1);
     }
 
-     public Course(String id, String name,float totalFees,int status) {
+    public Course(String id, String name, float totalFees, int status) throws Exception {
         setId(id);
         setName(name);
         setTotalFees(totalFees);
@@ -48,8 +48,12 @@ public class Course {
     /**
      * @param id the id to set
      */
-    public void setId(String id) {
-        this.id = id;
+    public void setId(String id) throws Exception {
+        if (id.length() <= 0 || id.length() > 20) {
+            throw new Exception("Id invalidation");
+        } else {
+            this.id = id;
+        }
     }
 
     /**
@@ -62,8 +66,12 @@ public class Course {
     /**
      * @param name the name to set
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String name) throws Exception {
+        if (name.length() <= 0 || name.length() > 100) {
+            throw new Exception("Course name invalidation");
+        } else {
+            this.name = name;
+        }
     }
 
     /**
@@ -76,8 +84,12 @@ public class Course {
     /**
      * @param status the status to set
      */
-    public void setStatus(int status) {
-        this.status = status;
+    public void setStatus(int status) throws Exception {
+        if (status != 0 && status != 1) {
+            throw new Exception("Status invalidation");
+        } else {
+            this.status = status;
+        }
     }
 
     /**
@@ -90,7 +102,11 @@ public class Course {
     /**
      * @param totalFees the totalFees to set
      */
-    public void setTotalFees(float totalFees) {
-        this.totalFees = totalFees;
+    public void setTotalFees(float totalFees) throws Exception {
+        if (totalFees < 0) {
+            throw new Exception("Total fees invalidation");
+        } else {
+            this.totalFees = totalFees;
+        }
     }
 }

@@ -11,7 +11,7 @@ package com.hueic.CerGS.entity;
  *
  * Lop Scores mo ta danh sach diem cua moi sinh vien trong lop hoc va mon hoc tuong ung
  */
-public class Mark{
+public class Mark {
 
     private int id;
     private String studentId;
@@ -25,7 +25,7 @@ public class Mark{
         mark = 0;
     }
 
-    public Mark(int id, String studentId, String subjectId, float mark) {
+    public Mark(int id, String studentId, String subjectId, float mark) throws Exception {
         setId(id);
         setStudentId(studentId);
         setSubjectId(subjectId);
@@ -42,8 +42,12 @@ public class Mark{
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int id) throws Exception {
+        if (id < 0) {
+            throw new Exception("Id invalidation");
+        } else {
+            this.id = id;
+        }
     }
 
     /**
@@ -56,8 +60,12 @@ public class Mark{
     /**
      * @param studentId the studentId to set
      */
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
+    public void setStudentId(String studentId) throws Exception {
+        if (studentId.length() <= 0 || studentId.length() > 20) {
+            throw new Exception("Student id invalidation");
+        } else {
+            this.studentId = studentId;
+        }
     }
 
     /**
@@ -70,8 +78,12 @@ public class Mark{
     /**
      * @param subjectId the subjectId to set
      */
-    public void setSubjectId(String subjectId) {
-        this.subjectId = subjectId;
+    public void setSubjectId(String subjectId) throws Exception {
+        if (subjectId.length() <= 0 || subjectId.length() > 10) {
+            throw new Exception("Subject id invalidation");
+        } else {
+            this.subjectId = subjectId;
+        }
     }
 
     /**
@@ -84,7 +96,12 @@ public class Mark{
     /**
      * @param score the score to set
      */
-    public void setMark(float mark) {
-        this.mark = mark;
+    public void setMark(float mark) throws Exception {
+        if (mark < 0 || mark > 100) {
+            throw new Exception("Mark invalidation");
+        } else {
+            this.mark = mark;
+        }
+
     }
 }

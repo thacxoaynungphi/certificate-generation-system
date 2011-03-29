@@ -6,7 +6,6 @@ package com.hueic.CerGS.entity;
 
 import java.util.Date;
 
-
 /**
  *
  * @author nhchung
@@ -29,7 +28,7 @@ public class Certificate {
         degreeDay = null;
     }
 
-    public Certificate(int id, String studentID, float mark, Date degreeDay) {
+    public Certificate(int id, String studentID, float mark, Date degreeDay) throws Exception {
         setId(id);
         setStudentID(studentID);
         setMark(mark);
@@ -61,8 +60,12 @@ public class Certificate {
     /**
      * @param studentID the studentID to set
      */
-    public void setStudentID(String studentID) {
-        this.studentID = studentID;
+    public void setStudentID(String studentID) throws Exception {
+        if (studentID.length() <= 0 || studentID.length() > 20) {
+            throw new Exception("Student id invalidation");
+        } else {
+            this.studentID = studentID;
+        }
     }
 
     /**
@@ -75,8 +78,12 @@ public class Certificate {
     /**
      * @param sourse the sourse to set
      */
-    public void setMark(float mark) {
-        this.mark = mark;
+    public void setMark(float mark) throws Exception {
+        if (mark < 0 || mark > 100) {
+            throw new Exception("Mark invalidation");
+        } else {
+            this.mark = mark;
+        }
     }
 
     /**
@@ -89,8 +96,11 @@ public class Certificate {
     /**
      * @param degreeDay the degreeDay to set
      */
-    public void setDegreeDay(Date degreeDay) {
-        this.degreeDay = degreeDay;
+    public void setDegreeDay(Date degreeDay) throws Exception {
+        if (degreeDay != null) {
+            throw new Exception("Degree day invalidation");
+        } else {
+            this.degreeDay = degreeDay;
+        }
     }
-
 }

@@ -11,6 +11,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 /**
  *
@@ -38,9 +39,9 @@ public class CertificateDAO extends BaseDAO implements ICertificateDAO {
                 list.add(cer);
             }
             setLastError("Read All successfully");
-        } catch (SQLException ex) {
-            setLastError("SQL Error!");
-        } finally {
+        } catch (Exception ex) {
+             setLastError("SQL Error!");
+        }finally {
             db.closeConnection();
         }
         return list;
@@ -62,9 +63,9 @@ public class CertificateDAO extends BaseDAO implements ICertificateDAO {
                 cer.setDegreeDay(rs.getDate(4));
             }
             setLastError("Read  successfully");
-        } catch (SQLException ex) {
-            setLastError("SQL Error!");
-        }
+        } catch (Exception ex) {
+           setLastError("SQL Error!");
+        } 
         return cer;
     }
 
@@ -84,9 +85,9 @@ public class CertificateDAO extends BaseDAO implements ICertificateDAO {
                 cer.setDegreeDay(rs.getDate(4));
                 list.add(cer);
             }
-        } catch (SQLException ex) {
-            setLastError("SQL Error!");
-        } finally {
+        } catch (Exception ex) {
+             setLastError("SQL Error!");
+        }  finally {
             db.closeConnection();
         }
         return list;

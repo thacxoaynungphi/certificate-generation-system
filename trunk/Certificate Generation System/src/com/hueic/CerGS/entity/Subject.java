@@ -4,14 +4,13 @@
  */
 package com.hueic.CerGS.entity;
 
-
 /**
  *
  * @author nhchung
  * Date: 13/03/2011
  * Version: 1.0
  */
-public class Subject{
+public class Subject {
 
     //field
     private String id;
@@ -29,7 +28,7 @@ public class Subject{
         status = 0;
     }
 
-    public Subject(String id, String name, int coefficient, String courseID) {
+    public Subject(String id, String name, int coefficient, String courseID) throws Exception {
         setId(id);
         setName(name);
         setCoefficient(coefficient);
@@ -48,7 +47,10 @@ public class Subject{
     /**
      * @param id the id to set
      */
-    public void setId(String id) {
+    public void setId(String id) throws Exception {
+        if (id.length() <= 0 || id.length() > 10) {
+            throw new Exception("Id invalidation");
+        }
         this.id = id;
     }
 
@@ -62,8 +64,12 @@ public class Subject{
     /**
      * @param name the name to set
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String name) throws Exception {
+        if (name.length() <= 0 || name.length() > 100) {
+            throw new Exception("Subject name invalidation");
+        } else {
+            this.name = name;
+        }
     }
 
     /**
@@ -76,8 +82,12 @@ public class Subject{
     /**
      * @param coefficient the coefficient to set
      */
-    public void setCoefficient(int coefficient) {
-        this.coefficient = coefficient;
+    public void setCoefficient(int coefficient) throws Exception {
+        if (coefficient <= 0) {
+            throw new Exception("Coefficient invalidation");
+        } else {
+            this.coefficient = coefficient;
+        }
     }
 
     /**
@@ -90,8 +100,12 @@ public class Subject{
     /**
      * @param courseID the courseID to set
      */
-    public void setCourseID(String courseID) {
-        this.courseID = courseID;
+    public void setCourseID(String courseID) throws Exception {
+        if (courseID.length() <= 0 || courseID.length() > 20) {
+            throw new Exception("Course id invalidation");
+        } else {
+            this.courseID = courseID;
+        }
     }
 
     /**
@@ -104,7 +118,11 @@ public class Subject{
     /**
      * @param status the status to set
      */
-    public void setStatus(int status) {
-        this.status = status;
+    public void setStatus(int status) throws Exception {
+        if (status != 0 && status != 1) {
+            throw new Exception("Status invalidation");
+        } else {
+            this.status = status;
+        }
     }
 }

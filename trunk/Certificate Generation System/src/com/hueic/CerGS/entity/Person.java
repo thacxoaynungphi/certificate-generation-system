@@ -67,10 +67,11 @@ public class Person {
      * @param id the id to set
      */
     public void setId(String id) throws Exception {
-        if (id.length() > 10 || id.length() < 0) {
-            throw new Exception("length of ID properties can't greater than 10");
+        if (id.length() > 20 || id.length() <= 0) {
+            throw new Exception("Id invalidation");
+        } else {
+            this.id = id;
         }
-        this.id = id;
     }
 
     /**
@@ -84,10 +85,11 @@ public class Person {
      * @param firstName the firstName to set
      */
     public void setFirstName(String firstName) throws Exception {
-        if (firstName.length() > 20 || firstName.length() < 0) {
-            throw new Exception("length if ID properties can't greater than 10");
+        if (firstName.length() > 30 || firstName.length() < 0) {
+            throw new Exception("Firstname invalidation");
+        } else {
+            this.firstName = firstName;
         }
-        this.firstName = firstName;
     }
 
     /**
@@ -102,10 +104,10 @@ public class Person {
      */
     public void setLastName(String lastName) throws Exception {
         if (lastName.length() > 20 || lastName.length() < 0) {
-            throw new Exception("length if ID properties can't greater than 10");
+            throw new Exception("Lastname invalidation");
+        } else {
+            this.lastName = lastName;
         }
-
-        this.lastName = lastName;
     }
 
     /**
@@ -134,8 +136,8 @@ public class Person {
      * @param gender the gender to set
      */
     public void setGender(int gender) throws Exception {
-        if (gender > 2 || gender < 0) {
-            throw new Exception("Gender of Person must be \n0 -> Male \n1 -> Female \n2 -> Unknow");
+        if (gender > 1 || gender < 0) {
+            throw new Exception("Gender of Person must be \n0 -> Male \n1 -> Female");
         }
         this.gender = gender;
     }
@@ -217,13 +219,13 @@ public class Person {
      * @param status the status to set
      */
     public void setStatus(int status) throws Exception {
-        if (status > 2 || status < 0) {
-            throw new Exception("Status of Person must be \n0 -> Deleted \n1 -> Normal \n3 -> reserve");
+        if (status > 1 || status < 0) {
+            throw new Exception("Status invalidation");
         }
         this.status = status;
     }
 
-    public String getFullName(){
+    public String getFullName() {
         return getFirstName() + " " + getLastName();
     }
 }

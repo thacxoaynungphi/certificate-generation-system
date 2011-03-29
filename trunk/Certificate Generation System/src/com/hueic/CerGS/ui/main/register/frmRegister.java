@@ -18,6 +18,8 @@ import com.hueic.CerGS.entity.Course;
 import com.hueic.CerGS.entity.Register;
 import com.hueic.CerGS.entity.Student;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.PatternSyntaxException;
 import javax.swing.JTable;
 import javax.swing.JViewport;
@@ -96,7 +98,7 @@ public class frmRegister extends javax.swing.JFrame {
             rows[index][0] = regis.getId();
             rows[index][1] = regis.getStudentId();
             rows[index][2] = regis.getCourseId();
-            rows[index][3] = regis.getFeeStructe();
+            rows[index][3] = regis.getFeesStructe();
             rows[index][4] = regis.getRegisDate();
             index++;
         }
@@ -457,17 +459,20 @@ public class frmRegister extends javax.swing.JFrame {
     }//GEN-LAST:event_cbxStudentIDActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
-        Register regis = new Register();
-        regis.setId((String) cbxStudentID.getSelectedItem());
-        regis.setCourseId((String) cbxCourseID.getSelectedItem());
-        regis.setFeeStructe(Integer.parseInt(txtFeesStructe.getText()));
-        regis.setRegisDate(DateChRegistrationDate.getDate());
-        regis.setStudentId(txtId.getText());
-
-        regisList.add(regis);
-        loadData(regisList);
-        regisDAO.create(regis);
+        try {
+            // TODO add your handling code here:
+            Register regis = new Register();
+            regis.setId((String) cbxStudentID.getSelectedItem());
+            regis.setCourseId((String) cbxCourseID.getSelectedItem());
+            regis.setFeesStructe(Integer.parseInt(txtFeesStructe.getText()));
+            regis.setRegisDate(DateChRegistrationDate.getDate());
+            regis.setStudentId(txtId.getText());
+            regisList.add(regis);
+            loadData(regisList);
+            regisDAO.create(regis);
+        } catch (Exception ex) {
+            Logger.getLogger(frmRegister.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed

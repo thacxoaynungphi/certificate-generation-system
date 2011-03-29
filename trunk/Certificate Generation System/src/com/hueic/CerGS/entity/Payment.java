@@ -6,7 +6,6 @@ package com.hueic.CerGS.entity;
 
 import java.util.Date;
 
-
 /**
  *
  * @author HuuBien
@@ -15,7 +14,7 @@ import java.util.Date;
  * date 13/3/11
  *
  */
-public class Payment{
+public class Payment {
 
     private int id;
     private String studentId;
@@ -23,13 +22,13 @@ public class Payment{
     private Date payday;
 
     public Payment() {
-        setId(0);
-        setStudentId(null);
-        setMoney(0);
-        setPayday(null);
+        id = 0;
+        studentId = null;
+        money = 0;
+        payday = null;
     }
 
-    public Payment(int id, String studentId, float money, Date payday) {
+    public Payment(int id, String studentId, float money, Date payday) throws Exception {
         setId(id);
         setStudentId(studentId);
         setMoney(money);
@@ -46,8 +45,12 @@ public class Payment{
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int id) throws Exception {
+        if (id < 0) {
+            throw new Exception("Id invalidation");
+        } else {
+            this.id = id;
+        }
     }
 
     /**
@@ -60,8 +63,12 @@ public class Payment{
     /**
      * @param studentId the studentId to set
      */
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
+    public void setStudentId(String studentId) throws Exception {
+        if (studentId.length() <= 0 || studentId.length() > 20) {
+            throw new Exception("Student id invalidation");
+        } else {
+            this.studentId = studentId;
+        }
     }
 
     /**
@@ -74,8 +81,12 @@ public class Payment{
     /**
      * @param money the money to set
      */
-    public void setMoney(float money) {
-        this.money = money;
+    public void setMoney(float money) throws Exception {
+        if (money < 0) {
+            throw new Exception("Money invalidation");
+        } else {
+            this.money = money;
+        }
     }
 
     /**
@@ -88,7 +99,11 @@ public class Payment{
     /**
      * @param payday the payday to set
      */
-    public void setPayday(Date payday) {
-        this.payday = payday;
+    public void setPayday(Date payday) throws Exception {
+        if (payday == null) {
+            throw new Exception("Payday invalidation");
+        } else {
+            this.payday = payday;
+        }
     }
 }

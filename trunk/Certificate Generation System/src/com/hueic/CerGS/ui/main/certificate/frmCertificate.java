@@ -17,6 +17,8 @@ import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.entity.Certificate;
 import com.hueic.CerGS.entity.Register;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.PatternSyntaxException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -446,9 +448,13 @@ public class frmCertificate extends javax.swing.JFrame {
         int i1 = getIndexCertificateInListById(Integer.parseInt(txtID.getText()));
         int i2 = getIndexCertificateInListByStudentId((String)cbxStudentID.getSelectedItem());
         if(i1 == i2){
-            listCertificate.get(i2).setMark(new MarkDAO().getStudentMark((String) cbxStudentID.getSelectedItem()));
-            listCertificate.get(i2).setDegreeDay(dateChooseDegreeDay.getDate());
-            new CertificateDAO().update(listCertificate.get(i2));
+            try {
+                listCertificate.get(i2).setMark(new MarkDAO().getStudentMark((String) cbxStudentID.getSelectedItem()));
+                listCertificate.get(i2).setDegreeDay(dateChooseDegreeDay.getDate());
+                new CertificateDAO().update(listCertificate.get(i2));
+            } catch (Exception ex) {
+                Logger.getLogger(frmCertificate.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -474,16 +480,19 @@ public class frmCertificate extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFilterActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
-
-        Certificate certificate = new Certificate();
-        certificate.setId(Integer.parseInt(txtID.getText().trim()));
-        certificate.setMark(new MarkDAO().getStudentMark((String)cbxStudentID.getSelectedItem()));
-        certificate.setDegreeDay(dateChooseDegreeDay.getDate());
-        certificate.setStudentID((String)cbxStudentID.getSelectedItem());
-        listCertificate.add(certificate);
-        new CertificateDAO().create(certificate);
-        loadData(listCertificate);
+        try {
+            // TODO add your handling code here:
+            Certificate certificate = new Certificate();
+            certificate.setId(Integer.parseInt(txtID.getText().trim()));
+            certificate.setMark(new MarkDAO().getStudentMark((String) cbxStudentID.getSelectedItem()));
+            certificate.setDegreeDay(dateChooseDegreeDay.getDate());
+            certificate.setStudentID((String) cbxStudentID.getSelectedItem());
+            listCertificate.add(certificate);
+            new CertificateDAO().create(certificate);
+            loadData(listCertificate);
+        } catch (Exception ex) {
+            Logger.getLogger(frmCertificate.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed

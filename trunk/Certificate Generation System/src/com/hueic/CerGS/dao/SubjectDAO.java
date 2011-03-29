@@ -10,6 +10,8 @@ import com.hueic.CerGS.util.Configure;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -37,7 +39,7 @@ public class SubjectDAO extends BaseDAO implements ISubjectDAO {
                 sub.setStatus(rs.getInt(5));
                 list.add(sub);
             }
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             setLastError("SQL Error!");
         } finally {
             db.closeConnection();
@@ -62,7 +64,7 @@ public class SubjectDAO extends BaseDAO implements ISubjectDAO {
                 sub.setStatus(rs.getInt(5));
                 list.add(sub);
             }
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             setLastError("SQL Error!");
         } finally {
             db.closeConnection();
@@ -86,7 +88,7 @@ public class SubjectDAO extends BaseDAO implements ISubjectDAO {
                 sub.setCourseID(rs.getString(4));
                 sub.setStatus(rs.getInt(5));
             }
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             setLastError("SQL Error!");
         } finally {
             db.closeConnection();

@@ -19,6 +19,8 @@ import com.hueic.CerGS.entity.Course;
 import com.hueic.CerGS.entity.Payment;
 import com.hueic.CerGS.entity.Register;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.PatternSyntaxException;
 import javax.swing.JTable;
 import javax.swing.JViewport;
@@ -441,18 +443,19 @@ public class frmPayment extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFilterActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
-        Payment payment = new Payment();
-
-        payment.setId(listPayments.size() + 1);
-        payment.setMoney(Float.parseFloat(txtMoney.getText()));
-        payment.setPayday(dateChPayDay.getDate());
-        payment.setStudentId((String) cbxStudentID.getSelectedItem());
-
-        listPayments.add(payment);
-        new PaymentDAO().create(payment);
-
-        loadData(listPayments);
+        try {
+            // TODO add your handling code here:
+            Payment payment = new Payment();
+            payment.setId(listPayments.size() + 1);
+            payment.setMoney(Float.parseFloat(txtMoney.getText()));
+            payment.setPayday(dateChPayDay.getDate());
+            payment.setStudentId((String) cbxStudentID.getSelectedItem());
+            listPayments.add(payment);
+            new PaymentDAO().create(payment);
+            loadData(listPayments);
+        } catch (Exception ex) {
+            Logger.getLogger(frmPayment.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnAddActionPerformed
 
     public int getIndexOfPaymentInList(int id) {
@@ -464,12 +467,16 @@ public class frmPayment extends javax.swing.JFrame {
         return -1;
     }
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
-        int index = getIndexOfPaymentInList(currentId);
-        listPayments.get(index).setMoney(Float.parseFloat(txtMoney.getText()));
-        listPayments.get(index).setPayday(dateChPayDay.getDate());
-        loadData(listPayments);
-        paymentDao.update(listPayments.get(index));
+        try {
+            // TODO add your handling code here:
+            int index = getIndexOfPaymentInList(currentId);
+            listPayments.get(index).setMoney(Float.parseFloat(txtMoney.getText()));
+            listPayments.get(index).setPayday(dateChPayDay.getDate());
+            loadData(listPayments);
+            paymentDao.update(listPayments.get(index));
+        } catch (Exception ex) {
+            Logger.getLogger(frmPayment.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
