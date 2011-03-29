@@ -1,5 +1,6 @@
 package com.hueic.CerGS.component;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.JTable;
@@ -53,7 +54,7 @@ public class ObjectTableModel extends AbstractTableModel {
         this.table.setFont(new Font("Tahoma", 0, 11));
         this.table.setRowHeight(18);
         this.table.setShowGrid(true);
-        this.table.setModel(this);        
+        this.table.setModel(this);
         this.initTableColumns();
     }
 
@@ -168,7 +169,7 @@ public class ObjectTableModel extends AbstractTableModel {
              * Delete identity column for main table
              */
             this.table.removeColumn(table.getColumnModel().getColumn(0));
-            
+
             /**
              * Don't allow to change the order of column
              */
@@ -200,7 +201,7 @@ public class ObjectTableModel extends AbstractTableModel {
                     ObjectTableCellRenderer cellRenderer = new ObjectTableCellRenderer(true);
                     cellRenderer.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
                     tableColumn.setCellRenderer(cellRenderer);
-                  
+
                     tableColumn.setMaxWidth(headerTableSize);
                     super.addColumn(tableColumn);
                     first = false;
@@ -217,7 +218,7 @@ public class ObjectTableModel extends AbstractTableModel {
         headerTable.setCellSelectionEnabled(false);
         headerTable.getTableHeader().setReorderingAllowed(false);
         headerTable.setShowGrid(true);
-        
+
         return headerTable;
     }
 
