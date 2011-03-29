@@ -10,7 +10,9 @@
  */
 package com.hueic.CerGS.ui.main.student;
 
+import com.hueic.CerGS.component.ColumnData;
 import com.hueic.CerGS.component.IconSystem;
+import com.hueic.CerGS.component.ObjectTableModel;
 import com.hueic.CerGS.dao.StudentDAO;
 import com.hueic.CerGS.entity.Student;
 import java.awt.AWTEvent;
@@ -21,7 +23,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,7 +35,7 @@ import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.SwingConstants;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -53,6 +54,8 @@ public class frmStudent extends javax.swing.JFrame {
     private ArrayList<Student> liststudentSearch = new ArrayList<Student>();
     private StudentDAO studentDao = new StudentDAO();
     TableRowSorter<TableModel> sorter;
+    private ObjectTableModel tableModel;
+    private JTable headerTable;
 
     public frmStudent() {
         initComponents();
@@ -89,59 +92,40 @@ public class frmStudent extends javax.swing.JFrame {
                 maybeShowPopup(e);
             }
         });
-        
+
     }
 
     public void loadTable(ArrayList<Student> liststudent) {
-        lblCount.setText(String.valueOf(liststudent.size()));
-        String[] columns = {"ID", "First Name", "Last Name", "Birthday", "Gender", "Phone"};
-        Object[][] rows = new Object[liststudent.size()][6];
-        int index = 0;
-        for (int i = 0; i < liststudent.size(); i++) {
-            Student student = liststudent.get(i);
-            rows[index][0] = student.getId();
-            rows[index][1] = student.getFirstName();
-            rows[index][2] = student.getLastName();
-            rows[index][3] = student.getBirthDay();
-            rows[index][4] = student.getGender();
-            rows[index][5] = student.getPhone();
-            index++;
-        }
-        TableModel model = new DefaultTableModel(rows, columns) {
 
-            public Class getColumnClass(int column) {
-                Class returnValue;
-                if ((column >= 0) && (column < getColumnCount())) {
-                    returnValue = getValueAt(0, column).getClass();
-                } else {
-                    returnValue = Object.class;
-                }
-                return returnValue;
-            }
-            boolean[] canEdit = new boolean[]{
-                false, false, false, false, false, false
-            };
-
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return canEdit[column];
-            }
+        ColumnData[] columns = {
+            new ColumnData("ID", 135, SwingConstants.LEFT, 1),
+            new ColumnData("First Name", 100, SwingConstants.LEFT, 2),
+            new ColumnData("Last Name", 140, SwingConstants.LEFT, 3),
+            new ColumnData("Birthday", 170, SwingConstants.LEFT, 4),
+            new ColumnData("Gender", 260, SwingConstants.LEFT, 5),
+            new ColumnData("Phone", 260, SwingConstants.LEFT, 6)
         };
-        tableContent = new JTable(model);
+        tableModel = new ObjectTableModel(tableContent, columns, liststudent);
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
 
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableContentMouseClicked(evt);
             }
         });
-        sorter = new TableRowSorter<TableModel>(model);
+        sorter = new TableRowSorter<TableModel>(tableModel);
         tableContent.setRowSorter(sorter);
+        headerTable = tableModel.getHeaderTable();
+        // Create numbering column
+        headerTable.createDefaultColumnsFromModel();
         tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        JViewport viewPort = new JViewport();
-        viewPort.setView(tableContent);
-        viewPort.setPreferredSize(tableContent.getMaximumSize());
-        srcPanelContent.setRowHeader(viewPort);
-        srcPanelContent.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
+        // Put it in a viewport that we can control a bit
+        JViewport viewport = new JViewport();
+        // Display numbering column
+        viewport.setView(headerTable);
+        viewport.setPreferredSize(headerTable.getMaximumSize());
+        srcPanelContent.setRowHeader(viewport);
+        srcPanelContent.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, headerTable.getTableHeader());
     }
 
     /** This method is called from within the constructor to
@@ -685,26 +669,24 @@ public class frmStudent extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnFilterActionPerformed
 
-    public Student find(String id)
-    {
-        for(int i = 0;i<liststudent.size();i++)
-        {
-            if(liststudent.get(i).getId().equals(id))
+    public Student find(String id) {
+        for (int i = 0; i < liststudent.size(); i++) {
+            if (liststudent.get(i).getId().equals(id)) {
                 return liststudent.get(i);
+            }
         }
         return null;
     }
     private void mnuIDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuIDetailsActionPerformed
         // TODO add your handling code here:
         int index = tableContent.getSelectedRow();
-        if(index !=- 1)
-        {
+        if (index != - 1) {
             String id = String.valueOf(tableContent.getValueAt(index, 0));
             Student student = find(id);
             frmDetailsStudent detailsStudent = new frmDetailsStudent(student);
             detailsStudent.setVisible(true);
         }
-        
+
     }//GEN-LAST:event_mnuIDetailsActionPerformed
 
     public boolean isExist(Student student) {
