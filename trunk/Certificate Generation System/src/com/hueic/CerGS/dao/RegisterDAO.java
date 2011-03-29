@@ -182,6 +182,7 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
             pst.setString(1, res.getId());
             rs = pst.executeQuery();
             if (rs.first()) {
+                rs.updateString("CourseId",res.getCourseId());
                 rs.updateInt("FeesStructe", res.getFeeStructe());
                 rs.updateDate("RegistrationDate", (Date) res.getRegisDate());
                 rs.updateString("StudentId", res.getStudentId());

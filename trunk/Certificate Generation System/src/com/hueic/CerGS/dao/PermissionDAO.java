@@ -15,7 +15,7 @@ import java.util.ArrayList;
  *
  * @author nhchung
  */
-public class PermissionDAO  extends BaseDAO implements IPermissionDAO{
+public class PermissionDAO extends BaseDAO implements IPermissionDAO {
 
     public PermissionDAO() {
         db = new Configure();
@@ -57,13 +57,14 @@ public class PermissionDAO  extends BaseDAO implements IPermissionDAO{
             }
         } catch (SQLException ex) {
             setLastError("SQL Error!");
+        } finally {
+            db.closeConnection();
         }
         return per;
     }
 
-    public Permission readByName(String name)
-    {
-         Permission per = null;
+    public Permission readByName(String name) {
+        Permission per = null;
         try {
             con = db.getConnection();
             String sql = "select * from Permission where Name = ?";
@@ -77,6 +78,8 @@ public class PermissionDAO  extends BaseDAO implements IPermissionDAO{
             }
         } catch (SQLException ex) {
             setLastError("SQL Error!");
+        } finally {
+            db.closeConnection();
         }
         return per;
     }
@@ -85,7 +88,7 @@ public class PermissionDAO  extends BaseDAO implements IPermissionDAO{
         boolean status = false;
         try {
             con = db.getConnection();
-            String sql = "insert into per(Id,Name)" + " values (?,?); ";
+            String sql = "insert into Permission(Id,Name)" + " values (?,?); ";
             pst = con.prepareStatement(sql);
             pst.setInt(1, per.getId());
             pst.setString(2, per.getName());
@@ -107,7 +110,7 @@ public class PermissionDAO  extends BaseDAO implements IPermissionDAO{
         boolean status = false;
         try {
             con = db.getConnection();
-            String sql = "select * from per where Id = ?";
+            String sql = "select * from Permission where Id = ?";
             pst = con.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst.setInt(1, per.getId());
             rs = pst.executeQuery();
@@ -127,9 +130,8 @@ public class PermissionDAO  extends BaseDAO implements IPermissionDAO{
         return status;
     }
 
-    public boolean delete(int id)
-    {
-          boolean status = false;
+    public boolean delete(int id) {
+        boolean status = false;
         try {
             con = db.getConnection();
             String sql = "delete from Permission where Id = ?";

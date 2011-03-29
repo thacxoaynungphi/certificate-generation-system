@@ -48,7 +48,7 @@ public class EmployeeDAO extends BaseDAO implements IEmployeeDAO {
                 list.add(emp);
             }
         } catch (Exception ex) {
-            Logger.getLogger(EmployeeDAO.class.getName()).log(Level.SEVERE, null, ex);
+            setLastError("SQL Error!");
         } finally {
             db.closeConnection();
         }
@@ -109,8 +109,9 @@ public class EmployeeDAO extends BaseDAO implements IEmployeeDAO {
 
         } catch (Exception ex) {
             setLastError("SQL Error!");
+        } finally {
+            db.closeConnection();
         }
-
         return listEmp;
     }
 
@@ -137,7 +138,9 @@ public class EmployeeDAO extends BaseDAO implements IEmployeeDAO {
                 emp.setBeginWork(rs.getDate(11));
             }
         } catch (Exception ex) {
-            Logger.getLogger(EmployeeDAO.class.getName()).log(Level.SEVERE, null, ex);
+            setLastError("SQL Error!");
+        } finally {
+            db.closeConnection();
         }
         return emp;
     }
@@ -172,7 +175,7 @@ public class EmployeeDAO extends BaseDAO implements IEmployeeDAO {
                 db.closeConnection();
             }
         } else {
-            setLastError("Add Employee unuccessfully");
+            setLastError("Add Employee unsuccessfully");
         }
         return status;
     }

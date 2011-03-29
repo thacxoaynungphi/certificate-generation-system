@@ -46,14 +46,14 @@ public class PersonDAO extends BaseDAO implements IPersonDAO {
                 list.add(person);
             }
         } catch (Exception ex) {
-            Logger.getLogger(PersonDAO.class.getName()).log(Level.SEVERE, null, ex);
+            setLastError("SQL Error!");
         } finally {
             db.closeConnection();
         }
         return list;
     }
 
-     public ArrayList<Person> readByAllNotAcc() {
+    public ArrayList<Person> readByAllNotAcc() {
         ArrayList<Person> list = new ArrayList<Person>();
         con = db.getConnection();
         String sql = "select * from Person where Id not in (select username from Account);";
@@ -75,7 +75,7 @@ public class PersonDAO extends BaseDAO implements IPersonDAO {
                 list.add(person);
             }
         } catch (Exception ex) {
-            Logger.getLogger(PersonDAO.class.getName()).log(Level.SEVERE, null, ex);
+            setLastError("SQL Error!");
         } finally {
             db.closeConnection();
         }
@@ -158,7 +158,6 @@ public class PersonDAO extends BaseDAO implements IPersonDAO {
                 rs.updateString(9, person.getImage());
                 rs.updateInt(10, person.getStatus());
                 rs.updateRow();
-                db.closeConnection();//du code ne
                 setLastError("Update Person successfully");
                 status = true;
             } else {
