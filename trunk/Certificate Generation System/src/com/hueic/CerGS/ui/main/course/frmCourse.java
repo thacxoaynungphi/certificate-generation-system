@@ -10,9 +10,12 @@
  */
 package com.hueic.CerGS.ui.main.course;
 
+import com.hueic.CerGS.component.ColumnData;
 import com.hueic.CerGS.component.IconSystem;
+import com.hueic.CerGS.component.ObjectTableModel;
 import com.hueic.CerGS.dao.CourseDAO;
 import com.hueic.CerGS.entity.Course;
+import com.hueic.CerGS.entity.Register;
 import java.util.ArrayList;
 import java.util.regex.PatternSyntaxException;
 import javax.swing.JOptionPane;
@@ -21,6 +24,7 @@ import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -36,6 +40,8 @@ public class frmCourse extends javax.swing.JFrame {
     private CourseDAO courseDao;
     TableRowSorter<TableModel> sorter;
     boolean isAdd = false;
+    private ObjectTableModel tableModel;
+    private JTable headerTable;
 
     public frmCourse() {
         initComponents();
@@ -50,53 +56,34 @@ public class frmCourse extends javax.swing.JFrame {
     }
 
     public void loadData(ArrayList<Course> listCourses) {
-        String[] columns = {"ID", "Name", "Total Fees", "Status"};
-        Object[][] rows = new Object[listCourses.size()][4];
-        int index = 0;
-        for (int i = 0; i < listCourses.size(); i++) {
-            Course course = listCourses.get(i);
-            rows[index][0] = course.getId();
-            rows[index][1] = course.getName();
-            rows[index][2] = course.getTotalFees();
-            rows[index][3] = course.getStatus();
-            index++;
-        }
-        TableModel model = new DefaultTableModel(rows, columns) {
 
-            public Class getColumnClass(int column) {
-                Class returnValue;
-                if ((column >= 0) && (column < getColumnCount())) {
-                    returnValue = getValueAt(0, column).getClass();
-                } else {
-                    returnValue = Object.class;
-                }
-                return returnValue;
-            }
-            boolean[] canEdit = new boolean[]{
-                false, false, false, false
-            };
-
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return canEdit[column];
-            }
+        ColumnData[] columns = {
+            new ColumnData("ID", 100, SwingConstants.LEFT, 1),
+            new ColumnData("Name", 140, SwingConstants.LEFT, 2),
+            new ColumnData("Total Fees", 170, SwingConstants.LEFT, 3),
+            new ColumnData("Status", 260, SwingConstants.LEFT, 4)
         };
-        tableContent = new JTable(model);
-        tableContent.getTableHeader().setReorderingAllowed(false);
+        tableModel = new ObjectTableModel(tableContent, columns, listCourses);
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
 
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableContentMouseClicked(evt);
             }
         });
-        sorter = new TableRowSorter<TableModel>(model);
+        sorter = new TableRowSorter<TableModel>(tableModel);
         tableContent.setRowSorter(sorter);
+        headerTable = tableModel.getHeaderTable();
+        // Create numbering column
+        headerTable.createDefaultColumnsFromModel();
         tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        JViewport viewPort = new JViewport();
-        viewPort.setView(tableContent);
-        viewPort.setPreferredSize(tableContent.getMaximumSize());
-        jScrollPane1.setRowHeader(viewPort);
-        jScrollPane1.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
+        // Put it in a viewport that we can control a bit
+        JViewport viewport = new JViewport();
+        // Display numbering column
+        viewport.setView(headerTable);
+        viewport.setPreferredSize(headerTable.getMaximumSize());
+        srcPanelCourse.setRowHeader(viewport);
+        srcPanelCourse.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, headerTable.getTableHeader());
     }
 
     public void loadDetails(Course course) {
@@ -124,7 +111,7 @@ public class frmCourse extends javax.swing.JFrame {
         panelLogo = new javax.swing.JPanel();
         lbllogo = new javax.swing.JLabel();
         panelLeft = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        srcPanelCourse = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
         filterText = new javax.swing.JTextField();
         btnFilter = new javax.swing.JButton();
@@ -176,7 +163,7 @@ public class frmCourse extends javax.swing.JFrame {
         panelLeft.setRequestFocusEnabled(false);
         panelLeft.setLayout(new java.awt.GridBagLayout());
 
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(430, 150));
+        srcPanelCourse.setPreferredSize(new java.awt.Dimension(430, 150));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -195,7 +182,7 @@ public class frmCourse extends javax.swing.JFrame {
                 tableContentMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tableContent);
+        srcPanelCourse.setViewportView(tableContent);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -208,7 +195,7 @@ public class frmCourse extends javax.swing.JFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
-        panelLeft.add(jScrollPane1, gridBagConstraints);
+        panelLeft.add(srcPanelCourse, gridBagConstraints);
 
         filterText.setPreferredSize(new java.awt.Dimension(250, 20));
         filterText.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -573,7 +560,6 @@ public class frmCourse extends javax.swing.JFrame {
     private javax.swing.JButton btnUpdate;
     private javax.swing.ButtonGroup buttonGroupCourse;
     private javax.swing.JTextField filterText;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblStatus;
@@ -587,6 +573,7 @@ public class frmCourse extends javax.swing.JFrame {
     private javax.swing.JRadioButton radioDisable;
     private javax.swing.JRadioButton radioEnable;
     private javax.swing.JSeparator sepaCourse;
+    private javax.swing.JScrollPane srcPanelCourse;
     private javax.swing.JTable tableContent;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtName;

@@ -33,6 +33,7 @@ public class EmployeeDAO extends BaseDAO implements IEmployeeDAO {
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
             while (rs.next()) {
+
                 Employee emp = new Employee();
                 emp.setId(rs.getString(1));
                 emp.setFirstName(rs.getString(2));
@@ -48,6 +49,7 @@ public class EmployeeDAO extends BaseDAO implements IEmployeeDAO {
                 list.add(emp);
             }
         } catch (Exception ex) {
+            System.out.println(ex.toString());
             setLastError("SQL Error!");
         } finally {
             db.closeConnection();
