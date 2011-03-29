@@ -131,7 +131,6 @@ public class CertificateDAO extends BaseDAO implements ICertificateDAO {
                 rs.updateFloat(3, cer.getMark());
                 rs.updateDate(4, new Date(cer.getDegreeDay().getTime()));
                 rs.updateRow();
-                db.closeConnection();
                 setLastError("Update Certificate successfully");
                 status = true;
             } else {
