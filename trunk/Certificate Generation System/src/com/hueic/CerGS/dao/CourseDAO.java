@@ -136,7 +136,7 @@ public class CourseDAO extends BaseDAO implements ICourseDAO {
                 rs.updateFloat(3, course.getTotalFees());
                 rs.updateInt(4, course.getStatus());
                 rs.updateRow();
-
+                status = true;
                 setLastError("Update Course successful");
             }
         } catch (SQLException ex) {

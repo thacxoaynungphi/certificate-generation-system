@@ -162,7 +162,7 @@ public class EmployeeDAO extends BaseDAO implements IEmployeeDAO {
                 String sql = "insert into Employee(Id,BeginWork)" + " values (?,?); ";
                 pst = con.prepareStatement(sql);
                 pst.setString(1, emp.getId());
-                pst.setDate(2, (java.sql.Date) emp.getBeginWork());
+                pst.setDate(2, new java.sql.Date(emp.getBeginWork().getTime()));
                 if (pst.executeUpdate() > 0) {
                     setLastError("Add Employee Successfully");
                     status = true;
@@ -192,7 +192,7 @@ public class EmployeeDAO extends BaseDAO implements IEmployeeDAO {
                 pst.setString(1, person.getId());
                 rs = pst.executeQuery();
                 if (rs.first()) {
-                    rs.updateDate(2, (java.sql.Date) emp.getBeginWork());
+                    rs.updateDate(2, new java.sql.Date(emp.getBeginWork().getTime()));
                     rs.updateRow();
                     setLastError("Update Employee successfully");
                     status = true;

@@ -456,7 +456,7 @@ public class frmCourse extends javax.swing.JFrame {
             btnUpdate.setEnabled(true);
             btnDelete.setEnabled(true);
         } else {
-            loadDetails(listCourses.get(0));
+            this.dispose();
         }
     }//GEN-LAST:event_btnCancelActionPerformed
 
@@ -535,12 +535,13 @@ public class frmCourse extends javax.swing.JFrame {
                     listCourses.add(course);
                     loadData(listCourses);
                     loadDetails(course);
-                    isAdd = false;
-                    btnUpdate.setEnabled(true);
-                    btnDelete.setEnabled(true);
                 } else {
                     JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Create Course", JOptionPane.ERROR_MESSAGE);
                 }
+                isAdd = false;
+                btnUpdate.setEnabled(true);
+                btnDelete.setEnabled(true);
+                txtTotalFees.setEditable(false);
             }
         } catch (Exception e) {
         }
