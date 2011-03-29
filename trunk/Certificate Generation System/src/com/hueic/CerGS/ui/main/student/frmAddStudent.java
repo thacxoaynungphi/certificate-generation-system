@@ -403,7 +403,7 @@ public class frmAddStudent extends javax.swing.JFrame {
             student.setId(txtID.getText());
             student.setFirstName(txtFirstname.getText());
             student.setLastName(txtLastname.getText());
-            student.setBirthDay(DateChBirthday.getDate());
+            student.setBirthDay(new java.sql.Date(DateChBirthday.getDate().getTime()));
             if (radioMale.isSelected()) {
                 student.setGender(0);
             } else if (radioFemale.isSelected()) {

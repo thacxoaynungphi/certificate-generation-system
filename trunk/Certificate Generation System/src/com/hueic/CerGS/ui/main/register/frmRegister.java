@@ -17,10 +17,10 @@ import com.hueic.CerGS.dao.SubjectDAO;
 import com.hueic.CerGS.entity.Course;
 import com.hueic.CerGS.entity.Register;
 import com.hueic.CerGS.entity.Student;
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.PatternSyntaxException;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
@@ -44,10 +44,14 @@ public class frmRegister extends javax.swing.JFrame {
     private StudentDAO studentDAO;
     private TableRowSorter<TableModel> sorter;
     private SubjectDAO subjectDAO;
+    private boolean isUpdate = false;
+    private boolean isAdd = false;
+    String studentIdtemp = null;
 
     /** Creates new form MarkFrm */
     public frmRegister() {
         initComponents();
+        setLocationRelativeTo(null);
         regisDAO = new RegisterDAO();
         courseDAO = new CourseDAO();
         studentDAO = new StudentDAO();
@@ -55,15 +59,23 @@ public class frmRegister extends javax.swing.JFrame {
         regisList = regisDAO.readByAll();
         studentList = studentDAO.readByAll();
         courseIdList = courseDAO.readByAll();
-        loadCourse();
-        loadCourseID();
-        loadStudentId();
-        loadData(regisList);
+
+
+        cbxStudentID.setVisible(false);
+        cbxCourseID.setVisible(false);
+        if (regisList.size() != 0) {
+            loadCourse();
+            loadCourseID();
+            loadStudentId();
+            loadData(regisList);
+            loadDetails(regisList.get(0));
+        }
     }
 
     public void loadCourse() {
         if (courseIdList.size() != 0) {
             cbxCourseChoose.removeAllItems();
+            cbxCourseChoose.addItem("All");
             for (Course course : courseIdList) {
                 cbxCourseChoose.addItem(course.getId());
             }
@@ -89,14 +101,14 @@ public class frmRegister extends javax.swing.JFrame {
     }
 
     public void loadData(ArrayList<Register> regisList) {
-        String[] columns = {"Id", "StudentId", "CourseId", "FeeStructe", "Registration Date"};
+        String[] columns = {"StudentId", "Id", "CourseId", "FeesStructe", "Registration Date"};
         Object[][] rows = new Object[regisList.size()][5];
         int index = 0;
         for (int i = 0; i < regisList.size(); i++) {
             Register regis = regisList.get(i);
 
-            rows[index][0] = regis.getId();
-            rows[index][1] = regis.getStudentId();
+            rows[index][1] = regis.getId();
+            rows[index][0] = regis.getStudentId();
             rows[index][2] = regis.getCourseId();
             rows[index][3] = regis.getFeesStructe();
             rows[index][4] = regis.getRegisDate();
@@ -139,8 +151,25 @@ public class frmRegister extends javax.swing.JFrame {
         srcPanelRegister.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
     }
 
-    private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
+    public void loadDetails(Register register) {
+        txtId.setText(register.getStudentId());
+        txtFeesStructe.setText(String.valueOf(register.getFeesStructe()));
+        DateChRegistrationDate.setDate(register.getRegisDate());
+        txtCourseID.setText(register.getCourseId());
+        txtStudentId.setText(register.getStudentId());
+        for (int i = 0; i < cbxCourseID.getItemCount(); i++) {
+            if (cbxCourseID.getItemAt(i).toString().equals(register.getCourseId())) {
+                cbxCourseID.setSelectedIndex(i);
+
+            }
+        }
+
+        for (int i = 0; i < cbxStudentID.getItemCount(); i++) {
+            if (cbxStudentID.getItemAt(i).toString().equals(register.getId())) {
+                cbxStudentID.setSelectedIndex(i);
+
+            }
+        }
     }
 
     /** This method is called from within the constructor to
@@ -181,6 +210,8 @@ public class frmRegister extends javax.swing.JFrame {
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
+        txtCourseID = new javax.swing.JTextField();
+        txtStudentId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Management Mark");
@@ -232,6 +263,11 @@ public class frmRegister extends javax.swing.JFrame {
 
         cbxCourseChoose.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxCourseChoose.setPreferredSize(new java.awt.Dimension(150, 20));
+        cbxCourseChoose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxCourseChooseActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -263,6 +299,11 @@ public class frmRegister extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableContentMouseClicked(evt);
+            }
+        });
         srcPanelRegister.setViewportView(tableContent);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -396,6 +437,7 @@ public class frmRegister extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(cbxStudentID, gridBagConstraints);
 
+        DateChRegistrationDate.setDateFormatString("MM/dd/yyyy");
         DateChRegistrationDate.setPreferredSize(new java.awt.Dimension(180, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -411,23 +453,43 @@ public class frmRegister extends javax.swing.JFrame {
         btnAdd.setText("Add");
         btnAdd.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnAdd.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
         panelButon.add(btnAdd);
 
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
-        btnUpdate.setText("Reset");
+        btnUpdate.setText("Update");
         btnUpdate.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnUpdate.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
         panelButon.add(btnUpdate);
 
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
         btnDelete.setText("Delete");
         btnDelete.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
         panelButon.add(btnDelete);
 
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
         btnCancel.setText("Cancel");
         btnCancel.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnCancel.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
         panelButon.add(btnCancel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -436,6 +498,24 @@ public class frmRegister extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(panelButon, gridBagConstraints);
+
+        txtCourseID.setMinimumSize(new java.awt.Dimension(180, 20));
+        txtCourseID.setPreferredSize(new java.awt.Dimension(180, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight.add(txtCourseID, gridBagConstraints);
+
+        txtStudentId.setMinimumSize(new java.awt.Dimension(180, 20));
+        txtStudentId.setPreferredSize(new java.awt.Dimension(180, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight.add(txtStudentId, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -447,11 +527,18 @@ public class frmRegister extends javax.swing.JFrame {
 
     private void cbxCourseChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCourseChooseActionPerformed
         // TODO add your handling code here:
-        String courseName = (String) cbxCourseChoose.getSelectedItem();
-        String courseId = courseDAO.readByName(courseName).getId();
-        regisList.clear();
-        regisList.addAll(regisDAO.readByCourseId(courseId));
-        loadData(regisList);
+        if (cbxCourseChoose.getItemCount() - 1 == courseIdList.size()) {
+            String courseId = cbxCourseChoose.getSelectedItem().toString();
+            regisList.clear();
+            if (courseId.equals("All")) {
+                regisList = regisDAO.readByAll();
+            } else {
+                regisList.addAll(regisDAO.readByCourseId(courseId));
+            }
+
+
+            loadData(regisList);
+        }
     }//GEN-LAST:event_cbxCourseChooseActionPerformed
 
     private void cbxStudentIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxStudentIDActionPerformed
@@ -460,18 +547,37 @@ public class frmRegister extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         try {
-            // TODO add your handling code here:
-            Register regis = new Register();
-            regis.setId((String) cbxStudentID.getSelectedItem());
-            regis.setCourseId((String) cbxCourseID.getSelectedItem());
-            regis.setFeesStructe(Integer.parseInt(txtFeesStructe.getText()));
-            regis.setRegisDate(DateChRegistrationDate.getDate());
-            regis.setStudentId(txtId.getText());
-            regisList.add(regis);
-            loadData(regisList);
-            regisDAO.create(regis);
-        } catch (Exception ex) {
-            Logger.getLogger(frmRegister.class.getName()).log(Level.SEVERE, null, ex);
+            if (!isAdd) {
+                isAdd = true;
+                cbxCourseID.setVisible(true);
+                txtCourseID.setVisible(false);
+                txtStudentId.setVisible(false);
+                cbxStudentID.setVisible(true);
+                txtId.setText(null);
+                txtFeesStructe.setText(null);
+            } else {
+                String Id = cbxStudentID.getSelectedItem().toString();
+                String studentId = txtId.getText();
+                int feesStructe = Integer.parseInt(txtFeesStructe.getText());
+                Date regDate = new java.sql.Date(DateChRegistrationDate.getDate().getTime());
+                String courseId = cbxCourseID.getSelectedItem().toString();
+                Register register = new Register(Id, courseId, feesStructe, regDate, studentId);
+                if (regisDAO.create(register)) {
+                    JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Create Register", JOptionPane.INFORMATION_MESSAGE);
+                    regisList.add(register);
+                    loadData(regisList);
+                    loadDetails(register);
+                    isAdd = false;
+                    cbxCourseID.setVisible(false);
+                    txtCourseID.setVisible(true);
+                    txtStudentId.setVisible(true);
+                    cbxStudentID.setVisible(false);
+                } else {
+                    JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Create Register", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.toString(), "Create Register", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -486,7 +592,22 @@ public class frmRegister extends javax.swing.JFrame {
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+        if (isAdd) {
+            isAdd = false;
+            cbxCourseID.setVisible(false);
+            txtCourseID.setVisible(true);
+            txtStudentId.setVisible(true);
+            cbxStudentID.setVisible(false);
+        } else if (isUpdate) {
+            isUpdate = false;
+            cbxCourseID.setVisible(false);
+            txtCourseID.setVisible(true);
+            txtStudentId.setVisible(true);
+            cbxStudentID.setVisible(false);
+            loadDetails(findByStudentId(txtId.getText()));
+        } else {
+            loadDetails(regisList.get(0));
+        }
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
@@ -500,6 +621,82 @@ public class frmRegister extends javax.swing.JFrame {
             searchStart();
         }
     }//GEN-LAST:event_filterTextKeyPressed
+
+    public Register findByStudentId(String studentId) {
+        for (int i = 0; i < regisList.size(); i++) {
+            if (regisList.get(i).getStudentId().equals(studentId)) {
+                return regisList.get(i);
+            }
+        }
+        return null;
+    }
+    private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
+        // TODO add your handling code here:
+        if (regisList.size() != 0) {
+            int index = tableContent.getSelectedRow();
+            if (index != -1) {
+                String studentId = tableContent.getValueAt(index, 0).toString();
+                Register reg = findByStudentId(studentId);
+                if (reg != null) {
+                    loadDetails(reg);
+                }
+            }
+        }
+    }//GEN-LAST:event_tableContentMouseClicked
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        String studentid = txtId.getText();
+        if (regisDAO.delete(studentid)) {
+            regisList.remove(findByStudentId(studentid));
+            loadData(regisList);
+            if (regisList.size() != 0) {
+                loadDetails(regisList.get(0));
+            }
+            JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Delete Register", JOptionPane.INFORMATION_MESSAGE, null);
+        } else {
+            JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Delete Register", JOptionPane.ERROR_MESSAGE, null);
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        //TODO: chua xu ly viec cap nhap khoa se bi anh huong den cac bang khac
+        try {
+            if (!isUpdate) {
+                cbxCourseID.setVisible(true);
+                txtCourseID.setVisible(false);
+                txtStudentId.setVisible(false);
+                cbxStudentID.setVisible(true);
+                isUpdate = true;
+                studentIdtemp = txtId.getText();
+            } else {
+                isUpdate = false;
+                String Id = cbxStudentID.getSelectedItem().toString();
+                String studentId = txtId.getText();
+                int feesStructe = Integer.parseInt(txtFeesStructe.getText());
+                Date regDate = new java.sql.Date(DateChRegistrationDate.getDate().getTime());
+                String courseId = cbxCourseID.getSelectedItem().toString();
+                Register register = new Register(Id, courseId, feesStructe, regDate, studentId);
+                if (regisDAO.update(register)) {
+                    JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Update Subject", JOptionPane.INFORMATION_MESSAGE);
+                    System.out.println(studentIdtemp);
+                    regisList.remove(findByStudentId(studentIdtemp));
+                    regisList.add(register);
+                    loadData(regisList);
+                    loadDetails(register);
+                    cbxCourseID.setVisible(false);
+                    txtCourseID.setVisible(true);
+                    txtStudentId.setVisible(true);
+                    cbxStudentID.setVisible(false);
+                } else {
+                    JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Update Subject", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     public void searchStart() {
         if (regisList.size() != 0) {
@@ -554,7 +751,9 @@ public class frmRegister extends javax.swing.JFrame {
     private javax.swing.JSeparator sepa1;
     private javax.swing.JScrollPane srcPanelRegister;
     private javax.swing.JTable tableContent;
+    private javax.swing.JTextField txtCourseID;
     private javax.swing.JTextField txtFeesStructe;
     private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtStudentId;
     // End of variables declaration//GEN-END:variables
 }

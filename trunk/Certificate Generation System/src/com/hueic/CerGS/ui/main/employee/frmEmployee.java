@@ -548,14 +548,14 @@ public class frmEmployee extends javax.swing.JFrame {
                     emp.setId(row.getCell(0).toString());
                     emp.setFirstName(row.getCell(1).toString());
                     emp.setLastName(row.getCell(2).toString());
-                    emp.setBirthDay(row.getCell(3).getDateCellValue());
+                    emp.setBirthDay(new java.sql.Date(row.getCell(3).getDateCellValue().getTime()));
                     emp.setGender((int) Float.parseFloat(row.getCell(4).toString()));
                     emp.setPhone(row.getCell(5).toString());
                     emp.setEmail(row.getCell(6).toString());
                     emp.setAddress(row.getCell(7).toString());
                     emp.setImage(row.getCell(8).toString());
                     emp.setStatus((int) Float.parseFloat(row.getCell(9).toString()));
-                    emp.setBeginWork(row.getCell(10).getDateCellValue());
+                    emp.setBeginWork(new java.sql.Date(row.getCell(10).getDateCellValue().getTime()));
                     if (isExist(emp)) {
                         listEmp.add(emp);
                         listEmpTemp.add(emp);

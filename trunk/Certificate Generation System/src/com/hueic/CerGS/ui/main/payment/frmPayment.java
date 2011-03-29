@@ -448,7 +448,7 @@ public class frmPayment extends javax.swing.JFrame {
             Payment payment = new Payment();
             payment.setId(listPayments.size() + 1);
             payment.setMoney(Float.parseFloat(txtMoney.getText()));
-            payment.setPayday(dateChPayDay.getDate());
+            payment.setPayday(new java.sql.Date(dateChPayDay.getDate().getTime()));
             payment.setStudentId((String) cbxStudentID.getSelectedItem());
             listPayments.add(payment);
             new PaymentDAO().create(payment);
@@ -471,7 +471,7 @@ public class frmPayment extends javax.swing.JFrame {
             // TODO add your handling code here:
             int index = getIndexOfPaymentInList(currentId);
             listPayments.get(index).setMoney(Float.parseFloat(txtMoney.getText()));
-            listPayments.get(index).setPayday(dateChPayDay.getDate());
+            listPayments.get(index).setPayday(new java.sql.Date(dateChPayDay.getDate().getTime()));
             loadData(listPayments);
             paymentDao.update(listPayments.get(index));
         } catch (Exception ex) {

@@ -7,7 +7,6 @@ package com.hueic.CerGS.dao;
 import com.hueic.CerGS.dao.inteface.IRegisterDAO;
 import com.hueic.CerGS.entity.Register;
 import java.sql.Date;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -95,7 +94,7 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
             }
         } catch (Exception ex) {
             setLastError("SQL Error!");
-        }  finally {
+        } finally {
             db.closeConnection();
         }
         return listRegis;
@@ -119,7 +118,7 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
                 regis.setStudentId(rs.getString("StudentId"));
             }
         } catch (Exception ex) {
-             setLastError("SQL Error!");
+            setLastError("SQL Error!");
         } finally {
             db.closeConnection();
         }
@@ -141,8 +140,7 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
                 regis.setId(rs.getString("Id"));
                 regis.setCourseId(rs.getString("CourseId"));
                 regis.setFeesStructe(rs.getInt("FeesStructe"));
-                java.util.Date date = (java.util.Date) rs.getDate("RegistrationDate");
-                regis.setRegisDate(date);
+                regis.setRegisDate(rs.getDate("RegistrationDate"));
                 regis.setStudentId(rs.getString("StudentId"));
                 resList.add(regis);
             }
@@ -164,7 +162,7 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
             pst.setString(1, regis.getId());
             pst.setString(2, regis.getCourseId());
             pst.setInt(3, regis.getFeesStructe());
-            pst.setDate(4, (Date) regis.getRegisDate());
+            pst.setDate(4, regis.getRegisDate());
             pst.setString(5, regis.getStudentId());
 
             if (pst.executeUpdate() > 0) {
@@ -190,13 +188,15 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
             pst.setString(1, res.getId());
             rs = pst.executeQuery();
             if (rs.first()) {
-                rs.updateString("CourseId", res.getCourseId());
-                rs.updateInt("FeesStructe", res.getFeesStructe());
-                rs.updateDate("RegistrationDate", (Date) res.getRegisDate());
-                rs.updateString("StudentId", res.getStudentId());
-
-                rs.updateRow();
-                db.closeConnection();
+                rs.updateString(2, res.getCourseId());
+                rs.updateInt(3, res.getFeesStructe());
+                rs.updateDate(4, res.getRegisDate());
+                rs.updateString(5, res.getStudentId());
+                try {
+                    rs.updateRow();
+                } catch (Exception ex) {
+                    System.out.println(ex.toString());
+                }
                 setLastError("Update Register successfully");
                 status = true;
             } else {
