@@ -94,10 +94,9 @@ public class PermissionDAO extends BaseDAO implements IPermissionDAO {
         boolean status = false;
         try {
             con = db.getConnection();
-            String sql = "insert into Permission(Id,Name)" + " values (?,?); ";
+            String sql = "insert into Permission(Name)" + " values (?); ";
             pst = con.prepareStatement(sql);
-            pst.setInt(1, per.getId());
-            pst.setString(2, per.getName());
+            pst.setString(1, per.getName());
             if (pst.executeUpdate() > 0) {
                 setLastError("Add Permission Successfully");
                 status = true;
