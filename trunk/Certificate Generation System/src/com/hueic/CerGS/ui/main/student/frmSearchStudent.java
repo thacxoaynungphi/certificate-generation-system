@@ -53,8 +53,6 @@ public class frmSearchStudent extends javax.swing.JFrame {
         courseDAO = new CourseDAO();
         studentDAO = new StudentDAO();
         registerDAO = new RegisterDAO();
-
-
         listStudentRegis = registerDAO.readByAll();
         listRegister = registerDAO.readByAll();
         listResTemp = new ArrayList<Register>();
