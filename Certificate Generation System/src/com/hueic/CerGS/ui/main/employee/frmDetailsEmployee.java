@@ -38,16 +38,16 @@ public class frmDetailsEmployee extends javax.swing.JFrame {
     }
 
     public void loadDetails(Employee emp) {
-        lblEmployeeIDInfo.setText(emp.getId());
-        lblFirstnameInfo.setText(emp.getFirstName());
-        lblLastnameInfo.setText(emp.getLastName());
-        lblBirthdayInfo.setText(emp.getBirthDay().toString());
-        lblPhoneInfo.setText(emp.getPhone());
-        lblEmailInfo.setText(emp.getEmail());
-        lblAddressInfo.setText(emp.getAddress());
+        lblEmployeeIDInfo.setText(emp.getId().trim());
+        lblFirstnameInfo.setText(emp.getFirstName().trim());
+        lblLastnameInfo.setText(emp.getLastName().trim());
+        lblBirthdayInfo.setText(emp.getBirthDay().toString().trim());
+        lblPhoneInfo.setText(emp.getPhone().trim());
+        lblEmailInfo.setText(emp.getEmail().trim());
+        lblAddressInfo.setText(emp.getAddress().trim());
         //  lblImageInfo.se
         //TODO: chua set icon cho lblImagesInfo
-        lblBeginWorkInfo.setText(emp.getBeginWork().toString());
+        lblBeginWorkInfo.setText(emp.getBeginWork().toString().trim());
     }
 
     /** This method is called from within the constructor to

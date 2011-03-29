@@ -124,9 +124,9 @@ public class frmAccount extends javax.swing.JFrame {
     }
 
     public void loadDetails(Account acc) {
-        txtUsername.setText(acc.getUsername());
-        txtPassword.setText(acc.getPassword());
-        txtConfirmPassword.setText(acc.getPassword());
+        txtUsername.setText(acc.getUsername().trim());
+        txtPassword.setText(acc.getPassword().trim());
+        txtConfirmPassword.setText(acc.getPassword().trim());
         String permissionName = getNamePermission(acc.getPermission());
         if (permissionName != null) {
             for (int i = 0; i < cbxType.getItemCount(); i++) {

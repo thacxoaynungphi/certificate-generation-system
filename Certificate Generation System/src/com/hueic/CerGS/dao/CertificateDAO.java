@@ -98,9 +98,9 @@ public class CertificateDAO extends BaseDAO implements ICertificateDAO {
             con = db.getConnection();
             String sql = "insert into Certificate (Id,StudentId,Mark,DegreeDay) values (?,?,?,?); ";
             pst = con.prepareStatement(sql);
-            pst.setString(1, cer.getStudentID());
-            pst.setFloat(2, cer.getMark());
-            // TODO loi setDate(java.sql.Date date); ko hieu vi sao(da convert sang java.sql.Date tu util.Date)
+            pst.setInt(1, cer.getId());
+            pst.setString(2, cer.getStudentID());
+            pst.setFloat(3, cer.getMark());
             java.sql.Date date = new java.sql.Date(cer.getDegreeDay().getTime());
             pst.setDate(4, date);
             if (pst.executeUpdate() > 0) {
@@ -110,6 +110,7 @@ public class CertificateDAO extends BaseDAO implements ICertificateDAO {
                 setLastError("Add Certificate unuccessfully");
             }
         } catch (SQLException ex) {
+            System.out.println(ex);
             setLastError("SQL Error!");
         } finally {
             db.closeConnection();

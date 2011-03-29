@@ -38,13 +38,13 @@ public class frmDetailsStudent extends javax.swing.JFrame {
     }
 
     public void loadDetails(Student student) {
-        lblEmployeeIDInfo.setText(student.getId());
-        lblFirstnameInfo.setText(student.getFirstName());
-        lblLastnameInfo.setText(student.getLastName());
-        lblBirthdayInfo.setText(student.getBirthDay().toString());
-        lblPhoneInfo.setText(student.getPhone());
-        lblEmailInfo.setText(student.getEmail());
-        lblAddressInfo.setText(student.getAddress());
+        lblEmployeeIDInfo.setText(student.getId().trim());
+        lblFirstnameInfo.setText(student.getFirstName().trim());
+        lblLastnameInfo.setText(student.getLastName().trim());
+        lblBirthdayInfo.setText(student.getBirthDay().toString().trim());
+        lblPhoneInfo.setText(student.getPhone().trim());
+        lblEmailInfo.setText(student.getEmail().trim());
+        lblAddressInfo.setText(student.getAddress().trim());
         //  lblImageInfo.se
         //TODO: chua set icon cho lblImagesInfo
     }

@@ -459,11 +459,11 @@ public class frmSubject extends javax.swing.JFrame {
     }
 
     public void loadDetails(Subject subject) {
-        txtSubjectId.setText(subject.getId());
-        txtName.setText(subject.getName());
-        txtCoefficient.setText(String.valueOf(subject.getCoefficient()));
+        txtSubjectId.setText(subject.getId().trim());
+        txtName.setText(subject.getName().trim());
+        txtCoefficient.setText(String.valueOf(subject.getCoefficient()).trim());
         String courseName = find(subject.getCourseID()).getName();
-        txtCoureID.setText(subject.getCourseID());
+        txtCoureID.setText(subject.getCourseID().trim());
         if (courseName != null) {
             for (int i = 0; i < cbxCourseID.getItemCount(); i++) {
                 if (cbxCourseID.getItemAt(i).toString().equals(courseName)) {

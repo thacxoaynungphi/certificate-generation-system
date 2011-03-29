@@ -112,7 +112,7 @@ public class frmPayment extends javax.swing.JFrame {
 
     public void loadDetails(Payment payment) {
         currentId = payment.getId();
-        txtMoney.setText(String.valueOf(payment.getMoney()));
+        txtMoney.setText(String.valueOf(payment.getMoney()).trim());
         cbxCourse.setSelectedItem(registerDAO.readByStudentId(payment.getStudentId()).getCourseId());
         cbxStudentID.setSelectedItem(payment.getStudentId());
         dateChPayDay.setDate(payment.getPayday());
