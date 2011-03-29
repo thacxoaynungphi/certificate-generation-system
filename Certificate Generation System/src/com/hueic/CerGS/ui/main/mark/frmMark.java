@@ -10,11 +10,12 @@
  */
 package com.hueic.CerGS.ui.main.mark;
 
+import com.hueic.CerGS.component.ColumnData;
 import com.hueic.CerGS.component.IconSystem;
+import com.hueic.CerGS.component.ObjectTableModel;
 import com.hueic.CerGS.dao.CourseDAO;
 import com.hueic.CerGS.dao.MarkDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
-import com.hueic.CerGS.dao.StudentDAO;
 import com.hueic.CerGS.dao.SubjectDAO;
 import com.hueic.CerGS.entity.Course;
 import com.hueic.CerGS.entity.Mark;
@@ -22,13 +23,12 @@ import com.hueic.CerGS.entity.Register;
 import com.hueic.CerGS.entity.Subject;
 import java.util.ArrayList;
 import java.util.regex.PatternSyntaxException;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.SwingConstants;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -49,6 +49,8 @@ public class frmMark extends javax.swing.JFrame {
     private SubjectDAO subjectDAO;
     private CourseDAO courseDAO;
     boolean isAdd = false;
+    private ObjectTableModel tableModel;
+    private JTable headerTable;
 
     /** Creates new form MarkFrm */
     public frmMark() {
@@ -75,52 +77,34 @@ public class frmMark extends javax.swing.JFrame {
     }
 
     public void loadData(ArrayList<Mark> listMark) {
-        String[] columns = {"Id", "StudentId", "SubjectId", "Mark"};
-        Object[][] rows = new Object[listMark.size()][4];
-        int index = 0;
-        for (int i = 0; i < listMark.size(); i++) {
-            Mark mark = listMark.get(i);
-            rows[index][0] = mark.getId();
-            rows[index][1] = mark.getStudentId();
-            rows[index][2] = mark.getSubjectId();
-            rows[index][3] = mark.getMark();
-            index++;
-        }
-        TableModel model = new DefaultTableModel(rows, columns) {
 
-            public Class getColumnClass(int column) {
-                Class returnValue;
-                if ((column >= 0) && (column < getColumnCount())) {
-                    returnValue = getValueAt(0, column).getClass();
-                } else {
-                    returnValue = Object.class;
-                }
-                return returnValue;
-            }
-            boolean[] canEdit = new boolean[]{
-                false, false, false, false
-            };
-
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return canEdit[column];
-            }
+        ColumnData[] columns = {
+            new ColumnData("ID", 100, SwingConstants.LEFT, 1),
+            new ColumnData("Student ID", 140, SwingConstants.LEFT, 2),
+            new ColumnData("Subject ID", 170, SwingConstants.LEFT, 3),
+            new ColumnData("Mark", 260, SwingConstants.LEFT, 4)
         };
-        tableContent = new JTable(model);
+        tableModel = new ObjectTableModel(tableContent, columns, listMark);
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
 
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableContentMouseClicked(evt);
             }
         });
-        sorter = new TableRowSorter<TableModel>(model);
+        sorter = new TableRowSorter<TableModel>(tableModel);
         tableContent.setRowSorter(sorter);
+        headerTable = tableModel.getHeaderTable();
+        // Create numbering column
+        headerTable.createDefaultColumnsFromModel();
         tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        JViewport viewPort = new JViewport();
-        viewPort.setView(tableContent);
-        viewPort.setPreferredSize(tableContent.getMaximumSize());
-        srcPanelMark.setRowHeader(viewPort);
-        srcPanelMark.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
+        // Put it in a viewport that we can control a bit
+        JViewport viewport = new JViewport();
+        // Display numbering column
+        viewport.setView(headerTable);
+        viewport.setPreferredSize(headerTable.getMaximumSize());
+        srcPanelMark.setRowHeader(viewport);
+        srcPanelMark.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, headerTable.getTableHeader());
     }
 
     public void loadDetails(Mark mark) {

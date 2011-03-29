@@ -10,7 +10,9 @@
  */
 package com.hueic.CerGS.ui.main.account;
 
+import com.hueic.CerGS.component.ColumnData;
 import com.hueic.CerGS.component.IconSystem;
+import com.hueic.CerGS.component.ObjectTableModel;
 import com.hueic.CerGS.dao.AccountDAO;
 import com.hueic.CerGS.dao.PermissionDAO;
 import com.hueic.CerGS.dao.PersonDAO;
@@ -25,7 +27,7 @@ import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.SwingConstants;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -42,6 +44,8 @@ public class frmAccount extends javax.swing.JFrame {
     boolean isAdd = false;
     private PermissionDAO permissionDao;
     private PersonDAO personDao;
+    private ObjectTableModel tableModel;
+    private JTable headerTable;
 
     public frmAccount() {
         initComponents();
@@ -76,51 +80,41 @@ public class frmAccount extends javax.swing.JFrame {
     }
 
     public void loadData(ArrayList<Account> listAccounts) {
-        String[] columns = {"Username", "Permisison"};
-        Object[][] rows = new Object[listAccounts.size()][3];
-        int index = 0;
-        for (int i = 0; i < listAccounts.size(); i++) {
-            Account acc = listAccounts.get(i);
-            rows[index][0] = acc.getUsername();
-            rows[index][1] = getNamePermission(acc.getPermission());
-            index++;
-        }
-        TableModel model = new DefaultTableModel(rows, columns) {
 
-            public Class getColumnClass(int column) {
-                Class returnValue;
-                if ((column >= 0) && (column < getColumnCount())) {
-                    returnValue = getValueAt(0, column).getClass();
-                } else {
-                    returnValue = Object.class;
-                }
-                return returnValue;
-            }
-            boolean[] canEdit = new boolean[]{
-                false, false
-            };
+        ColumnData[] columns = {
+            new ColumnData("Username", 135, SwingConstants.LEFT, 1),
+            new ColumnData("Password", 100, SwingConstants.LEFT, 2),
+            new ColumnData("Permission", 140, SwingConstants.LEFT, 3),};
 
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return canEdit[column];
-            }
-        };
-        tableContent = new JTable(model);
-        tableContent.getTableHeader().setReorderingAllowed(false);
+        tableModel = new ObjectTableModel(tableContent, columns, listAccounts);
+
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
 
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableContentMouseClicked(evt);
             }
         });
-        sorter = new TableRowSorter<TableModel>(model);
+        sorter = new TableRowSorter<TableModel>(tableModel);
         tableContent.setRowSorter(sorter);
+        headerTable = tableModel.getHeaderTable();
+
+        // Create numbering column
+        headerTable.createDefaultColumnsFromModel();
         tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        JViewport viewPort = new JViewport();
-        viewPort.setView(tableContent);
-        viewPort.setPreferredSize(tableContent.getMaximumSize());
-        srcPanelAccount.setRowHeader(viewPort);
-        srcPanelAccount.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
+
+
+        // Put it in a viewport that we can control a bit
+
+        JViewport viewport = new JViewport();
+
+        // Display numbering column
+        viewport.setView(headerTable);
+
+        viewport.setPreferredSize(headerTable.getMaximumSize());
+
+        srcPanelAccount.setRowHeader(viewport);
+        srcPanelAccount.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, headerTable.getTableHeader());
     }
 
     public void loadDetails(Account acc) {
@@ -510,7 +504,7 @@ public class frmAccount extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tableContentMouseClicked
 
-    public void searchStart(){
+    public void searchStart() {
         if (listAccounts.size() != 0) {
             String text = filterText.getText();
             if (text.length() == 0) {
@@ -626,7 +620,7 @@ public class frmAccount extends javax.swing.JFrame {
                     if (accDao.update(acc)) {
                         JOptionPane.showMessageDialog(this, accDao.getLastError(), "Update Account", JOptionPane.INFORMATION_MESSAGE);
                         //listAccounts.remove(find(acc.getUsername()));
-                        listAccounts.set(listAccounts.indexOf(find(acc.getUsername())),acc);
+                        listAccounts.set(listAccounts.indexOf(find(acc.getUsername())), acc);
                         loadData(listAccounts);
                         loadDetails(acc);
                     } else {
@@ -643,7 +637,7 @@ public class frmAccount extends javax.swing.JFrame {
 
     private void filterTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextKeyPressed
         // TODO add your handling code here:
-        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             searchStart();
         }
     }//GEN-LAST:event_filterTextKeyPressed

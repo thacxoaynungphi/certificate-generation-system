@@ -4,13 +4,15 @@
  */
 package com.hueic.CerGS.entity;
 
+import com.hueic.CerGS.component.PropertyIndex;
+
 /**
  *
  * @author nhchung
  * Date : 13/03/2011
  * Version 1.0
  */
-public class Account {
+public class Account implements PropertyIndex {
 
     //field
     private String username;
@@ -88,5 +90,28 @@ public class Account {
         } else {
             this.permission = permission;
         }
+    }
+
+    public Object getPropertyValue(int index) {
+        String value = "";
+        switch (index) {
+            case 1:
+                value = String.valueOf(this.getUsername());
+                break;
+            case 2:
+                value = String.valueOf(this.getPassword());
+                break;
+            case 3:
+                value = String.valueOf(this.getPermission());
+                break;
+        }
+        return value;
+    }
+
+    public void setPropertyValue(int index, Object value) {
+    }
+
+    public Class getPropertyClass(int index) {
+        return String.class;
     }
 }

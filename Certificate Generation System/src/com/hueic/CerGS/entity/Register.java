@@ -4,13 +4,14 @@
  */
 package com.hueic.CerGS.entity;
 
+import com.hueic.CerGS.component.PropertyIndex;
 import java.sql.Date;
 
 /**
  *
  * @author Wind
  */
-public class Register {
+public class Register implements PropertyIndex {
 
     private String id;
     private String courseId;
@@ -117,5 +118,34 @@ public class Register {
      */
     public void setStudentId(String studentId) {
         this.studentId = studentId;
+    }
+
+    public Object getPropertyValue(int index) {
+        String value = "";
+        switch (index) {
+            case 1:
+                value = String.valueOf(this.getId());
+                break;
+            case 2:
+                value = String.valueOf(this.getCourseId());
+                break;
+            case 3:
+                value = String.valueOf(this.getFeesStructe());
+                break;
+            case 4:
+                value = String.valueOf(this.getRegisDate());
+                break;
+            case 5:
+                value = String.valueOf(this.getStudentId());
+                break;
+        }
+        return value;
+    }
+
+    public void setPropertyValue(int index, Object value) {
+    }
+
+    public Class getPropertyClass(int index) {
+        return String.class;
     }
 }

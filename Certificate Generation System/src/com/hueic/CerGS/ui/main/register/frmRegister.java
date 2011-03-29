@@ -10,6 +10,8 @@
  */
 package com.hueic.CerGS.ui.main.register;
 
+import com.hueic.CerGS.component.ColumnData;
+import com.hueic.CerGS.component.ObjectTableModel;
 import com.hueic.CerGS.dao.CourseDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.dao.StudentDAO;
@@ -26,6 +28,7 @@ import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -47,6 +50,8 @@ public class frmRegister extends javax.swing.JFrame {
     private boolean isUpdate = false;
     private boolean isAdd = false;
     String studentIdtemp = null;
+    private ObjectTableModel tableModel;
+    private JTable headerTable;
 
     /** Creates new form MarkFrm */
     public frmRegister() {
@@ -101,54 +106,35 @@ public class frmRegister extends javax.swing.JFrame {
     }
 
     public void loadData(ArrayList<Register> regisList) {
-        String[] columns = {"StudentId", "Id", "CourseId", "FeesStructe", "Registration Date"};
-        Object[][] rows = new Object[regisList.size()][5];
-        int index = 0;
-        for (int i = 0; i < regisList.size(); i++) {
-            Register regis = regisList.get(i);
 
-            rows[index][1] = regis.getId();
-            rows[index][0] = regis.getStudentId();
-            rows[index][2] = regis.getCourseId();
-            rows[index][3] = regis.getFeesStructe();
-            rows[index][4] = regis.getRegisDate();
-            index++;
-        }
-        TableModel model = new DefaultTableModel(rows, columns) {
-
-            public Class getColumnClass(int column) {
-                Class returnValue;
-                if ((column >= 0) && (column < getColumnCount())) {
-                    returnValue = getValueAt(0, column).getClass();
-                } else {
-                    returnValue = Object.class;
-                }
-                return returnValue;
-            }
-            boolean[] canEdit = new boolean[]{
-                false, false, false, false, false
-            };
-
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return canEdit[column];
-            }
+        ColumnData[] columns = {
+            new ColumnData("Student ID", 135, SwingConstants.LEFT, 5),
+            new ColumnData("ID", 100, SwingConstants.LEFT, 1),
+            new ColumnData("Course ID", 140, SwingConstants.LEFT, 2),
+            new ColumnData("Fees Structe", 170, SwingConstants.LEFT, 3),
+            new ColumnData("Registration Date", 260, SwingConstants.LEFT, 4)
         };
-        tableContent = new JTable(model);
+        tableModel = new ObjectTableModel(tableContent, columns, regisList);
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
 
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableContentMouseClicked(evt);
             }
         });
-        sorter = new TableRowSorter<TableModel>(model);
+        sorter = new TableRowSorter<TableModel>(tableModel);
         tableContent.setRowSorter(sorter);
+        headerTable = tableModel.getHeaderTable();
+        // Create numbering column
+        headerTable.createDefaultColumnsFromModel();
         tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        JViewport viewPort = new JViewport();
-        viewPort.setView(tableContent);
-        viewPort.setPreferredSize(tableContent.getMaximumSize());
-        srcPanelRegister.setRowHeader(viewPort);
-        srcPanelRegister.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
+        // Put it in a viewport that we can control a bit
+        JViewport viewport = new JViewport();
+        // Display numbering column
+        viewport.setView(headerTable);
+        viewport.setPreferredSize(headerTable.getMaximumSize());
+        srcPanelRegister.setRowHeader(viewport);
+        srcPanelRegister.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, headerTable.getTableHeader());
     }
 
     public void loadDetails(Register register) {
@@ -156,7 +142,7 @@ public class frmRegister extends javax.swing.JFrame {
         txtFeesStructe.setText(String.valueOf(register.getFeesStructe()));
         DateChRegistrationDate.setDate(register.getRegisDate());
         txtCourseID.setText(register.getCourseId());
-        txtStudentId.setText(register.getStudentId());
+        txtStudentId.setText(register.getId());
         for (int i = 0; i < cbxCourseID.getItemCount(); i++) {
             if (cbxCourseID.getItemAt(i).toString().equals(register.getCourseId())) {
                 cbxCourseID.setSelectedIndex(i);
@@ -286,6 +272,7 @@ public class frmRegister extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelLeft.add(filterText, gridBagConstraints);
 
+        srcPanelRegister.setAutoscrolls(true);
         srcPanelRegister.setPreferredSize(new java.awt.Dimension(400, 200));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
@@ -299,6 +286,7 @@ public class frmRegister extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableContent.setDragEnabled(true);
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableContentMouseClicked(evt);

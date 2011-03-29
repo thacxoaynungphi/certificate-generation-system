@@ -10,7 +10,9 @@
  */
 package com.hueic.CerGS.ui.main.certificate;
 
+import com.hueic.CerGS.component.ColumnData;
 import com.hueic.CerGS.component.IconSystem;
+import com.hueic.CerGS.component.ObjectTableModel;
 import com.hueic.CerGS.dao.CertificateDAO;
 import com.hueic.CerGS.dao.MarkDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
@@ -24,6 +26,7 @@ import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -40,6 +43,8 @@ public class frmCertificate extends javax.swing.JFrame {
     private MarkDAO markDAO;
     TableRowSorter<TableModel> sorter;
     RegisterDAO registerDAO = new RegisterDAO();
+    private ObjectTableModel tableModel;
+    private JTable headerTable;
 
     public frmCertificate() {
         initComponents();
@@ -55,53 +60,32 @@ public class frmCertificate extends javax.swing.JFrame {
 
     public void loadData(ArrayList<Certificate> listCertificate) {
 
-        String[] columns = {"Id", "Student Id", "Mark", "DegreeDay"};
-        Object[][] rows = new Object[listCertificate.size()][4];
-        int index = 0;
-        for (int i = 0; i < listCertificate.size(); i++) {
-            Certificate cer = listCertificate.get(i);
-            rows[index][0] = cer.getId();
-            rows[index][1] = cer.getStudentID();
-            rows[index][2] = cer.getMark();
-            rows[index][3] = cer.getDegreeDay();
-            index++;
-        }
-        TableModel model = new DefaultTableModel(rows, columns) {
-
-            public Class getColumnClass(int column) {
-                Class returnValue;
-                if ((column >= 0) && (column < getColumnCount())) {
-                    returnValue = getValueAt(0, column).getClass();
-                } else {
-                    returnValue = Object.class;
-                }
-                return returnValue;
-            }
-            boolean[] canEdit = new boolean[]{
-                false, false, false, false
-            };
-
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return canEdit[column];
-            }
-        };
-        tableContent = new JTable(model);
-        tableContent.getTableHeader().setReorderingAllowed(false);
+        ColumnData[] columns = {
+            new ColumnData("ID", 135, SwingConstants.LEFT, 1),
+            new ColumnData("Student ID", 100, SwingConstants.LEFT, 2),
+            new ColumnData("Mark", 140, SwingConstants.LEFT, 3),
+            new ColumnData("Degree Day", 170, SwingConstants.LEFT, 4),};
+        tableModel = new ObjectTableModel(tableContent, columns, listCertificate);
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
 
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableContentMouseClicked(evt);
             }
         });
-        sorter = new TableRowSorter<TableModel>(model);
+        sorter = new TableRowSorter<TableModel>(tableModel);
         tableContent.setRowSorter(sorter);
+        headerTable = tableModel.getHeaderTable();
+        // Create numbering column
+        headerTable.createDefaultColumnsFromModel();
         tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        JViewport viewPort = new JViewport();
-        viewPort.setView(tableContent);
-        viewPort.setPreferredSize(tableContent.getMaximumSize());
-        srcPanelAccount.setRowHeader(viewPort);
-        srcPanelAccount.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
+        // Put it in a viewport that we can control a bit
+        JViewport viewport = new JViewport();
+        // Display numbering column
+        viewport.setView(headerTable);
+        viewport.setPreferredSize(headerTable.getMaximumSize());
+        srcPanelCertificate.setRowHeader(viewport);
+        srcPanelCertificate.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, headerTable.getTableHeader());
     }
 
     public void loadDetails(Certificate cer) {
@@ -133,7 +117,7 @@ public class frmCertificate extends javax.swing.JFrame {
         panelLogo = new javax.swing.JPanel();
         lblLogo = new javax.swing.JLabel();
         panelLeft = new javax.swing.JPanel();
-        srcPanelAccount = new javax.swing.JScrollPane();
+        srcPanelCertificate = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
         filterText = new javax.swing.JTextField();
         btnFilter = new javax.swing.JButton();
@@ -185,7 +169,7 @@ public class frmCertificate extends javax.swing.JFrame {
         panelLeft.setPreferredSize(new java.awt.Dimension(450, 320));
         panelLeft.setLayout(new java.awt.GridBagLayout());
 
-        srcPanelAccount.setPreferredSize(new java.awt.Dimension(200, 256));
+        srcPanelCertificate.setPreferredSize(new java.awt.Dimension(200, 256));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -204,7 +188,7 @@ public class frmCertificate extends javax.swing.JFrame {
                 tableContentMouseClicked(evt);
             }
         });
-        srcPanelAccount.setViewportView(tableContent);
+        srcPanelCertificate.setViewportView(tableContent);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -217,7 +201,7 @@ public class frmCertificate extends javax.swing.JFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 10, 5);
-        panelLeft.add(srcPanelAccount, gridBagConstraints);
+        panelLeft.add(srcPanelCertificate, gridBagConstraints);
 
         filterText.setPreferredSize(new java.awt.Dimension(10, 20));
         filterText.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -599,7 +583,7 @@ public class frmCertificate extends javax.swing.JFrame {
     private javax.swing.JPanel panelLogo;
     private javax.swing.JPanel panelRight;
     private javax.swing.JSeparator sepaCertificate;
-    private javax.swing.JScrollPane srcPanelAccount;
+    private javax.swing.JScrollPane srcPanelCertificate;
     private javax.swing.JTable tableContent;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtScore;

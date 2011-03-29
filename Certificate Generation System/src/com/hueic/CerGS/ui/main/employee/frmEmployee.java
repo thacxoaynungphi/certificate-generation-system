@@ -10,7 +10,9 @@
  */
 package com.hueic.CerGS.ui.main.employee;
 
+import com.hueic.CerGS.component.ColumnData;
 import com.hueic.CerGS.component.IconSystem;
+import com.hueic.CerGS.component.ObjectTableModel;
 import com.hueic.CerGS.dao.EmployeeDAO;
 import com.hueic.CerGS.entity.Employee;
 import java.awt.AWTEvent;
@@ -33,6 +35,7 @@ import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -50,15 +53,19 @@ public class frmEmployee extends javax.swing.JFrame {
     private ArrayList<Employee> listEmp = new ArrayList<Employee>();
     private ArrayList<Employee> listEmpTemp = new ArrayList<Employee>();
     private ArrayList<Employee> listEmpSearch = new ArrayList<Employee>();
-    private EmployeeDAO empDao = new EmployeeDAO();
+    private EmployeeDAO empDao;
     TableRowSorter<TableModel> sorter;
+    private ObjectTableModel tableModel;
+    private JTable headerTable;
 
     public frmEmployee() {
         initComponents();
         new IconSystem(this);
         setLocationRelativeTo(null);
+        empDao = new EmployeeDAO();
         listEmp = empDao.readByAll();
-        loadTable(listEmp);
+        if(listEmp.size() != 0)
+            loadData(listEmp);
         enableEvents(AWTEvent.MOUSE_EVENT_MASK);
         tableContent.addMouseListener(new MouseAdapter() {
 
@@ -90,56 +97,37 @@ public class frmEmployee extends javax.swing.JFrame {
         });
     }
 
-    public void loadTable(ArrayList<Employee> listEmp) {
-        lblCount.setText(String.valueOf(listEmp.size()));
-        String[] columns = {"ID", "First Name", "Last Name", "Birthday", "Gender", "Phone"};
-        Object[][] rows = new Object[listEmp.size()][6];
-        int index = 0;
-        for (int i = 0; i < listEmp.size(); i++) {
-            Employee emp = listEmp.get(i);
-            rows[index][0] = emp.getId().trim();
-            rows[index][1] = emp.getFirstName();
-            rows[index][2] = emp.getLastName();
-            rows[index][3] = emp.getBirthDay().toString();
-            rows[index][4] = emp.getGender();
-            rows[index][5] = emp.getPhone();
-            index++;
-        }
-        TableModel model = new DefaultTableModel(rows, columns) {
+    public void loadData(ArrayList<Employee> listEmp) {
 
-            public Class getColumnClass(int column) {
-                Class returnValue;
-                if ((column >= 0) && (column < getColumnCount())) {
-                    returnValue = getValueAt(0, column).getClass();
-                } else {
-                    returnValue = Object.class;
-                }
-                return returnValue;
-            }
-            boolean[] canEdit = new boolean[]{
-                false, false, false, false, false, false
-            };
-
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return canEdit[column];
-            }
+        ColumnData[] columns = {
+            new ColumnData("ID", 135, SwingConstants.LEFT, 1),
+            new ColumnData("First Name", 100, SwingConstants.LEFT, 2),
+            new ColumnData("Last Name", 140, SwingConstants.LEFT, 3),
+            new ColumnData("Birthday", 170, SwingConstants.LEFT, 4),
+            new ColumnData("Gender", 260, SwingConstants.LEFT, 5),
+            new ColumnData("Phone", 260, SwingConstants.LEFT, 6)
         };
-        tableContent = new JTable(model);
+        tableModel = new ObjectTableModel(tableContent, columns, listEmp);
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
 
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableContentMouseClicked(evt);
             }
         });
-        sorter = new TableRowSorter<TableModel>(model);
+        sorter = new TableRowSorter<TableModel>(tableModel);
         tableContent.setRowSorter(sorter);
+        headerTable = tableModel.getHeaderTable();
+        // Create numbering column
+        headerTable.createDefaultColumnsFromModel();
         tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        JViewport viewPort = new JViewport();
-        viewPort.setView(tableContent);
-        viewPort.setPreferredSize(tableContent.getMaximumSize());
-        srcPaneEmployee.setRowHeader(viewPort);
-        srcPaneEmployee.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
+        // Put it in a viewport that we can control a bit
+        JViewport viewport = new JViewport();
+        // Display numbering column
+        viewport.setView(headerTable);
+        viewport.setPreferredSize(headerTable.getMaximumSize());
+        srcPaneEmployee.setRowHeader(viewport);
+        srcPaneEmployee.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, headerTable.getTableHeader());
     }
 
     /** This method is called from within the constructor to
@@ -563,7 +551,7 @@ public class frmEmployee extends javax.swing.JFrame {
                     index++;
                     //TODO: doc du lieu tu file excel vo trong JTable
                 } while (true);
-                loadTable(listEmp);
+                loadData(listEmp);
             }
         } catch (Exception ex) {
             Logger.getLogger(frmEmployee.class.getName()).log(Level.SEVERE, null, ex);

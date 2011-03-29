@@ -4,6 +4,7 @@
  */
 package com.hueic.CerGS.entity;
 
+import com.hueic.CerGS.component.PropertyIndex;
 import java.sql.Date;
 
 /**
@@ -12,7 +13,7 @@ import java.sql.Date;
  * Date: 13/03/2011
  * Version: 1.0
  */
-public class Certificate {
+public class Certificate implements PropertyIndex {
 
     //field
     private int id;
@@ -102,5 +103,31 @@ public class Certificate {
         } else {
             this.degreeDay = degreeDay;
         }
+    }
+
+    public Object getPropertyValue(int index) {
+        String value = "";
+        switch (index) {
+            case 1:
+                value = String.valueOf(this.getId());
+                break;
+            case 2:
+                value = String.valueOf(this.getStudentID());
+                break;
+            case 3:
+                value = String.valueOf(this.getMark());
+                break;
+            case 4:
+                value = String.valueOf(this.getDegreeDay());
+                break;
+        }
+        return value;
+    }
+
+    public void setPropertyValue(int index, Object value) {
+    }
+
+    public Class getPropertyClass(int index) {
+        return String.class;
     }
 }

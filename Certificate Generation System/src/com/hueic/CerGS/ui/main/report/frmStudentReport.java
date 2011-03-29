@@ -26,12 +26,12 @@ public class frmStudentReport extends javax.swing.JFrame {
 
     /** Creates new form frmStudentReport */
     public frmStudentReport(String courseId) {
-//        ArrayList<Student> studentList = new StudentDAO().readByAll();
-//        ArrayList<Register> resList = new RegisterDAO().readByAll();
-//        StudentReportManager studentReport = new StudentReportManager(courseId, studentList, resList);
-//
-//        this.add(studentReport.getJPanelViewer());
-//        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        ArrayList<Student> studentList = new StudentDAO().readByAll();
+        ArrayList<Register> resList = new RegisterDAO().readByAll();
+        StudentReportManager studentReport = new StudentReportManager(courseId, studentList, resList);
+
+        this.add(studentReport.getJPanelViewer());
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }

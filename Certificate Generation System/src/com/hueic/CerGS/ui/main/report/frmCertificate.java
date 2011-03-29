@@ -12,11 +12,9 @@ package com.hueic.CerGS.ui.main.report;
 
 import com.hueic.CerGS.component.report.CertificateReportManager;
 import com.hueic.CerGS.dao.CertificateDAO;
-import com.hueic.CerGS.dao.CourseDAO;
 import com.hueic.CerGS.dao.MarkDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.entity.Certificate;
-import java.util.Date;
 
 /**
  *
