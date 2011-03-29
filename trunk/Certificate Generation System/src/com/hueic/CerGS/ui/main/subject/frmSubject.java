@@ -39,6 +39,7 @@ public class frmSubject extends javax.swing.JFrame {
     ArrayList<Subject> listSubject = new ArrayList<Subject>();
     ArrayList<Course> listCourses = new ArrayList<Course>();
     TableRowSorter<TableModel> sorter;
+    private boolean isUpdate = false;
 
     /** Creates new form SubjectFrm */
     public frmSubject() {
@@ -566,21 +567,27 @@ public class frmSubject extends javax.swing.JFrame {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         try {
-            String subjectId = txtSubjectId.getText();
-            String subjectName = txtName.getName();
-            int coefficient = Integer.parseInt(txtCoefficient.getText());
-            String courseName = cbxCourse.getSelectedItem().toString();
-            //TODO: loi
-            String id = findByName(courseName).getId();
-            System.out.println("Id" + id);
-            Subject subject = new Subject(subjectId, subjectName, coefficient, id);
-            if (subjectDao.update(subject)) {
-                JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Update Subject", JOptionPane.INFORMATION_MESSAGE);
-                listSubject.add(subject);
-                loadData(listSubject);
-                loadDetails(subject);
+            if (!isUpdate) {
+                cbxCourseID.setVisible(true);
+                txtCoureID.setVisible(false);
+                isUpdate = true;
             } else {
-                JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Update Subject", JOptionPane.ERROR_MESSAGE);
+                isUpdate = false;
+                String subjectId = txtSubjectId.getText();
+                String subjectName = txtName.getName();
+                int coefficient = Integer.parseInt(txtCoefficient.getText());
+                String courseId = cbxCourseID.getSelectedItem().toString();
+                System.out.println("Sao the1");
+                Subject subject = new Subject(subjectId, subjectName, coefficient, courseId);
+                System.out.println("Sao the2");
+                if (subjectDao.update(subject)) {
+                    JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Update Subject", JOptionPane.INFORMATION_MESSAGE);
+                    listSubject.add(subject);
+                    loadData(listSubject);
+                    loadDetails(subject);
+                } else {
+                    JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Update Subject", JOptionPane.ERROR_MESSAGE);
+                }
             }
         } catch (Exception e) {
             System.out.println(e.toString());

@@ -129,7 +129,9 @@ public class SubjectDAO extends BaseDAO implements ISubjectDAO {
             pst = con.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst.setString(1, sub.getId());
             rs = pst.executeQuery();
+            System.out.println("Sao the");
             if (rs.first()) {
+                System.out.println("Test : " +  sub.getName());
                 rs.updateString(2, sub.getName());
                 rs.updateInt(3, sub.getCoefficient());
                 rs.updateString(4, sub.getCourseID());
