@@ -50,7 +50,7 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
     public Mark readByID(int id) {
         Mark result = new Mark();
         con = db.getConnection();
-        String sqlcommand = "select * from Mark where id like ?";
+        String sqlcommand = "select * from Mark where id = ?";
 
         try {
             pst = con.prepareStatement(sqlcommand);
@@ -84,7 +84,6 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
             rs = pst.executeQuery();
 
             while (rs.next()) {
-                System.out.println("Hi");
                 mark = new Mark();
                 mark.setId(rs.getInt("Id"));
                 mark.setStudentId(rs.getString("StudentId"));

@@ -45,7 +45,7 @@ public class SubjectDAO extends BaseDAO implements ISubjectDAO {
         return list;
     }
 
-      public ArrayList<Subject> readByCourseId(String id) {
+    public ArrayList<Subject> readByCourseId(String id) {
         ArrayList<Subject> list = new ArrayList<Subject>();
         con = db.getConnection();
         String sql = "select * from Subject where CourseId = ?";
@@ -88,10 +88,11 @@ public class SubjectDAO extends BaseDAO implements ISubjectDAO {
             }
         } catch (SQLException ex) {
             setLastError("SQL Error!");
+        } finally {
+            db.closeConnection();
         }
         return sub;
     }
-
 
     public boolean create(Subject sub) {
         boolean status = false;

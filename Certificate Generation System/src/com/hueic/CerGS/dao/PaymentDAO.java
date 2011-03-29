@@ -28,7 +28,7 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
         String sqlcommand = "select * from Payment";
 
         try {
-            pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            pst = con.prepareStatement(sqlcommand);
             rs = pst.executeQuery();
             while (rs.next()) {
                 Payment pay = new Payment();
@@ -51,10 +51,10 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
     public ArrayList<Payment> readByID(int id) {
         ArrayList<Payment> result = new ArrayList<Payment>();
         con = db.getConnection();
-        String sqlcommand = "select * from Payment where id like ?";
+        String sqlcommand = "select * from Payment where id = ?";
 
         try {
-            pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            pst = con.prepareStatement(sqlcommand);
             pst.setInt(1, id);
             rs = pst.executeQuery();
 
@@ -113,22 +113,22 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
             rs = pst.executeQuery();
             if (rs.next()) {
                 money = rs.getFloat(1);
-            } 
+            }
         } catch (SQLException ex) {
             setLastError("SQL Error!!!");
         } finally {
             db.closeConnection();
         }
-        return  money;
+        return money;
     }
 
     public boolean create(Payment pay) {
         boolean status = false;
         con = db.getConnection();
-        String sqlcommand = "insert into Payment values(?, ?, ?, ?, ?)";
+        String sqlcommand = "insert into Payment(Id,StudentId,Money,Payday) values(?, ?, ?, ?)";
 
         try {
-            pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            pst = con.prepareStatement(sqlcommand);
             pst.setInt(1, pay.getId());
             pst.setString(2, pay.getStudentId());
             pst.setFloat(3, pay.getMoney());
@@ -151,7 +151,7 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
     public boolean update(Payment pay) {
         boolean status = false;
         con = db.getConnection();
-        String sqlcommand = "select * from Payment where id like ?";
+        String sqlcommand = "select * from Payment where id = ?";
 
         try {
             pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -165,10 +165,10 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
                 rs.updateDate("Payday", (Date) pay.getPayday());
                 rs.updateRow();
 
-                setLastError("Add fee successful");
+                setLastError("Update fee successful");
                 status = true;
             } else {
-                setLastError("Add fee unsuccessful");
+                setLastError("Update fee unsuccessful");
             }
         } catch (SQLException ex) {
             setLastError("SQL Error!!!");
@@ -181,23 +181,23 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
     public boolean delete(Payment pay) {
         boolean status = false;
         con = db.getConnection();
-        String sqlcommand = "delete from Payment where id like ?";
+        String sqlcommand = "delete from Payment where id = ?";
 
         try {
             pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst.setInt(1, pay.getId());
 
             if (pst.executeUpdate() > 0) {
-                setLastError("Add fee successful");
+                setLastError("Delete fee successful");
                 status = true;
             } else {
-                setLastError("Add fee unsuccessful");
+                setLastError("Delete fee unsuccessful");
             }
         } catch (SQLException ex) {
             setLastError("SQL Error!!!");
         } finally {
             db.closeConnection();
-            return status;
         }
+        return status;
     }
 }

@@ -41,8 +41,9 @@ public class AccountDAO extends BaseDAO implements IAccountDAO {
                 account.setPermission(rs.getInt(3));
                 list.add(account);
             }
+            setLastError("Read All successfully");
         } catch (Exception ex) {
-            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+            setLastError("Read All unsuccessfully");
         } finally {
             db.closeConnection();
         }
