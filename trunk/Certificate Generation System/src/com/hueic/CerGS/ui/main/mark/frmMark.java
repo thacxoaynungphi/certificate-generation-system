@@ -124,11 +124,11 @@ public class frmMark extends javax.swing.JFrame {
     }
 
     public void loadDetails(Mark mark) {
-        txtMarkId.setText(String.valueOf(mark.getId()));
-        txtMark.setText(String.valueOf((mark.getMark())));
-        cbxStudentId.setSelectedItem(mark.getStudentId());
-        txtStudentId.setText(mark.getStudentId());
-        txtSubjectName.setText(mark.getSubjectId());
+        txtMarkId.setText(String.valueOf(mark.getId()).trim());
+        txtMark.setText(String.valueOf((mark.getMark())).trim());
+        cbxStudentId.setSelectedItem(mark.getStudentId().trim());
+        txtStudentId.setText(mark.getStudentId().trim());
+        txtSubjectName.setText(mark.getSubjectId().trim());
     }
 
     public void loadStudent(ArrayList<Register> resList) {

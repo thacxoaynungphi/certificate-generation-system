@@ -44,7 +44,7 @@ public class frmCourse extends javax.swing.JFrame {
         courseDao = new CourseDAO();
         listCourses = courseDao.readByAll();
         loadData(listCourses);
-        if (listCourses.size() != 0) {
+        if (!listCourses.isEmpty()) {
             loadDetails(listCourses.get(0));
         }
     }
@@ -100,9 +100,9 @@ public class frmCourse extends javax.swing.JFrame {
     }
 
     public void loadDetails(Course course) {
-        txtID.setText(course.getId());
-        txtName.setText(course.getName());
-        txtTotalFees.setText(String.valueOf(course.getTotalFees()));
+        txtID.setText(course.getId().trim());
+        txtName.setText(course.getName().trim());
+        txtTotalFees.setText(String.valueOf(course.getTotalFees()).trim());
         if (course.getStatus() == 0) {
             radioDisable.setSelected(true);
         } else {
@@ -147,7 +147,7 @@ public class frmCourse extends javax.swing.JFrame {
         txtName = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Managment Account");
+        setTitle("Managment Course");
         setMinimumSize(new java.awt.Dimension(427, 261));
         setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -435,7 +435,7 @@ public class frmCourse extends javax.swing.JFrame {
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
 
-        if (listCourses.size() != 0) {
+        if (!listCourses.isEmpty()) {
             String text = filterText.getText();
             if (text.length() == 0) {
                 sorter.setRowFilter(null);
@@ -464,12 +464,12 @@ public class frmCourse extends javax.swing.JFrame {
         // TODO add your handling code here:
         String id = txtID.getText();
         if (courseDao.delete(id)) {
-            JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Delete Course", JOptionPane.INFORMATION_MESSAGE, null);
             listCourses.remove(find(id));
             loadData(listCourses);
-            if (listCourses.size() != 0) {
+            if (!listCourses.isEmpty()) {
                 loadDetails(listCourses.get(0));
             }
+            JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Delete Course", JOptionPane.INFORMATION_MESSAGE, null);
         } else {
             JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Delete Course", JOptionPane.ERROR_MESSAGE, null);
         }

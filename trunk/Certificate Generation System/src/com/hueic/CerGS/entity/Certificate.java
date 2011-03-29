@@ -97,7 +97,7 @@ public class Certificate {
      * @param degreeDay the degreeDay to set
      */
     public void setDegreeDay(Date degreeDay) throws Exception {
-        if (degreeDay != null) {
+        if (degreeDay == null) {
             throw new Exception("Degree day invalidation");
         } else {
             this.degreeDay = degreeDay;

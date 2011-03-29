@@ -98,8 +98,8 @@ public class frmPermission extends javax.swing.JFrame {
     }
 
     public void loadDetails(Permission per) {
-        txtId.setText(String.valueOf(per.getId()));
-        txtName.setText(per.getName());
+        txtId.setText(String.valueOf(per.getId()).trim());
+        txtName.setText(per.getName().trim());
     }
 
     /** This method is called from within the constructor to

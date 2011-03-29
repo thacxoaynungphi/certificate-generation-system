@@ -37,6 +37,7 @@ public class frmCertificate extends javax.swing.JFrame {
     /** Creates new form frmAccount */
     private ArrayList<Certificate> listCertificate = new ArrayList<Certificate>();
     private CertificateDAO certificateDao;
+    private MarkDAO markDAO;
     TableRowSorter<TableModel> sorter;
     RegisterDAO registerDAO = new RegisterDAO();
 
@@ -45,6 +46,7 @@ public class frmCertificate extends javax.swing.JFrame {
         new IconSystem(this);
         setLocationRelativeTo(null);
         certificateDao = new CertificateDAO();
+        markDAO = new MarkDAO();
         listCertificate = certificateDao.readByAll();
         loadData(listCertificate);
         LoadStudent();
@@ -102,8 +104,8 @@ public class frmCertificate extends javax.swing.JFrame {
     }
 
     public void loadDetails(Certificate cer) {
-        txtID.setText(String.valueOf(cer.getId()));
-        txtScore.setText(String.valueOf(cer.getMark()));
+        txtID.setText(String.valueOf(cer.getId()).trim());
+        txtScore.setText(String.valueOf(cer.getMark()).trim());
         dateChooseDegreeDay.setDate(cer.getDegreeDay());
         cbxStudentID.setSelectedItem(cer.getStudentID());
     }
@@ -506,7 +508,8 @@ public class frmCertificate extends javax.swing.JFrame {
             }
 
             if (cbxStudentID.getSelectedIndex() != -1) {
-                certificate.setMark(new MarkDAO().getStudentMark((String) cbxStudentID.getSelectedItem()));
+                certificate.setMark(markDAO.getStudentMark((String) cbxStudentID.getSelectedItem()));
+                certificate.setStudentID((String) cbxStudentID.getSelectedItem());
             } else {
                 JOptionPane.showMessageDialog(this, "you must be Select Student Id of Cetificate", "Certificate Enter Error", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -519,13 +522,6 @@ public class frmCertificate extends javax.swing.JFrame {
                 return;
             }
 
-            if (!txtID.getText().equals("")) {
-                certificate.setStudentID((String) cbxStudentID.getSelectedItem());
-            } else {
-                JOptionPane.showMessageDialog(this, "you must be enter Id of Cetificate", "Certificate Enter Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
             if (certificateDao.create(certificate)) {
                 listCertificate.add(certificate);
                 loadData(listCertificate);
@@ -533,7 +529,7 @@ public class frmCertificate extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "data not valid", "Certificate Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Certificate Error", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_btnAddActionPerformed
@@ -547,6 +543,7 @@ public class frmCertificate extends javax.swing.JFrame {
             new CertificateDAO().update(cer);
             loadData(listCertificate);
         } else {
+            System.out.println(i1 + " " + i2);
             JOptionPane.showMessageDialog(this, "Please select StudentId and enter ID of Certificate", "Message", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
