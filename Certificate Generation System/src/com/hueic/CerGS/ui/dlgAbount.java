@@ -1,28 +1,26 @@
-package com.hueic.CerGS.ui;
-
-import com.hueic.CerGS.component.IconSystem;
-
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 
 /*
- * AboutFrm.java
+ * dlgAbount.java
  *
- * Created on Mar 13, 2011, 12:47:33 PM
+ * Created on Mar 31, 2011, 5:36:51 AM
  */
+
+package com.hueic.CerGS.ui;
+
 /**
  *
- * @author qhvic
+ * @author nhchung
  */
-public class frmAbout extends javax.swing.JFrame {
+public class dlgAbount extends javax.swing.JDialog {
 
-    /** Creates new form AboutFrm */
-    public frmAbout() {
+    /** Creates new form dlgAbount */
+    public dlgAbount(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
-        new IconSystem(this);
-        setLocationRelativeTo(null);
     }
 
     /** This method is called from within the constructor to
@@ -35,19 +33,38 @@ public class frmAbout extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        panelBanner = new javax.swing.JPanel();
+        lblLogo = new javax.swing.JLabel();
         panelContent = new javax.swing.JPanel();
         lblInfoSoft = new javax.swing.JLabel();
         lblInfoGroup = new javax.swing.JLabel();
         seqarator1 = new javax.swing.JSeparator();
         btnClose = new javax.swing.JButton();
-        panelBanner = new javax.swing.JPanel();
-        lblLogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("About - Certificate Generation System");
-        setMinimumSize(new java.awt.Dimension(440, 240));
-        setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        panelBanner.setBackground(new java.awt.Color(255, 255, 255));
+        panelBanner.setMinimumSize(new java.awt.Dimension(440, 122));
+
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/AboutTam.png"))); // NOI18N
+
+        javax.swing.GroupLayout panelBannerLayout = new javax.swing.GroupLayout(panelBanner);
+        panelBanner.setLayout(panelBannerLayout);
+        panelBannerLayout.setHorizontalGroup(
+            panelBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+        );
+        panelBannerLayout.setVerticalGroup(
+            panelBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        getContentPane().add(panelBanner, gridBagConstraints);
 
         panelContent.setBackground(new java.awt.Color(255, 255, 255));
         panelContent.setMinimumSize(new java.awt.Dimension(440, 120));
@@ -104,48 +121,31 @@ public class frmAbout extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         getContentPane().add(panelContent, gridBagConstraints);
 
-        panelBanner.setBackground(new java.awt.Color(255, 255, 255));
-        panelBanner.setMinimumSize(new java.awt.Dimension(440, 122));
-        panelBanner.setPreferredSize(new java.awt.Dimension(440, 122));
-
-        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/AboutTam.png"))); // NOI18N
-
-        javax.swing.GroupLayout panelBannerLayout = new javax.swing.GroupLayout(panelBanner);
-        panelBanner.setLayout(panelBannerLayout);
-        panelBannerLayout.setHorizontalGroup(
-            panelBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
-        );
-        panelBannerLayout.setVerticalGroup(
-            panelBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-        );
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(panelBanner, gridBagConstraints);
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
         // TODO add your handling code here:
         this.dispose();
-    }//GEN-LAST:event_btnCloseActionPerformed
+}//GEN-LAST:event_btnCloseActionPerformed
 
     /**
-     * @param args the command line arguments
-     */
+    * @param args the command line arguments
+    */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
-
             public void run() {
-                new frmAbout().setVisible(true);
+                dlgAbount dialog = new dlgAbount(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
     private javax.swing.JLabel lblInfoGroup;
@@ -155,4 +155,5 @@ public class frmAbout extends javax.swing.JFrame {
     private javax.swing.JPanel panelContent;
     private javax.swing.JSeparator seqarator1;
     // End of variables declaration//GEN-END:variables
+
 }

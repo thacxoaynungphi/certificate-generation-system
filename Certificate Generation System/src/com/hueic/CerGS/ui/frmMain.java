@@ -12,13 +12,14 @@ package com.hueic.CerGS.ui.main;
 
 import com.hueic.CerGS.entity.Account;
 import com.hueic.CerGS.ui.pnlAccount;
-import com.hueic.CerGS.ui.frmLogin;
-import com.hueic.CerGS.ui.frmAbout;
 import com.hueic.CerGS.component.GUIProperties;
 import com.hueic.CerGS.component.IconSystem;
 import com.hueic.CerGS.dao.GUIDAO;
 import com.hueic.CerGS.dao.PersonDAO;
 import com.hueic.CerGS.entity.Person;
+import com.hueic.CerGS.ui.dlgAbount;
+import com.hueic.CerGS.ui.dlgChangePass;
+import com.hueic.CerGS.ui.dlgLogin;
 import com.hueic.CerGS.ui.pnlCertificate;
 import com.hueic.CerGS.ui.pnlCourse;
 import com.hueic.CerGS.ui.main.employee.frmEmployee;
@@ -27,7 +28,7 @@ import com.hueic.CerGS.ui.pnlMark;
 import com.hueic.CerGS.ui.pnlPayment;
 import com.hueic.CerGS.ui.pnlPermission;
 import com.hueic.CerGS.ui.pnlRegister;
-import com.hueic.CerGS.ui.frmChangePass;
+import com.hueic.CerGS.ui.pnlSubject;
 import java.net.URL;
 import javax.help.CSH;
 import javax.help.HelpBroker;
@@ -52,6 +53,7 @@ public class frmMain extends javax.swing.JFrame {
     pnlPayment payment = new pnlPayment();
     pnlRegister register = new pnlRegister();
     pnlPermission per = new pnlPermission();
+    pnlSubject subject = new pnlSubject();
     
     public frmMain() {
         initComponents();
@@ -126,6 +128,7 @@ public class frmMain extends javax.swing.JFrame {
         pnlPayment = new javax.swing.JPanel();
         pnlRegister = new javax.swing.JPanel();
         pnlPermission = new javax.swing.JPanel();
+        pnlSubject = new javax.swing.JPanel();
         StatusPnl = new javax.swing.JPanel();
         mnuBSystem = new javax.swing.JMenuBar();
         mnuSystem = new javax.swing.JMenu();
@@ -375,6 +378,9 @@ public class frmMain extends javax.swing.JFrame {
 
         pnlPermission = per;
         tpnBusiness.addTab("Permission", pnlPermission);
+
+        pnlSubject = subject;
+        tpnBusiness.addTab("Subject", pnlSubject);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -676,13 +682,13 @@ public class frmMain extends javax.swing.JFrame {
 
     private void mnuILoginSystemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuILoginSystemActionPerformed
         // TODO add your handling code here:
-        frmLogin login = new frmLogin(this);
+        dlgLogin login = new dlgLogin(this);
         login.setVisible(true);
     }//GEN-LAST:event_mnuILoginSystemActionPerformed
 
     private void mnuIAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuIAboutActionPerformed
         // TODO add your handling code here:
-        frmAbout about = new frmAbout();
+        dlgAbount about = new dlgAbount(this, true);
         about.setVisible(true);
     }//GEN-LAST:event_mnuIAboutActionPerformed
 
@@ -713,7 +719,7 @@ public class frmMain extends javax.swing.JFrame {
     private void menuIChangePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIChangePassActionPerformed
         // TODO add your handling code here:
         if (accCur != null) {
-            frmChangePass changePass = new frmChangePass();
+            dlgChangePass changePass = new dlgChangePass(this, true);
             changePass.setVisible(true);
         }
     }//GEN-LAST:event_menuIChangePassActionPerformed
@@ -748,7 +754,7 @@ public class frmMain extends javax.swing.JFrame {
         if (this.accCur != null) {
             accCur = null;
             this.setVisible(false);
-            frmLogin login = new frmLogin(this);
+            dlgLogin login = new dlgLogin(this);
             login.setVisible(true);
         }
     }//GEN-LAST:event_mnuISwitchUserActionPerformed
@@ -758,7 +764,7 @@ public class frmMain extends javax.swing.JFrame {
         if (this.accCur != null) {
             accCur = null;
             this.setVisible(false);
-            frmLogin login = new frmLogin(this);
+            dlgLogin login = new dlgLogin(this);
             login.setVisible(true);
         }
     }//GEN-LAST:event_mnuILogoutSystemActionPerformed
@@ -963,6 +969,7 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JPanel pnlPayment;
     private javax.swing.JPanel pnlPermission;
     private javax.swing.JPanel pnlRegister;
+    private javax.swing.JPanel pnlSubject;
     private javax.swing.JRadioButtonMenuItem radioDarkStar;
     private javax.swing.JRadioButtonMenuItem radioDesertBlue;
     private javax.swing.JRadioButtonMenuItem radioDesertGreen;
