@@ -303,7 +303,7 @@ public class frmStudent extends javax.swing.JFrame {
         panelTop.setLayout(new java.awt.GridBagLayout());
 
         lblHienthi1.setForeground(new java.awt.Color(3, 3, 3));
-        lblHienthi1.setText("Tổng số sinh viên là : ");
+        lblHienthi1.setText("Total employees:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -317,7 +317,7 @@ public class frmStudent extends javax.swing.JFrame {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 20);
         panelTop.add(lblCount, gridBagConstraints);
 
         btnFilter.setText("Filter");
@@ -336,12 +336,13 @@ public class frmStudent extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelTop.add(btnFilter, gridBagConstraints);
 
+        filterText.setMinimumSize(new java.awt.Dimension(200, 20));
         filterText.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 330, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 340, 5, 5);
         panelTop.add(filterText, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
