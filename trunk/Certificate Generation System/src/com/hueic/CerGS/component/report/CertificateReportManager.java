@@ -5,12 +5,9 @@
 
 package com.hueic.CerGS.component.report;
 
-import com.hueic.CerGS.dao.CertificateDAO;
 import com.hueic.CerGS.dao.CourseDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.dao.StudentDAO;
-import com.hueic.CerGS.entity.Certificate;
-import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
