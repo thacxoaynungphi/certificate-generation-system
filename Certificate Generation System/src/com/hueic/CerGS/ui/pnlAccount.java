@@ -280,6 +280,7 @@ public class pnlAccount extends javax.swing.JPanel {
 
         pnlEdit.setMinimumSize(new java.awt.Dimension(810, 200));
         pnlEdit.setPreferredSize(new java.awt.Dimension(810, 200));
+        pnlEdit.setLayout(new java.awt.GridBagLayout());
 
         panel1.setBackground(new java.awt.Color(255, 255, 255));
         panel1.setMinimumSize(new java.awt.Dimension(800, 200));
@@ -302,7 +303,7 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 10, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 0);
         panel1.add(sepaAccount, gridBagConstraints);
 
         lblUsername.setForeground(new java.awt.Color(3, 3, 3));
@@ -392,7 +393,7 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 10, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 10, 0);
         panel1.add(panel2, gridBagConstraints);
 
         txtUsername.setEnabled(false);
@@ -479,12 +480,13 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridy = 3;
         panel1.add(txtType, gridBagConstraints);
 
-        pnlEdit.add(panel1);
+        pnlEdit.add(panel1, new java.awt.GridBagConstraints());
 
         tpAccount.addTab("Edit", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Edit_16.png")), pnlEdit); // NOI18N
 
         pnlSearch.setMinimumSize(new java.awt.Dimension(810, 200));
         pnlSearch.setPreferredSize(new java.awt.Dimension(810, 200));
+        pnlSearch.setLayout(new java.awt.GridBagLayout());
 
         panel3.setBackground(new java.awt.Color(255, 255, 255));
         panel3.setMinimumSize(new java.awt.Dimension(800, 200));
@@ -632,7 +634,7 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel3.add(jTextField2, gridBagConstraints);
 
-        pnlSearch.add(panel3);
+        pnlSearch.add(panel3, new java.awt.GridBagConstraints());
 
         tpAccount.addTab("Search", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Search-32.png")), pnlSearch); // NOI18N
 

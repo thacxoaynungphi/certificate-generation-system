@@ -42,6 +42,7 @@ public class dlgAbount extends javax.swing.JDialog {
         btnClose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         panelBanner.setBackground(new java.awt.Color(255, 255, 255));

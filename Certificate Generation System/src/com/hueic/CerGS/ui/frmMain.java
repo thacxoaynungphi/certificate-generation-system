@@ -10,6 +10,7 @@
  */
 package com.hueic.CerGS.ui.main;
 
+import com.hueic.CerGS.component.AppStatusBar;
 import com.hueic.CerGS.entity.Account;
 import com.hueic.CerGS.ui.pnlAccount;
 import com.hueic.CerGS.component.GUIProperties;
@@ -45,7 +46,7 @@ public class frmMain extends javax.swing.JFrame {
     GUIProperties guip = new GUIProperties();
     public Account accCur;
     String theme = "Silver";
-    String lookandfeel = guip.PLAF_JGOODIES;
+    String lookandfeel = GUIProperties.PLAF_JGOODIES;
     pnlAccount account = new pnlAccount();
     pnlCertificate cer = new pnlCertificate();
     pnlCourse course = new pnlCourse();
@@ -54,20 +55,23 @@ public class frmMain extends javax.swing.JFrame {
     pnlRegister register = new pnlRegister();
     pnlPermission per = new pnlPermission();
     pnlSubject subject = new pnlSubject();
-    
+
     public frmMain() {
         initComponents();
         setLocationRelativeTo(null);
         guidao = new GUIDAO(this);
-        guidao.setGUI(lookandfeel, theme);
-        bindingLang();
         new IconSystem(this);
+        initStatusBar();
+        System.out.println("W : " + this.getWidth() + "H : " + this.getHeight());
         HelpSet hs = getHelpSet("com/hueic/CerGS/myhelp/sample.hs");
         HelpBroker hb = hs.createHelpBroker();
-
-        // 2. assign help to components
         CSH.setHelpIDString(mnuIHelpContent, "top");
         mnuIHelpContent.addActionListener(new CSH.DisplayHelpFromSource(hb));
+    }
+
+    private void initStatusBar() {
+        AppStatusBar status = new AppStatusBar();
+        this.StatusPnl.add(status.getBar());
     }
 
     public HelpSet getHelpSet(String helpsetfile) {
@@ -81,9 +85,6 @@ public class frmMain extends javax.swing.JFrame {
             System.out.println("HelpSet: " + helpsetfile + " not found");
         }
         return hs;
-    }
-
-    public void bindingLang() {
     }
 
     /** This method is called from within the constructor to
@@ -100,8 +101,17 @@ public class frmMain extends javax.swing.JFrame {
         buttonGroupTheme = new javax.swing.ButtonGroup();
         panelLogo = new javax.swing.JPanel();
         tbMenu = new javax.swing.JToolBar();
-        jideButton1 = new com.jidesoft.swing.JideButton();
         jideButton2 = new com.jidesoft.swing.JideButton();
+        jideButton3 = new com.jidesoft.swing.JideButton();
+        jideButton4 = new com.jidesoft.swing.JideButton();
+        jideButton5 = new com.jidesoft.swing.JideButton();
+        jideButton6 = new com.jidesoft.swing.JideButton();
+        jideButton7 = new com.jidesoft.swing.JideButton();
+        jideButton8 = new com.jidesoft.swing.JideButton();
+        jideButton9 = new com.jidesoft.swing.JideButton();
+        jideButton10 = new com.jidesoft.swing.JideButton();
+        jideButton11 = new com.jidesoft.swing.JideButton();
+        jideButton12 = new com.jidesoft.swing.JideButton();
         panelLeft = new javax.swing.JPanel();
         tpnBusiness = new javax.swing.JTabbedPane();
         pnlHome = new javax.swing.JPanel();
@@ -175,15 +185,11 @@ public class frmMain extends javax.swing.JFrame {
         panelLogo.setPreferredSize(new java.awt.Dimension(1024, 40));
         panelLogo.setLayout(new java.awt.GridBagLayout());
 
+        tbMenu.setFloatable(false);
         tbMenu.setRollover(true);
         tbMenu.setMaximumSize(new java.awt.Dimension(1024, 40));
         tbMenu.setMinimumSize(new java.awt.Dimension(1024, 40));
         tbMenu.setPreferredSize(new java.awt.Dimension(1024, 40));
-
-        jideButton1.setFocusable(false);
-        jideButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jideButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        tbMenu.add(jideButton1);
 
         jideButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Statistic_bg.png"))); // NOI18N
         jideButton2.setFocusable(false);
@@ -191,12 +197,71 @@ public class frmMain extends javax.swing.JFrame {
         jideButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tbMenu.add(jideButton2);
 
+        jideButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Statistic_bg.png"))); // NOI18N
+        jideButton3.setFocusable(false);
+        jideButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jideButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tbMenu.add(jideButton3);
+
+        jideButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Statistic_bg.png"))); // NOI18N
+        jideButton4.setFocusable(false);
+        jideButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jideButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tbMenu.add(jideButton4);
+
+        jideButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Statistic_bg.png"))); // NOI18N
+        jideButton5.setFocusable(false);
+        jideButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jideButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tbMenu.add(jideButton5);
+
+        jideButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Statistic_bg.png"))); // NOI18N
+        jideButton6.setFocusable(false);
+        jideButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jideButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tbMenu.add(jideButton6);
+
+        jideButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Statistic_bg.png"))); // NOI18N
+        jideButton7.setFocusable(false);
+        jideButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jideButton7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tbMenu.add(jideButton7);
+
+        jideButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Statistic_bg.png"))); // NOI18N
+        jideButton8.setFocusable(false);
+        jideButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jideButton8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tbMenu.add(jideButton8);
+
+        jideButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Statistic_bg.png"))); // NOI18N
+        jideButton9.setFocusable(false);
+        jideButton9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jideButton9.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tbMenu.add(jideButton9);
+
+        jideButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Statistic_bg.png"))); // NOI18N
+        jideButton10.setFocusable(false);
+        jideButton10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jideButton10.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tbMenu.add(jideButton10);
+
+        jideButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Statistic_bg.png"))); // NOI18N
+        jideButton11.setFocusable(false);
+        jideButton11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jideButton11.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tbMenu.add(jideButton11);
+
+        jideButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Statistic_bg.png"))); // NOI18N
+        jideButton12.setFocusable(false);
+        jideButton12.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jideButton12.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tbMenu.add(jideButton12);
+
         panelLogo.add(tbMenu, new java.awt.GridBagConstraints());
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         getContentPane().add(panelLogo, gridBagConstraints);
 
@@ -206,7 +271,7 @@ public class frmMain extends javax.swing.JFrame {
         panelLeft.setLayout(new java.awt.GridBagLayout());
 
         tpnBusiness.setTabPlacement(javax.swing.JTabbedPane.LEFT);
-        tpnBusiness.setFont(new java.awt.Font("Tahoma", 1, 12));
+        tpnBusiness.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         tpnBusiness.setMinimumSize(new java.awt.Dimension(1024, 600));
         tpnBusiness.setPreferredSize(new java.awt.Dimension(1024, 600));
 
@@ -214,6 +279,7 @@ public class frmMain extends javax.swing.JFrame {
         pnlHome.setMinimumSize(new java.awt.Dimension(800, 600));
         pnlHome.setPreferredSize(new java.awt.Dimension(800, 600));
         pnlHome.setRequestFocusEnabled(false);
+        pnlHome.setLayout(new java.awt.GridBagLayout());
 
         panelRight.setBackground(new java.awt.Color(255, 255, 255));
         panelRight.setMaximumSize(new java.awt.Dimension(800, 600));
@@ -354,33 +420,33 @@ public class frmMain extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(40, 10, 0, 10);
         panelRight.add(jLabel1, gridBagConstraints);
 
-        pnlHome.add(panelRight);
+        pnlHome.add(panelRight, new java.awt.GridBagConstraints());
 
-        tpnBusiness.addTab("  HOME                      ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlHome); // NOI18N
+        tpnBusiness.addTab("  HOME                   ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlHome); // NOI18N
 
         pnlAccount = account;
-        tpnBusiness.addTab("Account", pnlAccount);
+        tpnBusiness.addTab("Account             ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlAccount); // NOI18N
 
         pnlCertificate = cer;
-        tpnBusiness.addTab("Certificate", pnlCertificate);
+        tpnBusiness.addTab("Certificate", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlCertificate); // NOI18N
 
         pnlCourse = course;
-        tpnBusiness.addTab("Course", pnlCourse);
+        tpnBusiness.addTab("Course", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlCourse); // NOI18N
 
         pnlMark = mark;
-        tpnBusiness.addTab("Mark", pnlMark);
+        tpnBusiness.addTab("Mark", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlMark); // NOI18N
 
         pnlPayment = payment;
-        tpnBusiness.addTab("Payment", pnlPayment);
+        tpnBusiness.addTab("Payment", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlPayment); // NOI18N
 
         pnlRegister = register;
-        tpnBusiness.addTab("Register", pnlRegister);
+        tpnBusiness.addTab("Register", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlRegister); // NOI18N
 
         pnlPermission = per;
-        tpnBusiness.addTab("Permission", pnlPermission);
+        tpnBusiness.addTab("Permission", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlPermission); // NOI18N
 
         pnlSubject = subject;
-        tpnBusiness.addTab("Subject", pnlSubject);
+        tpnBusiness.addTab("Subject", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlSubject); // NOI18N
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -394,6 +460,7 @@ public class frmMain extends javax.swing.JFrame {
 
         StatusPnl.setMinimumSize(new java.awt.Dimension(1024, 20));
         StatusPnl.setPreferredSize(new java.awt.Dimension(1024, 20));
+        StatusPnl.setLayout(new java.awt.BorderLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -942,8 +1009,17 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPopupMenu.Separator jSeparator1;
-    private com.jidesoft.swing.JideButton jideButton1;
+    private com.jidesoft.swing.JideButton jideButton10;
+    private com.jidesoft.swing.JideButton jideButton11;
+    private com.jidesoft.swing.JideButton jideButton12;
     private com.jidesoft.swing.JideButton jideButton2;
+    private com.jidesoft.swing.JideButton jideButton3;
+    private com.jidesoft.swing.JideButton jideButton4;
+    private com.jidesoft.swing.JideButton jideButton5;
+    private com.jidesoft.swing.JideButton jideButton6;
+    private com.jidesoft.swing.JideButton jideButton7;
+    private com.jidesoft.swing.JideButton jideButton8;
+    private com.jidesoft.swing.JideButton jideButton9;
     private javax.swing.JMenuItem menuIChangePass;
     private javax.swing.JMenuBar mnuBSystem;
     private javax.swing.JMenu mnuHelp;
