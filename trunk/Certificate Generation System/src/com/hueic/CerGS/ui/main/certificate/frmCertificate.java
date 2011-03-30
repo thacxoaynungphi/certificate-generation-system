@@ -312,7 +312,9 @@ public class frmCertificate extends javax.swing.JFrame {
         });
         PanelButton.add(btnUpdate);
 
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
         btnDelete.setText("Delete");
+        btnDelete.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
@@ -335,7 +337,7 @@ public class frmCertificate extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         panelRight.add(PanelButton, gridBagConstraints);
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 12));

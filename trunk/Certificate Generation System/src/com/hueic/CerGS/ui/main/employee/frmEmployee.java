@@ -64,8 +64,10 @@ public class frmEmployee extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         empDao = new EmployeeDAO();
         listEmp = empDao.readByAll();
-        if(listEmp.size() != 0)
+        if (listEmp.size() != 0) {
             loadData(listEmp);
+
+        }
         enableEvents(AWTEvent.MOUSE_EVENT_MASK);
         tableContent.addMouseListener(new MouseAdapter() {
 
@@ -151,13 +153,18 @@ public class frmEmployee extends javax.swing.JFrame {
         panelLeft = new javax.swing.JPanel();
         jTaskPane1 = new com.l2fprod.common.swing.JTaskPane();
         jTaskPaneGroup1 = new com.l2fprod.common.swing.JTaskPaneGroup();
+        linkBtnAddEmployee = new com.l2fprod.common.swing.JLinkButton();
+        linkBtnEditEmpyee = new com.l2fprod.common.swing.JLinkButton();
+        linkBtnDeleteEmployee = new com.l2fprod.common.swing.JLinkButton();
+        linkBtnDearchEmployee = new com.l2fprod.common.swing.JLinkButton();
         jTaskPaneGroup2 = new com.l2fprod.common.swing.JTaskPaneGroup();
+        linkBtnStudentReport = new com.l2fprod.common.swing.JLinkButton();
         panelRight = new javax.swing.JPanel();
         panelDisplay = new javax.swing.JPanel();
         lblHienthi1 = new javax.swing.JLabel();
         lblCount = new javax.swing.JLabel();
-        btnFilter = new javax.swing.JButton();
         filterText = new javax.swing.JTextField();
+        btnFilter = new javax.swing.JButton();
         panelContent = new javax.swing.JPanel();
         btnImport = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
@@ -223,13 +230,56 @@ public class frmEmployee extends javax.swing.JFrame {
         getContentPane().add(panelBanner, gridBagConstraints);
 
         panelLeft.setBackground(new java.awt.Color(255, 255, 255));
-        panelLeft.setMinimumSize(new java.awt.Dimension(230, 500));
-        panelLeft.setPreferredSize(new java.awt.Dimension(230, 500));
+        panelLeft.setMinimumSize(new java.awt.Dimension(215, 500));
+        panelLeft.setPreferredSize(new java.awt.Dimension(215, 500));
         panelLeft.setLayout(new java.awt.GridBagLayout());
 
-        jTaskPane1.setMinimumSize(new java.awt.Dimension(230, 500));
-        jTaskPane1.setPreferredSize(new java.awt.Dimension(230, 500));
+        jTaskPane1.setMinimumSize(new java.awt.Dimension(215, 500));
+        jTaskPane1.setPreferredSize(new java.awt.Dimension(215, 500));
+
+        jTaskPaneGroup1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/users1.png"))); // NOI18N
+        jTaskPaneGroup1.setTitle("Management Employee");
+
+        linkBtnAddEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
+        linkBtnAddEmployee.setText("Add Employee");
+        linkBtnAddEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                linkBtnAddEmployeeActionPerformed(evt);
+            }
+        });
+        jTaskPaneGroup1.getContentPane().add(linkBtnAddEmployee);
+
+        linkBtnEditEmpyee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/edit.png"))); // NOI18N
+        linkBtnEditEmpyee.setText("Edit Employee");
+        linkBtnEditEmpyee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                linkBtnEditEmpyeeActionPerformed(evt);
+            }
+        });
+        jTaskPaneGroup1.getContentPane().add(linkBtnEditEmpyee);
+
+        linkBtnDeleteEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
+        linkBtnDeleteEmployee.setText("Delete Employee");
+        linkBtnDeleteEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                linkBtnDeleteEmployeeActionPerformed(evt);
+            }
+        });
+        jTaskPaneGroup1.getContentPane().add(linkBtnDeleteEmployee);
+
+        linkBtnDearchEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/view.png"))); // NOI18N
+        linkBtnDearchEmployee.setText("Search Employee");
+        jTaskPaneGroup1.getContentPane().add(linkBtnDearchEmployee);
+
         jTaskPane1.add(jTaskPaneGroup1);
+
+        jTaskPaneGroup2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
+        jTaskPaneGroup2.setTitle("Management Report");
+
+        linkBtnStudentReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow_right_green.png"))); // NOI18N
+        linkBtnStudentReport.setText("Student Report");
+        jTaskPaneGroup2.getContentPane().add(linkBtnStudentReport);
+
         jTaskPane1.add(jTaskPaneGroup2);
 
         panelLeft.add(jTaskPane1, new java.awt.GridBagConstraints());
@@ -241,8 +291,8 @@ public class frmEmployee extends javax.swing.JFrame {
         getContentPane().add(panelLeft, gridBagConstraints);
 
         panelRight.setBackground(new java.awt.Color(255, 255, 255));
-        panelRight.setMinimumSize(new java.awt.Dimension(770, 500));
-        panelRight.setPreferredSize(new java.awt.Dimension(770, 500));
+        panelRight.setMinimumSize(new java.awt.Dimension(785, 500));
+        panelRight.setPreferredSize(new java.awt.Dimension(785, 500));
         panelRight.setLayout(new java.awt.GridBagLayout());
 
         panelDisplay.setBackground(new java.awt.Color(255, 255, 255));
@@ -256,18 +306,29 @@ public class frmEmployee extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         panelDisplay.add(lblHienthi1, gridBagConstraints);
 
         lblCount.setBackground(new java.awt.Color(255, 255, 255));
         lblCount.setForeground(new java.awt.Color(3, 3, 3));
+        lblCount.setMaximumSize(new java.awt.Dimension(20, 14));
+        lblCount.setMinimumSize(new java.awt.Dimension(20, 14));
         lblCount.setPreferredSize(new java.awt.Dimension(20, 14));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 6, 5, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelDisplay.add(lblCount, gridBagConstraints);
+
+        filterText.setMinimumSize(new java.awt.Dimension(200, 20));
+        filterText.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 300, 5, 0);
+        panelDisplay.add(filterText, gridBagConstraints);
 
         btnFilter.setText("Filter");
         btnFilter.setMaximumSize(new java.awt.Dimension(90, 20));
@@ -282,17 +343,8 @@ public class frmEmployee extends javax.swing.JFrame {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 6, 5, 10);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 10);
         panelDisplay.add(btnFilter, gridBagConstraints);
-
-        filterText.setMinimumSize(new java.awt.Dimension(200, 20));
-        filterText.setPreferredSize(new java.awt.Dimension(200, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 280, 5, 0);
-        panelDisplay.add(filterText, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -302,8 +354,8 @@ public class frmEmployee extends javax.swing.JFrame {
         panelRight.add(panelDisplay, gridBagConstraints);
 
         panelContent.setBackground(new java.awt.Color(255, 255, 255));
-        panelContent.setMinimumSize(new java.awt.Dimension(820, 470));
-        panelContent.setPreferredSize(new java.awt.Dimension(820, 470));
+        panelContent.setMinimumSize(new java.awt.Dimension(840, 470));
+        panelContent.setPreferredSize(new java.awt.Dimension(840, 470));
         panelContent.setLayout(new java.awt.GridBagLayout());
 
         btnImport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/export1.png"))); // NOI18N
@@ -339,7 +391,7 @@ public class frmEmployee extends javax.swing.JFrame {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 6, 5, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         panelContent.add(btnCancel, gridBagConstraints);
 
         btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/button_ok.png"))); // NOI18N
@@ -356,7 +408,7 @@ public class frmEmployee extends javax.swing.JFrame {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 280, 5, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 300, 5, 5);
         panelContent.add(btnSave, gridBagConstraints);
 
         btnExport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/export1.png"))); // NOI18N
@@ -393,10 +445,12 @@ public class frmEmployee extends javax.swing.JFrame {
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 6, 5, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 10);
         panelContent.add(btnExit, gridBagConstraints);
 
-        srcPaneEmployee.setMinimumSize(new java.awt.Dimension(452, 402));
+        srcPaneEmployee.setMinimumSize(new java.awt.Dimension(770, 420));
+        srcPaneEmployee.setOpaque(false);
+        srcPaneEmployee.setPreferredSize(new java.awt.Dimension(770, 420));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -418,7 +472,7 @@ public class frmEmployee extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         panelContent.add(srcPaneEmployee, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -627,6 +681,24 @@ public class frmEmployee extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tableContentMouseClicked
 
+    private void linkBtnAddEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnAddEmployeeActionPerformed
+        // TODO add your handling code here:
+        frmAddEmployee addEmployee = new frmAddEmployee();
+        addEmployee.setVisible(true);
+    }//GEN-LAST:event_linkBtnAddEmployeeActionPerformed
+
+    private void linkBtnEditEmpyeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnEditEmpyeeActionPerformed
+        // TODO add your handling code here:
+        frmEditEmployee editEmployee = new frmEditEmployee();
+        editEmployee.setVisible(true);
+        //Edit emp chua set
+    }//GEN-LAST:event_linkBtnEditEmpyeeActionPerformed
+
+    private void linkBtnDeleteEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnDeleteEmployeeActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_linkBtnDeleteEmployeeActionPerformed
+
     public boolean isExist(Employee emp) {
         for (int i = 0; i < listEmp.size(); i++) {
             if (listEmp.get(i).getId().equalsIgnoreCase(emp.getId())) {
@@ -668,6 +740,11 @@ public class frmEmployee extends javax.swing.JFrame {
     private javax.swing.JLabel lblCount;
     private javax.swing.JLabel lblHienthi1;
     private javax.swing.JLabel lblLogo;
+    private com.l2fprod.common.swing.JLinkButton linkBtnAddEmployee;
+    private com.l2fprod.common.swing.JLinkButton linkBtnDearchEmployee;
+    private com.l2fprod.common.swing.JLinkButton linkBtnDeleteEmployee;
+    private com.l2fprod.common.swing.JLinkButton linkBtnEditEmpyee;
+    private com.l2fprod.common.swing.JLinkButton linkBtnStudentReport;
     private javax.swing.JMenuItem menuIAdd;
     private javax.swing.JMenuItem menuIDelete;
     private javax.swing.JMenuItem menuIEdit;

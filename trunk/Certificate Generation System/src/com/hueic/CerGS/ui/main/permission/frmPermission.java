@@ -243,7 +243,7 @@ public class frmPermission extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 0);
         panelRight.add(lblTitle, gridBagConstraints);
@@ -252,7 +252,8 @@ public class frmPermission extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 10, 0);
         panelRight.add(sepaAccount, gridBagConstraints);
 
@@ -291,7 +292,9 @@ public class frmPermission extends javax.swing.JFrame {
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
         btnUpdate.setText("Update");
         btnUpdate.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnUpdate.setPreferredSize(new java.awt.Dimension(70, 23));
+        btnUpdate.setMaximumSize(new java.awt.Dimension(80, 25));
+        btnUpdate.setMinimumSize(new java.awt.Dimension(80, 25));
+        btnUpdate.setPreferredSize(new java.awt.Dimension(80, 25));
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
@@ -312,8 +315,9 @@ public class frmPermission extends javax.swing.JFrame {
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
         btnCancel.setText("Cancel");
         btnCancel.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnCancel.setMaximumSize(new java.awt.Dimension(70, 23));
-        btnCancel.setPreferredSize(new java.awt.Dimension(70, 23));
+        btnCancel.setMaximumSize(new java.awt.Dimension(75, 23));
+        btnCancel.setMinimumSize(new java.awt.Dimension(75, 23));
+        btnCancel.setPreferredSize(new java.awt.Dimension(75, 23));
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelActionPerformed(evt);
@@ -323,10 +327,10 @@ public class frmPermission extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         panelRight.add(panelButton, gridBagConstraints);
 
         txtId.setEnabled(false);
@@ -338,6 +342,7 @@ public class frmPermission extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(txtId, gridBagConstraints);
 
+        lblcheck1.setForeground(new java.awt.Color(255, 0, 51));
         lblcheck1.setText("(*)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -345,6 +350,7 @@ public class frmPermission extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 10);
         panelRight.add(lblcheck1, gridBagConstraints);
 
+        lblcheck2.setForeground(new java.awt.Color(255, 0, 51));
         lblcheck2.setText("(*)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;

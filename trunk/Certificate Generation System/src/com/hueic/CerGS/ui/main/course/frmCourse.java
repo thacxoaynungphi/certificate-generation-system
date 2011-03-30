@@ -157,7 +157,7 @@ public class frmCourse extends javax.swing.JFrame {
         getContentPane().add(panelLogo, gridBagConstraints);
 
         panelLeft.setBackground(new java.awt.Color(255, 255, 255));
-        panelLeft.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Course", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(3, 3, 3))); // NOI18N
+        panelLeft.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Course", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
         panelLeft.setMinimumSize(new java.awt.Dimension(450, 320));
         panelLeft.setPreferredSize(new java.awt.Dimension(450, 320));
         panelLeft.setRequestFocusEnabled(false);
@@ -234,25 +234,26 @@ public class frmCourse extends javax.swing.JFrame {
         getContentPane().add(panelLeft, gridBagConstraints);
 
         panelRight.setBackground(new java.awt.Color(255, 255, 255));
-        panelRight.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Managment Course", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(3, 3, 3))); // NOI18N
+        panelRight.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Managment Course", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
         panelRight.setMinimumSize(new java.awt.Dimension(380, 320));
         panelRight.setPreferredSize(new java.awt.Dimension(380, 320));
         panelRight.setLayout(new java.awt.GridBagLayout());
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 12));
         lblTitle.setForeground(new java.awt.Color(102, 0, 102));
-        lblTitle.setText("Info Course");
+        lblTitle.setText("Information Course");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
         panelRight.add(lblTitle, gridBagConstraints);
 
-        sepaCourse.setPreferredSize(new java.awt.Dimension(280, 10));
+        sepaCourse.setPreferredSize(new java.awt.Dimension(320, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         panelRight.add(sepaCourse, gridBagConstraints);
 
@@ -275,7 +276,7 @@ public class frmCourse extends javax.swing.JFrame {
         panelRight.add(lblTotalFees, gridBagConstraints);
 
         txtTotalFees.setEditable(false);
-        txtTotalFees.setPreferredSize(new java.awt.Dimension(180, 20));
+        txtTotalFees.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -344,7 +345,7 @@ public class frmCourse extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(lblID, gridBagConstraints);
 
-        txtID.setPreferredSize(new java.awt.Dimension(180, 20));
+        txtID.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -364,6 +365,7 @@ public class frmCourse extends javax.swing.JFrame {
 
         radioEnable.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroupCourse.add(radioEnable);
+        radioEnable.setForeground(new java.awt.Color(3, 3, 3));
         radioEnable.setText("Enable");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -374,13 +376,14 @@ public class frmCourse extends javax.swing.JFrame {
 
         radioDisable.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroupCourse.add(radioDisable);
+        radioDisable.setForeground(new java.awt.Color(3, 3, 3));
         radioDisable.setText("Disable");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 5;
         panelRight.add(radioDisable, gridBagConstraints);
 
-        txtName.setPreferredSize(new java.awt.Dimension(180, 20));
+        txtName.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;

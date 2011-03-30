@@ -24,6 +24,7 @@ public class ObjectTableHeaderRenderer extends JLabel implements TableCellRender
         setSize(getSize().width, 50);
         setHorizontalAlignment(alignment);
         setFont(new Font("Tahoma", Font.PLAIN, 11));
+        setForeground(new Color(3, 3, 3));
         setHorizontalTextPosition(LEFT);
     }
 

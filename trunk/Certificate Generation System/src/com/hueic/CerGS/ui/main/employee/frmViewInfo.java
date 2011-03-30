@@ -102,7 +102,7 @@ public class frmViewInfo extends javax.swing.JFrame {
         lblTitle.setForeground(new java.awt.Color(102, 0, 102));
         lblTitle.setText("Detail Information");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
         panelContent.add(lblTitle, gridBagConstraints);
@@ -111,7 +111,7 @@ public class frmViewInfo extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         panelContent.add(sepaAddStu, gridBagConstraints);
@@ -187,7 +187,8 @@ public class frmViewInfo extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 10, 5);
         panelContent.add(lblImage2, gridBagConstraints);
 
-        txtFirstname.setPreferredSize(new java.awt.Dimension(200, 23));
+        txtFirstname.setMinimumSize(new java.awt.Dimension(200, 20));
+        txtFirstname.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -196,7 +197,8 @@ public class frmViewInfo extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(txtFirstname, gridBagConstraints);
 
-        txtLastname.setPreferredSize(new java.awt.Dimension(200, 23));
+        txtLastname.setMinimumSize(new java.awt.Dimension(200, 20));
+        txtLastname.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -226,7 +228,8 @@ public class frmViewInfo extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 2;
         panelContent.add(radioFemale, gridBagConstraints);
 
-        txtEmail.setPreferredSize(new java.awt.Dimension(200, 23));
+        txtEmail.setMinimumSize(new java.awt.Dimension(200, 20));
+        txtEmail.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 7;
@@ -235,7 +238,8 @@ public class frmViewInfo extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(txtEmail, gridBagConstraints);
 
-        txtAddress.setPreferredSize(new java.awt.Dimension(200, 23));
+        txtAddress.setMinimumSize(new java.awt.Dimension(200, 20));
+        txtAddress.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 9;
@@ -245,25 +249,25 @@ public class frmViewInfo extends javax.swing.JFrame {
         panelContent.add(txtAddress, gridBagConstraints);
 
         btnBrowse.setText("Browse");
-        btnBrowse.setMargin(new java.awt.Insets(2, 10, 2, 10));
-        btnBrowse.setMaximumSize(new java.awt.Dimension(70, 23));
-        btnBrowse.setMinimumSize(new java.awt.Dimension(70, 23));
-        btnBrowse.setPreferredSize(new java.awt.Dimension(60, 23));
+        btnBrowse.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnBrowse.setMaximumSize(new java.awt.Dimension(65, 23));
+        btnBrowse.setMinimumSize(new java.awt.Dimension(65, 23));
+        btnBrowse.setPreferredSize(new java.awt.Dimension(65, 23));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 11;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 5);
         panelContent.add(btnBrowse, gridBagConstraints);
 
-        txtImage.setPreferredSize(new java.awt.Dimension(120, 23));
+        txtImage.setMinimumSize(new java.awt.Dimension(130, 20));
+        txtImage.setPreferredSize(new java.awt.Dimension(130, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 11;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 3, 5, 3);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(txtImage, gridBagConstraints);
 
         panelButton.setBackground(new java.awt.Color(255, 255, 255));
@@ -305,7 +309,7 @@ public class frmViewInfo extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 13;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 4;
         panelContent.add(panelButton, gridBagConstraints);
 
         lblStudentID.setForeground(new java.awt.Color(3, 3, 3));
@@ -344,11 +348,14 @@ public class frmViewInfo extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(lblPhone, gridBagConstraints);
+
+        txtPhone.setMinimumSize(new java.awt.Dimension(200, 20));
+        txtPhone.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(txtPhone, gridBagConstraints);
 

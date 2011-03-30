@@ -10,6 +10,7 @@
  */
 package com.hueic.CerGS.ui.main.employee;
 
+import com.hueic.CerGS.component.IconSystem;
 import com.hueic.CerGS.dao.EmployeeDAO;
 import com.hueic.CerGS.entity.Employee;
 import java.awt.event.MouseEvent;
@@ -39,6 +40,7 @@ public class frmSearchEmployee extends javax.swing.JFrame {
     /** Creates new form frmSearchStudent */
     public frmSearchEmployee() {
         initComponents();
+        new IconSystem(this);
         setLocationRelativeTo(null);
         employeeDAO = new EmployeeDAO();
         listEmp = employeeDAO.readByAll();
@@ -192,7 +194,7 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(cbxEmployeeId, gridBagConstraints);
@@ -201,7 +203,7 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         lblStudentId.setText("Employee ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(lblStudentId, gridBagConstraints);
@@ -210,7 +212,7 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         lblFirstName.setText("First Name:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(lblFirstName, gridBagConstraints);
@@ -219,7 +221,7 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         txtFirstName.setPreferredSize(new java.awt.Dimension(150, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(txtFirstName, gridBagConstraints);
@@ -228,7 +230,7 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         lblLastName.setText("Last Name: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(lblLastName, gridBagConstraints);
@@ -237,7 +239,7 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         txtLastName.setPreferredSize(new java.awt.Dimension(150, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(txtLastName, gridBagConstraints);
@@ -246,7 +248,7 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         lblBirthday.setText("Birthday: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(lblBirthday, gridBagConstraints);
@@ -255,7 +257,7 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         dateChooserDateStart.setPreferredSize(new java.awt.Dimension(150, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(dateChooserDateStart, gridBagConstraints);
@@ -264,7 +266,7 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         dateChooserDateEnd.setPreferredSize(new java.awt.Dimension(150, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(dateChooserDateEnd, gridBagConstraints);
@@ -273,7 +275,7 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         lblGender.setText("Gender:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(lblGender, gridBagConstraints);
@@ -284,9 +286,9 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         radioMale.setText("Male");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 5);
         panelInfo.add(radioMale, gridBagConstraints);
 
         radioFemale.setBackground(new java.awt.Color(255, 255, 255));
@@ -295,9 +297,9 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         radioFemale.setText("FeMale");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
         panelInfo.add(radioFemale, gridBagConstraints);
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 12));
@@ -306,7 +308,7 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(lblTitle, gridBagConstraints);
@@ -316,7 +318,7 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(sepaCourse, gridBagConstraints);
@@ -329,9 +331,9 @@ public class frmSearchEmployee extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 15;
+        gridBagConstraints.gridy = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 34, 0, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 34, 70, 5);
         panelInfo.add(btnSearch, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();

@@ -382,7 +382,7 @@ public class frmStudent extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 10);
+        gridBagConstraints.insets = new java.awt.Insets(0, 7, 0, 7);
         panelTable.add(srcPanelContent, gridBagConstraints);
 
         btnImport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/import1.png"))); // NOI18N
@@ -424,8 +424,8 @@ public class frmStudent extends javax.swing.JFrame {
         btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/button_ok.png"))); // NOI18N
         btnSave.setText("Save");
         btnSave.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnSave.setMaximumSize(new java.awt.Dimension(65, 25));
-        btnSave.setMinimumSize(new java.awt.Dimension(65, 25));
+        btnSave.setMaximumSize(new java.awt.Dimension(90, 25));
+        btnSave.setMinimumSize(new java.awt.Dimension(90, 25));
         btnSave.setPreferredSize(new java.awt.Dimension(90, 25));
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -436,7 +436,7 @@ public class frmStudent extends javax.swing.JFrame {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 330, 5, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 310, 5, 0);
         panelTable.add(btnSave, gridBagConstraints);
 
         btnExport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/export1.png"))); // NOI18N

@@ -68,7 +68,6 @@ public class ObjectTableModel extends AbstractTableModel {
         if (index == 0) {
             return "";
         }
-
         return " " + this.columns[index - 1].getTitle() + " ";
     }
 
@@ -85,9 +84,7 @@ public class ObjectTableModel extends AbstractTableModel {
         if (columnIndex == 0) {
             return String.class;
         }
-
         Class cl = ((PropertyIndex) this.tableData.get(0)).getPropertyClass(this.getColumnPropertyIndex(columnIndex - 1));
-
         return cl;
     }
 
