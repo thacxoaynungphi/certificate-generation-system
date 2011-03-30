@@ -264,9 +264,9 @@ public class frmSubject extends javax.swing.JFrame {
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
         btnUpdate.setText("Update");
         btnUpdate.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnUpdate.setMaximumSize(new java.awt.Dimension(70, 23));
-        btnUpdate.setMinimumSize(new java.awt.Dimension(70, 23));
-        btnUpdate.setPreferredSize(new java.awt.Dimension(72, 23));
+        btnUpdate.setMaximumSize(new java.awt.Dimension(80, 23));
+        btnUpdate.setMinimumSize(new java.awt.Dimension(80, 23));
+        btnUpdate.setPreferredSize(new java.awt.Dimension(80, 23));
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);

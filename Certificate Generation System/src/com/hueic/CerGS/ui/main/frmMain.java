@@ -106,9 +106,9 @@ public class frmMain extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         panelLogo = new javax.swing.JPanel();
         lblLogo = new javax.swing.JLabel();
         panelLeft = new javax.swing.JPanel();
@@ -173,8 +173,8 @@ public class frmMain extends javax.swing.JFrame {
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         panelRight.setBackground(new java.awt.Color(255, 255, 255));
-        panelRight.setMinimumSize(new java.awt.Dimension(780, 550));
-        panelRight.setPreferredSize(new java.awt.Dimension(780, 550));
+        panelRight.setMinimumSize(new java.awt.Dimension(780, 580));
+        panelRight.setPreferredSize(new java.awt.Dimension(780, 580));
         panelRight.setLayout(new java.awt.GridBagLayout());
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Dollar.png"))); // NOI18N
@@ -279,15 +279,7 @@ public class frmMain extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(30, 30, 20, 10);
         panelRight.add(jLabel13, gridBagConstraints);
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/logoGroupMain.png"))); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 20, 0, 20);
-        panelRight.add(jLabel14, gridBagConstraints);
-
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLabel15.setForeground(new java.awt.Color(0, 0, 102));
         jLabel15.setText("<html>\n<body>\nCertificate Generator System\n</body>\n</html>");
         jLabel15.setMinimumSize(new java.awt.Dimension(261, 22));
@@ -310,6 +302,13 @@ public class frmMain extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 20, 5, 0);
         panelRight.add(jLabel16, gridBagConstraints);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/logoFinal.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.insets = new java.awt.Insets(40, 10, 0, 10);
+        panelRight.add(jLabel1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -334,12 +333,12 @@ public class frmMain extends javax.swing.JFrame {
         getContentPane().add(panelLogo, gridBagConstraints);
 
         panelLeft.setBackground(new java.awt.Color(255, 255, 255));
-        panelLeft.setMinimumSize(new java.awt.Dimension(220, 550));
-        panelLeft.setPreferredSize(new java.awt.Dimension(220, 550));
+        panelLeft.setMinimumSize(new java.awt.Dimension(220, 580));
+        panelLeft.setPreferredSize(new java.awt.Dimension(220, 580));
         panelLeft.setLayout(new java.awt.GridBagLayout());
 
-        taskPanelMenu.setMinimumSize(new java.awt.Dimension(220, 550));
-        taskPanelMenu.setPreferredSize(new java.awt.Dimension(220, 550));
+        taskPanelMenu.setMinimumSize(new java.awt.Dimension(220, 580));
+        taskPanelMenu.setPreferredSize(new java.awt.Dimension(220, 580));
 
         taskPaneGroupSystem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/gear.png"))); // NOI18N
         taskPaneGroupSystem.setTitle("System");
@@ -1086,11 +1085,11 @@ public class frmMain extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupSkin;
     private javax.swing.ButtonGroup buttonGroupTheme;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;

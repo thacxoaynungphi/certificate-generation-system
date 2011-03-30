@@ -350,8 +350,10 @@ public class frmAccount extends javax.swing.JFrame {
 
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
         btnAdd.setText("Add");
-        btnAdd.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnAdd.setPreferredSize(new java.awt.Dimension(70, 23));
+        btnAdd.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        btnAdd.setMaximumSize(new java.awt.Dimension(80, 23));
+        btnAdd.setMinimumSize(new java.awt.Dimension(80, 23));
+        btnAdd.setPreferredSize(new java.awt.Dimension(80, 23));
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
@@ -361,8 +363,10 @@ public class frmAccount extends javax.swing.JFrame {
 
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
         btnUpdate.setText("Update");
-        btnUpdate.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnUpdate.setPreferredSize(new java.awt.Dimension(70, 23));
+        btnUpdate.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        btnUpdate.setMaximumSize(new java.awt.Dimension(80, 23));
+        btnUpdate.setMinimumSize(new java.awt.Dimension(80, 23));
+        btnUpdate.setPreferredSize(new java.awt.Dimension(80, 23));
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
@@ -372,7 +376,10 @@ public class frmAccount extends javax.swing.JFrame {
 
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
         btnDelete.setText("Delete");
-        btnDelete.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnDelete.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        btnDelete.setMaximumSize(new java.awt.Dimension(80, 23));
+        btnDelete.setMinimumSize(new java.awt.Dimension(80, 23));
+        btnDelete.setPreferredSize(new java.awt.Dimension(80, 23));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
@@ -382,8 +389,9 @@ public class frmAccount extends javax.swing.JFrame {
 
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
         btnCancel.setText("Cancel");
-        btnCancel.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnCancel.setMargin(new java.awt.Insets(2, 2, 2, 2));
         btnCancel.setMaximumSize(new java.awt.Dimension(70, 23));
+        btnCancel.setMinimumSize(new java.awt.Dimension(70, 23));
         btnCancel.setPreferredSize(new java.awt.Dimension(70, 23));
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -397,7 +405,7 @@ public class frmAccount extends javax.swing.JFrame {
         gridBagConstraints.gridy = 6;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 0);
         panel1.add(panel2, gridBagConstraints);
 
         txtUsername.setEnabled(false);
