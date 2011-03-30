@@ -4,13 +4,13 @@
  */
 
 /*
- * ChangePassFrm.java
+ * dlgChangePass.java
  *
- * Created on Mar 22, 2011, 10:25:01 PM
+ * Created on Mar 31, 2011, 5:37:45 AM
  */
+
 package com.hueic.CerGS.ui;
 
-import com.hueic.CerGS.component.IconSystem;
 import com.hueic.CerGS.dao.AccountDAO;
 import com.hueic.CerGS.entity.Account;
 import java.util.logging.Level;
@@ -19,15 +19,14 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author qhvic
+ * @author nhchung
  */
-public class frmChangePass extends javax.swing.JFrame {
+public class dlgChangePass extends javax.swing.JDialog {
 
-    /** Creates new form ChangePassFrm */
-    public frmChangePass() {
+    /** Creates new form dlgChangePass */
+    public dlgChangePass(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
-        new IconSystem(this);
-        setLocationRelativeTo(null);
     }
 
     /** This method is called from within the constructor to
@@ -61,8 +60,6 @@ public class frmChangePass extends javax.swing.JFrame {
         txtConfirmPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Change Password - Certificate Generation System");
-        setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         panelContent.setBackground(new java.awt.Color(255, 255, 255));
@@ -238,18 +235,6 @@ public class frmChangePass extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_btnCancelActionPerformed
-
-    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        // TODO add your handling code here:
-        txtOldPassword.setText(null);
-        txtNewPassword.setText(null);
-        txtConfirmPassword.setText(null);
-    }//GEN-LAST:event_btnResetActionPerformed
-
     private void btnChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeActionPerformed
         // TODO add your handling code here:
         String username = txtUsername.getText();
@@ -268,24 +253,42 @@ public class frmChangePass extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, accDao.getLastError(), "Change Password", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (Exception ex) {
-                Logger.getLogger(frmChangePass.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(dlgChangePass.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Password not match", "Change Password", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_btnChangeActionPerformed
+}//GEN-LAST:event_btnChangeActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+        txtOldPassword.setText(null);
+        txtNewPassword.setText(null);
+        txtConfirmPassword.setText(null);
+}//GEN-LAST:event_btnResetActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+}//GEN-LAST:event_btnCancelActionPerformed
 
     /**
-     * @param args the command line arguments
-     */
+    * @param args the command line arguments
+    */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
-
             public void run() {
-                new frmChangePass().setVisible(true);
+                dlgChangePass dialog = new dlgChangePass(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnChange;
@@ -307,4 +310,5 @@ public class frmChangePass extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtOldPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
+
 }

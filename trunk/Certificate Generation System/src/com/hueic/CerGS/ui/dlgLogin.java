@@ -4,16 +4,16 @@
  */
 
 /*
- * LoginFrm.java
+ * dlgLogin.java
  *
- * Created on Mar 22, 2011, 10:38:33 PM
+ * Created on Mar 31, 2011, 5:31:46 AM
  */
 package com.hueic.CerGS.ui;
 
 import com.hueic.CerGS.component.IconSystem;
+import com.hueic.CerGS.component.RememberAccount;
 import com.hueic.CerGS.dao.AccountDAO;
 import com.hueic.CerGS.dao.PermissionDAO;
-import com.hueic.CerGS.component.RememberAccount;
 import com.hueic.CerGS.entity.Account;
 import com.hueic.CerGS.entity.Permission;
 import com.hueic.CerGS.ui.main.frmMain;
@@ -24,24 +24,23 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author qhvic
+ * @author nhchung
  */
-public class frmLogin extends javax.swing.JFrame {
+public class dlgLogin extends javax.swing.JDialog {
 
-    /** Creates new form LoginFrm */
     PermissionDAO perDao = new PermissionDAO();
     frmMain main;
 
-    public frmLogin() {
+    /** Creates new form dlgLogin */
+    public dlgLogin(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
-        new IconSystem(this);
         setLocationRelativeTo(null);
         bindingData();
     }
 
-    public frmLogin(frmMain main) {
+    public dlgLogin(frmMain main) {
         initComponents();
-        new IconSystem(this);
         this.main = main;
         setLocationRelativeTo(null);
         bindingData();
@@ -84,14 +83,10 @@ public class frmLogin extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Login System");
-        setBackground(new java.awt.Color(255, 255, 255));
-        setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         panelLogo.setBackground(new java.awt.Color(255, 255, 255));
         panelLogo.setMinimumSize(new java.awt.Dimension(380, 100));
-        panelLogo.setPreferredSize(new java.awt.Dimension(380, 100));
         panelLogo.setRequestFocusEnabled(false);
 
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/LoginFinal.png"))); // NOI18N
@@ -236,20 +231,6 @@ public class frmLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_btnCancelActionPerformed
-
-    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        // TODO add your handling code here:
-        txtUsername.setText(null);
-        txtPassword.setText(null);
-        cbxPermission.setSelectedIndex(0);
-
-
-    }//GEN-LAST:event_btnResetActionPerformed
-
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         try {
@@ -270,9 +251,23 @@ public class frmLogin extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, accDao.getLastError(), "Login", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
-            Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
-    }//GEN-LAST:event_btnLoginActionPerformed
+}//GEN-LAST:event_btnLoginActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+        txtUsername.setText(null);
+        txtPassword.setText(null);
+        cbxPermission.setSelectedIndex(0);
+
+    }//GEN-LAST:event_btnResetActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+}//GEN-LAST:event_btnCancelActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -280,13 +275,16 @@ public class frmLogin extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new frmLogin().setVisible(true);
+                dlgLogin dialog = new dlgLogin(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
-
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
-
-
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
