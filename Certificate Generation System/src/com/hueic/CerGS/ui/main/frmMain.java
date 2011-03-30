@@ -11,6 +11,7 @@
 package com.hueic.CerGS.ui.main;
 
 import com.hueic.CerGS.entity.Account;
+import com.hueic.CerGS.ui.main.account.pnlAccount;
 import com.hueic.CerGS.ui.system.frmLogin;
 import com.hueic.CerGS.ui.system.frmAbout;
 import com.hueic.CerGS.component.GUIProperties;
@@ -18,19 +19,14 @@ import com.hueic.CerGS.component.IconSystem;
 import com.hueic.CerGS.dao.GUIDAO;
 import com.hueic.CerGS.dao.PersonDAO;
 import com.hueic.CerGS.entity.Person;
-import com.hueic.CerGS.ui.main.account.frmAccount;
-import com.hueic.CerGS.ui.main.certificate.frmCertificate;
-import com.hueic.CerGS.ui.main.course.frmCourse;
+import com.hueic.CerGS.ui.main.certificate.pnlCertificate;
+import com.hueic.CerGS.ui.main.course.pnlCourse;
 import com.hueic.CerGS.ui.main.employee.frmEmployee;
-import com.hueic.CerGS.ui.main.employee.frmSearchEmployee;
 import com.hueic.CerGS.ui.main.employee.frmViewInfo;
-import com.hueic.CerGS.ui.main.mark.frmMark;
-import com.hueic.CerGS.ui.main.payment.frmPayment;
-import com.hueic.CerGS.ui.main.permission.frmPermission;
-import com.hueic.CerGS.ui.main.register.frmRegister;
-import com.hueic.CerGS.ui.main.student.frmSearchStudent;
-import com.hueic.CerGS.ui.main.student.frmStudent;
-import com.hueic.CerGS.ui.main.subject.frmSubject;
+import com.hueic.CerGS.ui.main.mark.pnlMark;
+import com.hueic.CerGS.ui.main.payment.pnlPayment;
+import com.hueic.CerGS.ui.main.permission.pnlPermission;
+import com.hueic.CerGS.ui.main.register.pnlRegister;
 import com.hueic.CerGS.ui.system.frmChangePass;
 import java.net.URL;
 import javax.help.CSH;
@@ -47,9 +43,16 @@ public class frmMain extends javax.swing.JFrame {
     GUIDAO guidao = null;
     GUIProperties guip = new GUIProperties();
     public Account accCur;
-    String theme = "DarkStar";
+    String theme = "Silver";
     String lookandfeel = guip.PLAF_JGOODIES;
-
+    pnlAccount account = new pnlAccount();
+    pnlCertificate cer = new pnlCertificate();
+    pnlCourse course = new pnlCourse();
+    pnlMark mark = new pnlMark();
+    pnlPayment payment = new pnlPayment();
+    pnlRegister register = new pnlRegister();
+    pnlPermission per = new pnlPermission();
+    
     public frmMain() {
         initComponents();
         setLocationRelativeTo(null);
@@ -93,6 +96,13 @@ public class frmMain extends javax.swing.JFrame {
 
         buttonGroupSkin = new javax.swing.ButtonGroup();
         buttonGroupTheme = new javax.swing.ButtonGroup();
+        panelLogo = new javax.swing.JPanel();
+        tbMenu = new javax.swing.JToolBar();
+        jideButton1 = new com.jidesoft.swing.JideButton();
+        jideButton2 = new com.jidesoft.swing.JideButton();
+        panelLeft = new javax.swing.JPanel();
+        tpnBusiness = new javax.swing.JTabbedPane();
+        pnlHome = new javax.swing.JPanel();
         panelRight = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -109,29 +119,14 @@ public class frmMain extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        panelLogo = new javax.swing.JPanel();
-        lblLogo = new javax.swing.JLabel();
-        panelLeft = new javax.swing.JPanel();
-        taskPanelMenu = new com.l2fprod.common.swing.JTaskPane();
-        taskPaneGroupSystem = new com.l2fprod.common.swing.JTaskPaneGroup();
-        linkBtnViewInformation = new com.l2fprod.common.swing.JLinkButton();
-        linkBtnChangePassword = new com.l2fprod.common.swing.JLinkButton();
-        linkBtnSwitchUser = new com.l2fprod.common.swing.JLinkButton();
-        linkBtnSingout = new com.l2fprod.common.swing.JLinkButton();
-        taskPanelGroupAdministration = new com.l2fprod.common.swing.JTaskPaneGroup();
-        linkBtnEmployee = new com.l2fprod.common.swing.JLinkButton();
-        linkBtnStudent = new com.l2fprod.common.swing.JLinkButton();
-        linkBtnCertificate = new com.l2fprod.common.swing.JLinkButton();
-        linkBtnPayment = new com.l2fprod.common.swing.JLinkButton();
-        linkBtnMark = new com.l2fprod.common.swing.JLinkButton();
-        linkBtnSubject = new com.l2fprod.common.swing.JLinkButton();
-        linkBtnAccount = new com.l2fprod.common.swing.JLinkButton();
-        linkBtnCourse = new com.l2fprod.common.swing.JLinkButton();
-        linkBtnPermisison = new com.l2fprod.common.swing.JLinkButton();
-        linkBtnRegister = new com.l2fprod.common.swing.JLinkButton();
-        taskPanelGroupSearch = new com.l2fprod.common.swing.JTaskPaneGroup();
-        linkBtnSearchStudent = new com.l2fprod.common.swing.JLinkButton();
-        linkBtnSearchEmp = new com.l2fprod.common.swing.JLinkButton();
+        pnlAccount = new javax.swing.JPanel();
+        pnlCertificate = new javax.swing.JPanel();
+        pnlCourse = new javax.swing.JPanel();
+        pnlMark = new javax.swing.JPanel();
+        pnlPayment = new javax.swing.JPanel();
+        pnlRegister = new javax.swing.JPanel();
+        pnlPermission = new javax.swing.JPanel();
+        StatusPnl = new javax.swing.JPanel();
         mnuBSystem = new javax.swing.JMenuBar();
         mnuSystem = new javax.swing.JMenu();
         mnuISwitchUser = new javax.swing.JMenuItem();
@@ -169,12 +164,58 @@ public class frmMain extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Certificate Generation System");
+        setMinimumSize(new java.awt.Dimension(1024, 720));
         setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
+        panelLogo.setMinimumSize(new java.awt.Dimension(1024, 40));
+        panelLogo.setPreferredSize(new java.awt.Dimension(1024, 40));
+        panelLogo.setLayout(new java.awt.GridBagLayout());
+
+        tbMenu.setRollover(true);
+        tbMenu.setMaximumSize(new java.awt.Dimension(1024, 40));
+        tbMenu.setMinimumSize(new java.awt.Dimension(1024, 40));
+        tbMenu.setPreferredSize(new java.awt.Dimension(1024, 40));
+
+        jideButton1.setFocusable(false);
+        jideButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jideButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tbMenu.add(jideButton1);
+
+        jideButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Statistic_bg.png"))); // NOI18N
+        jideButton2.setFocusable(false);
+        jideButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jideButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tbMenu.add(jideButton2);
+
+        panelLogo.add(tbMenu, new java.awt.GridBagConstraints());
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        getContentPane().add(panelLogo, gridBagConstraints);
+
+        panelLeft.setBackground(new java.awt.Color(255, 255, 255));
+        panelLeft.setMinimumSize(new java.awt.Dimension(1024, 600));
+        panelLeft.setPreferredSize(new java.awt.Dimension(1024, 600));
+        panelLeft.setLayout(new java.awt.GridBagLayout());
+
+        tpnBusiness.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+        tpnBusiness.setFont(new java.awt.Font("Tahoma", 1, 12));
+        tpnBusiness.setMinimumSize(new java.awt.Dimension(1024, 600));
+        tpnBusiness.setPreferredSize(new java.awt.Dimension(1024, 600));
+
+        pnlHome.setMaximumSize(new java.awt.Dimension(800, 600));
+        pnlHome.setMinimumSize(new java.awt.Dimension(800, 600));
+        pnlHome.setPreferredSize(new java.awt.Dimension(800, 600));
+        pnlHome.setRequestFocusEnabled(false);
+
         panelRight.setBackground(new java.awt.Color(255, 255, 255));
-        panelRight.setMinimumSize(new java.awt.Dimension(780, 580));
-        panelRight.setPreferredSize(new java.awt.Dimension(780, 580));
+        panelRight.setMaximumSize(new java.awt.Dimension(800, 600));
+        panelRight.setMinimumSize(new java.awt.Dimension(800, 600));
+        panelRight.setPreferredSize(new java.awt.Dimension(800, 600));
         panelRight.setLayout(new java.awt.GridBagLayout());
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Dollar.png"))); // NOI18N
@@ -310,186 +351,51 @@ public class frmMain extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(40, 10, 0, 10);
         panelRight.add(jLabel1, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(panelRight, gridBagConstraints);
+        pnlHome.add(panelRight);
 
-        panelLogo.setLayout(new java.awt.GridBagLayout());
+        tpnBusiness.addTab("  HOME                      ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlHome); // NOI18N
 
-        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Main.png"))); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        panelLogo.add(lblLogo, gridBagConstraints);
+        pnlAccount = account;
+        tpnBusiness.addTab("Account", pnlAccount);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(panelLogo, gridBagConstraints);
+        pnlCertificate = cer;
+        tpnBusiness.addTab("Certificate", pnlCertificate);
 
-        panelLeft.setBackground(new java.awt.Color(255, 255, 255));
-        panelLeft.setMinimumSize(new java.awt.Dimension(220, 580));
-        panelLeft.setPreferredSize(new java.awt.Dimension(220, 580));
-        panelLeft.setLayout(new java.awt.GridBagLayout());
+        pnlCourse = course;
+        tpnBusiness.addTab("Course", pnlCourse);
 
-        taskPanelMenu.setMinimumSize(new java.awt.Dimension(220, 580));
-        taskPanelMenu.setPreferredSize(new java.awt.Dimension(220, 580));
+        pnlMark = mark;
+        tpnBusiness.addTab("Mark", pnlMark);
 
-        taskPaneGroupSystem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/gear.png"))); // NOI18N
-        taskPaneGroupSystem.setTitle("System");
+        pnlPayment = payment;
+        tpnBusiness.addTab("Payment", pnlPayment);
 
-        linkBtnViewInformation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/businessman_find.png"))); // NOI18N
-        linkBtnViewInformation.setText("View Information");
-        taskPaneGroupSystem.getContentPane().add(linkBtnViewInformation);
+        pnlRegister = register;
+        tpnBusiness.addTab("Register", pnlRegister);
 
-        linkBtnChangePassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/gear.png"))); // NOI18N
-        linkBtnChangePassword.setText("Change Password");
-        taskPaneGroupSystem.getContentPane().add(linkBtnChangePassword);
-
-        linkBtnSwitchUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
-        linkBtnSwitchUser.setText("Switch User");
-        taskPaneGroupSystem.getContentPane().add(linkBtnSwitchUser);
-
-        linkBtnSingout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/signout.png"))); // NOI18N
-        linkBtnSingout.setText("Signout");
-        taskPaneGroupSystem.getContentPane().add(linkBtnSingout);
-
-        taskPanelMenu.add(taskPaneGroupSystem);
-
-        taskPanelGroupAdministration.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/users1.png"))); // NOI18N
-        taskPanelGroupAdministration.setTitle("Administration");
-
-        linkBtnEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/application_view_detail.png"))); // NOI18N
-        linkBtnEmployee.setText("Management Employee");
-        linkBtnEmployee.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                linkBtnEmployeeActionPerformed(evt);
-            }
-        });
-        taskPanelGroupAdministration.getContentPane().add(linkBtnEmployee);
-
-        linkBtnStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/application_view_detail.png"))); // NOI18N
-        linkBtnStudent.setText("Management Student");
-        linkBtnStudent.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                linkBtnStudentActionPerformed(evt);
-            }
-        });
-        taskPanelGroupAdministration.getContentPane().add(linkBtnStudent);
-
-        linkBtnCertificate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/application_view_detail.png"))); // NOI18N
-        linkBtnCertificate.setText("Management Certificate");
-        linkBtnCertificate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                linkBtnCertificateActionPerformed(evt);
-            }
-        });
-        taskPanelGroupAdministration.getContentPane().add(linkBtnCertificate);
-
-        linkBtnPayment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/application_view_detail.png"))); // NOI18N
-        linkBtnPayment.setText("Management Payment");
-        linkBtnPayment.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                linkBtnPaymentActionPerformed(evt);
-            }
-        });
-        taskPanelGroupAdministration.getContentPane().add(linkBtnPayment);
-
-        linkBtnMark.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/application_view_detail.png"))); // NOI18N
-        linkBtnMark.setText("Management Mark");
-        linkBtnMark.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                linkBtnMarkActionPerformed(evt);
-            }
-        });
-        taskPanelGroupAdministration.getContentPane().add(linkBtnMark);
-
-        linkBtnSubject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/application_view_detail.png"))); // NOI18N
-        linkBtnSubject.setText("Management Subject");
-        linkBtnSubject.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                linkBtnSubjectActionPerformed(evt);
-            }
-        });
-        taskPanelGroupAdministration.getContentPane().add(linkBtnSubject);
-
-        linkBtnAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/application_view_detail.png"))); // NOI18N
-        linkBtnAccount.setText("Management Account");
-        linkBtnAccount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                linkBtnAccountActionPerformed(evt);
-            }
-        });
-        taskPanelGroupAdministration.getContentPane().add(linkBtnAccount);
-
-        linkBtnCourse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/application_view_detail.png"))); // NOI18N
-        linkBtnCourse.setText("Management Course");
-        linkBtnCourse.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                linkBtnCourseActionPerformed(evt);
-            }
-        });
-        taskPanelGroupAdministration.getContentPane().add(linkBtnCourse);
-
-        linkBtnPermisison.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/application_view_detail.png"))); // NOI18N
-        linkBtnPermisison.setText("Management Permission");
-        linkBtnPermisison.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                linkBtnPermisisonActionPerformed(evt);
-            }
-        });
-        taskPanelGroupAdministration.getContentPane().add(linkBtnPermisison);
-
-        linkBtnRegister.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/application_view_detail.png"))); // NOI18N
-        linkBtnRegister.setText("Management Register");
-        linkBtnRegister.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                linkBtnRegisterActionPerformed(evt);
-            }
-        });
-        taskPanelGroupAdministration.getContentPane().add(linkBtnRegister);
-
-        taskPanelMenu.add(taskPanelGroupAdministration);
-
-        taskPanelGroupSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/view.png"))); // NOI18N
-        taskPanelGroupSearch.setTitle("Search");
-
-        linkBtnSearchStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow_right_green.png"))); // NOI18N
-        linkBtnSearchStudent.setText("Student");
-        linkBtnSearchStudent.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                linkBtnSearchStudentActionPerformed(evt);
-            }
-        });
-        taskPanelGroupSearch.getContentPane().add(linkBtnSearchStudent);
-
-        linkBtnSearchEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow_right_green.png"))); // NOI18N
-        linkBtnSearchEmp.setText("Employee");
-        linkBtnSearchEmp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                linkBtnSearchEmpActionPerformed(evt);
-            }
-        });
-        taskPanelGroupSearch.getContentPane().add(linkBtnSearchEmp);
-
-        taskPanelMenu.add(taskPanelGroupSearch);
+        pnlPermission = per;
+        tpnBusiness.addTab("Permission", pnlPermission);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        panelLeft.add(taskPanelMenu, gridBagConstraints);
+        panelLeft.add(tpnBusiness, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         getContentPane().add(panelLeft, gridBagConstraints);
+
+        StatusPnl.setMinimumSize(new java.awt.Dimension(1024, 20));
+        StatusPnl.setPreferredSize(new java.awt.Dimension(1024, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        getContentPane().add(StatusPnl, gridBagConstraints);
+
+        mnuBSystem.setMaximumSize(new java.awt.Dimension(1024, 23));
+        mnuBSystem.setMinimumSize(new java.awt.Dimension(1024, 23));
+        mnuBSystem.setPreferredSize(new java.awt.Dimension(1024, 23));
 
         mnuSystem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/gear.png"))); // NOI18N
         mnuSystem.setText("System");
@@ -827,66 +733,6 @@ public class frmMain extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_mnuIExitActionPerformed
 
-    private void linkBtnEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnEmployeeActionPerformed
-        // TODO add your handling code here:
-        frmEmployee employee = new frmEmployee();
-        employee.setVisible(true);
-    }//GEN-LAST:event_linkBtnEmployeeActionPerformed
-
-    private void linkBtnStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnStudentActionPerformed
-        // TODO add your handling code here:
-        frmStudent student = new frmStudent();
-        student.setVisible(true);
-    }//GEN-LAST:event_linkBtnStudentActionPerformed
-
-    private void linkBtnCertificateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnCertificateActionPerformed
-        // TODO add your handling code here:
-        frmCertificate certificate = new frmCertificate();
-        certificate.setVisible(true);
-    }//GEN-LAST:event_linkBtnCertificateActionPerformed
-
-    private void linkBtnPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnPaymentActionPerformed
-        // TODO add your handling code here:
-        frmPayment payment = new frmPayment();
-        payment.setVisible(true);
-    }//GEN-LAST:event_linkBtnPaymentActionPerformed
-
-    private void linkBtnSubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnSubjectActionPerformed
-        // TODO add your handling code here:
-        frmSubject subject = new frmSubject();
-        subject.setVisible(true);
-    }//GEN-LAST:event_linkBtnSubjectActionPerformed
-
-    private void linkBtnMarkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnMarkActionPerformed
-        // TODO add your handling code here:
-        frmMark scoure = new frmMark();
-        scoure.setVisible(true);
-    }//GEN-LAST:event_linkBtnMarkActionPerformed
-
-    private void linkBtnAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnAccountActionPerformed
-        // TODO add your handling code here:
-        frmAccount account = new frmAccount();
-        account.setVisible(true);
-    }//GEN-LAST:event_linkBtnAccountActionPerformed
-
-    private void linkBtnCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnCourseActionPerformed
-        // TODO add your handling code here:
-        frmCourse course = new frmCourse();
-        course.setVisible(true);
-    }//GEN-LAST:event_linkBtnCourseActionPerformed
-
-    private void linkBtnPermisisonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnPermisisonActionPerformed
-        // TODO add your handling code here:
-        frmPermission permission = new frmPermission();
-        permission.setVisible(true);
-    }//GEN-LAST:event_linkBtnPermisisonActionPerformed
-
-    private void linkBtnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnRegisterActionPerformed
-        // TODO add your handling code here:
-        frmRegister register = new frmRegister();
-        register.setVisible(true);
-    }//GEN-LAST:event_linkBtnRegisterActionPerformed
-
     private void mnuIViewInformationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuIViewInformationActionPerformed
         // TODO add your handling code here:
         if (accCur != null) {
@@ -916,18 +762,6 @@ public class frmMain extends javax.swing.JFrame {
             login.setVisible(true);
         }
     }//GEN-LAST:event_mnuILogoutSystemActionPerformed
-
-    private void linkBtnSearchStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnSearchStudentActionPerformed
-        // TODO add your handling code here:
-        frmSearchStudent searchStudent = new frmSearchStudent();
-        searchStudent.setVisible(true);
-    }//GEN-LAST:event_linkBtnSearchStudentActionPerformed
-
-    private void linkBtnSearchEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkBtnSearchEmpActionPerformed
-        // TODO add your handling code here:
-        frmSearchEmployee searchEmployee = new frmSearchEmployee();
-        searchEmployee.setVisible(true);
-    }//GEN-LAST:event_linkBtnSearchEmpActionPerformed
 
     private void radioJgoodiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioJgoodiesActionPerformed
         // TODO add your handling code here:
@@ -1083,6 +917,7 @@ public class frmMain extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel StatusPnl;
     private javax.swing.ButtonGroup buttonGroupSkin;
     private javax.swing.ButtonGroup buttonGroupTheme;
     private javax.swing.JLabel jLabel1;
@@ -1101,23 +936,8 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPopupMenu.Separator jSeparator1;
-    private javax.swing.JLabel lblLogo;
-    private com.l2fprod.common.swing.JLinkButton linkBtnAccount;
-    private com.l2fprod.common.swing.JLinkButton linkBtnCertificate;
-    private com.l2fprod.common.swing.JLinkButton linkBtnChangePassword;
-    private com.l2fprod.common.swing.JLinkButton linkBtnCourse;
-    private com.l2fprod.common.swing.JLinkButton linkBtnEmployee;
-    private com.l2fprod.common.swing.JLinkButton linkBtnMark;
-    private com.l2fprod.common.swing.JLinkButton linkBtnPayment;
-    private com.l2fprod.common.swing.JLinkButton linkBtnPermisison;
-    private com.l2fprod.common.swing.JLinkButton linkBtnRegister;
-    private com.l2fprod.common.swing.JLinkButton linkBtnSearchEmp;
-    private com.l2fprod.common.swing.JLinkButton linkBtnSearchStudent;
-    private com.l2fprod.common.swing.JLinkButton linkBtnSingout;
-    private com.l2fprod.common.swing.JLinkButton linkBtnStudent;
-    private com.l2fprod.common.swing.JLinkButton linkBtnSubject;
-    private com.l2fprod.common.swing.JLinkButton linkBtnSwitchUser;
-    private com.l2fprod.common.swing.JLinkButton linkBtnViewInformation;
+    private com.jidesoft.swing.JideButton jideButton1;
+    private com.jidesoft.swing.JideButton jideButton2;
     private javax.swing.JMenuItem menuIChangePass;
     private javax.swing.JMenuBar mnuBSystem;
     private javax.swing.JMenu mnuHelp;
@@ -1135,6 +955,14 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelLogo;
     private javax.swing.JPanel panelRight;
+    private javax.swing.JPanel pnlAccount;
+    private javax.swing.JPanel pnlCertificate;
+    private javax.swing.JPanel pnlCourse;
+    private javax.swing.JPanel pnlHome;
+    private javax.swing.JPanel pnlMark;
+    private javax.swing.JPanel pnlPayment;
+    private javax.swing.JPanel pnlPermission;
+    private javax.swing.JPanel pnlRegister;
     private javax.swing.JRadioButtonMenuItem radioDarkStar;
     private javax.swing.JRadioButtonMenuItem radioDesertBlue;
     private javax.swing.JRadioButtonMenuItem radioDesertGreen;
@@ -1154,9 +982,7 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JRadioButtonMenuItem radioSkyRed;
     private javax.swing.JRadioButtonMenuItem radioSkyYellow;
     private javax.swing.JRadioButtonMenuItem radioWindows;
-    private com.l2fprod.common.swing.JTaskPaneGroup taskPaneGroupSystem;
-    private com.l2fprod.common.swing.JTaskPaneGroup taskPanelGroupAdministration;
-    private com.l2fprod.common.swing.JTaskPaneGroup taskPanelGroupSearch;
-    private com.l2fprod.common.swing.JTaskPane taskPanelMenu;
+    private javax.swing.JToolBar tbMenu;
+    private javax.swing.JTabbedPane tpnBusiness;
     // End of variables declaration//GEN-END:variables
 }

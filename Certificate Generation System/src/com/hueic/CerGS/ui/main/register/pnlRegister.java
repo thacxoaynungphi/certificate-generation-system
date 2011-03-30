@@ -4,9 +4,9 @@
  */
 
 /*
- * MarkFrm.java
+ * pnlRegister.java
  *
- * Created on Mar 25, 2011, 12:04:09 AM
+ * Created on Mar 31, 2011, 5:00:33 AM
  */
 package com.hueic.CerGS.ui.main.register;
 
@@ -19,8 +19,8 @@ import com.hueic.CerGS.dao.SubjectDAO;
 import com.hueic.CerGS.entity.Course;
 import com.hueic.CerGS.entity.Register;
 import com.hueic.CerGS.entity.Student;
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.regex.PatternSyntaxException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -29,15 +29,14 @@ import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 /**
  *
- * @author qhvic
+ * @author nhchung
  */
-public class frmRegister extends javax.swing.JFrame {
+public class pnlRegister extends javax.swing.JPanel {
 
     private ArrayList<Register> regisList;
     ArrayList<Student> studentList;
@@ -53,10 +52,9 @@ public class frmRegister extends javax.swing.JFrame {
     private ObjectTableModel tableModel;
     private JTable headerTable;
 
-    /** Creates new form MarkFrm */
-    public frmRegister() {
+    /** Creates new form pnlRegister */
+    public pnlRegister() {
         initComponents();
-        setLocationRelativeTo(null);
         regisDAO = new RegisterDAO();
         courseDAO = new CourseDAO();
         studentDAO = new StudentDAO();
@@ -158,6 +156,30 @@ public class frmRegister extends javax.swing.JFrame {
         }
     }
 
+    public Register findByStudentId(String studentId) {
+        for (int i = 0; i < regisList.size(); i++) {
+            if (regisList.get(i).getStudentId().equals(studentId)) {
+                return regisList.get(i);
+            }
+        }
+        return null;
+    }
+
+    public void searchStart() {
+        if (regisList.size() != 0) {
+            String text = filterText.getText();
+            if (text.length() == 0) {
+                sorter.setRowFilter(null);
+            } else {
+                try {
+                    sorter.setRowFilter(RowFilter.regexFilter(text));
+                } catch (PatternSyntaxException pse) {
+                    System.err.println("Bad regex pattern");
+                }
+            }
+        }
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -168,16 +190,8 @@ public class frmRegister extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        panelLogo = new javax.swing.JPanel();
-        lblLogo = new javax.swing.JLabel();
-        panelLeft = new javax.swing.JPanel();
-        lblChooseCourse = new javax.swing.JLabel();
-        lblEnterNameStudent = new javax.swing.JLabel();
-        cbxCourseChoose = new javax.swing.JComboBox();
-        filterText = new javax.swing.JTextField();
-        srcPanelRegister = new javax.swing.JScrollPane();
-        tableContent = new javax.swing.JTable();
-        btnFilter = new javax.swing.JButton();
+        tpAccount = new javax.swing.JTabbedPane();
+        pnlEdit = new javax.swing.JPanel();
         panelRight = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
         sepa1 = new javax.swing.JSeparator();
@@ -198,37 +212,390 @@ public class frmRegister extends javax.swing.JFrame {
         btnCancel = new javax.swing.JButton();
         txtCourseID = new javax.swing.JTextField();
         txtStudentId = new javax.swing.JTextField();
+        pnlSearch = new javax.swing.JPanel();
+        panel3 = new javax.swing.JPanel();
+        lblTitle1 = new javax.swing.JLabel();
+        sepaAccount1 = new javax.swing.JSeparator();
+        lblUsername1 = new javax.swing.JLabel();
+        lblPassword1 = new javax.swing.JLabel();
+        lblConfirmPass1 = new javax.swing.JLabel();
+        panel4 = new javax.swing.JPanel();
+        btnAdd1 = new javax.swing.JButton();
+        txtUsername1 = new javax.swing.JTextField();
+        lblType1 = new javax.swing.JLabel();
+        cbxUsername1 = new javax.swing.JComboBox();
+        txtPassword1 = new javax.swing.JPasswordField();
+        txtConfirmPassword1 = new javax.swing.JPasswordField();
+        jButton5 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jTextField2 = new javax.swing.JTextField();
+        panelLeft = new javax.swing.JPanel();
+        lblChooseCourse = new javax.swing.JLabel();
+        lblEnterNameStudent = new javax.swing.JLabel();
+        cbxCourseChoose = new javax.swing.JComboBox();
+        filterText = new javax.swing.JTextField();
+        srcPanelRegister = new javax.swing.JScrollPane();
+        tableContent = new javax.swing.JTable();
+        btnFilter = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Management Mark");
-        setBackground(new java.awt.Color(255, 255, 255));
-        setResizable(false);
-        getContentPane().setLayout(new java.awt.GridBagLayout());
+        setLayout(new java.awt.GridBagLayout());
 
-        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Register.png"))); // NOI18N
+        tpAccount.setMinimumSize(new java.awt.Dimension(800, 200));
 
-        javax.swing.GroupLayout panelLogoLayout = new javax.swing.GroupLayout(panelLogo);
-        panelLogo.setLayout(panelLogoLayout);
-        panelLogoLayout.setHorizontalGroup(
-            panelLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblLogo)
-        );
-        panelLogoLayout.setVerticalGroup(
-            panelLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-        );
+        pnlEdit.setMinimumSize(new java.awt.Dimension(810, 200));
+        pnlEdit.setPreferredSize(new java.awt.Dimension(810, 200));
+
+        panelRight.setBackground(new java.awt.Color(255, 255, 255));
+        panelRight.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Management Register", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
+        panelRight.setMinimumSize(new java.awt.Dimension(800, 200));
+        panelRight.setPreferredSize(new java.awt.Dimension(800, 200));
+        panelRight.setRequestFocusEnabled(false);
+        panelRight.setLayout(new java.awt.GridBagLayout());
+
+        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 12));
+        lblTitle.setForeground(new java.awt.Color(102, 0, 102));
+        lblTitle.setText("Register Students");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
+        panelRight.add(lblTitle, gridBagConstraints);
+
+        sepa1.setPreferredSize(new java.awt.Dimension(300, 10));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        panelRight.add(sepa1, gridBagConstraints);
+
+        lblID.setForeground(new java.awt.Color(3, 3, 3));
+        lblID.setText("Student Coures ID:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight.add(lblID, gridBagConstraints);
+
+        lblCourseID.setForeground(new java.awt.Color(3, 3, 3));
+        lblCourseID.setText("Course ID:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight.add(lblCourseID, gridBagConstraints);
+
+        lblFeesStructe.setForeground(new java.awt.Color(3, 3, 3));
+        lblFeesStructe.setText("Fees Structe:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight.add(lblFeesStructe, gridBagConstraints);
+
+        lblStudentID.setForeground(new java.awt.Color(3, 3, 3));
+        lblStudentID.setText("Student ID:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight.add(lblStudentID, gridBagConstraints);
+
+        lblRegistrationDate.setForeground(new java.awt.Color(3, 3, 3));
+        lblRegistrationDate.setText("Registration Date:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 10, 5);
+        panelRight.add(lblRegistrationDate, gridBagConstraints);
+
+        txtId.setPreferredSize(new java.awt.Dimension(180, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight.add(txtId, gridBagConstraints);
+
+        cbxCourseID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxCourseID.setPreferredSize(new java.awt.Dimension(180, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight.add(cbxCourseID, gridBagConstraints);
+
+        txtFeesStructe.setPreferredSize(new java.awt.Dimension(180, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight.add(txtFeesStructe, gridBagConstraints);
+
+        cbxStudentID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxStudentID.setPreferredSize(new java.awt.Dimension(180, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight.add(cbxStudentID, gridBagConstraints);
+
+        DateChRegistrationDate.setDateFormatString("MM/dd/yyyy");
+        DateChRegistrationDate.setPreferredSize(new java.awt.Dimension(180, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 10, 5);
+        panelRight.add(DateChRegistrationDate, gridBagConstraints);
+
+        panelButon.setBackground(new java.awt.Color(255, 255, 255));
+        panelButon.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
+
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
+        btnAdd.setText("Add");
+        btnAdd.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnAdd.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+        panelButon.add(btnAdd);
+
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
+        btnUpdate.setText("Update");
+        btnUpdate.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnUpdate.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+        panelButon.add(btnUpdate);
+
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
+        btnDelete.setText("Delete");
+        btnDelete.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+        panelButon.add(btnDelete);
+
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
+        btnCancel.setText("Cancel");
+        btnCancel.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnCancel.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
+        panelButon.add(btnCancel);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight.add(panelButon, gridBagConstraints);
+
+        txtCourseID.setMinimumSize(new java.awt.Dimension(180, 20));
+        txtCourseID.setPreferredSize(new java.awt.Dimension(180, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight.add(txtCourseID, gridBagConstraints);
+
+        txtStudentId.setMinimumSize(new java.awt.Dimension(180, 20));
+        txtStudentId.setPreferredSize(new java.awt.Dimension(180, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight.add(txtStudentId, gridBagConstraints);
+
+        pnlEdit.add(panelRight);
+
+        tpAccount.addTab("Edit", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Edit_16.png")), pnlEdit); // NOI18N
+
+        pnlSearch.setMinimumSize(new java.awt.Dimension(810, 200));
+        pnlSearch.setPreferredSize(new java.awt.Dimension(810, 200));
+
+        panel3.setBackground(new java.awt.Color(255, 255, 255));
+        panel3.setMinimumSize(new java.awt.Dimension(800, 200));
+        panel3.setPreferredSize(new java.awt.Dimension(800, 200));
+        panel3.setLayout(new java.awt.GridBagLayout());
+
+        lblTitle1.setFont(new java.awt.Font("Tahoma", 1, 13));
+        lblTitle1.setForeground(new java.awt.Color(102, 0, 102));
+        lblTitle1.setText("Information Account");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 0);
+        panel3.add(lblTitle1, gridBagConstraints);
+
+        sepaAccount1.setPreferredSize(new java.awt.Dimension(350, 10));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 10, 0);
+        panel3.add(sepaAccount1, gridBagConstraints);
+
+        lblUsername1.setForeground(new java.awt.Color(3, 3, 3));
+        lblUsername1.setText("Username:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
+        panel3.add(lblUsername1, gridBagConstraints);
+
+        lblPassword1.setForeground(new java.awt.Color(3, 3, 3));
+        lblPassword1.setText("Password:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
+        panel3.add(lblPassword1, gridBagConstraints);
+
+        lblConfirmPass1.setForeground(new java.awt.Color(3, 3, 3));
+        lblConfirmPass1.setText("Confirm password:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
+        panel3.add(lblConfirmPass1, gridBagConstraints);
+
+        panel4.setBackground(new java.awt.Color(255, 255, 255));
+        panel4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
+
+        btnAdd1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
+        btnAdd1.setText("Reset");
+        btnAdd1.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        btnAdd1.setMaximumSize(new java.awt.Dimension(80, 23));
+        btnAdd1.setMinimumSize(new java.awt.Dimension(80, 23));
+        btnAdd1.setPreferredSize(new java.awt.Dimension(80, 23));
+        btnAdd1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdd1ActionPerformed(evt);
+            }
+        });
+        panel4.add(btnAdd1);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 10, 0);
+        panel3.add(panel4, gridBagConstraints);
+
+        txtUsername1.setEnabled(false);
+        txtUsername1.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panel3.add(txtUsername1, gridBagConstraints);
+
+        lblType1.setForeground(new java.awt.Color(3, 3, 3));
+        lblType1.setText("Type:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
+        panel3.add(lblType1, gridBagConstraints);
+
+        cbxUsername1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxUsername1.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panel3.add(cbxUsername1, gridBagConstraints);
+
+        txtPassword1.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panel3.add(txtPassword1, gridBagConstraints);
+
+        txtConfirmPassword1.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panel3.add(txtConfirmPassword1, gridBagConstraints);
+
+        jButton5.setText("jButton1");
+        jButton5.setMaximumSize(new java.awt.Dimension(23, 23));
+        jButton5.setMinimumSize(new java.awt.Dimension(23, 23));
+        jButton5.setPreferredSize(new java.awt.Dimension(23, 23));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panel3.add(jButton5, gridBagConstraints);
+
+        jButton8.setText("jButton4");
+        jButton8.setMaximumSize(new java.awt.Dimension(23, 23));
+        jButton8.setMinimumSize(new java.awt.Dimension(23, 23));
+        jButton8.setPreferredSize(new java.awt.Dimension(23, 23));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panel3.add(jButton8, gridBagConstraints);
+
+        jTextField2.setMinimumSize(new java.awt.Dimension(200, 20));
+        jTextField2.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panel3.add(jTextField2, gridBagConstraints);
+
+        pnlSearch.add(panel3);
+
+        tpAccount.addTab("Search", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Search-32.png")), pnlSearch); // NOI18N
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(panelLogo, gridBagConstraints);
+        add(tpAccount, gridBagConstraints);
 
         panelLeft.setBackground(new java.awt.Color(255, 255, 255));
         panelLeft.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Register", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
-        panelLeft.setMinimumSize(new java.awt.Dimension(450, 320));
-        panelLeft.setPreferredSize(new java.awt.Dimension(450, 320));
+        panelLeft.setMinimumSize(new java.awt.Dimension(800, 400));
+        panelLeft.setPreferredSize(new java.awt.Dimension(800, 400));
         panelLeft.setLayout(new java.awt.GridBagLayout());
 
         lblChooseCourse.setForeground(new java.awt.Color(3, 3, 3));
@@ -318,200 +685,14 @@ public class frmRegister extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        getContentPane().add(panelLeft, gridBagConstraints);
-
-        panelRight.setBackground(new java.awt.Color(255, 255, 255));
-        panelRight.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Management Register", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
-        panelRight.setMinimumSize(new java.awt.Dimension(380, 320));
-        panelRight.setPreferredSize(new java.awt.Dimension(380, 320));
-        panelRight.setRequestFocusEnabled(false);
-        panelRight.setLayout(new java.awt.GridBagLayout());
-
-        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 12));
-        lblTitle.setForeground(new java.awt.Color(102, 0, 102));
-        lblTitle.setText("Register Students");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
-        panelRight.add(lblTitle, gridBagConstraints);
-
-        sepa1.setPreferredSize(new java.awt.Dimension(300, 10));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
-        panelRight.add(sepa1, gridBagConstraints);
-
-        lblID.setForeground(new java.awt.Color(3, 3, 3));
-        lblID.setText("Student Coures ID:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(lblID, gridBagConstraints);
-
-        lblCourseID.setForeground(new java.awt.Color(3, 3, 3));
-        lblCourseID.setText("Course ID:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(lblCourseID, gridBagConstraints);
-
-        lblFeesStructe.setForeground(new java.awt.Color(3, 3, 3));
-        lblFeesStructe.setText("Fees Structe:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(lblFeesStructe, gridBagConstraints);
-
-        lblStudentID.setForeground(new java.awt.Color(3, 3, 3));
-        lblStudentID.setText("Student ID:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(lblStudentID, gridBagConstraints);
-
-        lblRegistrationDate.setForeground(new java.awt.Color(3, 3, 3));
-        lblRegistrationDate.setText("Registration Date:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 10, 5);
-        panelRight.add(lblRegistrationDate, gridBagConstraints);
-
-        txtId.setPreferredSize(new java.awt.Dimension(180, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(txtId, gridBagConstraints);
-
-        cbxCourseID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxCourseID.setPreferredSize(new java.awt.Dimension(180, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(cbxCourseID, gridBagConstraints);
-
-        txtFeesStructe.setPreferredSize(new java.awt.Dimension(180, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(txtFeesStructe, gridBagConstraints);
-
-        cbxStudentID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxStudentID.setPreferredSize(new java.awt.Dimension(180, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(cbxStudentID, gridBagConstraints);
-
-        DateChRegistrationDate.setDateFormatString("MM/dd/yyyy");
-        DateChRegistrationDate.setPreferredSize(new java.awt.Dimension(180, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 10, 5);
-        panelRight.add(DateChRegistrationDate, gridBagConstraints);
-
-        panelButon.setBackground(new java.awt.Color(255, 255, 255));
-        panelButon.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
-
-        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
-        btnAdd.setText("Add");
-        btnAdd.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnAdd.setPreferredSize(new java.awt.Dimension(75, 23));
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
-            }
-        });
-        panelButon.add(btnAdd);
-
-        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
-        btnUpdate.setText("Update");
-        btnUpdate.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnUpdate.setPreferredSize(new java.awt.Dimension(75, 23));
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
-        panelButon.add(btnUpdate);
-
-        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
-        btnDelete.setText("Delete");
-        btnDelete.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-        panelButon.add(btnDelete);
-
-        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
-        btnCancel.setText("Cancel");
-        btnCancel.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnCancel.setPreferredSize(new java.awt.Dimension(75, 23));
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelActionPerformed(evt);
-            }
-        });
-        panelButon.add(btnCancel);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(panelButon, gridBagConstraints);
-
-        txtCourseID.setMinimumSize(new java.awt.Dimension(180, 20));
-        txtCourseID.setPreferredSize(new java.awt.Dimension(180, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(txtCourseID, gridBagConstraints);
-
-        txtStudentId.setMinimumSize(new java.awt.Dimension(180, 20));
-        txtStudentId.setPreferredSize(new java.awt.Dimension(180, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(txtStudentId, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        getContentPane().add(panelRight, gridBagConstraints);
-
-        pack();
+        add(panelLeft, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd1ActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_btnAdd1ActionPerformed
 
     private void cbxCourseChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCourseChooseActionPerformed
         // TODO add your handling code here:
@@ -527,11 +708,33 @@ public class frmRegister extends javax.swing.JFrame {
 
             loadData(regisList);
         }
-    }//GEN-LAST:event_cbxCourseChooseActionPerformed
+}//GEN-LAST:event_cbxCourseChooseActionPerformed
 
-    private void cbxStudentIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxStudentIDActionPerformed
+    private void filterTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbxStudentIDActionPerformed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            searchStart();
+        }
+}//GEN-LAST:event_filterTextKeyPressed
+
+    private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
+        // TODO add your handling code here:
+        if (regisList.size() != 0) {
+            int index = tableContent.getSelectedRow();
+            if (index != -1) {
+                String studentId = tableContent.getValueAt(index, 0).toString();
+                Register reg = findByStudentId(studentId);
+                if (reg != null) {
+                    loadDetails(reg);
+                }
+            }
+        }
+}//GEN-LAST:event_tableContentMouseClicked
+
+    private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
+        // TODO add your handling code here:
+        searchStart();
+}//GEN-LAST:event_btnFilterActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         try {
@@ -549,7 +752,7 @@ public class frmRegister extends javax.swing.JFrame {
                 int feesStructe = Integer.parseInt(txtFeesStructe.getText());
                 Date regDate = new java.sql.Date(DateChRegistrationDate.getDate().getTime());
                 String courseId = cbxCourseID.getSelectedItem().toString();
-                Register register = new Register(Id, courseId, feesStructe, regDate, studentId);
+                Register register = new Register(Id, courseId, feesStructe, (java.sql.Date) regDate, studentId);
                 if (regisDAO.create(register)) {
                     JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Create Register", JOptionPane.INFORMATION_MESSAGE);
                     regisList.add(register);
@@ -567,85 +770,7 @@ public class frmRegister extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.toString(), "Create Register", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_btnAddActionPerformed
-
-    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        // TODO add your handling code here:
-        txtId.setText("");
-        txtFeesStructe.setText("");
-        cbxCourseID.setSelectedIndex(-1);
-        cbxStudentID.setSelectedIndex(-1);
-        DateChRegistrationDate.setDate(null);
-    }//GEN-LAST:event_btnResetActionPerformed
-
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        // TODO add your handling code here:
-        if (isAdd) {
-            isAdd = false;
-            cbxCourseID.setVisible(false);
-            txtCourseID.setVisible(true);
-            txtStudentId.setVisible(true);
-            cbxStudentID.setVisible(false);
-        } else if (isUpdate) {
-            isUpdate = false;
-            cbxCourseID.setVisible(false);
-            txtCourseID.setVisible(true);
-            txtStudentId.setVisible(true);
-            cbxStudentID.setVisible(false);
-            loadDetails(findByStudentId(txtId.getText()));
-        } else {
-            loadDetails(regisList.get(0));
-        }
-    }//GEN-LAST:event_btnCancelActionPerformed
-
-    private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
-        // TODO add your handling code here:
-        searchStart();
-    }//GEN-LAST:event_btnFilterActionPerformed
-
-    private void filterTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextKeyPressed
-        // TODO add your handling code here:
-        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-            searchStart();
-        }
-    }//GEN-LAST:event_filterTextKeyPressed
-
-    public Register findByStudentId(String studentId) {
-        for (int i = 0; i < regisList.size(); i++) {
-            if (regisList.get(i).getStudentId().equals(studentId)) {
-                return regisList.get(i);
-            }
-        }
-        return null;
-    }
-    private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
-        // TODO add your handling code here:
-        if (regisList.size() != 0) {
-            int index = tableContent.getSelectedRow();
-            if (index != -1) {
-                String studentId = tableContent.getValueAt(index, 0).toString();
-                Register reg = findByStudentId(studentId);
-                if (reg != null) {
-                    loadDetails(reg);
-                }
-            }
-        }
-    }//GEN-LAST:event_tableContentMouseClicked
-
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-        String studentid = txtId.getText();
-        if (regisDAO.delete(studentid)) {
-            regisList.remove(findByStudentId(studentid));
-            loadData(regisList);
-            if (regisList.size() != 0) {
-                loadDetails(regisList.get(0));
-            }
-            JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Delete Register", JOptionPane.INFORMATION_MESSAGE, null);
-        } else {
-            JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Delete Register", JOptionPane.ERROR_MESSAGE, null);
-        }
-    }//GEN-LAST:event_btnDeleteActionPerformed
+}//GEN-LAST:event_btnAddActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
@@ -665,7 +790,7 @@ public class frmRegister extends javax.swing.JFrame {
                 int feesStructe = Integer.parseInt(txtFeesStructe.getText());
                 Date regDate = new java.sql.Date(DateChRegistrationDate.getDate().getTime());
                 String courseId = cbxCourseID.getSelectedItem().toString();
-                Register register = new Register(Id, courseId, feesStructe, regDate, studentId);
+                Register register = new Register(Id, courseId, feesStructe, (java.sql.Date) regDate, studentId);
                 if (regisDAO.update(register)) {
                     JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Update Subject", JOptionPane.INFORMATION_MESSAGE);
                     System.out.println(studentIdtemp);
@@ -684,37 +809,46 @@ public class frmRegister extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println(e.toString());
         }
-    }//GEN-LAST:event_btnUpdateActionPerformed
+}//GEN-LAST:event_btnUpdateActionPerformed
 
-    public void searchStart() {
-        if (regisList.size() != 0) {
-            String text = filterText.getText();
-            if (text.length() == 0) {
-                sorter.setRowFilter(null);
-            } else {
-                try {
-                    sorter.setRowFilter(RowFilter.regexFilter(text));
-                } catch (PatternSyntaxException pse) {
-                    System.err.println("Bad regex pattern");
-                }
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        String studentid = txtId.getText();
+        if (regisDAO.delete(studentid)) {
+            regisList.remove(findByStudentId(studentid));
+            loadData(regisList);
+            if (regisList.size() != 0) {
+                loadDetails(regisList.get(0));
             }
+            JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Delete Register", JOptionPane.INFORMATION_MESSAGE, null);
+        } else {
+            JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Delete Register", JOptionPane.ERROR_MESSAGE, null);
         }
-    }
+}//GEN-LAST:event_btnDeleteActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new frmRegister().setVisible(true);
-            }
-        });
-    }
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        if (isAdd) {
+            isAdd = false;
+            cbxCourseID.setVisible(false);
+            txtCourseID.setVisible(true);
+            txtStudentId.setVisible(true);
+            cbxStudentID.setVisible(false);
+        } else if (isUpdate) {
+            isUpdate = false;
+            cbxCourseID.setVisible(false);
+            txtCourseID.setVisible(true);
+            txtStudentId.setVisible(true);
+            cbxStudentID.setVisible(false);
+            loadDetails(findByStudentId(txtId.getText()));
+        } else {
+            loadDetails(regisList.get(0));
+        }
+}//GEN-LAST:event_btnCancelActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser DateChRegistrationDate;
     private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnAdd1;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnFilter;
@@ -722,26 +856,42 @@ public class frmRegister extends javax.swing.JFrame {
     private javax.swing.JComboBox cbxCourseChoose;
     private javax.swing.JComboBox cbxCourseID;
     private javax.swing.JComboBox cbxStudentID;
+    private javax.swing.JComboBox cbxUsername1;
     private javax.swing.JTextField filterText;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel lblChooseCourse;
+    private javax.swing.JLabel lblConfirmPass1;
     private javax.swing.JLabel lblCourseID;
     private javax.swing.JLabel lblEnterNameStudent;
     private javax.swing.JLabel lblFeesStructe;
     private javax.swing.JLabel lblID;
-    private javax.swing.JLabel lblLogo;
+    private javax.swing.JLabel lblPassword1;
     private javax.swing.JLabel lblRegistrationDate;
     private javax.swing.JLabel lblStudentID;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblTitle1;
+    private javax.swing.JLabel lblType1;
+    private javax.swing.JLabel lblUsername1;
+    private javax.swing.JPanel panel3;
+    private javax.swing.JPanel panel4;
     private javax.swing.JPanel panelButon;
     private javax.swing.JPanel panelLeft;
-    private javax.swing.JPanel panelLogo;
     private javax.swing.JPanel panelRight;
+    private javax.swing.JPanel pnlEdit;
+    private javax.swing.JPanel pnlSearch;
     private javax.swing.JSeparator sepa1;
+    private javax.swing.JSeparator sepaAccount1;
     private javax.swing.JScrollPane srcPanelRegister;
     private javax.swing.JTable tableContent;
+    private javax.swing.JTabbedPane tpAccount;
+    private javax.swing.JPasswordField txtConfirmPassword1;
     private javax.swing.JTextField txtCourseID;
     private javax.swing.JTextField txtFeesStructe;
     private javax.swing.JTextField txtId;
+    private javax.swing.JPasswordField txtPassword1;
     private javax.swing.JTextField txtStudentId;
+    private javax.swing.JTextField txtUsername1;
     // End of variables declaration//GEN-END:variables
 }
