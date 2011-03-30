@@ -301,12 +301,12 @@ public class frmEmployee extends javax.swing.JFrame {
         panelDisplay.setLayout(new java.awt.GridBagLayout());
 
         lblHienthi1.setForeground(new java.awt.Color(3, 3, 3));
-        lblHienthi1.setText("Tổng số nhân viên là : ");
+        lblHienthi1.setText("Total employees:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelDisplay.add(lblHienthi1, gridBagConstraints);
 
         lblCount.setBackground(new java.awt.Color(255, 255, 255));
@@ -318,7 +318,7 @@ public class frmEmployee extends javax.swing.JFrame {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 55);
         panelDisplay.add(lblCount, gridBagConstraints);
 
         filterText.setMinimumSize(new java.awt.Dimension(200, 20));
@@ -327,13 +327,13 @@ public class frmEmployee extends javax.swing.JFrame {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 300, 5, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 300, 5, 5);
         panelDisplay.add(filterText, gridBagConstraints);
 
         btnFilter.setText("Filter");
-        btnFilter.setMaximumSize(new java.awt.Dimension(90, 20));
-        btnFilter.setMinimumSize(new java.awt.Dimension(90, 20));
-        btnFilter.setPreferredSize(new java.awt.Dimension(90, 20));
+        btnFilter.setMaximumSize(new java.awt.Dimension(80, 20));
+        btnFilter.setMinimumSize(new java.awt.Dimension(80, 20));
+        btnFilter.setPreferredSize(new java.awt.Dimension(80, 20));
         btnFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFilterActionPerformed(evt);
@@ -343,14 +343,14 @@ public class frmEmployee extends javax.swing.JFrame {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 10);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 45);
         panelDisplay.add(btnFilter, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 5);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
         panelRight.add(panelDisplay, gridBagConstraints);
 
         panelContent.setBackground(new java.awt.Color(255, 255, 255));
@@ -448,9 +448,9 @@ public class frmEmployee extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 10);
         panelContent.add(btnExit, gridBagConstraints);
 
-        srcPaneEmployee.setMinimumSize(new java.awt.Dimension(770, 420));
+        srcPaneEmployee.setMinimumSize(new java.awt.Dimension(770, 432));
         srcPaneEmployee.setOpaque(false);
-        srcPaneEmployee.setPreferredSize(new java.awt.Dimension(770, 420));
+        srcPaneEmployee.setPreferredSize(new java.awt.Dimension(770, 432));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
