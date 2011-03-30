@@ -7,7 +7,7 @@
  *
  * This software is in the public domain.
  */
-package com.hueic.CerGS.ui.main;
+package com.hueic.CerGS.ui;
 
 import java.awt.*;
 import java.awt.event.*;

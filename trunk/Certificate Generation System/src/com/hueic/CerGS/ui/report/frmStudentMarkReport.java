@@ -9,7 +9,7 @@
  * Created on Mar 22, 2011, 9:25:20 PM
  */
 
-package com.hueic.CerGS.ui.main.report;
+package com.hueic.CerGS.ui.report;
 
 /**
  *

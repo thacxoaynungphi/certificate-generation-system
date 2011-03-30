@@ -4,24 +4,23 @@
  */
 
 /*
- * frmStudentNewRegistrationReport.java
+ * frmSubjectInCourseReport.java
  *
- * Created on Mar 22, 2011, 9:35:00 PM
+ * Created on Mar 22, 2011, 9:26:54 PM
  */
 
-package com.hueic.CerGS.ui.main.report;
+package com.hueic.CerGS.ui.report;
 
 /**
  *
  * @author Wind
  */
-public class frmStudentNewRegistrationReport extends javax.swing.JFrame {
+public class frmSubjectInCourseReport extends javax.swing.JFrame {
 
-    /** Creates new form frmStudentNewRegistrationReport */
-    public frmStudentNewRegistrationReport() {
+    /** Creates new form frmSubjectInCourseReport */
+    public frmSubjectInCourseReport() {
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        
     }
 
     /** This method is called from within the constructor to
@@ -55,7 +54,7 @@ public class frmStudentNewRegistrationReport extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmStudentNewRegistrationReport().setVisible(true);
+                new frmSubjectInCourseReport().setVisible(true);
             }
         });
     }

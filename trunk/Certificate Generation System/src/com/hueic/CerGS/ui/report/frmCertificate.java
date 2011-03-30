@@ -4,22 +4,48 @@
  */
 
 /*
- * frmSubjectInCourseReport.java
+ * frmCertificate.java
  *
- * Created on Mar 22, 2011, 9:26:54 PM
+ * Created on Mar 22, 2011, 9:25:46 PM
  */
+package com.hueic.CerGS.ui.report;
 
-package com.hueic.CerGS.ui.main.report;
+import com.hueic.CerGS.component.report.CertificateReportManager;
+import com.hueic.CerGS.dao.CertificateDAO;
+import com.hueic.CerGS.dao.MarkDAO;
+import com.hueic.CerGS.dao.RegisterDAO;
+import com.hueic.CerGS.entity.Certificate;
 
 /**
  *
  * @author Wind
  */
-public class frmSubjectInCourseReport extends javax.swing.JFrame {
+public class frmCertificate extends javax.swing.JFrame {
 
-    /** Creates new form frmSubjectInCourseReport */
-    public frmSubjectInCourseReport() {
+    private int certificateId;
+    private String courseId;
+    
+    private MarkDAO markDAO;
+    private RegisterDAO registerDAO;
+    private CertificateDAO cerDAO;
+    private Certificate cer;
+    
+    private CertificateReportManager cerReportManager;
+
+    /** Creates new form frmCertificate */
+    public frmCertificate(int certificateId) {
         initComponents();
+        this.certificateId = certificateId;
+        registerDAO = new RegisterDAO();
+        cerDAO = new CertificateDAO();
+        cer = cerDAO.readById(this.certificateId);
+        markDAO = new MarkDAO();
+
+        courseId = registerDAO.readByStudentId(cer.getStudentID()).getCourseId();
+
+        cerReportManager = new CertificateReportManager(cer.getStudentID(), courseId, cer.getDegreeDay(), markDAO.getGrades(cer.getMark()));
+
+        this.add(cerReportManager.getJPanelViewer());
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
@@ -49,17 +75,16 @@ public class frmSubjectInCourseReport extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
-                new frmSubjectInCourseReport().setVisible(true);
+                //new frmCertificate().setVisible(true);
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-
 }

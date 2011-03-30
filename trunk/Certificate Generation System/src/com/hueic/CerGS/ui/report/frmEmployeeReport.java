@@ -4,38 +4,37 @@
  */
 
 /*
- * frmCertificateDevelopedReport.java
+ * frmEmployee.java
  *
- * Created on Mar 22, 2011, 9:27:23 PM
+ * Created on Mar 14, 2011, 7:34:15 AM
  */
 
-package com.hueic.CerGS.ui.main.report;
+package com.hueic.CerGS.ui.report;
 
-import com.hueic.CerGS.component.report.CertificateDevelopedReportManager;
-import com.hueic.CerGS.dao.CertificateDAO;
-import com.hueic.CerGS.entity.Certificate;
+import com.hueic.CerGS.component.report.EmployeeReportManager;
+import com.hueic.CerGS.dao.EmployeeDAO;
+import com.hueic.CerGS.entity.Employee;
 import java.util.ArrayList;
+import javax.swing.JPanel;
 
 /**
  *
- * @author Wind
+ * @author nhchung
  */
-public class frmCertificateDevelopedReport extends javax.swing.JFrame {
+public class frmEmployeeReport extends javax.swing.JFrame {
 
-    private ArrayList<Certificate> listCertificate;
-    private CertificateDevelopedReportManager cerDevelopManager;
-    private CertificateDAO cerDAO;
-    /** Creates new form frmCertificateDevelopedReport */
-    public frmCertificateDevelopedReport() {
+//    private final JPanel panel;
+    /** Creates new form frmEmployee */
+    public frmEmployeeReport() {
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-//        cerDAO = new CertificateDAO();
-//
-//        listCertificate = cerDAO.readByAll();
-//        cerDevelopManager = new CertificateDevelopedReportManager(listCertificate);
-//        this.add(cerDevelopManager.getJPanelViewer());
-//        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        
+//        ArrayList<Employee> empList = new EmployeeDAO().readByAll();
+//        EmployeeReportManager empReportManager = new EmployeeReportManager(empList);
+//        panel = empReportManager.getJPanelViewer();
+//        this.add(panel);
+//        panel.setVisible(true);
+//        setDefaultCloseOperation(EXIT_ON_CLOSE);
+      //  javax.swing.JOptionPane.showMessageDialog(this, "Ok");
     }
 
     /** This method is called from within the constructor to
@@ -69,7 +68,7 @@ public class frmCertificateDevelopedReport extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmCertificateDevelopedReport().setVisible(true);
+                new frmEmployeeReport().setVisible(true);
             }
         });
     }

@@ -9,7 +9,7 @@
  * Created on Mar 27, 2011, 8:36:57 AM
  */
 
-package com.hueic.CerGS.ui.main.report;
+package com.hueic.CerGS.ui.report;
 
 import javax.swing.JOptionPane;
 
