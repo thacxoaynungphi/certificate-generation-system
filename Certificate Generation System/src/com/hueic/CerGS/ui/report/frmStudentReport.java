@@ -4,21 +4,34 @@
  */
 
 /*
- * frmStudentFeeReport.java
+ * frmStudentReport.java
  *
- * Created on Mar 22, 2011, 9:26:11 PM
+ * Created on Mar 14, 2011, 7:34:00 AM
  */
 
-package com.hueic.CerGS.ui.main.report;
+package com.hueic.CerGS.ui.report;
+
+import com.hueic.CerGS.component.report.StudentReportManager;
+import com.hueic.CerGS.dao.RegisterDAO;
+import com.hueic.CerGS.dao.StudentDAO;
+import com.hueic.CerGS.entity.Register;
+import com.hueic.CerGS.entity.Student;
+import java.util.ArrayList;
 
 /**
  *
- * @author Wind
+ * @author nhchung
  */
-public class frmStudentFeeReport extends javax.swing.JFrame {
+public class frmStudentReport extends javax.swing.JFrame {
 
-    /** Creates new form frmStudentFeeReport */
-    public frmStudentFeeReport() {
+    /** Creates new form frmStudentReport */
+    public frmStudentReport(String courseId) {
+        ArrayList<Student> studentList = new StudentDAO().readByAll();
+        ArrayList<Register> resList = new RegisterDAO().readByAll();
+        StudentReportManager studentReport = new StudentReportManager(courseId, studentList, resList);
+
+        this.add(studentReport.getJPanelViewer());
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
@@ -54,7 +67,7 @@ public class frmStudentFeeReport extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmStudentFeeReport().setVisible(true);
+                new frmStudentReport("CPISM").setVisible(true);
             }
         });
     }

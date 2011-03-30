@@ -4,36 +4,38 @@
  */
 
 /*
- * frmStudentReport.java
+ * frmCertificateDevelopedReport.java
  *
- * Created on Mar 14, 2011, 7:34:00 AM
+ * Created on Mar 22, 2011, 9:27:23 PM
  */
 
-package com.hueic.CerGS.ui.main.report;
+package com.hueic.CerGS.ui.report;
 
-import com.hueic.CerGS.component.report.StudentReportManager;
-import com.hueic.CerGS.dao.RegisterDAO;
-import com.hueic.CerGS.dao.StudentDAO;
-import com.hueic.CerGS.entity.Register;
-import com.hueic.CerGS.entity.Student;
+import com.hueic.CerGS.component.report.CertificateDevelopedReportManager;
+import com.hueic.CerGS.dao.CertificateDAO;
+import com.hueic.CerGS.entity.Certificate;
 import java.util.ArrayList;
 
 /**
  *
- * @author nhchung
+ * @author Wind
  */
-public class frmStudentReport extends javax.swing.JFrame {
+public class frmCertificateDevelopedReport extends javax.swing.JFrame {
 
-    /** Creates new form frmStudentReport */
-    public frmStudentReport(String courseId) {
-        ArrayList<Student> studentList = new StudentDAO().readByAll();
-        ArrayList<Register> resList = new RegisterDAO().readByAll();
-        StudentReportManager studentReport = new StudentReportManager(courseId, studentList, resList);
-
-        this.add(studentReport.getJPanelViewer());
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+    private ArrayList<Certificate> listCertificate;
+    private CertificateDevelopedReportManager cerDevelopManager;
+    private CertificateDAO cerDAO;
+    /** Creates new form frmCertificateDevelopedReport */
+    public frmCertificateDevelopedReport() {
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+//        cerDAO = new CertificateDAO();
+//
+//        listCertificate = cerDAO.readByAll();
+//        cerDevelopManager = new CertificateDevelopedReportManager(listCertificate);
+//        this.add(cerDevelopManager.getJPanelViewer());
+//        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        
     }
 
     /** This method is called from within the constructor to
@@ -67,7 +69,7 @@ public class frmStudentReport extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmStudentReport("CPISM").setVisible(true);
+                new frmCertificateDevelopedReport().setVisible(true);
             }
         });
     }

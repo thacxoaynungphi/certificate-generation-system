@@ -4,24 +4,19 @@
  */
 
 /*
- * pnlMark.java
+ * pnlCourse.java
  *
- * Created on Mar 31, 2011, 4:45:03 AM
+ * Created on Mar 31, 2011, 4:36:53 AM
  */
-package com.hueic.CerGS.ui.main.mark;
+package com.hueic.CerGS.ui;
 
 import com.hueic.CerGS.component.ColumnData;
 import com.hueic.CerGS.component.ObjectTableModel;
 import com.hueic.CerGS.dao.CourseDAO;
-import com.hueic.CerGS.dao.MarkDAO;
-import com.hueic.CerGS.dao.RegisterDAO;
-import com.hueic.CerGS.dao.SubjectDAO;
 import com.hueic.CerGS.entity.Course;
-import com.hueic.CerGS.entity.Mark;
-import com.hueic.CerGS.entity.Register;
-import com.hueic.CerGS.entity.Subject;
 import java.util.ArrayList;
 import java.util.regex.PatternSyntaxException;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
@@ -35,53 +30,35 @@ import javax.swing.table.TableRowSorter;
  *
  * @author nhchung
  */
-public class pnlMark extends javax.swing.JPanel {
+public class pnlCourse extends javax.swing.JPanel {
 
-    /** Creates new form pnlMark */
-    private ArrayList<Mark> listMark = new ArrayList<Mark>();
-    private ArrayList<Register> resList = new ArrayList<Register>();
-    private ArrayList<Course> courseList = new ArrayList<Course>();
-    private ArrayList<Subject> listSubject = new ArrayList<Subject>();
-    private String courseId;
-    private TableRowSorter<TableModel> sorter;
-    private RegisterDAO resDAO;
-    private MarkDAO markDAO;
-    private SubjectDAO subjectDAO;
-    private CourseDAO courseDAO;
+    private ArrayList<Course> listCourses = new ArrayList<Course>();
+    private CourseDAO courseDao;
+    TableRowSorter<TableModel> sorter;
     boolean isAdd = false;
     private ObjectTableModel tableModel;
     private JTable headerTable;
 
-    public pnlMark() {
+    /** Creates new form pnlCourse */
+    public pnlCourse() {
         initComponents();
-        resDAO = new RegisterDAO();
-        markDAO = new MarkDAO();
-        subjectDAO = new SubjectDAO();
-        courseDAO = new CourseDAO();
-        resList = resDAO.readByAll();
-        listMark = markDAO.readByAll();
-        courseList = courseDAO.readByAll();
-        listSubject = subjectDAO.readByAll();
-        if (listMark != null) {
-            loadData(listMark);
-            loadDetails(listMark.get(0));
+        courseDao = new CourseDAO();
+        listCourses = courseDao.readByAll();
+        loadData(listCourses);
+        if (!listCourses.isEmpty()) {
+            loadDetails(listCourses.get(0));
         }
-        loadStudent(resList);
-        loadCourse();
-        loadSubject(listSubject);
-        cbxStudentId.setVisible(false);
-        cbxStudentId.setVisible(false);
     }
 
-    public void loadData(ArrayList<Mark> listMark) {
+    public void loadData(ArrayList<Course> listCourses) {
 
         ColumnData[] columns = {
             new ColumnData("ID", 100, SwingConstants.LEFT, 1),
-            new ColumnData("Student ID", 140, SwingConstants.LEFT, 2),
-            new ColumnData("Subject ID", 170, SwingConstants.LEFT, 3),
-            new ColumnData("Mark", 260, SwingConstants.LEFT, 4)
+            new ColumnData("Name", 140, SwingConstants.LEFT, 2),
+            new ColumnData("Total Fees", 170, SwingConstants.LEFT, 3),
+            new ColumnData("Status", 260, SwingConstants.LEFT, 4)
         };
-        tableModel = new ObjectTableModel(tableContent, columns, listMark);
+        tableModel = new ObjectTableModel(tableContent, columns, listCourses);
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
 
             @Override
@@ -100,75 +77,28 @@ public class pnlMark extends javax.swing.JPanel {
         // Display numbering column
         viewport.setView(headerTable);
         viewport.setPreferredSize(headerTable.getMaximumSize());
-        srcPanelMark.setRowHeader(viewport);
-        srcPanelMark.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, headerTable.getTableHeader());
+        srcPanelCourse.setRowHeader(viewport);
+        srcPanelCourse.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, headerTable.getTableHeader());
     }
 
-    public void loadDetails(Mark mark) {
-        txtMarkId.setText(String.valueOf(mark.getId()).trim());
-        txtMark.setText(String.valueOf((mark.getMark())).trim());
-        cbxStudentId.setSelectedItem(mark.getStudentId().trim());
-        txtStudentId.setText(mark.getStudentId().trim());
-        txtSubjectName.setText(mark.getSubjectId().trim());
-    }
-
-    public void loadStudent(ArrayList<Register> resList) {
-        if (cbxStudentId.getItemCount() != 0) {
-            cbxStudentId.removeAllItems();
-        }
-        if (resList.size() != 0) {
-            for (Register res : resList) {
-                cbxStudentId.addItem(res.getStudentId());
-            }
+    public void loadDetails(Course course) {
+        txtID.setText(course.getId().trim());
+        txtName.setText(course.getName().trim());
+        txtTotalFees.setText(String.valueOf(course.getTotalFees()).trim());
+        if (course.getStatus() == 0) {
+            radioDisable.setSelected(true);
+        } else {
+            radioEnable.setSelected(true);
         }
     }
 
-    public void loadSubject(ArrayList<Subject> listSubject) {
-        if (cbxSubjectID.getItemCount() != 0) {
-            cbxSubjectID.removeAllItems();
-        }
-        if (listSubject.size() != 0) {
-            for (int i = 0; i < listSubject.size(); i++) {
-                cbxSubjectID.addItem(listSubject.get(i).getId());
-            }
-        }
-    }
-
-    public void loadCourse() {
-        cbxCourseChooser.removeAllItems();
-        cbxCourseChooser.addItem("All");
-        cbxCourseChooser.setSelectedIndex(0);
-        if (courseList.size() != 0) {
-            for (Course course : courseList) {
-                cbxCourseChooser.addItem(course.getId());
-                System.out.println("hi");
-            }
-        }
-    }
-
-    public Mark getMarkById(int id) {
-        for (Mark mark : listMark) {
-            if (mark.getId() == id) {
-                return mark;
+    public Course find(String value) {
+        for (int i = 0; i < listCourses.size(); i++) {
+            if (listCourses.get(i).getId().equalsIgnoreCase(value)) {
+                return listCourses.get(i);
             }
         }
         return null;
-    }
-
-    public void searchStart() {
-        if (!listMark.isEmpty()) {
-            String text = filterText.getText();
-            System.out.println("Text :" + text);
-            if (text.length() == 0) {
-                sorter.setRowFilter(null);
-            } else {
-                try {
-                    sorter.setRowFilter(RowFilter.regexFilter(text));
-                } catch (PatternSyntaxException pse) {
-                    System.err.println("Bad regex pattern");
-                }
-            }
-        }
     }
 
     /** This method is called from within the constructor to
@@ -184,23 +114,22 @@ public class pnlMark extends javax.swing.JPanel {
         tpAccount = new javax.swing.JTabbedPane();
         pnlEdit = new javax.swing.JPanel();
         panelRight = new javax.swing.JPanel();
-        lblInfo = new javax.swing.JLabel();
-        seqarator1 = new javax.swing.JSeparator();
-        lblMarkID = new javax.swing.JLabel();
-        lblStudentID = new javax.swing.JLabel();
-        lblSubjectName = new javax.swing.JLabel();
-        lblMark = new javax.swing.JLabel();
-        txtMarkId = new javax.swing.JTextField();
-        cbxStudentId = new javax.swing.JComboBox();
-        txtSubjectName = new javax.swing.JTextField();
-        txtMark = new javax.swing.JTextField();
+        lblTitle = new javax.swing.JLabel();
+        sepaCourse = new javax.swing.JSeparator();
+        lblName = new javax.swing.JLabel();
+        lblTotalFees = new javax.swing.JLabel();
+        txtTotalFees = new javax.swing.JTextField();
         panelButton = new javax.swing.JPanel();
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
-        txtStudentId = new javax.swing.JTextField();
-        cbxSubjectID = new javax.swing.JComboBox();
+        lblID = new javax.swing.JLabel();
+        txtID = new javax.swing.JTextField();
+        lblStatus = new javax.swing.JLabel();
+        radioEnable = new javax.swing.JRadioButton();
+        radioDisable = new javax.swing.JRadioButton();
+        txtName = new javax.swing.JTextField();
         pnlSearch = new javax.swing.JPanel();
         panel3 = new javax.swing.JPanel();
         lblTitle1 = new javax.swing.JLabel();
@@ -219,12 +148,9 @@ public class pnlMark extends javax.swing.JPanel {
         jButton8 = new javax.swing.JButton();
         jTextField2 = new javax.swing.JTextField();
         panelLeft = new javax.swing.JPanel();
-        lblChooseCourse = new javax.swing.JLabel();
-        lblEnterNameStudent = new javax.swing.JLabel();
-        cbxCourseChooser = new javax.swing.JComboBox();
-        filterText = new javax.swing.JTextField();
-        srcPanelMark = new javax.swing.JScrollPane();
+        srcPanelCourse = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
+        filterText = new javax.swing.JTextField();
         btnFilter = new javax.swing.JButton();
 
         setLayout(new java.awt.GridBagLayout());
@@ -235,103 +161,63 @@ public class pnlMark extends javax.swing.JPanel {
         pnlEdit.setPreferredSize(new java.awt.Dimension(810, 200));
 
         panelRight.setBackground(new java.awt.Color(255, 255, 255));
-        panelRight.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Management Mark", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
+        panelRight.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Managment Course", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
         panelRight.setMinimumSize(new java.awt.Dimension(800, 200));
         panelRight.setPreferredSize(new java.awt.Dimension(800, 200));
         panelRight.setLayout(new java.awt.GridBagLayout());
 
-        lblInfo.setFont(new java.awt.Font("Tahoma", 1, 12));
-        lblInfo.setForeground(new java.awt.Color(102, 0, 102));
-        lblInfo.setText("Information Mark");
+        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 12));
+        lblTitle.setForeground(new java.awt.Color(102, 0, 102));
+        lblTitle.setText("Information Course");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 11;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        panelRight.add(lblInfo, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
+        panelRight.add(lblTitle, gridBagConstraints);
 
-        seqarator1.setPreferredSize(new java.awt.Dimension(280, 10));
+        sepaCourse.setPreferredSize(new java.awt.Dimension(320, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 11;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
-        panelRight.add(seqarator1, gridBagConstraints);
+        panelRight.add(sepaCourse, gridBagConstraints);
 
-        lblMarkID.setForeground(new java.awt.Color(3, 3, 3));
-        lblMarkID.setText("Mark ID:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(lblMarkID, gridBagConstraints);
-
-        lblStudentID.setForeground(new java.awt.Color(3, 3, 3));
-        lblStudentID.setText("Student Id:");
+        lblName.setForeground(new java.awt.Color(3, 3, 3));
+        lblName.setText("Name course:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(lblStudentID, gridBagConstraints);
+        panelRight.add(lblName, gridBagConstraints);
 
-        lblSubjectName.setForeground(new java.awt.Color(3, 3, 3));
-        lblSubjectName.setText("Subject Name:");
+        lblTotalFees.setForeground(new java.awt.Color(3, 3, 3));
+        lblTotalFees.setText("Total Fees:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(lblSubjectName, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 10, 5);
+        panelRight.add(lblTotalFees, gridBagConstraints);
 
-        lblMark.setForeground(new java.awt.Color(3, 3, 3));
-        lblMark.setText("Mark:");
+        txtTotalFees.setEditable(false);
+        txtTotalFees.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(lblMark, gridBagConstraints);
-
-        txtMarkId.setEnabled(false);
-        txtMarkId.setPreferredSize(new java.awt.Dimension(180, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(txtMarkId, gridBagConstraints);
-
-        cbxStudentId.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxStudentId.setPreferredSize(new java.awt.Dimension(180, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(cbxStudentId, gridBagConstraints);
-
-        txtSubjectName.setPreferredSize(new java.awt.Dimension(180, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(txtSubjectName, gridBagConstraints);
-
-        txtMark.setPreferredSize(new java.awt.Dimension(180, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(txtMark, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 10, 5);
+        panelRight.add(txtTotalFees, gridBagConstraints);
 
         panelButton.setBackground(new java.awt.Color(255, 255, 255));
 
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
         btnAdd.setText("Add");
         btnAdd.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnAdd.setPreferredSize(new java.awt.Dimension(75, 23));
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
@@ -353,7 +239,6 @@ public class pnlMark extends javax.swing.JPanel {
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
         btnDelete.setText("Delete");
         btnDelete.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnDelete.setPreferredSize(new java.awt.Dimension(75, 23));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
@@ -375,29 +260,62 @@ public class pnlMark extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.insets = new java.awt.Insets(10, 5, 5, 5);
+        gridBagConstraints.gridwidth = 11;
         panelRight.add(panelButton, gridBagConstraints);
 
-        txtStudentId.setText("jTextField1");
-        txtStudentId.setMinimumSize(new java.awt.Dimension(180, 20));
-        txtStudentId.setPreferredSize(new java.awt.Dimension(180, 20));
+        lblID.setForeground(new java.awt.Color(3, 3, 3));
+        lblID.setText("Course ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(txtStudentId, gridBagConstraints);
-
-        cbxSubjectID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxSubjectID.setMinimumSize(new java.awt.Dimension(180, 20));
-        cbxSubjectID.setPreferredSize(new java.awt.Dimension(180, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(cbxSubjectID, gridBagConstraints);
+        panelRight.add(lblID, gridBagConstraints);
+
+        txtID.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight.add(txtID, gridBagConstraints);
+
+        lblStatus.setForeground(new java.awt.Color(3, 3, 3));
+        lblStatus.setText("Status:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight.add(lblStatus, gridBagConstraints);
+
+        radioEnable.setBackground(new java.awt.Color(255, 255, 255));
+        radioEnable.setForeground(new java.awt.Color(3, 3, 3));
+        radioEnable.setText("Enable");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight.add(radioEnable, gridBagConstraints);
+
+        radioDisable.setBackground(new java.awt.Color(255, 255, 255));
+        radioDisable.setForeground(new java.awt.Color(3, 3, 3));
+        radioDisable.setText("Disable");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 3;
+        panelRight.add(radioDisable, gridBagConstraints);
+
+        txtName.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 10, 5);
+        panelRight.add(txtName, gridBagConstraints);
 
         pnlEdit.add(panelRight);
 
@@ -563,57 +481,13 @@ public class pnlMark extends javax.swing.JPanel {
         add(tpAccount, gridBagConstraints);
 
         panelLeft.setBackground(new java.awt.Color(255, 255, 255));
-        panelLeft.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Mark", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
-        panelLeft.setForeground(new java.awt.Color(3, 3, 3));
+        panelLeft.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Course", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
         panelLeft.setMinimumSize(new java.awt.Dimension(800, 400));
         panelLeft.setPreferredSize(new java.awt.Dimension(800, 400));
+        panelLeft.setRequestFocusEnabled(false);
         panelLeft.setLayout(new java.awt.GridBagLayout());
 
-        lblChooseCourse.setForeground(new java.awt.Color(3, 3, 3));
-        lblChooseCourse.setText("Choose course:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelLeft.add(lblChooseCourse, gridBagConstraints);
-
-        lblEnterNameStudent.setBackground(new java.awt.Color(255, 255, 255));
-        lblEnterNameStudent.setForeground(new java.awt.Color(3, 3, 3));
-        lblEnterNameStudent.setText("Enter Filter:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelLeft.add(lblEnterNameStudent, gridBagConstraints);
-
-        cbxCourseChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxCourseChooser.setPreferredSize(new java.awt.Dimension(180, 20));
-        cbxCourseChooser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxCourseChooserActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelLeft.add(cbxCourseChooser, gridBagConstraints);
-
-        filterText.setPreferredSize(new java.awt.Dimension(180, 20));
-        filterText.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                filterTextKeyPressed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelLeft.add(filterText, gridBagConstraints);
-
-        srcPanelMark.setMinimumSize(new java.awt.Dimension(400, 200));
-        srcPanelMark.setPreferredSize(new java.awt.Dimension(400, 200));
-        srcPanelMark.setRequestFocusEnabled(false);
+        srcPanelCourse.setPreferredSize(new java.awt.Dimension(430, 150));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -626,32 +500,55 @@ public class pnlMark extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableContent.getTableHeader().setReorderingAllowed(false);
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableContentMouseClicked(evt);
             }
         });
-        srcPanelMark.setViewportView(tableContent);
+        srcPanelCourse.setViewportView(tableContent);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
-        panelLeft.add(srcPanelMark, gridBagConstraints);
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 420;
+        gridBagConstraints.ipady = 100;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
+        panelLeft.add(srcPanelCourse, gridBagConstraints);
+
+        filterText.setPreferredSize(new java.awt.Dimension(250, 20));
+        filterText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                filterTextKeyPressed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 150;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 200, 5, 5);
+        panelLeft.add(filterText, gridBagConstraints);
 
         btnFilter.setText("Filter");
-        btnFilter.setMaximumSize(new java.awt.Dimension(80, 23));
-        btnFilter.setMinimumSize(new java.awt.Dimension(80, 23));
-        btnFilter.setPreferredSize(new java.awt.Dimension(70, 23));
+        btnFilter.setMaximumSize(new java.awt.Dimension(100, 20));
+        btnFilter.setMinimumSize(new java.awt.Dimension(100, 20));
+        btnFilter.setPreferredSize(new java.awt.Dimension(100, 20));
         btnFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFilterActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 5);
         panelLeft.add(btnFilter, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -661,115 +558,142 @@ public class pnlMark extends javax.swing.JPanel {
         add(panelLeft, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbxCourseChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCourseChooserActionPerformed
-        // TODO add your handling code here:
-        String courseId = (String) cbxCourseChooser.getSelectedItem();
-        if (courseId != null && !courseId.equals("All")) {
-            listMark = markDAO.readBYCourseID(courseId);
-            listSubject = subjectDAO.readByCourseId(courseId);
-            loadSubject(listSubject);
-            resList = resDAO.readByCourseId(courseId);
-            loadStudent(resList);
-            loadData(listMark);
-        } else {
-            listMark = markDAO.readByAll();
-            listSubject = subjectDAO.readByAll();
-            loadSubject(listSubject);
-            resList = resDAO.readByAll();
-            loadStudent(resList);
-            loadData(listMark);
-        }
-}//GEN-LAST:event_cbxCourseChooserActionPerformed
-
-    private void filterTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextKeyPressed
-        // TODO add your handling code here:
-        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-            searchStart();
-        }
-}//GEN-LAST:event_filterTextKeyPressed
-
-    private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
-        // TODO add your handling code here:
-        int index = tableContent.getSelectedRow();
-        if (index != -1) {
-            int id = Integer.parseInt(String.valueOf(tableContent.getValueAt(index, 0)));
-            Mark mark = getMarkById(id);
-            loadDetails(mark);
-        }
-}//GEN-LAST:event_tableContentMouseClicked
-
-    private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
-        // TODO add your handling code here:
-        searchStart();
-}//GEN-LAST:event_btnFilterActionPerformed
-
     private void btnAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd1ActionPerformed
         // TODO add your handling code here:
 }//GEN-LAST:event_btnAdd1ActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
+
         try {
             if (!isAdd) {
                 isAdd = true;
-                cbxStudentId.setVisible(true);
-                cbxSubjectID.setVisible(true);
-                txtStudentId.setVisible(false);
-                txtSubjectName.setVisible(false);
                 btnUpdate.setEnabled(false);
                 btnDelete.setEnabled(false);
+                txtTotalFees.setEditable(true);
+
+                txtID.setText("");
+                txtName.setText("");
+                txtTotalFees.setText("");
             } else {
-                Mark mark = new Mark();
-                mark.setStudentId(cbxStudentId.getSelectedItem().toString());
-                mark.setMark(Float.parseFloat(txtMark.getText()));
-                mark.setSubjectId(cbxSubjectID.getSelectedItem().toString());
-                if (markDAO.create(mark)) {
-                    isAdd = false;
-                    cbxStudentId.setVisible(false);
-                    cbxSubjectID.setVisible(false);
-                    txtStudentId.setVisible(true);
-                    txtSubjectName.setVisible(true);
-                    btnUpdate.setEnabled(true);
-                    btnDelete.setEnabled(true);
-                    listMark.add(mark);
-                    loadData(listMark);
+                String id = txtID.getText();
+                String name = txtName.getText();
+                float totalFees = Float.parseFloat(txtTotalFees.getText());
+                int status = 0;
+                if (radioEnable.isSelected()) {
+                    status = 1;
+
+                } else {
+                    status = 0;
                 }
+                Course course = new Course(id, name, totalFees, status);
+                if (courseDao.create(course)) {
+                    JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Create Course", JOptionPane.INFORMATION_MESSAGE);
+                    listCourses.remove(find(course.getId()));
+                    listCourses.add(course);
+                    loadData(listCourses);
+                    loadDetails(course);
+                } else {
+                    JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Create Course", JOptionPane.ERROR_MESSAGE);
+                }
+                isAdd = false;
+                btnUpdate.setEnabled(true);
+                btnDelete.setEnabled(true);
+                txtTotalFees.setEditable(false);
             }
-        } catch (Exception ex) {
+        } catch (Exception e) {
         }
 }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         try {
-            Mark mark = getMarkById(Integer.parseInt(txtMarkId.getText()));
-            if (mark != null) {
-                mark.setMark(Float.parseFloat(txtMark.getText()));
-                if (markDAO.update(mark)) {
-                    loadData(listMark);
-                }
+            String id = txtID.getText();
+            String name = txtName.getText();
+            float totalFees = Float.parseFloat(txtTotalFees.getText());
+            int status = 0;
+            if (radioEnable.isSelected()) {
+                status = 1;
+            } else {
+                status = 0;
+            }
+            Course course = new Course(id, name, totalFees, status);
+            if (courseDao.update(course)) {
+                listCourses.remove(find(course.getId()));
+                listCourses.add(course);
+                loadData(listCourses);
+                loadDetails(course);
+                JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Update Course", JOptionPane.INFORMATION_MESSAGE);
+
+            } else {
+                System.out.println(courseDao.getLastError());
+                JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Update Course", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.toString(), "Error!", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        try {
-            Mark mark = getMarkById(Integer.parseInt(txtMarkId.getText()));
-            if (mark != null) {
-                if (markDAO.delete(mark)) {
-                    listMark.remove(mark);
-                    loadData(listMark);
-                }
+        String id = txtID.getText();
+        if (courseDao.delete(id)) {
+            listCourses.remove(find(id));
+            loadData(listCourses);
+            if (!listCourses.isEmpty()) {
+                loadDetails(listCourses.get(0));
             }
-        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Delete Course", JOptionPane.INFORMATION_MESSAGE, null);
+        } else {
+            JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Delete Course", JOptionPane.ERROR_MESSAGE, null);
         }
 }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
+        if (isAdd) {
+            isAdd = false;
+            btnUpdate.setEnabled(true);
+            btnDelete.setEnabled(true);
+        } else {
+        }
 }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
+        // TODO add your handling code here:
+        int index = tableContent.getSelectedRow();
+        if (index != -1) {
+            String id = tableContent.getValueAt(index, 0).toString();
+            Course course = find(id);
+            if (course != null) {
+                loadDetails(course);
+            }
+        }
+}//GEN-LAST:event_tableContentMouseClicked
+
+    private void filterTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            btnFilterActionPerformed(null);
+        }
+}//GEN-LAST:event_filterTextKeyPressed
+
+    private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
+        // TODO add your handling code here:
+
+        if (!listCourses.isEmpty()) {
+            String text = filterText.getText();
+            if (text.length() == 0) {
+                sorter.setRowFilter(null);
+            } else {
+                try {
+                    sorter.setRowFilter(RowFilter.regexFilter(text));
+                } catch (PatternSyntaxException pse) {
+                    System.err.println("Bad regex pattern");
+                }
+            }
+        }
+}//GEN-LAST:event_btnFilterActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnAdd1;
@@ -777,24 +701,19 @@ public class pnlMark extends javax.swing.JPanel {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnFilter;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox cbxCourseChooser;
-    private javax.swing.JComboBox cbxStudentId;
-    private javax.swing.JComboBox cbxSubjectID;
     private javax.swing.JComboBox cbxUsername1;
     private javax.swing.JTextField filterText;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton8;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JLabel lblChooseCourse;
     private javax.swing.JLabel lblConfirmPass1;
-    private javax.swing.JLabel lblEnterNameStudent;
-    private javax.swing.JLabel lblInfo;
-    private javax.swing.JLabel lblMark;
-    private javax.swing.JLabel lblMarkID;
+    private javax.swing.JLabel lblID;
+    private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblPassword1;
-    private javax.swing.JLabel lblStudentID;
-    private javax.swing.JLabel lblSubjectName;
+    private javax.swing.JLabel lblStatus;
+    private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblTitle1;
+    private javax.swing.JLabel lblTotalFees;
     private javax.swing.JLabel lblType1;
     private javax.swing.JLabel lblUsername1;
     private javax.swing.JPanel panel3;
@@ -804,17 +723,18 @@ public class pnlMark extends javax.swing.JPanel {
     private javax.swing.JPanel panelRight;
     private javax.swing.JPanel pnlEdit;
     private javax.swing.JPanel pnlSearch;
+    private javax.swing.JRadioButton radioDisable;
+    private javax.swing.JRadioButton radioEnable;
     private javax.swing.JSeparator sepaAccount1;
-    private javax.swing.JSeparator seqarator1;
-    private javax.swing.JScrollPane srcPanelMark;
+    private javax.swing.JSeparator sepaCourse;
+    private javax.swing.JScrollPane srcPanelCourse;
     private javax.swing.JTable tableContent;
     private javax.swing.JTabbedPane tpAccount;
     private javax.swing.JPasswordField txtConfirmPassword1;
-    private javax.swing.JTextField txtMark;
-    private javax.swing.JTextField txtMarkId;
+    private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtName;
     private javax.swing.JPasswordField txtPassword1;
-    private javax.swing.JTextField txtStudentId;
-    private javax.swing.JTextField txtSubjectName;
+    private javax.swing.JTextField txtTotalFees;
     private javax.swing.JTextField txtUsername1;
     // End of variables declaration//GEN-END:variables
 }

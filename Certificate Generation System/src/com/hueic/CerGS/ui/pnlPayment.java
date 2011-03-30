@@ -8,7 +8,7 @@
  *
  * Created on Mar 31, 2011, 4:53:05 AM
  */
-package com.hueic.CerGS.ui.main.payment;
+package com.hueic.CerGS.ui;
 
 import com.hueic.CerGS.component.ColumnData;
 import com.hueic.CerGS.component.ObjectTableModel;

@@ -4,37 +4,24 @@
  */
 
 /*
- * frmEmployee.java
+ * frmStudentNewRegistrationReport.java
  *
- * Created on Mar 14, 2011, 7:34:15 AM
+ * Created on Mar 22, 2011, 9:35:00 PM
  */
 
-package com.hueic.CerGS.ui.main.report;
-
-import com.hueic.CerGS.component.report.EmployeeReportManager;
-import com.hueic.CerGS.dao.EmployeeDAO;
-import com.hueic.CerGS.entity.Employee;
-import java.util.ArrayList;
-import javax.swing.JPanel;
+package com.hueic.CerGS.ui.report;
 
 /**
  *
- * @author nhchung
+ * @author Wind
  */
-public class frmEmployeeReport extends javax.swing.JFrame {
+public class frmStudentNewRegistrationReport extends javax.swing.JFrame {
 
-//    private final JPanel panel;
-    /** Creates new form frmEmployee */
-    public frmEmployeeReport() {
+    /** Creates new form frmStudentNewRegistrationReport */
+    public frmStudentNewRegistrationReport() {
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-//        ArrayList<Employee> empList = new EmployeeDAO().readByAll();
-//        EmployeeReportManager empReportManager = new EmployeeReportManager(empList);
-//        panel = empReportManager.getJPanelViewer();
-//        this.add(panel);
-//        panel.setVisible(true);
-//        setDefaultCloseOperation(EXIT_ON_CLOSE);
-      //  javax.swing.JOptionPane.showMessageDialog(this, "Ok");
+        
     }
 
     /** This method is called from within the constructor to
@@ -68,7 +55,7 @@ public class frmEmployeeReport extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmEmployeeReport().setVisible(true);
+                new frmStudentNewRegistrationReport().setVisible(true);
             }
         });
     }
