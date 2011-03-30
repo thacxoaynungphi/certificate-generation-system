@@ -36,7 +36,7 @@ public class PersonDAO extends BaseDAO implements IPersonDAO {
                 person.setId(rs.getString(1));
                 person.setFirstName(rs.getString(2));
                 person.setLastName(rs.getString(3));
-                person.setBirthDay(new java.util.Date(rs.getDate(4).getTime()));
+                person.setBirthDay(rs.getDate(4));
                 person.setGender(rs.getInt(5));
                 person.setPhone(rs.getString(6));
                 person.setEmail(rs.getString(7));
@@ -65,7 +65,7 @@ public class PersonDAO extends BaseDAO implements IPersonDAO {
                 person.setId(rs.getString(1));
                 person.setFirstName(rs.getString(2));
                 person.setLastName(rs.getString(3));
-                person.setBirthDay(new java.util.Date(rs.getDate(4).getTime()));
+                person.setBirthDay(rs.getDate(4));
                 person.setGender(rs.getInt(5));
                 person.setPhone(rs.getString(6));
                 person.setEmail(rs.getString(7));
@@ -95,7 +95,7 @@ public class PersonDAO extends BaseDAO implements IPersonDAO {
                 person.setId(rs.getString(1));
                 person.setFirstName(rs.getString(2));
                 person.setLastName(rs.getString(3));
-                person.setBirthDay(new java.util.Date(rs.getDate(4).getTime()));
+                person.setBirthDay(rs.getDate(4));
                 person.setGender(rs.getInt(5));
                 person.setPhone(rs.getString(6));
                 person.setEmail(rs.getString(7));
