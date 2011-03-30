@@ -156,22 +156,22 @@ public class pnlCertificate extends javax.swing.JPanel {
         txtID = new javax.swing.JTextField();
         dateChooseDegreeDay = new com.toedter.calendar.JDateChooser();
         pnlSearch = new javax.swing.JPanel();
-        panel3 = new javax.swing.JPanel();
-        lblTitle1 = new javax.swing.JLabel();
-        sepaAccount1 = new javax.swing.JSeparator();
-        lblUsername1 = new javax.swing.JLabel();
-        lblPassword1 = new javax.swing.JLabel();
-        lblConfirmPass1 = new javax.swing.JLabel();
-        panel4 = new javax.swing.JPanel();
+        panelRight2 = new javax.swing.JPanel();
+        lblStudentID1 = new javax.swing.JLabel();
+        lblScore1 = new javax.swing.JLabel();
+        lblDegreeDay1 = new javax.swing.JLabel();
+        cbxStudentID1 = new javax.swing.JComboBox();
+        txtScore1 = new javax.swing.JTextField();
+        PanelButton1 = new javax.swing.JPanel();
         btnAdd1 = new javax.swing.JButton();
-        txtUsername1 = new javax.swing.JTextField();
-        lblType1 = new javax.swing.JLabel();
-        cbxUsername1 = new javax.swing.JComboBox();
-        txtPassword1 = new javax.swing.JPasswordField();
-        txtConfirmPassword1 = new javax.swing.JPasswordField();
-        jButton5 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
+        btnUpdate1 = new javax.swing.JButton();
+        btnDelete1 = new javax.swing.JButton();
+        btnCancel1 = new javax.swing.JButton();
+        lblTitle1 = new javax.swing.JLabel();
+        sepaCertificate1 = new javax.swing.JSeparator();
+        lblID1 = new javax.swing.JLabel();
+        txtID1 = new javax.swing.JTextField();
+        dateChooseDegreeDay1 = new com.toedter.calendar.JDateChooser();
         panelLeft = new javax.swing.JPanel();
         srcPanelCertificate = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
@@ -184,6 +184,7 @@ public class pnlCertificate extends javax.swing.JPanel {
 
         pnlEdit.setMinimumSize(new java.awt.Dimension(800, 200));
         pnlEdit.setPreferredSize(new java.awt.Dimension(800, 200));
+        pnlEdit.setLayout(new java.awt.GridBagLayout());
 
         panelRight1.setBackground(new java.awt.Color(255, 255, 255));
         panelRight1.setMinimumSize(new java.awt.Dimension(800, 200));
@@ -336,160 +337,166 @@ public class pnlCertificate extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight1.add(dateChooseDegreeDay, gridBagConstraints);
 
-        pnlEdit.add(panelRight1);
+        pnlEdit.add(panelRight1, new java.awt.GridBagConstraints());
 
         tpAccount.addTab("Edit", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Edit_16.png")), pnlEdit); // NOI18N
 
         pnlSearch.setMinimumSize(new java.awt.Dimension(810, 200));
         pnlSearch.setPreferredSize(new java.awt.Dimension(810, 200));
+        pnlSearch.setLayout(new java.awt.GridBagLayout());
 
-        panel3.setBackground(new java.awt.Color(255, 255, 255));
-        panel3.setMinimumSize(new java.awt.Dimension(800, 200));
-        panel3.setPreferredSize(new java.awt.Dimension(800, 200));
-        panel3.setLayout(new java.awt.GridBagLayout());
+        panelRight2.setBackground(new java.awt.Color(255, 255, 255));
+        panelRight2.setMinimumSize(new java.awt.Dimension(800, 200));
+        panelRight2.setPreferredSize(new java.awt.Dimension(800, 200));
+        panelRight2.setLayout(new java.awt.GridBagLayout());
 
-        lblTitle1.setFont(new java.awt.Font("Tahoma", 1, 13));
-        lblTitle1.setForeground(new java.awt.Color(102, 0, 102));
-        lblTitle1.setText("Information Account");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 0);
-        panel3.add(lblTitle1, gridBagConstraints);
-
-        sepaAccount1.setPreferredSize(new java.awt.Dimension(350, 10));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 10, 0);
-        panel3.add(sepaAccount1, gridBagConstraints);
-
-        lblUsername1.setForeground(new java.awt.Color(3, 3, 3));
-        lblUsername1.setText("Username:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
-        panel3.add(lblUsername1, gridBagConstraints);
-
-        lblPassword1.setForeground(new java.awt.Color(3, 3, 3));
-        lblPassword1.setText("Password:");
+        lblStudentID1.setForeground(new java.awt.Color(3, 3, 3));
+        lblStudentID1.setText("Student ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
-        panel3.add(lblPassword1, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight2.add(lblStudentID1, gridBagConstraints);
 
-        lblConfirmPass1.setForeground(new java.awt.Color(3, 3, 3));
-        lblConfirmPass1.setText("Confirm password:");
+        lblScore1.setForeground(new java.awt.Color(3, 3, 3));
+        lblScore1.setText("Score:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
-        panel3.add(lblConfirmPass1, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight2.add(lblScore1, gridBagConstraints);
 
-        panel4.setBackground(new java.awt.Color(255, 255, 255));
-        panel4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
+        lblDegreeDay1.setForeground(new java.awt.Color(3, 3, 3));
+        lblDegreeDay1.setText("Degree Day:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight2.add(lblDegreeDay1, gridBagConstraints);
+
+        cbxStudentID1.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight2.add(cbxStudentID1, gridBagConstraints);
+
+        txtScore1.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight2.add(txtScore1, gridBagConstraints);
+
+        PanelButton1.setBackground(new java.awt.Color(255, 255, 255));
 
         btnAdd1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
-        btnAdd1.setText("Reset");
-        btnAdd1.setMargin(new java.awt.Insets(2, 2, 2, 2));
-        btnAdd1.setMaximumSize(new java.awt.Dimension(80, 23));
-        btnAdd1.setMinimumSize(new java.awt.Dimension(80, 23));
-        btnAdd1.setPreferredSize(new java.awt.Dimension(80, 23));
+        btnAdd1.setText("Add");
+        btnAdd1.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnAdd1.setMinimumSize(new java.awt.Dimension(53, 23));
+        btnAdd1.setPreferredSize(new java.awt.Dimension(75, 23));
         btnAdd1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdd1ActionPerformed(evt);
             }
         });
-        panel4.add(btnAdd1);
+        PanelButton1.add(btnAdd1);
+
+        btnUpdate1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
+        btnUpdate1.setText("Update");
+        btnUpdate1.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnUpdate1.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnUpdate1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdate1ActionPerformed(evt);
+            }
+        });
+        PanelButton1.add(btnUpdate1);
+
+        btnDelete1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
+        btnDelete1.setText("Delete");
+        btnDelete1.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnDelete1.setMaximumSize(new java.awt.Dimension(75, 25));
+        btnDelete1.setMinimumSize(new java.awt.Dimension(75, 23));
+        btnDelete1.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnDelete1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelete1ActionPerformed(evt);
+            }
+        });
+        PanelButton1.add(btnDelete1);
+
+        btnCancel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
+        btnCancel1.setText("Cancel");
+        btnCancel1.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnCancel1.setMinimumSize(new java.awt.Dimension(67, 23));
+        btnCancel1.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnCancel1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancel1ActionPerformed(evt);
+            }
+        });
+        PanelButton1.add(btnCancel1);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 10, 0);
-        panel3.add(panel4, gridBagConstraints);
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 10, 0);
+        panelRight2.add(PanelButton1, gridBagConstraints);
 
-        txtUsername1.setEnabled(false);
-        txtUsername1.setPreferredSize(new java.awt.Dimension(200, 20));
+        lblTitle1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        lblTitle1.setForeground(new java.awt.Color(102, 0, 102));
+        lblTitle1.setText("Information Certificate");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
+        panelRight2.add(lblTitle1, gridBagConstraints);
+
+        sepaCertificate1.setMinimumSize(new java.awt.Dimension(320, 10));
+        sepaCertificate1.setPreferredSize(new java.awt.Dimension(320, 10));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        panelRight2.add(sepaCertificate1, gridBagConstraints);
+
+        lblID1.setForeground(new java.awt.Color(3, 3, 3));
+        lblID1.setText("ID:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel3.add(txtUsername1, gridBagConstraints);
+        panelRight2.add(lblID1, gridBagConstraints);
 
-        lblType1.setForeground(new java.awt.Color(3, 3, 3));
-        lblType1.setText("Type:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
-        panel3.add(lblType1, gridBagConstraints);
-
-        cbxUsername1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxUsername1.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtID1.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel3.add(cbxUsername1, gridBagConstraints);
-
-        txtPassword1.setPreferredSize(new java.awt.Dimension(200, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel3.add(txtPassword1, gridBagConstraints);
+        panelRight2.add(txtID1, gridBagConstraints);
 
-        txtConfirmPassword1.setPreferredSize(new java.awt.Dimension(200, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel3.add(txtConfirmPassword1, gridBagConstraints);
-
-        jButton5.setText("jButton1");
-        jButton5.setMaximumSize(new java.awt.Dimension(23, 23));
-        jButton5.setMinimumSize(new java.awt.Dimension(23, 23));
-        jButton5.setPreferredSize(new java.awt.Dimension(23, 23));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel3.add(jButton5, gridBagConstraints);
-
-        jButton8.setText("jButton4");
-        jButton8.setMaximumSize(new java.awt.Dimension(23, 23));
-        jButton8.setMinimumSize(new java.awt.Dimension(23, 23));
-        jButton8.setPreferredSize(new java.awt.Dimension(23, 23));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel3.add(jButton8, gridBagConstraints);
-
-        jTextField2.setMinimumSize(new java.awt.Dimension(200, 20));
-        jTextField2.setPreferredSize(new java.awt.Dimension(200, 20));
+        dateChooseDegreeDay1.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel3.add(jTextField2, gridBagConstraints);
+        panelRight2.add(dateChooseDegreeDay1, gridBagConstraints);
 
-        pnlSearch.add(panel3);
+        pnlSearch.add(panelRight2, new java.awt.GridBagConstraints());
 
         tpAccount.addTab("Search", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Search-32.png")), pnlSearch); // NOI18N
 
@@ -502,7 +509,6 @@ public class pnlCertificate extends javax.swing.JPanel {
         panelLeft.setBackground(new java.awt.Color(255, 255, 255));
         panelLeft.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Certificate", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
         panelLeft.setMinimumSize(new java.awt.Dimension(800, 400));
-        panelLeft.setOpaque(false);
         panelLeft.setPreferredSize(new java.awt.Dimension(800, 400));
         panelLeft.setLayout(new java.awt.GridBagLayout());
 
@@ -540,6 +546,8 @@ public class pnlCertificate extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelLeft.add(srcPanelCertificate, gridBagConstraints);
 
+        filterText.setMinimumSize(new java.awt.Dimension(200, 20));
+        filterText.setPreferredSize(new java.awt.Dimension(200, 20));
         filterText.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 filterTextKeyPressed(evt);
@@ -548,9 +556,8 @@ public class pnlCertificate extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 193;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 150, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 450, 5, 5);
         panelLeft.add(filterText, gridBagConstraints);
 
         btnFilter.setText("Filter");
@@ -575,10 +582,6 @@ public class pnlCertificate extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         add(panelLeft, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd1ActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_btnAdd1ActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
@@ -702,46 +705,63 @@ public class pnlCertificate extends javax.swing.JPanel {
             }
         }
 }//GEN-LAST:event_btnFilterActionPerformed
+
+    private void btnAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdd1ActionPerformed
+
+    private void btnUpdate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdate1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUpdate1ActionPerformed
+
+    private void btnDelete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDelete1ActionPerformed
+
+    private void btnCancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancel1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancel1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelButton;
+    private javax.swing.JPanel PanelButton1;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnAdd1;
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnCancel1;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnDelete1;
     private javax.swing.JButton btnFilter;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnUpdate1;
     private javax.swing.JComboBox cbxStudentID;
-    private javax.swing.JComboBox cbxUsername1;
+    private javax.swing.JComboBox cbxStudentID1;
     private com.toedter.calendar.JDateChooser dateChooseDegreeDay;
+    private com.toedter.calendar.JDateChooser dateChooseDegreeDay1;
     private javax.swing.JTextField filterText;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JLabel lblConfirmPass1;
     private javax.swing.JLabel lblDegreeDay;
+    private javax.swing.JLabel lblDegreeDay1;
     private javax.swing.JLabel lblID;
-    private javax.swing.JLabel lblPassword1;
+    private javax.swing.JLabel lblID1;
     private javax.swing.JLabel lblScore;
+    private javax.swing.JLabel lblScore1;
     private javax.swing.JLabel lblStudentID;
+    private javax.swing.JLabel lblStudentID1;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblTitle1;
-    private javax.swing.JLabel lblType1;
-    private javax.swing.JLabel lblUsername1;
-    private javax.swing.JPanel panel3;
-    private javax.swing.JPanel panel4;
     private javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelRight1;
+    private javax.swing.JPanel panelRight2;
     private javax.swing.JPanel pnlEdit;
     private javax.swing.JPanel pnlSearch;
-    private javax.swing.JSeparator sepaAccount1;
     private javax.swing.JSeparator sepaCertificate;
+    private javax.swing.JSeparator sepaCertificate1;
     private javax.swing.JScrollPane srcPanelCertificate;
     private javax.swing.JTable tableContent;
     private javax.swing.JTabbedPane tpAccount;
-    private javax.swing.JPasswordField txtConfirmPassword1;
     private javax.swing.JTextField txtID;
-    private javax.swing.JPasswordField txtPassword1;
+    private javax.swing.JTextField txtID1;
     private javax.swing.JTextField txtScore;
-    private javax.swing.JTextField txtUsername1;
+    private javax.swing.JTextField txtScore1;
     // End of variables declaration//GEN-END:variables
 }

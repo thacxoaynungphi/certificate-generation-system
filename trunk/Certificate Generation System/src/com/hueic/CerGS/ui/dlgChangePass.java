@@ -60,6 +60,7 @@ public class dlgChangePass extends javax.swing.JDialog {
         txtConfirmPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         panelContent.setBackground(new java.awt.Color(255, 255, 255));

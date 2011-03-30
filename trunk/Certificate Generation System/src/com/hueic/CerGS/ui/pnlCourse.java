@@ -131,22 +131,23 @@ public class pnlCourse extends javax.swing.JPanel {
         radioDisable = new javax.swing.JRadioButton();
         txtName = new javax.swing.JTextField();
         pnlSearch = new javax.swing.JPanel();
-        panel3 = new javax.swing.JPanel();
+        panelRight1 = new javax.swing.JPanel();
         lblTitle1 = new javax.swing.JLabel();
-        sepaAccount1 = new javax.swing.JSeparator();
-        lblUsername1 = new javax.swing.JLabel();
-        lblPassword1 = new javax.swing.JLabel();
-        lblConfirmPass1 = new javax.swing.JLabel();
-        panel4 = new javax.swing.JPanel();
+        sepaCourse1 = new javax.swing.JSeparator();
+        lblName1 = new javax.swing.JLabel();
+        lblTotalFees1 = new javax.swing.JLabel();
+        txtTotalFees1 = new javax.swing.JTextField();
+        panelButton1 = new javax.swing.JPanel();
         btnAdd1 = new javax.swing.JButton();
-        txtUsername1 = new javax.swing.JTextField();
-        lblType1 = new javax.swing.JLabel();
-        cbxUsername1 = new javax.swing.JComboBox();
-        txtPassword1 = new javax.swing.JPasswordField();
-        txtConfirmPassword1 = new javax.swing.JPasswordField();
-        jButton5 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
+        btnUpdate1 = new javax.swing.JButton();
+        btnDelete1 = new javax.swing.JButton();
+        btnCancel1 = new javax.swing.JButton();
+        lblID1 = new javax.swing.JLabel();
+        txtID1 = new javax.swing.JTextField();
+        lblStatus1 = new javax.swing.JLabel();
+        radioEnable1 = new javax.swing.JRadioButton();
+        radioDisable1 = new javax.swing.JRadioButton();
+        txtName1 = new javax.swing.JTextField();
         panelLeft = new javax.swing.JPanel();
         srcPanelCourse = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
@@ -159,6 +160,7 @@ public class pnlCourse extends javax.swing.JPanel {
 
         pnlEdit.setMinimumSize(new java.awt.Dimension(810, 200));
         pnlEdit.setPreferredSize(new java.awt.Dimension(810, 200));
+        pnlEdit.setLayout(new java.awt.GridBagLayout());
 
         panelRight.setBackground(new java.awt.Color(255, 255, 255));
         panelRight.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Managment Course", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
@@ -172,7 +174,6 @@ public class pnlCourse extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = 11;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
         panelRight.add(lblTitle, gridBagConstraints);
 
         sepaCourse.setPreferredSize(new java.awt.Dimension(320, 10));
@@ -317,160 +318,171 @@ public class pnlCourse extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 10, 5);
         panelRight.add(txtName, gridBagConstraints);
 
-        pnlEdit.add(panelRight);
+        pnlEdit.add(panelRight, new java.awt.GridBagConstraints());
 
         tpAccount.addTab("Edit", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Edit_16.png")), pnlEdit); // NOI18N
 
         pnlSearch.setMinimumSize(new java.awt.Dimension(810, 200));
         pnlSearch.setPreferredSize(new java.awt.Dimension(810, 200));
+        pnlSearch.setLayout(new java.awt.GridBagLayout());
 
-        panel3.setBackground(new java.awt.Color(255, 255, 255));
-        panel3.setMinimumSize(new java.awt.Dimension(800, 200));
-        panel3.setPreferredSize(new java.awt.Dimension(800, 200));
-        panel3.setLayout(new java.awt.GridBagLayout());
+        panelRight1.setBackground(new java.awt.Color(255, 255, 255));
+        panelRight1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Managment Course", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
+        panelRight1.setMinimumSize(new java.awt.Dimension(800, 200));
+        panelRight1.setPreferredSize(new java.awt.Dimension(800, 200));
+        panelRight1.setLayout(new java.awt.GridBagLayout());
 
-        lblTitle1.setFont(new java.awt.Font("Tahoma", 1, 13));
+        lblTitle1.setFont(new java.awt.Font("Tahoma", 1, 12));
         lblTitle1.setForeground(new java.awt.Color(102, 0, 102));
-        lblTitle1.setText("Information Account");
+        lblTitle1.setText("Information Course");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridwidth = 11;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 0);
-        panel3.add(lblTitle1, gridBagConstraints);
+        panelRight1.add(lblTitle1, gridBagConstraints);
 
-        sepaAccount1.setPreferredSize(new java.awt.Dimension(350, 10));
+        sepaCourse1.setPreferredSize(new java.awt.Dimension(320, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 10, 0);
-        panel3.add(sepaAccount1, gridBagConstraints);
-
-        lblUsername1.setForeground(new java.awt.Color(3, 3, 3));
-        lblUsername1.setText("Username:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 11;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
-        panel3.add(lblUsername1, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        panelRight1.add(sepaCourse1, gridBagConstraints);
 
-        lblPassword1.setForeground(new java.awt.Color(3, 3, 3));
-        lblPassword1.setText("Password:");
+        lblName1.setForeground(new java.awt.Color(3, 3, 3));
+        lblName1.setText("Name course:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
-        panel3.add(lblPassword1, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight1.add(lblName1, gridBagConstraints);
 
-        lblConfirmPass1.setForeground(new java.awt.Color(3, 3, 3));
-        lblConfirmPass1.setText("Confirm password:");
+        lblTotalFees1.setForeground(new java.awt.Color(3, 3, 3));
+        lblTotalFees1.setText("Total Fees:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
-        panel3.add(lblConfirmPass1, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 10, 5);
+        panelRight1.add(lblTotalFees1, gridBagConstraints);
 
-        panel4.setBackground(new java.awt.Color(255, 255, 255));
-        panel4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
+        txtTotalFees1.setEditable(false);
+        txtTotalFees1.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 10, 5);
+        panelRight1.add(txtTotalFees1, gridBagConstraints);
+
+        panelButton1.setBackground(new java.awt.Color(255, 255, 255));
 
         btnAdd1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
-        btnAdd1.setText("Reset");
-        btnAdd1.setMargin(new java.awt.Insets(2, 2, 2, 2));
-        btnAdd1.setMaximumSize(new java.awt.Dimension(80, 23));
-        btnAdd1.setMinimumSize(new java.awt.Dimension(80, 23));
-        btnAdd1.setPreferredSize(new java.awt.Dimension(80, 23));
+        btnAdd1.setText("Add");
+        btnAdd1.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnAdd1.setPreferredSize(new java.awt.Dimension(75, 23));
         btnAdd1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdd1ActionPerformed(evt);
             }
         });
-        panel4.add(btnAdd1);
+        panelButton1.add(btnAdd1);
+
+        btnUpdate1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
+        btnUpdate1.setText("Update");
+        btnUpdate1.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnUpdate1.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnUpdate1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdate1ActionPerformed(evt);
+            }
+        });
+        panelButton1.add(btnUpdate1);
+
+        btnDelete1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
+        btnDelete1.setText("Delete");
+        btnDelete1.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnDelete1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelete1ActionPerformed(evt);
+            }
+        });
+        panelButton1.add(btnDelete1);
+
+        btnCancel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
+        btnCancel1.setText("Cancel");
+        btnCancel1.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnCancel1.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnCancel1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancel1ActionPerformed(evt);
+            }
+        });
+        panelButton1.add(btnCancel1);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 10, 0);
-        panel3.add(panel4, gridBagConstraints);
+        gridBagConstraints.gridwidth = 11;
+        panelRight1.add(panelButton1, gridBagConstraints);
 
-        txtUsername1.setEnabled(false);
-        txtUsername1.setPreferredSize(new java.awt.Dimension(200, 20));
+        lblID1.setForeground(new java.awt.Color(3, 3, 3));
+        lblID1.setText("Course ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel3.add(txtUsername1, gridBagConstraints);
+        panelRight1.add(lblID1, gridBagConstraints);
 
-        lblType1.setForeground(new java.awt.Color(3, 3, 3));
-        lblType1.setText("Type:");
+        txtID1.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight1.add(txtID1, gridBagConstraints);
+
+        lblStatus1.setForeground(new java.awt.Color(3, 3, 3));
+        lblStatus1.setText("Status:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
-        panel3.add(lblType1, gridBagConstraints);
-
-        cbxUsername1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxUsername1.setPreferredSize(new java.awt.Dimension(200, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel3.add(cbxUsername1, gridBagConstraints);
+        panelRight1.add(lblStatus1, gridBagConstraints);
 
-        txtPassword1.setPreferredSize(new java.awt.Dimension(200, 20));
+        radioEnable1.setBackground(new java.awt.Color(255, 255, 255));
+        radioEnable1.setForeground(new java.awt.Color(3, 3, 3));
+        radioEnable1.setText("Enable");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel3.add(txtPassword1, gridBagConstraints);
+        panelRight1.add(radioEnable1, gridBagConstraints);
 
-        txtConfirmPassword1.setPreferredSize(new java.awt.Dimension(200, 20));
+        radioDisable1.setBackground(new java.awt.Color(255, 255, 255));
+        radioDisable1.setForeground(new java.awt.Color(3, 3, 3));
+        radioDisable1.setText("Disable");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 3;
+        panelRight1.add(radioDisable1, gridBagConstraints);
+
+        txtName1.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel3.add(txtConfirmPassword1, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 10, 5);
+        panelRight1.add(txtName1, gridBagConstraints);
 
-        jButton5.setText("jButton1");
-        jButton5.setMaximumSize(new java.awt.Dimension(23, 23));
-        jButton5.setMinimumSize(new java.awt.Dimension(23, 23));
-        jButton5.setPreferredSize(new java.awt.Dimension(23, 23));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel3.add(jButton5, gridBagConstraints);
-
-        jButton8.setText("jButton4");
-        jButton8.setMaximumSize(new java.awt.Dimension(23, 23));
-        jButton8.setMinimumSize(new java.awt.Dimension(23, 23));
-        jButton8.setPreferredSize(new java.awt.Dimension(23, 23));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel3.add(jButton8, gridBagConstraints);
-
-        jTextField2.setMinimumSize(new java.awt.Dimension(200, 20));
-        jTextField2.setPreferredSize(new java.awt.Dimension(200, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel3.add(jTextField2, gridBagConstraints);
-
-        pnlSearch.add(panel3);
+        pnlSearch.add(panelRight1, new java.awt.GridBagConstraints());
 
         tpAccount.addTab("Search", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Search-32.png")), pnlSearch); // NOI18N
 
@@ -521,6 +533,7 @@ public class pnlCourse extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
         panelLeft.add(srcPanelCourse, gridBagConstraints);
 
+        filterText.setMinimumSize(new java.awt.Dimension(250, 20));
         filterText.setPreferredSize(new java.awt.Dimension(250, 20));
         filterText.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -530,9 +543,8 @@ public class pnlCourse extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 150;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 200, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 400, 5, 5);
         panelLeft.add(filterText, gridBagConstraints);
 
         btnFilter.setText("Filter");
@@ -557,10 +569,6 @@ public class pnlCourse extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         add(panelLeft, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd1ActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_btnAdd1ActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
@@ -694,47 +702,65 @@ public class pnlCourse extends javax.swing.JPanel {
             }
         }
 }//GEN-LAST:event_btnFilterActionPerformed
+
+    private void btnAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdd1ActionPerformed
+
+    private void btnUpdate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdate1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUpdate1ActionPerformed
+
+    private void btnDelete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDelete1ActionPerformed
+
+    private void btnCancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancel1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancel1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnAdd1;
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnCancel1;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnDelete1;
     private javax.swing.JButton btnFilter;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox cbxUsername1;
+    private javax.swing.JButton btnUpdate1;
     private javax.swing.JTextField filterText;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JLabel lblConfirmPass1;
     private javax.swing.JLabel lblID;
+    private javax.swing.JLabel lblID1;
     private javax.swing.JLabel lblName;
-    private javax.swing.JLabel lblPassword1;
+    private javax.swing.JLabel lblName1;
     private javax.swing.JLabel lblStatus;
+    private javax.swing.JLabel lblStatus1;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblTitle1;
     private javax.swing.JLabel lblTotalFees;
-    private javax.swing.JLabel lblType1;
-    private javax.swing.JLabel lblUsername1;
-    private javax.swing.JPanel panel3;
-    private javax.swing.JPanel panel4;
+    private javax.swing.JLabel lblTotalFees1;
     private javax.swing.JPanel panelButton;
+    private javax.swing.JPanel panelButton1;
     private javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelRight;
+    private javax.swing.JPanel panelRight1;
     private javax.swing.JPanel pnlEdit;
     private javax.swing.JPanel pnlSearch;
     private javax.swing.JRadioButton radioDisable;
+    private javax.swing.JRadioButton radioDisable1;
     private javax.swing.JRadioButton radioEnable;
-    private javax.swing.JSeparator sepaAccount1;
+    private javax.swing.JRadioButton radioEnable1;
     private javax.swing.JSeparator sepaCourse;
+    private javax.swing.JSeparator sepaCourse1;
     private javax.swing.JScrollPane srcPanelCourse;
     private javax.swing.JTable tableContent;
     private javax.swing.JTabbedPane tpAccount;
-    private javax.swing.JPasswordField txtConfirmPassword1;
     private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtID1;
     private javax.swing.JTextField txtName;
-    private javax.swing.JPasswordField txtPassword1;
+    private javax.swing.JTextField txtName1;
     private javax.swing.JTextField txtTotalFees;
-    private javax.swing.JTextField txtUsername1;
+    private javax.swing.JTextField txtTotalFees1;
     // End of variables declaration//GEN-END:variables
 }
