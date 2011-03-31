@@ -46,6 +46,7 @@ public class frmMain extends javax.swing.JFrame {
 
     public frmMain() {
         initComponents();
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         guidao = new GUIDAO(this);
         guidao.setGUI(lookandfeel, theme);
