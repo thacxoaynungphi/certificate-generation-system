@@ -51,7 +51,6 @@ public class frmMain extends javax.swing.JFrame {
         guidao.setGUI(lookandfeel, theme);
         new IconSystem(this);
         initStatusBar();
-        System.out.println("W : " + this.getWidth() + "H : " + this.getHeight());
         HelpSet hs = getHelpSet("com/hueic/CerGS/myhelp/sample.hs");
         HelpBroker hb = hs.createHelpBroker();
         CSH.setHelpIDString(mnuIHelpContent, "top");
