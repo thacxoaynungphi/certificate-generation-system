@@ -5,72 +5,82 @@
 
 package com.hueic.CerGS.component.report;
 
-import com.hueic.CerGS.entity.Register;
+import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.entity.Student;
+import com.jidesoft.utils.Base64.InputStream;
+import java.io.IOException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import net.sf.jasperreports.engine.JRDataSource;
+import javax.swing.JPanel;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
+import net.sf.jasperreports.view.JRViewer;
 
 /**
  *
  * @author Wind
  */
-public class StudentReportManager extends ReportManager1{
+public class StudentReportManager{
 
     private String course;
+    private RegisterDAO registerDAO;
 
-    public StudentReportManager(String course,ArrayList<Student> stList, ArrayList<Register> regisList) {
+    public StudentReportManager(String course) {
         this.course = course;
-        jasperFileName = "StudentInCourse.jrxml";
-        dataSource = getJRMapCollectionDataSource(stList, regisList);
     }
 
-    @Override
-    protected  HashMap getParameterReport() {
-        parameter = new HashMap();
+    public JPanel getEnumerationViewer(ArrayList<Student> arr, boolean isEnumeration) {
+        JPanel viewer = null;
+        DateFormat dateFormat = DateFormat.getInstance();
+        try {
+            //THONG TIN PARAMETER
+            HashMap parameterMap = new HashMap();
 
-        parameter.put("ID", "STUDENT ID");
-        parameter.put("NAME", "FULL NAME");
-        parameter.put("BIRTHDAY", "DATE OF BIRTH");
-        parameter.put("REGISDATE", "REGISTRATION DAY");
-        parameter.put("COURSE", course);
+            parameterMap.put("COURSE",course);
+            parameterMap.put("ID", "Student Code");
+            parameterMap.put("NAME", "Student Name");
+            parameterMap.put("BIRTHDAY", "Birthday");
+            parameterMap.put("REGISDATE", "REGISTRATION DATE");
 
-        return parameter;
-    }
+            ArrayList reportRows = new ArrayList();
+            HashMap rowMap = null;
+            for (Student st : arr) {
+                rowMap = new HashMap();
+                rowMap.put("ID", st.getId());
+                rowMap.put("NAME", st.getFullName());
+                rowMap.put("BIRTHDAY", dateFormat.format(new Date(st.getBirthDay().getTime())));
+                Date regisDate = registerDAO.readById(st.getId(), course).getRegisDate();
+                rowMap.put("REGISDATE", dateFormat.format(new Date(regisDate.getTime())));
+                reportRows.add(rowMap);
+            }
+            rowMap = new HashMap();
+            // TODO: ngang ni van loi
+            JasperPrint jasperPrint = JasperFillManager.fillReport(getInputStream("StudentInCourse.jasper"),
+                    parameterMap, new JRMapCollectionDataSource(reportRows));
 
-    private Date getRegistrationDateOfStudent(String id, ArrayList<Register> regisList){
-        
-        for(Register regis : regisList){
-            if(regis.getId().compareTo(id) == 0) return regis.getRegisDate();
-        }
-        return null;
-    }
+            viewer = new JRViewer(jasperPrint);
 
-    private JRDataSource getJRMapCollectionDataSource(ArrayList<Student> stList, ArrayList<Register> regisList) {
-        ArrayList collection = new ArrayList();
-
-        HashMap row = null;
-
-        for(Student st : stList){
-            row = new HashMap();
-
-            Date regisDate = getRegistrationDateOfStudent(st.getId(), regisList);
-            if(regisDate == null) continue;
-            
-            row.put("ID", st.getId());
-            row.put("NAME", st.getFirstName() + " " + st.getLastName());
-            row.put("BIRTHDAY", DateFormat.getInstance().format(st.getBirthDay()));
-            row.put("REGISDATE", DateFormat.getInstance().format(regisDate));
-            
-            collection.add(row);
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
         }
 
-        dataSource = new JRMapCollectionDataSource(collection);
-        
-        return dataSource;
+        return viewer;
     }
 
+    private InputStream getInputStream(String reportName) {
+        URL url = getClass().getResource("/com/hueic/CerGS/report/" + reportName);
+        InputStream input = null;
+
+        try {
+            input = (InputStream) url.openStream();
+            return input;
+        } catch (IOException ex) {
+            return null;
+        }
+
+    }
 }
