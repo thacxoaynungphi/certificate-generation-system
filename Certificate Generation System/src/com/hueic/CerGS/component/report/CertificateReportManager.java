@@ -16,7 +16,7 @@ import java.util.HashMap;
  *
  * @author Wind
  */
-public class CertificateReportManager extends ReportManager{
+public class CertificateReportManager extends ReportManager1{
     private String studentName;
     private String courseName;
     private Date degreeDate;
@@ -24,7 +24,7 @@ public class CertificateReportManager extends ReportManager{
     private String grade;
 
     public CertificateReportManager() {
-        jrxmlFileName = "Certificate.jrxml";
+        jasperFileName = "Certificate.jrxml";
         dataSource = null;
     }
 

@@ -11,12 +11,14 @@
 
 package com.hueic.CerGS.ui.report;
 
+import com.hueic.CerGS.component.report.ReportManager;
 import com.hueic.CerGS.component.report.StudentReportManager;
 import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.dao.StudentDAO;
 import com.hueic.CerGS.entity.Register;
 import com.hueic.CerGS.entity.Student;
 import java.util.ArrayList;
+import javax.swing.JPanel;
 
 /**
  *
@@ -26,13 +28,14 @@ public class frmStudentReport extends javax.swing.JFrame {
 
     /** Creates new form frmStudentReport */
     public frmStudentReport(String courseId) {
+        
+        initComponents();
         ArrayList<Student> studentList = new StudentDAO().readByAll();
         ArrayList<Register> resList = new RegisterDAO().readByAll();
-        StudentReportManager studentReport = new StudentReportManager(courseId, studentList, resList);
-
-        this.add(studentReport.getJPanelViewer());
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        initComponents();
+        ReportManager studentReport = new ReportManager(courseId);
+        JPanel panel = studentReport.getEnumerationViewer(studentList, true);
+        this.add(panel);
+        panel.setVisible(true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 

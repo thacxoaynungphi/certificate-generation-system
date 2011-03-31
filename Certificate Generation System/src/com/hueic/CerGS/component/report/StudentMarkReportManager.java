@@ -17,7 +17,7 @@ import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
  *
  * @author Wind
  */
-public class StudentMarkReportManager extends ReportManager {
+public class StudentMarkReportManager extends ReportManager1 {
 
     private String studentId;
     private String studentName;
@@ -33,7 +33,7 @@ public class StudentMarkReportManager extends ReportManager {
             String courseId, ArrayList<Mark> markList, ArrayList<Subject> subList) {
         this.studentId = studentId;
         this.courseId = courseId;
-        jrxmlFileName = "StudentMark.jrxml";
+        jasperFileName = "StudentMark.jrxml";
         dataSource = getJRMapCollectionDataSource(markList, subList);
     }
 

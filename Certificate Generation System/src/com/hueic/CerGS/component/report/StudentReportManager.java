@@ -18,13 +18,13 @@ import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
  *
  * @author Wind
  */
-public class StudentReportManager extends ReportManager{
+public class StudentReportManager extends ReportManager1{
 
     private String course;
 
     public StudentReportManager(String course,ArrayList<Student> stList, ArrayList<Register> regisList) {
         this.course = course;
-        jrxmlFileName = "Student.jrxml";
+        jasperFileName = "StudentInCourse.jrxml";
         dataSource = getJRMapCollectionDataSource(stList, regisList);
     }
 
@@ -35,7 +35,7 @@ public class StudentReportManager extends ReportManager{
         parameter.put("ID", "STUDENT ID");
         parameter.put("NAME", "FULL NAME");
         parameter.put("BIRTHDAY", "DATE OF BIRTH");
-        parameter.put("REGISTRATIONDAY", "REGISTRATION DAY");
+        parameter.put("REGISDATE", "REGISTRATION DAY");
         parameter.put("COURSE", course);
 
         return parameter;
@@ -63,8 +63,7 @@ public class StudentReportManager extends ReportManager{
             row.put("ID", st.getId());
             row.put("NAME", st.getFirstName() + " " + st.getLastName());
             row.put("BIRTHDAY", DateFormat.getInstance().format(st.getBirthDay()));
-            row.put("REGISTRATIONDAY",
-                    DateFormat.getInstance().format(regisDate));
+            row.put("REGISDATE", DateFormat.getInstance().format(regisDate));
             
             collection.add(row);
         }
