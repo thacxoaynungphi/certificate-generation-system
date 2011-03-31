@@ -203,21 +203,22 @@ public class pnlCertificate extends javax.swing.JPanel {
         lblScore.setForeground(new java.awt.Color(3, 3, 3));
         lblScore.setText("Score:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
         panelRight1.add(lblScore, gridBagConstraints);
 
         lblDegreeDay.setForeground(new java.awt.Color(3, 3, 3));
         lblDegreeDay.setText("Degree Day:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
         panelRight1.add(lblDegreeDay, gridBagConstraints);
 
+        cbxStudentID.setMinimumSize(new java.awt.Dimension(200, 20));
         cbxStudentID.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -228,7 +229,7 @@ public class pnlCertificate extends javax.swing.JPanel {
 
         txtScore.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -287,8 +288,8 @@ public class pnlCertificate extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 10, 0);
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight1.add(PanelButton, gridBagConstraints);
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 12));
@@ -297,19 +298,19 @@ public class pnlCertificate extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
         panelRight1.add(lblTitle, gridBagConstraints);
 
-        sepaCertificate.setMinimumSize(new java.awt.Dimension(320, 10));
-        sepaCertificate.setPreferredSize(new java.awt.Dimension(320, 10));
+        sepaCertificate.setMinimumSize(new java.awt.Dimension(650, 10));
+        sepaCertificate.setPreferredSize(new java.awt.Dimension(650, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
         panelRight1.add(sepaCertificate, gridBagConstraints);
 
         lblID.setForeground(new java.awt.Color(3, 3, 3));
@@ -321,6 +322,7 @@ public class pnlCertificate extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight1.add(lblID, gridBagConstraints);
 
+        txtID.setMinimumSize(new java.awt.Dimension(200, 20));
         txtID.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -331,7 +333,7 @@ public class pnlCertificate extends javax.swing.JPanel {
 
         dateChooseDegreeDay.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -362,19 +364,19 @@ public class pnlCertificate extends javax.swing.JPanel {
         lblScore1.setForeground(new java.awt.Color(3, 3, 3));
         lblScore1.setText("Score:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
         panelRight2.add(lblScore1, gridBagConstraints);
 
         lblDegreeDay1.setForeground(new java.awt.Color(3, 3, 3));
         lblDegreeDay1.setText("Degree Day:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
         panelRight2.add(lblDegreeDay1, gridBagConstraints);
 
         cbxStudentID1.setPreferredSize(new java.awt.Dimension(200, 20));
@@ -387,7 +389,7 @@ public class pnlCertificate extends javax.swing.JPanel {
 
         txtScore1.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -410,7 +412,9 @@ public class pnlCertificate extends javax.swing.JPanel {
         btnUpdate1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
         btnUpdate1.setText("Update");
         btnUpdate1.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnUpdate1.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnUpdate1.setMaximumSize(new java.awt.Dimension(77, 23));
+        btnUpdate1.setMinimumSize(new java.awt.Dimension(77, 23));
+        btnUpdate1.setPreferredSize(new java.awt.Dimension(77, 23));
         btnUpdate1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdate1ActionPerformed(evt);
@@ -446,8 +450,8 @@ public class pnlCertificate extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 10, 0);
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         panelRight2.add(PanelButton1, gridBagConstraints);
 
         lblTitle1.setFont(new java.awt.Font("Tahoma", 1, 12));
@@ -456,19 +460,18 @@ public class pnlCertificate extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
         panelRight2.add(lblTitle1, gridBagConstraints);
 
         sepaCertificate1.setMinimumSize(new java.awt.Dimension(320, 10));
-        sepaCertificate1.setPreferredSize(new java.awt.Dimension(320, 10));
+        sepaCertificate1.setPreferredSize(new java.awt.Dimension(650, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
         panelRight2.add(sepaCertificate1, gridBagConstraints);
 
         lblID1.setForeground(new java.awt.Color(3, 3, 3));
@@ -488,9 +491,12 @@ public class pnlCertificate extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight2.add(txtID1, gridBagConstraints);
 
+        dateChooseDegreeDay1.setMaxSelectableDate(new java.util.Date(253370743317000L));
+        dateChooseDegreeDay1.setMaximumSize(new java.awt.Dimension(200, 20));
+        dateChooseDegreeDay1.setMinimumSize(new java.awt.Dimension(200, 20));
         dateChooseDegreeDay1.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);

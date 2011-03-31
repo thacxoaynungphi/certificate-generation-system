@@ -247,17 +247,18 @@ public class pnlMark extends javax.swing.JPanel {
         lblInfo.setForeground(new java.awt.Color(102, 0, 102));
         lblInfo.setText("Information Mark");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         panelRight.add(lblInfo, gridBagConstraints);
 
-        seqarator1.setPreferredSize(new java.awt.Dimension(280, 10));
+        seqarator1.setMinimumSize(new java.awt.Dimension(650, 10));
+        seqarator1.setPreferredSize(new java.awt.Dimension(650, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
         panelRight.add(seqarator1, gridBagConstraints);
 
         lblMarkID.setForeground(new java.awt.Color(3, 3, 3));
@@ -281,23 +282,24 @@ public class pnlMark extends javax.swing.JPanel {
         lblSubjectName.setForeground(new java.awt.Color(3, 3, 3));
         lblSubjectName.setText("Subject Name:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
         panelRight.add(lblSubjectName, gridBagConstraints);
 
         lblMark.setForeground(new java.awt.Color(3, 3, 3));
         lblMark.setText("Mark:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
         panelRight.add(lblMark, gridBagConstraints);
 
         txtMarkId.setEnabled(false);
-        txtMarkId.setPreferredSize(new java.awt.Dimension(180, 20));
+        txtMarkId.setMinimumSize(new java.awt.Dimension(200, 20));
+        txtMarkId.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -306,7 +308,8 @@ public class pnlMark extends javax.swing.JPanel {
         panelRight.add(txtMarkId, gridBagConstraints);
 
         cbxStudentId.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxStudentId.setPreferredSize(new java.awt.Dimension(180, 20));
+        cbxStudentId.setMinimumSize(new java.awt.Dimension(200, 20));
+        cbxStudentId.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -314,17 +317,19 @@ public class pnlMark extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(cbxStudentId, gridBagConstraints);
 
-        txtSubjectName.setPreferredSize(new java.awt.Dimension(180, 20));
+        txtSubjectName.setMinimumSize(new java.awt.Dimension(200, 20));
+        txtSubjectName.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(txtSubjectName, gridBagConstraints);
 
-        txtMark.setPreferredSize(new java.awt.Dimension(180, 20));
+        txtMark.setMinimumSize(new java.awt.Dimension(200, 20));
+        txtMark.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -335,6 +340,8 @@ public class pnlMark extends javax.swing.JPanel {
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
         btnAdd.setText("Add");
         btnAdd.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnAdd.setMinimumSize(new java.awt.Dimension(75, 23));
+        btnAdd.setPreferredSize(new java.awt.Dimension(75, 23));
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
@@ -345,7 +352,9 @@ public class pnlMark extends javax.swing.JPanel {
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
         btnUpdate.setText("Update");
         btnUpdate.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnUpdate.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnUpdate.setMaximumSize(new java.awt.Dimension(77, 23));
+        btnUpdate.setMinimumSize(new java.awt.Dimension(77, 23));
+        btnUpdate.setPreferredSize(new java.awt.Dimension(77, 23));
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
@@ -356,6 +365,7 @@ public class pnlMark extends javax.swing.JPanel {
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
         btnDelete.setText("Delete");
         btnDelete.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnDelete.setMinimumSize(new java.awt.Dimension(75, 23));
         btnDelete.setPreferredSize(new java.awt.Dimension(75, 23));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -367,6 +377,7 @@ public class pnlMark extends javax.swing.JPanel {
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
         btnCancel.setText("Cancel");
         btnCancel.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnCancel.setMinimumSize(new java.awt.Dimension(75, 23));
         btnCancel.setPreferredSize(new java.awt.Dimension(75, 23));
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -378,8 +389,8 @@ public class pnlMark extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.insets = new java.awt.Insets(10, 5, 5, 5);
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(panelButton, gridBagConstraints);
 
         txtStudentId.setText("jTextField1");
@@ -396,7 +407,7 @@ public class pnlMark extends javax.swing.JPanel {
         cbxSubjectID.setMinimumSize(new java.awt.Dimension(180, 20));
         cbxSubjectID.setPreferredSize(new java.awt.Dimension(180, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -420,17 +431,18 @@ public class pnlMark extends javax.swing.JPanel {
         lblInfo1.setForeground(new java.awt.Color(102, 0, 102));
         lblInfo1.setText("Information Mark");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         panelRight1.add(lblInfo1, gridBagConstraints);
 
-        seqarator2.setPreferredSize(new java.awt.Dimension(280, 10));
+        seqarator2.setMinimumSize(new java.awt.Dimension(650, 10));
+        seqarator2.setPreferredSize(new java.awt.Dimension(650, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
         panelRight1.add(seqarator2, gridBagConstraints);
 
         lblMarkID1.setForeground(new java.awt.Color(3, 3, 3));
@@ -454,23 +466,24 @@ public class pnlMark extends javax.swing.JPanel {
         lblSubjectName1.setForeground(new java.awt.Color(3, 3, 3));
         lblSubjectName1.setText("Subject Name:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
         panelRight1.add(lblSubjectName1, gridBagConstraints);
 
         lblMark1.setForeground(new java.awt.Color(3, 3, 3));
         lblMark1.setText("Mark:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
         panelRight1.add(lblMark1, gridBagConstraints);
 
         txtMarkId1.setEnabled(false);
-        txtMarkId1.setPreferredSize(new java.awt.Dimension(180, 20));
+        txtMarkId1.setMinimumSize(new java.awt.Dimension(200, 20));
+        txtMarkId1.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -479,7 +492,8 @@ public class pnlMark extends javax.swing.JPanel {
         panelRight1.add(txtMarkId1, gridBagConstraints);
 
         cbxStudentId1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxStudentId1.setPreferredSize(new java.awt.Dimension(180, 20));
+        cbxStudentId1.setMinimumSize(new java.awt.Dimension(200, 20));
+        cbxStudentId1.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -487,17 +501,19 @@ public class pnlMark extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight1.add(cbxStudentId1, gridBagConstraints);
 
-        txtSubjectName1.setPreferredSize(new java.awt.Dimension(180, 20));
+        txtSubjectName1.setMinimumSize(new java.awt.Dimension(200, 20));
+        txtSubjectName1.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight1.add(txtSubjectName1, gridBagConstraints);
 
-        txtMark1.setPreferredSize(new java.awt.Dimension(180, 20));
+        txtMark1.setMinimumSize(new java.awt.Dimension(200, 20));
+        txtMark1.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -508,6 +524,8 @@ public class pnlMark extends javax.swing.JPanel {
         btnAdd1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
         btnAdd1.setText("Add");
         btnAdd1.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnAdd1.setMinimumSize(new java.awt.Dimension(75, 23));
+        btnAdd1.setPreferredSize(new java.awt.Dimension(75, 23));
         btnAdd1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdd1ActionPerformed(evt);
@@ -518,7 +536,8 @@ public class pnlMark extends javax.swing.JPanel {
         btnUpdate1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
         btnUpdate1.setText("Update");
         btnUpdate1.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnUpdate1.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnUpdate1.setMinimumSize(new java.awt.Dimension(75, 23));
+        btnUpdate1.setPreferredSize(new java.awt.Dimension(77, 23));
         btnUpdate1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdate1ActionPerformed(evt);
@@ -529,6 +548,7 @@ public class pnlMark extends javax.swing.JPanel {
         btnDelete1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
         btnDelete1.setText("Delete");
         btnDelete1.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnDelete1.setMinimumSize(new java.awt.Dimension(75, 23));
         btnDelete1.setPreferredSize(new java.awt.Dimension(75, 23));
         btnDelete1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -540,6 +560,7 @@ public class pnlMark extends javax.swing.JPanel {
         btnCancel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
         btnCancel1.setText("Cancel");
         btnCancel1.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnCancel1.setMinimumSize(new java.awt.Dimension(75, 23));
         btnCancel1.setPreferredSize(new java.awt.Dimension(75, 23));
         btnCancel1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -551,13 +572,13 @@ public class pnlMark extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.insets = new java.awt.Insets(10, 5, 5, 5);
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight1.add(panelButton1, gridBagConstraints);
 
         txtStudentId1.setText("jTextField1");
         txtStudentId1.setMinimumSize(new java.awt.Dimension(180, 20));
-        txtStudentId1.setPreferredSize(new java.awt.Dimension(180, 20));
+        txtStudentId1.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -566,10 +587,10 @@ public class pnlMark extends javax.swing.JPanel {
         panelRight1.add(txtStudentId1, gridBagConstraints);
 
         cbxSubjectID1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxSubjectID1.setMinimumSize(new java.awt.Dimension(180, 20));
-        cbxSubjectID1.setPreferredSize(new java.awt.Dimension(180, 20));
+        cbxSubjectID1.setMinimumSize(new java.awt.Dimension(200, 20));
+        cbxSubjectID1.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -666,7 +687,7 @@ public class pnlMark extends javax.swing.JPanel {
         btnFilter.setText("Filter");
         btnFilter.setMaximumSize(new java.awt.Dimension(80, 23));
         btnFilter.setMinimumSize(new java.awt.Dimension(80, 23));
-        btnFilter.setPreferredSize(new java.awt.Dimension(70, 23));
+        btnFilter.setPreferredSize(new java.awt.Dimension(75, 23));
         btnFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFilterActionPerformed(evt);
