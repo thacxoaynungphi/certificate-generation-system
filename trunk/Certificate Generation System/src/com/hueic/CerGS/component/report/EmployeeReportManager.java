@@ -15,13 +15,13 @@ import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
  *
  * @author Wind
  */
-public class EmployeeReportManager extends ReportManager{
+public class EmployeeReportManager extends ReportManager1{
 
     public EmployeeReportManager() {
     }
 
     public EmployeeReportManager(ArrayList<Employee> empList){
-        jrxmlFileName = "EmployeeList.jrxml";
+        jasperFileName = "EmployeeList.jrxml";
         dataSource = getJRMapCollectionDataSource(empList);
     }
 

@@ -19,7 +19,7 @@ import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
  *
  * @author Wind
  */
-public class NewStudentRegistrationCourse extends ReportManager{
+public class NewStudentRegistrationCourse extends ReportManager1{
     private String courseId;
 
     public NewStudentRegistrationCourse() {
@@ -27,7 +27,7 @@ public class NewStudentRegistrationCourse extends ReportManager{
 
     public NewStudentRegistrationCourse(String courseId) {
         this.courseId = courseId;
-        jrxmlFileName = "StudentRegister.jrxml";
+        jasperFileName = "StudentRegister.jrxml";
     }
 
     @Override

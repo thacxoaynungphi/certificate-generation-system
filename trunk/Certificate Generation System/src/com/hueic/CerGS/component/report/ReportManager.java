@@ -1,107 +1,104 @@
+package com.hueic.CerGS.component.report;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hueic.CerGS.component.report;
-
-import java.io.File;
+import com.hueic.CerGS.dao.RegisterDAO;
+import com.hueic.CerGS.dao.StudentDAO;
+import com.hueic.CerGS.entity.Course;
+import com.hueic.CerGS.entity.Student;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
-import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
 import net.sf.jasperreports.view.JRViewer;
 
-/**
- *
- * @author Wind
- */
-public abstract class ReportManager {
+public class ReportManager {
 
-    protected String jrxmlFileName;
-    protected String jrxmlFolderName = "src\\hueic\\CerGS\\report";
-    protected HashMap parameter;
-    protected JRDataSource dataSource;
-    protected JasperReport jasperReport;
-    protected InputStream input;
+    RegisterDAO registerDAO;
+    String course;
 
-    protected abstract HashMap getParameterReport();
-
-    protected JasperReport getReport(String filename) throws JRException {
-        if (System.getProperty("DEBUG") != null) {
-            System.out.println("JasperReportUtils-> Checking report: " + filename);
-        }
-
-        String jasperFilename = filename;
-        if (filename.indexOf(".xml") > -1) {
-            jasperFilename = filename.substring(
-                    0, filename.lastIndexOf(".xml"));
-        }
-        if (filename.indexOf(".jrxml") > -1) {
-            jasperFilename = filename.substring(
-                    0, filename.lastIndexOf(".jrxml"));
-        }
-        File jasperFile = new File(jasperFilename + ".jasper");
-        if (!jasperFile.exists()) {
-            //The XML should exist so compile that
-            File xmlFile = new File(filename);
-            if (!xmlFile.exists()) {
-                return null;
-            }
-            JasperCompileManager.compileReportToFile(
-                    xmlFile.getPath(), jasperFile.getPath());
-        }
-        if (!jasperFile.exists()) {
-            return null;
-        }
-        //Load and return the report
-        return (JasperReport) JRLoader.loadObject(jasperFile.getPath());
+    public ReportManager() {
+        registerDAO = new RegisterDAO();
     }
 
-    private JasperPrint getJasperPrint() {
-        JasperPrint jasperPrint = null;
+    public ReportManager(String course) {
+        this.registerDAO = new RegisterDAO();
+        this.course = course;
+    }
+
+
+
+    @SuppressWarnings(value = "unchecked")
+    public JPanel getEnumerationViewer(ArrayList<Student> arr, boolean isEnumeration) {
+        JPanel viewer = null;
         try {
-            input = getInputStream();
-            parameter = getParameterReport();
-            jasperReport = getReport(jrxmlFolderName + "\\" + jrxmlFileName);
+            //THONG TIN PARAMETER
+            HashMap parameterMap = new HashMap();
 
-            if(jasperReport != null) System.out.println(jasperReport.getColumnCount());
-            else System.out.println("123");
+            parameterMap.put("COURSE", course);
+            parameterMap.put("ID", "ID");
+            parameterMap.put("NAME", "FULL NAME");
+            parameterMap.put("BIRTHDAY", "BIRTHDAY");
+            parameterMap.put("REGISDATE", "REGISTRATION DATE");
 
-            jasperPrint = JasperFillManager.fillReport(jasperReport, parameter, dataSource);
-        } catch (JRException ex) {
+            ArrayList reportRows = new ArrayList();
+            //THONG TIN HOC VIEN
+            HashMap rowMap = null;
+            for (Student st : arr) {
+                rowMap = new HashMap();
+                rowMap.put("ID", "ID");
+                rowMap.put("NAME", st.getFullName());
+                java.util.Date regisDate = null;
+                java.util.Date birthday = new java.util.Date(st.getBirthDay().getTime());
+                
+                try{
+                    regisDate = registerDAO.readById(st.getId(), course).getRegisDate();
+                    System.out.println(st.getId());
+                }catch(Exception ex){
+                    continue;
+                }
+                rowMap.put("BIRTHDAY", DateFormat.getInstance().format(birthday));
+                rowMap.put("REGISDATE", DateFormat.getInstance().format(regisDate));
+
+                reportRows.add(rowMap);
+            }
+            rowMap = new HashMap();
+            InputStream input = getInputStream("StudentInCourse.jasper");
+            JRMapCollectionDataSource dataSource = new JRMapCollectionDataSource(reportRows);
+            
+            JasperPrint jasperPrint = JasperFillManager.fillReport(input, parameterMap,dataSource) ;
+
+            if(jasperPrint == null) System.out.println("123");
+            viewer = new JRViewer(jasperPrint);
+
+        }
+        catch (JRException ex) {
             Logger.getLogger(ReportManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        return jasperPrint;
+        return viewer;
     }
 
-    public JPanel getJPanelViewer() {
-        return new JRViewer(getJasperPrint());
-    }
+    private InputStream getInputStream(String reportName) {
+        URL url = getClass().getResource("../../report/" + reportName);
+        InputStream input = null;
 
-    public void exportToPdfFile(String pdfFileName) throws JRException {
-        JasperExportManager.exportReportToPdfFile(getJasperPrint(), pdfFileName);
-    }
-
-    private InputStream getInputStream() {
-        URL url = getClass().getResource("../../report/" + jrxmlFileName);
         try {
             input = url.openStream();
-        } catch (IOException ex) {
-            Logger.getLogger(ReportManager.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
+            System.out.println(url.getPath());
             return input;
+        } catch (IOException ex) {
+            return null;
         }
     }
 }
