@@ -8,28 +8,14 @@
  *
  * Created on Mar 13, 2011, 5:37:51 PM
  */
-package com.hueic.CerGS.ui.main;
+package com.hueic.CerGS.ui;
 
 import com.hueic.CerGS.component.AppStatusBar;
 import com.hueic.CerGS.entity.Account;
-import com.hueic.CerGS.ui.pnlAccount;
 import com.hueic.CerGS.component.GUIProperties;
 import com.hueic.CerGS.component.IconSystem;
 import com.hueic.CerGS.dao.GUIDAO;
-import com.hueic.CerGS.dao.PersonDAO;
-import com.hueic.CerGS.entity.Person;
-import com.hueic.CerGS.ui.dlgAbount;
-import com.hueic.CerGS.ui.dlgChangePass;
-import com.hueic.CerGS.ui.dlgLogin;
-import com.hueic.CerGS.ui.pnlCertificate;
-import com.hueic.CerGS.ui.pnlCourse;
 import com.hueic.CerGS.ui.main.employee.frmEmployee;
-import com.hueic.CerGS.ui.main.employee.frmViewInfo;
-import com.hueic.CerGS.ui.pnlMark;
-import com.hueic.CerGS.ui.pnlPayment;
-import com.hueic.CerGS.ui.pnlPermission;
-import com.hueic.CerGS.ui.pnlRegister;
-import com.hueic.CerGS.ui.pnlSubject;
 import java.net.URL;
 import javax.help.CSH;
 import javax.help.HelpBroker;
@@ -46,7 +32,7 @@ public class frmMain extends javax.swing.JFrame {
     GUIProperties guip = new GUIProperties();
     public Account accCur;
     String theme = "Silver";
-    String lookandfeel = GUIProperties.PLAF_JGOODIES;
+    String lookandfeel = guip.PLAF_JGOODIES;
     pnlAccount account = new pnlAccount();
     pnlCertificate cer = new pnlCertificate();
     pnlCourse course = new pnlCourse();
@@ -55,7 +41,9 @@ public class frmMain extends javax.swing.JFrame {
     pnlRegister register = new pnlRegister();
     pnlPermission per = new pnlPermission();
     pnlSubject subject = new pnlSubject();
-
+    pnlStudent student = new pnlStudent();
+    pnlEmployee emp = new pnlEmployee();
+    
     public frmMain() {
         initComponents();
         setLocationRelativeTo(null);
@@ -131,14 +119,16 @@ public class frmMain extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        pnlAccount = new javax.swing.JPanel();
-        pnlCertificate = new javax.swing.JPanel();
-        pnlCourse = new javax.swing.JPanel();
-        pnlMark = new javax.swing.JPanel();
-        pnlPayment = new javax.swing.JPanel();
+        pnlEmployee = new javax.swing.JPanel();
+        pnlStudent = new javax.swing.JPanel();
         pnlRegister = new javax.swing.JPanel();
-        pnlPermission = new javax.swing.JPanel();
+        pnlCourse = new javax.swing.JPanel();
+        pnlPayment = new javax.swing.JPanel();
         pnlSubject = new javax.swing.JPanel();
+        pnlMark = new javax.swing.JPanel();
+        pnlCertificate = new javax.swing.JPanel();
+        pnlAccount = new javax.swing.JPanel();
+        pnlPermission = new javax.swing.JPanel();
         StatusPnl = new javax.swing.JPanel();
         mnuBSystem = new javax.swing.JMenuBar();
         mnuSystem = new javax.swing.JMenu();
@@ -168,7 +158,6 @@ public class frmMain extends javax.swing.JFrame {
         radioSkyPink = new javax.swing.JRadioButtonMenuItem();
         radioSkyRed = new javax.swing.JRadioButtonMenuItem();
         radioSkyYellow = new javax.swing.JRadioButtonMenuItem();
-        mnuIViewInformation = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         mnuIExit = new javax.swing.JMenuItem();
         mnuHelp = new javax.swing.JMenu();
@@ -270,11 +259,13 @@ public class frmMain extends javax.swing.JFrame {
         panelLeft.setPreferredSize(new java.awt.Dimension(1024, 600));
         panelLeft.setLayout(new java.awt.GridBagLayout());
 
+        tpnBusiness.setBackground(new java.awt.Color(255, 255, 255));
         tpnBusiness.setTabPlacement(javax.swing.JTabbedPane.LEFT);
-        tpnBusiness.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        tpnBusiness.setFont(new java.awt.Font("Tahoma", 1, 12));
         tpnBusiness.setMinimumSize(new java.awt.Dimension(1024, 600));
         tpnBusiness.setPreferredSize(new java.awt.Dimension(1024, 600));
 
+        pnlHome.setBackground(new java.awt.Color(255, 255, 255));
         pnlHome.setMaximumSize(new java.awt.Dimension(800, 600));
         pnlHome.setMinimumSize(new java.awt.Dimension(800, 600));
         pnlHome.setPreferredSize(new java.awt.Dimension(800, 600));
@@ -424,29 +415,51 @@ public class frmMain extends javax.swing.JFrame {
 
         tpnBusiness.addTab("  HOME                   ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlHome); // NOI18N
 
-        pnlAccount = account;
-        tpnBusiness.addTab("Account             ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlAccount); // NOI18N
+        pnlEmployee.setBackground(new java.awt.Color(255, 255, 255));
 
-        pnlCertificate = cer;
-        tpnBusiness.addTab("Certificate", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlCertificate); // NOI18N
+        pnlEmployee = emp;
 
-        pnlCourse = course;
-        tpnBusiness.addTab("Course", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlCourse); // NOI18N
+        tpnBusiness.addTab("Employee", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlEmployee); // NOI18N
 
-        pnlMark = mark;
-        tpnBusiness.addTab("Mark", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlMark); // NOI18N
+        pnlStudent.setBackground(new java.awt.Color(255, 255, 255));
 
-        pnlPayment = payment;
-        tpnBusiness.addTab("Payment", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlPayment); // NOI18N
+        pnlStudent = student;
 
+        tpnBusiness.addTab("Student", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlStudent); // NOI18N
+
+        pnlRegister.setBackground(new java.awt.Color(255, 255, 255));
         pnlRegister = register;
         tpnBusiness.addTab("Register", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlRegister); // NOI18N
 
-        pnlPermission = per;
-        tpnBusiness.addTab("Permission", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlPermission); // NOI18N
+        pnlCourse.setBackground(new java.awt.Color(255, 255, 255));
 
+        pnlCourse = course;
+
+        tpnBusiness.addTab("Course", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlCourse); // NOI18N
+
+        pnlPayment.setBackground(new java.awt.Color(255, 255, 255));
+        pnlPayment = payment;
+        tpnBusiness.addTab("Payment", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlPayment); // NOI18N
+
+        pnlSubject.setBackground(new java.awt.Color(255, 255, 255));
         pnlSubject = subject;
         tpnBusiness.addTab("Subject", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlSubject); // NOI18N
+
+        pnlMark.setBackground(new java.awt.Color(255, 255, 255));
+        pnlMark = mark;
+        tpnBusiness.addTab("Mark", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlMark); // NOI18N
+
+        pnlCertificate.setBackground(new java.awt.Color(255, 255, 255));
+        pnlCertificate = cer;
+        tpnBusiness.addTab("Certificate", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlCertificate); // NOI18N
+
+        pnlAccount.setBackground(new java.awt.Color(255, 255, 255));
+        pnlAccount = account;
+        tpnBusiness.addTab("Account             ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlAccount); // NOI18N
+
+        pnlPermission.setBackground(new java.awt.Color(255, 255, 255));
+        pnlPermission = per;
+        tpnBusiness.addTab("Permission", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlPermission); // NOI18N
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -698,16 +711,6 @@ public class frmMain extends javax.swing.JFrame {
         mnuOptions.add(mnuTheme);
 
         mnuSystem.add(mnuOptions);
-
-        mnuIViewInformation.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.ALT_MASK));
-        mnuIViewInformation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/businessman_find.png"))); // NOI18N
-        mnuIViewInformation.setText("View Information");
-        mnuIViewInformation.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuIViewInformationActionPerformed(evt);
-            }
-        });
-        mnuSystem.add(mnuIViewInformation);
         mnuSystem.add(jSeparator1);
 
         mnuIExit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK));
@@ -805,16 +808,6 @@ public class frmMain extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_mnuIExitActionPerformed
-
-    private void mnuIViewInformationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuIViewInformationActionPerformed
-        // TODO add your handling code here:
-        if (accCur != null) {
-            PersonDAO personDao = new PersonDAO();
-            Person person = personDao.readByID(this.accCur.getUsername());
-            frmViewInfo viewInfo = new frmViewInfo(person);
-            viewInfo.setVisible(true);
-        }
-    }//GEN-LAST:event_mnuIViewInformationActionPerformed
 
     private void mnuISwitchUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuISwitchUserActionPerformed
         // TODO add your handling code here:
@@ -968,12 +961,10 @@ public class frmMain extends javax.swing.JFrame {
         if (this.accCur != null) {
             mnuILogoutSystem.setVisible(true);
             mnuISwitchUser.setVisible(true);
-            mnuIViewInformation.setVisible(true);
             mnuILoginSystem.setVisible(false);
         } else {
             mnuILogoutSystem.setVisible(false);
             mnuISwitchUser.setVisible(false);
-            mnuIViewInformation.setVisible(false);
             mnuILoginSystem.setVisible(true);
         }
     }
@@ -1029,7 +1020,6 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuILoginSystem;
     private javax.swing.JMenuItem mnuILogoutSystem;
     private javax.swing.JMenuItem mnuISwitchUser;
-    private javax.swing.JMenuItem mnuIViewInformation;
     private javax.swing.JMenu mnuOptions;
     private javax.swing.JMenu mnuSkin;
     private javax.swing.JMenu mnuSystem;
@@ -1040,11 +1030,13 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JPanel pnlAccount;
     private javax.swing.JPanel pnlCertificate;
     private javax.swing.JPanel pnlCourse;
+    private javax.swing.JPanel pnlEmployee;
     private javax.swing.JPanel pnlHome;
     private javax.swing.JPanel pnlMark;
     private javax.swing.JPanel pnlPayment;
     private javax.swing.JPanel pnlPermission;
     private javax.swing.JPanel pnlRegister;
+    private javax.swing.JPanel pnlStudent;
     private javax.swing.JPanel pnlSubject;
     private javax.swing.JRadioButtonMenuItem radioDarkStar;
     private javax.swing.JRadioButtonMenuItem radioDesertBlue;

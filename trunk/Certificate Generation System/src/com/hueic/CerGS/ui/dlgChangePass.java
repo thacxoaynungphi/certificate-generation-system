@@ -8,7 +8,6 @@
  *
  * Created on Mar 31, 2011, 5:37:45 AM
  */
-
 package com.hueic.CerGS.ui;
 
 import com.hueic.CerGS.dao.AccountDAO;
@@ -27,6 +26,7 @@ public class dlgChangePass extends javax.swing.JDialog {
     public dlgChangePass(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /** This method is called from within the constructor to
@@ -274,13 +274,15 @@ public class dlgChangePass extends javax.swing.JDialog {
 }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 dlgChangePass dialog = new dlgChangePass(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
@@ -289,7 +291,6 @@ public class dlgChangePass extends javax.swing.JDialog {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnChange;
@@ -311,5 +312,4 @@ public class dlgChangePass extends javax.swing.JDialog {
     private javax.swing.JPasswordField txtOldPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
-
 }
