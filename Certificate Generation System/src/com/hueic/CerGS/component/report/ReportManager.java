@@ -90,7 +90,7 @@ public class ReportManager {
     }
 
     private InputStream getInputStream(String reportName) {
-        URL url = getClass().getResource("../../report/" + reportName);
+        URL url = getClass().getResource("/com/hueic/CerGS/report/" + reportName);
         InputStream input = null;
 
         try {

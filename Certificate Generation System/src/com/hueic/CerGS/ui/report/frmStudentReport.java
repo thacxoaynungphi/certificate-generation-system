@@ -31,8 +31,7 @@ public class frmStudentReport extends javax.swing.JFrame {
         
         initComponents();
         ArrayList<Student> studentList = new StudentDAO().readByAll();
-        ArrayList<Register> resList = new RegisterDAO().readByAll();
-        ReportManager studentReport = new ReportManager(courseId);
+        StudentReportManager studentReport = new StudentReportManager(courseId);
         JPanel panel = studentReport.getEnumerationViewer(studentList, true);
         this.add(panel);
         panel.setVisible(true);

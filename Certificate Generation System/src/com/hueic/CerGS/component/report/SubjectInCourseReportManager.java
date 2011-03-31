@@ -25,6 +25,11 @@ import net.sf.jasperreports.view.JRViewer;
  * @author Wind
  */
 public class SubjectInCourseReportManager {
+    private String course;
+
+    public SubjectInCourseReportManager(String course) {
+        this.course = course;
+    }
 
     public JPanel getEnumerationViewer(ArrayList<Subject> arr, boolean isEnumeration) {
         JPanel viewer = null;
@@ -32,23 +37,22 @@ public class SubjectInCourseReportManager {
             //THONG TIN PARAMETER
             HashMap parameterMap = new HashMap();
 
-            parameterMap.put("COURSE","Name");
+            parameterMap.put("COURSE",course);
             parameterMap.put("ID", "Subject Code");
-            parameterMap.put("SUBJECTNAME", "Subject Name");
-            parameterMap.put("COEFFICIENT", "Subject's Fee");
+            parameterMap.put("NAME", "Subject Name");
+            parameterMap.put("COEFFICIENT", "Subject's Coefficient");
 
             ArrayList reportRows = new ArrayList();
             HashMap rowMap = null;
             for (Subject sub : arr) {
                 rowMap = new HashMap();
-                System.out.println(sub.getId());
                 rowMap.put("ID", sub.getId());
-                rowMap.put("SUBJECTNAME", sub.getName());
+                rowMap.put("NAME", sub.getName());
                 rowMap.put("COEFFICIENT", sub.getCoefficient());
                 reportRows.add(rowMap);
             }
             rowMap = new HashMap();
-            JasperPrint jasperPrint = JasperFillManager.fillReport(getInputStream("Test.jasper"),
+            JasperPrint jasperPrint = JasperFillManager.fillReport(getInputStream("SubjectInCourse.jasper"),
                     parameterMap, new JRMapCollectionDataSource(reportRows));
 
             viewer = new JRViewer(jasperPrint);

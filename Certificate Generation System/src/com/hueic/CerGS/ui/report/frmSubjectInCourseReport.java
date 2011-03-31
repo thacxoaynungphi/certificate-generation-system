@@ -24,14 +24,15 @@ public class frmSubjectInCourseReport extends javax.swing.JFrame {
     /** Creates new form frmSubjectInCourseReport */
     public frmSubjectInCourseReport() {
         initComponents();
-        SubjectInCourseReportManager report = new SubjectInCourseReportManager();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        SubjectInCourseReportManager report = new SubjectInCourseReportManager("ARENA");
         SubjectDAO subjectDao = new SubjectDAO();
         ArrayList<Subject> arr = null;
         arr = subjectDao.readByCourseId("ARENA");
         if (arr != null) {
             this.add(report.getEnumerationViewer(arr, true));
         }
-        this.setSize(300, 400);
+        this.setSize(1000, 800);
     }
 
     /** This method is called from within the constructor to
