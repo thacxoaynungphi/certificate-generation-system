@@ -104,6 +104,7 @@ public class PermissionDAO extends BaseDAO implements IPermissionDAO {
                 setLastError("Add Permission unuccessfully");
             }
         } catch (SQLException ex) {
+            System.out.println(ex);
             setLastError("SQL Error!");
         } finally {
             db.closeConnection();
