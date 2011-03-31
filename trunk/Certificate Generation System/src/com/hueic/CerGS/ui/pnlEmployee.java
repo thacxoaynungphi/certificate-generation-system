@@ -106,6 +106,7 @@ public class pnlEmployee extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        btnGGender = new javax.swing.ButtonGroup();
         tpAccount = new javax.swing.JTabbedPane();
         pnlEdit = new javax.swing.JPanel();
         panelContent1 = new javax.swing.JPanel();
@@ -187,17 +188,17 @@ public class pnlEmployee extends javax.swing.JPanel {
         lblTitle.setForeground(new java.awt.Color(102, 0, 102));
         lblTitle.setText("Information Employee");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         panelContent1.add(lblTitle, gridBagConstraints);
 
-        sepaAddStu.setPreferredSize(new java.awt.Dimension(320, 10));
+        sepaAddStu.setPreferredSize(new java.awt.Dimension(650, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
         panelContent1.add(sepaAddStu, gridBagConstraints);
 
         lblFirstname.setForeground(new java.awt.Color(3, 3, 3));
@@ -241,38 +242,39 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent1.add(lblEmail, gridBagConstraints);
 
         lblAddress.setForeground(new java.awt.Color(3, 3, 3));
         lblAddress.setText("Address:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
         panelContent1.add(lblAddress, gridBagConstraints);
 
         lblImage1.setForeground(new java.awt.Color(3, 3, 3));
         lblImage1.setText("Image:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
         panelContent1.add(lblImage1, gridBagConstraints);
 
         lblImage2.setPreferredSize(new java.awt.Dimension(80, 80));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent1.add(lblImage2, gridBagConstraints);
 
-        txtFirstname.setPreferredSize(new java.awt.Dimension(200, 23));
+        txtFirstname.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -281,7 +283,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent1.add(txtFirstname, gridBagConstraints);
 
-        txtLastname.setPreferredSize(new java.awt.Dimension(200, 23));
+        txtLastname.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -291,6 +293,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         panelContent1.add(txtLastname, gridBagConstraints);
 
         radioMale.setBackground(new java.awt.Color(255, 255, 255));
+        btnGGender.add(radioMale);
         radioMale.setForeground(new java.awt.Color(3, 3, 3));
         radioMale.setSelected(true);
         radioMale.setText("Male");
@@ -298,19 +301,21 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.ipadx = 12;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent1.add(radioMale, gridBagConstraints);
 
         radioFemale.setBackground(new java.awt.Color(255, 255, 255));
+        btnGGender.add(radioFemale);
         radioFemale.setForeground(new java.awt.Color(3, 3, 3));
         radioFemale.setText("Female");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent1.add(radioFemale, gridBagConstraints);
 
-        txtEmail.setPreferredSize(new java.awt.Dimension(200, 23));
+        txtEmail.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 7;
@@ -319,9 +324,9 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent1.add(txtEmail, gridBagConstraints);
 
-        txtAddress.setPreferredSize(new java.awt.Dimension(200, 23));
+        txtAddress.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -339,20 +344,20 @@ public class pnlEmployee extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 5);
         panelContent1.add(btnBrowse, gridBagConstraints);
 
-        txtImage.setPreferredSize(new java.awt.Dimension(120, 23));
+        txtImage.setPreferredSize(new java.awt.Dimension(130, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 3, 5, 3);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent1.add(txtImage, gridBagConstraints);
 
         panelButton.setBackground(new java.awt.Color(255, 255, 255));
@@ -394,8 +399,9 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 11;
+        gridBagConstraints.gridwidth = 10;
         gridBagConstraints.ipadx = 3;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
         panelContent1.add(panelButton, gridBagConstraints);
 
         lblStart1.setForeground(new java.awt.Color(255, 0, 0));
@@ -403,6 +409,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 7;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent1.add(lblStart1, gridBagConstraints);
 
@@ -411,6 +418,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent1.add(lblStart2, gridBagConstraints);
 
@@ -419,14 +427,16 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent1.add(lblStart3, gridBagConstraints);
 
         lblStart4.setForeground(new java.awt.Color(255, 0, 0));
         lblStart4.setText("(*)");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 10;
+        gridBagConstraints.gridx = 9;
         gridBagConstraints.gridy = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent1.add(lblStart4, gridBagConstraints);
 
@@ -454,6 +464,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent1.add(lblStart6, gridBagConstraints);
 
@@ -463,23 +474,23 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent1.add(DateChBirthday, gridBagConstraints);
 
         lblBeginwork.setForeground(new java.awt.Color(3, 3, 3));
         lblBeginwork.setText("Begin work:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
         panelContent1.add(lblBeginwork, gridBagConstraints);
 
         DateChBeginWork.setDateFormatString("MM\\dd\\yyyy");
         DateChBeginWork.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -489,16 +500,18 @@ public class pnlEmployee extends javax.swing.JPanel {
         lblPhone.setForeground(new java.awt.Color(3, 3, 3));
         lblPhone.setText("Phone: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
         panelContent1.add(lblPhone, gridBagConstraints);
+
+        txtPhone.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent1.add(txtPhone, gridBagConstraints);
 
@@ -699,7 +712,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 35, 5, 5);
         panelDisplay.add(lblHienthi2, gridBagConstraints);
 
         lblCount1.setBackground(new java.awt.Color(255, 255, 255));
@@ -752,7 +765,7 @@ public class pnlEmployee extends javax.swing.JPanel {
 
         srcPaneEmployee.setMinimumSize(new java.awt.Dimension(800, 250));
         srcPaneEmployee.setOpaque(false);
-        srcPaneEmployee.setPreferredSize(new java.awt.Dimension(800, 250));
+        srcPaneEmployee.setPreferredSize(new java.awt.Dimension(770, 250));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -901,6 +914,7 @@ public class pnlEmployee extends javax.swing.JPanel {
     private javax.swing.JButton btnBrowse;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnFilter1;
+    private javax.swing.ButtonGroup btnGGender;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSearch;

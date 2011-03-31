@@ -262,17 +262,17 @@ public class pnlRegister extends javax.swing.JPanel {
         lblTitle.setForeground(new java.awt.Color(102, 0, 102));
         lblTitle.setText("Register Students");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         panelRight.add(lblTitle, gridBagConstraints);
 
-        sepa1.setPreferredSize(new java.awt.Dimension(300, 10));
+        sepa1.setPreferredSize(new java.awt.Dimension(700, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
         panelRight.add(sepa1, gridBagConstraints);
 
         lblID.setForeground(new java.awt.Color(3, 3, 3));
@@ -305,22 +305,22 @@ public class pnlRegister extends javax.swing.JPanel {
         lblStudentID.setForeground(new java.awt.Color(3, 3, 3));
         lblStudentID.setText("Student ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
         panelRight.add(lblStudentID, gridBagConstraints);
 
         lblRegistrationDate.setForeground(new java.awt.Color(3, 3, 3));
         lblRegistrationDate.setText("Registration Date:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 10, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
         panelRight.add(lblRegistrationDate, gridBagConstraints);
 
-        txtId.setPreferredSize(new java.awt.Dimension(180, 20));
+        txtId.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -329,7 +329,7 @@ public class pnlRegister extends javax.swing.JPanel {
         panelRight.add(txtId, gridBagConstraints);
 
         cbxCourseID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxCourseID.setPreferredSize(new java.awt.Dimension(180, 20));
+        cbxCourseID.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -337,7 +337,7 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(cbxCourseID, gridBagConstraints);
 
-        txtFeesStructe.setPreferredSize(new java.awt.Dimension(180, 20));
+        txtFeesStructe.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -346,29 +346,32 @@ public class pnlRegister extends javax.swing.JPanel {
         panelRight.add(txtFeesStructe, gridBagConstraints);
 
         cbxStudentID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxStudentID.setPreferredSize(new java.awt.Dimension(180, 20));
+        cbxStudentID.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(cbxStudentID, gridBagConstraints);
 
         DateChRegistrationDate.setDateFormatString("MM/dd/yyyy");
-        DateChRegistrationDate.setPreferredSize(new java.awt.Dimension(180, 20));
+        DateChRegistrationDate.setMaximumSize(new java.awt.Dimension(200, 20));
+        DateChRegistrationDate.setMinimumSize(new java.awt.Dimension(200, 20));
+        DateChRegistrationDate.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 10, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(DateChRegistrationDate, gridBagConstraints);
 
         panelButon.setBackground(new java.awt.Color(255, 255, 255));
-        panelButon.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
 
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
         btnAdd.setText("Add");
         btnAdd.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnAdd.setMaximumSize(new java.awt.Dimension(75, 23));
+        btnAdd.setMinimumSize(new java.awt.Dimension(75, 23));
         btnAdd.setPreferredSize(new java.awt.Dimension(75, 23));
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -380,6 +383,8 @@ public class pnlRegister extends javax.swing.JPanel {
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
         btnUpdate.setText("Update");
         btnUpdate.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnUpdate.setMaximumSize(new java.awt.Dimension(80, 23));
+        btnUpdate.setMinimumSize(new java.awt.Dimension(75, 23));
         btnUpdate.setPreferredSize(new java.awt.Dimension(75, 23));
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -391,6 +396,9 @@ public class pnlRegister extends javax.swing.JPanel {
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
         btnDelete.setText("Delete");
         btnDelete.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnDelete.setMaximumSize(new java.awt.Dimension(75, 23));
+        btnDelete.setMinimumSize(new java.awt.Dimension(75, 23));
+        btnDelete.setPreferredSize(new java.awt.Dimension(75, 23));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
@@ -401,6 +409,8 @@ public class pnlRegister extends javax.swing.JPanel {
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
         btnCancel.setText("Cancel");
         btnCancel.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnCancel.setMaximumSize(new java.awt.Dimension(75, 23));
+        btnCancel.setMinimumSize(new java.awt.Dimension(75, 23));
         btnCancel.setPreferredSize(new java.awt.Dimension(75, 23));
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -412,12 +422,12 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 5);
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(panelButon, gridBagConstraints);
 
-        txtCourseID.setMinimumSize(new java.awt.Dimension(180, 20));
-        txtCourseID.setPreferredSize(new java.awt.Dimension(180, 20));
+        txtCourseID.setMinimumSize(new java.awt.Dimension(200, 20));
+        txtCourseID.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -428,7 +438,7 @@ public class pnlRegister extends javax.swing.JPanel {
         txtStudentId.setMinimumSize(new java.awt.Dimension(180, 20));
         txtStudentId.setPreferredSize(new java.awt.Dimension(180, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -714,8 +724,8 @@ public class pnlRegister extends javax.swing.JPanel {
 
         btnFilter.setText("Filter");
         btnFilter.setMaximumSize(new java.awt.Dimension(90, 23));
-        btnFilter.setMinimumSize(new java.awt.Dimension(90, 23));
-        btnFilter.setPreferredSize(new java.awt.Dimension(90, 23));
+        btnFilter.setMinimumSize(new java.awt.Dimension(75, 23));
+        btnFilter.setPreferredSize(new java.awt.Dimension(75, 23));
         btnFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFilterActionPerformed(evt);
@@ -724,7 +734,8 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelLeft.add(btnFilter, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
