@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.hueic.CerGS.util;
 
+import com.hueic.CerGS.component.ConfigureDB;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -15,15 +15,18 @@ import java.util.logging.Logger;
  * @author nhchung
  */
 public class Configure {
+
     Connection con = null;
+    ConfigureDB configureDB = new ConfigureDB();
+
     public Connection getConnection() {
-        String url = "jdbc:sqlserver://localhost:1433;databaseName=Certificate Generation System";
-        //String url = "jdbc:odbc:CertificateGenerationSystem";
-        String user = "sa";
-        String password = "123";
+        com.hueic.CerGS.entity.Configure config = new com.hueic.CerGS.entity.Configure();
+        config = configureDB.getInfo();
+        String url = "jdbc:sqlserver://" + config.getSever() + ":" + config.getPort() + ";databaseName=" + config.getDatabase() + "";
+        String user = config.getUsername();
+        String password = config.getPassword();
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            //Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             con = java.sql.DriverManager.getConnection(url, user, password);
         } catch (SQLException ex) {
             Logger.getLogger(Configure.class.getName()).log(Level.SEVERE, null, ex);

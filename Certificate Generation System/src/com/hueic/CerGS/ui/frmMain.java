@@ -48,6 +48,7 @@ public class frmMain extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         guidao = new GUIDAO(this);
+        guidao.setGUI(lookandfeel, theme);
         new IconSystem(this);
         initStatusBar();
         System.out.println("W : " + this.getWidth() + "H : " + this.getHeight());
@@ -419,7 +420,7 @@ public class frmMain extends javax.swing.JFrame {
 
         pnlEmployee = emp;
 
-        tpnBusiness.addTab("Employee", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlEmployee); // NOI18N
+        tpnBusiness.addTab("Employee            ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlEmployee); // NOI18N
 
         pnlStudent.setBackground(new java.awt.Color(255, 255, 255));
 
