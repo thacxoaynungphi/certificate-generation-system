@@ -116,7 +116,7 @@ public class pnlStudent extends javax.swing.JPanel {
         java.awt.GridBagConstraints gridBagConstraints;
 
         btnGGender = new javax.swing.ButtonGroup();
-        tpAccount = new javax.swing.JTabbedPane();
+        tpStudent = new javax.swing.JTabbedPane();
         pnlEdit = new javax.swing.JPanel();
         panelContent1 = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
@@ -169,6 +169,8 @@ public class pnlStudent extends javax.swing.JPanel {
         lblTitle1 = new javax.swing.JLabel();
         sepaCourse = new javax.swing.JSeparator();
         btnSearch = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         panelContent = new javax.swing.JPanel();
         panelTop = new javax.swing.JPanel();
         lblHienthi1 = new javax.swing.JLabel();
@@ -181,8 +183,8 @@ public class pnlStudent extends javax.swing.JPanel {
 
         setLayout(new java.awt.GridBagLayout());
 
-        tpAccount.setMinimumSize(new java.awt.Dimension(800, 320));
-        tpAccount.setPreferredSize(new java.awt.Dimension(800, 320));
+        tpStudent.setMinimumSize(new java.awt.Dimension(800, 320));
+        tpStudent.setPreferredSize(new java.awt.Dimension(800, 320));
 
         pnlEdit.setMinimumSize(new java.awt.Dimension(810, 200));
         pnlEdit.setPreferredSize(new java.awt.Dimension(810, 200));
@@ -483,7 +485,7 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         pnlEdit.add(panelContent1, gridBagConstraints);
 
-        tpAccount.addTab("Edit", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Edit_16.png")), pnlEdit); // NOI18N
+        tpStudent.addTab("Edit", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Edit_16.png")), pnlEdit); // NOI18N
 
         pnlSearch.setMinimumSize(new java.awt.Dimension(810, 200));
         pnlSearch.setPreferredSize(new java.awt.Dimension(810, 200));
@@ -679,19 +681,37 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 5);
         panelInfo.add(btnSearch, gridBagConstraints);
 
+        jButton1.setText("jButton1");
+        jButton1.setMaximumSize(new java.awt.Dimension(23, 23));
+        jButton1.setMinimumSize(new java.awt.Dimension(23, 23));
+        jButton1.setPreferredSize(new java.awt.Dimension(23, 23));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        panelInfo.add(jButton1, gridBagConstraints);
+
+        jButton2.setText("jButton2");
+        jButton2.setMaximumSize(new java.awt.Dimension(23, 23));
+        jButton2.setMinimumSize(new java.awt.Dimension(23, 23));
+        jButton2.setPreferredSize(new java.awt.Dimension(23, 23));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        panelInfo.add(jButton2, gridBagConstraints);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         pnlSearch.add(panelInfo, gridBagConstraints);
 
-        tpAccount.addTab("Search", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Search-32.png")), pnlSearch); // NOI18N
+        tpStudent.addTab("Search", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Search-32.png")), pnlSearch); // NOI18N
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        add(tpAccount, gridBagConstraints);
+        add(tpStudent, gridBagConstraints);
 
         panelContent.setMinimumSize(new java.awt.Dimension(800, 280));
         panelContent.setPreferredSize(new java.awt.Dimension(800, 280));
@@ -901,6 +921,8 @@ public class pnlStudent extends javax.swing.JPanel {
     private com.toedter.calendar.JDateChooser dateChooserDateEnd;
     private com.toedter.calendar.JDateChooser dateChooserDateStart;
     private javax.swing.JTextField filterText;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblBirthday;
     private javax.swing.JLabel lblBirthday1;
@@ -931,8 +953,8 @@ public class pnlStudent extends javax.swing.JPanel {
     private javax.swing.JPanel panelInfo;
     private javax.swing.JPanel panelTable;
     private javax.swing.JPanel panelTop;
-    private javax.swing.JPanel pnlEdit;
-    private javax.swing.JPanel pnlSearch;
+    public javax.swing.JPanel pnlEdit;
+    public javax.swing.JPanel pnlSearch;
     private javax.swing.JRadioButton radioFemale;
     private javax.swing.JRadioButton radioFemale1;
     private javax.swing.JRadioButton radioMale;
@@ -941,7 +963,7 @@ public class pnlStudent extends javax.swing.JPanel {
     private javax.swing.JSeparator sepaCourse;
     private javax.swing.JScrollPane srcPanelContent;
     private javax.swing.JTable tableContent;
-    private javax.swing.JTabbedPane tpAccount;
+    public javax.swing.JTabbedPane tpStudent;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFirstName;
@@ -952,4 +974,8 @@ public class pnlStudent extends javax.swing.JPanel {
     private javax.swing.JTextField txtLastname;
     private javax.swing.JTextField txtPhone;
     // End of variables declaration//GEN-END:variables
+
+    int getSelectedCode() {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
 }
