@@ -653,7 +653,15 @@ public class pnlPermission extends javax.swing.JPanel {
     private javax.swing.JTextField txtName1;
     // End of variables declaration//GEN-END:variables
 
-    int getSelectedCode() {
-        throw new UnsupportedOperationException("Not yet implemented");
+    String getSelectedCode() {
+       try {
+            // TODO add your handling code here:
+            int index = tableContent.getSelectedRow();
+            if (index != -1) {
+                return tableContent.getValueAt(index, 0).toString();
+            }
+        } catch (Exception ex) {
+        }
+        return null;
     }
 }

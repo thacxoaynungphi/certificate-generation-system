@@ -890,4 +890,16 @@ public class pnlSubject extends javax.swing.JPanel {
     private javax.swing.JTextField txtSubjectId;
     private javax.swing.JTextField txtSubjectId1;
     // End of variables declaration//GEN-END:variables
+
+    String getSelectedCode() {
+        try {
+            // TODO add your handling code here:
+            int index = tableContent.getSelectedRow();
+            if (index != -1) {
+                return tableContent.getValueAt(index, 0).toString();
+            }
+        } catch (Exception ex) {
+        }
+        return null;
+    }
 }
