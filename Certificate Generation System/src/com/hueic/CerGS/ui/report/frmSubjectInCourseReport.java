@@ -8,8 +8,12 @@
  *
  * Created on Mar 22, 2011, 9:26:54 PM
  */
-
 package com.hueic.CerGS.ui.report;
+
+import com.hueic.CerGS.component.report.SubjectInCourseReportManager;
+import com.hueic.CerGS.dao.SubjectDAO;
+import com.hueic.CerGS.entity.Subject;
+import java.util.ArrayList;
 
 /**
  *
@@ -20,7 +24,14 @@ public class frmSubjectInCourseReport extends javax.swing.JFrame {
     /** Creates new form frmSubjectInCourseReport */
     public frmSubjectInCourseReport() {
         initComponents();
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        SubjectInCourseReportManager report = new SubjectInCourseReportManager();
+        SubjectDAO subjectDao = new SubjectDAO();
+        ArrayList<Subject> arr = null;
+        arr = subjectDao.readByCourseId("ARENA");
+        if (arr != null) {
+            this.add(report.getEnumerationViewer(arr, true));
+        }
+        this.setSize(300, 400);
     }
 
     /** This method is called from within the constructor to
@@ -34,32 +45,20 @@ public class frmSubjectInCourseReport extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new frmSubjectInCourseReport().setVisible(true);
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-
 }
