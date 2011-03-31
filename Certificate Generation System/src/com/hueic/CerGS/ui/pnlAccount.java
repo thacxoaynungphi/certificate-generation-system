@@ -73,11 +73,8 @@ public class pnlAccount extends javax.swing.JPanel {
             new ColumnData("Username", 135, SwingConstants.LEFT, 1),
             new ColumnData("Password", 100, SwingConstants.LEFT, 2),
             new ColumnData("Permission", 140, SwingConstants.LEFT, 3),};
-
         tableModel = new ObjectTableModel(tableContent, columns, listAccounts);
-
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
-
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableContentMouseClicked(evt);
@@ -86,21 +83,14 @@ public class pnlAccount extends javax.swing.JPanel {
         sorter = new TableRowSorter<TableModel>(tableModel);
         tableContent.setRowSorter(sorter);
         headerTable = tableModel.getHeaderTable();
-
         // Create numbering column
         headerTable.createDefaultColumnsFromModel();
         tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
-
         // Put it in a viewport that we can control a bit
-
         JViewport viewport = new JViewport();
-
         // Display numbering column
         viewport.setView(headerTable);
-
         viewport.setPreferredSize(headerTable.getMaximumSize());
-
         srcPanelAccount.setRowHeader(viewport);
         srcPanelAccount.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, headerTable.getTableHeader());
     }

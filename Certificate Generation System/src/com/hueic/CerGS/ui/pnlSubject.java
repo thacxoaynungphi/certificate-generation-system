@@ -228,7 +228,6 @@ public class pnlSubject extends javax.swing.JPanel {
         pnlEdit.setLayout(new java.awt.GridBagLayout());
 
         panelRight.setBackground(new java.awt.Color(255, 255, 255));
-        panelRight.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14)), "Management Subject", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
         panelRight.setForeground(new java.awt.Color(3, 3, 3));
         panelRight.setMinimumSize(new java.awt.Dimension(800, 200));
         panelRight.setPreferredSize(new java.awt.Dimension(800, 200));
@@ -404,7 +403,6 @@ public class pnlSubject extends javax.swing.JPanel {
         pnlSearch.setLayout(new java.awt.GridBagLayout());
 
         panelRight1.setBackground(new java.awt.Color(255, 255, 255));
-        panelRight1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14)), "Management Subject", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
         panelRight1.setForeground(new java.awt.Color(3, 3, 3));
         panelRight1.setMinimumSize(new java.awt.Dimension(800, 200));
         panelRight1.setPreferredSize(new java.awt.Dimension(800, 200));
