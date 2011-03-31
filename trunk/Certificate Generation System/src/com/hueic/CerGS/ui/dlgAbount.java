@@ -86,7 +86,7 @@ public class dlgAbount extends javax.swing.JDialog {
         panelContent.add(lblInfoSoft, gridBagConstraints);
 
         lblInfoGroup.setForeground(new java.awt.Color(3, 3, 3));
-        lblInfoGroup.setText("<html> <body> Develop by: Connec tPlus <br/> Contact: example@gmail.com </body> </html>");
+        lblInfoGroup.setText("<html> <body> Develop by: Connec tPlus <br/> Contact: cergs.hueic@gmail.com </body> </html>");
         lblInfoGroup.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
