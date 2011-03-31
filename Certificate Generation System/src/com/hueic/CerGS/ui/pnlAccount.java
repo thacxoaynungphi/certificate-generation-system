@@ -190,6 +190,7 @@ public class pnlAccount extends javax.swing.JPanel {
         txtConfirmPassword1 = new javax.swing.JPasswordField();
         jButton8 = new javax.swing.JButton();
         jTextField2 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         setMinimumSize(new java.awt.Dimension(800, 600));
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -300,8 +301,8 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         panel1.add(lblTitle, gridBagConstraints);
 
-        sepaAccount.setMinimumSize(new java.awt.Dimension(650, 10));
-        sepaAccount.setPreferredSize(new java.awt.Dimension(650, 10));
+        sepaAccount.setMinimumSize(new java.awt.Dimension(700, 10));
+        sepaAccount.setPreferredSize(new java.awt.Dimension(700, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -334,7 +335,7 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
         panel1.add(lblConfirmPass, gridBagConstraints);
 
         panel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -396,7 +397,6 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 0);
         panel1.add(panel2, gridBagConstraints);
 
@@ -415,7 +415,7 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
         panel1.add(lblType, gridBagConstraints);
 
         cbxUsername.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -500,16 +500,15 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 0);
         panel3.add(lblTitle1, gridBagConstraints);
 
-        sepaAccount1.setPreferredSize(new java.awt.Dimension(350, 10));
+        sepaAccount1.setPreferredSize(new java.awt.Dimension(700, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 10, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
         panel3.add(sepaAccount1, gridBagConstraints);
 
         lblUsername1.setForeground(new java.awt.Color(3, 3, 3));
@@ -536,7 +535,7 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
         panel3.add(lblConfirmPass1, gridBagConstraints);
 
         panel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -559,7 +558,6 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 10, 0);
         panel3.add(panel4, gridBagConstraints);
 
@@ -578,7 +576,7 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
         panel3.add(lblType1, gridBagConstraints);
 
         cbxUsername1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -608,7 +606,7 @@ public class pnlAccount extends javax.swing.JPanel {
         jButton8.setText("jButton4");
         jButton8.setMaximumSize(new java.awt.Dimension(23, 23));
         jButton8.setMinimumSize(new java.awt.Dimension(23, 23));
-        jButton8.setPreferredSize(new java.awt.Dimension(23, 23));
+        jButton8.setPreferredSize(new java.awt.Dimension(23, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 3;
@@ -622,6 +620,15 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panel3.add(jTextField2, gridBagConstraints);
+
+        jButton2.setText("jButton2");
+        jButton2.setPreferredSize(new java.awt.Dimension(23, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panel3.add(jButton2, gridBagConstraints);
 
         pnlSearch.add(panel3, new java.awt.GridBagConstraints());
 
@@ -802,6 +809,7 @@ public class pnlAccount extends javax.swing.JPanel {
     private javax.swing.JComboBox cbxUsername1;
     private javax.swing.JTextField filterText;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton8;
     private javax.swing.JTextField jTextField2;
