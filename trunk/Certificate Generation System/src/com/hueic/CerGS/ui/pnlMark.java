@@ -408,7 +408,7 @@ public class pnlMark extends javax.swing.JPanel {
         jButton3.setText("jButton3");
         jButton3.setMaximumSize(new java.awt.Dimension(23, 23));
         jButton3.setMinimumSize(new java.awt.Dimension(23, 23));
-        jButton3.setPreferredSize(new java.awt.Dimension(23, 23));
+        jButton3.setPreferredSize(new java.awt.Dimension(23, 20));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -422,7 +422,7 @@ public class pnlMark extends javax.swing.JPanel {
         jButton4.setText("jButton4");
         jButton4.setMaximumSize(new java.awt.Dimension(23, 23));
         jButton4.setMinimumSize(new java.awt.Dimension(23, 23));
-        jButton4.setPreferredSize(new java.awt.Dimension(23, 23));
+        jButton4.setPreferredSize(new java.awt.Dimension(23, 20));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -571,7 +571,7 @@ public class pnlMark extends javax.swing.JPanel {
         jButton1.setText("jButton1");
         jButton1.setMaximumSize(new java.awt.Dimension(23, 23));
         jButton1.setMinimumSize(new java.awt.Dimension(23, 23));
-        jButton1.setPreferredSize(new java.awt.Dimension(23, 23));
+        jButton1.setPreferredSize(new java.awt.Dimension(23, 20));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -585,7 +585,7 @@ public class pnlMark extends javax.swing.JPanel {
         jButton2.setText("jButton2");
         jButton2.setMaximumSize(new java.awt.Dimension(23, 23));
         jButton2.setMinimumSize(new java.awt.Dimension(23, 23));
-        jButton2.setPreferredSize(new java.awt.Dimension(23, 23));
+        jButton2.setPreferredSize(new java.awt.Dimension(23, 20));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);

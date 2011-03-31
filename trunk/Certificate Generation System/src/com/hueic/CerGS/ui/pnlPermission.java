@@ -259,7 +259,6 @@ public class pnlPermission extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(30, 5, 5, 5);
         panelRight.add(panelButton, gridBagConstraints);
 
@@ -278,7 +277,7 @@ public class pnlPermission extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(lblcheck1, gridBagConstraints);
 
@@ -369,7 +368,6 @@ public class pnlPermission extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(30, 5, 5, 5);
         panelRight1.add(panelButton1, gridBagConstraints);
 
@@ -389,7 +387,7 @@ public class pnlPermission extends javax.swing.JPanel {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 10);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight1.add(lblcheck3, gridBagConstraints);
 
         lblcheck4.setForeground(new java.awt.Color(255, 0, 51));
@@ -398,7 +396,7 @@ public class pnlPermission extends javax.swing.JPanel {
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 10);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight1.add(lblcheck4, gridBagConstraints);
 
         txtName1.setPreferredSize(new java.awt.Dimension(200, 20));

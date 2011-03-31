@@ -243,7 +243,7 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         panelRight.add(lblTitle, gridBagConstraints);
 
-        sepa1.setPreferredSize(new java.awt.Dimension(700, 10));
+        sepa1.setPreferredSize(new java.awt.Dimension(730, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -395,7 +395,7 @@ public class pnlRegister extends javax.swing.JPanel {
         panelRight.add(txtCourseID, gridBagConstraints);
 
         txtStudentId.setMinimumSize(new java.awt.Dimension(180, 20));
-        txtStudentId.setPreferredSize(new java.awt.Dimension(180, 20));
+        txtStudentId.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
@@ -406,7 +406,7 @@ public class pnlRegister extends javax.swing.JPanel {
         jButton3.setText("jButton3");
         jButton3.setMaximumSize(new java.awt.Dimension(23, 23));
         jButton3.setMinimumSize(new java.awt.Dimension(23, 23));
-        jButton3.setPreferredSize(new java.awt.Dimension(23, 23));
+        jButton3.setPreferredSize(new java.awt.Dimension(23, 20));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -415,12 +415,14 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(jButton3, gridBagConstraints);
 
         jButton4.setText("jButton4");
         jButton4.setMaximumSize(new java.awt.Dimension(23, 23));
         jButton4.setMinimumSize(new java.awt.Dimension(23, 23));
-        jButton4.setPreferredSize(new java.awt.Dimension(23, 23));
+        jButton4.setPreferredSize(new java.awt.Dimension(23, 20));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -429,6 +431,8 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(jButton4, gridBagConstraints);
 
         pnlEdit.add(panelRight, new java.awt.GridBagConstraints());
@@ -453,13 +457,13 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         panelRight1.add(lblTitle1, gridBagConstraints);
 
-        sepa2.setPreferredSize(new java.awt.Dimension(300, 10));
+        sepa2.setPreferredSize(new java.awt.Dimension(730, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
         panelRight1.add(sepa2, gridBagConstraints);
 
         lblID1.setForeground(new java.awt.Color(3, 3, 3));
@@ -495,7 +499,7 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
         panelRight1.add(lblStudentID1, gridBagConstraints);
 
         lblRegistrationDate1.setForeground(new java.awt.Color(3, 3, 3));
@@ -504,10 +508,10 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 10, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
         panelRight1.add(lblRegistrationDate1, gridBagConstraints);
 
-        txtId1.setPreferredSize(new java.awt.Dimension(180, 20));
+        txtId1.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -515,7 +519,7 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight1.add(txtId1, gridBagConstraints);
 
-        txtFeesStructe1.setPreferredSize(new java.awt.Dimension(180, 20));
+        txtFeesStructe1.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -524,7 +528,7 @@ public class pnlRegister extends javax.swing.JPanel {
         panelRight1.add(txtFeesStructe1, gridBagConstraints);
 
         DateChRegistrationDate1.setDateFormatString("MM/dd/yyyy");
-        DateChRegistrationDate1.setPreferredSize(new java.awt.Dimension(180, 20));
+        DateChRegistrationDate1.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 3;
@@ -550,11 +554,11 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight1.add(panelButon1, gridBagConstraints);
 
         txtCourseID1.setMinimumSize(new java.awt.Dimension(180, 20));
-        txtCourseID1.setPreferredSize(new java.awt.Dimension(180, 20));
+        txtCourseID1.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -563,7 +567,7 @@ public class pnlRegister extends javax.swing.JPanel {
         panelRight1.add(txtCourseID1, gridBagConstraints);
 
         txtStudentId1.setMinimumSize(new java.awt.Dimension(180, 20));
-        txtStudentId1.setPreferredSize(new java.awt.Dimension(180, 20));
+        txtStudentId1.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
@@ -574,7 +578,7 @@ public class pnlRegister extends javax.swing.JPanel {
         jButton1.setText("jButton1");
         jButton1.setMaximumSize(new java.awt.Dimension(23, 23));
         jButton1.setMinimumSize(new java.awt.Dimension(23, 23));
-        jButton1.setPreferredSize(new java.awt.Dimension(23, 23));
+        jButton1.setPreferredSize(new java.awt.Dimension(23, 20));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -583,12 +587,14 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight1.add(jButton1, gridBagConstraints);
 
         jButton2.setText("jButton2");
         jButton2.setMaximumSize(new java.awt.Dimension(23, 23));
         jButton2.setMinimumSize(new java.awt.Dimension(23, 23));
-        jButton2.setPreferredSize(new java.awt.Dimension(23, 23));
+        jButton2.setPreferredSize(new java.awt.Dimension(23, 20));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -597,6 +603,8 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight1.add(jButton2, gridBagConstraints);
 
         pnlSearch.add(panelRight1, new java.awt.GridBagConstraints());
