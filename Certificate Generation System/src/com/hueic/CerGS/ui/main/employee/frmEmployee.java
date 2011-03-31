@@ -19,16 +19,9 @@ import java.awt.AWTEvent;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.PatternSyntaxException;
 import javax.swing.CellEditor;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
@@ -36,12 +29,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 /**
  *
@@ -166,10 +155,8 @@ public class frmEmployee extends javax.swing.JFrame {
         filterText = new javax.swing.JTextField();
         btnFilter = new javax.swing.JButton();
         panelContent = new javax.swing.JPanel();
-        btnImport = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
-        btnExport = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
         srcPaneEmployee = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
@@ -358,24 +345,6 @@ public class frmEmployee extends javax.swing.JFrame {
         panelContent.setPreferredSize(new java.awt.Dimension(840, 470));
         panelContent.setLayout(new java.awt.GridBagLayout());
 
-        btnImport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/export1.png"))); // NOI18N
-        btnImport.setText("Import");
-        btnImport.setMargin(new java.awt.Insets(2, 2, 2, 2));
-        btnImport.setMaximumSize(new java.awt.Dimension(90, 25));
-        btnImport.setMinimumSize(new java.awt.Dimension(90, 25));
-        btnImport.setPreferredSize(new java.awt.Dimension(90, 25));
-        btnImport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnImportActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
-        panelContent.add(btnImport, gridBagConstraints);
-
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel.png"))); // NOI18N
         btnCancel.setText("Cancel");
         btnCancel.setMargin(new java.awt.Insets(2, 5, 2, 5));
@@ -410,24 +379,6 @@ public class frmEmployee extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 300, 5, 5);
         panelContent.add(btnSave, gridBagConstraints);
-
-        btnExport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/export1.png"))); // NOI18N
-        btnExport.setText("Export");
-        btnExport.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnExport.setMaximumSize(new java.awt.Dimension(90, 25));
-        btnExport.setMinimumSize(new java.awt.Dimension(90, 25));
-        btnExport.setPreferredSize(new java.awt.Dimension(90, 25));
-        btnExport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExportActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 6, 5, 0);
-        panelContent.add(btnExport, gridBagConstraints);
 
         btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Close.jpg"))); // NOI18N
         btnExit.setText("Exit");
@@ -501,123 +452,6 @@ public class frmEmployee extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_menuIEditActionPerformed
 
-    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
-        FileOutputStream fos = null;
-        try {
-            // TODO add your handling code here:
-            HSSFWorkbook wb = new HSSFWorkbook();
-            HSSFSheet sheet = wb.createSheet("Employee Sheet");
-            HSSFRow rowHead = sheet.createRow(0);
-            rowHead.createCell(0).setCellValue("Id");
-            rowHead.createCell(1).setCellValue("First Name");
-            rowHead.createCell(2).setCellValue("Last Name");
-            rowHead.createCell(3).setCellValue("Birthday");
-            rowHead.createCell(4).setCellValue("Gender");
-            rowHead.createCell(5).setCellValue("Phone");
-            rowHead.createCell(6).setCellValue("Email");
-            rowHead.createCell(7).setCellValue("Address");
-            rowHead.createCell(8).setCellValue("Images");
-            rowHead.createCell(9).setCellValue("Status");
-            rowHead.createCell(10).setCellValue("Begin Work");
-            int index = 1;
-            for (int i = 0; i < listEmp.size(); i++) {
-                Employee emp = listEmp.get(i);
-                HSSFRow row = sheet.createRow(index);
-                row.createCell(0).setCellValue(emp.getId());
-                row.createCell(1).setCellValue(emp.getFirstName());
-                row.createCell(2).setCellValue(emp.getLastName());
-                row.createCell(3).setCellValue(emp.getBirthDay());
-                row.createCell(4).setCellValue(emp.getGender());
-                row.createCell(5).setCellValue(emp.getPhone());
-                row.createCell(6).setCellValue(emp.getEmail());
-                row.createCell(7).setCellValue(emp.getAddress());
-                row.createCell(8).setCellValue(emp.getImage());
-                row.createCell(9).setCellValue(emp.getStatus());
-                row.createCell(10).setCellValue(emp.getBeginWork());
-                index++;
-            }
-            JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setDialogType(JFileChooser.SAVE_DIALOG);
-            fileChooser.showSaveDialog(this);
-            String path = null;
-            try {
-                path = fileChooser.getSelectedFile().getPath();
-            } catch (Exception ex) {
-                return;
-            }
-            if (path != null) {
-                fos = new FileOutputStream(path);
-                wb.write(fos);
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(frmEmployee.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                if (fos != null) {
-                    fos.close();
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(frmEmployee.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_btnExportActionPerformed
-
-    private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportActionPerformed
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogType(JFileChooser.OPEN_DIALOG);
-        fileChooser.showOpenDialog(this);
-        String path = null;
-        try {
-            path = fileChooser.getSelectedFile().getPath();
-        } catch (Exception ex) {
-            return;
-        }
-        FileInputStream fis = null;
-        try {
-            // TODO add your handling code here:
-            File file = new File(path);
-            if (file.exists()) {
-                fis = new FileInputStream(file);
-                HSSFWorkbook wb = new HSSFWorkbook(fis);
-                HSSFSheet sheet = wb.getSheet("Employee Sheet");
-                int index = 1;
-                do {
-                    HSSFRow row = sheet.getRow(index);
-                    Employee emp = new Employee();
-                    if (row == null) {
-                        break;
-                    }
-                    emp.setId(row.getCell(0).toString());
-                    emp.setFirstName(row.getCell(1).toString());
-                    emp.setLastName(row.getCell(2).toString());
-                    emp.setBirthDay(new java.sql.Date(row.getCell(3).getDateCellValue().getTime()));
-                    emp.setGender((int) Float.parseFloat(row.getCell(4).toString()));
-                    emp.setPhone(row.getCell(5).toString());
-                    emp.setEmail(row.getCell(6).toString());
-                    emp.setAddress(row.getCell(7).toString());
-                    emp.setImage(row.getCell(8).toString());
-                    emp.setStatus((int) Float.parseFloat(row.getCell(9).toString()));
-                    emp.setBeginWork(new java.sql.Date(row.getCell(10).getDateCellValue().getTime()));
-                    if (isExist(emp)) {
-                        listEmp.add(emp);
-                        listEmpTemp.add(emp);
-                    }
-                    index++;
-                    //TODO: doc du lieu tu file excel vo trong JTable
-                } while (true);
-                loadData(listEmp);
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(frmEmployee.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                fis.close();
-            } catch (IOException ex) {
-                Logger.getLogger(frmEmployee.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_btnImportActionPerformed
-
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
         if (listEmpTemp.size() != 0) {
@@ -654,11 +488,6 @@ public class frmEmployee extends javax.swing.JFrame {
 
     private void mnuIDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuIDetailsActionPerformed
         // TODO add your handling code here:
-        int index = tableContent.getSelectedRow();
-        if (index != -1) {
-            frmDetailsEmployee detailsEmployee = new frmDetailsEmployee(listEmp.get(index));
-            detailsEmployee.setVisible(true);
-        }
     }//GEN-LAST:event_mnuIDetailsActionPerformed
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
@@ -729,9 +558,7 @@ public class frmEmployee extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnExit;
-    private javax.swing.JButton btnExport;
     private javax.swing.JButton btnFilter;
-    private javax.swing.JButton btnImport;
     private javax.swing.JButton btnSave;
     private javax.swing.JTextField filterText;
     private com.l2fprod.common.swing.JTaskPane jTaskPane1;

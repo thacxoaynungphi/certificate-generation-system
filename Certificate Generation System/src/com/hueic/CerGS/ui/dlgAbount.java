@@ -8,7 +8,6 @@
  *
  * Created on Mar 31, 2011, 5:36:51 AM
  */
-
 package com.hueic.CerGS.ui;
 
 /**
@@ -21,6 +20,7 @@ public class dlgAbount extends javax.swing.JDialog {
     public dlgAbount(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /** This method is called from within the constructor to
@@ -131,13 +131,15 @@ public class dlgAbount extends javax.swing.JDialog {
 }//GEN-LAST:event_btnCloseActionPerformed
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 dlgAbount dialog = new dlgAbount(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
@@ -146,7 +148,6 @@ public class dlgAbount extends javax.swing.JDialog {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
     private javax.swing.JLabel lblInfoGroup;
@@ -156,5 +157,4 @@ public class dlgAbount extends javax.swing.JDialog {
     private javax.swing.JPanel panelContent;
     private javax.swing.JSeparator seqarator1;
     // End of variables declaration//GEN-END:variables
-
 }

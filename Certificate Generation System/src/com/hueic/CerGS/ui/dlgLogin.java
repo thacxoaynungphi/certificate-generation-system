@@ -10,16 +10,12 @@
  */
 package com.hueic.CerGS.ui;
 
-import com.hueic.CerGS.component.IconSystem;
 import com.hueic.CerGS.component.RememberAccount;
 import com.hueic.CerGS.dao.AccountDAO;
 import com.hueic.CerGS.dao.PermissionDAO;
 import com.hueic.CerGS.entity.Account;
 import com.hueic.CerGS.entity.Permission;
-import com.hueic.CerGS.ui.main.frmMain;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
