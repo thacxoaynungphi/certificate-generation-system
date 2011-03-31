@@ -169,7 +169,7 @@ public class dlgChoose extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
-        int idSelected = -1;
+
         String priSelected = "";
         switch (type) {
             case 6:
@@ -188,20 +188,16 @@ public class dlgChoose extends javax.swing.JDialog {
                 priSelected = pay.getSelectedType();
                 break;
             case 11:
-                idSelected = per.getSelectedCode();
+                priSelected = per.getSelectedCode();
                 break;
             case 12:
-                idSelected = register.getSelectedCode();
+                priSelected = register.getSelectedCode();
                 break;
             case 13:
-                idSelected = student.getSelectedCode();
+                priSelected = student.getSelectedCode();
                 break;
         }
-
-        if (idSelected != -1) {
-            txfID.setText(String.valueOf(idSelected));
-            this.dispose();
-        } else if (!priSelected.equals("")) {
+        if (!priSelected.equals("")) {
             txfID.setText(priSelected);
             this.dispose();
         } else {

@@ -897,6 +897,14 @@ public class pnlMark extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     String getSelectedName() {
-        throw new UnsupportedOperationException("Not yet implemented");
+        try {
+            // TODO add your handling code here:
+            int index = tableContent.getSelectedRow();
+            if (index != -1) {
+                return tableContent.getValueAt(index, 0).toString();
+            }
+        } catch (Exception ex) {
+        }
+        return null;
     }
 }
