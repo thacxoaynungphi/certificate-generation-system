@@ -50,6 +50,7 @@ public class pnlPayment extends javax.swing.JPanel {
     private boolean isAdd = false;
     private ObjectTableModel tableModel;
     private JTable headerTable;
+    frmMain frm;
 
     /** Creates new form pnlPayment */
     public pnlPayment() {
@@ -63,12 +64,26 @@ public class pnlPayment extends javax.swing.JPanel {
         listCourse = courseDao.readByAll();
         //TODO: chua kiem tra xem sinh vien do da nop tien chua
         listRegister = registerDAO.readByAll();
-        cbxCourse.setVisible(false);
-        cbxStudentID.setVisible(false);
         if (listPayments.size() != 0) {
             loadData(listPayments);
-            loadCourse();
-            loadStudentId();
+            loadDetails(listPayments.get(0));
+        }
+    }
+
+    public pnlPayment(frmMain frm) {
+        initComponents();
+        this.frm = frm;
+        registerDAO = new RegisterDAO();
+        studentDAO = new StudentDAO();
+        courseDao = new CourseDAO();
+
+        paymentDao = new PaymentDAO();
+        listPayments = paymentDao.readByAll();
+        listCourse = courseDao.readByAll();
+        //TODO: chua kiem tra xem sinh vien do da nop tien chua
+        listRegister = registerDAO.readByAll();
+        if (listPayments.size() != 0) {
+            loadData(listPayments);
             loadDetails(listPayments.get(0));
         }
     }
@@ -107,29 +122,9 @@ public class pnlPayment extends javax.swing.JPanel {
     public void loadDetails(Payment payment) {
         currentId = payment.getId();
         txtMoney.setText(String.valueOf(payment.getMoney()).trim());
-        cbxCourse.setSelectedItem(registerDAO.readByStudentId(payment.getStudentId()).getCourseId());
-        cbxStudentID.setSelectedItem(payment.getStudentId());
         dateChPayDay.setDate(payment.getPayday());
         txtCourseId.setText(registerDAO.readByStudentId(payment.getStudentId()).getCourseId());
         txtStudentId.setText(payment.getStudentId());
-    }
-
-    public void loadCourse() {
-        cbxCourse.removeAllItems();
-        if (listCourse != null) {
-            for (int i = 0; i < listCourse.size(); i++) {
-                cbxCourse.addItem(listCourse.get(i).getId());
-            }
-        }
-    }
-
-    public void loadStudentId() {
-        if (listRegister.size() != 0) {
-            cbxStudentID.removeAllItems();
-            for (int i = 0; i < listRegister.size(); i++) {
-                cbxStudentID.addItem(listRegister.get(i).getStudentId());
-            }
-        }
     }
 
     public Payment getPaymentById(int id) {
@@ -175,14 +170,13 @@ public class pnlPayment extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        tpAccount = new javax.swing.JTabbedPane();
+        tpPayment = new javax.swing.JTabbedPane();
         pnlEdit = new javax.swing.JPanel();
         panelRight = new javax.swing.JPanel();
         lblCourse = new javax.swing.JLabel();
         lblStudentID = new javax.swing.JLabel();
         lblMoney = new javax.swing.JLabel();
         lblPayDay = new javax.swing.JLabel();
-        cbxStudentID = new javax.swing.JComboBox();
         txtMoney = new javax.swing.JTextField();
         panelButton = new javax.swing.JPanel();
         btnAdd = new javax.swing.JButton();
@@ -191,29 +185,27 @@ public class pnlPayment extends javax.swing.JPanel {
         btnCancel = new javax.swing.JButton();
         lblTitle = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        cbxCourse = new javax.swing.JComboBox();
         dateChPayDay = new com.toedter.calendar.JDateChooser();
         txtCourseId = new javax.swing.JTextField();
         txtStudentId = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         pnlSearch = new javax.swing.JPanel();
         panelRight1 = new javax.swing.JPanel();
         lblCourse1 = new javax.swing.JLabel();
         lblStudentID1 = new javax.swing.JLabel();
         lblMoney1 = new javax.swing.JLabel();
         lblPayDay1 = new javax.swing.JLabel();
-        cbxStudentID1 = new javax.swing.JComboBox();
         txtMoney1 = new javax.swing.JTextField();
         panelButton1 = new javax.swing.JPanel();
-        btnAdd1 = new javax.swing.JButton();
-        btnUpdate1 = new javax.swing.JButton();
-        btnDelete1 = new javax.swing.JButton();
-        btnCancel1 = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
         lblTitle1 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        cbxCourse1 = new javax.swing.JComboBox();
         dateChPayDay1 = new com.toedter.calendar.JDateChooser();
         txtCourseId1 = new javax.swing.JTextField();
         txtStudentId1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         panelLeft = new javax.swing.JPanel();
         srcPanelPayment = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
@@ -222,7 +214,7 @@ public class pnlPayment extends javax.swing.JPanel {
 
         setLayout(new java.awt.GridBagLayout());
 
-        tpAccount.setMinimumSize(new java.awt.Dimension(800, 200));
+        tpPayment.setMinimumSize(new java.awt.Dimension(800, 200));
 
         pnlEdit.setMinimumSize(new java.awt.Dimension(810, 200));
         pnlEdit.setPreferredSize(new java.awt.Dimension(810, 200));
@@ -254,7 +246,7 @@ public class pnlPayment extends javax.swing.JPanel {
         lblMoney.setForeground(new java.awt.Color(3, 3, 3));
         lblMoney.setText("Money:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
@@ -263,26 +255,16 @@ public class pnlPayment extends javax.swing.JPanel {
         lblPayDay.setForeground(new java.awt.Color(3, 3, 3));
         lblPayDay.setText("Pay day:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
         panelRight.add(lblPayDay, gridBagConstraints);
 
-        cbxStudentID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxStudentID.setMinimumSize(new java.awt.Dimension(200, 20));
-        cbxStudentID.setPreferredSize(new java.awt.Dimension(200, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(cbxStudentID, gridBagConstraints);
-
         txtMoney.setMinimumSize(new java.awt.Dimension(200, 20));
         txtMoney.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -339,7 +321,7 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(panelButton, gridBagConstraints);
@@ -348,7 +330,9 @@ public class pnlPayment extends javax.swing.JPanel {
         lblTitle.setForeground(new java.awt.Color(102, 0, 102));
         lblTitle.setText("Information Payment");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         panelRight.add(lblTitle, gridBagConstraints);
 
@@ -357,25 +341,15 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
         panelRight.add(jSeparator1, gridBagConstraints);
 
-        cbxCourse.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxCourse.setMinimumSize(new java.awt.Dimension(200, 20));
-        cbxCourse.setPreferredSize(new java.awt.Dimension(200, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(cbxCourse, gridBagConstraints);
-
         dateChPayDay.setMinimumSize(new java.awt.Dimension(200, 20));
         dateChPayDay.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -399,9 +373,37 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(txtStudentId, gridBagConstraints);
 
+        jButton3.setText("jButton1");
+        jButton3.setMaximumSize(new java.awt.Dimension(23, 23));
+        jButton3.setMinimumSize(new java.awt.Dimension(23, 23));
+        jButton3.setPreferredSize(new java.awt.Dimension(23, 23));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        panelRight.add(jButton3, gridBagConstraints);
+
+        jButton4.setText("jButton2");
+        jButton4.setMaximumSize(new java.awt.Dimension(23, 23));
+        jButton4.setMinimumSize(new java.awt.Dimension(23, 23));
+        jButton4.setPreferredSize(new java.awt.Dimension(23, 23));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        panelRight.add(jButton4, gridBagConstraints);
+
         pnlEdit.add(panelRight, new java.awt.GridBagConstraints());
 
-        tpAccount.addTab("Edit", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Edit_16.png")), pnlEdit); // NOI18N
+        tpPayment.addTab("Edit", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Edit_16.png")), pnlEdit); // NOI18N
 
         pnlSearch.setMinimumSize(new java.awt.Dimension(810, 200));
         pnlSearch.setPreferredSize(new java.awt.Dimension(810, 200));
@@ -448,15 +450,6 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight1.add(lblPayDay1, gridBagConstraints);
 
-        cbxStudentID1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxStudentID1.setPreferredSize(new java.awt.Dimension(200, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight1.add(cbxStudentID1, gridBagConstraints);
-
         txtMoney1.setMinimumSize(new java.awt.Dimension(200, 20));
         txtMoney1.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -468,51 +461,16 @@ public class pnlPayment extends javax.swing.JPanel {
 
         panelButton1.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnAdd1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
-        btnAdd1.setText("Add");
-        btnAdd1.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnAdd1.setPreferredSize(new java.awt.Dimension(75, 23));
-        btnAdd1.addActionListener(new java.awt.event.ActionListener() {
+        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
+        btnReset.setText("Reset");
+        btnReset.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnReset.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdd1ActionPerformed(evt);
+                btnResetActionPerformed(evt);
             }
         });
-        panelButton1.add(btnAdd1);
-
-        btnUpdate1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
-        btnUpdate1.setText("Update");
-        btnUpdate1.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnUpdate1.setPreferredSize(new java.awt.Dimension(75, 23));
-        btnUpdate1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdate1ActionPerformed(evt);
-            }
-        });
-        panelButton1.add(btnUpdate1);
-
-        btnDelete1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
-        btnDelete1.setText("Delete");
-        btnDelete1.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnDelete1.setMaximumSize(new java.awt.Dimension(75, 25));
-        btnDelete1.setMinimumSize(new java.awt.Dimension(75, 23));
-        btnDelete1.setPreferredSize(new java.awt.Dimension(75, 23));
-        btnDelete1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDelete1ActionPerformed(evt);
-            }
-        });
-        panelButton1.add(btnDelete1);
-
-        btnCancel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
-        btnCancel1.setText("Cancel");
-        btnCancel1.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnCancel1.setPreferredSize(new java.awt.Dimension(75, 23));
-        btnCancel1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancel1ActionPerformed(evt);
-            }
-        });
-        panelButton1.add(btnCancel1);
+        panelButton1.add(btnReset);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -540,15 +498,6 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         panelRight1.add(jSeparator2, gridBagConstraints);
 
-        cbxCourse1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxCourse1.setPreferredSize(new java.awt.Dimension(200, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight1.add(cbxCourse1, gridBagConstraints);
-
         dateChPayDay1.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
@@ -575,15 +524,43 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight1.add(txtStudentId1, gridBagConstraints);
 
+        jButton1.setText("jButton1");
+        jButton1.setMaximumSize(new java.awt.Dimension(23, 23));
+        jButton1.setMinimumSize(new java.awt.Dimension(23, 23));
+        jButton1.setPreferredSize(new java.awt.Dimension(23, 23));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        panelRight1.add(jButton1, gridBagConstraints);
+
+        jButton2.setText("jButton2");
+        jButton2.setMaximumSize(new java.awt.Dimension(23, 23));
+        jButton2.setMinimumSize(new java.awt.Dimension(23, 23));
+        jButton2.setPreferredSize(new java.awt.Dimension(23, 23));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        panelRight1.add(jButton2, gridBagConstraints);
+
         pnlSearch.add(panelRight1, new java.awt.GridBagConstraints());
 
-        tpAccount.addTab("Search", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Search-32.png")), pnlSearch); // NOI18N
+        tpPayment.addTab("Search", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Search-32.png")), pnlSearch); // NOI18N
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        add(tpAccount, gridBagConstraints);
+        add(tpPayment, gridBagConstraints);
 
         panelLeft.setBackground(new java.awt.Color(255, 255, 255));
         panelLeft.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Payment", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
@@ -680,21 +657,9 @@ public class pnlPayment extends javax.swing.JPanel {
         searchStart();
 }//GEN-LAST:event_btnFilterActionPerformed
 
-    private void btnCancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancel1ActionPerformed
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
-}//GEN-LAST:event_btnCancel1ActionPerformed
-
-    private void btnDelete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete1ActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_btnDelete1ActionPerformed
-
-    private void btnUpdate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdate1ActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_btnUpdate1ActionPerformed
-
-    private void btnAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd1ActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_btnAdd1ActionPerformed
+}//GEN-LAST:event_btnResetActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
@@ -703,13 +668,9 @@ public class pnlPayment extends javax.swing.JPanel {
             btnUpdate.setEnabled(true);
             btnDelete.setEnabled(true);
             txtCourseId.setVisible(true);
-            cbxCourse.setVisible(false);
-            cbxStudentID.setVisible(false);
             txtStudentId.setVisible(true);
         } else if (isUpdate) {
             isUpdate = false;
-            cbxCourse.setVisible(false);
-            cbxStudentID.setVisible(false);
             txtCourseId.setVisible(true);
             txtStudentId.setVisible(true);
             loadDetails(getPaymentById(currentId));
@@ -763,15 +724,13 @@ public class pnlPayment extends javax.swing.JPanel {
                 btnUpdate.setEnabled(false);
                 btnDelete.setEnabled(false);
                 txtCourseId.setVisible(true);
-                cbxCourse.setVisible(false);
-                cbxStudentID.setVisible(false);
                 txtStudentId.setVisible(true);
             } else {
                 //TODO: chua lay duoc chi so tu tang cua ban ghi moi dua vo
                 Payment payment = new Payment();
                 payment.setMoney(Float.parseFloat(txtMoney.getText()));
                 payment.setPayday(new java.sql.Date(dateChPayDay.getDate().getTime()));
-                payment.setStudentId((String) cbxStudentID.getSelectedItem());
+                payment.setStudentId((String) txtStudentId.getText());
                 if (paymentDao.create(payment)) {
                     JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Create Payment", JOptionPane.INFORMATION_MESSAGE);
                     listPayments.add(payment);
@@ -781,8 +740,6 @@ public class pnlPayment extends javax.swing.JPanel {
                     btnUpdate.setEnabled(true);
                     btnDelete.setEnabled(true);
                     txtCourseId.setVisible(true);
-                    cbxCourse.setVisible(false);
-                    cbxStudentID.setVisible(false);
                     txtStudentId.setVisible(true);
                 } else {
                     JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Create Payment", JOptionPane.ERROR_MESSAGE);
@@ -793,23 +750,55 @@ public class pnlPayment extends javax.swing.JPanel {
         }
 }//GEN-LAST:event_btnAddActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        dlgChoose dlg = new dlgChoose(frm, txtStudentId1, true, 12);
+        dlg.setTitle("Browse Order");
+        dlg.setSize(868, 616);
+        dlg.setLocationRelativeTo(null);
+        dlg.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        dlgChoose dlg = new dlgChoose(frm, txtCourseId1, true, 7);
+        dlg.setTitle("Browse Order");
+        dlg.setSize(868, 616);
+        dlg.setLocationRelativeTo(null);
+        dlg.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        dlgChoose dlg = new dlgChoose(frm, txtCourseId, true, 7);
+        dlg.setTitle("Browse Order");
+        dlg.setSize(868, 616);
+        dlg.setLocationRelativeTo(null);
+        dlg.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        dlgChoose dlg = new dlgChoose(frm, txtStudentId, true, 12);
+        dlg.setTitle("Browse Order");
+        dlg.setSize(868, 616);
+        dlg.setLocationRelativeTo(null);
+        dlg.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnAdd1;
     private javax.swing.JButton btnCancel;
-    private javax.swing.JButton btnCancel1;
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnDelete1;
     private javax.swing.JButton btnFilter;
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JButton btnUpdate1;
-    private javax.swing.JComboBox cbxCourse;
-    private javax.swing.JComboBox cbxCourse1;
-    private javax.swing.JComboBox cbxStudentID;
-    private javax.swing.JComboBox cbxStudentID1;
     private com.toedter.calendar.JDateChooser dateChPayDay;
     private com.toedter.calendar.JDateChooser dateChPayDay1;
     private javax.swing.JTextField filterText;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblCourse;
@@ -827,11 +816,11 @@ public class pnlPayment extends javax.swing.JPanel {
     private javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelRight;
     private javax.swing.JPanel panelRight1;
-    private javax.swing.JPanel pnlEdit;
-    private javax.swing.JPanel pnlSearch;
+    public javax.swing.JPanel pnlEdit;
+    public javax.swing.JPanel pnlSearch;
     private javax.swing.JScrollPane srcPanelPayment;
     private javax.swing.JTable tableContent;
-    private javax.swing.JTabbedPane tpAccount;
+    public javax.swing.JTabbedPane tpPayment;
     private javax.swing.JTextField txtCourseId;
     private javax.swing.JTextField txtCourseId1;
     private javax.swing.JTextField txtMoney;
@@ -839,4 +828,8 @@ public class pnlPayment extends javax.swing.JPanel {
     private javax.swing.JTextField txtStudentId;
     private javax.swing.JTextField txtStudentId1;
     // End of variables declaration//GEN-END:variables
+
+    String getSelectedType() {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
 }

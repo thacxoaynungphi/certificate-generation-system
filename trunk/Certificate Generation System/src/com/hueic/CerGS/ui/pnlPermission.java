@@ -117,7 +117,7 @@ public class pnlPermission extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        tpAccount = new javax.swing.JTabbedPane();
+        tpPermission = new javax.swing.JTabbedPane();
         pnlEdit = new javax.swing.JPanel();
         panelRight = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
@@ -140,10 +140,7 @@ public class pnlPermission extends javax.swing.JPanel {
         lblUsername1 = new javax.swing.JLabel();
         lblPassword1 = new javax.swing.JLabel();
         panelButton1 = new javax.swing.JPanel();
-        btnAdd1 = new javax.swing.JButton();
-        btnUpdate1 = new javax.swing.JButton();
-        btnDelete1 = new javax.swing.JButton();
-        btnCancel1 = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
         txtId1 = new javax.swing.JTextField();
         lblcheck3 = new javax.swing.JLabel();
         lblcheck4 = new javax.swing.JLabel();
@@ -156,7 +153,7 @@ public class pnlPermission extends javax.swing.JPanel {
 
         setLayout(new java.awt.GridBagLayout());
 
-        tpAccount.setMinimumSize(new java.awt.Dimension(800, 200));
+        tpPermission.setMinimumSize(new java.awt.Dimension(800, 200));
 
         pnlEdit.setMinimumSize(new java.awt.Dimension(810, 200));
         pnlEdit.setPreferredSize(new java.awt.Dimension(810, 200));
@@ -305,7 +302,7 @@ public class pnlPermission extends javax.swing.JPanel {
 
         pnlEdit.add(panelRight, new java.awt.GridBagConstraints());
 
-        tpAccount.addTab("Edit", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Edit_16.png")), pnlEdit); // NOI18N
+        tpPermission.addTab("Edit", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Edit_16.png")), pnlEdit); // NOI18N
 
         pnlSearch.setMinimumSize(new java.awt.Dimension(810, 200));
         pnlSearch.setPreferredSize(new java.awt.Dimension(810, 200));
@@ -357,52 +354,16 @@ public class pnlPermission extends javax.swing.JPanel {
         panelButton1.setBackground(new java.awt.Color(255, 255, 255));
         panelButton1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
 
-        btnAdd1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
-        btnAdd1.setText("Add");
-        btnAdd1.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnAdd1.setPreferredSize(new java.awt.Dimension(70, 23));
-        btnAdd1.addActionListener(new java.awt.event.ActionListener() {
+        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
+        btnReset.setText("Reset");
+        btnReset.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnReset.setPreferredSize(new java.awt.Dimension(70, 23));
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdd1ActionPerformed(evt);
+                btnResetActionPerformed(evt);
             }
         });
-        panelButton1.add(btnAdd1);
-
-        btnUpdate1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
-        btnUpdate1.setText("Update");
-        btnUpdate1.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnUpdate1.setMaximumSize(new java.awt.Dimension(80, 25));
-        btnUpdate1.setMinimumSize(new java.awt.Dimension(80, 25));
-        btnUpdate1.setPreferredSize(new java.awt.Dimension(80, 25));
-        btnUpdate1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdate1ActionPerformed(evt);
-            }
-        });
-        panelButton1.add(btnUpdate1);
-
-        btnDelete1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
-        btnDelete1.setText("Delete");
-        btnDelete1.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnDelete1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDelete1ActionPerformed(evt);
-            }
-        });
-        panelButton1.add(btnDelete1);
-
-        btnCancel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
-        btnCancel1.setText("Cancel");
-        btnCancel1.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnCancel1.setMaximumSize(new java.awt.Dimension(75, 23));
-        btnCancel1.setMinimumSize(new java.awt.Dimension(75, 23));
-        btnCancel1.setPreferredSize(new java.awt.Dimension(75, 23));
-        btnCancel1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancel1ActionPerformed(evt);
-            }
-        });
-        panelButton1.add(btnCancel1);
+        panelButton1.add(btnReset);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -450,13 +411,13 @@ public class pnlPermission extends javax.swing.JPanel {
 
         pnlSearch.add(panelRight1, new java.awt.GridBagConstraints());
 
-        tpAccount.addTab("Search", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Search-32.png")), pnlSearch); // NOI18N
+        tpPermission.addTab("Search", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Search-32.png")), pnlSearch); // NOI18N
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        add(tpAccount, gridBagConstraints);
+        add(tpPermission, gridBagConstraints);
 
         panelLeft.setBackground(new java.awt.Color(255, 255, 255));
         panelLeft.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Permission", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(3, 3, 3))); // NOI18N
@@ -652,32 +613,17 @@ public class pnlPermission extends javax.swing.JPanel {
         }
 }//GEN-LAST:event_btnCancelActionPerformed
 
-    private void btnAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd1ActionPerformed
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAdd1ActionPerformed
-
-    private void btnUpdate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdate1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnUpdate1ActionPerformed
-
-    private void btnDelete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDelete1ActionPerformed
-
-    private void btnCancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancel1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCancel1ActionPerformed
+    }//GEN-LAST:event_btnResetActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnAdd1;
     private javax.swing.JButton btnCancel;
-    private javax.swing.JButton btnCancel1;
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnDelete1;
     private javax.swing.JButton btnFilter;
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JButton btnUpdate1;
     private javax.swing.JTextField filterText;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblPassword1;
@@ -694,16 +640,20 @@ public class pnlPermission extends javax.swing.JPanel {
     private javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelRight;
     private javax.swing.JPanel panelRight1;
-    private javax.swing.JPanel pnlEdit;
-    private javax.swing.JPanel pnlSearch;
+    public javax.swing.JPanel pnlEdit;
+    public javax.swing.JPanel pnlSearch;
     private javax.swing.JSeparator sepaAccount;
     private javax.swing.JSeparator sepaAccount1;
     private javax.swing.JScrollPane srcPanelPermission;
     private javax.swing.JTable tableContent;
-    private javax.swing.JTabbedPane tpAccount;
+    public javax.swing.JTabbedPane tpPermission;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtId1;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtName1;
     // End of variables declaration//GEN-END:variables
+
+    int getSelectedCode() {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
 }

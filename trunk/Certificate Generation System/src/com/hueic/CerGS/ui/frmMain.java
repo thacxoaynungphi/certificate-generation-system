@@ -43,7 +43,7 @@ public class frmMain extends javax.swing.JFrame {
     pnlSubject subject = new pnlSubject();
     pnlStudent student = new pnlStudent();
     pnlEmployee emp = new pnlEmployee();
-    
+
     public frmMain() {
         initComponents();
         setLocationRelativeTo(null);
@@ -1058,6 +1058,6 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JRadioButtonMenuItem radioSkyYellow;
     private javax.swing.JRadioButtonMenuItem radioWindows;
     private javax.swing.JToolBar tbMenu;
-    private javax.swing.JTabbedPane tpnBusiness;
+    public javax.swing.JTabbedPane tpnBusiness;
     // End of variables declaration//GEN-END:variables
 }

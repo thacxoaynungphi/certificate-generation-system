@@ -51,6 +51,7 @@ public class pnlRegister extends javax.swing.JPanel {
     String studentIdtemp = null;
     private ObjectTableModel tableModel;
     private JTable headerTable;
+    frmMain frm;
 
     /** Creates new form pnlRegister */
     public pnlRegister() {
@@ -62,14 +63,25 @@ public class pnlRegister extends javax.swing.JPanel {
         regisList = regisDAO.readByAll();
         studentList = studentDAO.readByAll();
         courseIdList = courseDAO.readByAll();
-
-
-        cbxStudentID.setVisible(false);
-        cbxCourseID.setVisible(false);
         if (regisList.size() != 0) {
             loadCourse();
-            loadCourseID();
-            loadStudentId();
+            loadData(regisList);
+            loadDetails(regisList.get(0));
+        }
+    }
+
+    public pnlRegister(frmMain frm) {
+        initComponents();
+        this.frm = frm;
+        regisDAO = new RegisterDAO();
+        courseDAO = new CourseDAO();
+        studentDAO = new StudentDAO();
+        subjectDAO = new SubjectDAO();
+        regisList = regisDAO.readByAll();
+        studentList = studentDAO.readByAll();
+        courseIdList = courseDAO.readByAll();
+        if (regisList.size() != 0) {
+            loadCourse();
             loadData(regisList);
             loadDetails(regisList.get(0));
         }
@@ -81,24 +93,6 @@ public class pnlRegister extends javax.swing.JPanel {
             cbxCourseChoose.addItem("All");
             for (Course course : courseIdList) {
                 cbxCourseChoose.addItem(course.getId());
-            }
-        }
-    }
-
-    public void loadCourseID() {
-        if (courseIdList.size() != 0) {
-            cbxCourseID.removeAllItems();
-            for (Course course : courseIdList) {
-                cbxCourseID.addItem(course.getId());
-            }
-        }
-    }
-
-    public void loadStudentId() {
-        if (studentList.size() != 0) {
-            cbxStudentID.removeAllItems();
-            for (Student student : studentList) {
-                cbxStudentID.addItem(student.getId());
             }
         }
     }
@@ -141,19 +135,6 @@ public class pnlRegister extends javax.swing.JPanel {
         DateChRegistrationDate.setDate(register.getRegisDate());
         txtCourseID.setText(register.getCourseId());
         txtStudentId.setText(register.getId());
-        for (int i = 0; i < cbxCourseID.getItemCount(); i++) {
-            if (cbxCourseID.getItemAt(i).toString().equals(register.getCourseId())) {
-                cbxCourseID.setSelectedIndex(i);
-
-            }
-        }
-
-        for (int i = 0; i < cbxStudentID.getItemCount(); i++) {
-            if (cbxStudentID.getItemAt(i).toString().equals(register.getId())) {
-                cbxStudentID.setSelectedIndex(i);
-
-            }
-        }
     }
 
     public Register findByStudentId(String studentId) {
@@ -190,7 +171,7 @@ public class pnlRegister extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        tpAccount = new javax.swing.JTabbedPane();
+        tpRegister = new javax.swing.JTabbedPane();
         pnlEdit = new javax.swing.JPanel();
         panelRight = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
@@ -201,9 +182,7 @@ public class pnlRegister extends javax.swing.JPanel {
         lblStudentID = new javax.swing.JLabel();
         lblRegistrationDate = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
-        cbxCourseID = new javax.swing.JComboBox();
         txtFeesStructe = new javax.swing.JTextField();
-        cbxStudentID = new javax.swing.JComboBox();
         DateChRegistrationDate = new com.toedter.calendar.JDateChooser();
         panelButon = new javax.swing.JPanel();
         btnAdd = new javax.swing.JButton();
@@ -212,6 +191,8 @@ public class pnlRegister extends javax.swing.JPanel {
         btnCancel = new javax.swing.JButton();
         txtCourseID = new javax.swing.JTextField();
         txtStudentId = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         pnlSearch = new javax.swing.JPanel();
         panelRight1 = new javax.swing.JPanel();
         lblTitle1 = new javax.swing.JLabel();
@@ -222,17 +203,14 @@ public class pnlRegister extends javax.swing.JPanel {
         lblStudentID1 = new javax.swing.JLabel();
         lblRegistrationDate1 = new javax.swing.JLabel();
         txtId1 = new javax.swing.JTextField();
-        cbxCourseID1 = new javax.swing.JComboBox();
         txtFeesStructe1 = new javax.swing.JTextField();
-        cbxStudentID1 = new javax.swing.JComboBox();
         DateChRegistrationDate1 = new com.toedter.calendar.JDateChooser();
         panelButon1 = new javax.swing.JPanel();
-        btnAdd1 = new javax.swing.JButton();
-        btnUpdate1 = new javax.swing.JButton();
-        btnDelete1 = new javax.swing.JButton();
-        btnCancel1 = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
         txtCourseID1 = new javax.swing.JTextField();
         txtStudentId1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         panelLeft = new javax.swing.JPanel();
         lblChooseCourse = new javax.swing.JLabel();
         lblEnterNameStudent = new javax.swing.JLabel();
@@ -244,8 +222,8 @@ public class pnlRegister extends javax.swing.JPanel {
 
         setLayout(new java.awt.GridBagLayout());
 
-        tpAccount.setMinimumSize(new java.awt.Dimension(800, 240));
-        tpAccount.setPreferredSize(new java.awt.Dimension(800, 240));
+        tpRegister.setMinimumSize(new java.awt.Dimension(800, 240));
+        tpRegister.setPreferredSize(new java.awt.Dimension(800, 240));
 
         pnlEdit.setMinimumSize(new java.awt.Dimension(810, 200));
         pnlEdit.setPreferredSize(new java.awt.Dimension(810, 200));
@@ -261,7 +239,7 @@ public class pnlRegister extends javax.swing.JPanel {
         lblTitle.setForeground(new java.awt.Color(102, 0, 102));
         lblTitle.setText("Register Students");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridwidth = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         panelRight.add(lblTitle, gridBagConstraints);
 
@@ -269,7 +247,7 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridwidth = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
         panelRight.add(sepa1, gridBagConstraints);
@@ -304,7 +282,7 @@ public class pnlRegister extends javax.swing.JPanel {
         lblStudentID.setForeground(new java.awt.Color(3, 3, 3));
         lblStudentID.setText("Student ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
@@ -313,7 +291,7 @@ public class pnlRegister extends javax.swing.JPanel {
         lblRegistrationDate.setForeground(new java.awt.Color(3, 3, 3));
         lblRegistrationDate.setText("Registration Date:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
@@ -327,15 +305,6 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(txtId, gridBagConstraints);
 
-        cbxCourseID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxCourseID.setPreferredSize(new java.awt.Dimension(200, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(cbxCourseID, gridBagConstraints);
-
         txtFeesStructe.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -344,21 +313,12 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(txtFeesStructe, gridBagConstraints);
 
-        cbxStudentID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxStudentID.setPreferredSize(new java.awt.Dimension(200, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(cbxStudentID, gridBagConstraints);
-
         DateChRegistrationDate.setDateFormatString("MM/dd/yyyy");
         DateChRegistrationDate.setMaximumSize(new java.awt.Dimension(200, 20));
         DateChRegistrationDate.setMinimumSize(new java.awt.Dimension(200, 20));
         DateChRegistrationDate.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -421,7 +381,7 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridwidth = 6;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(panelButon, gridBagConstraints);
 
@@ -437,15 +397,43 @@ public class pnlRegister extends javax.swing.JPanel {
         txtStudentId.setMinimumSize(new java.awt.Dimension(180, 20));
         txtStudentId.setPreferredSize(new java.awt.Dimension(180, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(txtStudentId, gridBagConstraints);
 
+        jButton3.setText("jButton3");
+        jButton3.setMaximumSize(new java.awt.Dimension(23, 23));
+        jButton3.setMinimumSize(new java.awt.Dimension(23, 23));
+        jButton3.setPreferredSize(new java.awt.Dimension(23, 23));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        panelRight.add(jButton3, gridBagConstraints);
+
+        jButton4.setText("jButton4");
+        jButton4.setMaximumSize(new java.awt.Dimension(23, 23));
+        jButton4.setMinimumSize(new java.awt.Dimension(23, 23));
+        jButton4.setPreferredSize(new java.awt.Dimension(23, 23));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 2;
+        panelRight.add(jButton4, gridBagConstraints);
+
         pnlEdit.add(panelRight, new java.awt.GridBagConstraints());
 
-        tpAccount.addTab("Edit", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Edit_16.png")), pnlEdit); // NOI18N
+        tpRegister.addTab("Edit", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Edit_16.png")), pnlEdit); // NOI18N
 
         pnlSearch.setMinimumSize(new java.awt.Dimension(810, 200));
         pnlSearch.setPreferredSize(new java.awt.Dimension(810, 200));
@@ -461,7 +449,7 @@ public class pnlRegister extends javax.swing.JPanel {
         lblTitle1.setForeground(new java.awt.Color(102, 0, 102));
         lblTitle1.setText("Register Students");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         panelRight1.add(lblTitle1, gridBagConstraints);
 
@@ -469,7 +457,7 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         panelRight1.add(sepa2, gridBagConstraints);
@@ -527,15 +515,6 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight1.add(txtId1, gridBagConstraints);
 
-        cbxCourseID1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxCourseID1.setPreferredSize(new java.awt.Dimension(180, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight1.add(cbxCourseID1, gridBagConstraints);
-
         txtFeesStructe1.setPreferredSize(new java.awt.Dimension(180, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -543,15 +522,6 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight1.add(txtFeesStructe1, gridBagConstraints);
-
-        cbxStudentID1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxStudentID1.setPreferredSize(new java.awt.Dimension(180, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight1.add(cbxStudentID1, gridBagConstraints);
 
         DateChRegistrationDate1.setDateFormatString("MM/dd/yyyy");
         DateChRegistrationDate1.setPreferredSize(new java.awt.Dimension(180, 20));
@@ -565,53 +535,21 @@ public class pnlRegister extends javax.swing.JPanel {
         panelButon1.setBackground(new java.awt.Color(255, 255, 255));
         panelButon1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
 
-        btnAdd1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
-        btnAdd1.setText("Add");
-        btnAdd1.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnAdd1.setPreferredSize(new java.awt.Dimension(75, 23));
-        btnAdd1.addActionListener(new java.awt.event.ActionListener() {
+        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
+        btnReset.setText("Reset");
+        btnReset.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnReset.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdd1ActionPerformed(evt);
+                btnResetActionPerformed(evt);
             }
         });
-        panelButon1.add(btnAdd1);
-
-        btnUpdate1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
-        btnUpdate1.setText("Update");
-        btnUpdate1.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnUpdate1.setPreferredSize(new java.awt.Dimension(75, 23));
-        btnUpdate1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdate1ActionPerformed(evt);
-            }
-        });
-        panelButon1.add(btnUpdate1);
-
-        btnDelete1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
-        btnDelete1.setText("Delete");
-        btnDelete1.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnDelete1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDelete1ActionPerformed(evt);
-            }
-        });
-        panelButon1.add(btnDelete1);
-
-        btnCancel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
-        btnCancel1.setText("Cancel");
-        btnCancel1.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnCancel1.setPreferredSize(new java.awt.Dimension(75, 23));
-        btnCancel1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancel1ActionPerformed(evt);
-            }
-        });
-        panelButon1.add(btnCancel1);
+        panelButon1.add(btnReset);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 6;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 5);
         panelRight1.add(panelButon1, gridBagConstraints);
 
@@ -633,15 +571,43 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight1.add(txtStudentId1, gridBagConstraints);
 
+        jButton1.setText("jButton1");
+        jButton1.setMaximumSize(new java.awt.Dimension(23, 23));
+        jButton1.setMinimumSize(new java.awt.Dimension(23, 23));
+        jButton1.setPreferredSize(new java.awt.Dimension(23, 23));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        panelRight1.add(jButton1, gridBagConstraints);
+
+        jButton2.setText("jButton2");
+        jButton2.setMaximumSize(new java.awt.Dimension(23, 23));
+        jButton2.setMinimumSize(new java.awt.Dimension(23, 23));
+        jButton2.setPreferredSize(new java.awt.Dimension(23, 23));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 2;
+        panelRight1.add(jButton2, gridBagConstraints);
+
         pnlSearch.add(panelRight1, new java.awt.GridBagConstraints());
 
-        tpAccount.addTab("Search", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Search-32.png")), pnlSearch); // NOI18N
+        tpRegister.addTab("Search", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Search-32.png")), pnlSearch); // NOI18N
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        add(tpAccount, gridBagConstraints);
+        add(tpRegister, gridBagConstraints);
 
         panelLeft.setBackground(new java.awt.Color(255, 255, 255));
         panelLeft.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Register", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
@@ -790,18 +756,16 @@ public class pnlRegister extends javax.swing.JPanel {
         try {
             if (!isAdd) {
                 isAdd = true;
-                cbxCourseID.setVisible(true);
                 txtCourseID.setVisible(false);
                 txtStudentId.setVisible(false);
-                cbxStudentID.setVisible(true);
                 txtId.setText(null);
                 txtFeesStructe.setText(null);
             } else {
-                String Id = cbxStudentID.getSelectedItem().toString();
+                String Id = txtStudentId.toString();
                 String studentId = txtId.getText();
                 int feesStructe = Integer.parseInt(txtFeesStructe.getText());
                 Date regDate = new java.sql.Date(DateChRegistrationDate.getDate().getTime());
-                String courseId = cbxCourseID.getSelectedItem().toString();
+                String courseId = txtCourseID.getText();
                 Register register = new Register(Id, courseId, feesStructe, (java.sql.Date) regDate, studentId);
                 if (regisDAO.create(register)) {
                     JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Create Register", JOptionPane.INFORMATION_MESSAGE);
@@ -809,10 +773,8 @@ public class pnlRegister extends javax.swing.JPanel {
                     loadData(regisList);
                     loadDetails(register);
                     isAdd = false;
-                    cbxCourseID.setVisible(false);
                     txtCourseID.setVisible(true);
                     txtStudentId.setVisible(true);
-                    cbxStudentID.setVisible(false);
                 } else {
                     JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Create Register", JOptionPane.ERROR_MESSAGE);
                 }
@@ -827,19 +789,17 @@ public class pnlRegister extends javax.swing.JPanel {
         //TODO: chua xu ly viec cap nhap khoa se bi anh huong den cac bang khac
         try {
             if (!isUpdate) {
-                cbxCourseID.setVisible(true);
                 txtCourseID.setVisible(false);
                 txtStudentId.setVisible(false);
-                cbxStudentID.setVisible(true);
                 isUpdate = true;
                 studentIdtemp = txtId.getText();
             } else {
                 isUpdate = false;
-                String Id = cbxStudentID.getSelectedItem().toString();
+                String Id = txtStudentId.toString();
                 String studentId = txtId.getText();
                 int feesStructe = Integer.parseInt(txtFeesStructe.getText());
                 Date regDate = new java.sql.Date(DateChRegistrationDate.getDate().getTime());
-                String courseId = cbxCourseID.getSelectedItem().toString();
+                String courseId = txtCourseID.getText();
                 Register register = new Register(Id, courseId, feesStructe, (java.sql.Date) regDate, studentId);
                 if (regisDAO.update(register)) {
                     JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Update Subject", JOptionPane.INFORMATION_MESSAGE);
@@ -848,10 +808,8 @@ public class pnlRegister extends javax.swing.JPanel {
                     regisList.add(register);
                     loadData(regisList);
                     loadDetails(register);
-                    cbxCourseID.setVisible(false);
                     txtCourseID.setVisible(true);
                     txtStudentId.setVisible(true);
-                    cbxStudentID.setVisible(false);
                 } else {
                     JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Update Subject", JOptionPane.ERROR_MESSAGE);
                 }
@@ -880,56 +838,72 @@ public class pnlRegister extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (isAdd) {
             isAdd = false;
-            cbxCourseID.setVisible(false);
             txtCourseID.setVisible(true);
             txtStudentId.setVisible(true);
-            cbxStudentID.setVisible(false);
         } else if (isUpdate) {
             isUpdate = false;
-            cbxCourseID.setVisible(false);
             txtCourseID.setVisible(true);
             txtStudentId.setVisible(true);
-            cbxStudentID.setVisible(false);
             loadDetails(findByStudentId(txtId.getText()));
         } else {
             loadDetails(regisList.get(0));
         }
 }//GEN-LAST:event_btnCancelActionPerformed
 
-    private void btnAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd1ActionPerformed
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAdd1ActionPerformed
+    }//GEN-LAST:event_btnResetActionPerformed
 
-    private void btnUpdate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdate1ActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnUpdate1ActionPerformed
+        dlgChoose dlg = new dlgChoose(frm, txtCourseID, true, 7);
+        dlg.setTitle("Browse Order");
+        dlg.setSize(868, 616);
+        dlg.setLocationRelativeTo(null);
+        dlg.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void btnDelete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete1ActionPerformed
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+
+        dlgChoose dlg = new dlgChoose(frm, txtStudentId, true, 13);
+        dlg.setTitle("Browse Order");
+        dlg.setSize(868, 616);
+        dlg.setLocationRelativeTo(null);
+        dlg.setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnDelete1ActionPerformed
+        dlgChoose dlg = new dlgChoose(frm, txtCourseID1, true, 7);
+        dlg.setTitle("Browse Order");
+        dlg.setSize(868, 616);
+        dlg.setLocationRelativeTo(null);
+        dlg.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void btnCancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancel1ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCancel1ActionPerformed
-
+        dlgChoose dlg = new dlgChoose(frm, txtStudentId1, true, 13);
+        dlg.setTitle("Browse Order");
+        dlg.setSize(868, 616);
+        dlg.setLocationRelativeTo(null);
+        dlg.setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser DateChRegistrationDate;
     private com.toedter.calendar.JDateChooser DateChRegistrationDate1;
     private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnAdd1;
     private javax.swing.JButton btnCancel;
-    private javax.swing.JButton btnCancel1;
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnDelete1;
     private javax.swing.JButton btnFilter;
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JButton btnUpdate1;
     private javax.swing.JComboBox cbxCourseChoose;
-    private javax.swing.JComboBox cbxCourseID;
-    private javax.swing.JComboBox cbxCourseID1;
-    private javax.swing.JComboBox cbxStudentID;
-    private javax.swing.JComboBox cbxStudentID1;
     private javax.swing.JTextField filterText;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel lblChooseCourse;
     private javax.swing.JLabel lblCourseID;
     private javax.swing.JLabel lblCourseID1;
@@ -949,13 +923,13 @@ public class pnlRegister extends javax.swing.JPanel {
     private javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelRight;
     private javax.swing.JPanel panelRight1;
-    private javax.swing.JPanel pnlEdit;
-    private javax.swing.JPanel pnlSearch;
+    public javax.swing.JPanel pnlEdit;
+    public javax.swing.JPanel pnlSearch;
     private javax.swing.JSeparator sepa1;
     private javax.swing.JSeparator sepa2;
     private javax.swing.JScrollPane srcPanelRegister;
     private javax.swing.JTable tableContent;
-    private javax.swing.JTabbedPane tpAccount;
+    public javax.swing.JTabbedPane tpRegister;
     private javax.swing.JTextField txtCourseID;
     private javax.swing.JTextField txtCourseID1;
     private javax.swing.JTextField txtFeesStructe;
@@ -965,4 +939,8 @@ public class pnlRegister extends javax.swing.JPanel {
     private javax.swing.JTextField txtStudentId;
     private javax.swing.JTextField txtStudentId1;
     // End of variables declaration//GEN-END:variables
+
+    int getSelectedCode() {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
 }
