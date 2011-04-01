@@ -179,18 +179,19 @@ public class pnlAccount extends javax.swing.JPanel {
         txtPermissionSearch = new javax.swing.JTextField();
         btnChooseUserSearch = new javax.swing.JButton();
 
-        setMinimumSize(new java.awt.Dimension(800, 600));
-        setPreferredSize(new java.awt.Dimension(800, 600));
+        setMaximumSize(new java.awt.Dimension(860, 600));
+        setMinimumSize(new java.awt.Dimension(860, 600));
+        setPreferredSize(new java.awt.Dimension(860, 600));
         setLayout(new java.awt.GridBagLayout());
 
         panelRight.setBackground(new java.awt.Color(255, 255, 255));
         panelRight.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Account", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
-        panelRight.setMinimumSize(new java.awt.Dimension(800, 400));
-        panelRight.setPreferredSize(new java.awt.Dimension(800, 400));
+        panelRight.setMinimumSize(new java.awt.Dimension(860, 400));
+        panelRight.setPreferredSize(new java.awt.Dimension(860, 400));
         panelRight.setLayout(new java.awt.GridBagLayout());
 
-        srcPanelAccount.setMinimumSize(new java.awt.Dimension(770, 340));
-        srcPanelAccount.setPreferredSize(new java.awt.Dimension(770, 340));
+        srcPanelAccount.setMinimumSize(new java.awt.Dimension(840, 340));
+        srcPanelAccount.setPreferredSize(new java.awt.Dimension(840, 340));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -239,7 +240,7 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 490, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 540, 5, 5);
         panelRight.add(filterText, gridBagConstraints);
 
         btnFilter.setText("Filter");
@@ -265,15 +266,16 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         add(panelRight, gridBagConstraints);
 
-        tpAccount.setMinimumSize(new java.awt.Dimension(800, 200));
+        tpAccount.setMinimumSize(new java.awt.Dimension(860, 200));
+        tpAccount.setPreferredSize(new java.awt.Dimension(860, 200));
 
         pnlEdit.setMinimumSize(new java.awt.Dimension(810, 200));
         pnlEdit.setPreferredSize(new java.awt.Dimension(810, 200));
         pnlEdit.setLayout(new java.awt.GridBagLayout());
 
         panel1.setBackground(new java.awt.Color(255, 255, 255));
-        panel1.setMinimumSize(new java.awt.Dimension(800, 200));
-        panel1.setPreferredSize(new java.awt.Dimension(800, 200));
+        panel1.setMinimumSize(new java.awt.Dimension(860, 200));
+        panel1.setPreferredSize(new java.awt.Dimension(860, 200));
         panel1.setLayout(new java.awt.GridBagLayout());
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 13));
@@ -463,8 +465,8 @@ public class pnlAccount extends javax.swing.JPanel {
         pnlSearch.setLayout(new java.awt.GridBagLayout());
 
         panel3.setBackground(new java.awt.Color(255, 255, 255));
-        panel3.setMinimumSize(new java.awt.Dimension(800, 200));
-        panel3.setPreferredSize(new java.awt.Dimension(800, 200));
+        panel3.setMinimumSize(new java.awt.Dimension(860, 200));
+        panel3.setPreferredSize(new java.awt.Dimension(860, 200));
         panel3.setLayout(new java.awt.GridBagLayout());
 
         lblTitleSearch.setFont(new java.awt.Font("Tahoma", 1, 13));

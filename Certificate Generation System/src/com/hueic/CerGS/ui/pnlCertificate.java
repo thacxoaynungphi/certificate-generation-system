@@ -181,15 +181,16 @@ public class pnlCertificate extends javax.swing.JPanel {
 
         setLayout(new java.awt.GridBagLayout());
 
-        tpCertificate.setMinimumSize(new java.awt.Dimension(800, 200));
+        tpCertificate.setMinimumSize(new java.awt.Dimension(860, 200));
+        tpCertificate.setPreferredSize(new java.awt.Dimension(860, 200));
 
         pnlEdit.setMinimumSize(new java.awt.Dimension(800, 200));
         pnlEdit.setPreferredSize(new java.awt.Dimension(800, 200));
         pnlEdit.setLayout(new java.awt.GridBagLayout());
 
         panelRight1.setBackground(new java.awt.Color(255, 255, 255));
-        panelRight1.setMinimumSize(new java.awt.Dimension(800, 200));
-        panelRight1.setPreferredSize(new java.awt.Dimension(800, 200));
+        panelRight1.setMinimumSize(new java.awt.Dimension(860, 200));
+        panelRight1.setPreferredSize(new java.awt.Dimension(860, 200));
         panelRight1.setLayout(new java.awt.GridBagLayout());
 
         lblStudentID.setForeground(new java.awt.Color(3, 3, 3));
@@ -364,8 +365,8 @@ public class pnlCertificate extends javax.swing.JPanel {
         pnlSearch.setLayout(new java.awt.GridBagLayout());
 
         panelRight2.setBackground(new java.awt.Color(255, 255, 255));
-        panelRight2.setMinimumSize(new java.awt.Dimension(800, 200));
-        panelRight2.setPreferredSize(new java.awt.Dimension(800, 200));
+        panelRight2.setMinimumSize(new java.awt.Dimension(860, 200));
+        panelRight2.setPreferredSize(new java.awt.Dimension(860, 200));
         panelRight2.setLayout(new java.awt.GridBagLayout());
 
         lblStudentIDSearch.setForeground(new java.awt.Color(3, 3, 3));
@@ -509,12 +510,12 @@ public class pnlCertificate extends javax.swing.JPanel {
 
         panelLeft.setBackground(new java.awt.Color(255, 255, 255));
         panelLeft.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Certificate", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
-        panelLeft.setMinimumSize(new java.awt.Dimension(800, 400));
-        panelLeft.setPreferredSize(new java.awt.Dimension(800, 400));
+        panelLeft.setMinimumSize(new java.awt.Dimension(860, 400));
+        panelLeft.setPreferredSize(new java.awt.Dimension(860, 400));
         panelLeft.setLayout(new java.awt.GridBagLayout());
 
-        srcPanelCertificate.setMinimumSize(new java.awt.Dimension(770, 340));
-        srcPanelCertificate.setPreferredSize(new java.awt.Dimension(770, 340));
+        srcPanelCertificate.setMinimumSize(new java.awt.Dimension(840, 340));
+        srcPanelCertificate.setPreferredSize(new java.awt.Dimension(840, 340));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

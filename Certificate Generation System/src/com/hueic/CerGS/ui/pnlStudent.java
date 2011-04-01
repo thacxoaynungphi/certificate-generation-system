@@ -188,16 +188,16 @@ public class pnlStudent extends javax.swing.JPanel {
 
         setLayout(new java.awt.GridBagLayout());
 
-        tpStudent.setMinimumSize(new java.awt.Dimension(800, 320));
-        tpStudent.setPreferredSize(new java.awt.Dimension(800, 320));
+        tpStudent.setMinimumSize(new java.awt.Dimension(860, 320));
+        tpStudent.setPreferredSize(new java.awt.Dimension(860, 320));
 
         pnlEdit.setMinimumSize(new java.awt.Dimension(810, 200));
         pnlEdit.setPreferredSize(new java.awt.Dimension(810, 200));
         pnlEdit.setLayout(new java.awt.GridBagLayout());
 
         panelContent1.setBackground(new java.awt.Color(255, 255, 255));
-        panelContent1.setMinimumSize(new java.awt.Dimension(800, 300));
-        panelContent1.setPreferredSize(new java.awt.Dimension(800, 300));
+        panelContent1.setMinimumSize(new java.awt.Dimension(860, 300));
+        panelContent1.setPreferredSize(new java.awt.Dimension(860, 300));
         panelContent1.setLayout(new java.awt.GridBagLayout());
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 13));
@@ -513,8 +513,8 @@ public class pnlStudent extends javax.swing.JPanel {
         pnlSearch.setLayout(new java.awt.GridBagLayout());
 
         panelInfo.setBackground(new java.awt.Color(255, 255, 255));
-        panelInfo.setMinimumSize(new java.awt.Dimension(800, 300));
-        panelInfo.setPreferredSize(new java.awt.Dimension(800, 300));
+        panelInfo.setMinimumSize(new java.awt.Dimension(860, 300));
+        panelInfo.setPreferredSize(new java.awt.Dimension(860, 300));
         panelInfo.setLayout(new java.awt.GridBagLayout());
 
         lblStudentId.setForeground(new java.awt.Color(3, 3, 3));
@@ -712,13 +712,13 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         add(tpStudent, gridBagConstraints);
 
-        panelContent.setMinimumSize(new java.awt.Dimension(800, 280));
-        panelContent.setPreferredSize(new java.awt.Dimension(800, 280));
+        panelContent.setMinimumSize(new java.awt.Dimension(860, 280));
+        panelContent.setPreferredSize(new java.awt.Dimension(860, 280));
         panelContent.setLayout(new java.awt.GridBagLayout());
 
         panelTop.setBackground(new java.awt.Color(255, 255, 255));
-        panelTop.setMinimumSize(new java.awt.Dimension(800, 30));
-        panelTop.setPreferredSize(new java.awt.Dimension(800, 280));
+        panelTop.setMinimumSize(new java.awt.Dimension(860, 30));
+        panelTop.setPreferredSize(new java.awt.Dimension(860, 30));
         panelTop.setLayout(new java.awt.GridBagLayout());
 
         lblHienthi1.setForeground(new java.awt.Color(3, 3, 3));
@@ -766,7 +766,7 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 360, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 440, 5, 5);
         panelTop.add(filterText, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -776,13 +776,13 @@ public class pnlStudent extends javax.swing.JPanel {
         panelContent.add(panelTop, gridBagConstraints);
 
         panelTable.setBackground(new java.awt.Color(255, 255, 255));
-        panelTable.setMinimumSize(new java.awt.Dimension(800, 250));
-        panelTable.setPreferredSize(new java.awt.Dimension(800, 250));
+        panelTable.setMinimumSize(new java.awt.Dimension(860, 250));
+        panelTable.setPreferredSize(new java.awt.Dimension(860, 250));
         panelTable.setRequestFocusEnabled(false);
         panelTable.setLayout(new java.awt.GridBagLayout());
 
-        srcPanelContent.setMinimumSize(new java.awt.Dimension(770, 240));
-        srcPanelContent.setPreferredSize(new java.awt.Dimension(770, 240));
+        srcPanelContent.setMinimumSize(new java.awt.Dimension(860, 240));
+        srcPanelContent.setPreferredSize(new java.awt.Dimension(860, 240));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
