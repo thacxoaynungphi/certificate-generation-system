@@ -55,11 +55,11 @@ public class pnlEmployee extends javax.swing.JPanel {
 
         ColumnData[] columns = {
             new ColumnData("ID", 135, SwingConstants.LEFT, 1),
-            new ColumnData("First Name", 100, SwingConstants.LEFT, 2),
-            new ColumnData("Last Name", 140, SwingConstants.LEFT, 3),
+            new ColumnData("First Name", 150, SwingConstants.LEFT, 2),
+            new ColumnData("Last Name", 150, SwingConstants.LEFT, 3),
             new ColumnData("Birthday", 170, SwingConstants.LEFT, 4),
-            new ColumnData("Gender", 260, SwingConstants.LEFT, 5),
-            new ColumnData("Phone", 260, SwingConstants.LEFT, 6)
+            new ColumnData("Gender", 50, SwingConstants.LEFT, 5),
+            new ColumnData("Phone", 100, SwingConstants.LEFT, 6)
         };
         tableModel = new ObjectTableModel(tableContent, columns, listEmp);
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
