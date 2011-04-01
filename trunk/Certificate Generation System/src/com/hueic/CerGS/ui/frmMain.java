@@ -15,7 +15,6 @@ import com.hueic.CerGS.entity.Account;
 import com.hueic.CerGS.component.GUIProperties;
 import com.hueic.CerGS.component.IconSystem;
 import com.hueic.CerGS.dao.GUIDAO;
-import com.hueic.CerGS.ui.main.employee.frmEmployee;
 import java.net.URL;
 import javax.help.CSH;
 import javax.help.HelpBroker;
@@ -956,8 +955,6 @@ public class frmMain extends javax.swing.JFrame {
 
     private void mnuIManagmentEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuIManagmentEmpActionPerformed
         // TODO add your handling code here:
-        frmEmployee employee = new frmEmployee();
-        employee.setVisible(true);
     }//GEN-LAST:event_mnuIManagmentEmpActionPerformed
 
     private void mnuIHelpContentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuIHelpContentActionPerformed

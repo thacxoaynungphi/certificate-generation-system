@@ -200,7 +200,6 @@ public class ObjectTableModel extends AbstractTableModel {
                     ObjectTableCellRenderer cellRenderer = new ObjectTableCellRenderer(true);
                     cellRenderer.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
                     tableColumn.setCellRenderer(cellRenderer);
-
                     tableColumn.setMaxWidth(headerTableSize);
                     super.addColumn(tableColumn);
                     first = false;
@@ -210,7 +209,7 @@ public class ObjectTableModel extends AbstractTableModel {
 
         JTable headerTable = new JTable(ObjectTableModel.this, rowHeaderModel);
         this.table.setSelectionModel(headerTable.getSelectionModel());
-
+        this.table.setFillsViewportHeight(true);
         headerTable.setFont(new Font("Tahoma", 0, 11));
         headerTable.setRowHeight(18);
         headerTable.setColumnSelectionAllowed(false);
