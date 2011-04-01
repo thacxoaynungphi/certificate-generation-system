@@ -104,10 +104,10 @@ public class pnlRegister extends javax.swing.JPanel {
 
         ColumnData[] columns = {
             new ColumnData("Student ID", 135, SwingConstants.LEFT, 5),
-            new ColumnData("ID", 100, SwingConstants.LEFT, 1),
+            new ColumnData("ID", 150, SwingConstants.LEFT, 1),
             new ColumnData("Course ID", 140, SwingConstants.LEFT, 2),
             new ColumnData("Fees Structe", 170, SwingConstants.LEFT, 3),
-            new ColumnData("Registration Date", 260, SwingConstants.LEFT, 4)
+            new ColumnData("Registration Date", 100, SwingConstants.LEFT, 4)
         };
         tableModel = new ObjectTableModel(tableContent, columns, filter);
         sorter = new TableRowSorter<TableModel>(tableModel);
