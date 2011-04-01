@@ -278,9 +278,9 @@ public class frmMain extends javax.swing.JFrame {
         pnlHome.setLayout(new java.awt.GridBagLayout());
 
         panelRight.setBackground(new java.awt.Color(255, 255, 255));
-        panelRight.setMaximumSize(new java.awt.Dimension(800, 600));
-        panelRight.setMinimumSize(new java.awt.Dimension(800, 600));
-        panelRight.setPreferredSize(new java.awt.Dimension(800, 600));
+        panelRight.setMaximumSize(new java.awt.Dimension(820, 600));
+        panelRight.setMinimumSize(new java.awt.Dimension(820, 600));
+        panelRight.setPreferredSize(new java.awt.Dimension(820, 600));
         panelRight.setLayout(new java.awt.GridBagLayout());
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 18));

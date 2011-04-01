@@ -613,7 +613,7 @@ public class pnlRegister extends javax.swing.JPanel {
         lblEnterNameStudent.setText("Enter Filter:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelLeft.add(lblEnterNameStudent, gridBagConstraints);
@@ -626,14 +626,14 @@ public class pnlRegister extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelLeft.add(filterText, gridBagConstraints);
 
         srcPanelRegister.setAutoscrolls(true);
-        srcPanelRegister.setMinimumSize(new java.awt.Dimension(750, 250));
-        srcPanelRegister.setPreferredSize(new java.awt.Dimension(750, 250));
+        srcPanelRegister.setMinimumSize(new java.awt.Dimension(770, 290));
+        srcPanelRegister.setPreferredSize(new java.awt.Dimension(770, 290));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -647,6 +647,8 @@ public class pnlRegister extends javax.swing.JPanel {
             }
         ));
         tableContent.setDragEnabled(true);
+        tableContent.setMinimumSize(new java.awt.Dimension(770, 290));
+        tableContent.setPreferredSize(new java.awt.Dimension(770, 290));
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableContentMouseClicked(evt);
@@ -656,7 +658,7 @@ public class pnlRegister extends javax.swing.JPanel {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
         panelLeft.add(srcPanelRegister, gridBagConstraints);
@@ -672,8 +674,8 @@ public class pnlRegister extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelLeft.add(btnFilter, gridBagConstraints);
 

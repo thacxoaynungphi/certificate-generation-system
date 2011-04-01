@@ -174,8 +174,8 @@ public class pnlPermission extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         panelRight.add(lblTitle, gridBagConstraints);
 
-        sepaAccount.setMinimumSize(new java.awt.Dimension(650, 10));
-        sepaAccount.setPreferredSize(new java.awt.Dimension(650, 10));
+        sepaAccount.setMinimumSize(new java.awt.Dimension(600, 10));
+        sepaAccount.setPreferredSize(new java.awt.Dimension(600, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -203,7 +203,6 @@ public class pnlPermission extends javax.swing.JPanel {
         panelRight.add(lblPassword, gridBagConstraints);
 
         panelButton.setBackground(new java.awt.Color(255, 255, 255));
-        panelButton.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
 
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
         btnAdd.setText("Add");
@@ -418,12 +417,13 @@ public class pnlPermission extends javax.swing.JPanel {
         add(tpPermission, gridBagConstraints);
 
         panelLeft.setBackground(new java.awt.Color(255, 255, 255));
-        panelLeft.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Permission", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(3, 3, 3))); // NOI18N
+        panelLeft.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Permission", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
         panelLeft.setMinimumSize(new java.awt.Dimension(800, 400));
         panelLeft.setPreferredSize(new java.awt.Dimension(800, 400));
         panelLeft.setLayout(new java.awt.GridBagLayout());
 
-        srcPanelPermission.setPreferredSize(new java.awt.Dimension(350, 200));
+        srcPanelPermission.setMinimumSize(new java.awt.Dimension(770, 340));
+        srcPanelPermission.setPreferredSize(new java.awt.Dimension(770, 340));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -444,7 +444,8 @@ public class pnlPermission extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tableContent.setPreferredSize(new java.awt.Dimension(350, 200));
+        tableContent.setMinimumSize(new java.awt.Dimension(770, 340));
+        tableContent.setPreferredSize(new java.awt.Dimension(770, 340));
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableContentMouseClicked(evt);
@@ -456,10 +457,7 @@ public class pnlPermission extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelLeft.add(srcPanelPermission, gridBagConstraints);
 
@@ -474,13 +472,13 @@ public class pnlPermission extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 470, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 490, 5, 5);
         panelLeft.add(filterText, gridBagConstraints);
 
         btnFilter.setText("Filter");
-        btnFilter.setMaximumSize(new java.awt.Dimension(57, 20));
-        btnFilter.setMinimumSize(new java.awt.Dimension(57, 20));
-        btnFilter.setPreferredSize(new java.awt.Dimension(90, 20));
+        btnFilter.setMaximumSize(new java.awt.Dimension(75, 23));
+        btnFilter.setMinimumSize(new java.awt.Dimension(75, 23));
+        btnFilter.setPreferredSize(new java.awt.Dimension(75, 23));
         btnFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFilterActionPerformed(evt);

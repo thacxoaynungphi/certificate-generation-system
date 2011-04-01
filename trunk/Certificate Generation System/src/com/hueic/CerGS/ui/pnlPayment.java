@@ -574,7 +574,8 @@ public class pnlPayment extends javax.swing.JPanel {
         panelLeft.setPreferredSize(new java.awt.Dimension(800, 400));
         panelLeft.setLayout(new java.awt.GridBagLayout());
 
-        srcPanelPayment.setPreferredSize(new java.awt.Dimension(750, 300));
+        srcPanelPayment.setMinimumSize(new java.awt.Dimension(770, 340));
+        srcPanelPayment.setPreferredSize(new java.awt.Dimension(770, 340));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -587,7 +588,8 @@ public class pnlPayment extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tableContent.setPreferredSize(new java.awt.Dimension(300, 100));
+        tableContent.setMinimumSize(new java.awt.Dimension(770, 340));
+        tableContent.setPreferredSize(new java.awt.Dimension(770, 340));
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableContentMouseClicked(evt);
@@ -599,11 +601,11 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelLeft.add(srcPanelPayment, gridBagConstraints);
 
+        filterText.setMinimumSize(new java.awt.Dimension(200, 20));
+        filterText.setPreferredSize(new java.awt.Dimension(200, 20));
         filterText.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 filterTextKeyPressed(evt);
@@ -612,15 +614,14 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 193;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 450, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 500, 5, 5);
         panelLeft.add(filterText, gridBagConstraints);
 
         btnFilter.setText("Filter");
-        btnFilter.setMaximumSize(new java.awt.Dimension(73, 23));
-        btnFilter.setMinimumSize(new java.awt.Dimension(73, 23));
-        btnFilter.setPreferredSize(new java.awt.Dimension(73, 23));
+        btnFilter.setMaximumSize(new java.awt.Dimension(75, 23));
+        btnFilter.setMinimumSize(new java.awt.Dimension(75, 23));
+        btnFilter.setPreferredSize(new java.awt.Dimension(75, 23));
         btnFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFilterActionPerformed(evt);
@@ -629,7 +630,7 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelLeft.add(btnFilter, gridBagConstraints);
 

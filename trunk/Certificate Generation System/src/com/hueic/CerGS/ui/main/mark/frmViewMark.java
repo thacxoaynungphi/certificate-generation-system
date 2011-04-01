@@ -166,7 +166,6 @@ public class frmViewMark extends javax.swing.JFrame {
         java.awt.GridBagConstraints gridBagConstraints;
 
         panelLogo = new javax.swing.JPanel();
-        lblBanner = new javax.swing.JLabel();
         panelContent = new javax.swing.JPanel();
         lblCourseID = new javax.swing.JLabel();
         lblStudentID = new javax.swing.JLabel();
@@ -186,17 +185,15 @@ public class frmViewMark extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        lblBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/ViewMark.png"))); // NOI18N
-
         javax.swing.GroupLayout panelLogoLayout = new javax.swing.GroupLayout(panelLogo);
         panelLogo.setLayout(panelLogoLayout);
         panelLogoLayout.setHorizontalGroup(
             panelLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblBanner)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         panelLogoLayout.setVerticalGroup(
             panelLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblBanner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -428,7 +425,6 @@ public class frmViewMark extends javax.swing.JFrame {
     private javax.swing.JComboBox cbxCourseID;
     private javax.swing.JComboBox cbxStudentID;
     private javax.swing.JTextField filterText;
-    private javax.swing.JLabel lblBanner;
     private javax.swing.JLabel lblCourseID;
     private javax.swing.JLabel lblFilter;
     private javax.swing.JLabel lblStudentID;

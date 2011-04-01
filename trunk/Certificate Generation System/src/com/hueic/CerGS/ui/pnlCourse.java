@@ -111,7 +111,8 @@ public class pnlCourse extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        btnGStatus = new javax.swing.ButtonGroup();
+        btnGStatus1 = new javax.swing.ButtonGroup();
+        btnGStatus2 = new javax.swing.ButtonGroup();
         tpCourse = new javax.swing.JTabbedPane();
         pnlEdit = new javax.swing.JPanel();
         panelRight = new javax.swing.JPanel();
@@ -295,7 +296,7 @@ public class pnlCourse extends javax.swing.JPanel {
         panelRight.add(lblStatus, gridBagConstraints);
 
         radioEnable.setBackground(new java.awt.Color(255, 255, 255));
-        btnGStatus.add(radioEnable);
+        btnGStatus1.add(radioEnable);
         radioEnable.setForeground(new java.awt.Color(3, 3, 3));
         radioEnable.setText("Enable");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -306,7 +307,7 @@ public class pnlCourse extends javax.swing.JPanel {
         panelRight.add(radioEnable, gridBagConstraints);
 
         radioDisable.setBackground(new java.awt.Color(255, 255, 255));
-        btnGStatus.add(radioDisable);
+        btnGStatus1.add(radioDisable);
         radioDisable.setForeground(new java.awt.Color(3, 3, 3));
         radioDisable.setText("Disable");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -429,6 +430,7 @@ public class pnlCourse extends javax.swing.JPanel {
         panelRightSearch.add(lblStatusSearch, gridBagConstraints);
 
         radioEnableSearch.setBackground(new java.awt.Color(255, 255, 255));
+        btnGStatus2.add(radioEnableSearch);
         radioEnableSearch.setForeground(new java.awt.Color(3, 3, 3));
         radioEnableSearch.setText("Enable");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -439,6 +441,7 @@ public class pnlCourse extends javax.swing.JPanel {
         panelRightSearch.add(radioEnableSearch, gridBagConstraints);
 
         radioDisableSearch.setBackground(new java.awt.Color(255, 255, 255));
+        btnGStatus2.add(radioDisableSearch);
         radioDisableSearch.setForeground(new java.awt.Color(3, 3, 3));
         radioDisableSearch.setText("Disable");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -473,7 +476,8 @@ public class pnlCourse extends javax.swing.JPanel {
         panelLeft.setRequestFocusEnabled(false);
         panelLeft.setLayout(new java.awt.GridBagLayout());
 
-        srcPanelCourse.setPreferredSize(new java.awt.Dimension(430, 150));
+        srcPanelCourse.setMinimumSize(new java.awt.Dimension(770, 340));
+        srcPanelCourse.setPreferredSize(new java.awt.Dimension(770, 340));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -486,6 +490,8 @@ public class pnlCourse extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableContent.setMinimumSize(new java.awt.Dimension(770, 340));
+        tableContent.setPreferredSize(new java.awt.Dimension(770, 340));
         tableContent.getTableHeader().setReorderingAllowed(false);
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -498,17 +504,11 @@ public class pnlCourse extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 420;
-        gridBagConstraints.ipady = 100;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelLeft.add(srcPanelCourse, gridBagConstraints);
 
-        filterText.setMinimumSize(new java.awt.Dimension(250, 20));
-        filterText.setPreferredSize(new java.awt.Dimension(250, 20));
+        filterText.setMinimumSize(new java.awt.Dimension(200, 20));
+        filterText.setPreferredSize(new java.awt.Dimension(200, 20));
         filterText.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 filterTextKeyPressed(evt);
@@ -518,13 +518,13 @@ public class pnlCourse extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 400, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 490, 5, 5);
         panelLeft.add(filterText, gridBagConstraints);
 
         btnFilter.setText("Filter");
         btnFilter.setMaximumSize(new java.awt.Dimension(100, 20));
-        btnFilter.setMinimumSize(new java.awt.Dimension(100, 20));
-        btnFilter.setPreferredSize(new java.awt.Dimension(100, 20));
+        btnFilter.setMinimumSize(new java.awt.Dimension(75, 23));
+        btnFilter.setPreferredSize(new java.awt.Dimension(75, 23));
         btnFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFilterActionPerformed(evt);
@@ -533,8 +533,8 @@ public class pnlCourse extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 5);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelLeft.add(btnFilter, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -686,7 +686,8 @@ public class pnlCourse extends javax.swing.JPanel {
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnFilter;
-    private javax.swing.ButtonGroup btnGStatus;
+    private javax.swing.ButtonGroup btnGStatus1;
+    private javax.swing.ButtonGroup btnGStatus2;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JTextField filterText;

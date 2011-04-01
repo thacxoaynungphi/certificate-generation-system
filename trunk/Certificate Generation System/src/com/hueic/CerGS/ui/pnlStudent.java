@@ -368,7 +368,6 @@ public class pnlStudent extends javax.swing.JPanel {
         panelButton.setBackground(new java.awt.Color(255, 255, 255));
         panelButton.setMinimumSize(new java.awt.Dimension(400, 35));
         panelButton.setPreferredSize(new java.awt.Dimension(400, 35));
-        panelButton.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
 
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
         btnAdd.setText("Add");
@@ -397,6 +396,9 @@ public class pnlStudent extends javax.swing.JPanel {
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
         btnDelete.setText("Delete");
         btnDelete.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnDelete.setMaximumSize(new java.awt.Dimension(75, 25));
+        btnDelete.setMinimumSize(new java.awt.Dimension(75, 25));
+        btnDelete.setPreferredSize(new java.awt.Dimension(75, 23));
         panelButton.add(btnDelete);
 
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
@@ -748,9 +750,9 @@ public class pnlStudent extends javax.swing.JPanel {
         panelTop.add(lblCount, gridBagConstraints);
 
         btnFilter.setText("Filter");
-        btnFilter.setMaximumSize(new java.awt.Dimension(80, 20));
-        btnFilter.setMinimumSize(new java.awt.Dimension(80, 20));
-        btnFilter.setPreferredSize(new java.awt.Dimension(80, 20));
+        btnFilter.setMaximumSize(new java.awt.Dimension(75, 23));
+        btnFilter.setMinimumSize(new java.awt.Dimension(75, 23));
+        btnFilter.setPreferredSize(new java.awt.Dimension(75, 23));
         btnFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFilterActionPerformed(evt);
@@ -768,8 +770,8 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 340, 5, 5);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 360, 5, 5);
         panelTop.add(filterText, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -784,6 +786,9 @@ public class pnlStudent extends javax.swing.JPanel {
         panelTable.setRequestFocusEnabled(false);
         panelTable.setLayout(new java.awt.GridBagLayout());
 
+        srcPanelContent.setMinimumSize(new java.awt.Dimension(770, 240));
+        srcPanelContent.setPreferredSize(new java.awt.Dimension(770, 240));
+
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -795,6 +800,8 @@ public class pnlStudent extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableContent.setMinimumSize(new java.awt.Dimension(770, 240));
+        tableContent.setPreferredSize(new java.awt.Dimension(770, 240));
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableContentMouseClicked(evt);
@@ -805,12 +812,8 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 7, 0, 7);
         panelTable.add(srcPanelContent, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();

@@ -75,7 +75,7 @@ public class dlgAbount extends javax.swing.JDialog {
         lblInfoSoft.setForeground(new java.awt.Color(3, 3, 3));
         lblInfoSoft.setText("<html> <body> Certificate Generation System<br/>Version 1.0<br/>© 2011 ConnectPlus.<br/>All rights reserved.<br/> </body> </html>");
         lblInfoSoft.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        lblInfoSoft.setPreferredSize(new java.awt.Dimension(150, 56));
+        lblInfoSoft.setPreferredSize(new java.awt.Dimension(150, 57));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
