@@ -44,7 +44,7 @@ public class pnlStudent extends javax.swing.JPanel {
     public pnlStudent() {
         initComponents();
         liststudent = studentDao.readByAll();
-    loadTable(liststudent);
+        loadTable(liststudent);
     }
 
     public void loadTable(ArrayList<Student> liststudent) {
@@ -825,7 +825,6 @@ public class pnlStudent extends javax.swing.JPanel {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
-
 }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
@@ -834,32 +833,62 @@ public class pnlStudent extends javax.swing.JPanel {
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
-        String firstName = txtFirstName.getText();
-        String lastName = txtLastName.getText();
-        Date startDate = dateChooserDateStart.getDate();
-        Date endDate = dateChooserDateEnd.getDate();
-        int gender = -1;
-        if (radioFemale.isSelected()) {
-            gender = 0;
-        } else if (radioMale.isSelected()) {
-            gender = 1;
-        }
-
-        listRegister.clear();
-        listStudent = studentDAO.readByCommand(firstName, lastName, startDate, endDate, gender);
-
-        if (!listStudent.isEmpty()) {
-            for (Student student : listStudent) {
-                ArrayList<Register> listRes = registerDAO.readByStudentIdOfPerson(student.getId());
-                listRegister.addAll(listRes);
-            }
-        }
-
-        loadData(listRegister);
+//        String firstName = txtFirstName.getText();
+//        String lastName = txtLastName.getText();
+//        Date startDate = dateChooserDateStart.getDate();
+//        Date endDate = dateChooserDateEnd.getDate();
+//        int gender = -1;
+//        if (radioFemale.isSelected()) {
+//            gender = 0;
+//        } else if (radioMale.isSelected()) {
+//            gender = 1;
+//        }
+//
+//        listRegister.clear();
+//        listStudent = studentDAO.readByCommand(firstName, lastName, startDate, endDate, gender);
+//
+//        if (!listStudent.isEmpty()) {
+//            for (Student student : listStudent) {
+//                ArrayList<Register> listRes = registerDAO.readByStudentIdOfPerson(student.getId());
+//                listRegister.addAll(listRes);
+//            }
+//        }
+//
+//        loadData(listRegister);
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    public void loadDetails(Student student) {
+        txtID.setText(student.getId());
+        txtFirstname.setText(student.getFirstName());
+        txtLastname.setText(student.getLastName());
+        try {
+            DateChBirthday.setDate(student.getBirthDay());
+        } catch (Exception ex) {
+        }
+        int gender = student.getGender();
+        if (gender == 0) {
+            radioMale.setSelected(true);
+
+        } else {
+            radioFemale.setSelected(true);
+
+        }
+        txtPhone.setText(student.getPhone());
+        txtEmail.setText(student.getEmail());
+        txtAddress.setText(student.getAddress());
+        txtImage.setText(student.getImage());
+    }
 
     private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
         // TODO add your handling code here:
+        int index = tableContent.getSelectedRow();
+        if (index != -1) {
+            String value = (String) tableContent.getValueAt(index, 0);
+            Student student = find(value);
+            if (student != null) {
+                loadDetails(student);
+            }
+        }
 }//GEN-LAST:event_tableContentMouseClicked
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
@@ -877,7 +906,6 @@ public class pnlStudent extends javax.swing.JPanel {
             }
         }
 }//GEN-LAST:event_btnFilterActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser DateChBirthday;
     private javax.swing.JButton btnAdd;
@@ -950,7 +978,7 @@ public class pnlStudent extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     String getSelectedCode() {
-         try {
+        try {
             // TODO add your handling code here:
             int index = tableContent.getSelectedRow();
             if (index != -1) {

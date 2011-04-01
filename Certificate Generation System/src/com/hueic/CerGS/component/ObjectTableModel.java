@@ -1,6 +1,5 @@
 package com.hueic.CerGS.component;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.JTable;
@@ -54,7 +53,7 @@ public class ObjectTableModel extends AbstractTableModel {
         this.table.setFont(new Font("Tahoma", 0, 11));
         this.table.setRowHeight(18);
         this.table.setShowGrid(true);
-        this.table.setModel(this);
+        this.table.setModel(this);        
         this.initTableColumns();
     }
 
@@ -68,6 +67,7 @@ public class ObjectTableModel extends AbstractTableModel {
         if (index == 0) {
             return "";
         }
+
         return " " + this.columns[index - 1].getTitle() + " ";
     }
 
@@ -84,7 +84,9 @@ public class ObjectTableModel extends AbstractTableModel {
         if (columnIndex == 0) {
             return String.class;
         }
+
         Class cl = ((PropertyIndex) this.tableData.get(0)).getPropertyClass(this.getColumnPropertyIndex(columnIndex - 1));
+
         return cl;
     }
 
@@ -128,9 +130,7 @@ public class ObjectTableModel extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return false;
-        //TODO: ko cho chinh sua du lieu
-        // return this.columns[columnIndex].isEditable();
+        return this.columns[columnIndex].isEditable();
     }
 
     private int getColumnPropertyIndex(int columnIndex) {
@@ -168,7 +168,7 @@ public class ObjectTableModel extends AbstractTableModel {
              * Delete identity column for main table
              */
             this.table.removeColumn(table.getColumnModel().getColumn(0));
-
+            
             /**
              * Don't allow to change the order of column
              */
@@ -210,7 +210,7 @@ public class ObjectTableModel extends AbstractTableModel {
 
         JTable headerTable = new JTable(ObjectTableModel.this, rowHeaderModel);
         this.table.setSelectionModel(headerTable.getSelectionModel());
-        this.table.setFillsViewportHeight(true);
+
         headerTable.setFont(new Font("Tahoma", 0, 11));
         headerTable.setRowHeight(18);
         headerTable.setColumnSelectionAllowed(false);

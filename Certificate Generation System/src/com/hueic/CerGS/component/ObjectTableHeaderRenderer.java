@@ -24,7 +24,6 @@ public class ObjectTableHeaderRenderer extends JLabel implements TableCellRender
         setSize(getSize().width, 50);
         setHorizontalAlignment(alignment);
         setFont(new Font("Tahoma", Font.PLAIN, 11));
-        setForeground(new Color(3, 3, 3));
         setHorizontalTextPosition(LEFT);
     }
 
@@ -43,8 +42,6 @@ public class ObjectTableHeaderRenderer extends JLabel implements TableCellRender
         }
 
         table.getTableHeader().setBackground(Color.WHITE);
-        //TODO: chua xet duoc mau chu cho tieu de  cua Jtable 
-        table.getTableHeader().setForeground(Color.BLUE);
         this.setFont(new Font("Tahoma", Font.PLAIN, 11));
         this.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,
                 Color.WHITE,

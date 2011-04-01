@@ -143,7 +143,6 @@ public class Subject implements PropertyIndex {
             case 4:
                 value = String.valueOf(this.getCourseID());
                 break;
-
             case 5:
                 value = String.valueOf(this.getStatus());
                 break;

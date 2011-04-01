@@ -35,8 +35,6 @@ import javax.swing.table.TableRowSorter;
 public class pnlEmployee extends javax.swing.JPanel {
 
     private ArrayList<Employee> listEmp = new ArrayList<Employee>();
-    private ArrayList<Employee> listEmpTemp = new ArrayList<Employee>();
-    private ArrayList<Employee> listEmpSearch = new ArrayList<Employee>();
     private EmployeeDAO empDao;
     TableRowSorter<TableModel> sorter;
     private ObjectTableModel tableModel;
@@ -49,7 +47,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         listEmp = empDao.readByAll();
         if (listEmp.size() != 0) {
             loadData(listEmp);
-
+            loadDetails(listEmp.get(0));
         }
     }
 
@@ -94,7 +92,6 @@ public class pnlEmployee extends javax.swing.JPanel {
         }
         return true;
     }
-
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -165,11 +162,11 @@ public class pnlEmployee extends javax.swing.JPanel {
         txtEmployeeId1 = new javax.swing.JTextField();
         panelRight = new javax.swing.JPanel();
         panelDisplay = new javax.swing.JPanel();
-        lblHienthi2 = new javax.swing.JLabel();
-        lblCount1 = new javax.swing.JLabel();
-        filterText1 = new javax.swing.JTextField();
-        btnFilter1 = new javax.swing.JButton();
-        panelContent2 = new javax.swing.JPanel();
+        lblHienthi = new javax.swing.JLabel();
+        lblCount = new javax.swing.JLabel();
+        filterText = new javax.swing.JTextField();
+        btnFilter = new javax.swing.JButton();
+        panelContent = new javax.swing.JPanel();
         srcPaneEmployee = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
 
@@ -720,43 +717,43 @@ public class pnlEmployee extends javax.swing.JPanel {
         panelDisplay.setPreferredSize(new java.awt.Dimension(800, 30));
         panelDisplay.setLayout(new java.awt.GridBagLayout());
 
-        lblHienthi2.setForeground(new java.awt.Color(3, 3, 3));
-        lblHienthi2.setText("Total employees:");
+        lblHienthi.setForeground(new java.awt.Color(3, 3, 3));
+        lblHienthi.setText("Total employees:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 35, 5, 5);
-        panelDisplay.add(lblHienthi2, gridBagConstraints);
+        panelDisplay.add(lblHienthi, gridBagConstraints);
 
-        lblCount1.setBackground(new java.awt.Color(255, 255, 255));
-        lblCount1.setForeground(new java.awt.Color(3, 3, 3));
-        lblCount1.setMaximumSize(new java.awt.Dimension(20, 14));
-        lblCount1.setMinimumSize(new java.awt.Dimension(20, 14));
-        lblCount1.setPreferredSize(new java.awt.Dimension(20, 14));
+        lblCount.setBackground(new java.awt.Color(255, 255, 255));
+        lblCount.setForeground(new java.awt.Color(3, 3, 3));
+        lblCount.setMaximumSize(new java.awt.Dimension(20, 14));
+        lblCount.setMinimumSize(new java.awt.Dimension(20, 14));
+        lblCount.setPreferredSize(new java.awt.Dimension(20, 14));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 55);
-        panelDisplay.add(lblCount1, gridBagConstraints);
+        panelDisplay.add(lblCount, gridBagConstraints);
 
-        filterText1.setMinimumSize(new java.awt.Dimension(200, 20));
-        filterText1.setPreferredSize(new java.awt.Dimension(200, 20));
+        filterText.setMinimumSize(new java.awt.Dimension(200, 20));
+        filterText.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 300, 5, 5);
-        panelDisplay.add(filterText1, gridBagConstraints);
+        panelDisplay.add(filterText, gridBagConstraints);
 
-        btnFilter1.setText("Filter");
-        btnFilter1.setMaximumSize(new java.awt.Dimension(80, 20));
-        btnFilter1.setMinimumSize(new java.awt.Dimension(80, 20));
-        btnFilter1.setPreferredSize(new java.awt.Dimension(80, 20));
-        btnFilter1.addActionListener(new java.awt.event.ActionListener() {
+        btnFilter.setText("Filter");
+        btnFilter.setMaximumSize(new java.awt.Dimension(80, 20));
+        btnFilter.setMinimumSize(new java.awt.Dimension(80, 20));
+        btnFilter.setPreferredSize(new java.awt.Dimension(80, 20));
+        btnFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFilter1ActionPerformed(evt);
+                btnFilterActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -764,7 +761,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 45);
-        panelDisplay.add(btnFilter1, gridBagConstraints);
+        panelDisplay.add(btnFilter, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -772,10 +769,10 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         panelRight.add(panelDisplay, gridBagConstraints);
 
-        panelContent2.setBackground(new java.awt.Color(255, 255, 255));
-        panelContent2.setMinimumSize(new java.awt.Dimension(800, 250));
-        panelContent2.setPreferredSize(new java.awt.Dimension(800, 250));
-        panelContent2.setLayout(new java.awt.GridBagLayout());
+        panelContent.setBackground(new java.awt.Color(255, 255, 255));
+        panelContent.setMinimumSize(new java.awt.Dimension(800, 250));
+        panelContent.setPreferredSize(new java.awt.Dimension(800, 250));
+        panelContent.setLayout(new java.awt.GridBagLayout());
 
         srcPaneEmployee.setMinimumSize(new java.awt.Dimension(800, 250));
         srcPaneEmployee.setOpaque(false);
@@ -801,13 +798,13 @@ public class pnlEmployee extends javax.swing.JPanel {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = 5;
-        panelContent2.add(srcPaneEmployee, gridBagConstraints);
+        panelContent.add(srcPaneEmployee, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        panelRight.add(panelContent2, gridBagConstraints);
+        panelRight.add(panelContent, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -867,7 +864,7 @@ public class pnlEmployee extends javax.swing.JPanel {
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
-       // this.dispose();
+        // this.dispose();
 }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
@@ -877,20 +874,22 @@ public class pnlEmployee extends javax.swing.JPanel {
         Date startDate = dateChooserDateStart.getDate();
         Date endDate = dateChooserDateEnd.getDate();
         int gender = -1;
-        if (radioFemale.isSelected()) {
+        if (radioFemale1.isSelected()) {
             gender = 0;
-        } else if (radioMale.isSelected()) {
+        } else if (radioMale1.isSelected()) {
             gender = 1;
         }
-
-
         listEmp.clear();
-        listEmp = employeeDAO.readByCommand(firstName, lastName, startDate, endDate, gender);
-
-        loadData(listEmp);
+        listEmp = empDao.readByCommand(firstName, lastName, startDate, endDate, gender);
+        if (listEmp != null) {
+            System.out.println("Size : " + listEmp.size());
+            loadData(listEmp);
+        } else {
+            System.out.println("Null rui");
+        }
 }//GEN-LAST:event_btnSearchActionPerformed
 
-    private void btnFilter1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilter1ActionPerformed
+    private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
         if (listEmp.size() != 0) {
             String text = filterText.getText();
@@ -904,10 +903,53 @@ public class pnlEmployee extends javax.swing.JPanel {
                 }
             }
         }
-}//GEN-LAST:event_btnFilter1ActionPerformed
+}//GEN-LAST:event_btnFilterActionPerformed
+
+    public Employee find(String value) {
+        for (Employee employee : listEmp) {
+            if (employee.getId().equals(value)) {
+                return employee;
+            }
+        }
+        return null;
+    }
+
+    public void loadDetails(Employee emp) {
+        txtID.setText(emp.getId());
+        txtFirstname.setText(emp.getFirstName());
+        txtLastname.setText(emp.getLastName());
+        try {
+            DateChBirthday.setDate(emp.getBirthDay());
+        } catch (Exception ex) {
+        }
+        int gender = emp.getGender();
+        if (gender == 0) {
+            radioMale.setSelected(true);
+
+        } else {
+            radioFemale.setSelected(true);
+
+        }
+        txtPhone.setText(emp.getPhone());
+        txtEmail.setText(emp.getEmail());
+        txtAddress.setText(emp.getAddress());
+        txtImage.setText(emp.getImage());
+        try {
+            DateChBeginWork.setDate(emp.getBeginWork());
+        } catch (Exception ex) {
+        }
+    }
 
     private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
         // TODO add your handling code here:
+        int index = tableContent.getSelectedRow();
+        if (index != -1) {
+            String value = (String) tableContent.getValueAt(index, 0);
+            Employee emp = find(value);
+            if (emp != null) {
+                loadDetails(emp);
+            }
+        }
 }//GEN-LAST:event_tableContentMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser DateChBeginWork;
@@ -915,27 +957,27 @@ public class pnlEmployee extends javax.swing.JPanel {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBrowse;
     private javax.swing.JButton btnCancel;
-    private javax.swing.JButton btnFilter1;
+    private javax.swing.JButton btnFilter;
     private javax.swing.ButtonGroup btnGGender;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
     private com.toedter.calendar.JDateChooser dateChooserDateEnd;
     private com.toedter.calendar.JDateChooser dateChooserDateStart;
-    private javax.swing.JTextField filterText1;
+    private javax.swing.JTextField filterText;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblBeginwork;
     private javax.swing.JLabel lblBirthday;
     private javax.swing.JLabel lblBirthday1;
-    private javax.swing.JLabel lblCount1;
+    private javax.swing.JLabel lblCount;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblEmployeeID;
     private javax.swing.JLabel lblFirstName;
     private javax.swing.JLabel lblFirstname;
     private javax.swing.JLabel lblGender;
     private javax.swing.JLabel lblGender1;
-    private javax.swing.JLabel lblHienthi2;
+    private javax.swing.JLabel lblHienthi;
     private javax.swing.JLabel lblImage1;
     private javax.swing.JLabel lblImage2;
     private javax.swing.JLabel lblLastName;
@@ -950,8 +992,8 @@ public class pnlEmployee extends javax.swing.JPanel {
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblTitle1;
     private javax.swing.JPanel panelButton;
+    private javax.swing.JPanel panelContent;
     private javax.swing.JPanel panelContent1;
-    private javax.swing.JPanel panelContent2;
     private javax.swing.JPanel panelDisplay;
     private javax.swing.JPanel panelInfo;
     private javax.swing.JPanel panelRight;
