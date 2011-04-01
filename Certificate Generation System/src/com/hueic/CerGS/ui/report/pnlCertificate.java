@@ -4,9 +4,9 @@
  */
 
 /*
- * frmCertificate.java
+ * pnlCertificate.java
  *
- * Created on Mar 22, 2011, 9:25:46 PM
+ * Created on Apr 2, 2011, 3:41:08 AM
  */
 package com.hueic.CerGS.ui.report;
 
@@ -15,28 +15,24 @@ import com.hueic.CerGS.dao.CertificateDAO;
 import com.hueic.CerGS.dao.MarkDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.entity.Certificate;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author Wind
+ * @author nhchung
  */
-public class frmCertificate extends javax.swing.JFrame {
+public class pnlCertificate extends javax.swing.JPanel {
 
     private int certificateId;
     private String courseId;
-    
     private MarkDAO markDAO;
     private RegisterDAO registerDAO;
     private CertificateDAO cerDAO;
     private Certificate cer;
-    
     private CertificateReportManager cerReportManager;
 
-    /** Creates new form frmCertificate */
-    public frmCertificate(int certificateId) {
+    /** Creates new form pnlCertificate */
+    public pnlCertificate() {
         initComponents();
         this.certificateId = certificateId;
         registerDAO = new RegisterDAO();
@@ -51,7 +47,8 @@ public class frmCertificate extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.toString(), "Report Message", JOptionPane.ERROR_MESSAGE);
         }
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.setSize(860, 580);
+        this.setVisible(true);
     }
 
     /** This method is called from within the constructor to
@@ -63,10 +60,8 @@ public class frmCertificate extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 400, Short.MAX_VALUE)
@@ -75,21 +70,7 @@ public class frmCertificate extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                //new frmCertificate().setVisible(true);
-            }
-        });
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }

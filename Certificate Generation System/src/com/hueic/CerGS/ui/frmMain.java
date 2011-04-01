@@ -15,6 +15,7 @@ import com.hueic.CerGS.entity.Account;
 import com.hueic.CerGS.component.GUIProperties;
 import com.hueic.CerGS.component.IconSystem;
 import com.hueic.CerGS.dao.GUIDAO;
+import com.hueic.CerGS.ui.report.pnlStudentReport;
 import java.net.URL;
 import javax.help.CSH;
 import javax.help.HelpBroker;
@@ -141,6 +142,7 @@ public class frmMain extends javax.swing.JFrame {
         pnlCertificate = new javax.swing.JPanel();
         pnlAccount = new javax.swing.JPanel();
         pnlPermission = new javax.swing.JPanel();
+        pnlReport = new javax.swing.JPanel();
         StatusPnl = new javax.swing.JPanel();
         mnuBSystem = new javax.swing.JMenuBar();
         mnuSystem = new javax.swing.JMenu();
@@ -237,7 +239,6 @@ public class frmMain extends javax.swing.JFrame {
         tbMenu.add(jideBtnRegister);
 
         jideBtnCourse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/icon_course.png"))); // NOI18N
-        jideBtnCourse.setFocusable(false);
         jideBtnCourse.setFocusable(false);
         jideBtnCourse.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jideBtnCourse.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -681,8 +682,23 @@ public class frmMain extends javax.swing.JFrame {
         tpnBusiness.addTab("Account             ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlAccount); // NOI18N
 
         pnlPermission.setBackground(new java.awt.Color(255, 255, 255));
+        pnlPermission.setMinimumSize(new java.awt.Dimension(860, 600));
+        pnlPermission.setPreferredSize(new java.awt.Dimension(860, 600));
         pnlPermission = per;
         tpnBusiness.addTab("Permission", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlPermission); // NOI18N
+
+        javax.swing.GroupLayout pnlReportLayout = new javax.swing.GroupLayout(pnlReport);
+        pnlReport.setLayout(pnlReportLayout);
+        pnlReportLayout.setHorizontalGroup(
+            pnlReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 860, Short.MAX_VALUE)
+        );
+        pnlReportLayout.setVerticalGroup(
+            pnlReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 595, Short.MAX_VALUE)
+        );
+
+        tpnBusiness.addTab("Report", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlReport); // NOI18N
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -1190,46 +1206,50 @@ public class frmMain extends javax.swing.JFrame {
 
     private void jideBtnStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnStudentActionPerformed
         // TODO add your handling code here:
-          tpnBusiness.setSelectedComponent(pnlStudent);
+        tpnBusiness.setSelectedComponent(pnlStudent);
     }//GEN-LAST:event_jideBtnStudentActionPerformed
 
     private void jideBtnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnRegisterActionPerformed
         // TODO add your handling code here:
-          tpnBusiness.setSelectedComponent(pnlRegister);
+        tpnBusiness.setSelectedComponent(pnlRegister);
     }//GEN-LAST:event_jideBtnRegisterActionPerformed
 
     private void jideBtnCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnCourseActionPerformed
         // TODO add your handling code here:
-          tpnBusiness.setSelectedComponent(pnlCourse);
+        tpnBusiness.setSelectedComponent(pnlCourse);
     }//GEN-LAST:event_jideBtnCourseActionPerformed
 
     private void jideBtnSubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnSubjectActionPerformed
         // TODO add your handling code here:
-          tpnBusiness.setSelectedComponent(pnlSubject);
+        tpnBusiness.setSelectedComponent(pnlSubject);
     }//GEN-LAST:event_jideBtnSubjectActionPerformed
 
     private void jideBtnCertificateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnCertificateActionPerformed
         // TODO add your handling code here:
-          tpnBusiness.setSelectedComponent(pnlCertificate);
+        tpnBusiness.setSelectedComponent(pnlCertificate);
     }//GEN-LAST:event_jideBtnCertificateActionPerformed
 
     private void jideBtnAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnAccountActionPerformed
         // TODO add your handling code here:
-          tpnBusiness.setSelectedComponent(pnlAccount);
+        tpnBusiness.setSelectedComponent(pnlAccount);
     }//GEN-LAST:event_jideBtnAccountActionPerformed
 
     private void jideBtnMarkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnMarkActionPerformed
         // TODO add your handling code here:
-          tpnBusiness.setSelectedComponent(pnlMark);
+        tpnBusiness.setSelectedComponent(pnlMark);
     }//GEN-LAST:event_jideBtnMarkActionPerformed
 
     private void jideBtnPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnPaymentActionPerformed
         // TODO add your handling code here:
-          tpnBusiness.setSelectedComponent(pnlPayment);
+        tpnBusiness.setSelectedComponent(pnlPayment);
     }//GEN-LAST:event_jideBtnPaymentActionPerformed
 
     private void jideBtnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnReportActionPerformed
         // TODO add your handling code here:
+        pnlReport.add(new pnlStudentReport("CPISM"));
+        pnlReport.setSize(860, 600);
+        tpnBusiness.setSelectedComponent(pnlReport);
+
     }//GEN-LAST:event_jideBtnReportActionPerformed
 
     public void isLogin() {
@@ -1323,6 +1343,7 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JPanel pnlPayment;
     private javax.swing.JPanel pnlPermission;
     private javax.swing.JPanel pnlRegister;
+    private javax.swing.JPanel pnlReport;
     private javax.swing.JPanel pnlStudent;
     private javax.swing.JPanel pnlSubject;
     private javax.swing.JRadioButtonMenuItem radioDarkStar;
