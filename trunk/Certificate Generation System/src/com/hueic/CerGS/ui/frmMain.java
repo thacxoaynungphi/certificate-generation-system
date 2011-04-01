@@ -573,7 +573,7 @@ public class frmMain extends javax.swing.JFrame {
 
         pnlHome.add(panelRight, new java.awt.GridBagConstraints());
 
-        tpnBusiness.addTab("  HOME                   ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlHome); // NOI18N
+        tpnBusiness.addTab("Home                  ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlHome); // NOI18N
 
         pnlEmployee.setBackground(new java.awt.Color(255, 255, 255));
 
