@@ -121,7 +121,7 @@ public class frmViewPayment extends javax.swing.JFrame {
         }
         if (listPayments != null) {
             loadData(listPayments);
-            float money = paymentDao.totalDiposit(studentid);
+            float money = paymentDao.getTotalDiposit(studentid);
             if (studentid.equals("------")) {
                 lblTitleAmount.setVisible(false);
                 lblTitleTotal.setVisible(false);

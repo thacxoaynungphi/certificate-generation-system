@@ -11,6 +11,12 @@
 
 package com.hueic.CerGS.ui.report;
 
+import com.hueic.CerGS.component.report.StudentNewRegistrationInCourse;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Wind
@@ -18,8 +24,17 @@ package com.hueic.CerGS.ui.report;
 public class frmStudentNewRegistrationReport extends javax.swing.JFrame {
 
     /** Creates new form frmStudentNewRegistrationReport */
-    public frmStudentNewRegistrationReport() {
+    public frmStudentNewRegistrationReport(String courseId) {
         initComponents();
+
+        StudentNewRegistrationInCourse studentReport = new StudentNewRegistrationInCourse(courseId);
+        try {
+            this.add(studentReport.getPanelViewer(true));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.toString(), "Report Message", JOptionPane.ERROR_MESSAGE);
+        }
+        this.setSize(1000, 700);
+
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
     }
@@ -35,17 +50,6 @@ public class frmStudentNewRegistrationReport extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -55,7 +59,7 @@ public class frmStudentNewRegistrationReport extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmStudentNewRegistrationReport().setVisible(true);
+                new frmStudentNewRegistrationReport("CPISM").setVisible(true);
             }
         });
     }

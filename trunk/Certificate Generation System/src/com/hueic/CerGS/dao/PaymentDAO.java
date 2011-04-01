@@ -105,7 +105,7 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
         return payList;
     }
 
-    public float totalDiposit(String studentId) {
+    public float getTotalDiposit(String studentId) {
         float money = 0.0f;
         con = db.getConnection();
         String sqlcommand = "select sum(Money) from Payment where StudentId = ?";

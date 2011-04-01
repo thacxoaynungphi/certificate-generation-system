@@ -5,7 +5,9 @@
 
 package com.hueic.CerGS.component.report;
 
+import com.hueic.CerGS.dao.EmployeeDAO;
 import com.hueic.CerGS.entity.Employee;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
@@ -16,12 +18,14 @@ import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
  */
 public class EmployeeReportManager extends ReportManager{
 
-    public EmployeeReportManager() {
-    }
+    private EmployeeDAO employeeDAO;
+    private ArrayList<Employee> listEmp;
+    public EmployeeReportManager(){
+        employeeDAO = new EmployeeDAO();
+        listEmp = employeeDAO.readByAll();
 
-    public EmployeeReportManager(ArrayList<Employee> empList){
-        jasperFileName = "EmployeeList.jrxml";
-        dataCollection = getJRMapCollectionDataSource(empList);
+        jasperFileName = "EmployeeList.jasper";
+        dataCollection = getJRMapCollectionDataSource(listEmp);
         parameterMap = getParameterReport();
     }
 
@@ -42,11 +46,11 @@ public class EmployeeReportManager extends ReportManager{
         
         for(Employee emp : empList){
             row = new HashMap();
-            
+            DateFormat dateFormat = DateFormat.getDateInstance();
             row.put("ID", emp.getId());
-            row.put("NAME", emp.getFirstName() + " " + emp.getLastName());
-            row.put("BIRTHDAY", emp.getBirthDay());
-            row.put("BEGINWORK",emp.getBeginWork());
+            row.put("NAME", emp.getFullName());
+            row.put("BIRTHDAY", dateFormat.format(emp.getBirthDay()));
+            row.put("BEGINWORK", dateFormat.format(emp.getBeginWork()));
 
             collection.add(row);
         }

@@ -12,10 +12,7 @@
 package com.hueic.CerGS.ui.report;
 
 import com.hueic.CerGS.component.report.EmployeeReportManager;
-import com.hueic.CerGS.dao.EmployeeDAO;
-import com.hueic.CerGS.entity.Employee;
-import java.util.ArrayList;
-import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,14 +24,14 @@ public class frmEmployeeReport extends javax.swing.JFrame {
     /** Creates new form frmEmployee */
     public frmEmployeeReport() {
         initComponents();
+        EmployeeReportManager empreport = new EmployeeReportManager();
+        setSize(1000, 700);
+        try {
+            this.add(empreport.getPanelViewer(true));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.toString(), "Report Message", JOptionPane.ERROR_MESSAGE);
+        }
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-//        ArrayList<Employee> empList = new EmployeeDAO().readByAll();
-//        EmployeeReportManager empReportManager = new EmployeeReportManager(empList);
-//        panel = empReportManager.getJPanelViewer();
-//        this.add(panel);
-//        panel.setVisible(true);
-//        setDefaultCloseOperation(EXIT_ON_CLOSE);
-      //  javax.swing.JOptionPane.showMessageDialog(this, "Ok");
     }
 
     /** This method is called from within the constructor to
@@ -47,17 +44,6 @@ public class frmEmployeeReport extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

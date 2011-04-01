@@ -12,6 +12,9 @@
 package com.hueic.CerGS.ui.report;
 
 import com.hueic.CerGS.component.report.StudentMarkReportManager;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,7 +26,11 @@ public class frmStudentMarkReport extends javax.swing.JFrame {
     public frmStudentMarkReport(String studentId) {
         initComponents();
         StudentMarkReportManager report = new StudentMarkReportManager(studentId);
-        this.add(report.getPanelViewer(true));
+        try {
+            this.add(report.getPanelViewer(true));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.toString(), "Report Message", JOptionPane.ERROR_MESSAGE);
+        }
         this.setSize(1000, 700);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }

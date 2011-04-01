@@ -24,7 +24,7 @@ public interface IPaymentDAO {
 
     ArrayList<Payment> readByStudentId(String studentID);
 
-    float totalDiposit(String studentId);
+    float getTotalDiposit(String studentId);
 
     boolean update(Payment pay);
 

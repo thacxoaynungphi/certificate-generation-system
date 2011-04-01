@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporter;
@@ -34,15 +35,18 @@ public class ReportManager {
     protected JRMapCollectionDataSource dataCollection;
     protected JasperPrint jasperPrint;
 
-    protected JasperPrint getJasperPrint() {
+    protected JasperPrint getJasperPrint() throws Exception {
         JasperPrint jasperPrint = null;
 
         try {
             //THONG TIN PARAMETER
+//            if(!dataCollection.next()) {
+//                throw  new Exception("satisfy element not found ");
+//            }
             jasperPrint = JasperFillManager.fillReport((InputStream) getInputStream(jasperFileName),
                     parameterMap, dataCollection);
         } catch (Exception ex) {
-            System.out.println(ex.toString());
+            throw ex;
         }
         return jasperPrint;
     }
@@ -59,13 +63,13 @@ public class ReportManager {
         }
     }
      
-    public JPanel getPanelViewer(boolean isEnumeration) {
+    public JPanel getPanelViewer(boolean isEnumeration) throws Exception {
         JPanel viewer = null;
         viewer = new JRViewer(getJasperPrint());
         return viewer;
     }
 
-    public boolean exportToPDFFile(String pdfFileName) {
+    public boolean exportToPDFFile(String pdfFileName) throws Exception {
         JRExporter exporter = new JRPdfExporter();
         exporter.setParameter(JRExporterParameter.JASPER_PRINT, getJasperPrint());
         exporter.setParameter(JRExporterParameter.OUTPUT_FILE_NAME, pdfFileName);
@@ -77,7 +81,7 @@ public class ReportManager {
         return true;
     }
 
-    public boolean exportToMSWordFile(String wordFileName) {
+    public boolean exportToMSWordFile(String wordFileName) throws Exception {
         JRExporter exporter = new JRRtfExporter();
         exporter.setParameter(JRExporterParameter.JASPER_PRINT, getJasperPrint());
         exporter.setParameter(JRExporterParameter.OUTPUT_FILE_NAME, wordFileName);
@@ -89,7 +93,7 @@ public class ReportManager {
         return true;
     }
 
-    public boolean exportToXMLFile(String xmlFileName) {
+    public boolean exportToXMLFile(String xmlFileName) throws Exception {
         JRExporter exporter = new JRXmlExporter();
         exporter.setParameter(JRExporterParameter.JASPER_PRINT, getJasperPrint());
         exporter.setParameter(JRExporterParameter.OUTPUT_FILE_NAME, xmlFileName);

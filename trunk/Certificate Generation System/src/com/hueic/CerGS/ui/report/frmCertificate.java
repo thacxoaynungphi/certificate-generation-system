@@ -15,6 +15,9 @@ import com.hueic.CerGS.dao.CertificateDAO;
 import com.hueic.CerGS.dao.MarkDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.entity.Certificate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -40,12 +43,14 @@ public class frmCertificate extends javax.swing.JFrame {
         cerDAO = new CertificateDAO();
         cer = cerDAO.readById(this.certificateId);
         markDAO = new MarkDAO();
-
         courseId = registerDAO.readByStudentId(cer.getStudentID()).getCourseId();
+        cerReportManager = new CertificateReportManager();
 
-        cerReportManager = new CertificateReportManager(cer.getStudentID(), courseId, cer.getDegreeDay(), markDAO.getGrades(cer.getMark()));
-
-        this.add(cerReportManager.getPanelViewer(true));
+        try {
+            this.add(cerReportManager.getPanelViewer(true));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.toString(), "Report Message", JOptionPane.ERROR_MESSAGE);
+        }
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
