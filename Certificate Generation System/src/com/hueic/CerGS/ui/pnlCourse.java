@@ -389,6 +389,11 @@ public class pnlCourse extends javax.swing.JPanel {
 
         txtTotalFeesSearch.setEditable(false);
         txtTotalFeesSearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtTotalFeesSearch.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtTotalFeesSearchCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
@@ -427,6 +432,11 @@ public class pnlCourse extends javax.swing.JPanel {
         panelRightSearch.add(lblIDSearch, gridBagConstraints);
 
         txtIDSearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtIDSearch.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtIDSearchCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -466,6 +476,11 @@ public class pnlCourse extends javax.swing.JPanel {
         panelRightSearch.add(radioDisableSearch, gridBagConstraints);
 
         txtNameSearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtNameSearch.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtNameSearchCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -695,6 +710,21 @@ public class pnlCourse extends javax.swing.JPanel {
         // TODO add your handling code here:
         startFiter();
     }//GEN-LAST:event_filterTextCaretUpdate
+
+    private void txtIDSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtIDSearchCaretUpdate
+        // TODO add your handling code here:
+        loadData(listCourses);
+    }//GEN-LAST:event_txtIDSearchCaretUpdate
+
+    private void txtNameSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtNameSearchCaretUpdate
+        // TODO add your handling code here:
+        loadData(listCourses);
+    }//GEN-LAST:event_txtNameSearchCaretUpdate
+
+    private void txtTotalFeesSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTotalFeesSearchCaretUpdate
+        // TODO add your handling code here:
+        loadData(listCourses);
+    }//GEN-LAST:event_txtTotalFeesSearchCaretUpdate
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;

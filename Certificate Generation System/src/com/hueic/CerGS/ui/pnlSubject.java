@@ -335,6 +335,7 @@ public class pnlSubject extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 5, 5);
         panelRight.add(panelButton, gridBagConstraints);
 
+        txtName.setEnabled(false);
         txtName.setPreferredSize(new java.awt.Dimension(180, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -344,6 +345,7 @@ public class pnlSubject extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 9, 5, 5);
         panelRight.add(txtName, gridBagConstraints);
 
+        txtCoefficient.setEnabled(false);
         txtCoefficient.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
@@ -361,6 +363,7 @@ public class pnlSubject extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(lblSubjectID, gridBagConstraints);
 
+        txtSubjectId.setEnabled(false);
         txtSubjectId.setPreferredSize(new java.awt.Dimension(180, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -379,6 +382,7 @@ public class pnlSubject extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
         panelRight.add(sepa1, gridBagConstraints);
 
+        txtCoureID.setEnabled(false);
         txtCoureID.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
