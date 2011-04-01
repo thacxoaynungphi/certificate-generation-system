@@ -11,11 +11,6 @@
 package com.hueic.CerGS.ui.report;
 
 import com.hueic.CerGS.component.report.SubjectInCourseReportManager;
-import com.hueic.CerGS.dao.SubjectDAO;
-import com.hueic.CerGS.entity.Subject;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**

@@ -4,19 +4,10 @@ package com.hueic.CerGS.component.report;
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-import com.hueic.CerGS.dao.RegisterDAO;
-import com.hueic.CerGS.dao.StudentDAO;
-import com.hueic.CerGS.entity.Course;
-import com.hueic.CerGS.entity.Student;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.text.DateFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporter;

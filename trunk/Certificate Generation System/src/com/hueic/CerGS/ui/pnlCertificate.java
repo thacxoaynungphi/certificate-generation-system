@@ -16,7 +16,6 @@ import com.hueic.CerGS.dao.CertificateDAO;
 import com.hueic.CerGS.dao.MarkDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.entity.Certificate;
-import com.hueic.CerGS.entity.Register;
 import java.util.ArrayList;
 import java.util.regex.PatternSyntaxException;
 import javax.swing.JOptionPane;
@@ -42,6 +41,7 @@ public class pnlCertificate extends javax.swing.JPanel {
     RegisterDAO registerDAO = new RegisterDAO();
     private ObjectTableModel tableModel;
     private JTable headerTable;
+    ArrayList<Certificate> filter = null;
     frmMain frm;
 
     /** Creates new form pnlCertificate */
@@ -65,20 +65,25 @@ public class pnlCertificate extends javax.swing.JPanel {
     }
 
     public void loadData(ArrayList<Certificate> listCertificate) {
-
+        filter = new ArrayList<Certificate>();
+        for (Certificate cer : listCertificate) {
+            if (cer.getStudentID().toLowerCase().matches(".*" + txtStudentIDSearch.getText().trim().toLowerCase() + ".*") //                    && cer..getName().toLowerCase().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")
+                    //                    && String.valueOf(sub.getCoefficient()).toLowerCase().matches(".*" + txtCoefficientSearch.getText().trim().toLowerCase() + ".*")
+                    //                    && sub.getCourseID().toLowerCase().matches(".*" + txtCoureIDSearch.getText().trim().toLowerCase() + ".*")
+                    //chua xet diem va ngay thang
+                    ) {
+                filter.add(cer);
+            }
+        }
+        if (filter.size() != 0) {
+            loadDetails(filter.get(0));
+        }
         ColumnData[] columns = {
             new ColumnData("ID", 135, SwingConstants.LEFT, 1),
             new ColumnData("Student ID", 100, SwingConstants.LEFT, 2),
             new ColumnData("Mark", 140, SwingConstants.LEFT, 3),
             new ColumnData("Degree Day", 170, SwingConstants.LEFT, 4),};
-        tableModel = new ObjectTableModel(tableContent, columns, listCertificate);
-        tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
-
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableContentMouseClicked(evt);
-            }
-        });
+        tableModel = new ObjectTableModel(tableContent, columns, filter);
         sorter = new TableRowSorter<TableModel>(tableModel);
         tableContent.setRowSorter(sorter);
         headerTable = tableModel.getHeaderTable();
@@ -100,7 +105,6 @@ public class pnlCertificate extends javax.swing.JPanel {
         dateChooseDegreeDay.setDate(cer.getDegreeDay());
         txtStudentID.setText(cer.getStudentID());
     }
-
 
     public int getIndexCertificateInListById(int id) {
         for (int i = 0; i < listCertificate.size(); i++) {
@@ -397,6 +401,11 @@ public class pnlCertificate extends javax.swing.JPanel {
         panelRight2.add(lblDegreeDaySearch, gridBagConstraints);
 
         txtScoreSearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtScoreSearch.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtScoreSearchCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
@@ -455,6 +464,11 @@ public class pnlCertificate extends javax.swing.JPanel {
         panelRight2.add(lblIDSearch, gridBagConstraints);
 
         txtIDSearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtIDSearch.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtIDSearchCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -491,6 +505,11 @@ public class pnlCertificate extends javax.swing.JPanel {
 
         txtStudentIDSearch.setMinimumSize(new java.awt.Dimension(200, 20));
         txtStudentIDSearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtStudentIDSearch.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtStudentIDSearchCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -531,8 +550,8 @@ public class pnlCertificate extends javax.swing.JPanel {
         tableContent.setMinimumSize(new java.awt.Dimension(770, 340));
         tableContent.setPreferredSize(new java.awt.Dimension(770, 340));
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableContentMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tableContentMouseReleased(evt);
             }
         });
         srcPanelCertificate.setViewportView(tableContent);
@@ -546,6 +565,11 @@ public class pnlCertificate extends javax.swing.JPanel {
 
         filterText.setMinimumSize(new java.awt.Dimension(200, 20));
         filterText.setPreferredSize(new java.awt.Dimension(200, 20));
+        filterText.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                filterTextCaretUpdate(evt);
+            }
+        });
         filterText.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 filterTextKeyPressed(evt);
@@ -555,7 +579,7 @@ public class pnlCertificate extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 490, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 540, 5, 5);
         panelLeft.add(filterText, gridBagConstraints);
 
         btnFilter.setText("Filter");
@@ -570,7 +594,7 @@ public class pnlCertificate extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelLeft.add(btnFilter, gridBagConstraints);
 
@@ -659,36 +683,11 @@ public class pnlCertificate extends javax.swing.JPanel {
         // TODO add your handling code here:
 }//GEN-LAST:event_btnCancelActionPerformed
 
-    private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
-        // TODO add your handling code here:
-        try {
-            // TODO add your handling code here:
-            int index = tableContent.getSelectedRow();
-            if (index != -1) {
-                int value = Integer.parseInt(tableContent.getValueAt(index, 0).toString());
-                Certificate cer = find(value);
-                if (cer != null) {
-                    loadDetails(cer);
-                }
-            }
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.toString(), "Error!", JOptionPane.ERROR_MESSAGE);
-        }
-}//GEN-LAST:event_tableContentMouseClicked
-
     private void filterTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextKeyPressed
         // TODO add your handling code here:
-        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-            btnFilterActionPerformed(null);
-
-
-
-
-        }
 }//GEN-LAST:event_filterTextKeyPressed
 
-    private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
-        // TODO add your handling code here:
+    public void startFiter() {
         if (!listCertificate.isEmpty()) {
             String text = filterText.getText();
             if (text.length() == 0) {
@@ -701,6 +700,10 @@ public class pnlCertificate extends javax.swing.JPanel {
                 }
             }
         }
+    }
+    private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
+        // TODO add your handling code here:
+        startFiter();
 }//GEN-LAST:event_btnFilterActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
@@ -724,6 +727,43 @@ public class pnlCertificate extends javax.swing.JPanel {
         dlg.setLocationRelativeTo(null);
         dlg.setVisible(true);
     }//GEN-LAST:event_btnChooseStudentIdSearchActionPerformed
+
+    private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
+
+        startFiter();
+    }//GEN-LAST:event_filterTextCaretUpdate
+
+    private void txtIDSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtIDSearchCaretUpdate
+        // TODO add your handling code here:
+        loadData(listCertificate);
+    }//GEN-LAST:event_txtIDSearchCaretUpdate
+
+    private void txtStudentIDSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtStudentIDSearchCaretUpdate
+        // TODO add your handling code here:
+        loadData(listCertificate);
+    }//GEN-LAST:event_txtStudentIDSearchCaretUpdate
+
+    private void txtScoreSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtScoreSearchCaretUpdate
+        // TODO add your handling code here:
+        loadData(listCertificate);
+    }//GEN-LAST:event_txtScoreSearchCaretUpdate
+
+    private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            int index = tableContent.getSelectedRow();
+            if (index != -1) {
+                int value = Integer.parseInt(tableContent.getValueAt(index, 0).toString());
+                Certificate cer = find(value);
+                if (cer != null) {
+                    loadDetails(cer);
+                }
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.toString(), "Error!", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_tableContentMouseReleased
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelButton;
     private javax.swing.JPanel PanelButtonSearch;
