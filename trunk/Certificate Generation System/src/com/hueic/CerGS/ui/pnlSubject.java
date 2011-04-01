@@ -261,7 +261,7 @@ public class pnlSubject extends javax.swing.JPanel {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         panelRight.add(lblCoefficient, gridBagConstraints);
 
         lblCourseID.setForeground(new java.awt.Color(3, 3, 3));
@@ -270,7 +270,7 @@ public class pnlSubject extends javax.swing.JPanel {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         panelRight.add(lblCourseID, gridBagConstraints);
 
         panelButton.setBackground(new java.awt.Color(255, 255, 255));
@@ -332,7 +332,7 @@ public class pnlSubject extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 5, 5);
         panelRight.add(panelButton, gridBagConstraints);
 
         txtName.setPreferredSize(new java.awt.Dimension(180, 20));
@@ -370,7 +370,7 @@ public class pnlSubject extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(3, 9, 5, 5);
         panelRight.add(txtSubjectId, gridBagConstraints);
 
-        sepa1.setPreferredSize(new java.awt.Dimension(650, 10));
+        sepa1.setPreferredSize(new java.awt.Dimension(750, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -442,7 +442,7 @@ public class pnlSubject extends javax.swing.JPanel {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         panelRightSearch.add(lblCoefficientSearch, gridBagConstraints);
 
         lblCourseIDSearch.setForeground(new java.awt.Color(3, 3, 3));
@@ -451,7 +451,7 @@ public class pnlSubject extends javax.swing.JPanel {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         panelRightSearch.add(lblCourseIDSearch, gridBagConstraints);
 
         panelButtonSearch.setBackground(new java.awt.Color(255, 255, 255));
@@ -474,7 +474,7 @@ public class pnlSubject extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(15, 0, 5, 5);
         panelRightSearch.add(panelButtonSearch, gridBagConstraints);
 
         txtNameSearch.setPreferredSize(new java.awt.Dimension(180, 20));
@@ -528,7 +528,7 @@ public class pnlSubject extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(3, 9, 5, 5);
         panelRightSearch.add(txtSubjectIdSearch, gridBagConstraints);
 
-        sepa2Search.setPreferredSize(new java.awt.Dimension(650, 10));
+        sepa2Search.setPreferredSize(new java.awt.Dimension(750, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;

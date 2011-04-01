@@ -175,7 +175,7 @@ public class pnlCourse extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         panelRight.add(lblTitle, gridBagConstraints);
 
-        sepaCourse.setPreferredSize(new java.awt.Dimension(650, 10));
+        sepaCourse.setPreferredSize(new java.awt.Dimension(750, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -199,7 +199,7 @@ public class pnlCourse extends javax.swing.JPanel {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         panelRight.add(lblTotalFees, gridBagConstraints);
 
         txtTotalFees.setEditable(false);
@@ -267,7 +267,7 @@ public class pnlCourse extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(15, 5, 5, 5);
         panelRight.add(panelButton, gridBagConstraints);
 
         lblID.setForeground(new java.awt.Color(3, 3, 3));
@@ -293,7 +293,7 @@ public class pnlCourse extends javax.swing.JPanel {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         panelRight.add(lblStatus, gridBagConstraints);
 
         radioEnable.setBackground(new java.awt.Color(255, 255, 255));
@@ -347,7 +347,7 @@ public class pnlCourse extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         panelRightSearch.add(lblTitleSearch, gridBagConstraints);
 
-        sepaCourseSearch.setPreferredSize(new java.awt.Dimension(650, 10));
+        sepaCourseSearch.setPreferredSize(new java.awt.Dimension(750, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -371,7 +371,7 @@ public class pnlCourse extends javax.swing.JPanel {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         panelRightSearch.add(lblTotalFeesSearch, gridBagConstraints);
 
         txtTotalFeesSearch.setEditable(false);
@@ -401,7 +401,7 @@ public class pnlCourse extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(15, 5, 5, 5);
         panelRightSearch.add(panelButtonSearch, gridBagConstraints);
 
         lblIDSearch.setForeground(new java.awt.Color(3, 3, 3));
@@ -427,7 +427,7 @@ public class pnlCourse extends javax.swing.JPanel {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         panelRightSearch.add(lblStatusSearch, gridBagConstraints);
 
         radioEnableSearch.setBackground(new java.awt.Color(255, 255, 255));
