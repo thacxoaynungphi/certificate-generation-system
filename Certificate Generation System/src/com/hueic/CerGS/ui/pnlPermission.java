@@ -134,17 +134,17 @@ public class pnlPermission extends javax.swing.JPanel {
         lblcheck2 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         pnlSearch = new javax.swing.JPanel();
-        panelRight1 = new javax.swing.JPanel();
-        lblTitle1 = new javax.swing.JLabel();
-        sepaAccount1 = new javax.swing.JSeparator();
-        lblUsername1 = new javax.swing.JLabel();
-        lblPassword1 = new javax.swing.JLabel();
-        panelButton1 = new javax.swing.JPanel();
+        panelRightSearch = new javax.swing.JPanel();
+        lblTitleSearch = new javax.swing.JLabel();
+        sepaAccountSearch = new javax.swing.JSeparator();
+        lblUsernameSearch = new javax.swing.JLabel();
+        lblPasswordSearch = new javax.swing.JLabel();
+        panelButtonSearch = new javax.swing.JPanel();
         btnReset = new javax.swing.JButton();
-        txtId1 = new javax.swing.JTextField();
-        lblcheck3 = new javax.swing.JLabel();
-        lblcheck4 = new javax.swing.JLabel();
-        txtName1 = new javax.swing.JTextField();
+        txtIdSearch = new javax.swing.JTextField();
+        lblcheckSearch = new javax.swing.JLabel();
+        lblcheck4Search = new javax.swing.JLabel();
+        txtNameSearch = new javax.swing.JTextField();
         panelLeft = new javax.swing.JPanel();
         srcPanelPermission = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
@@ -307,53 +307,53 @@ public class pnlPermission extends javax.swing.JPanel {
         pnlSearch.setPreferredSize(new java.awt.Dimension(810, 200));
         pnlSearch.setLayout(new java.awt.GridBagLayout());
 
-        panelRight1.setBackground(new java.awt.Color(255, 255, 255));
-        panelRight1.setMinimumSize(new java.awt.Dimension(800, 200));
-        panelRight1.setPreferredSize(new java.awt.Dimension(800, 200));
-        panelRight1.setLayout(new java.awt.GridBagLayout());
+        panelRightSearch.setBackground(new java.awt.Color(255, 255, 255));
+        panelRightSearch.setMinimumSize(new java.awt.Dimension(800, 200));
+        panelRightSearch.setPreferredSize(new java.awt.Dimension(800, 200));
+        panelRightSearch.setLayout(new java.awt.GridBagLayout());
 
-        lblTitle1.setFont(new java.awt.Font("Tahoma", 1, 13));
-        lblTitle1.setForeground(new java.awt.Color(102, 0, 102));
-        lblTitle1.setText("Information Permission");
+        lblTitleSearch.setFont(new java.awt.Font("Tahoma", 1, 13));
+        lblTitleSearch.setForeground(new java.awt.Color(102, 0, 102));
+        lblTitleSearch.setText("Information Permission");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        panelRight1.add(lblTitle1, gridBagConstraints);
+        panelRightSearch.add(lblTitleSearch, gridBagConstraints);
 
-        sepaAccount1.setMinimumSize(new java.awt.Dimension(650, 10));
-        sepaAccount1.setPreferredSize(new java.awt.Dimension(650, 10));
+        sepaAccountSearch.setMinimumSize(new java.awt.Dimension(650, 10));
+        sepaAccountSearch.setPreferredSize(new java.awt.Dimension(650, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
-        panelRight1.add(sepaAccount1, gridBagConstraints);
+        panelRightSearch.add(sepaAccountSearch, gridBagConstraints);
 
-        lblUsername1.setForeground(new java.awt.Color(3, 3, 3));
-        lblUsername1.setText("ID:");
+        lblUsernameSearch.setForeground(new java.awt.Color(3, 3, 3));
+        lblUsernameSearch.setText("ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
-        panelRight1.add(lblUsername1, gridBagConstraints);
+        panelRightSearch.add(lblUsernameSearch, gridBagConstraints);
 
-        lblPassword1.setForeground(new java.awt.Color(3, 3, 3));
-        lblPassword1.setText("Name:");
+        lblPasswordSearch.setForeground(new java.awt.Color(3, 3, 3));
+        lblPasswordSearch.setText("Name:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
-        panelRight1.add(lblPassword1, gridBagConstraints);
+        panelRightSearch.add(lblPasswordSearch, gridBagConstraints);
 
-        panelButton1.setBackground(new java.awt.Color(255, 255, 255));
-        panelButton1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
+        panelButtonSearch.setBackground(new java.awt.Color(255, 255, 255));
+        panelButtonSearch.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
 
-        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
+        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
         btnReset.setText("Reset");
         btnReset.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnReset.setPreferredSize(new java.awt.Dimension(70, 23));
@@ -362,52 +362,52 @@ public class pnlPermission extends javax.swing.JPanel {
                 btnResetActionPerformed(evt);
             }
         });
-        panelButton1.add(btnReset);
+        panelButtonSearch.add(btnReset);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.insets = new java.awt.Insets(30, 5, 5, 5);
-        panelRight1.add(panelButton1, gridBagConstraints);
+        panelRightSearch.add(panelButtonSearch, gridBagConstraints);
 
-        txtId1.setEnabled(false);
-        txtId1.setMinimumSize(new java.awt.Dimension(200, 20));
-        txtId1.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtIdSearch.setEnabled(false);
+        txtIdSearch.setMinimumSize(new java.awt.Dimension(200, 20));
+        txtIdSearch.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight1.add(txtId1, gridBagConstraints);
+        panelRightSearch.add(txtIdSearch, gridBagConstraints);
 
-        lblcheck3.setForeground(new java.awt.Color(255, 0, 51));
-        lblcheck3.setText("(*)");
+        lblcheckSearch.setForeground(new java.awt.Color(255, 0, 51));
+        lblcheckSearch.setText("(*)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight1.add(lblcheck3, gridBagConstraints);
+        panelRightSearch.add(lblcheckSearch, gridBagConstraints);
 
-        lblcheck4.setForeground(new java.awt.Color(255, 0, 51));
-        lblcheck4.setText("(*)");
+        lblcheck4Search.setForeground(new java.awt.Color(255, 0, 51));
+        lblcheck4Search.setText("(*)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight1.add(lblcheck4, gridBagConstraints);
+        panelRightSearch.add(lblcheck4Search, gridBagConstraints);
 
-        txtName1.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtNameSearch.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight1.add(txtName1, gridBagConstraints);
+        panelRightSearch.add(txtNameSearch, gridBagConstraints);
 
-        pnlSearch.add(panelRight1, new java.awt.GridBagConstraints());
+        pnlSearch.add(panelRightSearch, new java.awt.GridBagConstraints());
 
         tpPermission.addTab("Search", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Search-32.png")), pnlSearch); // NOI18N
 
@@ -463,6 +463,8 @@ public class pnlPermission extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelLeft.add(srcPanelPermission, gridBagConstraints);
 
+        filterText.setMinimumSize(new java.awt.Dimension(200, 20));
+        filterText.setPreferredSize(new java.awt.Dimension(200, 20));
         filterText.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 filterTextKeyPressed(evt);
@@ -471,9 +473,8 @@ public class pnlPermission extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 132;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 170, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 470, 5, 5);
         panelLeft.add(filterText, gridBagConstraints);
 
         btnFilter.setText("Filter");
@@ -488,7 +489,6 @@ public class pnlPermission extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 18;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelLeft.add(btnFilter, gridBagConstraints);
@@ -624,31 +624,31 @@ public class pnlPermission extends javax.swing.JPanel {
     private javax.swing.JButton btnUpdate;
     private javax.swing.JTextField filterText;
     private javax.swing.JLabel lblPassword;
-    private javax.swing.JLabel lblPassword1;
+    private javax.swing.JLabel lblPasswordSearch;
     private javax.swing.JLabel lblTitle;
-    private javax.swing.JLabel lblTitle1;
+    private javax.swing.JLabel lblTitleSearch;
     private javax.swing.JLabel lblUsername;
-    private javax.swing.JLabel lblUsername1;
+    private javax.swing.JLabel lblUsernameSearch;
     private javax.swing.JLabel lblcheck1;
     private javax.swing.JLabel lblcheck2;
-    private javax.swing.JLabel lblcheck3;
-    private javax.swing.JLabel lblcheck4;
+    private javax.swing.JLabel lblcheck4Search;
+    private javax.swing.JLabel lblcheckSearch;
     private javax.swing.JPanel panelButton;
-    private javax.swing.JPanel panelButton1;
+    private javax.swing.JPanel panelButtonSearch;
     private javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelRight;
-    private javax.swing.JPanel panelRight1;
+    private javax.swing.JPanel panelRightSearch;
     public javax.swing.JPanel pnlEdit;
     public javax.swing.JPanel pnlSearch;
     private javax.swing.JSeparator sepaAccount;
-    private javax.swing.JSeparator sepaAccount1;
+    private javax.swing.JSeparator sepaAccountSearch;
     private javax.swing.JScrollPane srcPanelPermission;
     private javax.swing.JTable tableContent;
     public javax.swing.JTabbedPane tpPermission;
     private javax.swing.JTextField txtId;
-    private javax.swing.JTextField txtId1;
+    private javax.swing.JTextField txtIdSearch;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtName1;
+    private javax.swing.JTextField txtNameSearch;
     // End of variables declaration//GEN-END:variables
 
     String getSelectedCode() {

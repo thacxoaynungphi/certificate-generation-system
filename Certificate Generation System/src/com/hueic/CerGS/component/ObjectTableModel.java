@@ -128,7 +128,9 @@ public class ObjectTableModel extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return this.columns[columnIndex].isEditable();
+        return false;
+        //TODO: ko cho chinh sua du lieu
+        // return this.columns[columnIndex].isEditable();
     }
 
     private int getColumnPropertyIndex(int columnIndex) {
