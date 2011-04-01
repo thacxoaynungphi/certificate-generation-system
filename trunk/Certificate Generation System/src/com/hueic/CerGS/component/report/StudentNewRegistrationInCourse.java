@@ -10,12 +10,9 @@ import com.hueic.CerGS.dao.MarkDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.dao.StudentDAO;
 import com.hueic.CerGS.entity.Register;
-import com.hueic.CerGS.ui.frmMain;
-import com.hueic.CerGS.ui.report.frmCertificate;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
 

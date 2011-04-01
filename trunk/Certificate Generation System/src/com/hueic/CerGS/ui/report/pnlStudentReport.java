@@ -4,9 +4,9 @@
  */
 
 /*
- * frmStudentReport.java
+ * pnlStudentReport.java
  *
- * Created on Mar 14, 2011, 7:34:00 AM
+ * Created on Apr 2, 2011, 2:51:00 AM
  */
 package com.hueic.CerGS.ui.report;
 
@@ -20,11 +20,10 @@ import javax.swing.JOptionPane;
  *
  * @author nhchung
  */
-public class frmStudentReport extends javax.swing.JFrame {
+public class pnlStudentReport extends javax.swing.JPanel {
 
-    /** Creates new form frmStudentReport */
-    public frmStudentReport(String courseId) {
-
+    /** Creates new form pnlStudentReport */
+    public pnlStudentReport(String courseId) {
         initComponents();
         ArrayList<Register> regisList = new RegisterDAO().readByAll();
         StudentReportManager studentReport = new StudentReportManager(courseId);
@@ -36,9 +35,8 @@ public class frmStudentReport extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, ex.toString(), "Report Message", JOptionPane.ERROR_MESSAGE);
             }
         }
+        this.setSize(860, 580);
         this.setVisible(true);
-        this.setSize(1000, 700);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /** This method is called from within the constructor to
@@ -50,22 +48,10 @@ public class frmStudentReport extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        pack();
+        setMinimumSize(new java.awt.Dimension(860, 550));
+        setPreferredSize(new java.awt.Dimension(860, 550));
+        setLayout(new java.awt.BorderLayout());
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new frmStudentReport("CPISM").setVisible(true);
-            }
-        });
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }

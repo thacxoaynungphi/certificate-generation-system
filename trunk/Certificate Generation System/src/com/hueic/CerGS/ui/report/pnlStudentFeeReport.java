@@ -4,11 +4,10 @@
  */
 
 /*
- * frmStudentFeeReport.java
+ * pnlStudentFeeReport.java
  *
- * Created on Mar 22, 2011, 9:26:11 PM
+ * Created on Apr 2, 2011, 3:44:38 AM
  */
-
 package com.hueic.CerGS.ui.report;
 
 import com.hueic.CerGS.component.report.StudentFeeReportManager;
@@ -16,21 +15,22 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Wind
+ * @author nhchung
  */
-public class frmStudentFeeReport extends javax.swing.JFrame {
+public class pnlStudentFeeReport extends javax.swing.JPanel {
 
-    /** Creates new form frmStudentFeeReport */
-    public frmStudentFeeReport() {
+    /** Creates new form pnlStudentFeeReport */
+    public pnlStudentFeeReport(String courseId) {
         initComponents();
-        StudentFeeReportManager studentFee = new StudentFeeReportManager("DISM");
+        StudentFeeReportManager studentFee = new StudentFeeReportManager(courseId);
         try {
             this.add(studentFee.getPanelViewer(true));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.toString(), "Report Message", JOptionPane.ERROR_MESSAGE);
         }
         setSize(1000, 700);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+         this.setSize(860, 580);
+        this.setVisible(true);
     }
 
     /** This method is called from within the constructor to
@@ -42,23 +42,17 @@ public class frmStudentFeeReport extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        pack();
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmStudentFeeReport().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-
 }

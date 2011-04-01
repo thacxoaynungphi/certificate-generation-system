@@ -154,6 +154,7 @@ public class pnlPermission extends javax.swing.JPanel {
         filterText = new javax.swing.JTextField();
         btnFilter = new javax.swing.JButton();
 
+        setMaximumSize(new java.awt.Dimension(860, 600));
         setLayout(new java.awt.GridBagLayout());
 
         tpPermission.setMinimumSize(new java.awt.Dimension(860, 200));
@@ -178,7 +179,7 @@ public class pnlPermission extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         panelRight.add(lblTitle, gridBagConstraints);
 
-        sepaAccount.setMinimumSize(new java.awt.Dimension(600, 10));
+        sepaAccount.setMinimumSize(new java.awt.Dimension(750, 10));
         sepaAccount.setPreferredSize(new java.awt.Dimension(750, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -513,8 +514,6 @@ public class pnlPermission extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = -1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         add(panelLeft, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
@@ -523,6 +522,96 @@ public class pnlPermission extends javax.swing.JPanel {
         // TODO add your handling code here:
         searchStart();
 }//GEN-LAST:event_btnFilterActionPerformed
+
+    private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            int index = tableContent.getSelectedRow();
+
+            if (index != -1) {
+                int value = Integer.parseInt(tableContent.getValueAt(index, 0).toString());
+                Permission per = find(value);
+                if (per != null) {
+                    loadDetails(per);
+                }
+            }
+        } catch (Exception ex) {
+            //TODO: chua xu ly
+        }
+    }//GEN-LAST:event_tableContentMouseReleased
+
+    private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
+        // TODO add your handling code here:
+        searchStart();
+    }//GEN-LAST:event_filterTextCaretUpdate
+
+    private void txtNameSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtNameSearchCaretUpdate
+        // TODO add your handling code here:
+        loadData(listPermssion);
+}//GEN-LAST:event_txtNameSearchCaretUpdate
+
+    private void txtIdSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtIdSearchCaretUpdate
+        // TODO add your handling code here:
+        loadData(listPermssion);
+}//GEN-LAST:event_txtIdSearchCaretUpdate
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_btnResetActionPerformed
+
+    private void txtIdCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtIdCaretUpdate
+        // TODO add your handling code here:
+}//GEN-LAST:event_txtIdCaretUpdate
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        if (isAdd) {
+            isAdd = false;
+            btnUpdate.setEnabled(true);
+            btnDelete.setEnabled(true);
+            txtId.setVisible(true);
+        } else {
+            loadDetails(listPermssion.get(0));
+        }
+}//GEN-LAST:event_btnCancelActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int id = Integer.parseInt(txtId.getText());
+        if (perDao.delete(id)) {
+            JOptionPane.showMessageDialog(this, perDao.getLastError(), "Delete Permission", JOptionPane.INFORMATION_MESSAGE, null);
+            listPermssion.remove(find(id));
+            loadData(listPermssion);
+            if (listPermssion.size() != 0) {
+                loadDetails(listPermssion.get(0));
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, perDao.getLastError(), "Delete Permission", JOptionPane.ERROR_MESSAGE, null);
+        }
+}//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        try {
+            int id = Integer.parseInt(txtId.getText());
+            String name = txtName.getText();
+            Permission per = new Permission(id, name);
+            if (perDao.update(per)) {
+                JOptionPane.showMessageDialog(this, perDao.getLastError(), "Update Permission", JOptionPane.INFORMATION_MESSAGE);
+                listPermssion.remove(find(id));
+                listPermssion.add(per);
+                loadData(listPermssion);
+                loadDetails(per);
+                isAdd = false;
+                btnUpdate.setEnabled(true);
+                btnDelete.setEnabled(true);
+            } else {
+                JOptionPane.showMessageDialog(this, perDao.getLastError(), "Update Permission", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+        }
+}//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
@@ -555,95 +644,6 @@ public class pnlPermission extends javax.swing.JPanel {
         }
 }//GEN-LAST:event_btnAddActionPerformed
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
-        try {
-            int id = Integer.parseInt(txtId.getText());
-            String name = txtName.getText();
-            Permission per = new Permission(id, name);
-            if (perDao.update(per)) {
-                JOptionPane.showMessageDialog(this, perDao.getLastError(), "Update Permission", JOptionPane.INFORMATION_MESSAGE);
-                listPermssion.remove(find(id));
-                listPermssion.add(per);
-                loadData(listPermssion);
-                loadDetails(per);
-                isAdd = false;
-                btnUpdate.setEnabled(true);
-                btnDelete.setEnabled(true);
-            } else {
-                JOptionPane.showMessageDialog(this, perDao.getLastError(), "Update Permission", JOptionPane.ERROR_MESSAGE);
-            }
-        } catch (Exception e) {
-        }
-}//GEN-LAST:event_btnUpdateActionPerformed
-
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-        int id = Integer.parseInt(txtId.getText());
-        if (perDao.delete(id)) {
-            JOptionPane.showMessageDialog(this, perDao.getLastError(), "Delete Permission", JOptionPane.INFORMATION_MESSAGE, null);
-            listPermssion.remove(find(id));
-            loadData(listPermssion);
-            if (listPermssion.size() != 0) {
-                loadDetails(listPermssion.get(0));
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, perDao.getLastError(), "Delete Permission", JOptionPane.ERROR_MESSAGE, null);
-        }
-}//GEN-LAST:event_btnDeleteActionPerformed
-
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        // TODO add your handling code here:
-        if (isAdd) {
-            isAdd = false;
-            btnUpdate.setEnabled(true);
-            btnDelete.setEnabled(true);
-            txtId.setVisible(true);
-        } else {
-            loadDetails(listPermssion.get(0));
-        }
-}//GEN-LAST:event_btnCancelActionPerformed
-
-    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnResetActionPerformed
-
-    private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
-        // TODO add your handling code here:
-        try {
-            // TODO add your handling code here:
-            int index = tableContent.getSelectedRow();
-
-            if (index != -1) {
-                int value = Integer.parseInt(tableContent.getValueAt(index, 0).toString());
-                Permission per = find(value);
-                if (per != null) {
-                    loadDetails(per);
-                }
-            }
-        } catch (Exception ex) {
-            //TODO: chua xu ly
-        }
-    }//GEN-LAST:event_tableContentMouseReleased
-
-    private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
-        // TODO add your handling code here:
-        searchStart();
-    }//GEN-LAST:event_filterTextCaretUpdate
-
-    private void txtIdCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtIdCaretUpdate
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdCaretUpdate
-
-    private void txtIdSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtIdSearchCaretUpdate
-        // TODO add your handling code here:
-        loadData(listPermssion);
-    }//GEN-LAST:event_txtIdSearchCaretUpdate
-
-    private void txtNameSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtNameSearchCaretUpdate
-        // TODO add your handling code here:
-        loadData(listPermssion);
-    }//GEN-LAST:event_txtNameSearchCaretUpdate
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;

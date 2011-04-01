@@ -4,39 +4,32 @@
  */
 
 /*
- * frmStudentNewRegistrationReport.java
+ * NewJPanel.java
  *
- * Created on Mar 22, 2011, 9:35:00 PM
+ * Created on Apr 2, 2011, 3:27:11 AM
  */
-
 package com.hueic.CerGS.ui.report;
 
 import com.hueic.CerGS.component.report.StudentNewRegistrationInCourse;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 /**
  *
- * @author Wind
+ * @author nhchung
  */
-public class frmStudentNewRegistrationReport extends javax.swing.JFrame {
+public class pnlStudentNewRegistrationReport extends javax.swing.JPanel {
 
-    /** Creates new form frmStudentNewRegistrationReport */
-    public frmStudentNewRegistrationReport(String courseId) {
+    /** Creates new form NewJPanel */
+    public pnlStudentNewRegistrationReport(String courseId) {
         initComponents();
-
         StudentNewRegistrationInCourse studentReport = new StudentNewRegistrationInCourse(courseId);
         try {
             this.add(studentReport.getPanelViewer(true));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.toString(), "Report Message", JOptionPane.ERROR_MESSAGE);
         }
-        this.setSize(1000, 700);
-
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        
+        this.setSize(860, 580);
+        this.setVisible(true);
     }
 
     /** This method is called from within the constructor to
@@ -48,23 +41,17 @@ public class frmStudentNewRegistrationReport extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        pack();
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmStudentNewRegistrationReport("CPISM").setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-
 }

@@ -4,34 +4,33 @@
  */
 
 /*
- * frmEmployee.java
+ * NewJPanel.java
  *
- * Created on Mar 14, 2011, 7:34:15 AM
+ * Created on Apr 2, 2011, 3:32:08 AM
  */
 
 package com.hueic.CerGS.ui.report;
 
-import com.hueic.CerGS.component.report.EmployeeReportManager;
+import com.hueic.CerGS.component.report.StudentMarkReportManager;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author nhchung
  */
-public class frmEmployeeReport extends javax.swing.JFrame {
+public class pnlStudentMarkReport extends javax.swing.JPanel {
 
-//    private final JPanel panel;
-    /** Creates new form frmEmployee */
-    public frmEmployeeReport() {
+    /** Creates new form NewJPanel */
+    public pnlStudentMarkReport(String studentId) {
         initComponents();
-        EmployeeReportManager empreport = new EmployeeReportManager();
-        setSize(1000, 700);
+         StudentMarkReportManager report = new StudentMarkReportManager(studentId);
         try {
-            this.add(empreport.getPanelViewer(true));
+            this.add(report.getPanelViewer(true));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.toString(), "Report Message", JOptionPane.ERROR_MESSAGE);
         }
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.setSize(860, 580);
+        this.setVisible(true);
     }
 
     /** This method is called from within the constructor to
@@ -43,21 +42,18 @@ public class frmEmployeeReport extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        pack();
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmEmployeeReport().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
