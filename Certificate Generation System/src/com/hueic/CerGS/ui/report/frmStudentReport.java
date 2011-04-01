@@ -14,6 +14,7 @@ import com.hueic.CerGS.component.report.StudentReportManager;
 import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.entity.Register;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -29,7 +30,11 @@ public class frmStudentReport extends javax.swing.JFrame {
         StudentReportManager studentReport = new StudentReportManager(courseId);
         //JPanel panel = studentReport.getEnumerationViewer(studentList, true);
         if (regisList != null) {
-            this.add(studentReport.getPanelViewer(true));
+            try {
+                this.add(studentReport.getPanelViewer(true));
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.toString(), "Report Message", JOptionPane.ERROR_MESSAGE);
+            }
         }
         this.setVisible(true);
         this.setSize(1000, 700);

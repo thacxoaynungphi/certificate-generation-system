@@ -12,9 +12,7 @@
 package com.hueic.CerGS.ui.report;
 
 import com.hueic.CerGS.component.report.CertificateDevelopedReportManager;
-import com.hueic.CerGS.dao.CertificateDAO;
-import com.hueic.CerGS.entity.Certificate;
-import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,19 +20,20 @@ import java.util.ArrayList;
  */
 public class frmCertificateDevelopedReport extends javax.swing.JFrame {
 
-    private ArrayList<Certificate> listCertificate;
-    private CertificateDevelopedReportManager cerDevelopManager;
-    private CertificateDAO cerDAO;
+    
     /** Creates new form frmCertificateDevelopedReport */
     public frmCertificateDevelopedReport() {
         initComponents();
+
+        CertificateDevelopedReportManager cerDeveloped = new CertificateDevelopedReportManager();
+        setSize(1000, 700);
+        try {
+            this.add(cerDeveloped.getPanelViewer(true));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.toString(), "Report Message", JOptionPane.ERROR_MESSAGE);
+        }
+
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-//        cerDAO = new CertificateDAO();
-//
-//        listCertificate = cerDAO.readByAll();
-//        cerDevelopManager = new CertificateDevelopedReportManager(listCertificate);
-//        this.add(cerDevelopManager.getJPanelViewer());
-//        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         
     }
 
@@ -48,17 +47,6 @@ public class frmCertificateDevelopedReport extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

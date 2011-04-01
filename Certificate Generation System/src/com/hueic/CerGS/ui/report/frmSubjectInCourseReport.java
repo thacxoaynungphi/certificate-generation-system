@@ -14,6 +14,9 @@ import com.hueic.CerGS.component.report.SubjectInCourseReportManager;
 import com.hueic.CerGS.dao.SubjectDAO;
 import com.hueic.CerGS.entity.Subject;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,11 +29,10 @@ public class frmSubjectInCourseReport extends javax.swing.JFrame {
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         SubjectInCourseReportManager report = new SubjectInCourseReportManager("ARENA");
-        SubjectDAO subjectDao = new SubjectDAO();
-        ArrayList<Subject> arr = null;
-        arr = subjectDao.readByCourseId("ARENA");
-        if (arr != null) {
-            this.add(report.getEnumerationViewer(arr, true));
+        try {
+            this.add(report.getPanelViewer(true));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.toString(), "Report Message", JOptionPane.ERROR_MESSAGE);
         }
         this.setSize(1000, 800);
     }

@@ -4,22 +4,16 @@
  */
 package com.hueic.CerGS.component.report;
 
+import com.hueic.CerGS.dao.CourseDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.dao.StudentDAO;
 import com.hueic.CerGS.entity.Register;
 import com.hueic.CerGS.entity.Student;
-import com.jidesoft.utils.Base64.InputStream;
-import java.io.IOException;
-import java.net.URL;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import javax.swing.JPanel;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
-import net.sf.jasperreports.view.JRViewer;
 
 /**
  *
@@ -32,11 +26,13 @@ public class StudentReportManager extends ReportManager {
     private StudentDAO studentDAO;
     private ArrayList<Register> listRegis;
     private RegisterDAO registerDAO;
+    private CourseDAO courseDAO;
 
     public StudentReportManager(String course) {
         this.course = course;
         studentDAO = new StudentDAO();
         registerDAO = new RegisterDAO();
+        courseDAO = new CourseDAO();
 
         listRegis = registerDAO.readByCourseId(this.course);
         jasperFileName = "StudentInCourse.jasper";
@@ -48,7 +44,7 @@ public class StudentReportManager extends ReportManager {
     private HashMap getParameter() {
         parameterMap = new HashMap();
 
-        parameterMap.put("COURSE", course);
+        parameterMap.put("COURSE", courseDAO.readById(this.course).getName());
         parameterMap.put("ID", "Student Code");
         parameterMap.put("NAME", "Student Name");
         parameterMap.put("BIRTHDAY", "Birthday");

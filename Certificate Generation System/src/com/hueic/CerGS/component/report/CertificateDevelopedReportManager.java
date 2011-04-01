@@ -4,10 +4,13 @@
  */
 package com.hueic.CerGS.component.report;
 
+import com.hueic.CerGS.dao.CertificateDAO;
 import com.hueic.CerGS.dao.CourseDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.dao.StudentDAO;
 import com.hueic.CerGS.entity.Certificate;
+import com.hueic.CerGS.entity.Register;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
@@ -18,43 +21,52 @@ import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
  */
 public class CertificateDevelopedReportManager extends ReportManager {
 
-    public CertificateDevelopedReportManager(ArrayList<Certificate> cerList) {
-        jasperFileName = "CertificateList.jrxml";
-        dataCollection = getJRMapCollectionDataSource(cerList);
+    private ArrayList<Certificate> listCertificate;
+    private CertificateDAO certificateDAO;
+    private StudentDAO studentDAO;
+    private CourseDAO courseDAO;
+    private RegisterDAO registerDAO;
+
+    public CertificateDevelopedReportManager() {
+        jasperFileName = "CertificateDeveloped.jasper";
+        certificateDAO = new CertificateDAO();
+        studentDAO = new StudentDAO();
+        courseDAO = new CourseDAO();
+        registerDAO = new RegisterDAO();
+
+        listCertificate = certificateDAO.readByAll();
+
+        parameterMap = getParameterReport();
+        dataCollection = getJRMapCollectionDataSource();
     }
 
-    protected HashMap getParameterReport() {
+    private HashMap getParameterReport() {
         parameterMap = new HashMap();
 
-        parameterMap.put("ID", "Student Code");
-        parameterMap.put("NAME", "Student Name");
-        parameterMap.put("COURSE", "COURSE");
-        parameterMap.put("FINALMARK", "FINAL MARK");
-        parameterMap.put("GRADE", "GRADE");
+        parameterMap.put("CERNUMBER", "Certificate Code");
+        parameterMap.put("STUDENTID", "Student Code");
+        parameterMap.put("STUDENTNAME", "Student Name");
+        parameterMap.put("COURSENAME", "Course Name");
+        parameterMap.put("DEGREEDATE", "Degree Date");
+        parameterMap.put("GRADE", "Grade");
 
         return parameterMap;
     }
 
-    private String getNameStudent(String StudentId) {
-        String stId = new RegisterDAO().readByStudentId(StudentId).getId();
-
-        return new StudentDAO().readByID(stId).getFullName();
-    }
-
-    private String getCourseName(String StudentId) {
-        String courseId = new RegisterDAO().readByStudentId(StudentId).getCourseId();
-        return new CourseDAO().readById(courseId).getName();
-    }
-
-    private JRMapCollectionDataSource getJRMapCollectionDataSource(ArrayList<Certificate> cerList) {
+    private JRMapCollectionDataSource getJRMapCollectionDataSource() {
         ArrayList collection = new ArrayList();
         HashMap row = null;
 
-        for (Certificate cer : cerList) {
-            row.put("ID", cer.getStudentID());
-            row.put("NAME", getNameStudent(cer.getStudentID()));
-            row.put("COURSE", getCourseName(cer.getStudentID()));
-            row.put("FINALMARK", cer.getMark());
+        for (Certificate cer : listCertificate) {
+            row = new HashMap();
+            row.put("CERNUMBER", cer.getId());
+            
+            Register reg = registerDAO.readByStudentId(cer.getStudentID());
+
+            row.put("STUDENTID", cer.getStudentID());
+            row.put("STUDENTNAME", studentDAO.readByID(reg.getId()).getFullName());
+            row.put("COURSENAME", courseDAO.readById(reg.getCourseId()).getName());
+            row.put("DEGREEDATE", DateFormat.getInstance().format(cer.getDegreeDay()));
 
             String grade = "";
             if (cer.getMark() >= 7.5) {

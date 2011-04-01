@@ -11,6 +11,9 @@
 
 package com.hueic.CerGS.ui.report;
 
+import com.hueic.CerGS.component.report.StudentFeeReportManager;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Wind
@@ -20,6 +23,13 @@ public class frmStudentFeeReport extends javax.swing.JFrame {
     /** Creates new form frmStudentFeeReport */
     public frmStudentFeeReport() {
         initComponents();
+        StudentFeeReportManager studentFee = new StudentFeeReportManager("DISM");
+        try {
+            this.add(studentFee.getPanelViewer(true));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.toString(), "Report Message", JOptionPane.ERROR_MESSAGE);
+        }
+        setSize(1000, 700);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
@@ -33,17 +43,6 @@ public class frmStudentFeeReport extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
