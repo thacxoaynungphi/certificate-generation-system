@@ -34,6 +34,7 @@ import javax.swing.table.TableRowSorter;
 public class pnlStudent extends javax.swing.JPanel {
 
     private ArrayList<Student> liststudent = new ArrayList<Student>();
+    ArrayList<Student> filter = null;
     private StudentDAO studentDao = new StudentDAO();
     TableRowSorter<TableModel> sorter;
     private ObjectTableModel tableModel;
@@ -47,7 +48,19 @@ public class pnlStudent extends javax.swing.JPanel {
     }
 
     public void loadTable(ArrayList<Student> liststudent) {
-
+        filter = new ArrayList<Student>();
+        for (Student sub : liststudent) {
+            if (sub.getId().toLowerCase().matches(".*" + txtStudentId.getText().trim().toLowerCase() + ".*")
+                    && sub.getFirstName().toLowerCase().matches(".*" + txtFirstName.getText().trim().toLowerCase() + ".*")
+                    && sub.getLastName().toLowerCase().matches(".*" + txtLastName.getText().trim().toLowerCase() + ".*")) {
+                // if(dateChooserDateEnd.getDate() != null && dateChooserDateStart.getDate() != null)
+                //Chua de che do ngay va gender
+                filter.add(sub);
+            }
+        }
+        if (filter.size() != 0) {
+            loadDetails(filter.get(0));
+        }
         ColumnData[] columns = {
             new ColumnData("ID", 135, SwingConstants.LEFT, 1),
             new ColumnData("First Name", 100, SwingConstants.LEFT, 2),
@@ -56,14 +69,7 @@ public class pnlStudent extends javax.swing.JPanel {
             new ColumnData("Gender", 260, SwingConstants.LEFT, 5),
             new ColumnData("Phone", 260, SwingConstants.LEFT, 6)
         };
-        tableModel = new ObjectTableModel(tableContent, columns, liststudent);
-        tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
-
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableContentMouseClicked(evt);
-            }
-        });
+        tableModel = new ObjectTableModel(tableContent, columns, filter);
         sorter = new TableRowSorter<TableModel>(tableModel);
         tableContent.setRowSorter(sorter);
         headerTable = tableModel.getHeaderTable();
@@ -139,7 +145,7 @@ public class pnlStudent extends javax.swing.JPanel {
         txtImage = new javax.swing.JTextField();
         panelButton = new javax.swing.JPanel();
         btnAdd = new javax.swing.JButton();
-        btnReset = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         lblStart1 = new javax.swing.JLabel();
@@ -153,7 +159,6 @@ public class pnlStudent extends javax.swing.JPanel {
         txtPhone = new javax.swing.JTextField();
         pnlSearch = new javax.swing.JPanel();
         panelInfo = new javax.swing.JPanel();
-        lblCourse = new javax.swing.JLabel();
         lblStudentId = new javax.swing.JLabel();
         lblFirstName = new javax.swing.JLabel();
         txtFirstName = new javax.swing.JTextField();
@@ -167,11 +172,9 @@ public class pnlStudent extends javax.swing.JPanel {
         radioFemale1 = new javax.swing.JRadioButton();
         lblTitle1 = new javax.swing.JLabel();
         sepaCourse = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        btnSearch = new javax.swing.JButton();
-        txtCourseId = new javax.swing.JTextField();
+        btnReset = new javax.swing.JButton();
         txtStudentId = new javax.swing.JTextField();
         panelContent = new javax.swing.JPanel();
         panelTop = new javax.swing.JPanel();
@@ -380,18 +383,18 @@ public class pnlStudent extends javax.swing.JPanel {
         });
         panelButton.add(btnAdd);
 
-        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
-        btnReset.setText("Update");
-        btnReset.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnReset.setMaximumSize(new java.awt.Dimension(75, 23));
-        btnReset.setMinimumSize(new java.awt.Dimension(75, 23));
-        btnReset.setPreferredSize(new java.awt.Dimension(75, 23));
-        btnReset.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
+        btnUpdate.setText("Update");
+        btnUpdate.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnUpdate.setMaximumSize(new java.awt.Dimension(75, 23));
+        btnUpdate.setMinimumSize(new java.awt.Dimension(75, 23));
+        btnUpdate.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnResetActionPerformed(evt);
+                btnUpdateActionPerformed(evt);
             }
         });
-        panelButton.add(btnReset);
+        panelButton.add(btnUpdate);
 
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
         btnDelete.setText("Delete");
@@ -514,20 +517,11 @@ public class pnlStudent extends javax.swing.JPanel {
         panelInfo.setPreferredSize(new java.awt.Dimension(800, 300));
         panelInfo.setLayout(new java.awt.GridBagLayout());
 
-        lblCourse.setForeground(new java.awt.Color(3, 3, 3));
-        lblCourse.setText("Course ID: ");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelInfo.add(lblCourse, gridBagConstraints);
-
         lblStudentId.setForeground(new java.awt.Color(3, 3, 3));
         lblStudentId.setText("Student ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(lblStudentId, gridBagConstraints);
@@ -536,16 +530,21 @@ public class pnlStudent extends javax.swing.JPanel {
         lblFirstName.setText("First Name:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(lblFirstName, gridBagConstraints);
 
         txtFirstName.setMinimumSize(new java.awt.Dimension(150, 20));
         txtFirstName.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtFirstName.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtFirstNameCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(txtFirstName, gridBagConstraints);
@@ -554,16 +553,21 @@ public class pnlStudent extends javax.swing.JPanel {
         lblLastName.setText("Last Name: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(lblLastName, gridBagConstraints);
 
         txtLastName.setMinimumSize(new java.awt.Dimension(150, 20));
         txtLastName.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtLastName.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtLastNameCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(txtLastName, gridBagConstraints);
@@ -648,62 +652,48 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
         panelInfo.add(sepaCourse, gridBagConstraints);
 
-        jButton1.setText("jButton1");
-        jButton1.setMaximumSize(new java.awt.Dimension(23, 23));
-        jButton1.setMinimumSize(new java.awt.Dimension(23, 23));
-        jButton1.setPreferredSize(new java.awt.Dimension(23, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelInfo.add(jButton1, gridBagConstraints);
-
         jButton2.setText("jButton2");
         jButton2.setMaximumSize(new java.awt.Dimension(23, 23));
         jButton2.setMinimumSize(new java.awt.Dimension(23, 23));
         jButton2.setPreferredSize(new java.awt.Dimension(23, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(jButton2, gridBagConstraints);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
-        btnSearch.setText("Reset");
-        btnSearch.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnSearch.setMaximumSize(new java.awt.Dimension(75, 23));
-        btnSearch.setMinimumSize(new java.awt.Dimension(75, 23));
-        btnSearch.setPreferredSize(new java.awt.Dimension(75, 23));
-        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
+        btnReset.setText("Reset");
+        btnReset.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnReset.setMaximumSize(new java.awt.Dimension(75, 23));
+        btnReset.setMinimumSize(new java.awt.Dimension(75, 23));
+        btnReset.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchActionPerformed(evt);
+                btnResetActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSearch);
+        jPanel1.add(btnReset);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(jPanel1, gridBagConstraints);
 
-        txtCourseId.setMinimumSize(new java.awt.Dimension(200, 20));
-        txtCourseId.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtStudentId.setMinimumSize(new java.awt.Dimension(200, 20));
+        txtStudentId.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtStudentId.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtStudentIdCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelInfo.add(txtCourseId, gridBagConstraints);
-
-        txtStudentId.setMinimumSize(new java.awt.Dimension(200, 20));
-        txtStudentId.setPreferredSize(new java.awt.Dimension(200, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(txtStudentId, gridBagConstraints);
@@ -767,6 +757,11 @@ public class pnlStudent extends javax.swing.JPanel {
 
         filterText.setMinimumSize(new java.awt.Dimension(200, 20));
         filterText.setPreferredSize(new java.awt.Dimension(200, 20));
+        filterText.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                filterTextCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -803,8 +798,8 @@ public class pnlStudent extends javax.swing.JPanel {
         tableContent.setMinimumSize(new java.awt.Dimension(770, 240));
         tableContent.setPreferredSize(new java.awt.Dimension(770, 240));
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableContentMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tableContentMouseReleased(evt);
             }
         });
         srcPanelContent.setViewportView(tableContent);
@@ -830,39 +825,17 @@ public class pnlStudent extends javax.swing.JPanel {
         add(panelContent, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-}//GEN-LAST:event_btnResetActionPerformed
+}//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
 }//GEN-LAST:event_btnCancelActionPerformed
 
-    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
-//        String firstName = txtFirstName.getText();
-//        String lastName = txtLastName.getText();
-//        Date startDate = dateChooserDateStart.getDate();
-//        Date endDate = dateChooserDateEnd.getDate();
-//        int gender = -1;
-//        if (radioFemale.isSelected()) {
-//            gender = 0;
-//        } else if (radioMale.isSelected()) {
-//            gender = 1;
-//        }
-//
-//        listRegister.clear();
-//        listStudent = studentDAO.readByCommand(firstName, lastName, startDate, endDate, gender);
-//
-//        if (!listStudent.isEmpty()) {
-//            for (Student student : listStudent) {
-//                ArrayList<Register> listRes = registerDAO.readByStudentIdOfPerson(student.getId());
-//                listRegister.addAll(listRes);
-//            }
-//        }
-//
-//        loadData(listRegister);
-    }//GEN-LAST:event_btnSearchActionPerformed
+    }//GEN-LAST:event_btnResetActionPerformed
 
     public void loadDetails(Student student) {
         txtID.setText(student.getId());
@@ -886,20 +859,12 @@ public class pnlStudent extends javax.swing.JPanel {
         txtImage.setText(student.getImage());
     }
 
-    private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
-        // TODO add your handling code here:
-        int index = tableContent.getSelectedRow();
-        if (index != -1) {
-            String value = (String) tableContent.getValueAt(index, 0);
-            Student student = find(value);
-            if (student != null) {
-                loadDetails(student);
-            }
-        }
-}//GEN-LAST:event_tableContentMouseClicked
-
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
+        startFilter();
+}//GEN-LAST:event_btnFilterActionPerformed
+
+    public void startFilter() {
         if (liststudent.size() != 0) {
             String text = filterText.getText();
             if (text.length() == 0) {
@@ -912,8 +877,7 @@ public class pnlStudent extends javax.swing.JPanel {
                 }
             }
         }
-}//GEN-LAST:event_btnFilterActionPerformed
-
+    }
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
         try {
@@ -943,6 +907,38 @@ public class pnlStudent extends javax.swing.JPanel {
             System.out.println(ex.toString());
         }
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
+        // TODO add your handling code here:
+        int index = tableContent.getSelectedRow();
+        if (index != -1) {
+            String value = (String) tableContent.getValueAt(index, 0);
+            Student student = find(value);
+            if (student != null) {
+                loadDetails(student);
+            }
+        }
+    }//GEN-LAST:event_tableContentMouseReleased
+
+    private void txtStudentIdCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtStudentIdCaretUpdate
+        // TODO add your handling code here:
+        loadTable(liststudent);
+    }//GEN-LAST:event_txtStudentIdCaretUpdate
+
+    private void txtFirstNameCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtFirstNameCaretUpdate
+        // TODO add your handling code here:
+        loadTable(liststudent);
+    }//GEN-LAST:event_txtFirstNameCaretUpdate
+
+    private void txtLastNameCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtLastNameCaretUpdate
+        // TODO add your handling code here:
+        loadTable(liststudent);
+    }//GEN-LAST:event_txtLastNameCaretUpdate
+
+    private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
+        // TODO add your handling code here:
+        startFilter();
+    }//GEN-LAST:event_filterTextCaretUpdate
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser DateChBirthday;
     private javax.swing.JButton btnAdd;
@@ -953,18 +949,16 @@ public class pnlStudent extends javax.swing.JPanel {
     private javax.swing.ButtonGroup btnGGender1;
     private javax.swing.ButtonGroup btnGGender2;
     private javax.swing.JButton btnReset;
-    private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnUpdate;
     private com.toedter.calendar.JDateChooser dateChooserDateEnd;
     private com.toedter.calendar.JDateChooser dateChooserDateStart;
     private javax.swing.JTextField filterText;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblBirthday;
     private javax.swing.JLabel lblBirthday1;
     private javax.swing.JLabel lblCount;
-    private javax.swing.JLabel lblCourse;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblFirstName;
     private javax.swing.JLabel lblFirstname;
@@ -1002,7 +996,6 @@ public class pnlStudent extends javax.swing.JPanel {
     private javax.swing.JTable tableContent;
     public javax.swing.JTabbedPane tpStudent;
     private javax.swing.JTextField txtAddress;
-    private javax.swing.JTextField txtCourseId;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtFirstname;

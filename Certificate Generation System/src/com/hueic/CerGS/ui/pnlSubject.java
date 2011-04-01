@@ -36,8 +36,8 @@ import javax.swing.table.TableRowSorter;
 public class pnlSubject extends javax.swing.JPanel {
 
     private boolean isAdd = false;
-    CourseDAO courseDAO = new CourseDAO();
-    SubjectDAO subjectDao = new SubjectDAO();
+    CourseDAO courseDAO;
+    SubjectDAO subjectDao;
     ArrayList<Subject> listSubject = null;
     ArrayList<Subject> filter = null;
     ArrayList<Course> listCourses = new ArrayList<Course>();
@@ -50,8 +50,11 @@ public class pnlSubject extends javax.swing.JPanel {
     /** Creates new form pnlSubject */
     public pnlSubject() {
         initComponents();
+        subjectDao = new SubjectDAO();
+        courseDAO = new CourseDAO();
         listCourses = courseDAO.readByAll();
         listSubject = new ArrayList<Subject>();
+        listSubject = subjectDao.readByAll();
         loadData();
         if (listSubject.size() != 0) {
             loadDetails(listSubject.get(0));
@@ -61,9 +64,11 @@ public class pnlSubject extends javax.swing.JPanel {
     public pnlSubject(frmMain frm) {
         initComponents();
         this.frm = frm;
-        initComponents();
+        subjectDao = new SubjectDAO();
+        courseDAO = new CourseDAO();
         listCourses = courseDAO.readByAll();
         listSubject = new ArrayList<Subject>();
+        listSubject = subjectDao.readByAll();
         loadData();
         if (listSubject.size() != 0) {
             loadDetails(listSubject.get(0));
@@ -71,7 +76,6 @@ public class pnlSubject extends javax.swing.JPanel {
     }
 
     public void loadData() {
-        listSubject = subjectDao.readByAll();
         filter = new ArrayList<Subject>();
         for (Subject sub : listSubject) {
             if (sub.getId().toLowerCase().matches(".*" + txtSubjectIdSearch.getText().trim().toLowerCase() + ".*")
@@ -83,29 +87,22 @@ public class pnlSubject extends javax.swing.JPanel {
         }
         if (filter.size() != 0) {
             loadDetails(filter.get(0));
-            System.out.println(filter.get(0).getName());
         }
-        
+
         ColumnData[] columns = {
             new ColumnData("ID", 135, SwingConstants.LEFT, 1),
-            new ColumnData("Name", 100, SwingConstants.LEFT, 2),
+            new ColumnData("Name", 200, SwingConstants.LEFT, 2),
             new ColumnData("Course ID", 140, SwingConstants.LEFT, 3),
-            new ColumnData("Coefficient", 170, SwingConstants.LEFT, 4),
-            new ColumnData("Status", 170, SwingConstants.LEFT, 5)
+            new ColumnData("Coefficient", 100, SwingConstants.LEFT, 4),
+            new ColumnData("Status", 100, SwingConstants.LEFT, 5)
         };
         tableModel = new ObjectTableModel(tableContent, columns, filter);
 
-        tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
+        if (filter.size() != 0) {
+            sorter = new TableRowSorter<TableModel>(tableModel);
+            tableContent.setRowSorter(sorter);
+        }
 
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableContentMouseClicked(evt);
-            }
-        });
-
-        sorter =
-                new TableRowSorter<TableModel>(tableModel);
-        tableContent.setRowSorter(sorter);
         headerTable = tableModel.getHeaderTable();
         // Create numbering column
         headerTable.createDefaultColumnsFromModel();
@@ -124,8 +121,6 @@ public class pnlSubject extends javax.swing.JPanel {
         txtName.setText(subject.getName().trim());
         txtCoefficient.setText(String.valueOf(subject.getCoefficient()).trim());
         txtCoureID.setText(subject.getCourseID().trim());
-
-
     }
 
     public Course findByName(String name) {
@@ -133,13 +128,9 @@ public class pnlSubject extends javax.swing.JPanel {
                 < listCourses.size(); i++) {
             if (listCourses.get(i).getName().equalsIgnoreCase(name)) {
                 return listCourses.get(i);
-
-
             }
         }
         return null;
-
-
     }
 
     public Course find(String id) {
@@ -147,13 +138,9 @@ public class pnlSubject extends javax.swing.JPanel {
                 < listCourses.size(); i++) {
             if (listCourses.get(i).getId().equalsIgnoreCase(id)) {
                 return listCourses.get(i);
-
-
             }
         }
         return null;
-
-
     }
 
     public Subject findSubject(String id) {
@@ -166,28 +153,18 @@ public class pnlSubject extends javax.swing.JPanel {
             }
         }
         return null;
-
-
     }
 
     public void searchStart() {
         if (listSubject.size() != 0) {
             String text = filterText.getText();
-
-
             if (text.length() == 0) {
                 sorter.setRowFilter(null);
-
-
             } else {
                 try {
                     sorter.setRowFilter(RowFilter.regexFilter(text));
-
-
                 } catch (PatternSyntaxException pse) {
                     System.err.println("Bad regex pattern");
-
-
                 }
             }
         }
@@ -619,6 +596,11 @@ public class pnlSubject extends javax.swing.JPanel {
 
         srcPanelSubject.setMinimumSize(new java.awt.Dimension(770, 327));
         srcPanelSubject.setPreferredSize(new java.awt.Dimension(770, 327));
+        srcPanelSubject.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                srcPanelSubjectMouseReleased(evt);
+            }
+        });
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -636,6 +618,9 @@ public class pnlSubject extends javax.swing.JPanel {
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableContentMouseClicked(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tableContentMouseReleased(evt);
             }
         });
         srcPanelSubject.setViewportView(tableContent);
@@ -686,19 +671,6 @@ public class pnlSubject extends javax.swing.JPanel {
 }//GEN-LAST:event_filterTextKeyPressed
     private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
         // TODO add your handling code here:
-        try {
-            // TODO add your handling code here:
-            int index = tableContent.getSelectedRow();
-            if (index != -1) {
-                String value = tableContent.getValueAt(index, 0).toString();
-                Subject subject = findSubject(value);
-                if (subject != null) {
-                    loadDetails(subject);
-                }
-            }
-        } catch (Exception ex) {
-            //TODO: chua xu ly
-        }
 }//GEN-LAST:event_tableContentMouseClicked
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
@@ -876,6 +848,31 @@ public class pnlSubject extends javax.swing.JPanel {
         // TODO add your handling code here:
         loadData();
     }//GEN-LAST:event_txtCoureIDSearchCaretUpdate
+
+    private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
+        // TODO add your handling code here:
+        btnUpdate.setEnabled(true);
+        btnDelete.setEnabled(true);
+        try {
+            // TODO add your handling code here:
+            int index = tableContent.getSelectedRow();
+            if (index != -1) {
+                String value = tableContent.getValueAt(index, 0).toString();
+                Subject subject = findSubject(value);
+                if (subject != null) {
+                    loadDetails(subject);
+                }
+            }
+        } catch (Exception ex) {
+            //TODO: chua xu ly
+        }
+
+    }//GEN-LAST:event_tableContentMouseReleased
+
+    private void srcPanelSubjectMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_srcPanelSubjectMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_srcPanelSubjectMouseReleased
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
