@@ -38,7 +38,8 @@ public class pnlSubject extends javax.swing.JPanel {
     private boolean isAdd = false;
     CourseDAO courseDAO = new CourseDAO();
     SubjectDAO subjectDao = new SubjectDAO();
-    ArrayList<Subject> listSubject = new ArrayList<Subject>();
+    ArrayList<Subject> listSubject = null;
+    ArrayList<Subject> filter = null;
     ArrayList<Course> listCourses = new ArrayList<Course>();
     TableRowSorter<TableModel> sorter;
     private boolean isUpdate = false;
@@ -51,7 +52,8 @@ public class pnlSubject extends javax.swing.JPanel {
         initComponents();
         listCourses = courseDAO.readByAll();
         listSubject = subjectDao.readByAll();
-        loadData(listSubject);
+        listSubject = new ArrayList<Subject>();
+        loadData();
         if (listSubject.size() != 0) {
             loadDetails(listSubject.get(0));
         }
@@ -61,22 +63,33 @@ public class pnlSubject extends javax.swing.JPanel {
         initComponents();
         this.frm = frm;
         listCourses = courseDAO.readByAll();
-        listSubject = subjectDao.readByAll();
-        loadData(listSubject);
-        if (listSubject.size() != 0) {
-            loadDetails(listSubject.get(0));
-        }
+        loadData();
     }
 
-    public void loadData(ArrayList<Subject> listSubjects) {
+    public void loadData() {
+        listSubject = subjectDao.readByAll();
+        filter = new ArrayList<Subject>();
+        for (Subject sub : listSubject) {
+            if (sub.getId().toLowerCase().matches(".*" + txtSubjectIdSearch.getText().trim().toLowerCase() + ".*")
+                    && sub.getName().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")
+                    && String.valueOf(sub.getCoefficient()).matches(".*" + txtCoefficientSearch.getText().trim().toLowerCase() + ".*")
+                    && sub.getCourseID().matches(".*" + txtCoureIDSearch.getText().trim().toLowerCase() + ".*")) {
+                filter.add(sub);
+            }
+        }
+        if (filter.size() != 0) {
+            loadDetails(filter.get(0));
+        }
 
         ColumnData[] columns = {
             new ColumnData("ID", 135, SwingConstants.LEFT, 1),
             new ColumnData("Name", 100, SwingConstants.LEFT, 2),
             new ColumnData("Course ID", 140, SwingConstants.LEFT, 3),
             new ColumnData("Coefficient", 170, SwingConstants.LEFT, 4),
+            new ColumnData("Status", 170, SwingConstants.LEFT, 5)
         };
-        tableModel = new ObjectTableModel(tableContent, columns, listSubjects);
+        tableModel = new ObjectTableModel(tableContent, columns, filter);
+
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
 
             @Override
@@ -84,7 +97,9 @@ public class pnlSubject extends javax.swing.JPanel {
                 tableContentMouseClicked(evt);
             }
         });
-        sorter = new TableRowSorter<TableModel>(tableModel);
+
+        sorter =
+                new TableRowSorter<TableModel>(tableModel);
         tableContent.setRowSorter(sorter);
         headerTable = tableModel.getHeaderTable();
         // Create numbering column
@@ -104,45 +119,70 @@ public class pnlSubject extends javax.swing.JPanel {
         txtName.setText(subject.getName().trim());
         txtCoefficient.setText(String.valueOf(subject.getCoefficient()).trim());
         txtCoureID.setText(subject.getCourseID().trim());
+
+
     }
 
     public Course findByName(String name) {
-        for (int i = 0; i < listCourses.size(); i++) {
+        for (int i = 0; i
+                < listCourses.size(); i++) {
             if (listCourses.get(i).getName().equalsIgnoreCase(name)) {
                 return listCourses.get(i);
+
+
             }
         }
         return null;
+
+
     }
 
     public Course find(String id) {
-        for (int i = 0; i < listCourses.size(); i++) {
+        for (int i = 0; i
+                < listCourses.size(); i++) {
             if (listCourses.get(i).getId().equalsIgnoreCase(id)) {
                 return listCourses.get(i);
+
+
             }
         }
         return null;
+
+
     }
 
     public Subject findSubject(String id) {
-        for (int i = 0; i < listSubject.size(); i++) {
+        for (int i = 0; i
+                < listSubject.size(); i++) {
             if (listSubject.get(i).getId().equalsIgnoreCase(id)) {
                 return listSubject.get(i);
+
+
             }
         }
         return null;
+
+
     }
 
     public void searchStart() {
         if (listSubject.size() != 0) {
             String text = filterText.getText();
+
+
             if (text.length() == 0) {
                 sorter.setRowFilter(null);
+
+
             } else {
                 try {
                     sorter.setRowFilter(RowFilter.regexFilter(text));
+
+
                 } catch (PatternSyntaxException pse) {
                     System.err.println("Bad regex pattern");
+
+
                 }
             }
         }
@@ -455,6 +495,11 @@ public class pnlSubject extends javax.swing.JPanel {
         panelRightSearch.add(panelButtonSearch, gridBagConstraints);
 
         txtNameSearch.setPreferredSize(new java.awt.Dimension(180, 20));
+        txtNameSearch.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtNameSearchCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -465,6 +510,11 @@ public class pnlSubject extends javax.swing.JPanel {
 
         txtCoefficientSearch.setMinimumSize(new java.awt.Dimension(200, 20));
         txtCoefficientSearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtCoefficientSearch.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtCoefficientSearchCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
@@ -482,6 +532,11 @@ public class pnlSubject extends javax.swing.JPanel {
         panelRightSearch.add(lblSubjectIDSearch, gridBagConstraints);
 
         txtSubjectIdSearch.setPreferredSize(new java.awt.Dimension(180, 20));
+        txtSubjectIdSearch.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtSubjectIdSearchCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -500,6 +555,11 @@ public class pnlSubject extends javax.swing.JPanel {
         panelRightSearch.add(sepa2Search, gridBagConstraints);
 
         txtCoureIDSearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtCoureIDSearch.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtCoureIDSearchCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
@@ -618,13 +678,11 @@ public class pnlSubject extends javax.swing.JPanel {
         // TODO add your handling code here:
         searchStart();
 }//GEN-LAST:event_filterTextKeyPressed
-
     private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
         // TODO add your handling code here:
         try {
             // TODO add your handling code here:
             int index = tableContent.getSelectedRow();
-
             if (index != -1) {
                 String value = tableContent.getValueAt(index, 0).toString();
                 Subject subject = findSubject(value);
@@ -653,27 +711,39 @@ public class pnlSubject extends javax.swing.JPanel {
                 txtSubjectId.setText(null);
                 txtName.setText(null);
                 txtCoefficient.setText(null);
+
             } else {
                 String subjectId = txtSubjectId.getText();
                 String subjectName = txtName.getText();
+
+
                 int coefficient = Integer.parseInt(txtCoefficient.getText());
                 String courseId = txtCoureID.getText();
                 Subject subject = new Subject(subjectId, subjectName, coefficient, courseId);
+
+
                 if (subjectDao.create(subject)) {
                     JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Create Subject", JOptionPane.INFORMATION_MESSAGE);
                     listSubject.add(subject);
-                    loadData(listSubject);
-                    loadDetails(subject);
+                    loadData();
+                    loadDetails(
+                            subject);
                     isAdd = false;
                     btnUpdate.setEnabled(true);
                     btnDelete.setEnabled(true);
                     txtCoureID.setVisible(true);
+
+
                 } else {
                     JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Create Subject", JOptionPane.ERROR_MESSAGE);
+
+
                 }
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.toString(), "Create Subject", JOptionPane.ERROR_MESSAGE);
+
+
         }
 }//GEN-LAST:event_btnAddActionPerformed
 
@@ -683,25 +753,35 @@ public class pnlSubject extends javax.swing.JPanel {
             if (!isUpdate) {
                 txtCoureID.setVisible(false);
                 isUpdate = true;
+
+
             } else {
                 isUpdate = false;
                 String subjectId = txtSubjectId.getText();
                 String subjectName = txtName.getText();
+
+
                 int coefficient = Integer.parseInt(txtCoefficient.getText());
                 String courseId = txtCoureID.getText();
                 Subject subject = new Subject(subjectId, subjectName, coefficient, courseId);
+
+
                 if (subjectDao.update(subject)) {
                     JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Update Subject", JOptionPane.INFORMATION_MESSAGE);
                     listSubject.remove(findSubject(subjectId));
                     listSubject.add(subject);
-                    loadData(listSubject);
+                    loadData();
                     loadDetails(subject);
                 } else {
                     JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Update Subject", JOptionPane.ERROR_MESSAGE);
+
+
                 }
             }
         } catch (Exception e) {
             System.out.println(e.toString());
+
+
         }
 }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -710,7 +790,7 @@ public class pnlSubject extends javax.swing.JPanel {
         String subjectid = txtSubjectId.getText();
         if (subjectDao.delete(subjectid)) {
             listSubject.remove(findSubject(subjectid));
-            loadData(listSubject);
+            loadData();
             if (listSubject.size() != 0) {
                 loadDetails(listSubject.get(0));
             }
@@ -727,24 +807,35 @@ public class pnlSubject extends javax.swing.JPanel {
             btnUpdate.setEnabled(true);
             btnDelete.setEnabled(true);
             txtCoureID.setVisible(true);
+
+
         } else if (isUpdate) {
             isUpdate = false;
             btnUpdate.setEnabled(true);
             btnDelete.setEnabled(true);
             txtCoureID.setVisible(true);
-            loadDetails(findSubject(txtSubjectId.getText()));
+            loadDetails(
+                    findSubject(txtSubjectId.getText()));
+
+
         } else {
             loadDetails(listSubject.get(0));
+
+
         }
 }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
+        txtSubjectIdSearch.setText(null);
+        txtNameSearch.setText(null);
+        txtCoefficientSearch.setText(null);
+        txtCoureIDSearch.setText(null);
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnChooseCourIDSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseCourIDSearchActionPerformed
         // TODO add your handling code here:
-        dlgChoose dlg = new dlgChoose(frm, txtCoureIDSearch, true, 14);
+        dlgChoose dlg = new dlgChoose(frm, txtCoureIDSearch, true, 7);
         dlg.setTitle("Browse Order");
         dlg.setSize(868, 616);
         dlg.setLocationRelativeTo(null);
@@ -753,12 +844,32 @@ public class pnlSubject extends javax.swing.JPanel {
 
     private void btnChooseCourIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseCourIDActionPerformed
         // TODO add your handling code here:
-        dlgChoose dlg = new dlgChoose(frm, txtCoureIDSearch, true, 14);
+        dlgChoose dlg = new dlgChoose(frm, txtCoureID, true, 7);
         dlg.setTitle("Browse Order");
         dlg.setSize(868, 616);
         dlg.setLocationRelativeTo(null);
         dlg.setVisible(true);
     }//GEN-LAST:event_btnChooseCourIDActionPerformed
+
+    private void txtSubjectIdSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtSubjectIdSearchCaretUpdate
+        // TODO add your handling code here:
+        loadData();
+    }//GEN-LAST:event_txtSubjectIdSearchCaretUpdate
+
+    private void txtNameSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtNameSearchCaretUpdate
+        // TODO add your handling code here:
+        loadData();
+    }//GEN-LAST:event_txtNameSearchCaretUpdate
+
+    private void txtCoefficientSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtCoefficientSearchCaretUpdate
+        // TODO add your handling code here:
+        loadData();
+    }//GEN-LAST:event_txtCoefficientSearchCaretUpdate
+
+    private void txtCoureIDSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtCoureIDSearchCaretUpdate
+        // TODO add your handling code here:
+        loadData();
+    }//GEN-LAST:event_txtCoureIDSearchCaretUpdate
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
