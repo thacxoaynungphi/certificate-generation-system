@@ -92,13 +92,13 @@ public class pnlPayment extends javax.swing.JPanel {
     public void loadData(ArrayList<Payment> listPayments) {
         filter = new ArrayList<Payment>();
         for (Payment pay : listPayments) {
-//            if (pay.get.toLowerCase().matches(".*" + txtSubjectIdSearch.getText().trim().toLowerCase() + ".*")
-//                    && sub.getName().toLowerCase().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")
-//                    && String.valueOf(sub.getCoefficient()).toLowerCase().matches(".*" + txtCoefficientSearch.getText().trim().toLowerCase() + ".*")
-//                    && sub.getCourseID().toLowerCase().matches(".*" + txtCoureIDSearch.getText().trim().toLowerCase() + ".*")) {
-//                filter.add(per);
-//            }
-            filter.add(pay);
+            if (pay.getStudentId().toLowerCase().matches(".*" + txtStudentIdSearch.getText().trim().toLowerCase() + ".*")
+                    && registerDAO.readByStudentId(pay.getStudentId()).getCourseId().toLowerCase().matches(".*" + txtCourseIdSearch.getText().trim().toLowerCase() + ".*")
+                    && String.valueOf(pay.getMoney()).toLowerCase().matches(".*" + txtMoneySearch.getText().trim().toLowerCase() + ".*") //&& sub.getCourseID().toLowerCase().matches(".*" + txtCoureIDSearch.getText().trim().toLowerCase() + ".*")
+                    //TODO: chua xet duoc ngay nop tien
+                    ) {
+                filter.add(pay);
+            }
         }
         if (filter.size() != 0) {
             loadDetails(filter.get(0));
@@ -110,13 +110,6 @@ public class pnlPayment extends javax.swing.JPanel {
             new ColumnData("Pay Day", 260, SwingConstants.LEFT, 4)
         };
         tableModel = new ObjectTableModel(tableContent, columns, filter);
-        tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
-
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableContentMouseClicked(evt);
-            }
-        });
         sorter = new TableRowSorter<TableModel>(tableModel);
         tableContent.setRowSorter(sorter);
         headerTable = tableModel.getHeaderTable();
@@ -470,6 +463,11 @@ public class pnlPayment extends javax.swing.JPanel {
 
         txtMoneySearch.setMinimumSize(new java.awt.Dimension(200, 20));
         txtMoneySearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtMoneySearch.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtMoneySearchCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
@@ -524,6 +522,11 @@ public class pnlPayment extends javax.swing.JPanel {
 
         txtCourseIdSearch.setMinimumSize(new java.awt.Dimension(200, 20));
         txtCourseIdSearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtCourseIdSearch.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtCourseIdSearchCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -533,6 +536,11 @@ public class pnlPayment extends javax.swing.JPanel {
 
         txtStudentIdSearch.setMinimumSize(new java.awt.Dimension(200, 20));
         txtStudentIdSearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtStudentIdSearch.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtStudentIdSearchCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -605,8 +613,8 @@ public class pnlPayment extends javax.swing.JPanel {
         tableContent.setMinimumSize(new java.awt.Dimension(770, 340));
         tableContent.setPreferredSize(new java.awt.Dimension(770, 340));
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableContentMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tableContentMouseReleased(evt);
             }
         });
         srcPanelPayment.setViewportView(tableContent);
@@ -623,11 +631,6 @@ public class pnlPayment extends javax.swing.JPanel {
         filterText.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 filterTextCaretUpdate(evt);
-            }
-        });
-        filterText.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                filterTextKeyPressed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -660,23 +663,6 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         add(panelLeft, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
-        // TODO add your handling code here:
-        int index = tableContent.getSelectedRow();
-        if (index != -1) {
-            int currentId = Integer.parseInt(String.valueOf(tableContent.getValueAt(index, 0)));
-            Payment payment = getPaymentById(currentId);
-            loadDetails(payment);
-        }
-}//GEN-LAST:event_tableContentMouseClicked
-
-    private void filterTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextKeyPressed
-        // TODO add your handling code here:
-        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-            searchStart();
-        }
-}//GEN-LAST:event_filterTextKeyPressed
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
@@ -816,6 +802,31 @@ public class pnlPayment extends javax.swing.JPanel {
         // TODO add your handling code here:
         searchStart();
     }//GEN-LAST:event_filterTextCaretUpdate
+
+    private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
+        // TODO add your handling code here:
+        int index = tableContent.getSelectedRow();
+        if (index != -1) {
+            int currentId = Integer.parseInt(String.valueOf(tableContent.getValueAt(index, 0)));
+            Payment payment = getPaymentById(currentId);
+            loadDetails(payment);
+        }
+    }//GEN-LAST:event_tableContentMouseReleased
+
+    private void txtCourseIdSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtCourseIdSearchCaretUpdate
+        // TODO add your handling code here:
+        loadData(listPayments);
+    }//GEN-LAST:event_txtCourseIdSearchCaretUpdate
+
+    private void txtStudentIdSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtStudentIdSearchCaretUpdate
+        // TODO add your handling code here:
+        loadData(listPayments);
+    }//GEN-LAST:event_txtStudentIdSearchCaretUpdate
+
+    private void txtMoneySearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtMoneySearchCaretUpdate
+        // TODO add your handling code here:
+        loadData(listPayments);
+    }//GEN-LAST:event_txtMoneySearchCaretUpdate
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;

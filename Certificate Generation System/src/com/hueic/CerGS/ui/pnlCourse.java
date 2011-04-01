@@ -38,6 +38,7 @@ public class pnlCourse extends javax.swing.JPanel {
     boolean isAdd = false;
     private ObjectTableModel tableModel;
     private JTable headerTable;
+    ArrayList<Course> filter = null;
 
     /** Creates new form pnlCourse */
     public pnlCourse() {
@@ -51,14 +52,26 @@ public class pnlCourse extends javax.swing.JPanel {
     }
 
     public void loadData(ArrayList<Course> listCourses) {
-
+        filter = new ArrayList<Course>();
+        for (Course course : listCourses) {
+            if (course.getId().toLowerCase().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")
+                    && course.getName().toLowerCase().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")
+                    && String.valueOf(course.getTotalFees()).toLowerCase().matches(".*" + txtTotalFeesSearch.getText().trim().toLowerCase() + ".*") //&& sub.getCourseID().toLowerCase().matches(".*" + txtCoureIDSearch.getText().trim().toLowerCase() + ".*")
+                    //chua xet cai trang thai
+                    ) {
+                filter.add(course);
+            }
+        }
+        if (filter.size() != 0) {
+            loadDetails(filter.get(0));
+        }
         ColumnData[] columns = {
             new ColumnData("ID", 100, SwingConstants.LEFT, 1),
             new ColumnData("Name", 140, SwingConstants.LEFT, 2),
             new ColumnData("Total Fees", 170, SwingConstants.LEFT, 3),
             new ColumnData("Status", 260, SwingConstants.LEFT, 4)
         };
-        tableModel = new ObjectTableModel(tableContent, columns, listCourses);
+        tableModel = new ObjectTableModel(tableContent, columns, filter);
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
 
             @Override
@@ -510,9 +523,9 @@ public class pnlCourse extends javax.swing.JPanel {
 
         filterText.setMinimumSize(new java.awt.Dimension(200, 20));
         filterText.setPreferredSize(new java.awt.Dimension(200, 20));
-        filterText.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                filterTextKeyPressed(evt);
+        filterText.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                filterTextCaretUpdate(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -654,16 +667,13 @@ public class pnlCourse extends javax.swing.JPanel {
         }
 }//GEN-LAST:event_tableContentMouseClicked
 
-    private void filterTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextKeyPressed
-        // TODO add your handling code here:
-        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-            btnFilterActionPerformed(null);
-        }
-}//GEN-LAST:event_filterTextKeyPressed
-
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
 
+        startFiter();
+}//GEN-LAST:event_btnFilterActionPerformed
+
+    public void startFiter() {
         if (!listCourses.isEmpty()) {
             String text = filterText.getText();
             if (text.length() == 0) {
@@ -676,12 +686,15 @@ public class pnlCourse extends javax.swing.JPanel {
                 }
             }
         }
-}//GEN-LAST:event_btnFilterActionPerformed
-
+    }
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnResetActionPerformed
 
+    private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
+        // TODO add your handling code here:
+        startFiter();
+    }//GEN-LAST:event_filterTextCaretUpdate
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
@@ -727,7 +740,7 @@ public class pnlCourse extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     String getSelectedType() {
-       try {
+        try {
             // TODO add your handling code here:
             int index = tableContent.getSelectedRow();
             if (index != -1) {
