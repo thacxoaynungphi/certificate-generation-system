@@ -19,7 +19,7 @@ import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
  *
  * @author Wind
  */
-public class NewStudentRegistrationCourse extends ReportManager1{
+public class NewStudentRegistrationCourse extends ReportManager{
     private String courseId;
 
     public NewStudentRegistrationCourse() {
@@ -27,23 +27,21 @@ public class NewStudentRegistrationCourse extends ReportManager1{
 
     public NewStudentRegistrationCourse(String courseId) {
         this.courseId = courseId;
-        jasperFileName = "StudentRegister.jrxml";
     }
 
-    @Override
-    protected HashMap getParameterReport() {
-        parameter = new HashMap();
+    protected HashMap getParameterMap() {
+        parameterMap = new HashMap();
 
-        parameter.put("ID", "Student Code");
-        parameter.put("NAME", "Student Name");
-        parameter.put("BIRTHDAY", "Birthday");
-        parameter.put("REGISTRATIONDATE", "Date of Registration");
-        parameter.put("COURSE", new CourseDAO().readById(courseId).getName());
+        parameterMap.put("ID", "Student Code");
+        parameterMap.put("NAME", "Student Name");
+        parameterMap.put("BIRTHDAY", "Birthday");
+        parameterMap.put("REGISTRATIONDATE", "Date of Registration");
+        parameterMap.put("COURSE", new CourseDAO().readById(courseId).getName());
 
-        return parameter;
+        return parameterMap;
     }
 
-    private JRDataSource getJRMapCollectionDataSourse(ArrayList<Register> regisList){
+    private JRDataSource getDataCollection(ArrayList<Register> regisList){
         ArrayList collection = new ArrayList();
         HashMap row = new HashMap();
 
@@ -62,9 +60,9 @@ public class NewStudentRegistrationCourse extends ReportManager1{
 
         row = new HashMap();
 
-        dataSource = new JRMapCollectionDataSource(collection);
+        dataCollection = new JRMapCollectionDataSource(collection);
 
-        return dataSource;
+        return dataCollection;
     }
 
 

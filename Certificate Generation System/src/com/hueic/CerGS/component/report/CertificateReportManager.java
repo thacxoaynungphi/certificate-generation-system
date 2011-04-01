@@ -16,7 +16,7 @@ import java.util.HashMap;
  *
  * @author Wind
  */
-public class CertificateReportManager extends ReportManager1{
+public class CertificateReportManager extends ReportManager{
     private String studentName;
     private String courseName;
     private Date degreeDate;
@@ -25,7 +25,8 @@ public class CertificateReportManager extends ReportManager1{
 
     public CertificateReportManager() {
         jasperFileName = "Certificate.jrxml";
-        dataSource = null;
+        dataCollection = null;
+        parameterMap = getParameterReport();
     }
 
     public CertificateReportManager(String studentId, String courseId, Date degreeDate, String grade) {
@@ -41,22 +42,21 @@ public class CertificateReportManager extends ReportManager1{
         this.grade = grade;
     }
 
-    @Override
-    protected HashMap getParameterReport() {
-        parameter = new HashMap();
+    private HashMap getParameterReport() {
+        parameterMap = new HashMap();
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(degreeDate);
 
-        parameter.put("NAME", studentName);
-        parameter.put("COURSE", courseName);
-        parameter.put("CURRENTDATE", currentDate);
-        parameter.put("DAY", calendar.get(Calendar.DAY_OF_MONTH));
-        parameter.put("MONTH", calendar.get(Calendar.MONTH + 1));
-        parameter.put("YEAR", calendar.get(Calendar.YEAR));
-        parameter.put("GRADE", grade);
+        parameterMap.put("NAME", studentName);
+        parameterMap.put("COURSE", courseName);
+        parameterMap.put("CURRENTDATE", currentDate);
+        parameterMap.put("DAY", calendar.get(Calendar.DAY_OF_MONTH));
+        parameterMap.put("MONTH", calendar.get(Calendar.MONTH + 1));
+        parameterMap.put("YEAR", calendar.get(Calendar.YEAR));
+        parameterMap.put("GRADE", grade);
 
-        return parameter;
+        return parameterMap;
     }
 
 

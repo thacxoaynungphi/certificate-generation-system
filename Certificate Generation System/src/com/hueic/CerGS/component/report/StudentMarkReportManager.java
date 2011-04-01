@@ -5,88 +5,108 @@
 package com.hueic.CerGS.component.report;
 
 import com.hueic.CerGS.dao.CourseDAO;
+import com.hueic.CerGS.dao.MarkDAO;
+import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.dao.StudentDAO;
+import com.hueic.CerGS.dao.SubjectDAO;
+import com.hueic.CerGS.entity.Course;
 import com.hueic.CerGS.entity.Mark;
+import com.hueic.CerGS.entity.Register;
+import com.hueic.CerGS.entity.Student;
 import com.hueic.CerGS.entity.Subject;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import net.sf.jasperreports.engine.JRDataSource;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRExporter;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.export.JRRtfExporter;
+import net.sf.jasperreports.engine.export.JRXmlExporter;
+import net.sf.jasperreports.view.JRViewer;
 
 /**
  *
  * @author Wind
  */
-public class StudentMarkReportManager extends ReportManager1 {
+public class StudentMarkReportManager extends ReportManager{
 
     private String studentId;
-    private String studentName;
-    private String courseId;
+    private RegisterDAO registerDAO;
+    private StudentDAO studentDAO;
+    private CourseDAO courseDAO;
+    private MarkDAO markDAO;
+    private SubjectDAO subjectDAO;
 
-    public StudentMarkReportManager() {
-        studentId = "";
-        courseId = "";
-
-    }
-
-    private StudentMarkReportManager(String studentId,
-            String courseId, ArrayList<Mark> markList, ArrayList<Subject> subList) {
+    public StudentMarkReportManager(String studentId) {
         this.studentId = studentId;
-        this.courseId = courseId;
-        jasperFileName = "StudentMark.jrxml";
-        dataSource = getJRMapCollectionDataSource(markList, subList);
+        jasperFileName = "StudentMarkReport.jasper";
+        registerDAO = new RegisterDAO();
+        studentDAO = new StudentDAO();
+        courseDAO = new CourseDAO();
+        markDAO = new MarkDAO();
+        subjectDAO = new SubjectDAO();
+
+        parameterMap = getParameterMap();
+        dataCollection = getDataCollection();
     }
 
-    
-
-    @Override
-    protected  HashMap getParameterReport() {
-        parameter = new HashMap();
+    private HashMap getParameterMap() {
+        parameterMap = new HashMap();
+        Register regis = registerDAO.readByStudentId(studentId);
         
-        parameter.put("ID", studentId);
-        parameter.put("NAME", new StudentDAO().readByID(studentId).getFullName());
-        parameter.put("COURSE", new CourseDAO().readById(courseId).getName());
-        parameter.put("SUBJECTID", "Subject Code");
-        parameter.put("SUBJECTNAME", "Subject Name");
-        parameter.put("MARK", "Final Mark");
-        parameter.put("GRADE", "Grade");
+        parameterMap.put("ID", studentId);
+        parameterMap.put("NAME", studentDAO.readByID(regis.getId()).getFullName());
+        parameterMap.put("COURSE", courseDAO.readById(regis.getCourseId()).getName());
+        parameterMap.put("SUBJECTID", "Subject Code");
+        parameterMap.put("SUBJECTNAME", "Subject Name");
+        parameterMap.put("COEFFICIENT", "Coefficient");
+        parameterMap.put("MARK", "Final Mark");
+        parameterMap.put("GRADE", "Grade");
 
-        return parameter;
+        return parameterMap;
     }
 
-    private String getSubjectName(String subID, ArrayList<Subject> subList){
-        for(Subject sub : subList){
-            if(sub.getId().compareTo(subID) == 0) return sub.getName();
-        }
-        return null;
-    }
-    private JRDataSource getJRMapCollectionDataSource(ArrayList<Mark> markList, ArrayList<Subject> subList) {
-        ArrayList collection = new ArrayList();
-
+    private JRMapCollectionDataSource getDataCollection() {
+        ArrayList reportRows = new ArrayList();
         HashMap row = null;
 
-        for(Mark mark : markList){
+        ArrayList<Mark> listMark = markDAO.readByStudentID(studentId);
+
+        for (Mark mark : listMark) {
             row = new HashMap();
-
+            Subject sub = subjectDAO.readByID(mark.getSubjectId());
             row.put("SUBJECTID", mark.getSubjectId());
-            row.put("SUBJECTNAME", getSubjectName(mark.getSubjectId(), subList));
+            row.put("SUBJECTNAME", sub.getName());
+            row.put("COEFFICIENT", sub.getCoefficient());
             row.put("MARK", mark.getMark());
-
             String grade = "";
-            if(mark.getMark() >= 7.5) grade = "DISTINSTION";
-            else if(mark.getMark() > 60) grade = "A";
-            else if(mark.getMark() > 50) grade = "B";
-            else if(mark.getMark() > 40) grade = "C";
-            else grade = "Unpass";
+            if (mark.getMark() >= 7.5) {
+                grade = "DISTINSTION";
+            } else if (mark.getMark() > 60) {
+                grade = "A";
+            } else if (mark.getMark() > 50) {
+                grade = "B";
+            } else if (mark.getMark() > 40) {
+                grade = "C";
+            } else {
+                grade = "Unpass";
+            }
 
             row.put("GRADE", grade);
-            
-            collection.add(row);
+
+            reportRows.add(row);
         }
-        row = new HashMap();
-
-        dataSource = new JRMapCollectionDataSource(collection);
-
-        return dataSource;
+        dataCollection = new JRMapCollectionDataSource(reportRows);
+        return dataCollection;
     }
+
 }

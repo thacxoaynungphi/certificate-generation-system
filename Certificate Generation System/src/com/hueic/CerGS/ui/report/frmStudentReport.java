@@ -8,17 +8,12 @@
  *
  * Created on Mar 14, 2011, 7:34:00 AM
  */
-
 package com.hueic.CerGS.ui.report;
 
-import com.hueic.CerGS.component.report.ReportManager;
 import com.hueic.CerGS.component.report.StudentReportManager;
 import com.hueic.CerGS.dao.RegisterDAO;
-import com.hueic.CerGS.dao.StudentDAO;
 import com.hueic.CerGS.entity.Register;
-import com.hueic.CerGS.entity.Student;
 import java.util.ArrayList;
-import javax.swing.JPanel;
 
 /**
  *
@@ -28,13 +23,16 @@ public class frmStudentReport extends javax.swing.JFrame {
 
     /** Creates new form frmStudentReport */
     public frmStudentReport(String courseId) {
-        
+
         initComponents();
-        ArrayList<Student> studentList = new StudentDAO().readByAll();
+        ArrayList<Register> regisList = new RegisterDAO().readByAll();
         StudentReportManager studentReport = new StudentReportManager(courseId);
-        JPanel panel = studentReport.getEnumerationViewer(studentList, true);
-        this.add(panel);
-        panel.setVisible(true);
+        //JPanel panel = studentReport.getEnumerationViewer(studentList, true);
+        if (regisList != null) {
+            this.add(studentReport.getPanelViewer(true));
+        }
+        this.setVisible(true);
+        this.setSize(1000, 700);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
@@ -49,32 +47,20 @@ public class frmStudentReport extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new frmStudentReport("CPISM").setVisible(true);
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-
 }

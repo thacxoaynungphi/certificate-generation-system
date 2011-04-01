@@ -8,36 +8,35 @@ package com.hueic.CerGS.component.report;
 import com.hueic.CerGS.entity.Employee;
 import java.util.ArrayList;
 import java.util.HashMap;
-import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
 
 /**
  *
  * @author Wind
  */
-public class EmployeeReportManager extends ReportManager1{
+public class EmployeeReportManager extends ReportManager{
 
     public EmployeeReportManager() {
     }
 
     public EmployeeReportManager(ArrayList<Employee> empList){
         jasperFileName = "EmployeeList.jrxml";
-        dataSource = getJRMapCollectionDataSource(empList);
+        dataCollection = getJRMapCollectionDataSource(empList);
+        parameterMap = getParameterReport();
     }
 
-    @Override
-    protected HashMap getParameterReport() {
-        parameter = new HashMap();
+    private HashMap getParameterReport() {
+        parameterMap = new HashMap();
 
-        parameter.put("ID", "ID");
-        parameter.put("NAME", "FULL NAME");
-        parameter.put("BIRTHDAY", "DATE OF BIRTH");
-        parameter.put("BEGINWORK", "THE FIRST DAY TO WORKING");
+        parameterMap.put("ID", "ID");
+        parameterMap.put("NAME", "FULL NAME");
+        parameterMap.put("BIRTHDAY", "DATE OF BIRTH");
+        parameterMap.put("BEGINWORK", "THE FIRST DAY TO WORKING");
 
-        return parameter;
+        return parameterMap;
     }
 
-    private JRDataSource getJRMapCollectionDataSource(ArrayList<Employee> empList) {
+    private JRMapCollectionDataSource getJRMapCollectionDataSource(ArrayList<Employee> empList) {
         HashMap row = null;
         ArrayList collection = new ArrayList();
         
@@ -54,9 +53,9 @@ public class EmployeeReportManager extends ReportManager1{
 
         row = new HashMap();
 
-        dataSource = new JRMapCollectionDataSource(collection);
+        dataCollection= new JRMapCollectionDataSource(collection);
 
-        return dataSource;
+        return dataCollection;
     }
 
 }
