@@ -2,10 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.hueic.CerGS.component.report;
 
 import com.hueic.CerGS.dao.RegisterDAO;
+import com.hueic.CerGS.dao.StudentDAO;
+import com.hueic.CerGS.entity.Register;
 import com.hueic.CerGS.entity.Student;
 import com.jidesoft.utils.Base64.InputStream;
 import java.io.IOException;
@@ -24,63 +25,56 @@ import net.sf.jasperreports.view.JRViewer;
  *
  * @author Wind
  */
-public class StudentReportManager{
+//TODO can lam lai
+public class StudentReportManager extends ReportManager {
 
     private String course;
+    private StudentDAO studentDAO;
+    private ArrayList<Register> listRegis;
     private RegisterDAO registerDAO;
 
     public StudentReportManager(String course) {
         this.course = course;
+        studentDAO = new StudentDAO();
+        registerDAO = new RegisterDAO();
+
+        listRegis = registerDAO.readByCourseId(this.course);
+        jasperFileName = "StudentInCourse.jasper";
+
+        parameterMap = getParameter();
+        dataCollection = getDataCollection();
     }
 
-    public JPanel getEnumerationViewer(ArrayList<Student> arr, boolean isEnumeration) {
-        JPanel viewer = null;
+    private HashMap getParameter() {
+        parameterMap = new HashMap();
+
+        parameterMap.put("COURSE", course);
+        parameterMap.put("ID", "Student Code");
+        parameterMap.put("NAME", "Student Name");
+        parameterMap.put("BIRTHDAY", "Birthday");
+        parameterMap.put("REGISDATE", "REGISTRATION DATE");
+
+        return parameterMap;
+    }
+
+    private JRMapCollectionDataSource getDataCollection() {
+        ArrayList reportRows = new ArrayList();
         DateFormat dateFormat = DateFormat.getInstance();
-        try {
-            //THONG TIN PARAMETER
-            HashMap parameterMap = new HashMap();
-
-            parameterMap.put("COURSE",course);
-            parameterMap.put("ID", "Student Code");
-            parameterMap.put("NAME", "Student Name");
-            parameterMap.put("BIRTHDAY", "Birthday");
-            parameterMap.put("REGISDATE", "REGISTRATION DATE");
-
-            ArrayList reportRows = new ArrayList();
-            HashMap rowMap = null;
-            for (Student st : arr) {
-                rowMap = new HashMap();
-                rowMap.put("ID", st.getId());
-                rowMap.put("NAME", st.getFullName());
-                rowMap.put("BIRTHDAY", dateFormat.format(new Date(st.getBirthDay().getTime())));
-                Date regisDate = registerDAO.readById(st.getId(), course).getRegisDate();
-                rowMap.put("REGISDATE", dateFormat.format(new Date(regisDate.getTime())));
-                reportRows.add(rowMap);
-            }
+        HashMap rowMap = null;
+        for (Register reg : listRegis) {
+            Student st = studentDAO.readByID(reg.getId());
             rowMap = new HashMap();
-            // TODO: ngang ni van loi
-            JasperPrint jasperPrint = JasperFillManager.fillReport(getInputStream("StudentInCourse.jasper"),
-                    parameterMap, new JRMapCollectionDataSource(reportRows));
+            rowMap.put("ID", st.getId());
+            rowMap.put("NAME", st.getFullName());
+            rowMap.put("BIRTHDAY", dateFormat.format(new Date(st.getBirthDay().getTime())));
+            Date regisDate = reg.getRegisDate();
+            rowMap.put("REGISDATE", dateFormat.format(new Date(regisDate.getTime())));
 
-            viewer = new JRViewer(jasperPrint);
-
-        } catch (Exception ex) {
-            System.out.println(ex.toString());
+            reportRows.add(rowMap);
         }
+        rowMap = new HashMap();
+        dataCollection = new JRMapCollectionDataSource(reportRows);
 
-        return viewer;
-    }
-
-    private InputStream getInputStream(String reportName) {
-        URL url = getClass().getResource("/com/hueic/CerGS/report/" + reportName);
-        InputStream input = null;
-
-        try {
-            input = (InputStream) url.openStream();
-            return input;
-        } catch (IOException ex) {
-            return null;
-        }
-
+        return dataCollection;
     }
 }

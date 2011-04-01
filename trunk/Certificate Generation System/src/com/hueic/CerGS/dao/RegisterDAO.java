@@ -82,7 +82,6 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
             rs = pst.executeQuery();
             if (rs.next()) {
                 regis = new Register();
-
                 regis.setId(rs.getString("Id"));
                 regis.setCourseId(rs.getString("CourseId"));
                 regis.setFeesStructe(rs.getInt("FeesStructe"));
@@ -94,6 +93,8 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
         } finally {
             db.closeConnection();
         }
+        if(regis != null)
+            System.out.println(regis.getStudentId());
         return regis;
     }
 

@@ -4,17 +4,14 @@
  */
 package com.hueic.CerGS.component.report;
 
-import com.hueic.CerGS.dao.CourseDAO;
 
 import com.hueic.CerGS.entity.Subject;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JPanel;
-import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;

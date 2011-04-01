@@ -45,7 +45,7 @@ public class frmCertificate extends javax.swing.JFrame {
 
         cerReportManager = new CertificateReportManager(cer.getStudentID(), courseId, cer.getDegreeDay(), markDAO.getGrades(cer.getMark()));
 
-        this.add(cerReportManager.getJPanelViewer());
+        this.add(cerReportManager.getPanelViewer(true));
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
