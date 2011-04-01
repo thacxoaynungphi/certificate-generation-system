@@ -53,7 +53,7 @@ public class ObjectTableModel extends AbstractTableModel {
         this.table.setFont(new Font("Tahoma", 0, 11));
         this.table.setRowHeight(18);
         this.table.setShowGrid(true);
-        this.table.setModel(this);        
+        this.table.setModel(this);
         this.initTableColumns();
     }
 
@@ -109,7 +109,12 @@ public class ObjectTableModel extends AbstractTableModel {
             return "" + (rowIndex + 1);
         }
 
-        Object obj = ((PropertyIndex) this.tableData.get(rowIndex)).getPropertyValue(this.getColumnPropertyIndex(columnIndex - 1));
+        Object obj = null;
+        try {
+            //Loi o day
+            obj = ((PropertyIndex) this.tableData.get(rowIndex)).getPropertyValue(this.getColumnPropertyIndex(columnIndex - 1));
+        } catch (Exception ex) {
+        }
         return obj;
     }
 
@@ -168,7 +173,7 @@ public class ObjectTableModel extends AbstractTableModel {
              * Delete identity column for main table
              */
             this.table.removeColumn(table.getColumnModel().getColumn(0));
-            
+
             /**
              * Don't allow to change the order of column
              */

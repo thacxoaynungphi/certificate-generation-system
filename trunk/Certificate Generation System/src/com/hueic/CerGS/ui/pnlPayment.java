@@ -42,6 +42,7 @@ public class pnlPayment extends javax.swing.JPanel {
     ArrayList<Course> listCourse = new ArrayList<Course>();
     ArrayList<Register> listRegister = new ArrayList<Register>();
     private PaymentDAO paymentDao;
+    ArrayList<Payment> filter = null;
     TableRowSorter<TableModel> sorter;
     RegisterDAO registerDAO;
     StudentDAO studentDAO;
@@ -89,14 +90,26 @@ public class pnlPayment extends javax.swing.JPanel {
     }
 
     public void loadData(ArrayList<Payment> listPayments) {
-
+        filter = new ArrayList<Payment>();
+        for (Payment pay : listPayments) {
+//            if (pay.get.toLowerCase().matches(".*" + txtSubjectIdSearch.getText().trim().toLowerCase() + ".*")
+//                    && sub.getName().toLowerCase().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")
+//                    && String.valueOf(sub.getCoefficient()).toLowerCase().matches(".*" + txtCoefficientSearch.getText().trim().toLowerCase() + ".*")
+//                    && sub.getCourseID().toLowerCase().matches(".*" + txtCoureIDSearch.getText().trim().toLowerCase() + ".*")) {
+//                filter.add(per);
+//            }
+            filter.add(pay);
+        }
+        if (filter.size() != 0) {
+            loadDetails(filter.get(0));
+        }
         ColumnData[] columns = {
             new ColumnData("ID", 100, SwingConstants.LEFT, 1),
             new ColumnData("Student ID", 140, SwingConstants.LEFT, 2),
             new ColumnData("Money", 170, SwingConstants.LEFT, 3),
             new ColumnData("Pay Day", 260, SwingConstants.LEFT, 4)
         };
-        tableModel = new ObjectTableModel(tableContent, columns, listPayments);
+        tableModel = new ObjectTableModel(tableContent, columns, filter);
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
 
             @Override
@@ -606,6 +619,11 @@ public class pnlPayment extends javax.swing.JPanel {
 
         filterText.setMinimumSize(new java.awt.Dimension(200, 20));
         filterText.setPreferredSize(new java.awt.Dimension(200, 20));
+        filterText.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                filterTextCaretUpdate(evt);
+            }
+        });
         filterText.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 filterTextKeyPressed(evt);
@@ -792,6 +810,11 @@ public class pnlPayment extends javax.swing.JPanel {
         dlg.setLocationRelativeTo(null);
         dlg.setVisible(true);
     }//GEN-LAST:event_btnChooseStudentIdActionPerformed
+
+    private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
+        // TODO add your handling code here:
+        searchStart();
+    }//GEN-LAST:event_filterTextCaretUpdate
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;

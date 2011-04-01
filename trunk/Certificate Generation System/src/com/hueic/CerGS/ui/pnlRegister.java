@@ -52,6 +52,7 @@ public class pnlRegister extends javax.swing.JPanel {
     private ObjectTableModel tableModel;
     private JTable headerTable;
     frmMain frm;
+    ArrayList<Register> filter = null;
 
     /** Creates new form pnlRegister */
     public pnlRegister() {
@@ -86,6 +87,20 @@ public class pnlRegister extends javax.swing.JPanel {
     }
 
     public void loadData(ArrayList<Register> regisList) {
+        filter = new ArrayList<Register>();
+        for (Register sub : regisList) {
+            if (sub.getStudentId().toLowerCase().matches(".*" + txtIdSearch.getText().trim().toLowerCase() + ".*")
+                    && sub.getId().toLowerCase().matches(".*" + txtStudentIdSearch.getText().trim().toLowerCase() + ".*")
+                    && sub.getCourseId().toLowerCase().matches(".*" + txtCourseIDSearch.getText().trim().toLowerCase() + ".*") //&& String.valueOf(sub.getCoefficient()).toLowerCase().matches(".*" + txtCoefficientSearch.getText().trim().toLowerCase() + ".*")
+                    //&& sub.getCourseID().toLowerCase().matches(".*" + txtCoureIDSearch.getText().trim().toLowerCase() + ".*")
+                    //Chua xet ngay bat dau va ket thuc
+                    ) {
+                filter.add(sub);
+            }
+        }
+        if (filter.size() != 0) {
+            loadDetails(filter.get(0));
+        }
 
         ColumnData[] columns = {
             new ColumnData("Student ID", 135, SwingConstants.LEFT, 5),
@@ -94,14 +109,7 @@ public class pnlRegister extends javax.swing.JPanel {
             new ColumnData("Fees Structe", 170, SwingConstants.LEFT, 3),
             new ColumnData("Registration Date", 260, SwingConstants.LEFT, 4)
         };
-        tableModel = new ObjectTableModel(tableContent, columns, regisList);
-        tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
-
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableContentMouseClicked(evt);
-            }
-        });
+        tableModel = new ObjectTableModel(tableContent, columns, filter);
         sorter = new TableRowSorter<TableModel>(tableModel);
         tableContent.setRowSorter(sorter);
         headerTable = tableModel.getHeaderTable();
@@ -284,6 +292,11 @@ public class pnlRegister extends javax.swing.JPanel {
         panelRight.add(lblRegistrationDate, gridBagConstraints);
 
         txtId.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtId.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtIdCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -292,6 +305,11 @@ public class pnlRegister extends javax.swing.JPanel {
         panelRight.add(txtId, gridBagConstraints);
 
         txtFeesStructe.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtFeesStructe.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtFeesStructeCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -303,6 +321,13 @@ public class pnlRegister extends javax.swing.JPanel {
         DateChRegistrationDate.setMaximumSize(new java.awt.Dimension(200, 20));
         DateChRegistrationDate.setMinimumSize(new java.awt.Dimension(200, 20));
         DateChRegistrationDate.setPreferredSize(new java.awt.Dimension(200, 20));
+        DateChRegistrationDate.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+                DateChRegistrationDateCaretPositionChanged(evt);
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 3;
@@ -373,6 +398,11 @@ public class pnlRegister extends javax.swing.JPanel {
 
         txtCourseID.setMinimumSize(new java.awt.Dimension(200, 20));
         txtCourseID.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtCourseID.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtCourseIDCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -382,6 +412,11 @@ public class pnlRegister extends javax.swing.JPanel {
 
         txtStudentId.setMinimumSize(new java.awt.Dimension(180, 20));
         txtStudentId.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtStudentId.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtStudentIdCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
@@ -498,6 +533,11 @@ public class pnlRegister extends javax.swing.JPanel {
         panelRight1Search.add(lblRegistrationDateSearch, gridBagConstraints);
 
         txtIdSearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtIdSearch.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtIdSearchCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -506,6 +546,11 @@ public class pnlRegister extends javax.swing.JPanel {
         panelRight1Search.add(txtIdSearch, gridBagConstraints);
 
         txtFeesStructeSearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtFeesStructeSearch.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtFeesStructeSearchCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -515,6 +560,13 @@ public class pnlRegister extends javax.swing.JPanel {
 
         DateChRegistrationDateSearch.setDateFormatString("MM/dd/yyyy");
         DateChRegistrationDateSearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        DateChRegistrationDateSearch.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+                DateChRegistrationDateSearchCaretPositionChanged(evt);
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 3;
@@ -545,6 +597,11 @@ public class pnlRegister extends javax.swing.JPanel {
 
         txtCourseIDSearch.setMinimumSize(new java.awt.Dimension(180, 20));
         txtCourseIDSearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtCourseIDSearch.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtCourseIDSearchCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -554,6 +611,11 @@ public class pnlRegister extends javax.swing.JPanel {
 
         txtStudentIdSearch.setMinimumSize(new java.awt.Dimension(180, 20));
         txtStudentIdSearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtStudentIdSearch.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtStudentIdSearchCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
@@ -619,9 +681,9 @@ public class pnlRegister extends javax.swing.JPanel {
         panelLeft.add(lblEnterNameStudent, gridBagConstraints);
 
         filterText.setPreferredSize(new java.awt.Dimension(150, 20));
-        filterText.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                filterTextKeyPressed(evt);
+        filterText.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                filterTextCaretUpdate(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -650,8 +712,8 @@ public class pnlRegister extends javax.swing.JPanel {
         tableContent.setMinimumSize(new java.awt.Dimension(770, 290));
         tableContent.setPreferredSize(new java.awt.Dimension(770, 290));
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableContentMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tableContentMouseReleased(evt);
             }
         });
         srcPanelRegister.setViewportView(tableContent);
@@ -686,27 +748,6 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         add(panelLeft, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void filterTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextKeyPressed
-        // TODO add your handling code here:
-        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-            searchStart();
-        }
-}//GEN-LAST:event_filterTextKeyPressed
-
-    private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
-        // TODO add your handling code here:
-        if (regisList.size() != 0) {
-            int index = tableContent.getSelectedRow();
-            if (index != -1) {
-                String studentId = tableContent.getValueAt(index, 0).toString();
-                Register reg = findByStudentId(studentId);
-                if (reg != null) {
-                    loadDetails(reg);
-                }
-            }
-        }
-}//GEN-LAST:event_tableContentMouseClicked
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
@@ -850,6 +891,70 @@ public class pnlRegister extends javax.swing.JPanel {
         dlg.setLocationRelativeTo(null);
         dlg.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_btnChooseStudentIDSearchActionPerformed
+
+    private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
+        // TODO add your handling code here:
+        searchStart();
+    }//GEN-LAST:event_filterTextCaretUpdate
+
+    private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
+        // TODO add your handling code here:
+        if (regisList.size() != 0) {
+            int index = tableContent.getSelectedRow();
+            if (index != -1) {
+                String studentId = tableContent.getValueAt(index, 0).toString();
+                Register reg = findByStudentId(studentId);
+                if (reg != null) {
+                    loadDetails(reg);
+                }
+            }
+        }
+    }//GEN-LAST:event_tableContentMouseReleased
+
+    private void txtIdCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtIdCaretUpdate
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdCaretUpdate
+
+    private void txtCourseIDCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtCourseIDCaretUpdate
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCourseIDCaretUpdate
+
+    private void txtFeesStructeCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtFeesStructeCaretUpdate
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFeesStructeCaretUpdate
+
+    private void txtStudentIdCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtStudentIdCaretUpdate
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtStudentIdCaretUpdate
+
+    private void DateChRegistrationDateCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_DateChRegistrationDateCaretPositionChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DateChRegistrationDateCaretPositionChanged
+
+    private void txtIdSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtIdSearchCaretUpdate
+        // TODO add your handling code here:
+        loadData(regisList);
+    }//GEN-LAST:event_txtIdSearchCaretUpdate
+
+    private void txtCourseIDSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtCourseIDSearchCaretUpdate
+        // TODO add your handling code here:
+        loadData(regisList);
+    }//GEN-LAST:event_txtCourseIDSearchCaretUpdate
+
+    private void txtFeesStructeSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtFeesStructeSearchCaretUpdate
+        // TODO add your handling code here:
+        loadData(regisList);
+    }//GEN-LAST:event_txtFeesStructeSearchCaretUpdate
+
+    private void txtStudentIdSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtStudentIdSearchCaretUpdate
+        // TODO add your handling code here:
+        loadData(regisList);
+    }//GEN-LAST:event_txtStudentIdSearchCaretUpdate
+
+    private void DateChRegistrationDateSearchCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_DateChRegistrationDateSearchCaretPositionChanged
+        // TODO add your handling code here:
+        loadData(regisList);
+    }//GEN-LAST:event_DateChRegistrationDateSearchCaretPositionChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser DateChRegistrationDate;
     private com.toedter.calendar.JDateChooser DateChRegistrationDateSearch;
@@ -900,7 +1005,7 @@ public class pnlRegister extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     String getSelectedCode() {
-         try {
+        try {
             // TODO add your handling code here:
             int index = tableContent.getSelectedRow();
             if (index != -1) {

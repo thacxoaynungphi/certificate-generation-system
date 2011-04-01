@@ -38,6 +38,7 @@ public class pnlPermission extends javax.swing.JPanel {
     boolean isAdd = false;
     private ObjectTableModel tableModel;
     private JTable headerTable;
+    ArrayList<Permission> filter = null;
 
     /** Creates new form pnlPermission */
     public pnlPermission() {
@@ -51,18 +52,20 @@ public class pnlPermission extends javax.swing.JPanel {
     }
 
     public void loadData(ArrayList<Permission> listPermission) {
-
+        filter = new ArrayList<Permission>();
+        for (Permission per : listPermission) {
+            if (String.valueOf(per.getId()).toLowerCase().matches(".*" + txtIdSearch.getText().trim().toLowerCase() + ".*")
+                    && per.getName().toLowerCase().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")) {
+                filter.add(per);
+            }
+        }
+        if (filter.size() != 0) {
+            loadDetails(filter.get(0));
+        }
         ColumnData[] columns = {
             new ColumnData("ID", 100, SwingConstants.LEFT, 1),
             new ColumnData("Name", 140, SwingConstants.LEFT, 2),};
-        tableModel = new ObjectTableModel(tableContent, columns, listPermission);
-        tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
-
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableContentMouseClicked(evt);
-            }
-        });
+        tableModel = new ObjectTableModel(tableContent, columns, filter);
         sorter = new TableRowSorter<TableModel>(tableModel);
         tableContent.setRowSorter(sorter);
         headerTable = tableModel.getHeaderTable();
@@ -264,6 +267,11 @@ public class pnlPermission extends javax.swing.JPanel {
         txtId.setEnabled(false);
         txtId.setMinimumSize(new java.awt.Dimension(200, 20));
         txtId.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtId.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtIdCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -373,6 +381,11 @@ public class pnlPermission extends javax.swing.JPanel {
         txtIdSearch.setEnabled(false);
         txtIdSearch.setMinimumSize(new java.awt.Dimension(200, 20));
         txtIdSearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtIdSearch.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtIdSearchCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -399,6 +412,11 @@ public class pnlPermission extends javax.swing.JPanel {
         panelRightSearch.add(lblcheck4Search, gridBagConstraints);
 
         txtNameSearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtNameSearch.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtNameSearchCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
@@ -447,8 +465,8 @@ public class pnlPermission extends javax.swing.JPanel {
         tableContent.setMinimumSize(new java.awt.Dimension(770, 340));
         tableContent.setPreferredSize(new java.awt.Dimension(770, 340));
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableContentMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tableContentMouseReleased(evt);
             }
         });
         srcPanelPermission.setViewportView(tableContent);
@@ -463,9 +481,9 @@ public class pnlPermission extends javax.swing.JPanel {
 
         filterText.setMinimumSize(new java.awt.Dimension(200, 20));
         filterText.setPreferredSize(new java.awt.Dimension(200, 20));
-        filterText.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                filterTextKeyPressed(evt);
+        filterText.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                filterTextCaretUpdate(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -499,30 +517,6 @@ public class pnlPermission extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         add(panelLeft, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
-        try {
-            // TODO add your handling code here:
-            int index = tableContent.getSelectedRow();
-
-            if (index != -1) {
-                int value = Integer.parseInt(tableContent.getValueAt(index, 0).toString());
-                Permission per = find(value);
-                if (per != null) {
-                    loadDetails(per);
-                }
-            }
-        } catch (Exception ex) {
-            //TODO: chua xu ly
-        }
-}//GEN-LAST:event_tableContentMouseClicked
-
-    private void filterTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextKeyPressed
-        // TODO add your handling code here:
-        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-            searchStart();
-        }
-}//GEN-LAST:event_filterTextKeyPressed
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
@@ -613,6 +607,42 @@ public class pnlPermission extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnResetActionPerformed
 
+    private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            int index = tableContent.getSelectedRow();
+
+            if (index != -1) {
+                int value = Integer.parseInt(tableContent.getValueAt(index, 0).toString());
+                Permission per = find(value);
+                if (per != null) {
+                    loadDetails(per);
+                }
+            }
+        } catch (Exception ex) {
+            //TODO: chua xu ly
+        }
+    }//GEN-LAST:event_tableContentMouseReleased
+
+    private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
+        // TODO add your handling code here:
+        searchStart();
+    }//GEN-LAST:event_filterTextCaretUpdate
+
+    private void txtIdCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtIdCaretUpdate
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdCaretUpdate
+
+    private void txtIdSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtIdSearchCaretUpdate
+        // TODO add your handling code here:
+        loadData(listPermssion);
+    }//GEN-LAST:event_txtIdSearchCaretUpdate
+
+    private void txtNameSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtNameSearchCaretUpdate
+        // TODO add your handling code here:
+        loadData(listPermssion);
+    }//GEN-LAST:event_txtNameSearchCaretUpdate
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
@@ -650,7 +680,7 @@ public class pnlPermission extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     String getSelectedCode() {
-       try {
+        try {
             // TODO add your handling code here:
             int index = tableContent.getSelectedRow();
             if (index != -1) {
