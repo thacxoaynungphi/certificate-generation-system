@@ -188,24 +188,24 @@ public class pnlPayment extends javax.swing.JPanel {
         dateChPayDay = new com.toedter.calendar.JDateChooser();
         txtCourseId = new javax.swing.JTextField();
         txtStudentId = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnChooseCourseId = new javax.swing.JButton();
+        btnChooseStudentId = new javax.swing.JButton();
         pnlSearch = new javax.swing.JPanel();
         panelRight1 = new javax.swing.JPanel();
-        lblCourse1 = new javax.swing.JLabel();
-        lblStudentID1 = new javax.swing.JLabel();
-        lblMoney1 = new javax.swing.JLabel();
-        lblPayDay1 = new javax.swing.JLabel();
-        txtMoney1 = new javax.swing.JTextField();
-        panelButton1 = new javax.swing.JPanel();
+        lblCourseSearch = new javax.swing.JLabel();
+        lblStudentIDSearch = new javax.swing.JLabel();
+        lblMoneySearch = new javax.swing.JLabel();
+        lblPayDaySearch = new javax.swing.JLabel();
+        txtMoneySearch = new javax.swing.JTextField();
+        panelButtonSearch = new javax.swing.JPanel();
         btnReset = new javax.swing.JButton();
-        lblTitle1 = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
-        dateChPayDay1 = new com.toedter.calendar.JDateChooser();
-        txtCourseId1 = new javax.swing.JTextField();
-        txtStudentId1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        lblTitleSearch = new javax.swing.JLabel();
+        jSeparatorSearch = new javax.swing.JSeparator();
+        dateChPayDaySearch = new com.toedter.calendar.JDateChooser();
+        txtCourseIdSearch = new javax.swing.JTextField();
+        txtStudentIdSearch = new javax.swing.JTextField();
+        btnChooseCourseSearch = new javax.swing.JButton();
+        btnChooseStudentIdSearch = new javax.swing.JButton();
         panelLeft = new javax.swing.JPanel();
         srcPanelPayment = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
@@ -373,13 +373,13 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(txtStudentId, gridBagConstraints);
 
-        jButton3.setText("jButton1");
-        jButton3.setMaximumSize(new java.awt.Dimension(23, 23));
-        jButton3.setMinimumSize(new java.awt.Dimension(23, 23));
-        jButton3.setPreferredSize(new java.awt.Dimension(23, 20));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnChooseCourseId.setText("jButton1");
+        btnChooseCourseId.setMaximumSize(new java.awt.Dimension(23, 23));
+        btnChooseCourseId.setMinimumSize(new java.awt.Dimension(23, 23));
+        btnChooseCourseId.setPreferredSize(new java.awt.Dimension(23, 20));
+        btnChooseCourseId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnChooseCourseIdActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -387,15 +387,15 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(jButton3, gridBagConstraints);
+        panelRight.add(btnChooseCourseId, gridBagConstraints);
 
-        jButton4.setText("jButton2");
-        jButton4.setMaximumSize(new java.awt.Dimension(23, 23));
-        jButton4.setMinimumSize(new java.awt.Dimension(23, 23));
-        jButton4.setPreferredSize(new java.awt.Dimension(23, 20));
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnChooseStudentId.setText("jButton2");
+        btnChooseStudentId.setMaximumSize(new java.awt.Dimension(23, 23));
+        btnChooseStudentId.setMinimumSize(new java.awt.Dimension(23, 23));
+        btnChooseStudentId.setPreferredSize(new java.awt.Dimension(23, 20));
+        btnChooseStudentId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnChooseStudentIdActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -403,7 +403,7 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(jButton4, gridBagConstraints);
+        panelRight.add(btnChooseStudentId, gridBagConstraints);
 
         pnlEdit.add(panelRight, new java.awt.GridBagConstraints());
 
@@ -418,54 +418,54 @@ public class pnlPayment extends javax.swing.JPanel {
         panelRight1.setPreferredSize(new java.awt.Dimension(800, 200));
         panelRight1.setLayout(new java.awt.GridBagLayout());
 
-        lblCourse1.setForeground(new java.awt.Color(3, 3, 3));
-        lblCourse1.setText("Course:");
+        lblCourseSearch.setForeground(new java.awt.Color(3, 3, 3));
+        lblCourseSearch.setText("Course:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight1.add(lblCourse1, gridBagConstraints);
+        panelRight1.add(lblCourseSearch, gridBagConstraints);
 
-        lblStudentID1.setForeground(new java.awt.Color(3, 3, 3));
-        lblStudentID1.setText("Student ID:");
+        lblStudentIDSearch.setForeground(new java.awt.Color(3, 3, 3));
+        lblStudentIDSearch.setText("Student ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight1.add(lblStudentID1, gridBagConstraints);
+        panelRight1.add(lblStudentIDSearch, gridBagConstraints);
 
-        lblMoney1.setForeground(new java.awt.Color(3, 3, 3));
-        lblMoney1.setText("Money:");
+        lblMoneySearch.setForeground(new java.awt.Color(3, 3, 3));
+        lblMoneySearch.setText("Money:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
-        panelRight1.add(lblMoney1, gridBagConstraints);
+        panelRight1.add(lblMoneySearch, gridBagConstraints);
 
-        lblPayDay1.setForeground(new java.awt.Color(3, 3, 3));
-        lblPayDay1.setText("Pay day:");
+        lblPayDaySearch.setForeground(new java.awt.Color(3, 3, 3));
+        lblPayDaySearch.setText("Pay day:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
-        panelRight1.add(lblPayDay1, gridBagConstraints);
+        panelRight1.add(lblPayDaySearch, gridBagConstraints);
 
-        txtMoney1.setMinimumSize(new java.awt.Dimension(200, 20));
-        txtMoney1.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtMoneySearch.setMinimumSize(new java.awt.Dimension(200, 20));
+        txtMoneySearch.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight1.add(txtMoney1, gridBagConstraints);
+        panelRight1.add(txtMoneySearch, gridBagConstraints);
 
-        panelButton1.setBackground(new java.awt.Color(255, 255, 255));
+        panelButtonSearch.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
+        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
         btnReset.setText("Reset");
         btnReset.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnReset.setPreferredSize(new java.awt.Dimension(75, 23));
@@ -474,65 +474,65 @@ public class pnlPayment extends javax.swing.JPanel {
                 btnResetActionPerformed(evt);
             }
         });
-        panelButton1.add(btnReset);
+        panelButtonSearch.add(btnReset);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight1.add(panelButton1, gridBagConstraints);
+        panelRight1.add(panelButtonSearch, gridBagConstraints);
 
-        lblTitle1.setFont(new java.awt.Font("Tahoma", 1, 12));
-        lblTitle1.setForeground(new java.awt.Color(102, 0, 102));
-        lblTitle1.setText("Information Payment");
+        lblTitleSearch.setFont(new java.awt.Font("Tahoma", 1, 12));
+        lblTitleSearch.setForeground(new java.awt.Color(102, 0, 102));
+        lblTitleSearch.setText("Information Payment");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        panelRight1.add(lblTitle1, gridBagConstraints);
+        panelRight1.add(lblTitleSearch, gridBagConstraints);
 
-        jSeparator2.setPreferredSize(new java.awt.Dimension(650, 10));
+        jSeparatorSearch.setPreferredSize(new java.awt.Dimension(650, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
-        panelRight1.add(jSeparator2, gridBagConstraints);
+        panelRight1.add(jSeparatorSearch, gridBagConstraints);
 
-        dateChPayDay1.setPreferredSize(new java.awt.Dimension(200, 20));
+        dateChPayDaySearch.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight1.add(dateChPayDay1, gridBagConstraints);
+        panelRight1.add(dateChPayDaySearch, gridBagConstraints);
 
-        txtCourseId1.setMinimumSize(new java.awt.Dimension(200, 20));
-        txtCourseId1.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtCourseIdSearch.setMinimumSize(new java.awt.Dimension(200, 20));
+        txtCourseIdSearch.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight1.add(txtCourseId1, gridBagConstraints);
+        panelRight1.add(txtCourseIdSearch, gridBagConstraints);
 
-        txtStudentId1.setMinimumSize(new java.awt.Dimension(200, 20));
-        txtStudentId1.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtStudentIdSearch.setMinimumSize(new java.awt.Dimension(200, 20));
+        txtStudentIdSearch.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight1.add(txtStudentId1, gridBagConstraints);
+        panelRight1.add(txtStudentIdSearch, gridBagConstraints);
 
-        jButton1.setText("jButton1");
-        jButton1.setMaximumSize(new java.awt.Dimension(23, 23));
-        jButton1.setMinimumSize(new java.awt.Dimension(23, 23));
-        jButton1.setPreferredSize(new java.awt.Dimension(23, 20));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnChooseCourseSearch.setText("jButton1");
+        btnChooseCourseSearch.setMaximumSize(new java.awt.Dimension(23, 23));
+        btnChooseCourseSearch.setMinimumSize(new java.awt.Dimension(23, 23));
+        btnChooseCourseSearch.setPreferredSize(new java.awt.Dimension(23, 20));
+        btnChooseCourseSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnChooseCourseSearchActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -540,15 +540,15 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight1.add(jButton1, gridBagConstraints);
+        panelRight1.add(btnChooseCourseSearch, gridBagConstraints);
 
-        jButton2.setText("jButton2");
-        jButton2.setMaximumSize(new java.awt.Dimension(23, 23));
-        jButton2.setMinimumSize(new java.awt.Dimension(23, 23));
-        jButton2.setPreferredSize(new java.awt.Dimension(23, 20));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnChooseStudentIdSearch.setText("jButton2");
+        btnChooseStudentIdSearch.setMaximumSize(new java.awt.Dimension(23, 23));
+        btnChooseStudentIdSearch.setMinimumSize(new java.awt.Dimension(23, 23));
+        btnChooseStudentIdSearch.setPreferredSize(new java.awt.Dimension(23, 20));
+        btnChooseStudentIdSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnChooseStudentIdSearchActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -556,7 +556,7 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight1.add(jButton2, gridBagConstraints);
+        panelRight1.add(btnChooseStudentIdSearch, gridBagConstraints);
 
         pnlSearch.add(panelRight1, new java.awt.GridBagConstraints());
 
@@ -756,69 +756,69 @@ public class pnlPayment extends javax.swing.JPanel {
         }
 }//GEN-LAST:event_btnAddActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnChooseStudentIdSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseStudentIdSearchActionPerformed
         // TODO add your handling code here:
-        dlgChoose dlg = new dlgChoose(frm, txtStudentId1, true, 12);
+        dlgChoose dlg = new dlgChoose(frm, txtStudentIdSearch, true, 12);
         dlg.setTitle("Browse Order");
         dlg.setSize(868, 616);
         dlg.setLocationRelativeTo(null);
         dlg.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnChooseStudentIdSearchActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnChooseCourseSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseCourseSearchActionPerformed
         // TODO add your handling code here:
-        dlgChoose dlg = new dlgChoose(frm, txtCourseId1, true, 7);
+        dlgChoose dlg = new dlgChoose(frm, txtCourseIdSearch, true, 7);
         dlg.setTitle("Browse Order");
         dlg.setSize(868, 616);
         dlg.setLocationRelativeTo(null);
         dlg.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnChooseCourseSearchActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnChooseCourseIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseCourseIdActionPerformed
         // TODO add your handling code here:
         dlgChoose dlg = new dlgChoose(frm, txtCourseId, true, 7);
         dlg.setTitle("Browse Order");
         dlg.setSize(868, 616);
         dlg.setLocationRelativeTo(null);
         dlg.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnChooseCourseIdActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnChooseStudentIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseStudentIdActionPerformed
         // TODO add your handling code here:
         dlgChoose dlg = new dlgChoose(frm, txtStudentId, true, 12);
         dlg.setTitle("Browse Order");
         dlg.setSize(868, 616);
         dlg.setLocationRelativeTo(null);
         dlg.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnChooseStudentIdActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnChooseCourseId;
+    private javax.swing.JButton btnChooseCourseSearch;
+    private javax.swing.JButton btnChooseStudentId;
+    private javax.swing.JButton btnChooseStudentIdSearch;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnFilter;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnUpdate;
     private com.toedter.calendar.JDateChooser dateChPayDay;
-    private com.toedter.calendar.JDateChooser dateChPayDay1;
+    private com.toedter.calendar.JDateChooser dateChPayDaySearch;
     private javax.swing.JTextField filterText;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparatorSearch;
     private javax.swing.JLabel lblCourse;
-    private javax.swing.JLabel lblCourse1;
+    private javax.swing.JLabel lblCourseSearch;
     private javax.swing.JLabel lblMoney;
-    private javax.swing.JLabel lblMoney1;
+    private javax.swing.JLabel lblMoneySearch;
     private javax.swing.JLabel lblPayDay;
-    private javax.swing.JLabel lblPayDay1;
+    private javax.swing.JLabel lblPayDaySearch;
     private javax.swing.JLabel lblStudentID;
-    private javax.swing.JLabel lblStudentID1;
+    private javax.swing.JLabel lblStudentIDSearch;
     private javax.swing.JLabel lblTitle;
-    private javax.swing.JLabel lblTitle1;
+    private javax.swing.JLabel lblTitleSearch;
     private javax.swing.JPanel panelButton;
-    private javax.swing.JPanel panelButton1;
+    private javax.swing.JPanel panelButtonSearch;
     private javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelRight;
     private javax.swing.JPanel panelRight1;
@@ -828,11 +828,11 @@ public class pnlPayment extends javax.swing.JPanel {
     private javax.swing.JTable tableContent;
     public javax.swing.JTabbedPane tpPayment;
     private javax.swing.JTextField txtCourseId;
-    private javax.swing.JTextField txtCourseId1;
+    private javax.swing.JTextField txtCourseIdSearch;
     private javax.swing.JTextField txtMoney;
-    private javax.swing.JTextField txtMoney1;
+    private javax.swing.JTextField txtMoneySearch;
     private javax.swing.JTextField txtStudentId;
-    private javax.swing.JTextField txtStudentId1;
+    private javax.swing.JTextField txtStudentIdSearch;
     // End of variables declaration//GEN-END:variables
 
     String getSelectedType() {

@@ -141,6 +141,7 @@ public class pnlStudent extends javax.swing.JPanel {
         panelButton = new javax.swing.JPanel();
         btnAdd = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         lblStart1 = new javax.swing.JLabel();
         lblStart2 = new javax.swing.JLabel();
@@ -154,8 +155,6 @@ public class pnlStudent extends javax.swing.JPanel {
         pnlSearch = new javax.swing.JPanel();
         panelInfo = new javax.swing.JPanel();
         lblCourse = new javax.swing.JLabel();
-        cbxCourse = new javax.swing.JComboBox();
-        cbxStudent = new javax.swing.JComboBox();
         lblStudentId = new javax.swing.JLabel();
         lblFirstName = new javax.swing.JLabel();
         txtFirstName = new javax.swing.JTextField();
@@ -173,6 +172,8 @@ public class pnlStudent extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         btnSearch = new javax.swing.JButton();
+        txtCourseId = new javax.swing.JTextField();
+        txtStudentId = new javax.swing.JTextField();
         panelContent = new javax.swing.JPanel();
         panelTop = new javax.swing.JPanel();
         lblHienthi1 = new javax.swing.JLabel();
@@ -366,6 +367,8 @@ public class pnlStudent extends javax.swing.JPanel {
         panelContent1.add(txtImage, gridBagConstraints);
 
         panelButton.setBackground(new java.awt.Color(255, 255, 255));
+        panelButton.setMinimumSize(new java.awt.Dimension(400, 35));
+        panelButton.setPreferredSize(new java.awt.Dimension(400, 35));
         panelButton.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
 
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
@@ -375,8 +378,10 @@ public class pnlStudent extends javax.swing.JPanel {
         panelButton.add(btnAdd);
 
         btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
-        btnReset.setText("Reset");
+        btnReset.setText("Update");
         btnReset.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnReset.setMaximumSize(new java.awt.Dimension(75, 23));
+        btnReset.setMinimumSize(new java.awt.Dimension(75, 23));
         btnReset.setPreferredSize(new java.awt.Dimension(75, 23));
         btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -384,6 +389,11 @@ public class pnlStudent extends javax.swing.JPanel {
             }
         });
         panelButton.add(btnReset);
+
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
+        btnDelete.setText("Delete");
+        btnDelete.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        panelButton.add(btnDelete);
 
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
         btnCancel.setText("Cancel");
@@ -506,47 +516,6 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(lblCourse, gridBagConstraints);
-
-        cbxCourse.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxCourse.setMinimumSize(new java.awt.Dimension(150, 20));
-        cbxCourse.setOpaque(false);
-        cbxCourse.setPreferredSize(new java.awt.Dimension(200, 20));
-        cbxCourse.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbxCourseItemStateChanged(evt);
-            }
-        });
-        cbxCourse.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxCourseActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelInfo.add(cbxCourse, gridBagConstraints);
-
-        cbxStudent.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxStudent.setMinimumSize(new java.awt.Dimension(150, 20));
-        cbxStudent.setPreferredSize(new java.awt.Dimension(200, 20));
-        cbxStudent.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbxStudentItemStateChanged(evt);
-            }
-        });
-        cbxStudent.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxStudentActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelInfo.add(cbxStudent, gridBagConstraints);
 
         lblStudentId.setForeground(new java.awt.Color(3, 3, 3));
         lblStudentId.setText("Student ID:");
@@ -693,7 +662,14 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(jButton2, gridBagConstraints);
 
-        btnSearch.setText("Search");
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
+        btnSearch.setText("Reset");
+        btnSearch.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnSearch.setMaximumSize(new java.awt.Dimension(75, 23));
+        btnSearch.setMinimumSize(new java.awt.Dimension(75, 23));
+        btnSearch.setPreferredSize(new java.awt.Dimension(75, 23));
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSearchActionPerformed(evt);
@@ -707,6 +683,24 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(jPanel1, gridBagConstraints);
+
+        txtCourseId.setMinimumSize(new java.awt.Dimension(200, 20));
+        txtCourseId.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelInfo.add(txtCourseId, gridBagConstraints);
+
+        txtStudentId.setMinimumSize(new java.awt.Dimension(200, 20));
+        txtStudentId.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelInfo.add(txtStudentId, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -838,38 +832,6 @@ public class pnlStudent extends javax.swing.JPanel {
         // TODO add your handling code here:
 }//GEN-LAST:event_btnCancelActionPerformed
 
-    private void cbxCourseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxCourseItemStateChanged
-        // TODO add your handling code here:
-        String courseId = (String) cbxCourse.getSelectedItem();
-        listRes = registerDAO.readByCourseId(courseId);
-        if (!listRes.isEmpty()) {
-            listResTemp.clear();
-            listResTemp.addAll(listRes);
-            loadData(listResTemp);
-        }
-}//GEN-LAST:event_cbxCourseItemStateChanged
-
-    private void cbxCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCourseActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_cbxCourseActionPerformed
-
-    private void cbxStudentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxStudentItemStateChanged
-        // TODO add your handling code here:
-        String studentId = (String) cbxStudent.getSelectedItem();
-        Register res = registerDAO.readByStudentId(studentId);
-
-        if (res != null) {
-            listResTemp.clear();
-            listResTemp.add(res);
-
-            loadData(listResTemp);
-        }
-}//GEN-LAST:event_cbxStudentItemStateChanged
-
-    private void cbxStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxStudentActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_cbxStudentActionPerformed
-
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
         String firstName = txtFirstName.getText();
@@ -921,13 +883,12 @@ public class pnlStudent extends javax.swing.JPanel {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBrowse;
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnFilter;
     private javax.swing.ButtonGroup btnGGender1;
     private javax.swing.ButtonGroup btnGGender2;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSearch;
-    private javax.swing.JComboBox cbxCourse;
-    private javax.swing.JComboBox cbxStudent;
     private com.toedter.calendar.JDateChooser dateChooserDateEnd;
     private com.toedter.calendar.JDateChooser dateChooserDateStart;
     private javax.swing.JTextField filterText;
@@ -976,6 +937,7 @@ public class pnlStudent extends javax.swing.JPanel {
     private javax.swing.JTable tableContent;
     public javax.swing.JTabbedPane tpStudent;
     private javax.swing.JTextField txtAddress;
+    private javax.swing.JTextField txtCourseId;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtFirstname;
@@ -984,6 +946,7 @@ public class pnlStudent extends javax.swing.JPanel {
     private javax.swing.JTextField txtLastName;
     private javax.swing.JTextField txtLastname;
     private javax.swing.JTextField txtPhone;
+    private javax.swing.JTextField txtStudentId;
     // End of variables declaration//GEN-END:variables
 
     String getSelectedCode() {

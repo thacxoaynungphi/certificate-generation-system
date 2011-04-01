@@ -90,36 +90,47 @@ public class frmMain extends javax.swing.JFrame {
         buttonGroupTheme = new javax.swing.ButtonGroup();
         panelLogo = new javax.swing.JPanel();
         tbMenu = new javax.swing.JToolBar();
-        jideButton2 = new com.jidesoft.swing.JideButton();
-        jideButton3 = new com.jidesoft.swing.JideButton();
-        jideButton4 = new com.jidesoft.swing.JideButton();
-        jideButton5 = new com.jidesoft.swing.JideButton();
-        jideButton6 = new com.jidesoft.swing.JideButton();
-        jideButton7 = new com.jidesoft.swing.JideButton();
-        jideButton8 = new com.jidesoft.swing.JideButton();
-        jideButton9 = new com.jidesoft.swing.JideButton();
-        jideButton10 = new com.jidesoft.swing.JideButton();
-        jideButton11 = new com.jidesoft.swing.JideButton();
+        jideBtnEmployee = new com.jidesoft.swing.JideButton();
+        jideBtnStudent = new com.jidesoft.swing.JideButton();
+        jideBtnRegister = new com.jidesoft.swing.JideButton();
+        jideBtnCourse = new com.jidesoft.swing.JideButton();
+        jideBtnSubject = new com.jidesoft.swing.JideButton();
+        jideBtnCertificate = new com.jidesoft.swing.JideButton();
+        jideBtnAccount = new com.jidesoft.swing.JideButton();
+        jideBtnMark = new com.jidesoft.swing.JideButton();
+        jideBtnPayment = new com.jidesoft.swing.JideButton();
         jideButton12 = new com.jidesoft.swing.JideButton();
         panelLeft = new javax.swing.JPanel();
         tpnBusiness = new javax.swing.JTabbedPane();
         pnlHome = new javax.swing.JPanel();
         panelRight = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        lblCampaignMaster1 = new javax.swing.JLabel();
+        detail_Campaign_Description1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        lblCampaignMaster2 = new javax.swing.JLabel();
+        detail_Campaign_Description2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        lblCampaignMaster3 = new javax.swing.JLabel();
+        detail_Campaign_Description3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        lblCampaignMaster4 = new javax.swing.JLabel();
+        detail_Campaign_Description4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        lblCampaignMaster5 = new javax.swing.JLabel();
+        detail_Campaign_Description5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
+        lblCampaignMaster6 = new javax.swing.JLabel();
+        detail_Campaign_Description6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         pnlEmployee = new javax.swing.JPanel();
         pnlStudent = new javax.swing.JPanel();
         pnlRegister = new javax.swing.JPanel();
@@ -181,65 +192,59 @@ public class frmMain extends javax.swing.JFrame {
         tbMenu.setMinimumSize(new java.awt.Dimension(1024, 40));
         tbMenu.setPreferredSize(new java.awt.Dimension(1024, 40));
 
-        jideButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Statistic_bg.png"))); // NOI18N
-        jideButton2.setFocusable(false);
-        jideButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jideButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        tbMenu.add(jideButton2);
+        jideBtnEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/emp_icon_32.png"))); // NOI18N
+        jideBtnEmployee.setFocusable(false);
+        jideBtnEmployee.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jideBtnEmployee.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tbMenu.add(jideBtnEmployee);
 
-        jideButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Statistic_bg.png"))); // NOI18N
-        jideButton3.setFocusable(false);
-        jideButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jideButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        tbMenu.add(jideButton3);
+        jideBtnStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/student_icon -32.png"))); // NOI18N
+        jideBtnStudent.setFocusable(false);
+        jideBtnStudent.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jideBtnStudent.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tbMenu.add(jideBtnStudent);
 
-        jideButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Statistic_bg.png"))); // NOI18N
-        jideButton4.setFocusable(false);
-        jideButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jideButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        tbMenu.add(jideButton4);
+        jideBtnRegister.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/icon_register.png"))); // NOI18N
+        jideBtnRegister.setFocusable(false);
+        jideBtnRegister.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jideBtnRegister.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tbMenu.add(jideBtnRegister);
 
-        jideButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Statistic_bg.png"))); // NOI18N
-        jideButton5.setFocusable(false);
-        jideButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jideButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        tbMenu.add(jideButton5);
+        jideBtnCourse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/icon_course.png"))); // NOI18N
+        jideBtnCourse.setFocusable(false);
+        jideBtnCourse.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jideBtnCourse.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tbMenu.add(jideBtnCourse);
 
-        jideButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Statistic_bg.png"))); // NOI18N
-        jideButton6.setFocusable(false);
-        jideButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jideButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        tbMenu.add(jideButton6);
+        jideBtnSubject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/subject_icon.png"))); // NOI18N
+        jideBtnSubject.setFocusable(false);
+        jideBtnSubject.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jideBtnSubject.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tbMenu.add(jideBtnSubject);
 
-        jideButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Statistic_bg.png"))); // NOI18N
-        jideButton7.setFocusable(false);
-        jideButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jideButton7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        tbMenu.add(jideButton7);
+        jideBtnCertificate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Certificate_icon_32.png"))); // NOI18N
+        jideBtnCertificate.setFocusable(false);
+        jideBtnCertificate.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jideBtnCertificate.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tbMenu.add(jideBtnCertificate);
 
-        jideButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Statistic_bg.png"))); // NOI18N
-        jideButton8.setFocusable(false);
-        jideButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jideButton8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        tbMenu.add(jideButton8);
+        jideBtnAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/account_icon -32.png"))); // NOI18N
+        jideBtnAccount.setFocusable(false);
+        jideBtnAccount.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jideBtnAccount.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tbMenu.add(jideBtnAccount);
 
-        jideButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Statistic_bg.png"))); // NOI18N
-        jideButton9.setFocusable(false);
-        jideButton9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jideButton9.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        tbMenu.add(jideButton9);
+        jideBtnMark.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/mark_icon_32.png"))); // NOI18N
+        jideBtnMark.setFocusable(false);
+        jideBtnMark.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jideBtnMark.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tbMenu.add(jideBtnMark);
 
-        jideButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Statistic_bg.png"))); // NOI18N
-        jideButton10.setFocusable(false);
-        jideButton10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jideButton10.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        tbMenu.add(jideButton10);
-
-        jideButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Statistic_bg.png"))); // NOI18N
-        jideButton11.setFocusable(false);
-        jideButton11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jideButton11.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        tbMenu.add(jideButton11);
+        jideBtnPayment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Dollar_32.png"))); // NOI18N
+        jideBtnPayment.setFocusable(false);
+        jideBtnPayment.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jideBtnPayment.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tbMenu.add(jideBtnPayment);
 
         jideButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Statistic_bg.png"))); // NOI18N
         jideButton12.setFocusable(false);
@@ -279,124 +284,23 @@ public class frmMain extends javax.swing.JFrame {
         panelRight.setPreferredSize(new java.awt.Dimension(800, 600));
         panelRight.setLayout(new java.awt.GridBagLayout());
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Dollar.png"))); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(30, 30, 20, 10);
-        panelRight.add(jLabel2, gridBagConstraints);
-
-        jLabel3.setForeground(new java.awt.Color(3, 3, 3));
-        jLabel3.setText("Add new employee");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.ipadx = 25;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        panelRight.add(jLabel3, gridBagConstraints);
-
-        jLabel4.setForeground(new java.awt.Color(3, 3, 3));
-        jLabel4.setText("Search");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.ipadx = 80;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        panelRight.add(jLabel4, gridBagConstraints);
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Dollar.png"))); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(30, 30, 20, 10);
-        panelRight.add(jLabel5, gridBagConstraints);
-
-        jLabel6.setForeground(new java.awt.Color(3, 3, 3));
-        jLabel6.setText("View");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.ipadx = 52;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        panelRight.add(jLabel6, gridBagConstraints);
-
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Dollar.png"))); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(30, 30, 20, 10);
-        panelRight.add(jLabel7, gridBagConstraints);
-
-        jLabel8.setForeground(new java.awt.Color(3, 3, 3));
-        jLabel8.setText("Exit");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 52;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        panelRight.add(jLabel8, gridBagConstraints);
-
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Dollar.png"))); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(30, 30, 20, 10);
-        panelRight.add(jLabel9, gridBagConstraints);
-
-        jLabel10.setForeground(new java.awt.Color(3, 3, 3));
-        jLabel10.setText("Logout");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 80;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        panelRight.add(jLabel10, gridBagConstraints);
-
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Dollar.png"))); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(30, 30, 20, 10);
-        panelRight.add(jLabel11, gridBagConstraints);
-
-        jLabel12.setForeground(new java.awt.Color(3, 3, 3));
-        jLabel12.setText("Add new student");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 25;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        panelRight.add(jLabel12, gridBagConstraints);
-
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Dollar.png"))); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(30, 30, 20, 10);
-        panelRight.add(jLabel13, gridBagConstraints);
-
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLabel15.setForeground(new java.awt.Color(0, 0, 102));
         jLabel15.setText("<html>\n<body>\nCertificate Generator System\n</body>\n</html>");
-        jLabel15.setMinimumSize(new java.awt.Dimension(261, 22));
+        jLabel15.setMinimumSize(new java.awt.Dimension(400, 40));
+        jLabel15.setPreferredSize(new java.awt.Dimension(400, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
         panelRight.add(jLabel15, gridBagConstraints);
 
         jLabel16.setForeground(new java.awt.Color(3, 3, 3));
         jLabel16.setText("<html>\n<body>\nThis is a Certificate Department which works for “ABC” institute for developing  the certificate for the<br/> students who had completed their course. This system also deals with the student  registration,<br/> checking the payment scenario, inputting the marks of the students and after all verification is<br/>  done they develop the certificate of completion of the course for the students.\n</body>\n</html>\n");
-        jLabel16.setMinimumSize(new java.awt.Dimension(600, 65));
-        jLabel16.setPreferredSize(new java.awt.Dimension(600, 65));
+        jLabel16.setMinimumSize(new java.awt.Dimension(700, 80));
+        jLabel16.setPreferredSize(new java.awt.Dimension(700, 80));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -408,59 +312,314 @@ public class frmMain extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/logoFinal.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.insets = new java.awt.Insets(40, 10, 0, 10);
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.insets = new java.awt.Insets(40, 120, 0, 10);
         panelRight.add(jLabel1, gridBagConstraints);
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setMinimumSize(new java.awt.Dimension(280, 134));
+        jPanel5.setPreferredSize(new java.awt.Dimension(280, 134));
+        jPanel5.setLayout(new java.awt.GridBagLayout());
+
+        lblCampaignMaster1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        lblCampaignMaster1.setForeground(new java.awt.Color(153, 0, 0));
+        lblCampaignMaster1.setText("Manager Payment");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipady = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel5.add(lblCampaignMaster1, gridBagConstraints);
+
+        detail_Campaign_Description1.setFont(new java.awt.Font("Arial", 0, 11));
+        detail_Campaign_Description1.setText("<html>Master data for campaigns with<br>each new product and given<br>periods."); // NOI18N
+        detail_Campaign_Description1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        detail_Campaign_Description1.setMinimumSize(new java.awt.Dimension(153, 42));
+        detail_Campaign_Description1.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel5.add(detail_Campaign_Description1, gridBagConstraints);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Dollar.png"))); // NOI18N
+        jLabel2.setMaximumSize(new java.awt.Dimension(101, 101));
+        jLabel2.setMinimumSize(new java.awt.Dimension(101, 101));
+        jLabel2.setPreferredSize(new java.awt.Dimension(101, 101));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel5.add(jLabel2, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
+        panelRight.add(jPanel5, gridBagConstraints);
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setMinimumSize(new java.awt.Dimension(280, 134));
+        jPanel6.setPreferredSize(new java.awt.Dimension(280, 134));
+        jPanel6.setLayout(new java.awt.GridBagLayout());
+
+        lblCampaignMaster2.setFont(new java.awt.Font("Tahoma", 1, 12));
+        lblCampaignMaster2.setForeground(new java.awt.Color(153, 0, 0));
+        lblCampaignMaster2.setText("Manager Employee");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipady = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel6.add(lblCampaignMaster2, gridBagConstraints);
+
+        detail_Campaign_Description2.setFont(new java.awt.Font("Arial", 0, 11));
+        detail_Campaign_Description2.setText("<html>Master data for campaigns with<br>each new product and given<br>periods."); // NOI18N
+        detail_Campaign_Description2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        detail_Campaign_Description2.setMinimumSize(new java.awt.Dimension(153, 42));
+        detail_Campaign_Description2.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel6.add(detail_Campaign_Description2, gridBagConstraints);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/emp_icon.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel6.add(jLabel3, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
+        panelRight.add(jPanel6, gridBagConstraints);
+
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel7.setMinimumSize(new java.awt.Dimension(280, 134));
+        jPanel7.setPreferredSize(new java.awt.Dimension(280, 134));
+        jPanel7.setLayout(new java.awt.GridBagLayout());
+
+        lblCampaignMaster3.setFont(new java.awt.Font("Tahoma", 1, 12));
+        lblCampaignMaster3.setForeground(new java.awt.Color(153, 0, 0));
+        lblCampaignMaster3.setText("Manager Student");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipady = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel7.add(lblCampaignMaster3, gridBagConstraints);
+
+        detail_Campaign_Description3.setFont(new java.awt.Font("Arial", 0, 11));
+        detail_Campaign_Description3.setText("<html>Master data for campaigns with<br>each new product and given<br>periods."); // NOI18N
+        detail_Campaign_Description3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        detail_Campaign_Description3.setMinimumSize(new java.awt.Dimension(153, 42));
+        detail_Campaign_Description3.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel7.add(detail_Campaign_Description3, gridBagConstraints);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/student_icon.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel7.add(jLabel4, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
+        panelRight.add(jPanel7, gridBagConstraints);
+
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel8.setMinimumSize(new java.awt.Dimension(280, 134));
+        jPanel8.setPreferredSize(new java.awt.Dimension(280, 134));
+        jPanel8.setLayout(new java.awt.GridBagLayout());
+
+        lblCampaignMaster4.setFont(new java.awt.Font("Tahoma", 1, 12));
+        lblCampaignMaster4.setForeground(new java.awt.Color(153, 0, 0));
+        lblCampaignMaster4.setText("Manager Register");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipady = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel8.add(lblCampaignMaster4, gridBagConstraints);
+
+        detail_Campaign_Description4.setFont(new java.awt.Font("Arial", 0, 11));
+        detail_Campaign_Description4.setText("<html>Master data for campaigns with<br>each new product and given<br>periods."); // NOI18N
+        detail_Campaign_Description4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        detail_Campaign_Description4.setMinimumSize(new java.awt.Dimension(153, 42));
+        detail_Campaign_Description4.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel8.add(detail_Campaign_Description4, gridBagConstraints);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/register_icon.jpg"))); // NOI18N
+        jLabel5.setMaximumSize(new java.awt.Dimension(101, 101));
+        jLabel5.setMinimumSize(new java.awt.Dimension(101, 101));
+        jLabel5.setPreferredSize(new java.awt.Dimension(101, 101));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel8.add(jLabel5, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
+        panelRight.add(jPanel8, gridBagConstraints);
+
+        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel9.setMinimumSize(new java.awt.Dimension(280, 134));
+        jPanel9.setPreferredSize(new java.awt.Dimension(280, 134));
+        jPanel9.setLayout(new java.awt.GridBagLayout());
+
+        lblCampaignMaster5.setFont(new java.awt.Font("Tahoma", 1, 12));
+        lblCampaignMaster5.setForeground(new java.awt.Color(153, 0, 0));
+        lblCampaignMaster5.setText("Manager Mark");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipady = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel9.add(lblCampaignMaster5, gridBagConstraints);
+
+        detail_Campaign_Description5.setFont(new java.awt.Font("Arial", 0, 11));
+        detail_Campaign_Description5.setText("<html>Master data for campaigns with<br>each new product and given<br>periods."); // NOI18N
+        detail_Campaign_Description5.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        detail_Campaign_Description5.setMinimumSize(new java.awt.Dimension(153, 42));
+        detail_Campaign_Description5.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel9.add(detail_Campaign_Description5, gridBagConstraints);
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/mark_icon.jpg"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel9.add(jLabel6, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
+        panelRight.add(jPanel9, gridBagConstraints);
+
+        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel10.setMinimumSize(new java.awt.Dimension(280, 134));
+        jPanel10.setPreferredSize(new java.awt.Dimension(280, 134));
+        jPanel10.setLayout(new java.awt.GridBagLayout());
+
+        lblCampaignMaster6.setFont(new java.awt.Font("Tahoma", 1, 12));
+        lblCampaignMaster6.setForeground(new java.awt.Color(153, 0, 0));
+        lblCampaignMaster6.setText("Manager Certificate");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipady = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel10.add(lblCampaignMaster6, gridBagConstraints);
+
+        detail_Campaign_Description6.setFont(new java.awt.Font("Arial", 0, 11));
+        detail_Campaign_Description6.setText("<html>Master data for campaigns with<br>each new product and given<br>periods."); // NOI18N
+        detail_Campaign_Description6.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        detail_Campaign_Description6.setMinimumSize(new java.awt.Dimension(153, 42));
+        detail_Campaign_Description6.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel10.add(detail_Campaign_Description6, gridBagConstraints);
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Certificate_icon_blue.png"))); // NOI18N
+        jLabel7.setMaximumSize(new java.awt.Dimension(101, 101));
+        jLabel7.setMinimumSize(new java.awt.Dimension(101, 101));
+        jLabel7.setPreferredSize(new java.awt.Dimension(101, 101));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel10.add(jLabel7, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
+        panelRight.add(jPanel10, gridBagConstraints);
 
         pnlHome.add(panelRight, new java.awt.GridBagConstraints());
 
-        tpnBusiness.addTab("  HOME                   ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlHome); // NOI18N
+        tpnBusiness.addTab("  HOME                   ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlHome); // NOI18N
 
         pnlEmployee.setBackground(new java.awt.Color(255, 255, 255));
 
         pnlEmployee = emp;
 
-        tpnBusiness.addTab("Employee            ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlEmployee); // NOI18N
+        tpnBusiness.addTab("Employee            ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlEmployee); // NOI18N
 
         pnlStudent.setBackground(new java.awt.Color(255, 255, 255));
 
         pnlStudent = student;
 
-        tpnBusiness.addTab("Student", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlStudent); // NOI18N
+        tpnBusiness.addTab("Student", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlStudent); // NOI18N
 
         pnlRegister.setBackground(new java.awt.Color(255, 255, 255));
         pnlRegister = register;
-        tpnBusiness.addTab("Register", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlRegister); // NOI18N
+        tpnBusiness.addTab("Register", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlRegister); // NOI18N
 
         pnlCourse.setBackground(new java.awt.Color(255, 255, 255));
 
         pnlCourse = course;
 
-        tpnBusiness.addTab("Course", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlCourse); // NOI18N
+        tpnBusiness.addTab("Course", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlCourse); // NOI18N
 
         pnlPayment.setBackground(new java.awt.Color(255, 255, 255));
         pnlPayment = payment;
-        tpnBusiness.addTab("Payment", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlPayment); // NOI18N
+        tpnBusiness.addTab("Payment", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlPayment); // NOI18N
 
         pnlSubject.setBackground(new java.awt.Color(255, 255, 255));
         pnlSubject = subject;
-        tpnBusiness.addTab("Subject", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlSubject); // NOI18N
+        tpnBusiness.addTab("Subject", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlSubject); // NOI18N
 
         pnlMark.setBackground(new java.awt.Color(255, 255, 255));
         pnlMark = mark;
-        tpnBusiness.addTab("Mark", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlMark); // NOI18N
+        tpnBusiness.addTab("Mark", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlMark); // NOI18N
 
         pnlCertificate.setBackground(new java.awt.Color(255, 255, 255));
         pnlCertificate = cer;
-        tpnBusiness.addTab("Certificate", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlCertificate); // NOI18N
+        tpnBusiness.addTab("Certificate", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlCertificate); // NOI18N
 
         pnlAccount.setBackground(new java.awt.Color(255, 255, 255));
         pnlAccount = account;
-        tpnBusiness.addTab("Account             ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlAccount); // NOI18N
+        tpnBusiness.addTab("Account             ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlAccount); // NOI18N
 
         pnlPermission.setBackground(new java.awt.Color(255, 255, 255));
         pnlPermission = per;
-        tpnBusiness.addTab("Permission", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Charge.png")), pnlPermission); // NOI18N
+        tpnBusiness.addTab("Permission", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlPermission); // NOI18N
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -807,7 +966,7 @@ public class frmMain extends javax.swing.JFrame {
 
     private void mnuIExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuIExitActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+        System.exit(0);
     }//GEN-LAST:event_mnuIExitActionPerformed
 
     private void mnuISwitchUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuISwitchUserActionPerformed
@@ -985,11 +1144,13 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JPanel StatusPnl;
     private javax.swing.ButtonGroup buttonGroupSkin;
     private javax.swing.ButtonGroup buttonGroupTheme;
+    private javax.swing.JLabel detail_Campaign_Description1;
+    private javax.swing.JLabel detail_Campaign_Description2;
+    private javax.swing.JLabel detail_Campaign_Description3;
+    private javax.swing.JLabel detail_Campaign_Description4;
+    private javax.swing.JLabel detail_Campaign_Description5;
+    private javax.swing.JLabel detail_Campaign_Description6;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
@@ -998,20 +1159,29 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JPopupMenu.Separator jSeparator1;
-    private com.jidesoft.swing.JideButton jideButton10;
-    private com.jidesoft.swing.JideButton jideButton11;
+    private com.jidesoft.swing.JideButton jideBtnAccount;
+    private com.jidesoft.swing.JideButton jideBtnCertificate;
+    private com.jidesoft.swing.JideButton jideBtnCourse;
+    private com.jidesoft.swing.JideButton jideBtnEmployee;
+    private com.jidesoft.swing.JideButton jideBtnMark;
+    private com.jidesoft.swing.JideButton jideBtnPayment;
+    private com.jidesoft.swing.JideButton jideBtnRegister;
+    private com.jidesoft.swing.JideButton jideBtnStudent;
+    private com.jidesoft.swing.JideButton jideBtnSubject;
     private com.jidesoft.swing.JideButton jideButton12;
-    private com.jidesoft.swing.JideButton jideButton2;
-    private com.jidesoft.swing.JideButton jideButton3;
-    private com.jidesoft.swing.JideButton jideButton4;
-    private com.jidesoft.swing.JideButton jideButton5;
-    private com.jidesoft.swing.JideButton jideButton6;
-    private com.jidesoft.swing.JideButton jideButton7;
-    private com.jidesoft.swing.JideButton jideButton8;
-    private com.jidesoft.swing.JideButton jideButton9;
+    private javax.swing.JLabel lblCampaignMaster1;
+    private javax.swing.JLabel lblCampaignMaster2;
+    private javax.swing.JLabel lblCampaignMaster3;
+    private javax.swing.JLabel lblCampaignMaster4;
+    private javax.swing.JLabel lblCampaignMaster5;
+    private javax.swing.JLabel lblCampaignMaster6;
     private javax.swing.JMenuItem menuIChangePass;
     private javax.swing.JMenuBar mnuBSystem;
     private javax.swing.JMenu mnuHelp;

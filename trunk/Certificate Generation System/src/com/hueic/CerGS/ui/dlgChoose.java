@@ -196,6 +196,9 @@ public class dlgChoose extends javax.swing.JDialog {
             case 13:
                 priSelected = student.getSelectedCode();
                 break;
+            case 14:
+                priSelected = subject.getSelectedCode();
+                break;
         }
         if (!priSelected.equals("")) {
             txfID.setText(priSelected);

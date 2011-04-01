@@ -51,8 +51,6 @@ public class pnlSubject extends javax.swing.JPanel {
         initComponents();
         listCourses = courseDAO.readByAll();
         listSubject = subjectDao.readByAll();
-        loadDataCBXCouseId();
-        loadDataCBXCouse();
         loadData(listSubject);
         if (listSubject.size() != 0) {
             loadDetails(listSubject.get(0));
@@ -64,38 +62,19 @@ public class pnlSubject extends javax.swing.JPanel {
         this.frm = frm;
         listCourses = courseDAO.readByAll();
         listSubject = subjectDao.readByAll();
-        loadDataCBXCouseId();
-        loadDataCBXCouse();
         loadData(listSubject);
         if (listSubject.size() != 0) {
             loadDetails(listSubject.get(0));
         }
     }
 
-    public void loadDataCBXCouseId() {
-        cbxCourseID.removeAllItems();
-
-        for (int i = 0; i < listCourses.size(); i++) {
-            cbxCourseID.addItem(listCourses.get(i).getId());
-        }
-    }
-
-    public void loadDataCBXCouse() {
-        cbxCourse.removeAllItems();
-
-        for (int i = 0; i < listCourses.size(); i++) {
-            cbxCourse.addItem(listCourses.get(i).getId());
-        }
-    }
-
     public void loadData(ArrayList<Subject> listSubjects) {
 
         ColumnData[] columns = {
-            new ColumnData("Student ID", 135, SwingConstants.LEFT, 5),
-            new ColumnData("ID", 100, SwingConstants.LEFT, 1),
-            new ColumnData("Course ID", 140, SwingConstants.LEFT, 2),
-            new ColumnData("Fees Structe", 170, SwingConstants.LEFT, 3),
-            new ColumnData("Registration Date", 260, SwingConstants.LEFT, 4)
+            new ColumnData("ID", 135, SwingConstants.LEFT, 1),
+            new ColumnData("Name", 100, SwingConstants.LEFT, 2),
+            new ColumnData("Course ID", 140, SwingConstants.LEFT, 3),
+            new ColumnData("Coefficient", 170, SwingConstants.LEFT, 4),
         };
         tableModel = new ObjectTableModel(tableContent, columns, listSubjects);
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -124,15 +103,7 @@ public class pnlSubject extends javax.swing.JPanel {
         txtSubjectId.setText(subject.getId().trim());
         txtName.setText(subject.getName().trim());
         txtCoefficient.setText(String.valueOf(subject.getCoefficient()).trim());
-        String courseName = find(subject.getCourseID()).getName();
         txtCoureID.setText(subject.getCourseID().trim());
-        if (courseName != null) {
-            for (int i = 0; i < cbxCourseID.getItemCount(); i++) {
-                if (cbxCourseID.getItemAt(i).toString().equals(courseName)) {
-                    cbxCourseID.setSelectedIndex(i);
-                }
-            }
-        }
     }
 
     public Course findByName(String name) {
@@ -205,27 +176,23 @@ public class pnlSubject extends javax.swing.JPanel {
         txtSubjectId = new javax.swing.JTextField();
         sepa1 = new javax.swing.JSeparator();
         txtCoureID = new javax.swing.JTextField();
-        cbxCourseID = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
+        btnChooseCourID = new javax.swing.JButton();
         pnlSearch = new javax.swing.JPanel();
-        panelRight1 = new javax.swing.JPanel();
-        lblTitle1 = new javax.swing.JLabel();
-        lblNameSub1 = new javax.swing.JLabel();
-        lblCoefficient1 = new javax.swing.JLabel();
-        lblCourseID1 = new javax.swing.JLabel();
-        panelButton1 = new javax.swing.JPanel();
+        panelRightSearch = new javax.swing.JPanel();
+        lblTitleSearch = new javax.swing.JLabel();
+        lblNameSubSearch = new javax.swing.JLabel();
+        lblCoefficientSearch = new javax.swing.JLabel();
+        lblCourseIDSearch = new javax.swing.JLabel();
+        panelButtonSearch = new javax.swing.JPanel();
         btnReset = new javax.swing.JButton();
-        txtName1 = new javax.swing.JTextField();
-        txtCoefficient1 = new javax.swing.JTextField();
-        lblSubjectID1 = new javax.swing.JLabel();
-        txtSubjectId1 = new javax.swing.JTextField();
-        sepa2 = new javax.swing.JSeparator();
-        txtCoureID1 = new javax.swing.JTextField();
-        cbxCourseID1 = new javax.swing.JComboBox();
-        jButton2 = new javax.swing.JButton();
+        txtNameSearch = new javax.swing.JTextField();
+        txtCoefficientSearch = new javax.swing.JTextField();
+        lblSubjectIDSearch = new javax.swing.JLabel();
+        txtSubjectIdSearch = new javax.swing.JTextField();
+        sepa2Search = new javax.swing.JSeparator();
+        txtCoureIDSearch = new javax.swing.JTextField();
+        btnChooseCourIDSearch = new javax.swing.JButton();
         panelLeft = new javax.swing.JPanel();
-        lblCourse = new javax.swing.JLabel();
-        cbxCourse = new javax.swing.JComboBox();
         filterText = new javax.swing.JTextField();
         srcPanelSubject = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
@@ -284,9 +251,9 @@ public class pnlSubject extends javax.swing.JPanel {
         panelRight.add(lblCourseID, gridBagConstraints);
 
         panelButton.setBackground(new java.awt.Color(255, 255, 255));
-        panelButton.setPreferredSize(new java.awt.Dimension(265, 33));
+        panelButton.setPreferredSize(new java.awt.Dimension(403, 33));
 
-        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add.png"))); // NOI18N
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
         btnAdd.setText("Add");
         btnAdd.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnAdd.setMaximumSize(new java.awt.Dimension(75, 23));
@@ -397,22 +364,13 @@ public class pnlSubject extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 9, 5, 5);
         panelRight.add(txtCoureID, gridBagConstraints);
 
-        cbxCourseID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxCourseID.setPreferredSize(new java.awt.Dimension(200, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 9, 5, 5);
-        panelRight.add(cbxCourseID, gridBagConstraints);
-
-        jButton1.setText("jButton1");
-        jButton1.setMaximumSize(new java.awt.Dimension(23, 23));
-        jButton1.setMinimumSize(new java.awt.Dimension(23, 23));
-        jButton1.setPreferredSize(new java.awt.Dimension(23, 20));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnChooseCourID.setText("jButton1");
+        btnChooseCourID.setMaximumSize(new java.awt.Dimension(23, 23));
+        btnChooseCourID.setMinimumSize(new java.awt.Dimension(23, 23));
+        btnChooseCourID.setPreferredSize(new java.awt.Dimension(23, 20));
+        btnChooseCourID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnChooseCourIDActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -420,7 +378,7 @@ public class pnlSubject extends javax.swing.JPanel {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(jButton1, gridBagConstraints);
+        panelRight.add(btnChooseCourID, gridBagConstraints);
 
         pnlEdit.add(panelRight, new java.awt.GridBagConstraints());
 
@@ -430,53 +388,53 @@ public class pnlSubject extends javax.swing.JPanel {
         pnlSearch.setPreferredSize(new java.awt.Dimension(810, 200));
         pnlSearch.setLayout(new java.awt.GridBagLayout());
 
-        panelRight1.setBackground(new java.awt.Color(255, 255, 255));
-        panelRight1.setForeground(new java.awt.Color(3, 3, 3));
-        panelRight1.setMinimumSize(new java.awt.Dimension(800, 200));
-        panelRight1.setPreferredSize(new java.awt.Dimension(800, 200));
-        panelRight1.setLayout(new java.awt.GridBagLayout());
+        panelRightSearch.setBackground(new java.awt.Color(255, 255, 255));
+        panelRightSearch.setForeground(new java.awt.Color(3, 3, 3));
+        panelRightSearch.setMinimumSize(new java.awt.Dimension(800, 200));
+        panelRightSearch.setPreferredSize(new java.awt.Dimension(800, 200));
+        panelRightSearch.setLayout(new java.awt.GridBagLayout());
 
-        lblTitle1.setFont(new java.awt.Font("Tahoma", 1, 12));
-        lblTitle1.setForeground(new java.awt.Color(102, 0, 102));
-        lblTitle1.setText("Information Subject");
+        lblTitleSearch.setFont(new java.awt.Font("Tahoma", 1, 12));
+        lblTitleSearch.setForeground(new java.awt.Color(102, 0, 102));
+        lblTitleSearch.setText("Information Subject");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        panelRight1.add(lblTitle1, gridBagConstraints);
+        panelRightSearch.add(lblTitleSearch, gridBagConstraints);
 
-        lblNameSub1.setForeground(new java.awt.Color(3, 3, 3));
-        lblNameSub1.setText("Name subject:");
+        lblNameSubSearch.setForeground(new java.awt.Color(3, 3, 3));
+        lblNameSubSearch.setText("Name subject:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight1.add(lblNameSub1, gridBagConstraints);
+        panelRightSearch.add(lblNameSubSearch, gridBagConstraints);
 
-        lblCoefficient1.setForeground(new java.awt.Color(3, 3, 3));
-        lblCoefficient1.setText("Coefficient:");
+        lblCoefficientSearch.setForeground(new java.awt.Color(3, 3, 3));
+        lblCoefficientSearch.setText("Coefficient:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
-        panelRight1.add(lblCoefficient1, gridBagConstraints);
+        panelRightSearch.add(lblCoefficientSearch, gridBagConstraints);
 
-        lblCourseID1.setForeground(new java.awt.Color(3, 3, 3));
-        lblCourseID1.setText("Course ID:");
+        lblCourseIDSearch.setForeground(new java.awt.Color(3, 3, 3));
+        lblCourseIDSearch.setText("Course ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
-        panelRight1.add(lblCourseID1, gridBagConstraints);
+        panelRightSearch.add(lblCourseIDSearch, gridBagConstraints);
 
-        panelButton1.setBackground(new java.awt.Color(255, 255, 255));
-        panelButton1.setPreferredSize(new java.awt.Dimension(265, 33));
+        panelButtonSearch.setBackground(new java.awt.Color(255, 255, 255));
+        panelButtonSearch.setPreferredSize(new java.awt.Dimension(265, 33));
 
-        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Reset.png"))); // NOI18N
+        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
         btnReset.setText("Reset");
         btnReset.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnReset.setMaximumSize(new java.awt.Dimension(75, 23));
@@ -487,85 +445,75 @@ public class pnlSubject extends javax.swing.JPanel {
                 btnResetActionPerformed(evt);
             }
         });
-        panelButton1.add(btnReset);
+        panelButtonSearch.add(btnReset);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 5);
-        panelRight1.add(panelButton1, gridBagConstraints);
+        panelRightSearch.add(panelButtonSearch, gridBagConstraints);
 
-        txtName1.setPreferredSize(new java.awt.Dimension(180, 20));
+        txtNameSearch.setPreferredSize(new java.awt.Dimension(180, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 9, 5, 5);
-        panelRight1.add(txtName1, gridBagConstraints);
+        panelRightSearch.add(txtNameSearch, gridBagConstraints);
 
-        txtCoefficient1.setMinimumSize(new java.awt.Dimension(200, 20));
-        txtCoefficient1.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtCoefficientSearch.setMinimumSize(new java.awt.Dimension(200, 20));
+        txtCoefficientSearch.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 9, 5, 5);
-        panelRight1.add(txtCoefficient1, gridBagConstraints);
+        panelRightSearch.add(txtCoefficientSearch, gridBagConstraints);
 
-        lblSubjectID1.setForeground(new java.awt.Color(3, 3, 3));
-        lblSubjectID1.setText("Subject ID:");
+        lblSubjectIDSearch.setForeground(new java.awt.Color(3, 3, 3));
+        lblSubjectIDSearch.setText("Subject ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight1.add(lblSubjectID1, gridBagConstraints);
+        panelRightSearch.add(lblSubjectIDSearch, gridBagConstraints);
 
-        txtSubjectId1.setPreferredSize(new java.awt.Dimension(180, 20));
+        txtSubjectIdSearch.setPreferredSize(new java.awt.Dimension(180, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(3, 9, 5, 5);
-        panelRight1.add(txtSubjectId1, gridBagConstraints);
+        panelRightSearch.add(txtSubjectIdSearch, gridBagConstraints);
 
-        sepa2.setPreferredSize(new java.awt.Dimension(650, 10));
+        sepa2Search.setPreferredSize(new java.awt.Dimension(650, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
-        panelRight1.add(sepa2, gridBagConstraints);
+        panelRightSearch.add(sepa2Search, gridBagConstraints);
 
-        txtCoureID1.setPreferredSize(new java.awt.Dimension(180, 20));
+        txtCoureIDSearch.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 9, 5, 5);
-        panelRight1.add(txtCoureID1, gridBagConstraints);
+        panelRightSearch.add(txtCoureIDSearch, gridBagConstraints);
 
-        cbxCourseID1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxCourseID1.setMinimumSize(new java.awt.Dimension(200, 20));
-        cbxCourseID1.setPreferredSize(new java.awt.Dimension(200, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 9, 5, 5);
-        panelRight1.add(cbxCourseID1, gridBagConstraints);
-
-        jButton2.setText("jButton2");
-        jButton2.setMaximumSize(new java.awt.Dimension(23, 23));
-        jButton2.setMinimumSize(new java.awt.Dimension(23, 23));
-        jButton2.setPreferredSize(new java.awt.Dimension(23, 20));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnChooseCourIDSearch.setText("jButton2");
+        btnChooseCourIDSearch.setMaximumSize(new java.awt.Dimension(23, 23));
+        btnChooseCourIDSearch.setMinimumSize(new java.awt.Dimension(23, 23));
+        btnChooseCourIDSearch.setPreferredSize(new java.awt.Dimension(23, 20));
+        btnChooseCourIDSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnChooseCourIDSearchActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -573,9 +521,9 @@ public class pnlSubject extends javax.swing.JPanel {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight1.add(jButton2, gridBagConstraints);
+        panelRightSearch.add(btnChooseCourIDSearch, gridBagConstraints);
 
-        pnlSearch.add(panelRight1, new java.awt.GridBagConstraints());
+        pnlSearch.add(panelRightSearch, new java.awt.GridBagConstraints());
 
         tpSubject.addTab("Search", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Search-32.png")), pnlSearch); // NOI18N
 
@@ -590,24 +538,6 @@ public class pnlSubject extends javax.swing.JPanel {
         panelLeft.setMinimumSize(new java.awt.Dimension(800, 400));
         panelLeft.setPreferredSize(new java.awt.Dimension(800, 400));
         panelLeft.setLayout(new java.awt.GridBagLayout());
-
-        lblCourse.setForeground(new java.awt.Color(3, 3, 3));
-        lblCourse.setText("Choose Course ID:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 5, 5);
-        panelLeft.add(lblCourse, gridBagConstraints);
-
-        cbxCourse.setPreferredSize(new java.awt.Dimension(180, 20));
-        cbxCourse.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbxCourseItemStateChanged(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 5, 5, 5);
-        panelLeft.add(cbxCourse, gridBagConstraints);
 
         filterText.setPreferredSize(new java.awt.Dimension(180, 20));
         filterText.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -684,18 +614,6 @@ public class pnlSubject extends javax.swing.JPanel {
         add(panelLeft, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbxCourseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxCourseItemStateChanged
-        // TODO add your handling code here:
-        String courseId = cbxCourse.getSelectedItem().toString();
-        if (courseId != null) {
-            listSubject = subjectDao.readByCourseId(courseId);
-            loadData(listSubject);
-            if (listSubject.size() != 0) {
-                loadDetails(listSubject.get(0));
-            }
-        }
-}//GEN-LAST:event_cbxCourseItemStateChanged
-
     private void filterTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextKeyPressed
         // TODO add your handling code here:
         searchStart();
@@ -732,7 +650,6 @@ public class pnlSubject extends javax.swing.JPanel {
                 btnUpdate.setEnabled(false);
                 btnDelete.setEnabled(false);
                 txtCoureID.setVisible(false);
-                cbxCourseID.setVisible(true);
                 txtSubjectId.setText(null);
                 txtName.setText(null);
                 txtCoefficient.setText(null);
@@ -740,7 +657,7 @@ public class pnlSubject extends javax.swing.JPanel {
                 String subjectId = txtSubjectId.getText();
                 String subjectName = txtName.getText();
                 int coefficient = Integer.parseInt(txtCoefficient.getText());
-                String courseId = cbxCourseID.getSelectedItem().toString();
+                String courseId = txtCoureID.getText();
                 Subject subject = new Subject(subjectId, subjectName, coefficient, courseId);
                 if (subjectDao.create(subject)) {
                     JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Create Subject", JOptionPane.INFORMATION_MESSAGE);
@@ -751,7 +668,6 @@ public class pnlSubject extends javax.swing.JPanel {
                     btnUpdate.setEnabled(true);
                     btnDelete.setEnabled(true);
                     txtCoureID.setVisible(true);
-                    cbxCourseID.setVisible(false);
                 } else {
                     JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Create Subject", JOptionPane.ERROR_MESSAGE);
                 }
@@ -765,7 +681,6 @@ public class pnlSubject extends javax.swing.JPanel {
         // TODO add your handling code here:
         try {
             if (!isUpdate) {
-                cbxCourseID.setVisible(true);
                 txtCoureID.setVisible(false);
                 isUpdate = true;
             } else {
@@ -773,7 +688,7 @@ public class pnlSubject extends javax.swing.JPanel {
                 String subjectId = txtSubjectId.getText();
                 String subjectName = txtName.getText();
                 int coefficient = Integer.parseInt(txtCoefficient.getText());
-                String courseId = cbxCourseID.getSelectedItem().toString();
+                String courseId = txtCoureID.getText();
                 Subject subject = new Subject(subjectId, subjectName, coefficient, courseId);
                 if (subjectDao.update(subject)) {
                     JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Update Subject", JOptionPane.INFORMATION_MESSAGE);
@@ -812,13 +727,11 @@ public class pnlSubject extends javax.swing.JPanel {
             btnUpdate.setEnabled(true);
             btnDelete.setEnabled(true);
             txtCoureID.setVisible(true);
-            cbxCourseID.setVisible(false);
         } else if (isUpdate) {
             isUpdate = false;
             btnUpdate.setEnabled(true);
             btnDelete.setEnabled(true);
             txtCoureID.setVisible(true);
-            cbxCourseID.setVisible(false);
             loadDetails(findSubject(txtSubjectId.getText()));
         } else {
             loadDetails(listSubject.get(0));
@@ -829,68 +742,64 @@ public class pnlSubject extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnResetActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnChooseCourIDSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseCourIDSearchActionPerformed
         // TODO add your handling code here:
-        dlgChoose dlg = new dlgChoose(frm, txtCoureID1, true, 14);
+        dlgChoose dlg = new dlgChoose(frm, txtCoureIDSearch, true, 14);
         dlg.setTitle("Browse Order");
         dlg.setSize(868, 616);
         dlg.setLocationRelativeTo(null);
         dlg.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnChooseCourIDSearchActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnChooseCourIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseCourIDActionPerformed
         // TODO add your handling code here:
-        dlgChoose dlg = new dlgChoose(frm, txtCoureID1, true, 14);
+        dlgChoose dlg = new dlgChoose(frm, txtCoureIDSearch, true, 14);
         dlg.setTitle("Browse Order");
         dlg.setSize(868, 616);
         dlg.setLocationRelativeTo(null);
         dlg.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnChooseCourIDActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnChooseCourID;
+    private javax.swing.JButton btnChooseCourIDSearch;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnFilter;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox cbxCourse;
-    private javax.swing.JComboBox cbxCourseID;
-    private javax.swing.JComboBox cbxCourseID1;
     private javax.swing.JTextField filterText;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblCoefficient;
-    private javax.swing.JLabel lblCoefficient1;
-    private javax.swing.JLabel lblCourse;
+    private javax.swing.JLabel lblCoefficientSearch;
     private javax.swing.JLabel lblCourseID;
-    private javax.swing.JLabel lblCourseID1;
+    private javax.swing.JLabel lblCourseIDSearch;
     private javax.swing.JLabel lblNameSub;
-    private javax.swing.JLabel lblNameSub1;
+    private javax.swing.JLabel lblNameSubSearch;
     private javax.swing.JLabel lblSubjectID;
-    private javax.swing.JLabel lblSubjectID1;
+    private javax.swing.JLabel lblSubjectIDSearch;
     private javax.swing.JLabel lblTitle;
-    private javax.swing.JLabel lblTitle1;
+    private javax.swing.JLabel lblTitleSearch;
     private javax.swing.JPanel panelButton;
-    private javax.swing.JPanel panelButton1;
+    private javax.swing.JPanel panelButtonSearch;
     private javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelRight;
-    private javax.swing.JPanel panelRight1;
+    private javax.swing.JPanel panelRightSearch;
     public javax.swing.JPanel pnlEdit;
     public javax.swing.JPanel pnlSearch;
     private javax.swing.JSeparator sepa1;
-    private javax.swing.JSeparator sepa2;
+    private javax.swing.JSeparator sepa2Search;
     private javax.swing.JScrollPane srcPanelSubject;
     private javax.swing.JTable tableContent;
     public javax.swing.JTabbedPane tpSubject;
     private javax.swing.JTextField txtCoefficient;
-    private javax.swing.JTextField txtCoefficient1;
+    private javax.swing.JTextField txtCoefficientSearch;
     private javax.swing.JTextField txtCoureID;
-    private javax.swing.JTextField txtCoureID1;
+    private javax.swing.JTextField txtCoureIDSearch;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtName1;
+    private javax.swing.JTextField txtNameSearch;
     private javax.swing.JTextField txtSubjectId;
-    private javax.swing.JTextField txtSubjectId1;
+    private javax.swing.JTextField txtSubjectIdSearch;
     // End of variables declaration//GEN-END:variables
 
     String getSelectedCode() {
