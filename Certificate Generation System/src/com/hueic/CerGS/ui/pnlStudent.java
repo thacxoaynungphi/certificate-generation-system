@@ -17,6 +17,7 @@ import com.hueic.CerGS.entity.Student;
 import java.util.ArrayList;
 import java.util.regex.PatternSyntaxException;
 import javax.swing.CellEditor;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
@@ -33,8 +34,6 @@ import javax.swing.table.TableRowSorter;
 public class pnlStudent extends javax.swing.JPanel {
 
     private ArrayList<Student> liststudent = new ArrayList<Student>();
-    private ArrayList<Student> liststudentTemp = new ArrayList<Student>();
-    private ArrayList<Student> liststudentSearch = new ArrayList<Student>();
     private StudentDAO studentDao = new StudentDAO();
     TableRowSorter<TableModel> sorter;
     private ObjectTableModel tableModel;
@@ -375,6 +374,11 @@ public class pnlStudent extends javax.swing.JPanel {
         btnAdd.setText("Add");
         btnAdd.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnAdd.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
         panelButton.add(btnAdd);
 
         btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
@@ -906,6 +910,36 @@ public class pnlStudent extends javax.swing.JPanel {
             }
         }
 }//GEN-LAST:event_btnFilterActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            Student student = new Student();
+            student.setId(txtID.getText());
+            student.setFirstName(txtFirstname.getText());
+            student.setLastName(txtLastname.getText());
+            student.setBirthDay(new java.sql.Date(DateChBirthday.getDate().getTime()));
+            if (radioMale.isSelected()) {
+                student.setGender(0);
+            } else if (radioFemale.isSelected()) {
+                student.setGender(1);
+            }
+            student.setPhone(txtPhone.getText());
+            student.setEmail(txtEmail.getText());
+            student.setAddress(txtAddress.getText());
+            student.setImage(txtImage.getText());
+            student.setStatus(1);
+            StudentDAO studentDao = new StudentDAO();
+            if (studentDao.create(student)) {
+                JOptionPane.showMessageDialog(this, studentDao.getLastError(), "Create Student", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, studentDao.getLastError(), "Create Student", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        }
+    }//GEN-LAST:event_btnAddActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser DateChBirthday;
     private javax.swing.JButton btnAdd;

@@ -860,6 +860,30 @@ public class pnlEmployee extends javax.swing.JPanel {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         //loadData();
+        try {
+            // TODO add your handling code here:
+            Employee emp = new Employee();
+            emp.setId(txtID.getText());
+            emp.setFirstName(txtFirstname.getText());
+            emp.setLastName(txtLastname.getText());
+            emp.setBirthDay(new java.sql.Date(DateChBirthday.getDate().getTime()));
+            if (radioMale.isSelected()) {
+                emp.setGender(0);
+
+            } else if (radioFemale.isSelected()) {
+                emp.setGender(1);
+
+            }
+            emp.setPhone(txtPhone.getText());
+            emp.setEmail(txtEmail.getText());
+            emp.setAddress(txtAddress.getText());
+            emp.setImage(txtImage.getText());
+            emp.setStatus(1);
+
+            EmployeeDAO empDao = new EmployeeDAO();
+            empDao.create(emp);
+        } catch (Exception ex) {
+        }
 }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed

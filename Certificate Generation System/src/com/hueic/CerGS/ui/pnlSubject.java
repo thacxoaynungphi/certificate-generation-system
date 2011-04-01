@@ -51,7 +51,6 @@ public class pnlSubject extends javax.swing.JPanel {
     public pnlSubject() {
         initComponents();
         listCourses = courseDAO.readByAll();
-        listSubject = subjectDao.readByAll();
         listSubject = new ArrayList<Subject>();
         loadData();
         if (listSubject.size() != 0) {
@@ -62,8 +61,13 @@ public class pnlSubject extends javax.swing.JPanel {
     public pnlSubject(frmMain frm) {
         initComponents();
         this.frm = frm;
+        initComponents();
         listCourses = courseDAO.readByAll();
+        listSubject = new ArrayList<Subject>();
         loadData();
+        if (listSubject.size() != 0) {
+            loadDetails(listSubject.get(0));
+        }
     }
 
     public void loadData() {
@@ -71,16 +75,17 @@ public class pnlSubject extends javax.swing.JPanel {
         filter = new ArrayList<Subject>();
         for (Subject sub : listSubject) {
             if (sub.getId().toLowerCase().matches(".*" + txtSubjectIdSearch.getText().trim().toLowerCase() + ".*")
-                    && sub.getName().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")
-                    && String.valueOf(sub.getCoefficient()).matches(".*" + txtCoefficientSearch.getText().trim().toLowerCase() + ".*")
-                    && sub.getCourseID().matches(".*" + txtCoureIDSearch.getText().trim().toLowerCase() + ".*")) {
+                    && sub.getName().toLowerCase().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")
+                    && String.valueOf(sub.getCoefficient()).toLowerCase().matches(".*" + txtCoefficientSearch.getText().trim().toLowerCase() + ".*")
+                    && sub.getCourseID().toLowerCase().matches(".*" + txtCoureIDSearch.getText().trim().toLowerCase() + ".*")) {
                 filter.add(sub);
             }
         }
         if (filter.size() != 0) {
             loadDetails(filter.get(0));
+            System.out.println(filter.get(0).getName());
         }
-
+        
         ColumnData[] columns = {
             new ColumnData("ID", 135, SwingConstants.LEFT, 1),
             new ColumnData("Name", 100, SwingConstants.LEFT, 2),
