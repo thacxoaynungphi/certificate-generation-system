@@ -216,16 +216,16 @@ public class pnlRegister extends javax.swing.JPanel {
 
         setLayout(new java.awt.GridBagLayout());
 
-        tpRegister.setMinimumSize(new java.awt.Dimension(800, 240));
-        tpRegister.setPreferredSize(new java.awt.Dimension(800, 240));
+        tpRegister.setMinimumSize(new java.awt.Dimension(860, 240));
+        tpRegister.setPreferredSize(new java.awt.Dimension(860, 240));
 
         pnlEdit.setMinimumSize(new java.awt.Dimension(810, 200));
         pnlEdit.setPreferredSize(new java.awt.Dimension(810, 200));
         pnlEdit.setLayout(new java.awt.GridBagLayout());
 
         panelRight.setBackground(new java.awt.Color(255, 255, 255));
-        panelRight.setMinimumSize(new java.awt.Dimension(800, 200));
-        panelRight.setPreferredSize(new java.awt.Dimension(800, 200));
+        panelRight.setMinimumSize(new java.awt.Dimension(860, 200));
+        panelRight.setPreferredSize(new java.awt.Dimension(860, 200));
         panelRight.setRequestFocusEnabled(false);
         panelRight.setLayout(new java.awt.GridBagLayout());
 
@@ -465,8 +465,8 @@ public class pnlRegister extends javax.swing.JPanel {
         pnlSearch.setLayout(new java.awt.GridBagLayout());
 
         panelRight1Search.setBackground(new java.awt.Color(255, 255, 255));
-        panelRight1Search.setMinimumSize(new java.awt.Dimension(800, 200));
-        panelRight1Search.setPreferredSize(new java.awt.Dimension(800, 200));
+        panelRight1Search.setMinimumSize(new java.awt.Dimension(860, 200));
+        panelRight1Search.setPreferredSize(new java.awt.Dimension(860, 200));
         panelRight1Search.setRequestFocusEnabled(false);
         panelRight1Search.setLayout(new java.awt.GridBagLayout());
 
@@ -667,8 +667,8 @@ public class pnlRegister extends javax.swing.JPanel {
 
         panelLeft.setBackground(new java.awt.Color(255, 255, 255));
         panelLeft.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Register", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
-        panelLeft.setMinimumSize(new java.awt.Dimension(800, 370));
-        panelLeft.setPreferredSize(new java.awt.Dimension(800, 370));
+        panelLeft.setMinimumSize(new java.awt.Dimension(860, 370));
+        panelLeft.setPreferredSize(new java.awt.Dimension(860, 370));
         panelLeft.setLayout(new java.awt.GridBagLayout());
 
         lblEnterNameStudent.setForeground(new java.awt.Color(3, 3, 3));
@@ -694,8 +694,8 @@ public class pnlRegister extends javax.swing.JPanel {
         panelLeft.add(filterText, gridBagConstraints);
 
         srcPanelRegister.setAutoscrolls(true);
-        srcPanelRegister.setMinimumSize(new java.awt.Dimension(770, 290));
-        srcPanelRegister.setPreferredSize(new java.awt.Dimension(770, 290));
+        srcPanelRegister.setMinimumSize(new java.awt.Dimension(840, 290));
+        srcPanelRegister.setPreferredSize(new java.awt.Dimension(840, 290));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

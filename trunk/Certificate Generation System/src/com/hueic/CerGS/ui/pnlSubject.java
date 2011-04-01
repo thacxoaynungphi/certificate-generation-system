@@ -223,7 +223,8 @@ public class pnlSubject extends javax.swing.JPanel {
 
         setLayout(new java.awt.GridBagLayout());
 
-        tpSubject.setMinimumSize(new java.awt.Dimension(800, 200));
+        tpSubject.setMinimumSize(new java.awt.Dimension(860, 200));
+        tpSubject.setPreferredSize(new java.awt.Dimension(860, 200));
 
         pnlEdit.setMinimumSize(new java.awt.Dimension(810, 200));
         pnlEdit.setPreferredSize(new java.awt.Dimension(810, 200));
@@ -231,8 +232,8 @@ public class pnlSubject extends javax.swing.JPanel {
 
         panelRight.setBackground(new java.awt.Color(255, 255, 255));
         panelRight.setForeground(new java.awt.Color(3, 3, 3));
-        panelRight.setMinimumSize(new java.awt.Dimension(800, 200));
-        panelRight.setPreferredSize(new java.awt.Dimension(800, 200));
+        panelRight.setMinimumSize(new java.awt.Dimension(860, 200));
+        panelRight.setPreferredSize(new java.awt.Dimension(860, 200));
         panelRight.setLayout(new java.awt.GridBagLayout());
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 12));
@@ -412,8 +413,8 @@ public class pnlSubject extends javax.swing.JPanel {
 
         panelRightSearch.setBackground(new java.awt.Color(255, 255, 255));
         panelRightSearch.setForeground(new java.awt.Color(3, 3, 3));
-        panelRightSearch.setMinimumSize(new java.awt.Dimension(800, 200));
-        panelRightSearch.setPreferredSize(new java.awt.Dimension(800, 200));
+        panelRightSearch.setMinimumSize(new java.awt.Dimension(860, 200));
+        panelRightSearch.setPreferredSize(new java.awt.Dimension(860, 200));
         panelRightSearch.setLayout(new java.awt.GridBagLayout());
 
         lblTitleSearch.setFont(new java.awt.Font("Tahoma", 1, 12));
@@ -577,10 +578,11 @@ public class pnlSubject extends javax.swing.JPanel {
 
         panelLeft.setBackground(new java.awt.Color(255, 255, 255));
         panelLeft.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Subject", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
-        panelLeft.setMinimumSize(new java.awt.Dimension(800, 400));
-        panelLeft.setPreferredSize(new java.awt.Dimension(800, 400));
+        panelLeft.setMinimumSize(new java.awt.Dimension(860, 400));
+        panelLeft.setPreferredSize(new java.awt.Dimension(860, 400));
         panelLeft.setLayout(new java.awt.GridBagLayout());
 
+        filterText.setMinimumSize(new java.awt.Dimension(180, 20));
         filterText.setPreferredSize(new java.awt.Dimension(180, 20));
         filterText.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -594,8 +596,8 @@ public class pnlSubject extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelLeft.add(filterText, gridBagConstraints);
 
-        srcPanelSubject.setMinimumSize(new java.awt.Dimension(770, 327));
-        srcPanelSubject.setPreferredSize(new java.awt.Dimension(770, 327));
+        srcPanelSubject.setMinimumSize(new java.awt.Dimension(840, 327));
+        srcPanelSubject.setPreferredSize(new java.awt.Dimension(840, 327));
         srcPanelSubject.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 srcPanelSubjectMouseReleased(evt);

@@ -45,6 +45,7 @@ public class frmMain extends javax.swing.JFrame {
 
     public frmMain() {
         initComponents();
+        System.out.println("H : " + this.getHeight() + " W " + this.getWidth());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         guidao = new GUIDAO(this);
@@ -266,7 +267,8 @@ public class frmMain extends javax.swing.JFrame {
 
         tpnBusiness.setBackground(new java.awt.Color(255, 255, 255));
         tpnBusiness.setTabPlacement(javax.swing.JTabbedPane.LEFT);
-        tpnBusiness.setFont(new java.awt.Font("Tahoma", 1, 12));
+        tpnBusiness.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        tpnBusiness.setMaximumSize(new java.awt.Dimension(1024, 600));
         tpnBusiness.setMinimumSize(new java.awt.Dimension(1024, 600));
         tpnBusiness.setPreferredSize(new java.awt.Dimension(1024, 600));
 
@@ -278,9 +280,9 @@ public class frmMain extends javax.swing.JFrame {
         pnlHome.setLayout(new java.awt.GridBagLayout());
 
         panelRight.setBackground(new java.awt.Color(255, 255, 255));
-        panelRight.setMaximumSize(new java.awt.Dimension(820, 600));
-        panelRight.setMinimumSize(new java.awt.Dimension(820, 600));
-        panelRight.setPreferredSize(new java.awt.Dimension(820, 600));
+        panelRight.setMaximumSize(new java.awt.Dimension(860, 600));
+        panelRight.setMinimumSize(new java.awt.Dimension(860, 600));
+        panelRight.setPreferredSize(new java.awt.Dimension(860, 600));
         panelRight.setLayout(new java.awt.GridBagLayout());
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 18));

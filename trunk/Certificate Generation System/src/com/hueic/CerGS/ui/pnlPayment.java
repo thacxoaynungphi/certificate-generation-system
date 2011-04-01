@@ -227,15 +227,16 @@ public class pnlPayment extends javax.swing.JPanel {
 
         setLayout(new java.awt.GridBagLayout());
 
-        tpPayment.setMinimumSize(new java.awt.Dimension(800, 200));
+        tpPayment.setMinimumSize(new java.awt.Dimension(860, 200));
+        tpPayment.setPreferredSize(new java.awt.Dimension(860, 200));
 
         pnlEdit.setMinimumSize(new java.awt.Dimension(810, 200));
         pnlEdit.setPreferredSize(new java.awt.Dimension(810, 200));
         pnlEdit.setLayout(new java.awt.GridBagLayout());
 
         panelRight.setBackground(new java.awt.Color(255, 255, 255));
-        panelRight.setMinimumSize(new java.awt.Dimension(800, 200));
-        panelRight.setPreferredSize(new java.awt.Dimension(800, 200));
+        panelRight.setMinimumSize(new java.awt.Dimension(860, 200));
+        panelRight.setPreferredSize(new java.awt.Dimension(860, 200));
         panelRight.setLayout(new java.awt.GridBagLayout());
 
         lblCourse.setForeground(new java.awt.Color(3, 3, 3));
@@ -427,8 +428,8 @@ public class pnlPayment extends javax.swing.JPanel {
         pnlSearch.setLayout(new java.awt.GridBagLayout());
 
         panelRight1.setBackground(new java.awt.Color(255, 255, 255));
-        panelRight1.setMinimumSize(new java.awt.Dimension(800, 200));
-        panelRight1.setPreferredSize(new java.awt.Dimension(800, 200));
+        panelRight1.setMinimumSize(new java.awt.Dimension(860, 200));
+        panelRight1.setPreferredSize(new java.awt.Dimension(860, 200));
         panelRight1.setLayout(new java.awt.GridBagLayout());
 
         lblCourseSearch.setForeground(new java.awt.Color(3, 3, 3));
@@ -583,12 +584,12 @@ public class pnlPayment extends javax.swing.JPanel {
 
         panelLeft.setBackground(new java.awt.Color(255, 255, 255));
         panelLeft.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Payment", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
-        panelLeft.setMinimumSize(new java.awt.Dimension(800, 400));
-        panelLeft.setPreferredSize(new java.awt.Dimension(800, 400));
+        panelLeft.setMinimumSize(new java.awt.Dimension(860, 400));
+        panelLeft.setPreferredSize(new java.awt.Dimension(860, 400));
         panelLeft.setLayout(new java.awt.GridBagLayout());
 
-        srcPanelPayment.setMinimumSize(new java.awt.Dimension(770, 340));
-        srcPanelPayment.setPreferredSize(new java.awt.Dimension(770, 340));
+        srcPanelPayment.setMinimumSize(new java.awt.Dimension(840, 340));
+        srcPanelPayment.setPreferredSize(new java.awt.Dimension(840, 340));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -633,7 +634,7 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 500, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 540, 5, 5);
         panelLeft.add(filterText, gridBagConstraints);
 
         btnFilter.setText("Filter");

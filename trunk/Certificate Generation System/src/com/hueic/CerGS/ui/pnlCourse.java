@@ -155,15 +155,16 @@ public class pnlCourse extends javax.swing.JPanel {
 
         setLayout(new java.awt.GridBagLayout());
 
-        tpCourse.setMinimumSize(new java.awt.Dimension(800, 200));
+        tpCourse.setMinimumSize(new java.awt.Dimension(860, 200));
+        tpCourse.setPreferredSize(new java.awt.Dimension(860, 200));
 
         pnlEdit.setMinimumSize(new java.awt.Dimension(810, 200));
         pnlEdit.setPreferredSize(new java.awt.Dimension(810, 200));
         pnlEdit.setLayout(new java.awt.GridBagLayout());
 
         panelRight.setBackground(new java.awt.Color(255, 255, 255));
-        panelRight.setMinimumSize(new java.awt.Dimension(800, 200));
-        panelRight.setPreferredSize(new java.awt.Dimension(800, 200));
+        panelRight.setMinimumSize(new java.awt.Dimension(860, 200));
+        panelRight.setPreferredSize(new java.awt.Dimension(860, 200));
         panelRight.setLayout(new java.awt.GridBagLayout());
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 12));
@@ -334,8 +335,8 @@ public class pnlCourse extends javax.swing.JPanel {
         pnlSearch.setLayout(new java.awt.GridBagLayout());
 
         panelRightSearch.setBackground(new java.awt.Color(255, 255, 255));
-        panelRightSearch.setMinimumSize(new java.awt.Dimension(800, 200));
-        panelRightSearch.setPreferredSize(new java.awt.Dimension(800, 200));
+        panelRightSearch.setMinimumSize(new java.awt.Dimension(860, 200));
+        panelRightSearch.setPreferredSize(new java.awt.Dimension(860, 200));
         panelRightSearch.setLayout(new java.awt.GridBagLayout());
 
         lblTitleSearch.setFont(new java.awt.Font("Tahoma", 1, 12));
@@ -471,13 +472,13 @@ public class pnlCourse extends javax.swing.JPanel {
 
         panelLeft.setBackground(new java.awt.Color(255, 255, 255));
         panelLeft.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Course", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
-        panelLeft.setMinimumSize(new java.awt.Dimension(800, 400));
-        panelLeft.setPreferredSize(new java.awt.Dimension(800, 400));
+        panelLeft.setMinimumSize(new java.awt.Dimension(860, 400));
+        panelLeft.setPreferredSize(new java.awt.Dimension(860, 400));
         panelLeft.setRequestFocusEnabled(false);
         panelLeft.setLayout(new java.awt.GridBagLayout());
 
-        srcPanelCourse.setMinimumSize(new java.awt.Dimension(770, 340));
-        srcPanelCourse.setPreferredSize(new java.awt.Dimension(770, 340));
+        srcPanelCourse.setMinimumSize(new java.awt.Dimension(840, 340));
+        srcPanelCourse.setPreferredSize(new java.awt.Dimension(840, 340));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -518,7 +519,7 @@ public class pnlCourse extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 490, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 540, 5, 5);
         panelLeft.add(filterText, gridBagConstraints);
 
         btnFilter.setText("Filter");
@@ -533,7 +534,7 @@ public class pnlCourse extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelLeft.add(btnFilter, gridBagConstraints);
 
