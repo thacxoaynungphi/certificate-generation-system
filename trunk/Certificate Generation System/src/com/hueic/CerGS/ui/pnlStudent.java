@@ -49,13 +49,13 @@ public class pnlStudent extends javax.swing.JPanel {
 
     public void loadTable(ArrayList<Student> liststudent) {
         filter = new ArrayList<Student>();
-        for (Student sub : liststudent) {
-            if (sub.getId().toLowerCase().matches(".*" + txtStudentId.getText().trim().toLowerCase() + ".*")
-                    && sub.getFirstName().toLowerCase().matches(".*" + txtFirstName.getText().trim().toLowerCase() + ".*")
-                    && sub.getLastName().toLowerCase().matches(".*" + txtLastName.getText().trim().toLowerCase() + ".*")) {
+        for (Student emp : liststudent) {
+            if (emp.getId().toLowerCase().matches(".*" + txtStudentId.getText().trim().toLowerCase() + ".*")
+                    && emp.getFirstName().toLowerCase().matches(".*" + txtFirstName.getText().trim().toLowerCase() + ".*")
+                    && emp.getLastName().toLowerCase().matches(".*" + txtLastName.getText().trim().toLowerCase() + ".*")) {
                 // if(dateChooserDateEnd.getDate() != null && dateChooserDateStart.getDate() != null)
                 //Chua de che do ngay va gender
-                filter.add(sub);
+                filter.add(emp);
             }
         }
         if (filter.size() != 0) {

@@ -36,6 +36,7 @@ public class pnlEmployee extends javax.swing.JPanel {
 
     private ArrayList<Employee> listEmp = new ArrayList<Employee>();
     private EmployeeDAO empDao;
+    ArrayList<Employee> filter = null;
     TableRowSorter<TableModel> sorter;
     private ObjectTableModel tableModel;
     private JTable headerTable;
@@ -53,6 +54,19 @@ public class pnlEmployee extends javax.swing.JPanel {
 
     public void loadData(ArrayList<Employee> listEmp) {
 
+        filter = new ArrayList<Employee>();
+        for (Employee emp : listEmp) {
+            if (emp.getId().toLowerCase().matches(".*" + txtEmployeeId1.getText().trim().toLowerCase() + ".*")
+                    && emp.getFirstName().toLowerCase().matches(".*" + txtFirstName.getText().trim().toLowerCase() + ".*")
+                    && emp.getLastName().toLowerCase().matches(".*" + txtLastName.getText().trim().toLowerCase() + ".*")) {
+                // if(dateChooserDateEnd.getDate() != null && dateChooserDateStart.getDate() != null)
+                //Chua de che do ngay va gender
+                filter.add(emp);
+            }
+        }
+        if (filter.size() != 0) {
+            loadDetails(filter.get(0));
+        }
         ColumnData[] columns = {
             new ColumnData("ID", 135, SwingConstants.LEFT, 1),
             new ColumnData("First Name", 150, SwingConstants.LEFT, 2),
@@ -61,7 +75,7 @@ public class pnlEmployee extends javax.swing.JPanel {
             new ColumnData("Gender", 50, SwingConstants.LEFT, 5),
             new ColumnData("Phone", 100, SwingConstants.LEFT, 6)
         };
-        tableModel = new ObjectTableModel(tableContent, columns, listEmp);
+        tableModel = new ObjectTableModel(tableContent, columns, filter);
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
 
             @Override
@@ -560,6 +574,11 @@ public class pnlEmployee extends javax.swing.JPanel {
 
         txtFirstName.setMinimumSize(new java.awt.Dimension(200, 20));
         txtFirstName.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtFirstName.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtFirstNameCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -578,6 +597,11 @@ public class pnlEmployee extends javax.swing.JPanel {
 
         txtLastName.setMinimumSize(new java.awt.Dimension(150, 20));
         txtLastName.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtLastName.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtLastNameCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -689,6 +713,11 @@ public class pnlEmployee extends javax.swing.JPanel {
 
         txtEmployeeId1.setMinimumSize(new java.awt.Dimension(200, 20));
         txtEmployeeId1.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtEmployeeId1.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtEmployeeId1CaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -743,6 +772,11 @@ public class pnlEmployee extends javax.swing.JPanel {
 
         filterText.setMinimumSize(new java.awt.Dimension(200, 20));
         filterText.setPreferredSize(new java.awt.Dimension(200, 20));
+        filterText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                filterTextMouseReleased(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -918,6 +952,10 @@ public class pnlEmployee extends javax.swing.JPanel {
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
+        startFilter();
+}//GEN-LAST:event_btnFilterActionPerformed
+
+    public void startFilter() {
         if (listEmp.size() != 0) {
             String text = filterText.getText();
             if (text.length() == 0) {
@@ -930,7 +968,7 @@ public class pnlEmployee extends javax.swing.JPanel {
                 }
             }
         }
-}//GEN-LAST:event_btnFilterActionPerformed
+    }
 
     public Employee find(String value) {
         for (Employee employee : listEmp) {
@@ -978,6 +1016,27 @@ public class pnlEmployee extends javax.swing.JPanel {
             }
         }
 }//GEN-LAST:event_tableContentMouseClicked
+
+    private void filterTextMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_filterTextMouseReleased
+        // TODO add your handling code here:
+        startFilter();
+    }//GEN-LAST:event_filterTextMouseReleased
+
+    private void txtEmployeeId1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtEmployeeId1CaretUpdate
+        // TODO add your handling code here:
+        loadData(listEmp);
+    }//GEN-LAST:event_txtEmployeeId1CaretUpdate
+
+    private void txtFirstNameCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtFirstNameCaretUpdate
+        // TODO add your handling code here:
+         loadData(listEmp);
+    }//GEN-LAST:event_txtFirstNameCaretUpdate
+
+    private void txtLastNameCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtLastNameCaretUpdate
+        // TODO add your handling code here:
+         loadData(listEmp);
+    }//GEN-LAST:event_txtLastNameCaretUpdate
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser DateChBeginWork;
     private com.toedter.calendar.JDateChooser DateChBirthday;

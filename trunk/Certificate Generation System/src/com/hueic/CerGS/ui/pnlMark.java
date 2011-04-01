@@ -43,6 +43,7 @@ public class pnlMark extends javax.swing.JPanel {
     private ArrayList<Course> courseList = new ArrayList<Course>();
     private ArrayList<Subject> listSubject = new ArrayList<Subject>();
     private String courseId;
+    ArrayList<Mark> filter = null;
     private TableRowSorter<TableModel> sorter;
     private RegisterDAO resDAO;
     private MarkDAO markDAO;
@@ -87,6 +88,18 @@ public class pnlMark extends javax.swing.JPanel {
     }
 
     public void loadData(ArrayList<Mark> listMark) {
+        filter = new ArrayList<Mark>();
+        for (Mark mark : listMark) {
+            if (String.valueOf(mark.getId()).toLowerCase().matches(".*" + txtMarkIdSearch.getText().trim().toLowerCase() + ".*")
+                    && mark.getStudentId().toLowerCase().matches(".*" + txtStudentIdSearch.getText().trim().toLowerCase() + ".*")
+                    && String.valueOf(mark.getMark()).toLowerCase().matches(".*" + txtMarkSearch.getText().trim().toLowerCase() + ".*")
+                    && mark.getSubjectId().toLowerCase().matches(".*" + txtSubjectIDSearch.getText().trim().toLowerCase() + ".*")) {
+                filter.add(mark);
+            }
+        }
+        if (filter.size() != 0) {
+            loadDetails(filter.get(0));
+        }
 
         ColumnData[] columns = {
             new ColumnData("ID", 100, SwingConstants.LEFT, 1),
@@ -94,14 +107,7 @@ public class pnlMark extends javax.swing.JPanel {
             new ColumnData("Subject ID", 170, SwingConstants.LEFT, 3),
             new ColumnData("Mark", 260, SwingConstants.LEFT, 4)
         };
-        tableModel = new ObjectTableModel(tableContent, columns, listMark);
-        tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
-
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableContentMouseClicked(evt);
-            }
-        });
+        tableModel = new ObjectTableModel(tableContent, columns, filter);
         sorter = new TableRowSorter<TableModel>(tableModel);
         tableContent.setRowSorter(sorter);
         headerTable = tableModel.getHeaderTable();
@@ -188,7 +194,7 @@ public class pnlMark extends javax.swing.JPanel {
         lblSubjectNameSearch = new javax.swing.JLabel();
         lblMarkSearch = new javax.swing.JLabel();
         txtMarkIdSearch = new javax.swing.JTextField();
-        txtSubjectNameSearch = new javax.swing.JTextField();
+        txtSubjectIDSearch = new javax.swing.JTextField();
         txtMarkSearch = new javax.swing.JTextField();
         panelButtonSearch = new javax.swing.JPanel();
         btnReset = new javax.swing.JButton();
@@ -467,6 +473,11 @@ public class pnlMark extends javax.swing.JPanel {
         txtMarkIdSearch.setEnabled(false);
         txtMarkIdSearch.setMinimumSize(new java.awt.Dimension(200, 20));
         txtMarkIdSearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtMarkIdSearch.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtMarkIdSearchCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -474,17 +485,27 @@ public class pnlMark extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRightSearch.add(txtMarkIdSearch, gridBagConstraints);
 
-        txtSubjectNameSearch.setMinimumSize(new java.awt.Dimension(200, 20));
-        txtSubjectNameSearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtSubjectIDSearch.setMinimumSize(new java.awt.Dimension(200, 20));
+        txtSubjectIDSearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtSubjectIDSearch.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtSubjectIDSearchCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRightSearch.add(txtSubjectNameSearch, gridBagConstraints);
+        panelRightSearch.add(txtSubjectIDSearch, gridBagConstraints);
 
         txtMarkSearch.setMinimumSize(new java.awt.Dimension(200, 20));
         txtMarkSearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtMarkSearch.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtMarkSearchCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 3;
@@ -515,6 +536,11 @@ public class pnlMark extends javax.swing.JPanel {
 
         txtStudentIdSearch.setMinimumSize(new java.awt.Dimension(180, 20));
         txtStudentIdSearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtStudentIdSearch.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtStudentIdSearchCaretUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -577,10 +603,11 @@ public class pnlMark extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelLeft.add(lblEnterNameStudent, gridBagConstraints);
 
+        filterText.setMinimumSize(new java.awt.Dimension(180, 20));
         filterText.setPreferredSize(new java.awt.Dimension(180, 20));
-        filterText.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                filterTextKeyPressed(evt);
+        filterText.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                filterTextCaretUpdate(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -606,8 +633,8 @@ public class pnlMark extends javax.swing.JPanel {
             }
         ));
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableContentMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tableContentMouseReleased(evt);
             }
         });
         srcPanelMark.setViewportView(tableContent);
@@ -641,23 +668,6 @@ public class pnlMark extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         add(panelLeft, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void filterTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextKeyPressed
-        // TODO add your handling code here:
-        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-            searchStart();
-        }
-}//GEN-LAST:event_filterTextKeyPressed
-
-    private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
-        // TODO add your handling code here:
-        int index = tableContent.getSelectedRow();
-        if (index != -1) {
-            int id = Integer.parseInt(String.valueOf(tableContent.getValueAt(index, 0)));
-            Mark mark = getMarkById(id);
-            loadDetails(mark);
-        }
-}//GEN-LAST:event_tableContentMouseClicked
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
@@ -757,12 +767,47 @@ public class pnlMark extends javax.swing.JPanel {
 
     private void btnChooseSubjectIdSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseSubjectIdSearchActionPerformed
         // TODO add your handling code here:
-        dlgChoose dlg = new dlgChoose(frm, txtSubjectNameSearch, true, 14);
+        dlgChoose dlg = new dlgChoose(frm, txtSubjectIDSearch, true, 14);
         dlg.setTitle("Browse Order");
         dlg.setSize(868, 616);
         dlg.setLocationRelativeTo(null);
         dlg.setVisible(true);
     }//GEN-LAST:event_btnChooseSubjectIdSearchActionPerformed
+
+    private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
+        // TODO add your handling code here:
+        int index = tableContent.getSelectedRow();
+        if (index != -1) {
+            int id = Integer.parseInt(String.valueOf(tableContent.getValueAt(index, 0)));
+            Mark mark = getMarkById(id);
+            loadDetails(mark);
+        }
+    }//GEN-LAST:event_tableContentMouseReleased
+
+    private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
+        // TODO add your handling code here:
+        searchStart();
+    }//GEN-LAST:event_filterTextCaretUpdate
+
+    private void txtMarkIdSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtMarkIdSearchCaretUpdate
+        // TODO add your handling code here:
+        loadData(listMark);
+    }//GEN-LAST:event_txtMarkIdSearchCaretUpdate
+
+    private void txtStudentIdSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtStudentIdSearchCaretUpdate
+        // TODO add your handling code here:
+        loadData(listMark);
+    }//GEN-LAST:event_txtStudentIdSearchCaretUpdate
+
+    private void txtSubjectIDSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtSubjectIDSearchCaretUpdate
+        // TODO add your handling code here:
+        loadData(listMark);
+    }//GEN-LAST:event_txtSubjectIDSearchCaretUpdate
+
+    private void txtMarkSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtMarkSearchCaretUpdate
+        // TODO add your handling code here:
+        loadData(listMark);
+    }//GEN-LAST:event_txtMarkSearchCaretUpdate
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
@@ -805,7 +850,7 @@ public class pnlMark extends javax.swing.JPanel {
     private javax.swing.JTextField txtStudentId;
     private javax.swing.JTextField txtStudentIdSearch;
     private javax.swing.JTextField txtSubjectID;
-    private javax.swing.JTextField txtSubjectNameSearch;
+    private javax.swing.JTextField txtSubjectIDSearch;
     // End of variables declaration//GEN-END:variables
 
     String getSelectedName() {
