@@ -45,7 +45,6 @@ public class frmMain extends javax.swing.JFrame {
 
     public frmMain() {
         initComponents();
-        System.out.println("H : " + this.getHeight() + " W " + this.getWidth());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         guidao = new GUIDAO(this);
@@ -90,6 +89,7 @@ public class frmMain extends javax.swing.JFrame {
         buttonGroupTheme = new javax.swing.ButtonGroup();
         panelLogo = new javax.swing.JPanel();
         tbMenu = new javax.swing.JToolBar();
+        jideBtnHome = new com.jidesoft.swing.JideButton();
         jideBtnEmployee = new com.jidesoft.swing.JideButton();
         jideBtnStudent = new com.jidesoft.swing.JideButton();
         jideBtnRegister = new com.jidesoft.swing.JideButton();
@@ -99,7 +99,7 @@ public class frmMain extends javax.swing.JFrame {
         jideBtnAccount = new com.jidesoft.swing.JideButton();
         jideBtnMark = new com.jidesoft.swing.JideButton();
         jideBtnPayment = new com.jidesoft.swing.JideButton();
-        jideButton12 = new com.jidesoft.swing.JideButton();
+        jideBtnReport = new com.jidesoft.swing.JideButton();
         panelLeft = new javax.swing.JPanel();
         tpnBusiness = new javax.swing.JTabbedPane();
         pnlHome = new javax.swing.JPanel();
@@ -192,65 +192,127 @@ public class frmMain extends javax.swing.JFrame {
         tbMenu.setMinimumSize(new java.awt.Dimension(1024, 40));
         tbMenu.setPreferredSize(new java.awt.Dimension(1024, 40));
 
+        jideBtnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/home_icon.png"))); // NOI18N
+        jideBtnHome.setFocusable(false);
+        jideBtnHome.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jideBtnHome.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jideBtnHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jideBtnHomeActionPerformed(evt);
+            }
+        });
+        tbMenu.add(jideBtnHome);
+
         jideBtnEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/emp_icon_32.png"))); // NOI18N
         jideBtnEmployee.setFocusable(false);
         jideBtnEmployee.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jideBtnEmployee.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jideBtnEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jideBtnEmployeeActionPerformed(evt);
+            }
+        });
         tbMenu.add(jideBtnEmployee);
 
         jideBtnStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/student_icon -32.png"))); // NOI18N
         jideBtnStudent.setFocusable(false);
         jideBtnStudent.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jideBtnStudent.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jideBtnStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jideBtnStudentActionPerformed(evt);
+            }
+        });
         tbMenu.add(jideBtnStudent);
 
         jideBtnRegister.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/icon_register.png"))); // NOI18N
         jideBtnRegister.setFocusable(false);
         jideBtnRegister.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jideBtnRegister.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jideBtnRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jideBtnRegisterActionPerformed(evt);
+            }
+        });
         tbMenu.add(jideBtnRegister);
 
         jideBtnCourse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/icon_course.png"))); // NOI18N
         jideBtnCourse.setFocusable(false);
+        jideBtnCourse.setFocusable(false);
         jideBtnCourse.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jideBtnCourse.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jideBtnCourse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jideBtnCourseActionPerformed(evt);
+            }
+        });
         tbMenu.add(jideBtnCourse);
 
         jideBtnSubject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/subject_icon.png"))); // NOI18N
         jideBtnSubject.setFocusable(false);
         jideBtnSubject.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jideBtnSubject.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jideBtnSubject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jideBtnSubjectActionPerformed(evt);
+            }
+        });
         tbMenu.add(jideBtnSubject);
 
         jideBtnCertificate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Certificate_icon_32.png"))); // NOI18N
         jideBtnCertificate.setFocusable(false);
         jideBtnCertificate.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jideBtnCertificate.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jideBtnCertificate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jideBtnCertificateActionPerformed(evt);
+            }
+        });
         tbMenu.add(jideBtnCertificate);
 
         jideBtnAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/account_icon -32.png"))); // NOI18N
         jideBtnAccount.setFocusable(false);
         jideBtnAccount.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jideBtnAccount.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jideBtnAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jideBtnAccountActionPerformed(evt);
+            }
+        });
         tbMenu.add(jideBtnAccount);
 
         jideBtnMark.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/mark_icon_32.png"))); // NOI18N
         jideBtnMark.setFocusable(false);
         jideBtnMark.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jideBtnMark.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jideBtnMark.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jideBtnMarkActionPerformed(evt);
+            }
+        });
         tbMenu.add(jideBtnMark);
 
         jideBtnPayment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Dollar_32.png"))); // NOI18N
         jideBtnPayment.setFocusable(false);
         jideBtnPayment.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jideBtnPayment.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jideBtnPayment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jideBtnPaymentActionPerformed(evt);
+            }
+        });
         tbMenu.add(jideBtnPayment);
 
-        jideButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Statistic_bg.png"))); // NOI18N
-        jideButton12.setFocusable(false);
-        jideButton12.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jideButton12.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        tbMenu.add(jideButton12);
+        jideBtnReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Statistic_bg.png"))); // NOI18N
+        jideBtnReport.setFocusable(false);
+        jideBtnReport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jideBtnReport.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jideBtnReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jideBtnReportActionPerformed(evt);
+            }
+        });
+        tbMenu.add(jideBtnReport);
 
         panelLogo.add(tbMenu, new java.awt.GridBagConstraints());
 
@@ -267,7 +329,7 @@ public class frmMain extends javax.swing.JFrame {
 
         tpnBusiness.setBackground(new java.awt.Color(255, 255, 255));
         tpnBusiness.setTabPlacement(javax.swing.JTabbedPane.LEFT);
-        tpnBusiness.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        tpnBusiness.setFont(new java.awt.Font("Tahoma", 1, 12));
         tpnBusiness.setMaximumSize(new java.awt.Dimension(1024, 600));
         tpnBusiness.setMinimumSize(new java.awt.Dimension(1024, 600));
         tpnBusiness.setPreferredSize(new java.awt.Dimension(1024, 600));
@@ -1116,6 +1178,60 @@ public class frmMain extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_radioSkyYellowActionPerformed
 
+    private void jideBtnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnHomeActionPerformed
+        // TODO add your handling code here:
+        tpnBusiness.setSelectedComponent(pnlHome);
+    }//GEN-LAST:event_jideBtnHomeActionPerformed
+
+    private void jideBtnEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnEmployeeActionPerformed
+        // TODO add your handling code here:
+        tpnBusiness.setSelectedComponent(pnlEmployee);
+    }//GEN-LAST:event_jideBtnEmployeeActionPerformed
+
+    private void jideBtnStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnStudentActionPerformed
+        // TODO add your handling code here:
+          tpnBusiness.setSelectedComponent(pnlStudent);
+    }//GEN-LAST:event_jideBtnStudentActionPerformed
+
+    private void jideBtnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnRegisterActionPerformed
+        // TODO add your handling code here:
+          tpnBusiness.setSelectedComponent(pnlRegister);
+    }//GEN-LAST:event_jideBtnRegisterActionPerformed
+
+    private void jideBtnCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnCourseActionPerformed
+        // TODO add your handling code here:
+          tpnBusiness.setSelectedComponent(pnlCourse);
+    }//GEN-LAST:event_jideBtnCourseActionPerformed
+
+    private void jideBtnSubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnSubjectActionPerformed
+        // TODO add your handling code here:
+          tpnBusiness.setSelectedComponent(pnlSubject);
+    }//GEN-LAST:event_jideBtnSubjectActionPerformed
+
+    private void jideBtnCertificateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnCertificateActionPerformed
+        // TODO add your handling code here:
+          tpnBusiness.setSelectedComponent(pnlCertificate);
+    }//GEN-LAST:event_jideBtnCertificateActionPerformed
+
+    private void jideBtnAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnAccountActionPerformed
+        // TODO add your handling code here:
+          tpnBusiness.setSelectedComponent(pnlAccount);
+    }//GEN-LAST:event_jideBtnAccountActionPerformed
+
+    private void jideBtnMarkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnMarkActionPerformed
+        // TODO add your handling code here:
+          tpnBusiness.setSelectedComponent(pnlMark);
+    }//GEN-LAST:event_jideBtnMarkActionPerformed
+
+    private void jideBtnPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnPaymentActionPerformed
+        // TODO add your handling code here:
+          tpnBusiness.setSelectedComponent(pnlPayment);
+    }//GEN-LAST:event_jideBtnPaymentActionPerformed
+
+    private void jideBtnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnReportActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jideBtnReportActionPerformed
+
     public void isLogin() {
         if (this.accCur != null) {
             mnuILogoutSystem.setVisible(true);
@@ -1169,12 +1285,13 @@ public class frmMain extends javax.swing.JFrame {
     private com.jidesoft.swing.JideButton jideBtnCertificate;
     private com.jidesoft.swing.JideButton jideBtnCourse;
     private com.jidesoft.swing.JideButton jideBtnEmployee;
+    private com.jidesoft.swing.JideButton jideBtnHome;
     private com.jidesoft.swing.JideButton jideBtnMark;
     private com.jidesoft.swing.JideButton jideBtnPayment;
     private com.jidesoft.swing.JideButton jideBtnRegister;
+    private com.jidesoft.swing.JideButton jideBtnReport;
     private com.jidesoft.swing.JideButton jideBtnStudent;
     private com.jidesoft.swing.JideButton jideBtnSubject;
-    private com.jidesoft.swing.JideButton jideButton12;
     private javax.swing.JLabel lblCampaignMaster1;
     private javax.swing.JLabel lblCampaignMaster2;
     private javax.swing.JLabel lblCampaignMaster3;

@@ -179,7 +179,7 @@ public class pnlPermission extends javax.swing.JPanel {
         panelRight.add(lblTitle, gridBagConstraints);
 
         sepaAccount.setMinimumSize(new java.awt.Dimension(600, 10));
-        sepaAccount.setPreferredSize(new java.awt.Dimension(600, 10));
+        sepaAccount.setPreferredSize(new java.awt.Dimension(750, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -203,7 +203,7 @@ public class pnlPermission extends javax.swing.JPanel {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         panelRight.add(lblPassword, gridBagConstraints);
 
         panelButton.setBackground(new java.awt.Color(255, 255, 255));
@@ -331,7 +331,7 @@ public class pnlPermission extends javax.swing.JPanel {
         panelRightSearch.add(lblTitleSearch, gridBagConstraints);
 
         sepaAccountSearch.setMinimumSize(new java.awt.Dimension(650, 10));
-        sepaAccountSearch.setPreferredSize(new java.awt.Dimension(650, 10));
+        sepaAccountSearch.setPreferredSize(new java.awt.Dimension(750, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -355,7 +355,7 @@ public class pnlPermission extends javax.swing.JPanel {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         panelRightSearch.add(lblPasswordSearch, gridBagConstraints);
 
         panelButtonSearch.setBackground(new java.awt.Color(255, 255, 255));

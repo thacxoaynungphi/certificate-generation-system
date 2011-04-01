@@ -263,7 +263,7 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         panelRight.add(lblMoney, gridBagConstraints);
 
         lblPayDay.setForeground(new java.awt.Color(3, 3, 3));
@@ -272,7 +272,7 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         panelRight.add(lblPayDay, gridBagConstraints);
 
         txtMoney.setMinimumSize(new java.awt.Dimension(200, 20));
@@ -337,7 +337,7 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(15, 5, 5, 5);
         panelRight.add(panelButton, gridBagConstraints);
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 12));
@@ -350,8 +350,8 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         panelRight.add(lblTitle, gridBagConstraints);
 
-        jSeparator1.setMinimumSize(new java.awt.Dimension(650, 10));
-        jSeparator1.setPreferredSize(new java.awt.Dimension(650, 10));
+        jSeparator1.setMinimumSize(new java.awt.Dimension(750, 10));
+        jSeparator1.setPreferredSize(new java.awt.Dimension(750, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -456,7 +456,7 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         panelRight1.add(lblMoneySearch, gridBagConstraints);
 
         lblPayDaySearch.setForeground(new java.awt.Color(3, 3, 3));
@@ -465,7 +465,7 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         panelRight1.add(lblPayDaySearch, gridBagConstraints);
 
         txtMoneySearch.setMinimumSize(new java.awt.Dimension(200, 20));
@@ -494,7 +494,7 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(15, 5, 5, 5);
         panelRight1.add(panelButtonSearch, gridBagConstraints);
 
         lblTitleSearch.setFont(new java.awt.Font("Tahoma", 1, 12));
@@ -505,7 +505,7 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         panelRight1.add(lblTitleSearch, gridBagConstraints);
 
-        jSeparatorSearch.setPreferredSize(new java.awt.Dimension(650, 10));
+        jSeparatorSearch.setPreferredSize(new java.awt.Dimension(750, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;

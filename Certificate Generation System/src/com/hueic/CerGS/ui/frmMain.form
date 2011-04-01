@@ -440,6 +440,19 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
           <SubComponents>
+            <Component class="com.jidesoft.swing.JideButton" name="jideBtnHome">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/hueic/CerGS/images/home_icon.png"/>
+                </Property>
+                <Property name="focusable" type="boolean" value="false"/>
+                <Property name="horizontalTextPosition" type="int" value="0"/>
+                <Property name="verticalTextPosition" type="int" value="3"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jideBtnHomeActionPerformed"/>
+              </Events>
+            </Component>
             <Component class="com.jidesoft.swing.JideButton" name="jideBtnEmployee">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -449,6 +462,9 @@
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jideBtnEmployeeActionPerformed"/>
+              </Events>
             </Component>
             <Component class="com.jidesoft.swing.JideButton" name="jideBtnStudent">
               <Properties>
@@ -459,6 +475,9 @@
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jideBtnStudentActionPerformed"/>
+              </Events>
             </Component>
             <Component class="com.jidesoft.swing.JideButton" name="jideBtnRegister">
               <Properties>
@@ -469,6 +488,9 @@
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jideBtnRegisterActionPerformed"/>
+              </Events>
             </Component>
             <Component class="com.jidesoft.swing.JideButton" name="jideBtnCourse">
               <Properties>
@@ -476,9 +498,13 @@
                   <Image iconType="3" name="/com/hueic/CerGS/images/icon_course.png"/>
                 </Property>
                 <Property name="focusable" type="boolean" value="false"/>
+                <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jideBtnCourseActionPerformed"/>
+              </Events>
             </Component>
             <Component class="com.jidesoft.swing.JideButton" name="jideBtnSubject">
               <Properties>
@@ -489,6 +515,9 @@
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jideBtnSubjectActionPerformed"/>
+              </Events>
             </Component>
             <Component class="com.jidesoft.swing.JideButton" name="jideBtnCertificate">
               <Properties>
@@ -499,6 +528,9 @@
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jideBtnCertificateActionPerformed"/>
+              </Events>
             </Component>
             <Component class="com.jidesoft.swing.JideButton" name="jideBtnAccount">
               <Properties>
@@ -509,6 +541,9 @@
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jideBtnAccountActionPerformed"/>
+              </Events>
             </Component>
             <Component class="com.jidesoft.swing.JideButton" name="jideBtnMark">
               <Properties>
@@ -519,6 +554,9 @@
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jideBtnMarkActionPerformed"/>
+              </Events>
             </Component>
             <Component class="com.jidesoft.swing.JideButton" name="jideBtnPayment">
               <Properties>
@@ -529,8 +567,11 @@
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jideBtnPaymentActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="com.jidesoft.swing.JideButton" name="jideButton12">
+            <Component class="com.jidesoft.swing.JideButton" name="jideBtnReport">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/com/hueic/CerGS/images/Statistic_bg.png"/>
@@ -539,6 +580,9 @@
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jideBtnReportActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

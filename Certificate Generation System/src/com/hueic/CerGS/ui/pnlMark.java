@@ -225,7 +225,7 @@ public class pnlMark extends javax.swing.JPanel {
         panelRight.add(lblInfo, gridBagConstraints);
 
         seqarator1.setMinimumSize(new java.awt.Dimension(670, 10));
-        seqarator1.setPreferredSize(new java.awt.Dimension(670, 10));
+        seqarator1.setPreferredSize(new java.awt.Dimension(750, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -258,7 +258,7 @@ public class pnlMark extends javax.swing.JPanel {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         panelRight.add(lblSubjectName, gridBagConstraints);
 
         lblMark.setForeground(new java.awt.Color(3, 3, 3));
@@ -267,7 +267,7 @@ public class pnlMark extends javax.swing.JPanel {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         panelRight.add(lblMark, gridBagConstraints);
 
         txtMarkId.setEnabled(false);
@@ -353,7 +353,7 @@ public class pnlMark extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(15, 5, 5, 5);
         panelRight.add(panelButton, gridBagConstraints);
 
         txtStudentId.setMinimumSize(new java.awt.Dimension(200, 20));
@@ -418,8 +418,8 @@ public class pnlMark extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         panelRightSearch.add(lblInfoSearch, gridBagConstraints);
 
-        seqaratorSearch.setMinimumSize(new java.awt.Dimension(650, 10));
-        seqaratorSearch.setPreferredSize(new java.awt.Dimension(650, 10));
+        seqaratorSearch.setMinimumSize(new java.awt.Dimension(750, 10));
+        seqaratorSearch.setPreferredSize(new java.awt.Dimension(750, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -452,7 +452,7 @@ public class pnlMark extends javax.swing.JPanel {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         panelRightSearch.add(lblSubjectNameSearch, gridBagConstraints);
 
         lblMarkSearch.setForeground(new java.awt.Color(3, 3, 3));
@@ -461,7 +461,7 @@ public class pnlMark extends javax.swing.JPanel {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 50, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         panelRightSearch.add(lblMarkSearch, gridBagConstraints);
 
         txtMarkIdSearch.setEnabled(false);
@@ -510,7 +510,7 @@ public class pnlMark extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(15, 5, 5, 5);
         panelRightSearch.add(panelButtonSearch, gridBagConstraints);
 
         txtStudentIdSearch.setMinimumSize(new java.awt.Dimension(180, 20));
