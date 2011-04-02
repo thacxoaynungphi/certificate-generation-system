@@ -38,6 +38,7 @@ public class pnlEmployee extends javax.swing.JPanel {
     private ArrayList<Employee> listEmp = new ArrayList<Employee>();
     private EmployeeDAO empDao;
     private boolean isAdd;
+    private boolean isUpdate;
     ArrayList<Employee> filter = null;
     TableRowSorter<TableModel> sorter;
     private ObjectTableModel tableModel;
@@ -47,6 +48,7 @@ public class pnlEmployee extends javax.swing.JPanel {
     public pnlEmployee() {
         initComponents();
         isAdd = false;
+        btnCancelEdit.setVisible(false);
         empDao = new EmployeeDAO();
         listEmp = empDao.readByAll();
         if (!listEmp.isEmpty()) {
@@ -67,7 +69,7 @@ public class pnlEmployee extends javax.swing.JPanel {
                 filter.add(emp);
             }
         }
-        if (filter.size() != 0) {
+        if (!filter.isEmpty()) {
             loadDetails(filter.get(0));
         }
         ColumnData[] columns = {
@@ -929,10 +931,12 @@ public class pnlEmployee extends javax.swing.JPanel {
             if (!isAdd) {
                 isAdd = true;
                 txtID.setEnabled(true);
+                btnCancelEdit.setVisible(false);
                 resetEditDetails();
             } else {
                 isAdd = false;
                 txtID.setEnabled(false);
+                btnCancelEdit.setVisible(false);
 
                 Employee emp = new Employee();
                 emp.setId(txtID.getText());
@@ -941,10 +945,8 @@ public class pnlEmployee extends javax.swing.JPanel {
                 emp.setBirthDay(new java.sql.Date(dateChBirthdayEdit.getDate().getTime()));
                 if (radioMaleEdit.isSelected()) {
                     emp.setGender(0);
-
                 } else if (radioFemaleEdit.isSelected()) {
                     emp.setGender(1);
-
                 }
                 emp.setPhone(txtPhoneEdit.getText());
                 emp.setEmail(txtEmailEdit.getText());
@@ -963,12 +965,12 @@ public class pnlEmployee extends javax.swing.JPanel {
                 }
             }
         } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.toString(), "Employee Update", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnAddEditActionPerformed
 
     private void btnUpdateEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateEditActionPerformed
         // TODO add your handling code here:
-        //loadData();
         try {
             // TODO add your handling code here:
             Employee emp = new Employee();
@@ -994,19 +996,21 @@ public class pnlEmployee extends javax.swing.JPanel {
                 listEmp = empDao.readByAll();
                 loadData(listEmp);
                 JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Add", JOptionPane.INFORMATION_MESSAGE);
-            }else {
+            } else {
                 JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Add", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.toString(), "Employee Update", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnUpdateEditActionPerformed
 
     private void btnCancelEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelEditActionPerformed
         // TODO add your handling code here:
-        if(isAdd){
+        if (isAdd) {
             isAdd = false;
             txtID.setEnabled(false);
             loadDetails(listEmp.get(0));
+            btnCancelEdit.setVisible(false);
         }
 }//GEN-LAST:event_btnCancelEditActionPerformed
 
