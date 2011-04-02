@@ -15,6 +15,7 @@ import com.hueic.CerGS.entity.Account;
 import com.hueic.CerGS.component.GUIProperties;
 import com.hueic.CerGS.component.IconSystem;
 import com.hueic.CerGS.dao.GUIDAO;
+import com.hueic.CerGS.dao.PermissionDAO;
 import java.net.URL;
 import javax.help.CSH;
 import javax.help.HelpBroker;
@@ -45,11 +46,13 @@ public class frmMain extends javax.swing.JFrame {
     pnlViewMark viewMark = new pnlViewMark();
     pnlViewPayment viewPayment = new pnlViewPayment();
     pnlDevelopDegree developDegree = new pnlDevelopDegree();
+    PermissionDAO perDao;
 
     public frmMain() {
         initComponents();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        perDao = new PermissionDAO();
         guidao = new GUIDAO(this);
         guidao.setGUI(lookandfeel, theme);
         new IconSystem(this);
@@ -200,6 +203,7 @@ public class frmMain extends javax.swing.JFrame {
         tbMenu.setPreferredSize(new java.awt.Dimension(1024, 40));
 
         jideBtnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/home_icon.png"))); // NOI18N
+        jideBtnHome.setEnabled(false);
         jideBtnHome.setFocusable(false);
         jideBtnHome.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jideBtnHome.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -211,6 +215,7 @@ public class frmMain extends javax.swing.JFrame {
         tbMenu.add(jideBtnHome);
 
         jideBtnEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/emp_icon_32.png"))); // NOI18N
+        jideBtnEmployee.setEnabled(false);
         jideBtnEmployee.setFocusable(false);
         jideBtnEmployee.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jideBtnEmployee.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -222,6 +227,7 @@ public class frmMain extends javax.swing.JFrame {
         tbMenu.add(jideBtnEmployee);
 
         jideBtnStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/student_icon -32.png"))); // NOI18N
+        jideBtnStudent.setEnabled(false);
         jideBtnStudent.setFocusable(false);
         jideBtnStudent.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jideBtnStudent.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -233,6 +239,7 @@ public class frmMain extends javax.swing.JFrame {
         tbMenu.add(jideBtnStudent);
 
         jideBtnRegister.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/icon_register.png"))); // NOI18N
+        jideBtnRegister.setEnabled(false);
         jideBtnRegister.setFocusable(false);
         jideBtnRegister.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jideBtnRegister.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -244,6 +251,7 @@ public class frmMain extends javax.swing.JFrame {
         tbMenu.add(jideBtnRegister);
 
         jideBtnCourse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/icon_course.png"))); // NOI18N
+        jideBtnCourse.setEnabled(false);
         jideBtnCourse.setFocusable(false);
         jideBtnCourse.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jideBtnCourse.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -255,6 +263,7 @@ public class frmMain extends javax.swing.JFrame {
         tbMenu.add(jideBtnCourse);
 
         jideBtnSubject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/subject_icon.png"))); // NOI18N
+        jideBtnSubject.setEnabled(false);
         jideBtnSubject.setFocusable(false);
         jideBtnSubject.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jideBtnSubject.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -266,6 +275,7 @@ public class frmMain extends javax.swing.JFrame {
         tbMenu.add(jideBtnSubject);
 
         jideBtnCertificate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Certificate_icon_32.png"))); // NOI18N
+        jideBtnCertificate.setEnabled(false);
         jideBtnCertificate.setFocusable(false);
         jideBtnCertificate.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jideBtnCertificate.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -277,6 +287,7 @@ public class frmMain extends javax.swing.JFrame {
         tbMenu.add(jideBtnCertificate);
 
         jideBtnAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/account_icon -32.png"))); // NOI18N
+        jideBtnAccount.setEnabled(false);
         jideBtnAccount.setFocusable(false);
         jideBtnAccount.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jideBtnAccount.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -288,6 +299,7 @@ public class frmMain extends javax.swing.JFrame {
         tbMenu.add(jideBtnAccount);
 
         jideBtnMark.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/mark_icon_32.png"))); // NOI18N
+        jideBtnMark.setEnabled(false);
         jideBtnMark.setFocusable(false);
         jideBtnMark.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jideBtnMark.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -299,6 +311,7 @@ public class frmMain extends javax.swing.JFrame {
         tbMenu.add(jideBtnMark);
 
         jideBtnPayment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Dollar_32.png"))); // NOI18N
+        jideBtnPayment.setEnabled(false);
         jideBtnPayment.setFocusable(false);
         jideBtnPayment.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jideBtnPayment.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -310,6 +323,7 @@ public class frmMain extends javax.swing.JFrame {
         tbMenu.add(jideBtnPayment);
 
         jideBtnReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Statistic_bg.png"))); // NOI18N
+        jideBtnReport.setEnabled(false);
         jideBtnReport.setFocusable(false);
         jideBtnReport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jideBtnReport.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -335,12 +349,14 @@ public class frmMain extends javax.swing.JFrame {
 
         tpnBusiness.setBackground(new java.awt.Color(255, 255, 255));
         tpnBusiness.setTabPlacement(javax.swing.JTabbedPane.LEFT);
-        tpnBusiness.setFont(new java.awt.Font("Tahoma", 1, 12));
+        tpnBusiness.setEnabled(false);
+        tpnBusiness.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         tpnBusiness.setMaximumSize(new java.awt.Dimension(1024, 600));
         tpnBusiness.setMinimumSize(new java.awt.Dimension(1024, 600));
         tpnBusiness.setPreferredSize(new java.awt.Dimension(1024, 600));
 
         pnlHome.setBackground(new java.awt.Color(255, 255, 255));
+        pnlHome.setEnabled(false);
         pnlHome.setMaximumSize(new java.awt.Dimension(800, 600));
         pnlHome.setMinimumSize(new java.awt.Dimension(800, 600));
         pnlHome.setPreferredSize(new java.awt.Dimension(800, 600));
@@ -645,54 +661,65 @@ public class frmMain extends javax.swing.JFrame {
         tpnBusiness.addTab("Home                  ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlHome); // NOI18N
 
         pnlEmployee.setBackground(new java.awt.Color(255, 255, 255));
+        pnlEmployee.setEnabled(false);
 
         pnlEmployee = emp;
 
         tpnBusiness.addTab("Employee            ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlEmployee); // NOI18N
 
         pnlStudent.setBackground(new java.awt.Color(255, 255, 255));
+        pnlStudent.setEnabled(false);
 
         pnlStudent = student;
 
         tpnBusiness.addTab("Student", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlStudent); // NOI18N
 
         pnlRegister.setBackground(new java.awt.Color(255, 255, 255));
+        pnlRegister.setEnabled(false);
         pnlRegister = register;
         tpnBusiness.addTab("Register", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlRegister); // NOI18N
 
         pnlCourse.setBackground(new java.awt.Color(255, 255, 255));
+        pnlCourse.setEnabled(false);
 
         pnlCourse = course;
 
         tpnBusiness.addTab("Course", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlCourse); // NOI18N
 
         pnlPayment.setBackground(new java.awt.Color(255, 255, 255));
+        pnlPayment.setEnabled(false);
         pnlPayment = payment;
         tpnBusiness.addTab("Payment", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlPayment); // NOI18N
 
         pnlSubject.setBackground(new java.awt.Color(255, 255, 255));
+        pnlSubject.setEnabled(false);
         pnlSubject = subject;
         tpnBusiness.addTab("Subject", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlSubject); // NOI18N
 
         pnlMark.setBackground(new java.awt.Color(255, 255, 255));
+        pnlMark.setEnabled(false);
         pnlMark = mark;
         tpnBusiness.addTab("Mark", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlMark); // NOI18N
 
         pnlCertificate.setBackground(new java.awt.Color(255, 255, 255));
+        pnlCertificate.setEnabled(false);
         pnlCertificate = cer;
         tpnBusiness.addTab("Certificate", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlCertificate); // NOI18N
 
         pnlAccount.setBackground(new java.awt.Color(255, 255, 255));
+        pnlAccount.setEnabled(false);
         pnlAccount = account;
         tpnBusiness.addTab("Account             ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlAccount); // NOI18N
 
         pnlPermission.setBackground(new java.awt.Color(255, 255, 255));
+        pnlPermission.setEnabled(false);
         pnlPermission.setMinimumSize(new java.awt.Dimension(860, 600));
         pnlPermission.setPreferredSize(new java.awt.Dimension(860, 600));
         pnlPermission = per;
         tpnBusiness.addTab("Permission", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlPermission); // NOI18N
 
         pnlViewMark.setBackground(new java.awt.Color(255, 255, 255));
+        pnlViewMark.setEnabled(false);
 
         javax.swing.GroupLayout pnlViewMarkLayout = new javax.swing.GroupLayout(pnlViewMark);
         pnlViewMark.setLayout(pnlViewMarkLayout);
@@ -710,6 +737,7 @@ public class frmMain extends javax.swing.JFrame {
         tpnBusiness.addTab("View Mark", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlViewMark); // NOI18N
 
         pnlViewPayment.setBackground(new java.awt.Color(255, 255, 255));
+        pnlViewPayment.setEnabled(false);
 
         javax.swing.GroupLayout pnlViewPaymentLayout = new javax.swing.GroupLayout(pnlViewPayment);
         pnlViewPayment.setLayout(pnlViewPaymentLayout);
@@ -727,6 +755,7 @@ public class frmMain extends javax.swing.JFrame {
         tpnBusiness.addTab("View Payment", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlViewPayment); // NOI18N
 
         pnlDevelopDegree.setBackground(new java.awt.Color(255, 255, 255));
+        pnlDevelopDegree.setEnabled(false);
 
         javax.swing.GroupLayout pnlDevelopDegreeLayout = new javax.swing.GroupLayout(pnlDevelopDegree);
         pnlDevelopDegree.setLayout(pnlDevelopDegreeLayout);
@@ -744,6 +773,7 @@ public class frmMain extends javax.swing.JFrame {
         tpnBusiness.addTab("Develop Degree", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlDevelopDegree); // NOI18N
 
         pnlReport.setBackground(new java.awt.Color(255, 255, 255));
+        pnlReport.setEnabled(false);
 
         javax.swing.GroupLayout pnlReportLayout = new javax.swing.GroupLayout(pnlReport);
         pnlReport.setLayout(pnlReportLayout);
@@ -786,11 +816,6 @@ public class frmMain extends javax.swing.JFrame {
         mnuISwitchUser.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
         mnuISwitchUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
         mnuISwitchUser.setText("Switch User");
-        mnuISwitchUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuISwitchUserActionPerformed(evt);
-            }
-        });
         mnuSystem.add(mnuISwitchUser);
 
         mnuILoginSystem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.ALT_MASK));
@@ -806,6 +831,7 @@ public class frmMain extends javax.swing.JFrame {
         mnuILogoutSystem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.ALT_MASK));
         mnuILogoutSystem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/signout.png"))); // NOI18N
         mnuILogoutSystem.setText("Logout System");
+        mnuILogoutSystem.setEnabled(false);
         mnuILogoutSystem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuILogoutSystemActionPerformed(evt);
@@ -816,6 +842,7 @@ public class frmMain extends javax.swing.JFrame {
         menuIChangePass.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK));
         menuIChangePass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/iconchangepassword.png"))); // NOI18N
         menuIChangePass.setText("Change Password");
+        menuIChangePass.setEnabled(false);
         menuIChangePass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuIChangePassActionPerformed(evt);
@@ -825,6 +852,7 @@ public class frmMain extends javax.swing.JFrame {
 
         mnuOptions.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/gear.png"))); // NOI18N
         mnuOptions.setText("Options");
+        mnuOptions.setEnabled(false);
 
         mnuSkin.setText("Skin");
 
@@ -1309,13 +1337,130 @@ public class frmMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jideBtnReportActionPerformed
 
     public void isLogin() {
+        tpnBusiness.setSelectedComponent(pnlHome);
+        pnlHome.setVisible(false);
+        pnlHome.setEnabled(false);
+
+        pnlEmployee.setVisible(false);
+        pnlEmployee.setEnabled(false);
+
+        pnlStudent.setVisible(false);
+        pnlStudent.setEnabled(false);
+
+        pnlRegister.setVisible(false);
+        pnlRegister.setEnabled(false);
+
+
+        pnlCourse.setVisible(false);
+        pnlCourse.setEnabled(false);
+
+        pnlSubject.setVisible(false);
+        pnlSubject.setEnabled(false);
+
+        pnlMark.setVisible(false);
+        pnlMark.setEnabled(false);
+
+        pnlCertificate.setVisible(false);
+        pnlCertificate.setEnabled(false);
+
+        pnlAccount.setVisible(false);
+        pnlAccount.setEnabled(false);
+
+        pnlPermission.setVisible(false);
+        pnlPermission.setEnabled(false);
+
+
+        pnlViewMark.setVisible(false);
+        pnlViewMark.setEnabled(false);
+
+        pnlViewPayment.setVisible(false);
+        pnlViewPayment.setEnabled(false);
+
+        pnlDevelopDegree.setVisible(false);
+        pnlDevelopDegree.setEnabled(false);
+
+        pnlReport.setVisible(false);
+        pnlReport.setEnabled(false);
+
         if (this.accCur != null) {
             mnuILogoutSystem.setVisible(true);
-            mnuISwitchUser.setVisible(true);
+            mnuILogoutSystem.setEnabled(true);
+            mnuISwitchUser.setEnabled(true);
+            tpnBusiness.setEnabled(true);
+            menuIChangePass.setEnabled(true);
+            mnuOptions.setEnabled(true);
             mnuILoginSystem.setVisible(false);
+            mnuILoginSystem.setVisible(true);
+            if (perDao.readByName("Administrators").getId() == this.accCur.getPermission()) {
+                pnlHome.setVisible(true);
+                pnlHome.setEnabled(true);
+
+                pnlEmployee.setVisible(true);
+                pnlEmployee.setEnabled(true);
+
+                pnlStudent.setVisible(true);
+                pnlStudent.setEnabled(true);
+
+                pnlRegister.setVisible(true);
+                pnlRegister.setEnabled(true);
+
+
+                pnlCourse.setVisible(true);
+                pnlCourse.setEnabled(true);
+
+                pnlSubject.setVisible(true);
+                pnlSubject.setEnabled(true);
+
+                pnlMark.setVisible(true);
+                pnlMark.setEnabled(true);
+
+                pnlCertificate.setVisible(true);
+                pnlCertificate.setEnabled(true);
+
+                pnlAccount.setVisible(true);
+                pnlAccount.setEnabled(true);
+
+                pnlPermission.setVisible(true);
+                pnlPermission.setEnabled(true);
+
+
+                pnlViewMark.setVisible(true);
+                pnlViewMark.setEnabled(true);
+
+                pnlViewPayment.setVisible(true);
+                pnlViewPayment.setEnabled(true);
+
+                pnlDevelopDegree.setVisible(true);
+                pnlDevelopDegree.setEnabled(true);
+
+                pnlReport.setVisible(true);
+                pnlReport.setEnabled(true);
+
+            } else if (perDao.readByName("Employee").getId() == this.accCur.getPermission()) {
+                System.out.println("Nhan vien");
+                pnlViewMark.setVisible(true);
+                pnlViewMark.setEnabled(true);
+
+                pnlViewPayment.setVisible(true);
+                pnlViewPayment.setEnabled(true);
+
+                pnlDevelopDegree.setVisible(true);
+                pnlDevelopDegree.setEnabled(true);
+            } else {
+                pnlViewMark.setVisible(true);
+                pnlViewMark.setEnabled(true);
+
+                pnlViewPayment.setVisible(true);
+                pnlViewPayment.setEnabled(true);
+            }
         } else {
             mnuILogoutSystem.setVisible(false);
             mnuISwitchUser.setVisible(false);
+            tpnBusiness.setEnabled(false);
+            menuIChangePass.setEnabled(false);
+            mnuOptions.setEnabled(false);
+
+
             mnuILoginSystem.setVisible(true);
         }
     }
@@ -1328,8 +1473,12 @@ public class frmMain extends javax.swing.JFrame {
 
             public void run() {
                 new frmMain().setVisible(true);
+
+
             }
         });
+
+
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel StatusPnl;
