@@ -4,7 +4,7 @@
  */
 package com.hueic.CerGS.dao;
 
-import com.hueic.CerGS.dao.inteface.IStudentDAO;
+import com.hueic.CerGS.dao.IDao.IStudentDAO;
 import com.hueic.CerGS.entity.Student;
 import com.hueic.CerGS.entity.Person;
 import java.sql.ResultSet;

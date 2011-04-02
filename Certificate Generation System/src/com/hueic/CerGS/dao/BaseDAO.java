@@ -4,7 +4,7 @@
  */
 package com.hueic.CerGS.dao;
 
-import com.hueic.CerGS.dao.inteface.IBaseDAO;
+import com.hueic.CerGS.dao.IDao.IBaseDAO;
 import com.hueic.CerGS.util.Configure;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

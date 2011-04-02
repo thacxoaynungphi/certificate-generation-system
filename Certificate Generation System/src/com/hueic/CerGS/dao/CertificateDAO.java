@@ -4,7 +4,7 @@
  */
 package com.hueic.CerGS.dao;
 
-import com.hueic.CerGS.dao.inteface.ICertificateDAO;
+import com.hueic.CerGS.dao.IDao.ICertificateDAO;
 import com.hueic.CerGS.entity.Certificate;
 import com.hueic.CerGS.util.Configure;
 import java.sql.Date;

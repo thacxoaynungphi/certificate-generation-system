@@ -4,7 +4,7 @@
  */
 package com.hueic.CerGS.dao;
 
-import com.hueic.CerGS.dao.inteface.IAccountDAO;
+import com.hueic.CerGS.dao.IDao.IAccountDAO;
 import com.hueic.CerGS.entity.Account;
 import com.hueic.CerGS.util.Configure;
 import com.hueic.CerGS.util.PassEncryption;

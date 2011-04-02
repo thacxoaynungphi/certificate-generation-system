@@ -1115,7 +1115,7 @@ public class frmMain extends javax.swing.JFrame {
             mnuOptions.setEnabled(true);
             mnuILoginSystem.setVisible(false);
 
-            if (perDao.readByName("Administrators").getId() == this.accCur.getPermission()) {
+            if (perDao.readByName("Admin").getId() == this.accCur.getPermission()) {
             } else if (perDao.readByName("Employee").getId() == this.accCur.getPermission()) {
 
                 tpnBusiness.remove(pnlEmployee);
