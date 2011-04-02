@@ -4,22 +4,44 @@
  */
 
 /*
- * frmConfigureDB.java
+ * ConfigurationDB.java
  *
- * Created on Mar 31, 2011, 10:06:53 PM
+ * Created on Apr 2, 2011, 10:19:37 PM
  */
-
 package com.hueic.CerGS.ui;
+
+import com.hueic.CerGS.component.ConfigureDB;
+import com.hueic.CerGS.entity.Configure;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author qhvic
+ * @author nhchung
  */
-public class frmConfigureDB extends javax.swing.JFrame {
+public class dlgConfigurationDB extends javax.swing.JDialog {
 
-    /** Creates new form frmConfigureDB */
-    public frmConfigureDB() {
+    /** Creates new form ConfigurationDB */
+    ConfigureDB configureDB;
+
+    public dlgConfigurationDB(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
+        configureDB = new ConfigureDB();
+        Configure config = new Configure();
+        config = configureDB.getInfo();
+        if (config != null) {
+            loadData(config);
+
+        }
+    }
+
+    public void loadData(Configure config) {
+        txtDatabase.setText(config.getDatabase());
+        txtServername.setText(config.getSever());
+        txtPort.setText(config.getPort());
+        txtUsername.setText(config.getUsername());
+        txtPassword.setText(config.getPassword());
     }
 
     /** This method is called from within the constructor to
@@ -44,17 +66,16 @@ public class frmConfigureDB extends javax.swing.JFrame {
         txtUsername = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         btnSave = new javax.swing.JButton();
-        btnDefault = new javax.swing.JButton();
         lblTitle = new javax.swing.JLabel();
         sepaServer = new javax.swing.JSeparator();
         txtPassword = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Server Config");
-        setMinimumSize(new java.awt.Dimension(800, 600));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Configuration DB");
         setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
+        pnlContent.setBackground(new java.awt.Color(255, 255, 255));
         pnlContent.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Server Config", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
         pnlContent.setPreferredSize(new java.awt.Dimension(350, 230));
         pnlContent.setLayout(new java.awt.GridBagLayout());
@@ -133,11 +154,20 @@ public class frmConfigureDB extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlContent.add(txtUsername, gridBagConstraints);
 
-        btnSave.setText("Save");
-        jPanel2.add(btnSave);
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnDefault.setText("Default");
-        jPanel2.add(btnDefault);
+        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/button_ok - 16x16.png"))); // NOI18N
+        btnSave.setText("Save");
+        btnSave.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnSave.setMaximumSize(new java.awt.Dimension(75, 25));
+        btnSave.setMinimumSize(new java.awt.Dimension(75, 25));
+        btnSave.setPreferredSize(new java.awt.Dimension(75, 25));
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnSave);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -172,24 +202,50 @@ public class frmConfigureDB extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlContent.add(txtPassword, gridBagConstraints);
 
-        getContentPane().add(pnlContent, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        getContentPane().add(pnlContent, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        Configure config = new Configure();
+        config.setDatabase(txtDatabase.getText());
+        config.setSever(txtServername.getText());
+        config.setPort(txtPort.getText());
+        config.setUsername(txtUsername.getText());
+        config.setPassword(String.valueOf(txtPassword.getPassword()));
+        if (configureDB.writeFile(config)) {
+            JOptionPane.showMessageDialog(this, "Configuration DB succsufully", "ConfigurationDB", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Configuration DB unsuccsufully", "ConfigurationDB", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
+
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
-                new frmConfigureDB().setVisible(true);
+                dlgConfigurationDB dialog = new dlgConfigurationDB(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDefault;
     private javax.swing.JButton btnSave;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblDatabase;
@@ -206,5 +262,4 @@ public class frmConfigureDB extends javax.swing.JFrame {
     private javax.swing.JTextField txtServername;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
-
 }
