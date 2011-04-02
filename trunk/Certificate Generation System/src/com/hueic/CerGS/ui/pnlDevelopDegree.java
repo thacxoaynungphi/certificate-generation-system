@@ -134,14 +134,14 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        panelContent = new javax.swing.JPanel();
+        pnlContent = new javax.swing.JPanel();
         lblCourseID = new javax.swing.JLabel();
         lblStudentID = new javax.swing.JLabel();
         cbxCourseID = new javax.swing.JComboBox();
         cbxStudentID = new javax.swing.JComboBox();
         srcPanelViewMark = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
-        panelButton = new javax.swing.JPanel();
+        pnlButton = new javax.swing.JPanel();
         btnCreate = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
@@ -157,18 +157,18 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(860, 600));
         setLayout(new java.awt.GridBagLayout());
 
-        panelContent.setBackground(new java.awt.Color(255, 255, 255));
-        panelContent.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Develop Degree", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
-        panelContent.setMinimumSize(new java.awt.Dimension(860, 600));
-        panelContent.setPreferredSize(new java.awt.Dimension(860, 600));
-        panelContent.setLayout(new java.awt.GridBagLayout());
+        pnlContent.setBackground(new java.awt.Color(255, 255, 255));
+        pnlContent.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Develop Degree", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
+        pnlContent.setMinimumSize(new java.awt.Dimension(860, 600));
+        pnlContent.setPreferredSize(new java.awt.Dimension(860, 600));
+        pnlContent.setLayout(new java.awt.GridBagLayout());
 
         lblCourseID.setForeground(new java.awt.Color(3, 3, 3));
         lblCourseID.setText("Choose Course ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelContent.add(lblCourseID, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
+        pnlContent.add(lblCourseID, gridBagConstraints);
 
         lblStudentID.setForeground(new java.awt.Color(3, 3, 3));
         lblStudentID.setText("Choose Student ID:");
@@ -176,8 +176,8 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelContent.add(lblStudentID, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
+        pnlContent.add(lblStudentID, gridBagConstraints);
 
         cbxCourseID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxCourseID.setMinimumSize(new java.awt.Dimension(200, 20));
@@ -190,7 +190,7 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelContent.add(cbxCourseID, gridBagConstraints);
+        pnlContent.add(cbxCourseID, gridBagConstraints);
 
         cbxStudentID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxStudentID.setMinimumSize(new java.awt.Dimension(200, 20));
@@ -205,7 +205,7 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelContent.add(cbxStudentID, gridBagConstraints);
+        pnlContent.add(cbxStudentID, gridBagConstraints);
 
         srcPanelViewMark.setMinimumSize(new java.awt.Dimension(840, 450));
         srcPanelViewMark.setPreferredSize(new java.awt.Dimension(840, 450));
@@ -221,6 +221,8 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableContent.setMinimumSize(new java.awt.Dimension(840, 450));
+        tableContent.setPreferredSize(new java.awt.Dimension(840, 450));
         srcPanelViewMark.setViewportView(tableContent);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -228,28 +230,28 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelContent.add(srcPanelViewMark, gridBagConstraints);
+        pnlContent.add(srcPanelViewMark, gridBagConstraints);
 
-        panelButton.setBackground(new java.awt.Color(255, 255, 255));
-        panelButton.setMinimumSize(new java.awt.Dimension(258, 30));
-        panelButton.setPreferredSize(new java.awt.Dimension(258, 30));
+        pnlButton.setBackground(new java.awt.Color(255, 255, 255));
+        pnlButton.setMinimumSize(new java.awt.Dimension(268, 30));
+        pnlButton.setPreferredSize(new java.awt.Dimension(268, 30));
 
         btnCreate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
         btnCreate.setText("Create");
         btnCreate.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnCreate.setPreferredSize(new java.awt.Dimension(75, 23));
-        panelButton.add(btnCreate);
+        pnlButton.add(btnCreate);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
         jButton1.setText("Report Mark");
         jButton1.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        panelButton.add(jButton1);
+        pnlButton.add(jButton1);
 
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
         btnCancel.setText("Cancel");
         btnCancel.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnCancel.setPreferredSize(new java.awt.Dimension(75, 23));
-        panelButton.add(btnCancel);
+        pnlButton.add(btnCancel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -258,7 +260,7 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelContent.add(panelButton, gridBagConstraints);
+        pnlContent.add(pnlButton, gridBagConstraints);
 
         lblTitleAverageMark.setForeground(new java.awt.Color(3, 3, 3));
         lblTitleAverageMark.setText("Average Mark:");
@@ -267,7 +269,7 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelContent.add(lblTitleAverageMark, gridBagConstraints);
+        pnlContent.add(lblTitleAverageMark, gridBagConstraints);
 
         lblTitleGrade.setForeground(new java.awt.Color(3, 3, 3));
         lblTitleGrade.setText("Grade:");
@@ -276,15 +278,15 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
         gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelContent.add(lblTitleGrade, gridBagConstraints);
+        pnlContent.add(lblTitleGrade, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
-        panelContent.add(lblTotalMark, gridBagConstraints);
+        pnlContent.add(lblTotalMark, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
-        panelContent.add(lblGrade, gridBagConstraints);
+        pnlContent.add(lblGrade, gridBagConstraints);
 
         lblFilter.setForeground(new java.awt.Color(3, 3, 3));
         lblFilter.setText("Enter Filter:");
@@ -292,8 +294,8 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 230, 5, 5);
-        panelContent.add(lblFilter, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(5, 215, 5, 5);
+        pnlContent.add(lblFilter, gridBagConstraints);
 
         filterText.setMinimumSize(new java.awt.Dimension(150, 20));
         filterText.setPreferredSize(new java.awt.Dimension(150, 20));
@@ -307,7 +309,7 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelContent.add(filterText, gridBagConstraints);
+        pnlContent.add(filterText, gridBagConstraints);
 
         btnFilter.setText("Filter");
         btnFilter.setMaximumSize(new java.awt.Dimension(90, 23));
@@ -323,12 +325,12 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelContent.add(btnFilter, gridBagConstraints);
+        pnlContent.add(btnFilter, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        add(panelContent, gridBagConstraints);
+        add(pnlContent, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbxCourseIDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxCourseIDItemStateChanged
@@ -409,8 +411,8 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
     private javax.swing.JLabel lblTitleAverageMark;
     private javax.swing.JLabel lblTitleGrade;
     private javax.swing.JLabel lblTotalMark;
-    private javax.swing.JPanel panelButton;
-    private javax.swing.JPanel panelContent;
+    private javax.swing.JPanel pnlButton;
+    private javax.swing.JPanel pnlContent;
     private javax.swing.JScrollPane srcPanelViewMark;
     private javax.swing.JTable tableContent;
     // End of variables declaration//GEN-END:variables

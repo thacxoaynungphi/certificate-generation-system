@@ -190,7 +190,7 @@ public class pnlViewMark extends javax.swing.JPanel {
         lblCourseID.setText("Choose Course ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
         panelContent.add(lblCourseID, gridBagConstraints);
 
         lblStudentID.setForeground(new java.awt.Color(3, 3, 3));
@@ -199,7 +199,7 @@ public class pnlViewMark extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
         panelContent.add(lblStudentID, gridBagConstraints);
 
         cbxCourseID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -244,6 +244,8 @@ public class pnlViewMark extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableContent.setMinimumSize(new java.awt.Dimension(840, 450));
+        tableContent.setPreferredSize(new java.awt.Dimension(840, 450));
         srcPanelViewMark.setViewportView(tableContent);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -288,7 +290,7 @@ public class pnlViewMark extends javax.swing.JPanel {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 230, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 215, 5, 5);
         panelContent.add(lblFilter, gridBagConstraints);
 
         filterText.setMinimumSize(new java.awt.Dimension(150, 20));
