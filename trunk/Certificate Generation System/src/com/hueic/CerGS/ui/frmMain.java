@@ -1055,7 +1055,7 @@ public class frmMain extends javax.swing.JFrame {
 
     private void mnuIAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuIAboutActionPerformed
         // TODO add your handling code here:
-        dlgAbount about = new dlgAbount(this, true);
+        dlgAbout about = new dlgAbout(this, true);
         about.setVisible(true);
     }//GEN-LAST:event_mnuIAboutActionPerformed
 

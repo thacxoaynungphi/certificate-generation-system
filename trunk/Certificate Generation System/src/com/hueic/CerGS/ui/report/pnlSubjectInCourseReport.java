@@ -20,9 +20,9 @@ import javax.swing.JOptionPane;
 public class pnlSubjectInCourseReport extends javax.swing.JPanel {
 
     /** Creates new form pnl */
-    public pnlSubjectInCourseReport(String subjectId) {
+    public pnlSubjectInCourseReport(String courseId) {
         initComponents();
-        SubjectInCourseReportManager report = new SubjectInCourseReportManager(subjectId);
+        SubjectInCourseReportManager report = new SubjectInCourseReportManager(courseId);
         try {
             this.add(report.getPanelViewer(true));
         } catch (Exception ex) {

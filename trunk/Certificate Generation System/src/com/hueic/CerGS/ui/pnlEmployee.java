@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.regex.PatternSyntaxException;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
@@ -36,6 +37,7 @@ public class pnlEmployee extends javax.swing.JPanel {
 
     private ArrayList<Employee> listEmp = new ArrayList<Employee>();
     private EmployeeDAO empDao;
+    private boolean isAdd;
     ArrayList<Employee> filter = null;
     TableRowSorter<TableModel> sorter;
     private ObjectTableModel tableModel;
@@ -44,9 +46,10 @@ public class pnlEmployee extends javax.swing.JPanel {
     /** Creates new form pnlEmployee */
     public pnlEmployee() {
         initComponents();
+        isAdd = false;
         empDao = new EmployeeDAO();
         listEmp = empDao.readByAll();
-        if (listEmp.size() != 0) {
+        if (!listEmp.isEmpty()) {
             loadData(listEmp);
             loadDetails(listEmp.get(0));
         }
@@ -56,9 +59,9 @@ public class pnlEmployee extends javax.swing.JPanel {
 
         filter = new ArrayList<Employee>();
         for (Employee emp : listEmp) {
-            if (emp.getId().toLowerCase().matches(".*" + txtEmployeeId1.getText().trim().toLowerCase() + ".*")
-                    && emp.getFirstName().toLowerCase().matches(".*" + txtFirstName.getText().trim().toLowerCase() + ".*")
-                    && emp.getLastName().toLowerCase().matches(".*" + txtLastName.getText().trim().toLowerCase() + ".*")) {
+            if (emp.getId().toLowerCase().matches(".*" + txtEmployeeIdSearch.getText().trim().toLowerCase() + ".*")
+                    && emp.getFirstName().toLowerCase().matches(".*" + txtFirstNameSearch.getText().trim().toLowerCase() + ".*")
+                    && emp.getLastName().toLowerCase().matches(".*" + txtLastNameSearch.getText().trim().toLowerCase() + ".*")) {
                 // if(dateChooserDateEnd.getDate() != null && dateChooserDateStart.getDate() != null)
                 //Chua de che do ngay va gender
                 filter.add(emp);
@@ -107,6 +110,19 @@ public class pnlEmployee extends javax.swing.JPanel {
         return true;
     }
 
+    public void resetEditDetails() {
+        txtID.setText("");
+        txtFirstNameEdit.setText("");
+        txtLastNameEdit.setText("");
+        txtEmailEdit.setText("");
+        dateChBirthdayEdit.setDate(null);
+        txtPhoneEdit.setText("");
+        txtAddressEdit.setText("");
+        dateChBeginWorkEdit.setDate(null);
+        txtImageEdit.setText("");
+        lblImage2.setIcon(null);
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -132,19 +148,19 @@ public class pnlEmployee extends javax.swing.JPanel {
         lblAddress = new javax.swing.JLabel();
         lblImage1 = new javax.swing.JLabel();
         lblImage2 = new javax.swing.JLabel();
-        txtFirstname = new javax.swing.JTextField();
-        txtLastname = new javax.swing.JTextField();
-        radioMale = new javax.swing.JRadioButton();
-        radioFemale = new javax.swing.JRadioButton();
-        txtEmail = new javax.swing.JTextField();
-        txtAddress = new javax.swing.JTextField();
-        btnBrowse = new javax.swing.JButton();
-        txtImage = new javax.swing.JTextField();
+        txtFirstNameEdit = new javax.swing.JTextField();
+        txtLastNameEdit = new javax.swing.JTextField();
+        radioMaleEdit = new javax.swing.JRadioButton();
+        radioFemaleEdit = new javax.swing.JRadioButton();
+        txtEmailEdit = new javax.swing.JTextField();
+        txtAddressEdit = new javax.swing.JTextField();
+        btnBrowseEdit = new javax.swing.JButton();
+        txtImageEdit = new javax.swing.JTextField();
         pnlButtonEdit = new javax.swing.JPanel();
-        btnAdd = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
-        btnCancel = new javax.swing.JButton();
+        btnAddEdit = new javax.swing.JButton();
+        btnUpdateEdit = new javax.swing.JButton();
+        btnDeleteEdit = new javax.swing.JButton();
+        btnCancelEdit = new javax.swing.JButton();
         lblStart1 = new javax.swing.JLabel();
         lblStart2 = new javax.swing.JLabel();
         lblStart3 = new javax.swing.JLabel();
@@ -152,29 +168,29 @@ public class pnlEmployee extends javax.swing.JPanel {
         lblEmployeeID = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
         lblStart6 = new javax.swing.JLabel();
-        DateChBirthday = new com.toedter.calendar.JDateChooser();
+        dateChBirthdayEdit = new com.toedter.calendar.JDateChooser();
         lblBeginwork = new javax.swing.JLabel();
-        DateChBeginWork = new com.toedter.calendar.JDateChooser();
+        dateChBeginWorkEdit = new com.toedter.calendar.JDateChooser();
         lblPhone = new javax.swing.JLabel();
-        txtPhone = new javax.swing.JTextField();
+        txtPhoneEdit = new javax.swing.JTextField();
         pnlSearch = new javax.swing.JPanel();
         pnlTop2 = new javax.swing.JPanel();
         lblStudentId = new javax.swing.JLabel();
         lblFirstName = new javax.swing.JLabel();
-        txtFirstName = new javax.swing.JTextField();
+        txtFirstNameSearch = new javax.swing.JTextField();
         lblLastName = new javax.swing.JLabel();
-        txtLastName = new javax.swing.JTextField();
+        txtLastNameSearch = new javax.swing.JTextField();
         lblBirthday1 = new javax.swing.JLabel();
-        dateChooserDateStart = new com.toedter.calendar.JDateChooser();
-        dateChooserDateEnd = new com.toedter.calendar.JDateChooser();
+        dateChooserDateStartSearch = new com.toedter.calendar.JDateChooser();
+        dateChooserDateEndSearch = new com.toedter.calendar.JDateChooser();
         lblGender1 = new javax.swing.JLabel();
-        radioMale1 = new javax.swing.JRadioButton();
-        radioFemale1 = new javax.swing.JRadioButton();
+        radioMaleSearch = new javax.swing.JRadioButton();
+        radioFemaleSearch = new javax.swing.JRadioButton();
         lblTitle1 = new javax.swing.JLabel();
         sepaCourse = new javax.swing.JSeparator();
         pnlButtonSearch = new javax.swing.JPanel();
-        btnSearch = new javax.swing.JButton();
-        txtEmployeeId1 = new javax.swing.JTextField();
+        btnResetSearch = new javax.swing.JButton();
+        txtEmployeeIdSearch = new javax.swing.JTextField();
         pnlDown = new javax.swing.JPanel();
         panelDisplay = new javax.swing.JPanel();
         lblHienthi = new javax.swing.JLabel();
@@ -292,73 +308,78 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlTop1.add(lblImage2, gridBagConstraints);
 
-        txtFirstname.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtFirstNameEdit.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlTop1.add(txtFirstname, gridBagConstraints);
+        pnlTop1.add(txtFirstNameEdit, gridBagConstraints);
 
-        txtLastname.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtLastNameEdit.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlTop1.add(txtLastname, gridBagConstraints);
+        pnlTop1.add(txtLastNameEdit, gridBagConstraints);
 
-        radioMale.setBackground(new java.awt.Color(255, 255, 255));
-        btnGGender1.add(radioMale);
-        radioMale.setForeground(new java.awt.Color(3, 3, 3));
-        radioMale.setSelected(true);
-        radioMale.setText("Male");
+        radioMaleEdit.setBackground(new java.awt.Color(255, 255, 255));
+        btnGGender1.add(radioMaleEdit);
+        radioMaleEdit.setForeground(new java.awt.Color(3, 3, 3));
+        radioMaleEdit.setSelected(true);
+        radioMaleEdit.setText("Male");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.ipadx = 12;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlTop1.add(radioMale, gridBagConstraints);
+        pnlTop1.add(radioMaleEdit, gridBagConstraints);
 
-        radioFemale.setBackground(new java.awt.Color(255, 255, 255));
-        btnGGender1.add(radioFemale);
-        radioFemale.setForeground(new java.awt.Color(3, 3, 3));
-        radioFemale.setText("Female");
+        radioFemaleEdit.setBackground(new java.awt.Color(255, 255, 255));
+        btnGGender1.add(radioFemaleEdit);
+        radioFemaleEdit.setForeground(new java.awt.Color(3, 3, 3));
+        radioFemaleEdit.setText("Female");
+        radioFemaleEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioFemaleEditActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlTop1.add(radioFemale, gridBagConstraints);
+        pnlTop1.add(radioFemaleEdit, gridBagConstraints);
 
-        txtEmail.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtEmailEdit.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 7;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlTop1.add(txtEmail, gridBagConstraints);
+        pnlTop1.add(txtEmailEdit, gridBagConstraints);
 
-        txtAddress.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtAddressEdit.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlTop1.add(txtAddress, gridBagConstraints);
+        pnlTop1.add(txtAddressEdit, gridBagConstraints);
 
-        btnBrowse.setText("Browse");
-        btnBrowse.setMargin(new java.awt.Insets(2, 10, 2, 10));
-        btnBrowse.setMaximumSize(new java.awt.Dimension(70, 23));
-        btnBrowse.setMinimumSize(new java.awt.Dimension(70, 23));
-        btnBrowse.setPreferredSize(new java.awt.Dimension(60, 20));
-        btnBrowse.addActionListener(new java.awt.event.ActionListener() {
+        btnBrowseEdit.setText("Browse");
+        btnBrowseEdit.setMargin(new java.awt.Insets(2, 10, 2, 10));
+        btnBrowseEdit.setMaximumSize(new java.awt.Dimension(70, 23));
+        btnBrowseEdit.setMinimumSize(new java.awt.Dimension(70, 23));
+        btnBrowseEdit.setPreferredSize(new java.awt.Dimension(60, 20));
+        btnBrowseEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBrowseActionPerformed(evt);
+                btnBrowseEditActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -367,59 +388,64 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 5);
-        pnlTop1.add(btnBrowse, gridBagConstraints);
+        pnlTop1.add(btnBrowseEdit, gridBagConstraints);
 
-        txtImage.setPreferredSize(new java.awt.Dimension(130, 20));
+        txtImageEdit.setPreferredSize(new java.awt.Dimension(130, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlTop1.add(txtImage, gridBagConstraints);
+        pnlTop1.add(txtImageEdit, gridBagConstraints);
 
         pnlButtonEdit.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
-        btnAdd.setText("Add");
-        btnAdd.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnAdd.setPreferredSize(new java.awt.Dimension(75, 23));
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+        btnAddEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
+        btnAddEdit.setText("Add");
+        btnAddEdit.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnAddEdit.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnAddEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
+                btnAddEditActionPerformed(evt);
             }
         });
-        pnlButtonEdit.add(btnAdd);
+        pnlButtonEdit.add(btnAddEdit);
 
-        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
-        btnUpdate.setText("Update");
-        btnUpdate.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnUpdate.setPreferredSize(new java.awt.Dimension(75, 23));
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdateEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
+        btnUpdateEdit.setText("Update");
+        btnUpdateEdit.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnUpdateEdit.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnUpdateEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
+                btnUpdateEditActionPerformed(evt);
             }
         });
-        pnlButtonEdit.add(btnUpdate);
+        pnlButtonEdit.add(btnUpdateEdit);
 
-        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
-        btnDelete.setText("Delete");
-        btnDelete.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnDelete.setMaximumSize(new java.awt.Dimension(75, 23));
-        btnDelete.setMinimumSize(new java.awt.Dimension(75, 23));
-        btnDelete.setPreferredSize(new java.awt.Dimension(75, 23));
-        pnlButtonEdit.add(btnDelete);
-
-        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
-        btnCancel.setText("Cancel");
-        btnCancel.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnCancel.setPreferredSize(new java.awt.Dimension(75, 23));
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+        btnDeleteEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
+        btnDeleteEdit.setText("Delete");
+        btnDeleteEdit.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnDeleteEdit.setMaximumSize(new java.awt.Dimension(75, 23));
+        btnDeleteEdit.setMinimumSize(new java.awt.Dimension(75, 23));
+        btnDeleteEdit.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnDeleteEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelActionPerformed(evt);
+                btnDeleteEditActionPerformed(evt);
             }
         });
-        pnlButtonEdit.add(btnCancel);
+        pnlButtonEdit.add(btnDeleteEdit);
+
+        btnCancelEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
+        btnCancelEdit.setText("Cancel");
+        btnCancelEdit.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnCancelEdit.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnCancelEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelEditActionPerformed(evt);
+            }
+        });
+        pnlButtonEdit.add(btnCancelEdit);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -493,15 +519,15 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlTop1.add(lblStart6, gridBagConstraints);
 
-        DateChBirthday.setDateFormatString("MM\\dd\\yyyy");
-        DateChBirthday.setPreferredSize(new java.awt.Dimension(200, 20));
+        dateChBirthdayEdit.setDateFormatString("MM\\dd\\yyyy");
+        dateChBirthdayEdit.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlTop1.add(DateChBirthday, gridBagConstraints);
+        pnlTop1.add(dateChBirthdayEdit, gridBagConstraints);
 
         lblBeginwork.setForeground(new java.awt.Color(3, 3, 3));
         lblBeginwork.setText("Begin work:");
@@ -512,15 +538,15 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         pnlTop1.add(lblBeginwork, gridBagConstraints);
 
-        DateChBeginWork.setDateFormatString("MM\\dd\\yyyy");
-        DateChBeginWork.setPreferredSize(new java.awt.Dimension(200, 20));
+        dateChBeginWorkEdit.setDateFormatString("MM\\dd\\yyyy");
+        dateChBeginWorkEdit.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlTop1.add(DateChBeginWork, gridBagConstraints);
+        pnlTop1.add(dateChBeginWorkEdit, gridBagConstraints);
 
         lblPhone.setForeground(new java.awt.Color(3, 3, 3));
         lblPhone.setText("Phone: ");
@@ -531,14 +557,14 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         pnlTop1.add(lblPhone, gridBagConstraints);
 
-        txtPhone.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtPhoneEdit.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlTop1.add(txtPhone, gridBagConstraints);
+        pnlTop1.add(txtPhoneEdit, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -575,11 +601,11 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlTop2.add(lblFirstName, gridBagConstraints);
 
-        txtFirstName.setMinimumSize(new java.awt.Dimension(200, 20));
-        txtFirstName.setPreferredSize(new java.awt.Dimension(200, 20));
-        txtFirstName.addCaretListener(new javax.swing.event.CaretListener() {
+        txtFirstNameSearch.setMinimumSize(new java.awt.Dimension(200, 20));
+        txtFirstNameSearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtFirstNameSearch.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtFirstNameCaretUpdate(evt);
+                txtFirstNameSearchCaretUpdate(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -587,7 +613,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlTop2.add(txtFirstName, gridBagConstraints);
+        pnlTop2.add(txtFirstNameSearch, gridBagConstraints);
 
         lblLastName.setForeground(new java.awt.Color(3, 3, 3));
         lblLastName.setText("Last Name: ");
@@ -598,11 +624,11 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlTop2.add(lblLastName, gridBagConstraints);
 
-        txtLastName.setMinimumSize(new java.awt.Dimension(150, 20));
-        txtLastName.setPreferredSize(new java.awt.Dimension(200, 20));
-        txtLastName.addCaretListener(new javax.swing.event.CaretListener() {
+        txtLastNameSearch.setMinimumSize(new java.awt.Dimension(150, 20));
+        txtLastNameSearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtLastNameSearch.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtLastNameCaretUpdate(evt);
+                txtLastNameSearchCaretUpdate(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -610,7 +636,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlTop2.add(txtLastName, gridBagConstraints);
+        pnlTop2.add(txtLastNameSearch, gridBagConstraints);
 
         lblBirthday1.setForeground(new java.awt.Color(3, 3, 3));
         lblBirthday1.setText("Birthday: ");
@@ -621,25 +647,25 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         pnlTop2.add(lblBirthday1, gridBagConstraints);
 
-        dateChooserDateStart.setMinimumSize(new java.awt.Dimension(150, 20));
-        dateChooserDateStart.setPreferredSize(new java.awt.Dimension(200, 20));
+        dateChooserDateStartSearch.setMinimumSize(new java.awt.Dimension(150, 20));
+        dateChooserDateStartSearch.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlTop2.add(dateChooserDateStart, gridBagConstraints);
+        pnlTop2.add(dateChooserDateStartSearch, gridBagConstraints);
 
-        dateChooserDateEnd.setMinimumSize(new java.awt.Dimension(150, 20));
-        dateChooserDateEnd.setPreferredSize(new java.awt.Dimension(200, 20));
+        dateChooserDateEndSearch.setMinimumSize(new java.awt.Dimension(150, 20));
+        dateChooserDateEndSearch.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlTop2.add(dateChooserDateEnd, gridBagConstraints);
+        pnlTop2.add(dateChooserDateEndSearch, gridBagConstraints);
 
         lblGender1.setForeground(new java.awt.Color(3, 3, 3));
         lblGender1.setText("Gender:");
@@ -650,27 +676,27 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         pnlTop2.add(lblGender1, gridBagConstraints);
 
-        radioMale1.setBackground(new java.awt.Color(255, 255, 255));
-        btnGGender2.add(radioMale1);
-        radioMale1.setForeground(new java.awt.Color(3, 3, 3));
-        radioMale1.setText("Male");
+        radioMaleSearch.setBackground(new java.awt.Color(255, 255, 255));
+        btnGGender2.add(radioMaleSearch);
+        radioMaleSearch.setForeground(new java.awt.Color(3, 3, 3));
+        radioMaleSearch.setText("Male");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlTop2.add(radioMale1, gridBagConstraints);
+        pnlTop2.add(radioMaleSearch, gridBagConstraints);
 
-        radioFemale1.setBackground(new java.awt.Color(255, 255, 255));
-        btnGGender2.add(radioFemale1);
-        radioFemale1.setForeground(new java.awt.Color(3, 3, 3));
-        radioFemale1.setText("FeMale");
+        radioFemaleSearch.setBackground(new java.awt.Color(255, 255, 255));
+        btnGGender2.add(radioFemaleSearch);
+        radioFemaleSearch.setForeground(new java.awt.Color(3, 3, 3));
+        radioFemaleSearch.setText("FeMale");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlTop2.add(radioFemale1, gridBagConstraints);
+        pnlTop2.add(radioFemaleSearch, gridBagConstraints);
 
         lblTitle1.setFont(new java.awt.Font("Tahoma", 1, 12));
         lblTitle1.setForeground(new java.awt.Color(102, 0, 102));
@@ -694,18 +720,18 @@ public class pnlEmployee extends javax.swing.JPanel {
 
         pnlButtonSearch.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
-        btnSearch.setText("Reset");
-        btnSearch.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnSearch.setMaximumSize(new java.awt.Dimension(75, 23));
-        btnSearch.setMinimumSize(new java.awt.Dimension(75, 23));
-        btnSearch.setPreferredSize(new java.awt.Dimension(75, 23));
-        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+        btnResetSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
+        btnResetSearch.setText("Reset");
+        btnResetSearch.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnResetSearch.setMaximumSize(new java.awt.Dimension(75, 23));
+        btnResetSearch.setMinimumSize(new java.awt.Dimension(75, 23));
+        btnResetSearch.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnResetSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchActionPerformed(evt);
+                btnResetSearchActionPerformed(evt);
             }
         });
-        pnlButtonSearch.add(btnSearch);
+        pnlButtonSearch.add(btnResetSearch);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -714,11 +740,11 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(15, 5, 5, 5);
         pnlTop2.add(pnlButtonSearch, gridBagConstraints);
 
-        txtEmployeeId1.setMinimumSize(new java.awt.Dimension(200, 20));
-        txtEmployeeId1.setPreferredSize(new java.awt.Dimension(200, 20));
-        txtEmployeeId1.addCaretListener(new javax.swing.event.CaretListener() {
+        txtEmployeeIdSearch.setMinimumSize(new java.awt.Dimension(200, 20));
+        txtEmployeeIdSearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtEmployeeIdSearch.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtEmployeeId1CaretUpdate(evt);
+                txtEmployeeIdSearchCaretUpdate(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -726,7 +752,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlTop2.add(txtEmployeeId1, gridBagConstraints);
+        pnlTop2.add(txtEmployeeIdSearch, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -881,7 +907,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         add(pnlDown, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseActionPerformed
+    private void btnBrowseEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseEditActionPerformed
         // TODO add your handling code here:
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogType(JFileChooser.OPEN_DIALOG);
@@ -892,82 +918,104 @@ public class pnlEmployee extends javax.swing.JPanel {
         } catch (Exception ex) {
             return;
         }
-        txtImage.setText(path);
+        txtImageEdit.setText(path);
         ImageIcon icon = new ImageIcon(path);
         lblImage2.setIcon(icon);
-}//GEN-LAST:event_btnBrowseActionPerformed
+}//GEN-LAST:event_btnBrowseEditActionPerformed
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    private void btnAddEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEditActionPerformed
         try {
             // TODO add your handling code here:
-            Employee emp = new Employee();
-            emp.setId(txtID.getText());
-            emp.setFirstName(txtFirstname.getText());
-            emp.setLastName(txtLastname.getText());
-            emp.setBirthDay(new java.sql.Date(DateChBirthday.getDate().getTime()));
-            if (radioMale.isSelected()) {
-                emp.setGender(0);
+            if (!isAdd) {
+                isAdd = true;
+                txtID.setEnabled(true);
+                //resetEditDetails();
+            } else {
+                isAdd = false;
+                txtID.setEnabled(false);
 
-            } else if (radioFemale.isSelected()) {
-                emp.setGender(1);
+                Employee emp = new Employee();
+                emp.setId(txtID.getText());
+                emp.setFirstName(txtFirstNameEdit.getText());
+                emp.setLastName(txtLastNameEdit.getText());
+                emp.setBirthDay(new java.sql.Date(dateChBirthdayEdit.getDate().getTime()));
+                if (radioMaleEdit.isSelected()) {
+                    emp.setGender(0);
 
+                } else if (radioFemaleEdit.isSelected()) {
+                    emp.setGender(1);
+
+                }
+                emp.setPhone(txtPhoneEdit.getText());
+                emp.setEmail(txtEmailEdit.getText());
+                emp.setAddress(txtAddressEdit.getText());
+                emp.setImage(txtImageEdit.getText());
+                emp.setBeginWork(new java.sql.Date(dateChBeginWorkEdit.getDate().getTime()));
+                emp.setStatus(1);
+
+                EmployeeDAO empDao = new EmployeeDAO();
+                if (empDao.create(emp)) {
+                    listEmp.add(emp);
+                    loadData(listEmp);
+                }
+                JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Add", JOptionPane.INFORMATION_MESSAGE);
             }
-            emp.setPhone(txtPhone.getText());
-            emp.setEmail(txtEmail.getText());
-            emp.setAddress(txtAddress.getText());
-            emp.setImage(txtImage.getText());
-            emp.setStatus(1);
-
-            EmployeeDAO empDao = new EmployeeDAO();
-            empDao.create(emp);
         } catch (Exception ex) {
         }
-}//GEN-LAST:event_btnAddActionPerformed
+}//GEN-LAST:event_btnAddEditActionPerformed
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+    private void btnUpdateEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateEditActionPerformed
         // TODO add your handling code here:
         //loadData();
         try {
             // TODO add your handling code here:
             Employee emp = new Employee();
             emp.setId(txtID.getText());
-            emp.setFirstName(txtFirstname.getText());
-            emp.setLastName(txtLastname.getText());
-            emp.setBirthDay(new java.sql.Date(DateChBirthday.getDate().getTime()));
-            if (radioMale.isSelected()) {
+            emp.setFirstName(txtFirstNameEdit.getText());
+            emp.setLastName(txtLastNameEdit.getText());
+            emp.setBirthDay(new java.sql.Date(dateChBirthdayEdit.getDate().getTime()));
+            emp.setBeginWork(new java.sql.Date(dateChBeginWorkEdit.getDate().getTime()));
+            if (radioMaleEdit.isSelected()) {
                 emp.setGender(0);
 
-            } else if (radioFemale.isSelected()) {
+            } else if (radioFemaleEdit.isSelected()) {
                 emp.setGender(1);
 
             }
-            emp.setPhone(txtPhone.getText());
-            emp.setEmail(txtEmail.getText());
-            emp.setAddress(txtAddress.getText());
-            emp.setImage(txtImage.getText());
+            emp.setPhone(txtPhoneEdit.getText());
+            emp.setEmail(txtEmailEdit.getText());
+            emp.setAddress(txtAddressEdit.getText());
+            emp.setImage(txtImageEdit.getText());
             emp.setStatus(1);
-
             EmployeeDAO empDao = new EmployeeDAO();
-            empDao.create(emp);
+            if (empDao.update(emp)) {
+                listEmp = empDao.readByAll();
+                loadData(listEmp);
+            }
+            JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Add", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
         }
-}//GEN-LAST:event_btnUpdateActionPerformed
+}//GEN-LAST:event_btnUpdateEditActionPerformed
 
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+    private void btnCancelEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelEditActionPerformed
         // TODO add your handling code here:
-        // this.dispose();
-}//GEN-LAST:event_btnCancelActionPerformed
+        if(isAdd){
+            isAdd = false;
+            txtID.setEnabled(false);
+            loadDetails(listEmp.get(0));
+        }
+}//GEN-LAST:event_btnCancelEditActionPerformed
 
-    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+    private void btnResetSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetSearchActionPerformed
         // TODO add your handling code here:
-        String firstName = txtFirstName.getText();
-        String lastName = txtLastName.getText();
-        Date startDate = dateChooserDateStart.getDate();
-        Date endDate = dateChooserDateEnd.getDate();
+        String firstName = txtFirstNameSearch.getText();
+        String lastName = txtLastNameSearch.getText();
+        Date startDate = dateChooserDateStartSearch.getDate();
+        Date endDate = dateChooserDateEndSearch.getDate();
         int gender = -1;
-        if (radioFemale1.isSelected()) {
+        if (radioFemaleSearch.isSelected()) {
             gender = 0;
-        } else if (radioMale1.isSelected()) {
+        } else if (radioMaleSearch.isSelected()) {
             gender = 1;
         }
         listEmp.clear();
@@ -978,7 +1026,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         } else {
             System.out.println("Null rui");
         }
-}//GEN-LAST:event_btnSearchActionPerformed
+}//GEN-LAST:event_btnResetSearchActionPerformed
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
@@ -1011,26 +1059,26 @@ public class pnlEmployee extends javax.swing.JPanel {
 
     public void loadDetails(Employee emp) {
         txtID.setText(emp.getId());
-        txtFirstname.setText(emp.getFirstName());
-        txtLastname.setText(emp.getLastName());
+        txtFirstNameEdit.setText(emp.getFirstName());
+        txtLastNameEdit.setText(emp.getLastName());
         try {
-            DateChBirthday.setDate(emp.getBirthDay());
+            dateChBirthdayEdit.setDate(emp.getBirthDay());
         } catch (Exception ex) {
         }
         int gender = emp.getGender();
         if (gender == 0) {
-            radioMale.setSelected(true);
+            radioMaleEdit.setSelected(true);
 
         } else {
-            radioFemale.setSelected(true);
+            radioFemaleEdit.setSelected(true);
 
         }
-        txtPhone.setText(emp.getPhone());
-        txtEmail.setText(emp.getEmail());
-        txtAddress.setText(emp.getAddress());
-        txtImage.setText(emp.getImage());
+        txtPhoneEdit.setText(emp.getPhone());
+        txtEmailEdit.setText(emp.getEmail());
+        txtAddressEdit.setText(emp.getAddress());
+        txtImageEdit.setText(emp.getImage());
         try {
-            DateChBeginWork.setDate(emp.getBeginWork());
+            dateChBeginWorkEdit.setDate(emp.getBeginWork());
         } catch (Exception ex) {
         }
     }
@@ -1052,36 +1100,48 @@ public class pnlEmployee extends javax.swing.JPanel {
         startFilter();
     }//GEN-LAST:event_filterTextMouseReleased
 
-    private void txtEmployeeId1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtEmployeeId1CaretUpdate
+    private void txtEmployeeIdSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtEmployeeIdSearchCaretUpdate
         // TODO add your handling code here:
         loadData(listEmp);
-    }//GEN-LAST:event_txtEmployeeId1CaretUpdate
+    }//GEN-LAST:event_txtEmployeeIdSearchCaretUpdate
 
-    private void txtFirstNameCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtFirstNameCaretUpdate
+    private void txtFirstNameSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtFirstNameSearchCaretUpdate
         // TODO add your handling code here:
-         loadData(listEmp);
-    }//GEN-LAST:event_txtFirstNameCaretUpdate
+        loadData(listEmp);
+    }//GEN-LAST:event_txtFirstNameSearchCaretUpdate
 
-    private void txtLastNameCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtLastNameCaretUpdate
+    private void txtLastNameSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtLastNameSearchCaretUpdate
         // TODO add your handling code here:
-         loadData(listEmp);
-    }//GEN-LAST:event_txtLastNameCaretUpdate
+        loadData(listEmp);
+    }//GEN-LAST:event_txtLastNameSearchCaretUpdate
 
+    private void radioFemaleEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioFemaleEditActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioFemaleEditActionPerformed
+
+    private void btnDeleteEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteEditActionPerformed
+        // TODO add your handling code here:
+        String id = txtID.getText();
+        if (empDao.delete(id)) {
+            listEmp = empDao.readByAll();
+            loadData(listEmp);
+        }
+        JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Delete", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnDeleteEditActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser DateChBeginWork;
-    private com.toedter.calendar.JDateChooser DateChBirthday;
-    private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnBrowse;
-    private javax.swing.JButton btnCancel;
-    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnAddEdit;
+    private javax.swing.JButton btnBrowseEdit;
+    private javax.swing.JButton btnCancelEdit;
+    private javax.swing.JButton btnDeleteEdit;
     private javax.swing.JButton btnFilter;
     private javax.swing.ButtonGroup btnGGender1;
     private javax.swing.ButtonGroup btnGGender2;
-    private javax.swing.JButton btnReport;
-    private javax.swing.JButton btnSearch;
-    private javax.swing.JButton btnUpdate;
-    private com.toedter.calendar.JDateChooser dateChooserDateEnd;
-    private com.toedter.calendar.JDateChooser dateChooserDateStart;
+    private javax.swing.JButton btnResetSearch;
+    private javax.swing.JButton btnUpdateEdit;
+    private com.toedter.calendar.JDateChooser dateChBeginWorkEdit;
+    private com.toedter.calendar.JDateChooser dateChBirthdayEdit;
+    private com.toedter.calendar.JDateChooser dateChooserDateEndSearch;
+    private com.toedter.calendar.JDateChooser dateChooserDateStartSearch;
     private javax.swing.JTextField filterText;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblBeginwork;
@@ -1119,26 +1179,27 @@ public class pnlEmployee extends javax.swing.JPanel {
     public javax.swing.JPanel pnlSearch;
     private javax.swing.JPanel pnlTop1;
     private javax.swing.JPanel pnlTop2;
-    private javax.swing.JRadioButton radioFemale;
-    private javax.swing.JRadioButton radioFemale1;
-    private javax.swing.JRadioButton radioMale;
-    private javax.swing.JRadioButton radioMale1;
+    private javax.swing.JRadioButton radioFemaleEdit;
+    private javax.swing.JRadioButton radioFemaleSearch;
+    private javax.swing.JRadioButton radioMaleEdit;
+    private javax.swing.JRadioButton radioMaleSearch;
     private javax.swing.JSeparator sepaAddStu;
     private javax.swing.JSeparator sepaCourse;
     private javax.swing.JScrollPane srcPaneEmployee;
     private javax.swing.JTable tableContent;
     public javax.swing.JTabbedPane tpEmployee;
-    private javax.swing.JTextField txtAddress;
-    private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtEmployeeId1;
-    private javax.swing.JTextField txtFirstName;
-    private javax.swing.JTextField txtFirstname;
+    private javax.swing.JTextField txtAddressEdit;
+    private javax.swing.JTextField txtEmailEdit;
+    private javax.swing.JTextField txtEmployeeIdSearch;
+    private javax.swing.JTextField txtFirstNameEdit;
+    private javax.swing.JTextField txtFirstNameSearch;
     private javax.swing.JTextField txtID;
-    private javax.swing.JTextField txtImage;
-    private javax.swing.JTextField txtLastName;
-    private javax.swing.JTextField txtLastname;
-    private javax.swing.JTextField txtPhone;
+    private javax.swing.JTextField txtImageEdit;
+    private javax.swing.JTextField txtLastNameEdit;
+    private javax.swing.JTextField txtLastNameSearch;
+    private javax.swing.JTextField txtPhoneEdit;
     // End of variables declaration//GEN-END:variables
+    private javax.swing.JButton btnReport;
 
     String getSelectedType() {
         try {
