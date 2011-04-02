@@ -336,7 +336,7 @@ public class frmMain extends javax.swing.JFrame {
 
         tpnBusiness.setBackground(new java.awt.Color(255, 255, 255));
         tpnBusiness.setTabPlacement(javax.swing.JTabbedPane.LEFT);
-        tpnBusiness.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        tpnBusiness.setFont(new java.awt.Font("Tahoma", 1, 12));
         tpnBusiness.setMaximumSize(new java.awt.Dimension(1024, 600));
         tpnBusiness.setMinimumSize(new java.awt.Dimension(1024, 600));
         tpnBusiness.setPreferredSize(new java.awt.Dimension(1024, 600));
@@ -699,11 +699,11 @@ public class frmMain extends javax.swing.JFrame {
         pnlViewMark.setLayout(pnlViewMarkLayout);
         pnlViewMarkLayout.setHorizontalGroup(
             pnlViewMarkLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 860, Short.MAX_VALUE)
         );
         pnlViewMarkLayout.setVerticalGroup(
             pnlViewMarkLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 595, Short.MAX_VALUE)
         );
 
         pnlViewMark = viewMark;
@@ -716,11 +716,11 @@ public class frmMain extends javax.swing.JFrame {
         pnlViewPayment.setLayout(pnlViewPaymentLayout);
         pnlViewPaymentLayout.setHorizontalGroup(
             pnlViewPaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 860, Short.MAX_VALUE)
         );
         pnlViewPaymentLayout.setVerticalGroup(
             pnlViewPaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 595, Short.MAX_VALUE)
         );
 
         pnlViewPayment = viewPayment;
@@ -733,11 +733,11 @@ public class frmMain extends javax.swing.JFrame {
         pnlDevelopDegree.setLayout(pnlDevelopDegreeLayout);
         pnlDevelopDegreeLayout.setHorizontalGroup(
             pnlDevelopDegreeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 860, Short.MAX_VALUE)
         );
         pnlDevelopDegreeLayout.setVerticalGroup(
             pnlDevelopDegreeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 595, Short.MAX_VALUE)
         );
 
         pnlDevelopDegree =  developDegree;
@@ -750,11 +750,11 @@ public class frmMain extends javax.swing.JFrame {
         pnlReport.setLayout(pnlReportLayout);
         pnlReportLayout.setHorizontalGroup(
             pnlReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 860, Short.MAX_VALUE)
         );
         pnlReportLayout.setVerticalGroup(
             pnlReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 595, Short.MAX_VALUE)
         );
 
         pnlReport = report;
