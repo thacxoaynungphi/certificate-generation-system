@@ -45,7 +45,7 @@ public class frmMain extends javax.swing.JFrame {
     pnlEmployee emp = new pnlEmployee();
     pnlViewMark viewMark = new pnlViewMark();
     pnlViewPayment viewPayment = new pnlViewPayment();
-    pnlDevelopDegree developDegree = new pnlDevelopDegree();
+    pnlDevelopDegree developDegree = new pnlDevelopDegree(this);
     pnlHome homeAdmin = new pnlHome(this);
     pnlReport report = new pnlReport();
     PermissionDAO perDao;
