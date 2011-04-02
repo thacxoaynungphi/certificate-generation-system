@@ -140,20 +140,20 @@ public class pnlAccount extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        panelRight = new javax.swing.JPanel();
+        pnlDown = new javax.swing.JPanel();
         srcPanelAccount = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
         filterText = new javax.swing.JTextField();
         btnFilter = new javax.swing.JButton();
         tpAccount = new javax.swing.JTabbedPane();
         pnlEdit = new javax.swing.JPanel();
-        panel1 = new javax.swing.JPanel();
+        pnlTop1 = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
         sepaAccount = new javax.swing.JSeparator();
         lblUsername = new javax.swing.JLabel();
         lblPassword = new javax.swing.JLabel();
         lblConfirmPass = new javax.swing.JLabel();
-        panel2 = new javax.swing.JPanel();
+        pnllButtonEdit = new javax.swing.JPanel();
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
@@ -166,11 +166,11 @@ public class pnlAccount extends javax.swing.JPanel {
         btnChoosePermission = new javax.swing.JButton();
         txtType = new javax.swing.JTextField();
         pnlSearch = new javax.swing.JPanel();
-        panel3 = new javax.swing.JPanel();
+        pnlTop2 = new javax.swing.JPanel();
         lblTitleSearch = new javax.swing.JLabel();
         sepaAccountSearch = new javax.swing.JSeparator();
         lblUsernameSearch = new javax.swing.JLabel();
-        panel4Search = new javax.swing.JPanel();
+        pnlButtonSearch = new javax.swing.JPanel();
         btnAdd1 = new javax.swing.JButton();
         txtUsernameSearch = new javax.swing.JTextField();
         lblTypeSearch = new javax.swing.JLabel();
@@ -182,11 +182,11 @@ public class pnlAccount extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(860, 600));
         setLayout(new java.awt.GridBagLayout());
 
-        panelRight.setBackground(new java.awt.Color(255, 255, 255));
-        panelRight.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Account", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
-        panelRight.setMinimumSize(new java.awt.Dimension(860, 400));
-        panelRight.setPreferredSize(new java.awt.Dimension(860, 400));
-        panelRight.setLayout(new java.awt.GridBagLayout());
+        pnlDown.setBackground(new java.awt.Color(255, 255, 255));
+        pnlDown.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Account", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
+        pnlDown.setMinimumSize(new java.awt.Dimension(860, 400));
+        pnlDown.setPreferredSize(new java.awt.Dimension(860, 400));
+        pnlDown.setLayout(new java.awt.GridBagLayout());
 
         srcPanelAccount.setMinimumSize(new java.awt.Dimension(840, 340));
         srcPanelAccount.setPreferredSize(new java.awt.Dimension(840, 340));
@@ -225,7 +225,7 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(srcPanelAccount, gridBagConstraints);
+        pnlDown.add(srcPanelAccount, gridBagConstraints);
 
         filterText.setMinimumSize(new java.awt.Dimension(200, 20));
         filterText.setPreferredSize(new java.awt.Dimension(200, 20));
@@ -238,8 +238,8 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 540, 5, 5);
-        panelRight.add(filterText, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(5, 560, 5, 5);
+        pnlDown.add(filterText, gridBagConstraints);
 
         btnFilter.setText("Filter");
         btnFilter.setMaximumSize(new java.awt.Dimension(75, 23));
@@ -253,16 +253,16 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(btnFilter, gridBagConstraints);
+        pnlDown.add(btnFilter, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        add(panelRight, gridBagConstraints);
+        add(pnlDown, gridBagConstraints);
 
         tpAccount.setMinimumSize(new java.awt.Dimension(860, 200));
         tpAccount.setPreferredSize(new java.awt.Dimension(860, 200));
@@ -271,10 +271,10 @@ public class pnlAccount extends javax.swing.JPanel {
         pnlEdit.setPreferredSize(new java.awt.Dimension(810, 200));
         pnlEdit.setLayout(new java.awt.GridBagLayout());
 
-        panel1.setBackground(new java.awt.Color(255, 255, 255));
-        panel1.setMinimumSize(new java.awt.Dimension(860, 200));
-        panel1.setPreferredSize(new java.awt.Dimension(860, 200));
-        panel1.setLayout(new java.awt.GridBagLayout());
+        pnlTop1.setBackground(new java.awt.Color(255, 255, 255));
+        pnlTop1.setMinimumSize(new java.awt.Dimension(860, 200));
+        pnlTop1.setPreferredSize(new java.awt.Dimension(860, 200));
+        pnlTop1.setLayout(new java.awt.GridBagLayout());
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 13));
         lblTitle.setForeground(new java.awt.Color(102, 0, 102));
@@ -284,7 +284,7 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        panel1.add(lblTitle, gridBagConstraints);
+        pnlTop1.add(lblTitle, gridBagConstraints);
 
         sepaAccount.setMinimumSize(new java.awt.Dimension(700, 10));
         sepaAccount.setPreferredSize(new java.awt.Dimension(750, 10));
@@ -294,7 +294,7 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
-        panel1.add(sepaAccount, gridBagConstraints);
+        pnlTop1.add(sepaAccount, gridBagConstraints);
 
         lblUsername.setForeground(new java.awt.Color(3, 3, 3));
         lblUsername.setText("Username:");
@@ -303,7 +303,7 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
-        panel1.add(lblUsername, gridBagConstraints);
+        pnlTop1.add(lblUsername, gridBagConstraints);
 
         lblPassword.setForeground(new java.awt.Color(3, 3, 3));
         lblPassword.setText("Password:");
@@ -312,7 +312,7 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
-        panel1.add(lblPassword, gridBagConstraints);
+        pnlTop1.add(lblPassword, gridBagConstraints);
 
         lblConfirmPass.setForeground(new java.awt.Color(3, 3, 3));
         lblConfirmPass.setText("Confirm password:");
@@ -321,9 +321,9 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
-        panel1.add(lblConfirmPass, gridBagConstraints);
+        pnlTop1.add(lblConfirmPass, gridBagConstraints);
 
-        panel2.setBackground(new java.awt.Color(255, 255, 255));
+        pnllButtonEdit.setBackground(new java.awt.Color(255, 255, 255));
 
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/add - 16.png"))); // NOI18N
         btnAdd.setText("Add");
@@ -336,7 +336,7 @@ public class pnlAccount extends javax.swing.JPanel {
                 btnAddActionPerformed(evt);
             }
         });
-        panel2.add(btnAdd);
+        pnllButtonEdit.add(btnAdd);
 
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
         btnUpdate.setText("Update");
@@ -349,7 +349,7 @@ public class pnlAccount extends javax.swing.JPanel {
                 btnUpdateActionPerformed(evt);
             }
         });
-        panel2.add(btnUpdate);
+        pnllButtonEdit.add(btnUpdate);
 
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
         btnDelete.setText("Delete");
@@ -362,7 +362,7 @@ public class pnlAccount extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
-        panel2.add(btnDelete);
+        pnllButtonEdit.add(btnDelete);
 
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
         btnCancel.setText("Cancel");
@@ -375,14 +375,14 @@ public class pnlAccount extends javax.swing.JPanel {
                 btnCancelActionPerformed(evt);
             }
         });
-        panel2.add(btnCancel);
+        pnllButtonEdit.add(btnCancel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.insets = new java.awt.Insets(15, 5, 5, 0);
-        panel1.add(panel2, gridBagConstraints);
+        pnlTop1.add(pnllButtonEdit, gridBagConstraints);
 
         txtUsername.setEnabled(false);
         txtUsername.setPreferredSize(new java.awt.Dimension(200, 20));
@@ -391,7 +391,7 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(txtUsername, gridBagConstraints);
+        pnlTop1.add(txtUsername, gridBagConstraints);
 
         lblType.setForeground(new java.awt.Color(3, 3, 3));
         lblType.setText("Type:");
@@ -400,7 +400,7 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
-        panel1.add(lblType, gridBagConstraints);
+        pnlTop1.add(lblType, gridBagConstraints);
 
         txtPassword.setMinimumSize(new java.awt.Dimension(200, 20));
         txtPassword.setPreferredSize(new java.awt.Dimension(200, 20));
@@ -409,7 +409,7 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(txtPassword, gridBagConstraints);
+        pnlTop1.add(txtPassword, gridBagConstraints);
 
         txtConfirmPassword.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -417,7 +417,7 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(txtConfirmPassword, gridBagConstraints);
+        pnlTop1.add(txtConfirmPassword, gridBagConstraints);
 
         btnChooseUsername.setText("jButton1");
         btnChooseUsername.setMaximumSize(new java.awt.Dimension(23, 23));
@@ -428,7 +428,7 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(btnChooseUsername, gridBagConstraints);
+        pnlTop1.add(btnChooseUsername, gridBagConstraints);
 
         btnChoosePermission.setText("jButton4");
         btnChoosePermission.setMaximumSize(new java.awt.Dimension(23, 23));
@@ -444,7 +444,7 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(btnChoosePermission, gridBagConstraints);
+        pnlTop1.add(btnChoosePermission, gridBagConstraints);
 
         txtType.setMinimumSize(new java.awt.Dimension(200, 20));
         txtType.setPreferredSize(new java.awt.Dimension(200, 20));
@@ -453,9 +453,9 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel1.add(txtType, gridBagConstraints);
+        pnlTop1.add(txtType, gridBagConstraints);
 
-        pnlEdit.add(panel1, new java.awt.GridBagConstraints());
+        pnlEdit.add(pnlTop1, new java.awt.GridBagConstraints());
 
         tpAccount.addTab("Edit", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Edit_16.png")), pnlEdit); // NOI18N
 
@@ -463,10 +463,10 @@ public class pnlAccount extends javax.swing.JPanel {
         pnlSearch.setPreferredSize(new java.awt.Dimension(810, 200));
         pnlSearch.setLayout(new java.awt.GridBagLayout());
 
-        panel3.setBackground(new java.awt.Color(255, 255, 255));
-        panel3.setMinimumSize(new java.awt.Dimension(860, 200));
-        panel3.setPreferredSize(new java.awt.Dimension(860, 200));
-        panel3.setLayout(new java.awt.GridBagLayout());
+        pnlTop2.setBackground(new java.awt.Color(255, 255, 255));
+        pnlTop2.setMinimumSize(new java.awt.Dimension(860, 200));
+        pnlTop2.setPreferredSize(new java.awt.Dimension(860, 200));
+        pnlTop2.setLayout(new java.awt.GridBagLayout());
 
         lblTitleSearch.setFont(new java.awt.Font("Tahoma", 1, 13));
         lblTitleSearch.setForeground(new java.awt.Color(102, 0, 102));
@@ -476,7 +476,7 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        panel3.add(lblTitleSearch, gridBagConstraints);
+        pnlTop2.add(lblTitleSearch, gridBagConstraints);
 
         sepaAccountSearch.setPreferredSize(new java.awt.Dimension(750, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -485,7 +485,7 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
-        panel3.add(sepaAccountSearch, gridBagConstraints);
+        pnlTop2.add(sepaAccountSearch, gridBagConstraints);
 
         lblUsernameSearch.setForeground(new java.awt.Color(3, 3, 3));
         lblUsernameSearch.setText("Username:");
@@ -494,10 +494,10 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
-        panel3.add(lblUsernameSearch, gridBagConstraints);
+        pnlTop2.add(lblUsernameSearch, gridBagConstraints);
 
-        panel4Search.setBackground(new java.awt.Color(255, 255, 255));
-        panel4Search.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
+        pnlButtonSearch.setBackground(new java.awt.Color(255, 255, 255));
+        pnlButtonSearch.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
 
         btnAdd1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
         btnAdd1.setText("Reset");
@@ -510,14 +510,14 @@ public class pnlAccount extends javax.swing.JPanel {
                 btnAdd1ActionPerformed(evt);
             }
         });
-        panel4Search.add(btnAdd1);
+        pnlButtonSearch.add(btnAdd1);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.insets = new java.awt.Insets(15, 5, 10, 0);
-        panel3.add(panel4Search, gridBagConstraints);
+        pnlTop2.add(pnlButtonSearch, gridBagConstraints);
 
         txtUsernameSearch.setEnabled(false);
         txtUsernameSearch.setPreferredSize(new java.awt.Dimension(200, 20));
@@ -531,7 +531,7 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel3.add(txtUsernameSearch, gridBagConstraints);
+        pnlTop2.add(txtUsernameSearch, gridBagConstraints);
 
         lblTypeSearch.setForeground(new java.awt.Color(3, 3, 3));
         lblTypeSearch.setText("Type:");
@@ -540,7 +540,7 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
-        panel3.add(lblTypeSearch, gridBagConstraints);
+        pnlTop2.add(lblTypeSearch, gridBagConstraints);
 
         btnChoosePerSearch.setText("jButton4");
         btnChoosePerSearch.setMaximumSize(new java.awt.Dimension(23, 23));
@@ -556,7 +556,7 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel3.add(btnChoosePerSearch, gridBagConstraints);
+        pnlTop2.add(btnChoosePerSearch, gridBagConstraints);
 
         txtPermissionSearch.setMinimumSize(new java.awt.Dimension(200, 20));
         txtPermissionSearch.setPreferredSize(new java.awt.Dimension(200, 20));
@@ -569,9 +569,9 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panel3.add(txtPermissionSearch, gridBagConstraints);
+        pnlTop2.add(txtPermissionSearch, gridBagConstraints);
 
-        pnlSearch.add(panel3, new java.awt.GridBagConstraints());
+        pnlSearch.add(pnlTop2, new java.awt.GridBagConstraints());
 
         tpAccount.addTab("Search", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Search-32.png")), pnlSearch); // NOI18N
 
@@ -772,13 +772,13 @@ public class pnlAccount extends javax.swing.JPanel {
     private javax.swing.JLabel lblTypeSearch;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JLabel lblUsernameSearch;
-    private javax.swing.JPanel panel1;
-    private javax.swing.JPanel panel2;
-    private javax.swing.JPanel panel3;
-    private javax.swing.JPanel panel4Search;
-    private javax.swing.JPanel panelRight;
+    private javax.swing.JPanel pnlButtonSearch;
+    private javax.swing.JPanel pnlDown;
     private javax.swing.JPanel pnlEdit;
     private javax.swing.JPanel pnlSearch;
+    private javax.swing.JPanel pnlTop1;
+    private javax.swing.JPanel pnlTop2;
+    private javax.swing.JPanel pnllButtonEdit;
     private javax.swing.JSeparator sepaAccount;
     private javax.swing.JSeparator sepaAccountSearch;
     private javax.swing.JScrollPane srcPanelAccount;

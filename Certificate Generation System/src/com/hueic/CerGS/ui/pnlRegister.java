@@ -237,7 +237,8 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         panelRight.add(lblTitle, gridBagConstraints);
 
-        sepa1.setPreferredSize(new java.awt.Dimension(750, 10));
+        sepa1.setMinimumSize(new java.awt.Dimension(780, 10));
+        sepa1.setPreferredSize(new java.awt.Dimension(780, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
