@@ -140,7 +140,7 @@ public class StudentDAO extends BaseDAO implements IStudentDAO {
         if (personDAO.create(person)) {
             try {
                 con = db.getConnection();
-                String sql = "insert into Student(Id,ClassId,CurrentClass,RegistrationDate)" + " values (?,?,?,?); ";
+                String sql = "insert into Student(Id)" + " values (?); ";
                 pst = con.prepareStatement(sql);
                 pst.setString(1, student.getId());
                 if (pst.executeUpdate() > 0) {
@@ -165,40 +165,24 @@ public class StudentDAO extends BaseDAO implements IStudentDAO {
         Person person = student;
         PersonDAO personDAO = new PersonDAO();
         if (personDAO.update(person)) {
-            try {
-                con = db.getConnection();
-                String sql = "select * from Student where Id = ?";
-                pst = con.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-                pst.setString(1, person.getId());
-                rs = pst.executeQuery();
-                if (rs.first()) {
-//                    rs.updateString(2, student.getClassID());
-//                    rs.updateString(3, student.getCurrentClass());
-//                    rs.updateString(4, student.getRegistrationDate());
-                    rs.updateRow();
-                    setLastError("Update Student successfully");
-                    status = true;
-                } else {
-                    setLastError("Update Student unsuccessfully");
-                }
-            } catch (SQLException ex) {
-                setLastError("SQL Error!");
-            } finally {
-                db.closeConnection();
-            }
+            setLastError("Update Student successfully");
+            status = true;
         } else {
             setLastError("Update Student unsuccessfully");
         }
+
         return status;
     }
 
     public boolean delete(String id) {
         boolean status = false;
+
         try {
             con = db.getConnection();
             String sql = "delete from Student where Id = ?";
             pst = con.prepareStatement(sql);
             pst.setString(1, id);
+
             if (pst.executeUpdate() > 0) {
                 PersonDAO personDAO = new PersonDAO();
                 if (personDAO.delete(id)) {

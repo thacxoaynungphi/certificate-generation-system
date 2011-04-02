@@ -929,7 +929,7 @@ public class pnlEmployee extends javax.swing.JPanel {
             if (!isAdd) {
                 isAdd = true;
                 txtID.setEnabled(true);
-                //resetEditDetails();
+                resetEditDetails();
             } else {
                 isAdd = false;
                 txtID.setEnabled(false);
@@ -957,8 +957,10 @@ public class pnlEmployee extends javax.swing.JPanel {
                 if (empDao.create(emp)) {
                     listEmp.add(emp);
                     loadData(listEmp);
+                    JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Add", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Add", JOptionPane.ERROR_MESSAGE);
                 }
-                JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Add", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (Exception ex) {
         }
@@ -991,8 +993,10 @@ public class pnlEmployee extends javax.swing.JPanel {
             if (empDao.update(emp)) {
                 listEmp = empDao.readByAll();
                 loadData(listEmp);
+                JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Add", JOptionPane.INFORMATION_MESSAGE);
+            }else {
+                JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Add", JOptionPane.ERROR_MESSAGE);
             }
-            JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Add", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
         }
 }//GEN-LAST:event_btnUpdateEditActionPerformed
