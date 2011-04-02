@@ -10,6 +10,9 @@
  */
 package com.hueic.CerGS.ui;
 
+import com.hueic.CerGS.ui.report.pnlStudentReport;
+import javax.swing.JPanel;
+
 /**
  *
  * @author nhchung
@@ -18,6 +21,7 @@ public class pnlReport extends javax.swing.JPanel {
 
     /** Creates new form pnlReport */
     frmMain main;
+    JPanel pnlOld = null;
 
     public pnlReport(frmMain main) {
         initComponents();
@@ -42,8 +46,10 @@ public class pnlReport extends javax.swing.JPanel {
         panel8 = new javax.swing.JPanel();
         panel9 = new javax.swing.JPanel();
         panel10 = new javax.swing.JPanel();
+        pnlViewReport = new javax.swing.JPanel();
         panel11 = new javax.swing.JPanel();
         btnCreate = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(860, 600));
@@ -88,6 +94,9 @@ public class pnlReport extends javax.swing.JPanel {
         panel10.setLayout(new java.awt.GridBagLayout());
         tabpanel1.addTab("Subject In Course", panel10);
 
+        pnlViewReport.setBackground(new java.awt.Color(255, 255, 255));
+        tabpanel1.addTab("View Report", pnlViewReport);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -117,6 +126,22 @@ public class pnlReport extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         add(panel11, gridBagConstraints);
+
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow_left_green.png"))); // NOI18N
+        btnBack.setText("Back");
+        btnBack.setMaximumSize(new java.awt.Dimension(80, 25));
+        btnBack.setMinimumSize(new java.awt.Dimension(80, 25));
+        btnBack.setPreferredSize(new java.awt.Dimension(80, 25));
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        add(btnBack, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tabpanel1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabpanel1StateChanged
@@ -125,9 +150,17 @@ public class pnlReport extends javax.swing.JPanel {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
-        main.pnlReport = new dlgChooseReport(2);
-        main.tpnBusiness.setSelectedComponent(main.pnlReport);
+        pnlOld = (JPanel) this.tabpanel1.getSelectedComponent();
+        this.pnlViewReport.add(new pnlStudentReport("ARENA"));
+        this.tabpanel1.setSelectedComponent(pnlViewReport);
+        this.btnBack.setVisible(true);
     }//GEN-LAST:event_btnCreateActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        this.tabpanel1.setSelectedComponent(pnlOld);
+        this.btnBack.setVisible(false);
+    }//GEN-LAST:event_btnBackActionPerformed
     public void reportCertificateDevelop() {
     }
 
@@ -149,6 +182,7 @@ public class pnlReport extends javax.swing.JPanel {
     public void reportSubjectInCourse() {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreate;
     private javax.swing.JPanel panel10;
     private javax.swing.JPanel panel11;
@@ -158,6 +192,7 @@ public class pnlReport extends javax.swing.JPanel {
     private javax.swing.JPanel panel7;
     private javax.swing.JPanel panel8;
     private javax.swing.JPanel panel9;
+    private javax.swing.JPanel pnlViewReport;
     private javax.swing.JTabbedPane tabpanel1;
     // End of variables declaration//GEN-END:variables
 }

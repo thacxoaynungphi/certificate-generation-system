@@ -26,7 +26,6 @@ import javax.swing.JPanel;
  */
 public class dlgChooseReport extends javax.swing.JPanel {
 
-    private int type;
     pnlCertificateReport cerReport;
     pnlCertificateDevelopedReport cerDevReport;
     pnlEmployeeReport empReport;
@@ -35,46 +34,44 @@ public class dlgChooseReport extends javax.swing.JPanel {
     pnlStudentNewRegistrationReport newRegistratorReport;
     pnlStudentReport studentReport;
     pnlSubjectInCourseReport subInCourseRerport;
-    String courseId;
+    String courseId = "ARENA";
     String studentId;
     String subjectId;
 
     /** Creates new form dlgChooseReport */
     public dlgChooseReport(int type) {
         initComponents();
-        this.type = type;
-        cerReport = new pnlCertificateReport();
-        cerDevReport = new pnlCertificateDevelopedReport();
-        empReport = new pnlEmployeeReport();
-        feeReport = new pnlStudentFeeReport(courseId);
-        markReport = new pnlStudentMarkReport(studentId);
-        newRegistratorReport = new pnlStudentNewRegistrationReport(courseId);
-        studentReport = new pnlStudentReport(courseId);
-        subInCourseRerport = new pnlSubjectInCourseReport(subjectId);
-
         switch (type) {
             case 0:
-                this.pnlBrowser = cerReport;
+                //cerReport = new pnlCertificateReport();
+                //  this.pnlBrowser = cerReport;
                 break;
             case 1:
+                cerDevReport = new pnlCertificateDevelopedReport();
                 this.pnlBrowser = cerDevReport;
                 break;
             case 2:
+                empReport = new pnlEmployeeReport();
                 this.pnlBrowser = empReport;
                 break;
             case 3:
+                feeReport = new pnlStudentFeeReport(courseId);
                 this.pnlBrowser = feeReport;
                 break;
             case 4:
+                markReport = new pnlStudentMarkReport(studentId);
                 this.pnlBrowser = markReport;
                 break;
             case 5:
+                newRegistratorReport = new pnlStudentNewRegistrationReport(courseId);
                 this.pnlBrowser = newRegistratorReport;
                 break;
             case 6:
+                studentReport = new pnlStudentReport(courseId);
                 this.pnlBrowser = studentReport;
                 break;
             case 7:
+                subInCourseRerport = new pnlSubjectInCourseReport(subjectId);
                 this.pnlBrowser = subInCourseRerport;
                 break;
         }
