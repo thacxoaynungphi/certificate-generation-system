@@ -23,7 +23,7 @@ public class Hiaahsjas extends javax.swing.JFrame {
         this.add(subject);
         this.setSize(860, 600);
         this.setVisible(true);
-        
+
     }
 
     /** This method is called from within the constructor to
