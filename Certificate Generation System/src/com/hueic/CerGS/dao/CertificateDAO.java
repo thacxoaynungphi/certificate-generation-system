@@ -68,28 +68,27 @@ public class CertificateDAO extends BaseDAO implements ICertificateDAO {
         return cer;
     }
 
-    public ArrayList<Certificate> readByStudentId(String studentID) {
-        ArrayList<Certificate> list = new ArrayList<Certificate>();
+    public Certificate readByStudentId(String studentID) {
+       Certificate cer = null;
         con = db.getConnection();
         String sql = "select * from Certificate where StudentId = ?";
         try {
             pst = con.prepareStatement(sql);
             pst.setString(1, studentID);
             rs = pst.executeQuery();
-            while (rs.next()) {
-                Certificate cer = new Certificate();
+            if (rs.next()) {
+                cer = new Certificate();
                 cer.setId(rs.getInt(1));
                 cer.setStudentID(rs.getString(2));
                 cer.setMark(rs.getFloat(3));
                 cer.setDegreeDay(rs.getDate(4));
-                list.add(cer);
             }
         } catch (Exception ex) {
              setLastError("SQL Error!");
         }  finally {
             db.closeConnection();
         }
-        return list;
+        return cer;
     }
 
     public boolean create(Certificate cer) {

@@ -5,12 +5,18 @@
 
 package com.hueic.CerGS.component.report;
 
+import com.hueic.CerGS.dao.CertificateDAO;
 import com.hueic.CerGS.dao.CourseDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.dao.StudentDAO;
+import com.hueic.CerGS.entity.Certificate;
+import com.hueic.CerGS.entity.Register;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import javax.smartcardio.Card;
+import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
 
 /**
  *
@@ -20,26 +26,35 @@ public class CertificateReportManager extends ReportManager{
     private String studentName;
     private String courseName;
     private Date degreeDate;
-    private Date currentDate;
     private String grade;
+    private CertificateDAO certificateDAO;
+    private RegisterDAO registerDAO;
+    private CourseDAO courseDAO;
+    private StudentDAO studentDAO;
+    private int cerNumber;
+    
 
     public CertificateReportManager() {
-        jasperFileName = "Certificate.jrxml";
-        dataCollection = null;
-        parameterMap = getParameterReport();
     }
 
-    public CertificateReportManager(String studentId, String courseId, Date degreeDate, String grade) {
-        String personId = new RegisterDAO().readByStudentId(studentId).getId();
-        String stName = new StudentDAO().readByID(personId).getFullName();
+    public CertificateReportManager(String studentId) {
+        jasperFileName = "Certificate.jasper";
+        registerDAO = new RegisterDAO();
+        certificateDAO = new CertificateDAO();
+        courseDAO = new CourseDAO();
+        studentDAO = new StudentDAO();
 
-        String courseName = new CourseDAO().readById(courseId).getName();
+        Register regis = registerDAO.readByStudentId(studentId);
+        Certificate cer = certificateDAO.readByStudentId(studentId);
 
-        this.studentName = stName;
-        this.courseName = courseName;
-        this.degreeDate = degreeDate;
-        this.currentDate = Calendar.getInstance().getTime();
-        this.grade = grade;
+        this.cerNumber = cer.getId();
+        this.studentName = studentDAO.readByID(regis.getId()).getFullName();
+        this.courseName = courseDAO.readById(regis.getCourseId()).getName();
+        this.degreeDate = cer.getDegreeDay();
+        this.grade = cer.getGrade();
+
+        parameterMap = getParameterReport();
+        dataCollection = getDataSource();
     }
 
     private HashMap getParameterReport() {
@@ -48,16 +63,28 @@ public class CertificateReportManager extends ReportManager{
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(degreeDate);
 
-        parameterMap.put("NAME", studentName);
+        parameterMap.put("CERNUMBER", cerNumber);
         parameterMap.put("COURSE", courseName);
-        parameterMap.put("CURRENTDATE", currentDate);
-        parameterMap.put("DAY", calendar.get(Calendar.DAY_OF_MONTH));
-        parameterMap.put("MONTH", calendar.get(Calendar.MONTH + 1));
-        parameterMap.put("YEAR", calendar.get(Calendar.YEAR));
-        parameterMap.put("GRADE", grade);
-
+        
         return parameterMap;
     }
 
+    public JRMapCollectionDataSource getDataSource(){
+        ArrayList collection = new ArrayList();
+        HashMap row = new HashMap();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(degreeDate);
 
+        row.put("NAME", studentName);
+        row.put("DAY", calendar.get(Calendar.DAY_OF_MONTH));
+        row.put("MONTH", calendar.get(Calendar.MONTH));
+        row.put("YEAR", calendar.get(Calendar.YEAR));
+        row.put("COURSE", courseName);
+        row.put("GRADE", grade);
+        collection.add(row);
+
+        dataCollection = new JRMapCollectionDataSource(collection);
+
+        return dataCollection;
+    }
 }

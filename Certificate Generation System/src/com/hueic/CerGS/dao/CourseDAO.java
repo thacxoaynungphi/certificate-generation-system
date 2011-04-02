@@ -161,7 +161,7 @@ public class CourseDAO extends BaseDAO implements ICourseDAO {
                 setLastError("Delete Course unsuccessful");
             }
         } catch (SQLException ex) {
-            setLastError("SQL Error!!!");
+            setLastError(ex.toString());
         } finally {
             db.closeConnection();
             return status;

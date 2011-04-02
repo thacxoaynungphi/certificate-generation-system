@@ -31,9 +31,6 @@ public class ReportManager {
 
         try {
             //THONG TIN PARAMETER
-//            if(!dataCollection.next()) {
-//                throw  new Exception("satisfy element not found ");
-//            }
             jasperPrint = JasperFillManager.fillReport((InputStream) getInputStream(jasperFileName),
                     parameterMap, dataCollection);
         } catch (Exception ex) {

@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package com.hueic.CerGS.dao.IDao;
+package com.hueic.CerGS.dao.inteface;
 
 import com.hueic.CerGS.entity.Certificate;
 import java.util.ArrayList;
