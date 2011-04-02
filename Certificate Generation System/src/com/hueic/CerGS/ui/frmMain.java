@@ -180,7 +180,7 @@ public class frmMain extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Certificate Generation System");
-        setMinimumSize(new java.awt.Dimension(1024, 720));
+        setMinimumSize(new java.awt.Dimension(1000, 720));
         setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 

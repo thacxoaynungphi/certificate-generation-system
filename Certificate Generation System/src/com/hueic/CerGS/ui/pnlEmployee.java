@@ -191,6 +191,7 @@ public class pnlEmployee extends javax.swing.JPanel {
 
         tpEmployee.setMinimumSize(new java.awt.Dimension(860, 320));
         tpEmployee.setPreferredSize(new java.awt.Dimension(860, 320));
+        tpEmployee.setPreferredSize(new java.awt.Dimension(800, 320));
 
         pnlEdit.setLayout(new java.awt.GridBagLayout());
 
@@ -803,7 +804,6 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         panelRight.add(panelDisplay, gridBagConstraints);
 
         panelContent.setBackground(new java.awt.Color(255, 255, 255));
@@ -840,7 +840,6 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         panelRight.add(panelContent, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
