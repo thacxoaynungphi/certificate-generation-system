@@ -86,7 +86,7 @@ public class Register implements PropertyIndex {
      */
     public void setFeesStructe(int feesStructe) throws Exception {
         if (feesStructe != 0 && feesStructe != 1) {
-            throw new Exception("Fees structe invalidation");
+            throw new Exception("Fees structe must be 1 or 0");
         } else {
             this.feesStructe = feesStructe;
         }

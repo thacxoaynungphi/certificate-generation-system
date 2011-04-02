@@ -170,7 +170,8 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
                 setLastError("Add Register unuccessfully");
             }
         } catch (SQLException ex) {
-            setLastError("SQL Error!");
+            //setLastError("SQL Error!");
+            setLastError(ex.toString());
         } finally {
             db.closeConnection();
         }

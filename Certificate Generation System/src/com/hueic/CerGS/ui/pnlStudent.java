@@ -47,6 +47,7 @@ public class pnlStudent extends javax.swing.JPanel {
         txtIDEdit.setEnabled(false);
         isAdd = false;
         liststudent = studentDao.readByAll();
+        btnCancelEdit.setVisible(false);
         loadTable(liststudent);
     }
 
@@ -417,8 +418,7 @@ public class pnlStudent extends javax.swing.JPanel {
 
         btnCancelEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
         btnCancelEdit.setText("Cancel");
-        btnCancelEdit.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnCancelEdit.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnCancelEdit.setPreferredSize(new java.awt.Dimension(85, 23));
         btnCancelEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelEditActionPerformed(evt);
@@ -880,15 +880,6 @@ public class pnlStudent extends javax.swing.JPanel {
         }
 }//GEN-LAST:event_btnUpdateEditActionPerformed
 
-    private void btnCancelEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelEditActionPerformed
-        // TODO add your handling code here:
-        if(isAdd){
-            isAdd = false;
-            txtIDEdit.setEnabled(false);
-            loadDetails(liststudent.get(0));
-        }
-}//GEN-LAST:event_btnCancelEditActionPerformed
-
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnResetActionPerformed
@@ -952,9 +943,15 @@ public class pnlStudent extends javax.swing.JPanel {
         if (!isAdd) {
             isAdd = true;
             txtIDEdit.setEnabled(true);
-//            resetEditDetails();
+            btnUpdateEdit.setEnabled(false);
+            btnDeleteEdit.setEnabled(false);
+            btnCancelEdit.setVisible(true);
+            resetEditDetails();
         } else {
             isAdd = false;
+            btnUpdateEdit.setEnabled(true);
+            btnDeleteEdit.setEnabled(true);
+            btnCancelEdit.setVisible(false);
             txtIDEdit.setEnabled(false);
             try {
                 // TODO add your handling code here:
@@ -1023,15 +1020,25 @@ public class pnlStudent extends javax.swing.JPanel {
     private void btnDeleteEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteEditActionPerformed
         // TODO add your handling code here:
         String id = txtIDEdit.getText();
-        if(studentDao.delete(id)){
+        if (studentDao.delete(id)) {
             liststudent = studentDao.readByAll();
             loadTable(liststudent);
             JOptionPane.showMessageDialog(this, studentDao.getLastError(), "Student Delete", JOptionPane.INFORMATION_MESSAGE);
-        }else {
+        } else {
             JOptionPane.showMessageDialog(this, studentDao.getLastError(), "Student Delete", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnDeleteEditActionPerformed
 
+    private void btnCancelEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelEditActionPerformed
+        // TODO add your handling code here:
+        if (isAdd) {
+            isAdd = false;
+            btnUpdateEdit.setEnabled(true);
+            btnDeleteEdit.setEnabled(true);
+            txtIDEdit.setEnabled(false);
+            btnCancelEdit.setVisible(false);
+        }
+    }//GEN-LAST:event_btnCancelEditActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddEdit;
     private javax.swing.JButton btnBrowseEdit;
