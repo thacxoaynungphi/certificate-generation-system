@@ -10,7 +10,7 @@
  */
 package com.hueic.CerGS.ui.report;
 
-import com.hueic.CerGS.component.report.StudentFeeReportManager;
+import com.hueic.CerGS.component.report.StudentFeesInCourseReportManager;
 import com.hueic.CerGS.entity.Payment;
 import com.hueic.CerGS.entity.Student;
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class pnlStudentFeeReport extends javax.swing.JPanel {
     /** Creates new form pnlStudentFeeReport */
     public pnlStudentFeeReport(ArrayList<Payment> listPayment) {
         initComponents();
-        StudentFeeReportManager studentFee = new StudentFeeReportManager(listPayment);
+        StudentFeesInCourseReportManager studentFee = new StudentFeesInCourseReportManager(listPayment);
         try {
             this.add(studentFee.getPanelViewer(true));
         } catch (Exception ex) {

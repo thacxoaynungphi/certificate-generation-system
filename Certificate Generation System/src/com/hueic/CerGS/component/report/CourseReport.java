@@ -19,7 +19,12 @@ public class CourseReport extends ReportManager {
 
     public CourseReport(ArrayList<Course> listCourse) {
         this.listCourse = listCourse;
+
+        jasperFileName = "Course.jasper";
+        parameterMap = getParameterMap();
+        dataCollection =getJRDataSourse();
     }
+
 
     private HashMap getParameterMap(){
         parameterMap = new HashMap();

@@ -20,7 +20,7 @@ public interface IPaymentDAO {
 
     ArrayList<Payment> readByAll();
 
-    ArrayList<Payment> readByID(int id);
+    Payment readByID(int id);
 
     ArrayList<Payment> readByStudentId(String studentID);
 

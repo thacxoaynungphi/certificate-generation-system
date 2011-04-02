@@ -28,7 +28,7 @@ public class StudentReportManager extends ReportManager {
     private RegisterDAO registerDAO;
     private CourseDAO courseDAO;
 
-    public StudentReportManager(String course) {
+    public StudentReportManager(ArrayList<Student> listStudent) {
         this.course = course;
         studentDAO = new StudentDAO();
         registerDAO = new RegisterDAO();
