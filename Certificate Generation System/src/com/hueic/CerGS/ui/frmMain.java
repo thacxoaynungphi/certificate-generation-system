@@ -42,7 +42,6 @@ public class frmMain extends javax.swing.JFrame {
     pnlSubject subject = new pnlSubject();
     pnlStudent student = new pnlStudent();
     pnlEmployee emp = new pnlEmployee();
-    pnlReport report = new pnlReport(this);
     pnlViewMark viewMark = new pnlViewMark();
     pnlViewPayment viewPayment = new pnlViewPayment();
     pnlDevelopDegree developDegree = new pnlDevelopDegree();
@@ -756,8 +755,6 @@ public class frmMain extends javax.swing.JFrame {
             pnlReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 595, Short.MAX_VALUE)
         );
-
-        pnlReport = report;
 
         tpnBusiness.addTab("Report", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlReport); // NOI18N
 

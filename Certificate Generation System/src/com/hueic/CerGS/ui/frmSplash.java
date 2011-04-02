@@ -95,7 +95,7 @@ public class frmSplash extends JFrame {
         JPanel foregroundPanel = new JPanel(new BorderLayout(10, 10));
         foregroundPanel.setBackground(Color.white);
         foregroundPanel.setOpaque(false);
-        splash.setContentPane(wrapInBackgroundImage(foregroundPanel, new ImageIcon(pnlBackgroud.class.getResource("/com/hueic/CerGS/images/plashScreen.png"))));
+        splash.setContentPane(wrapInBackgroundImage(foregroundPanel, new ImageIcon(pnlBackground.class.getResource("/com/hueic/CerGS/images/plashScreen.png"))));
         splash.setUndecorated(true);
         splash.showSplash();
         frmMain frm = new frmMain();

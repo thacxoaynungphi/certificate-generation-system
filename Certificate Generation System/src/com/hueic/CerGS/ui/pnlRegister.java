@@ -213,6 +213,8 @@ public class pnlRegister extends javax.swing.JPanel {
         srcPanelRegister = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
         btnFilter = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        btnReport = new javax.swing.JButton();
 
         setLayout(new java.awt.GridBagLayout());
 
@@ -677,11 +679,12 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 480, 5, 5);
         panelLeft.add(lblEnterNameStudent, gridBagConstraints);
 
-        filterText.setPreferredSize(new java.awt.Dimension(150, 20));
+        filterText.setMinimumSize(new java.awt.Dimension(200, 20));
+        filterText.setPreferredSize(new java.awt.Dimension(200, 20));
         filterText.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 filterTextCaretUpdate(evt);
@@ -690,13 +693,13 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelLeft.add(filterText, gridBagConstraints);
 
         srcPanelRegister.setAutoscrolls(true);
-        srcPanelRegister.setMinimumSize(new java.awt.Dimension(840, 290));
-        srcPanelRegister.setPreferredSize(new java.awt.Dimension(840, 290));
+        srcPanelRegister.setMinimumSize(new java.awt.Dimension(840, 250));
+        srcPanelRegister.setPreferredSize(new java.awt.Dimension(840, 250));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -738,9 +741,27 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelLeft.add(btnFilter, gridBagConstraints);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
+        btnReport.setText("Report");
+        btnReport.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnReport.setMaximumSize(new java.awt.Dimension(75, 23));
+        btnReport.setMinimumSize(new java.awt.Dimension(75, 23));
+        btnReport.setPreferredSize(new java.awt.Dimension(75, 23));
+        jPanel2.add(btnReport);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 0);
+        panelLeft.add(jPanel2, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -967,9 +988,11 @@ public class pnlRegister extends javax.swing.JPanel {
     private javax.swing.JButton btnChooseStudentId;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnFilter;
+    private javax.swing.JButton btnReport;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JTextField filterText;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblCourseID;
     private javax.swing.JLabel lblCourseIDSearch;
     private javax.swing.JLabel lblEnterNameStudent;

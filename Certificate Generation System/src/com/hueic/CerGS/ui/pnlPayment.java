@@ -217,6 +217,9 @@ public class pnlPayment extends javax.swing.JPanel {
         tableContent = new javax.swing.JTable();
         filterText = new javax.swing.JTextField();
         btnFilter = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        btnReport = new javax.swing.JButton();
+        lblEnterNameStudent = new javax.swing.JLabel();
 
         setLayout(new java.awt.GridBagLayout());
 
@@ -596,8 +599,8 @@ public class pnlPayment extends javax.swing.JPanel {
         panelLeft.setPreferredSize(new java.awt.Dimension(860, 400));
         panelLeft.setLayout(new java.awt.GridBagLayout());
 
-        srcPanelPayment.setMinimumSize(new java.awt.Dimension(840, 340));
-        srcPanelPayment.setPreferredSize(new java.awt.Dimension(840, 340));
+        srcPanelPayment.setMinimumSize(new java.awt.Dimension(840, 300));
+        srcPanelPayment.setPreferredSize(new java.awt.Dimension(840, 300));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -622,7 +625,7 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelLeft.add(srcPanelPayment, gridBagConstraints);
 
@@ -634,10 +637,10 @@ public class pnlPayment extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 560, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelLeft.add(filterText, gridBagConstraints);
 
         btnFilter.setText("Filter");
@@ -650,11 +653,38 @@ public class pnlPayment extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelLeft.add(btnFilter, gridBagConstraints);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
+        btnReport.setText("Report");
+        btnReport.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnReport.setMaximumSize(new java.awt.Dimension(75, 23));
+        btnReport.setMinimumSize(new java.awt.Dimension(75, 23));
+        btnReport.setPreferredSize(new java.awt.Dimension(75, 23));
+        jPanel2.add(btnReport);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 0);
+        panelLeft.add(jPanel2, gridBagConstraints);
+
+        lblEnterNameStudent.setForeground(new java.awt.Color(3, 3, 3));
+        lblEnterNameStudent.setText("Enter Filter:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 490, 5, 5);
+        panelLeft.add(lblEnterNameStudent, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -836,15 +866,18 @@ public class pnlPayment extends javax.swing.JPanel {
     private javax.swing.JButton btnChooseStudentIdSearch;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnFilter;
+    private javax.swing.JButton btnReport;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnUpdate;
     private com.toedter.calendar.JDateChooser dateChPayDay;
     private com.toedter.calendar.JDateChooser dateChPayDaySearch;
     private javax.swing.JTextField filterText;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparatorSearch;
     private javax.swing.JLabel lblCourse;
     private javax.swing.JLabel lblCourseSearch;
+    private javax.swing.JLabel lblEnterNameStudent;
     private javax.swing.JLabel lblMoney;
     private javax.swing.JLabel lblMoneySearch;
     private javax.swing.JLabel lblPayDay;

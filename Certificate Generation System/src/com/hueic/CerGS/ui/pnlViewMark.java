@@ -236,6 +236,7 @@ public class pnlViewMark extends javax.swing.JPanel {
         btnReport.setPreferredSize(new java.awt.Dimension(75, 23));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 50, 0, 0);
         panel3.add(btnReport, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
