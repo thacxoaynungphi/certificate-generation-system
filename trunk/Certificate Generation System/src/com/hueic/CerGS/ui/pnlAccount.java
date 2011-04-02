@@ -145,6 +145,7 @@ public class pnlAccount extends javax.swing.JPanel {
         tableContent = new javax.swing.JTable();
         filterText = new javax.swing.JTextField();
         btnFilter = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         tpAccount = new javax.swing.JTabbedPane();
         pnlEdit = new javax.swing.JPanel();
         pnlTop1 = new javax.swing.JPanel();
@@ -210,8 +211,8 @@ public class pnlAccount extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tableContent.setMinimumSize(new java.awt.Dimension(770, 340));
-        tableContent.setPreferredSize(new java.awt.Dimension(770, 340));
+        tableContent.setMinimumSize(new java.awt.Dimension(840, 340));
+        tableContent.setPreferredSize(new java.awt.Dimension(840, 340));
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 tableContentMouseReleased(evt);
@@ -222,7 +223,7 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlDown.add(srcPanelAccount, gridBagConstraints);
@@ -235,10 +236,10 @@ public class pnlAccount extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 560, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlDown.add(filterText, gridBagConstraints);
 
         btnFilter.setText("Filter");
@@ -251,11 +252,19 @@ public class pnlAccount extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlDown.add(btnFilter, gridBagConstraints);
+
+        jLabel1.setText("Enter filter:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 500, 5, 5);
+        pnlDown.add(jLabel1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -764,6 +773,7 @@ public class pnlAccount extends javax.swing.JPanel {
     private javax.swing.JButton btnFilter;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JTextField filterText;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblConfirmPass;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblTitle;
