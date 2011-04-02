@@ -27,14 +27,14 @@ public class CertificateDevelopedReportManager extends ReportManager {
     private CourseDAO courseDAO;
     private RegisterDAO registerDAO;
 
-    public CertificateDevelopedReportManager() {
+    public CertificateDevelopedReportManager(ArrayList<Certificate> listCertificate) {
         jasperFileName = "CertificateDeveloped.jasper";
         certificateDAO = new CertificateDAO();
         studentDAO = new StudentDAO();
         courseDAO = new CourseDAO();
         registerDAO = new RegisterDAO();
 
-        listCertificate = certificateDAO.readByAll();
+        this.listCertificate = listCertificate;
 
         parameterMap = getParameterReport();
         dataCollection = getJRMapCollectionDataSource();

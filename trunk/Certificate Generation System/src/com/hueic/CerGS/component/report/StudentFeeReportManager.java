@@ -9,6 +9,8 @@ import com.hueic.CerGS.dao.CourseDAO;
 import com.hueic.CerGS.dao.PaymentDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.dao.StudentDAO;
+import com.hueic.CerGS.entity.Course;
+import com.hueic.CerGS.entity.Payment;
 import com.hueic.CerGS.entity.Register;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,20 +24,17 @@ import org.apache.commons.collections.FastHashMap;
 public class StudentFeeReportManager extends ReportManager {
 
     private String courseId;
-    private PaymentDAO paymentDAO;
     private StudentDAO studentDAO;
     private CourseDAO courseDAO;
     private RegisterDAO registerDAO;
-    private ArrayList<Register> listRegis;
+    private ArrayList<Payment> listPayment;
 
-    public StudentFeeReportManager(String courseId){
-        this.courseId = courseId;
-        paymentDAO = new PaymentDAO();
+    public StudentFeeReportManager(ArrayList<Payment> listPayment){
         studentDAO = new StudentDAO();
         courseDAO = new CourseDAO();
         registerDAO = new RegisterDAO();
 
-        listRegis = registerDAO.readByCourseId(courseId);
+        this.listPayment = listPayment;
         jasperFileName = "StudentFees.jasper";
         getDataSourse();
         getParameterMap();
@@ -44,7 +43,7 @@ public class StudentFeeReportManager extends ReportManager {
     private HashMap getParameterMap(){
         parameterMap = new HashMap();
 
-        parameterMap.put("COURSE", courseDAO.readById(courseId).getName());
+        parameterMap.put("COURSE", "COURSE");
         parameterMap.put("ID", "Student's Code");
         parameterMap.put("NAME", "Student's Name");
         parameterMap.put("PAYMENT", "PAID");
@@ -57,14 +56,16 @@ public class StudentFeeReportManager extends ReportManager {
         ArrayList reportRows = new ArrayList();
         HashMap row = null;
 
-        for(Register regis : listRegis){
+        for(Payment pay : listPayment){
             row = new HashMap();
-            float fee = paymentDAO.getTotalDiposit(regis.getStudentId());
+            Register reg = registerDAO.readByStudentId(pay.getStudentId());
+            Course course = courseDAO.readById(reg.getCourseId());
 
-            row.put("ID", regis.getStudentId());
-            row.put("NAME", studentDAO.readByID(regis.getId()).getFullName());
-            row.put("PAYMENT", fee);
-            row.put("ARREARS", courseDAO.readById(courseId).getTotalFees() - fee);
+            row.put("ID", pay.getStudentId());
+            row.put("NAME", studentDAO.readByID(reg.getId()).getFullName());
+            row.put("COURSE", course.getName());
+            row.put("PAYMENT", pay.getMoney());
+            row.put("ARREARS", courseDAO.readById(courseId).getTotalFees() - pay.getMoney());
 
             reportRows.add(row);
         }

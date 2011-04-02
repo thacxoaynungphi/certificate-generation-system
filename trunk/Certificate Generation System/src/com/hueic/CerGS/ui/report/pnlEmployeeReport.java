@@ -11,6 +11,8 @@
 package com.hueic.CerGS.ui.report;
 
 import com.hueic.CerGS.component.report.EmployeeReportManager;
+import com.hueic.CerGS.entity.Employee;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,9 +22,9 @@ import javax.swing.JOptionPane;
 public class pnlEmployeeReport extends javax.swing.JPanel {
 
     /** Creates new form pnlEmployeeReport */
-    public pnlEmployeeReport() {
+    public pnlEmployeeReport(ArrayList<Employee> listEmp) {
         initComponents();
-        EmployeeReportManager empreport = new EmployeeReportManager();
+        EmployeeReportManager empreport = new EmployeeReportManager(listEmp);
         try {
             this.add(empreport.getPanelViewer(true));
         } catch (Exception ex) {

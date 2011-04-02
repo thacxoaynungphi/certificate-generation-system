@@ -18,7 +18,6 @@ import com.hueic.CerGS.ui.report.pnlStudentMarkReport;
 import com.hueic.CerGS.ui.report.pnlStudentNewRegistrationReport;
 import com.hueic.CerGS.ui.report.pnlStudentReport;
 import com.hueic.CerGS.ui.report.pnlSubjectInCourseReport;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
