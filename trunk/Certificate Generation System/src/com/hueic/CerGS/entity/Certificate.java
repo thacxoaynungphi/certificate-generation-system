@@ -5,6 +5,7 @@
 package com.hueic.CerGS.entity;
 
 import com.hueic.CerGS.component.PropertyIndex;
+import com.hueic.CerGS.dao.MarkDAO;
 import java.sql.Date;
 
 /**
@@ -124,6 +125,10 @@ public class Certificate implements PropertyIndex {
         return value;
     }
 
+    public String getGrade(){
+        return new MarkDAO().getGrades(getMark());
+    }
+    
     public void setPropertyValue(int index, Object value) {
     }
 

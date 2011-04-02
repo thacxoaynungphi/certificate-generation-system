@@ -15,6 +15,7 @@ import com.hueic.CerGS.dao.CertificateDAO;
 import com.hueic.CerGS.dao.MarkDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.entity.Certificate;
+import java.awt.BorderLayout;
 import javax.swing.JOptionPane;
 
 /**
@@ -34,13 +35,13 @@ public class pnlCertificateReport extends javax.swing.JPanel {
     /** Creates new form pnlCertificate */
     public pnlCertificateReport() {
         initComponents();
-        this.certificateId = certificateId;
+        setLayout(new BorderLayout());
         registerDAO = new RegisterDAO();
         cerDAO = new CertificateDAO();
-        cer = cerDAO.readById(this.certificateId);
+        cer = cerDAO.readByStudentId("CPISM7");
         markDAO = new MarkDAO();
         courseId = registerDAO.readByStudentId(cer.getStudentID()).getCourseId();
-        cerReportManager = new CertificateReportManager();
+        cerReportManager = new CertificateReportManager("CPISM7");
 
         try {
             this.add(cerReportManager.getPanelViewer(true));

@@ -43,6 +43,8 @@ public class pnlCourse extends javax.swing.JPanel {
     /** Creates new form pnlCourse */
     public pnlCourse() {
         initComponents();
+        isAdd = false;
+        btnCancel.setVisible(false);
         courseDao = new CourseDAO();
         listCourses = courseDao.readByAll();
         loadData(listCourses);
@@ -583,11 +585,18 @@ public class pnlCourse extends javax.swing.JPanel {
                 btnUpdate.setEnabled(false);
                 btnDelete.setEnabled(false);
                 txtTotalFees.setEditable(true);
+                btnCancel.setVisible(true);
 
                 txtID.setText("");
                 txtName.setText("");
                 txtTotalFees.setText("");
             } else {
+                isAdd = false;
+                btnUpdate.setEnabled(true);
+                btnDelete.setEnabled(true);
+                txtTotalFees.setEditable(false);
+                btnCancel.setVisible(false);
+
                 String id = txtID.getText();
                 String name = txtName.getText();
                 float totalFees = Float.parseFloat(txtTotalFees.getText());
@@ -664,11 +673,14 @@ public class pnlCourse extends javax.swing.JPanel {
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
         if (isAdd) {
-            isAdd = false;
-            btnUpdate.setEnabled(true);
-            btnDelete.setEnabled(true);
-        } else {
-        }
+                isAdd = false;
+                btnUpdate.setEnabled(true);
+                btnDelete.setEnabled(true);
+                txtTotalFees.setEditable(false);
+                btnCancel.setVisible(false);
+
+                loadDetails(listCourses.get(0));
+            }
 }//GEN-LAST:event_btnCancelActionPerformed
 
     private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
