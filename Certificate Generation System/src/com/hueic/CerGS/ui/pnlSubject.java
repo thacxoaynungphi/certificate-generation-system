@@ -684,6 +684,154 @@ public class pnlSubject extends javax.swing.JPanel {
         searchStart();
 }//GEN-LAST:event_btnFilterActionPerformed
 
+    private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
+        // TODO add your handling code here:
+        btnUpdate.setEnabled(true);
+        btnDelete.setEnabled(true);
+        try {
+            // TODO add your handling code here:
+            int index = tableContent.getSelectedRow();
+            if (index != -1) {
+                String value = tableContent.getValueAt(index, 0).toString();
+                Subject subject = findSubject(value);
+                if (subject != null) {
+                    loadDetails(subject);
+                }
+            }
+        } catch (Exception ex) {
+            //TODO: chua xu ly
+        }
+
+    }//GEN-LAST:event_tableContentMouseReleased
+
+    private void srcPanelSubjectMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_srcPanelSubjectMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_srcPanelSubjectMouseReleased
+
+    private void btnChooseCourIDSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseCourIDSearchActionPerformed
+        // TODO add your handling code here:
+        dlgChoose dlg = new dlgChoose(frm, txtCoureIDSearch, true, 7);
+        dlg.setTitle("Browse Order");
+        dlg.setSize(868, 616);
+        dlg.setLocationRelativeTo(null);
+        dlg.setVisible(true);
+}//GEN-LAST:event_btnChooseCourIDSearchActionPerformed
+
+    private void txtCoureIDSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtCoureIDSearchCaretUpdate
+        // TODO add your handling code here:
+        loadData();
+}//GEN-LAST:event_txtCoureIDSearchCaretUpdate
+
+    private void txtSubjectIdSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtSubjectIdSearchCaretUpdate
+        // TODO add your handling code here:
+        loadData();
+}//GEN-LAST:event_txtSubjectIdSearchCaretUpdate
+
+    private void txtCoefficientSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtCoefficientSearchCaretUpdate
+        // TODO add your handling code here:
+        loadData();
+}//GEN-LAST:event_txtCoefficientSearchCaretUpdate
+
+    private void txtNameSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtNameSearchCaretUpdate
+        // TODO add your handling code here:
+        loadData();
+}//GEN-LAST:event_txtNameSearchCaretUpdate
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+        txtSubjectIdSearch.setText(null);
+        txtNameSearch.setText(null);
+        txtCoefficientSearch.setText(null);
+        txtCoureIDSearch.setText(null);
+}//GEN-LAST:event_btnResetActionPerformed
+
+    private void btnChooseCourIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseCourIDActionPerformed
+        // TODO add your handling code here:
+        dlgChoose dlg = new dlgChoose(frm, txtCoureID, true, 7);
+        dlg.setTitle("Browse Order");
+        dlg.setSize(868, 616);
+        dlg.setLocationRelativeTo(null);
+        dlg.setVisible(true);
+}//GEN-LAST:event_btnChooseCourIDActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        if (isAdd) {
+            isAdd = false;
+            btnUpdate.setEnabled(true);
+            btnDelete.setEnabled(true);
+            txtCoureID.setVisible(true);
+
+
+        } else if (isUpdate) {
+            isUpdate = false;
+            btnUpdate.setEnabled(true);
+            btnDelete.setEnabled(true);
+            txtCoureID.setVisible(true);
+            loadDetails(
+                    findSubject(txtSubjectId.getText()));
+
+
+        } else {
+            loadDetails(listSubject.get(0));
+
+
+        }
+}//GEN-LAST:event_btnCancelActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        String subjectid = txtSubjectId.getText();
+        if (subjectDao.delete(subjectid)) {
+            listSubject.remove(findSubject(subjectid));
+            loadData();
+            if (listSubject.size() != 0) {
+                loadDetails(listSubject.get(0));
+            }
+            JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Delete Subject", JOptionPane.INFORMATION_MESSAGE, null);
+        } else {
+            JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Delete Subject", JOptionPane.ERROR_MESSAGE, null);
+        }
+}//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        try {
+            if (!isUpdate) {
+                txtCoureID.setVisible(false);
+                isUpdate = true;
+
+
+            } else {
+                isUpdate = false;
+                String subjectId = txtSubjectId.getText();
+                String subjectName = txtName.getText();
+
+
+                int coefficient = Integer.parseInt(txtCoefficient.getText());
+                String courseId = txtCoureID.getText();
+                Subject subject = new Subject(subjectId, subjectName, coefficient, courseId);
+
+
+                if (subjectDao.update(subject)) {
+                    JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Update Subject", JOptionPane.INFORMATION_MESSAGE);
+                    listSubject.remove(findSubject(subjectId));
+                    listSubject.add(subject);
+                    loadData();
+                    loadDetails(subject);
+                } else {
+                    JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Update Subject", JOptionPane.ERROR_MESSAGE);
+
+
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+
+
+        }
+}//GEN-LAST:event_btnUpdateActionPerformed
+
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
         try {
@@ -731,154 +879,6 @@ public class pnlSubject extends javax.swing.JPanel {
         }
 }//GEN-LAST:event_btnAddActionPerformed
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
-        try {
-            if (!isUpdate) {
-                txtCoureID.setVisible(false);
-                isUpdate = true;
-
-
-            } else {
-                isUpdate = false;
-                String subjectId = txtSubjectId.getText();
-                String subjectName = txtName.getText();
-
-
-                int coefficient = Integer.parseInt(txtCoefficient.getText());
-                String courseId = txtCoureID.getText();
-                Subject subject = new Subject(subjectId, subjectName, coefficient, courseId);
-
-
-                if (subjectDao.update(subject)) {
-                    JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Update Subject", JOptionPane.INFORMATION_MESSAGE);
-                    listSubject.remove(findSubject(subjectId));
-                    listSubject.add(subject);
-                    loadData();
-                    loadDetails(subject);
-                } else {
-                    JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Update Subject", JOptionPane.ERROR_MESSAGE);
-
-
-                }
-            }
-        } catch (Exception e) {
-            System.out.println(e.toString());
-
-
-        }
-}//GEN-LAST:event_btnUpdateActionPerformed
-
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-        String subjectid = txtSubjectId.getText();
-        if (subjectDao.delete(subjectid)) {
-            listSubject.remove(findSubject(subjectid));
-            loadData();
-            if (listSubject.size() != 0) {
-                loadDetails(listSubject.get(0));
-            }
-            JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Delete Subject", JOptionPane.INFORMATION_MESSAGE, null);
-        } else {
-            JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Delete Subject", JOptionPane.ERROR_MESSAGE, null);
-        }
-}//GEN-LAST:event_btnDeleteActionPerformed
-
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        // TODO add your handling code here:
-        if (isAdd) {
-            isAdd = false;
-            btnUpdate.setEnabled(true);
-            btnDelete.setEnabled(true);
-            txtCoureID.setVisible(true);
-
-
-        } else if (isUpdate) {
-            isUpdate = false;
-            btnUpdate.setEnabled(true);
-            btnDelete.setEnabled(true);
-            txtCoureID.setVisible(true);
-            loadDetails(
-                    findSubject(txtSubjectId.getText()));
-
-
-        } else {
-            loadDetails(listSubject.get(0));
-
-
-        }
-}//GEN-LAST:event_btnCancelActionPerformed
-
-    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        // TODO add your handling code here:
-        txtSubjectIdSearch.setText(null);
-        txtNameSearch.setText(null);
-        txtCoefficientSearch.setText(null);
-        txtCoureIDSearch.setText(null);
-    }//GEN-LAST:event_btnResetActionPerformed
-
-    private void btnChooseCourIDSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseCourIDSearchActionPerformed
-        // TODO add your handling code here:
-        dlgChoose dlg = new dlgChoose(frm, txtCoureIDSearch, true, 7);
-        dlg.setTitle("Browse Order");
-        dlg.setSize(868, 616);
-        dlg.setLocationRelativeTo(null);
-        dlg.setVisible(true);
-    }//GEN-LAST:event_btnChooseCourIDSearchActionPerformed
-
-    private void btnChooseCourIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseCourIDActionPerformed
-        // TODO add your handling code here:
-        dlgChoose dlg = new dlgChoose(frm, txtCoureID, true, 7);
-        dlg.setTitle("Browse Order");
-        dlg.setSize(868, 616);
-        dlg.setLocationRelativeTo(null);
-        dlg.setVisible(true);
-    }//GEN-LAST:event_btnChooseCourIDActionPerformed
-
-    private void txtSubjectIdSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtSubjectIdSearchCaretUpdate
-        // TODO add your handling code here:
-        loadData();
-    }//GEN-LAST:event_txtSubjectIdSearchCaretUpdate
-
-    private void txtNameSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtNameSearchCaretUpdate
-        // TODO add your handling code here:
-        loadData();
-    }//GEN-LAST:event_txtNameSearchCaretUpdate
-
-    private void txtCoefficientSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtCoefficientSearchCaretUpdate
-        // TODO add your handling code here:
-        loadData();
-    }//GEN-LAST:event_txtCoefficientSearchCaretUpdate
-
-    private void txtCoureIDSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtCoureIDSearchCaretUpdate
-        // TODO add your handling code here:
-        loadData();
-    }//GEN-LAST:event_txtCoureIDSearchCaretUpdate
-
-    private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
-        // TODO add your handling code here:
-        btnUpdate.setEnabled(true);
-        btnDelete.setEnabled(true);
-        try {
-            // TODO add your handling code here:
-            int index = tableContent.getSelectedRow();
-            if (index != -1) {
-                String value = tableContent.getValueAt(index, 0).toString();
-                Subject subject = findSubject(value);
-                if (subject != null) {
-                    loadDetails(subject);
-                }
-            }
-        } catch (Exception ex) {
-            //TODO: chua xu ly
-        }
-
-    }//GEN-LAST:event_tableContentMouseReleased
-
-    private void srcPanelSubjectMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_srcPanelSubjectMouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_srcPanelSubjectMouseReleased
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
@@ -903,7 +903,7 @@ public class pnlSubject extends javax.swing.JPanel {
     private javax.swing.JPanel panelButton;
     private javax.swing.JPanel panelButtonSearch;
     private javax.swing.JPanel panelLeft;
-    private javax.swing.JPanel panelRight;
+    public javax.swing.JPanel panelRight;
     private javax.swing.JPanel panelRightSearch;
     public javax.swing.JPanel pnlEdit;
     public javax.swing.JPanel pnlSearch;
