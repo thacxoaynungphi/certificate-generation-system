@@ -33,10 +33,6 @@ public class CertificateReportManager extends ReportManager{
     private StudentDAO studentDAO;
     private int cerNumber;
     
-
-    public CertificateReportManager() {
-    }
-
     public CertificateReportManager(String studentId) {
         jasperFileName = "Certificate.jasper";
         registerDAO = new RegisterDAO();

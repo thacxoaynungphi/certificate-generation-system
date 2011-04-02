@@ -11,6 +11,7 @@
 package com.hueic.CerGS.ui.report;
 
 import com.hueic.CerGS.component.report.CertificateDevelopedReportManager;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,9 +21,9 @@ import javax.swing.JOptionPane;
 public class pnlCertificateDevelopedReport extends javax.swing.JPanel {
 
     /** Creates new form pnlCertificateDevelopedReport */
-    public pnlCertificateDevelopedReport() {
+    public pnlCertificateDevelopedReport(ArrayList listCer) {
         initComponents();
-        CertificateDevelopedReportManager cerDeveloped = new CertificateDevelopedReportManager();
+        CertificateDevelopedReportManager cerDeveloped = new CertificateDevelopedReportManager(listCer);
         try {
             this.add(cerDeveloped.getPanelViewer(true));
         } catch (Exception ex) {

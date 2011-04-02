@@ -20,9 +20,9 @@ public class EmployeeReportManager extends ReportManager{
 
     private EmployeeDAO employeeDAO;
     private ArrayList<Employee> listEmp;
-    public EmployeeReportManager(){
+    public EmployeeReportManager(ArrayList<Employee> listEmp){
         employeeDAO = new EmployeeDAO();
-        listEmp = employeeDAO.readByAll();
+        this.listEmp = listEmp;
 
         jasperFileName = "EmployeeList.jasper";
         dataCollection = getJRMapCollectionDataSource(listEmp);

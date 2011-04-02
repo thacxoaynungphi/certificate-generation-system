@@ -24,24 +24,13 @@ import javax.swing.JOptionPane;
  */
 public class pnlCertificateReport extends javax.swing.JPanel {
 
-    private int certificateId;
-    private String courseId;
-    private MarkDAO markDAO;
-    private RegisterDAO registerDAO;
-    private CertificateDAO cerDAO;
-    private Certificate cer;
     private CertificateReportManager cerReportManager;
 
     /** Creates new form pnlCertificate */
-    public pnlCertificateReport() {
+    public pnlCertificateReport(String studentId) {
         initComponents();
         setLayout(new BorderLayout());
-        registerDAO = new RegisterDAO();
-        cerDAO = new CertificateDAO();
-        cer = cerDAO.readByStudentId("CPISM7");
-        markDAO = new MarkDAO();
-        courseId = registerDAO.readByStudentId(cer.getStudentID()).getCourseId();
-        cerReportManager = new CertificateReportManager("CPISM7");
+        cerReportManager = new CertificateReportManager(studentId);
 
         try {
             this.add(cerReportManager.getPanelViewer(true));
