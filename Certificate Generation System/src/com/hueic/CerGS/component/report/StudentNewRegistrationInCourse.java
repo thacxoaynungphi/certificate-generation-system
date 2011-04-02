@@ -10,6 +10,7 @@ import com.hueic.CerGS.dao.MarkDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.dao.StudentDAO;
 import com.hueic.CerGS.entity.Register;
+import com.hueic.CerGS.entity.Student;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,8 +28,7 @@ public class StudentNewRegistrationInCourse extends ReportManager{
     private StudentDAO studentDAO;
     private MarkDAO markDAO;
 
-    public StudentNewRegistrationInCourse(String courseId) {
-        this.courseId = courseId;
+    public StudentNewRegistrationInCourse(ArrayList<Student> listStudent) {
         registerDAO = new RegisterDAO();
         studentDAO = new StudentDAO();
         markDAO = new MarkDAO();
