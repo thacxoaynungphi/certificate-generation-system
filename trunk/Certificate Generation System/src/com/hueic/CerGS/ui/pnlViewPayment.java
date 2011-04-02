@@ -311,9 +311,9 @@ public class pnlViewPayment extends javax.swing.JPanel {
 
         filterText.setMinimumSize(new java.awt.Dimension(150, 20));
         filterText.setPreferredSize(new java.awt.Dimension(150, 20));
-        filterText.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                filterTextKeyPressed(evt);
+        filterText.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                filterTextCaretUpdate(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -376,13 +376,6 @@ public class pnlViewPayment extends javax.swing.JPanel {
         // TODO add your handling code here:
 }//GEN-LAST:event_btnCancelActionPerformed
 
-    private void filterTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextKeyPressed
-        // TODO add your handling code here:
-        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-            searchStart();
-        }
-}//GEN-LAST:event_filterTextKeyPressed
-
     public void searchStart() {
         if (!listPayments.isEmpty()) {
             String text = filterText.getText();
@@ -403,6 +396,12 @@ public class pnlViewPayment extends javax.swing.JPanel {
         // TODO add your handling code here:
         searchStart();
 }//GEN-LAST:event_btnFilterActionPerformed
+
+    private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
+        // TODO add your handling code here:
+         searchStart();
+    }//GEN-LAST:event_filterTextCaretUpdate
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnFilter;
