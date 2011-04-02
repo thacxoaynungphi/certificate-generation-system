@@ -21,7 +21,7 @@ import org.apache.commons.collections.FastHashMap;
  *
  * @author Wind
  */
-public class StudentFeeReportManager extends ReportManager {
+public class StudentFeesInCourseReportManager extends ReportManager {
 
     private String courseId;
     private StudentDAO studentDAO;
@@ -29,15 +29,15 @@ public class StudentFeeReportManager extends ReportManager {
     private RegisterDAO registerDAO;
     private ArrayList<Payment> listPayment;
 
-    public StudentFeeReportManager(ArrayList<Payment> listPayment){
+    public StudentFeesInCourseReportManager(ArrayList<Payment> listPayment){
         studentDAO = new StudentDAO();
         courseDAO = new CourseDAO();
         registerDAO = new RegisterDAO();
 
         this.listPayment = listPayment;
-        jasperFileName = "StudentFees.jasper";
-        getDataSourse();
-        getParameterMap();
+        jasperFileName = "StudentFeesInCourse.jasper";
+        dataCollection = getDataSourse();
+        parameterMap = getParameterMap();
     }
 
     private HashMap getParameterMap(){
@@ -46,7 +46,7 @@ public class StudentFeeReportManager extends ReportManager {
         parameterMap.put("COURSE", "COURSE");
         parameterMap.put("ID", "Student's Code");
         parameterMap.put("NAME", "Student's Name");
-        parameterMap.put("PAYMENT", "PAID");
+        parameterMap.put("PAYMENT", "Paid");
         parameterMap.put("ARREARS", "Arrears");
 
         return parameterMap;

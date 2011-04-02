@@ -23,6 +23,7 @@ public class SubjectReportManager extends ReportManager {
         this.listSub = listSub;
         courseDAO = new CourseDAO();
 
+        jasperFileName = "Subject.jasper";
         parameterMap = getParameterMap();
         dataCollection = getJRDataSourse();
     }

@@ -11,6 +11,8 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -48,33 +50,35 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
         }
     }
 
-    public ArrayList<Payment> readByID(int id) {
-        ArrayList<Payment> result = new ArrayList<Payment>();
+    public Payment readByID(int id) {
         con = db.getConnection();
         String sqlcommand = "select * from Payment where id = ?";
-
+        Payment pay = null;
         try {
             pst = con.prepareStatement(sqlcommand);
             pst.setInt(1, id);
             rs = pst.executeQuery();
 
-            while (rs.next()) {
-                Payment pay = new Payment();
+            if (rs.next()) {
+                pay = new Payment();
                 pay.setId(rs.getInt("Id"));
                 pay.setStudentId(rs.getString("StudentId"));
                 pay.setMoney(rs.getFloat("Money"));
                 pay.setPayday(rs.getDate("Payday"));
 
-                result.add(pay);
             }
 
             setLastError("read data successful");
+
         } catch (SQLException ex) {
             setLastError("SQL Error");
+        } catch (Exception ex) {
+            setLastError(ex.toString());
         } finally {
             db.closeConnection();
-            return result;
+
         }
+        return pay;
     }
 
     public ArrayList<Payment> readByStudentId(String studentID) {
