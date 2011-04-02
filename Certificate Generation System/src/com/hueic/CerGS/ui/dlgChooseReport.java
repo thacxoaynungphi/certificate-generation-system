@@ -48,8 +48,8 @@ public class dlgChooseReport extends javax.swing.JPanel {
         this.parent = parent;
         switch (type) {
             case 0:
-                //cerReport = new pnlCertificateReport();
-                //  this.pnlBrowser = cerReport;
+                cerReport = new pnlCertificateReport();
+                this.pnlBrowser = cerReport;
                 break;
             case 1:
                 cerDevReport = new pnlCertificateDevelopedReport();

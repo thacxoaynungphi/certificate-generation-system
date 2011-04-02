@@ -20,6 +20,7 @@ import com.hueic.CerGS.entity.Mark;
 import com.hueic.CerGS.entity.Register;
 import java.util.ArrayList;
 import java.util.regex.PatternSyntaxException;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
@@ -46,9 +47,11 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
     private ArrayList<Mark> listMark;
     private ObjectTableModel tableModel;
     private JTable headerTable;
+    frmMain frm;
 
-    public pnlDevelopDegree() {
+    public pnlDevelopDegree(frmMain main) {
         initComponents();
+        this.frm = main;
         courseDAO = new CourseDAO();
         registerDAO = new RegisterDAO();
         markDAO = new MarkDAO();
@@ -223,6 +226,11 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
         btnCreate.setText("Create");
         btnCreate.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnCreate.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateActionPerformed(evt);
+            }
+        });
         pnlButton.add(btnCreate);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
@@ -377,6 +385,16 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
         // TODO add your handling code here:
         searchStart();
     }//GEN-LAST:event_filterTextCaretUpdate
+
+    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+        // TODO add your handling code here:
+        frm.pnlReport.removeAll();
+        JPanel report = new dlgChooseReport(frm, this, 6);
+        report.setVisible(true);
+        report.setSize(860, 600);
+        frm.pnlReport.add(report);
+        frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+    }//GEN-LAST:event_btnCreateActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnCreate;

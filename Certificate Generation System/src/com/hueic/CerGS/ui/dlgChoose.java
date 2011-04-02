@@ -127,6 +127,7 @@ public class dlgChoose extends javax.swing.JDialog {
         btnCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         javax.swing.GroupLayout pnlManagementLayout = new javax.swing.GroupLayout(pnlManagement);
         pnlManagement.setLayout(pnlManagementLayout);
