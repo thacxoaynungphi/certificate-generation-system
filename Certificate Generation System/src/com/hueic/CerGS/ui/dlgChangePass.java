@@ -23,10 +23,14 @@ import javax.swing.JOptionPane;
 public class dlgChangePass extends javax.swing.JDialog {
 
     /** Creates new form dlgChangePass */
-    public dlgChangePass(java.awt.Frame parent, boolean modal) {
+    Account account;
+
+    public dlgChangePass(java.awt.Frame parent, boolean modal, Account acc) {
         super(parent, modal);
+        this.account = acc;
         initComponents();
         setLocationRelativeTo(null);
+        txtUsername.setText(account.getUsername());
     }
 
     /** This method is called from within the constructor to
@@ -105,6 +109,7 @@ public class dlgChangePass extends javax.swing.JDialog {
         panelContent.add(lblConfirmpass, gridBagConstraints);
 
         txtUsername.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtUsername.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -236,6 +241,7 @@ public class dlgChangePass extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void btnChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeActionPerformed
         // TODO add your handling code here:
         String username = txtUsername.getText();
@@ -276,21 +282,7 @@ public class dlgChangePass extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                dlgChangePass dialog = new dlgChangePass(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnChange;

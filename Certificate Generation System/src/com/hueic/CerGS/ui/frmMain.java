@@ -799,7 +799,7 @@ public class frmMain extends javax.swing.JFrame {
     private void menuIChangePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIChangePassActionPerformed
         // TODO add your handling code here:
         if (accCur != null) {
-            dlgChangePass changePass = new dlgChangePass(this, true);
+            dlgChangePass changePass = new dlgChangePass(this, true, this.accCur);
             changePass.setVisible(true);
         }
     }//GEN-LAST:event_menuIChangePassActionPerformed
