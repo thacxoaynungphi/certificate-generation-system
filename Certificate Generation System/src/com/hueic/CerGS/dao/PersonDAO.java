@@ -113,7 +113,8 @@ public class PersonDAO extends BaseDAO implements IPersonDAO {
         boolean status = false;
         try {
             con = db.getConnection();
-            String sql = "insert into Person(Id,FirstName,LastName,Birthday,Gender,Phone,Email,Address,Image,Status)" + " values (?,?,?,?,?,?,?); ";
+            String sql = "insert into Person(Id,FirstName,LastName,Birthday,Gender,Phone,Email,Address,Image,Status)" 
+                    + " values (?,?,?,?,?,?,?, ?, ?, ?); ";
             pst = con.prepareStatement(sql);
             pst.setString(1, person.getId());
             pst.setString(2, person.getFirstName());
@@ -132,7 +133,7 @@ public class PersonDAO extends BaseDAO implements IPersonDAO {
                 setLastError("Add Person unuccessfully");
             }
         } catch (SQLException ex) {
-            setLastError("SQL Error!");
+            setLastError(ex.toString());
         } finally {
             db.closeConnection();
         }

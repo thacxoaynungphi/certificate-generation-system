@@ -160,15 +160,20 @@ public class EmployeeDAO extends BaseDAO implements IEmployeeDAO {
         PersonDAO personDAO = new PersonDAO();
         if (personDAO.create(person)) {
             try {
+                System.out.println("0");
                 con = db.getConnection();
                 String sql = "insert into Employee(Id,BeginWork)" + " values (?,?); ";
                 pst = con.prepareStatement(sql);
                 pst.setString(1, emp.getId());
                 pst.setDate(2, new java.sql.Date(emp.getBeginWork().getTime()));
+                System.out.println("1");
                 if (pst.executeUpdate() > 0) {
+                    System.out.println("2");
                     setLastError("Add Employee Successfully");
                     status = true;
                 } else {
+                    System.out.println("3");
+                    personDAO.delete(emp.getId());
                     setLastError("Add Employee unuccessfully");
                 }
             } catch (SQLException ex) {
@@ -177,7 +182,7 @@ public class EmployeeDAO extends BaseDAO implements IEmployeeDAO {
                 db.closeConnection();
             }
         } else {
-            setLastError("Add Employee unsuccessfully");
+            setLastError(personDAO.getLastError());
         }
         return status;
     }
@@ -193,8 +198,8 @@ public class EmployeeDAO extends BaseDAO implements IEmployeeDAO {
                 pst = con.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
                 pst.setString(1, person.getId());
                 rs = pst.executeQuery();
-                if (rs.first()) {
-                    rs.updateDate(2, new java.sql.Date(emp.getBeginWork().getTime()));
+                if (rs.next()) {
+                    rs.updateDate(2, emp.getBeginWork());
                     rs.updateRow();
                     setLastError("Update Employee successfully");
                     status = true;
@@ -202,7 +207,7 @@ public class EmployeeDAO extends BaseDAO implements IEmployeeDAO {
                     setLastError("Update Employee unsuccessfully");
                 }
             } catch (SQLException ex) {
-                setLastError("SQL Error!");
+                setLastError(ex.toString());
             } finally {
                 db.closeConnection();
             }

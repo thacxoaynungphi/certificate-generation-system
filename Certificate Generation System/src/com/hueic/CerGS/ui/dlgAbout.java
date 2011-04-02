@@ -14,10 +14,10 @@ package com.hueic.CerGS.ui;
  *
  * @author nhchung
  */
-public class dlgAbount extends javax.swing.JDialog {
+public class dlgAbout extends javax.swing.JDialog {
 
     /** Creates new form dlgAbount */
-    public dlgAbount(java.awt.Frame parent, boolean modal) {
+    public dlgAbout(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
@@ -137,7 +137,7 @@ public class dlgAbount extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                dlgAbount dialog = new dlgAbount(new javax.swing.JFrame(), true);
+                dlgAbout dialog = new dlgAbout(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
                     public void windowClosing(java.awt.event.WindowEvent e) {
