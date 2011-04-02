@@ -8,9 +8,10 @@
  *
  * Created on Apr 2, 2011, 9:30:44 AM
  */
-
 package com.hueic.CerGS.ui;
-import com.hueic.CerGS.component.IconSystem;
+
+import com.hueic.CerGS.component.ColumnData;
+import com.hueic.CerGS.component.ObjectTableModel;
 import com.hueic.CerGS.dao.CourseDAO;
 import com.hueic.CerGS.dao.MarkDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
@@ -26,9 +27,11 @@ import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author qhvic
@@ -43,6 +46,8 @@ public class pnlViewMark extends javax.swing.JPanel {
     private RegisterDAO registerDao;
     public ArrayList<Course> listCourse;
     public ArrayList<Register> listRegister;
+    private ObjectTableModel tableModel;
+    private JTable headerTable;
 
     public pnlViewMark() {
         initComponents();
@@ -58,56 +63,25 @@ public class pnlViewMark extends javax.swing.JPanel {
     }
 
     public void loadData(ArrayList<Mark> listMarks) {
-        String[] columns = {"Id", "StudentId", "StudentName", "SubjectId", "Mark"};
-        Object[][] rows = new Object[listMarks.size()][5];
-        int index = 0;
-        for (int i = 0; i < listMarks.size(); i++) {
-            Mark mark = listMarks.get(i);
-            String id = new RegisterDAO().readByStudentId(mark.getStudentId()).getId();
-            rows[index][0] = mark.getId();
-            rows[index][1] = mark.getStudentId();
-            rows[index][2] = new StudentDAO().readByID(id).getFullName();
-            rows[index][3] = mark.getSubjectId();
-            rows[index][4] = mark.getMark();
-            index++;
-        }
-        TableModel model = new DefaultTableModel(rows, columns) {
-
-            public Class getColumnClass(int column) {
-                Class returnValue;
-                if ((column >= 0) && (column < getColumnCount())) {
-                    returnValue = getValueAt(0, column).getClass();
-                } else {
-                    returnValue = Object.class;
-                }
-                return returnValue;
-            }
-            boolean[] canEdit = new boolean[]{
-                false, false, false, false, false
-            };
-
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return canEdit[column];
-            }
-        };
-        tableContent = new JTable(model);
-        tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
-
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableContentMouseClicked(evt);
-            }
-        });
-        sorter = new TableRowSorter<TableModel>(model);
+        ColumnData[] columns = {
+            new ColumnData("ID", 135, SwingConstants.LEFT, 1),
+            new ColumnData("Student ID", 100, SwingConstants.LEFT, 2),
+            new ColumnData("Mark", 140, SwingConstants.LEFT, 3),
+            new ColumnData("Degree Day", 170, SwingConstants.LEFT, 4),};
+        tableModel = new ObjectTableModel(tableContent, columns, listMarks);
+        sorter = new TableRowSorter<TableModel>(tableModel);
         tableContent.setRowSorter(sorter);
+        headerTable = tableModel.getHeaderTable();
+        // Create numbering column
+        headerTable.createDefaultColumnsFromModel();
         tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        JViewport viewPort = new JViewport();
-        viewPort.setView(tableContent);
-        viewPort.setPreferredSize(tableContent.getMaximumSize());
-        srcPanelViewMark.setRowHeader(viewPort);
-        srcPanelViewMark.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        srcPanelViewMark.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-        srcPanelViewMark.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
+        // Put it in a viewport that we can control a bit
+        JViewport viewport = new JViewport();
+        // Display numbering column
+        viewport.setView(headerTable);
+        viewport.setPreferredSize(headerTable.getMaximumSize());
+        srcPanelViewMark.setRowHeader(viewport);
+        srcPanelViewMark.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, headerTable.getTableHeader());
     }
 
     public void load(ArrayList<Mark> listMarks, String courseId, String studentid) {
@@ -120,10 +94,6 @@ public class pnlViewMark extends javax.swing.JPanel {
         if (listMarks != null) {
             loadData(listMarks);
         }
-
-    }
-
-    private void tableContentMouseClicked(MouseEvent evt) {
     }
 
     public void loadDataCBXCourse() {
@@ -151,6 +121,7 @@ public class pnlViewMark extends javax.swing.JPanel {
             }
         }
     }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -170,7 +141,6 @@ public class pnlViewMark extends javax.swing.JPanel {
         tableContent = new javax.swing.JTable();
         panel3 = new javax.swing.JPanel();
         btnReport = new javax.swing.JButton();
-        btnCancel = new javax.swing.JButton();
         lblFilter = new javax.swing.JLabel();
         filterText = new javax.swing.JTextField();
         btnFilter = new javax.swing.JButton();
@@ -257,24 +227,16 @@ public class pnlViewMark extends javax.swing.JPanel {
 
         panel3.setBackground(new java.awt.Color(255, 255, 255));
         panel3.setMinimumSize(new java.awt.Dimension(160, 35));
-        panel3.setPreferredSize(new java.awt.Dimension(160, 30));
+        panel3.setPreferredSize(new java.awt.Dimension(160, 35));
+        panel3.setLayout(new java.awt.GridBagLayout());
 
         btnReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
         btnReport.setText("Report");
         btnReport.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnReport.setPreferredSize(new java.awt.Dimension(75, 23));
-        panel3.add(btnReport);
-
-        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
-        btnCancel.setText("Cancel");
-        btnCancel.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnCancel.setPreferredSize(new java.awt.Dimension(75, 23));
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelActionPerformed(evt);
-            }
-        });
-        panel3.add(btnCancel);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        panel3.add(btnReport, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -295,9 +257,9 @@ public class pnlViewMark extends javax.swing.JPanel {
 
         filterText.setMinimumSize(new java.awt.Dimension(150, 20));
         filterText.setPreferredSize(new java.awt.Dimension(150, 20));
-        filterText.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                filterTextKeyPressed(evt);
+        filterText.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                filterTextCaretUpdate(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -356,18 +318,7 @@ public class pnlViewMark extends javax.swing.JPanel {
         }
 }//GEN-LAST:event_cbxStudentIDItemStateChanged
 
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_btnCancelActionPerformed
-
-    private void filterTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextKeyPressed
-        // TODO add your handling code here:
-        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-            searchStart();
-        }
-}//GEN-LAST:event_filterTextKeyPressed
-
-        public void searchStart() {
+    public void searchStart() {
         if (!listMarks.isEmpty()) {
             String text = filterText.getText();
             System.out.println("Text :" + text);
@@ -388,9 +339,11 @@ public class pnlViewMark extends javax.swing.JPanel {
         searchStart();
 }//GEN-LAST:event_btnFilterActionPerformed
 
-
+    private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
+        // TODO add your handling code here:
+        searchStart();
+    }//GEN-LAST:event_filterTextCaretUpdate
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnFilter;
     private javax.swing.JButton btnReport;
     private javax.swing.JComboBox cbxCourseID;
@@ -404,5 +357,4 @@ public class pnlViewMark extends javax.swing.JPanel {
     private javax.swing.JScrollPane srcPanelViewMark;
     private javax.swing.JTable tableContent;
     // End of variables declaration//GEN-END:variables
-
 }
