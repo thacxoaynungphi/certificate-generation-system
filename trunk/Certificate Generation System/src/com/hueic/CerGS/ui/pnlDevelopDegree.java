@@ -389,7 +389,8 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
         frm.pnlReport.removeAll();
-        JPanel report = new dlgChooseReport(frm, this, 6);
+        JPanel report = new dlgChooseReport(frm, this,0, this.cbxStudentID.getSelectedItem().toString(), null, null, null);
+        System.out.println("Hi : " + this.cbxStudentID.getSelectedItem().toString());
         report.setVisible(true);
         report.setSize(860, 600);
         frm.pnlReport.add(report);

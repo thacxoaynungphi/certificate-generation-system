@@ -839,9 +839,9 @@ public class pnlMark extends javax.swing.JPanel {
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
         // TODO add your handling code here:
         frm.pnlReport.removeAll();
-        JPanel report = new dlgChooseReport(frm,this,6);
+        JPanel report = new dlgChooseReport(frm, this, 6, null, null, null, null);
         report.setVisible(true);
-        report.setSize(860,600);
+        report.setSize(860, 600);
         frm.pnlReport.add(report);
         frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
     }//GEN-LAST:event_btnReportActionPerformed

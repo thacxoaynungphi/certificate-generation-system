@@ -10,6 +10,10 @@
  */
 package com.hueic.CerGS.ui;
 
+import com.hueic.CerGS.entity.Certificate;
+import com.hueic.CerGS.entity.Employee;
+import com.hueic.CerGS.entity.Payment;
+import com.hueic.CerGS.entity.Student;
 import com.hueic.CerGS.ui.report.pnlCertificateDevelopedReport;
 import com.hueic.CerGS.ui.report.pnlCertificateReport;
 import com.hueic.CerGS.ui.report.pnlEmployeeReport;
@@ -18,6 +22,7 @@ import com.hueic.CerGS.ui.report.pnlStudentMarkReport;
 import com.hueic.CerGS.ui.report.pnlStudentNewRegistrationReport;
 import com.hueic.CerGS.ui.report.pnlStudentReport;
 import com.hueic.CerGS.ui.report.pnlSubjectInCourseReport;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 
 /**
@@ -41,25 +46,25 @@ public class dlgChooseReport extends javax.swing.JPanel {
     frmMain parent;
 
     /** Creates new form dlgChooseReport */
-    public dlgChooseReport(frmMain parent, JPanel pnlOld, int type) {
+    public dlgChooseReport(frmMain parent, JPanel pnlOld, int type, String studentId, ArrayList<Payment> listPayment, ArrayList<Certificate> listCer, ArrayList<Employee> listEmp) {
         initComponents();
         this.pnlOld = pnlOld;
         this.parent = parent;
         switch (type) {
             case 0:
-                cerReport = new pnlCertificateReport();
+                cerReport = new pnlCertificateReport(studentId);
                 this.pnlBrowser = cerReport;
                 break;
             case 1:
-                cerDevReport = new pnlCertificateDevelopedReport();
+                cerDevReport = new pnlCertificateDevelopedReport(listCer);
                 this.pnlBrowser = cerDevReport;
                 break;
             case 2:
-                empReport = new pnlEmployeeReport();
+                empReport = new pnlEmployeeReport(listEmp);
                 this.pnlBrowser = empReport;
                 break;
             case 3:
-                feeReport = new pnlStudentFeeReport(courseId);
+                feeReport = new pnlStudentFeeReport(listPayment);
                 this.pnlBrowser = feeReport;
                 break;
             case 4:
@@ -82,9 +87,6 @@ public class dlgChooseReport extends javax.swing.JPanel {
         }
     }
 
-    public JPanel getViewer() {
-        return this.pnlBrowser;
-    }
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -126,6 +128,7 @@ public class dlgChooseReport extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
         add(pnlButton, gridBagConstraints);
 
+        pnlBrowser.setBackground(new java.awt.Color(255, 255, 255));
         pnlBrowser.setMinimumSize(new java.awt.Dimension(860, 550));
         pnlBrowser.setPreferredSize(new java.awt.Dimension(860, 550));
         pnlBrowser.setLayout(new java.awt.BorderLayout());

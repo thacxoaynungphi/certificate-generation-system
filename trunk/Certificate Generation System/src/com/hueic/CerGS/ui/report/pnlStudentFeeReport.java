@@ -23,16 +23,15 @@ import javax.swing.JOptionPane;
 public class pnlStudentFeeReport extends javax.swing.JPanel {
 
     /** Creates new form pnlStudentFeeReport */
-    public pnlStudentFeeReport(ArrayList<Payment> listStudent) {
+    public pnlStudentFeeReport(ArrayList<Payment> listPayment) {
         initComponents();
-        StudentFeeReportManager studentFee = new StudentFeeReportManager(listStudent);
+        StudentFeeReportManager studentFee = new StudentFeeReportManager(listPayment);
         try {
             this.add(studentFee.getPanelViewer(true));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.toString(), "Report Message", JOptionPane.ERROR_MESSAGE);
         }
-        setSize(1000, 700);
-         this.setSize(860, 580);
+        this.setSize(860, 550);
         this.setVisible(true);
     }
 

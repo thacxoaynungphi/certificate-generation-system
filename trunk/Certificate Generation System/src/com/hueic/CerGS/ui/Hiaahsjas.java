@@ -10,6 +10,9 @@
  */
 package com.hueic.CerGS.ui;
 
+import com.hueic.CerGS.ui.report.pnlCertificateReport;
+import javax.swing.JPanel;
+
 /**
  *
  * @author nhchung
@@ -19,8 +22,10 @@ public class Hiaahsjas extends javax.swing.JFrame {
     /** Creates new form Hiaahsjas */
     public Hiaahsjas() {
         initComponents();
-        pnlSubject subject = new pnlSubject();
-        this.add(subject);
+        //pnlSubject subject = new pnlSubject();
+        JPanel report = new pnlCertificateReport("CPISM2");
+        this.add(report);
+       // this.add(subject);
         this.setSize(860, 600);
         this.setVisible(true);
 
