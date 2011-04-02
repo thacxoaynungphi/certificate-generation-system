@@ -131,6 +131,7 @@ public class frmMain extends javax.swing.JFrame {
         mnuILoginSystem = new javax.swing.JMenuItem();
         mnuILogoutSystem = new javax.swing.JMenuItem();
         menuIChangePass = new javax.swing.JMenuItem();
+        mnuIConfiguration = new javax.swing.JMenuItem();
         mnuOptions = new javax.swing.JMenu();
         mnuSkin = new javax.swing.JMenu();
         radioWindows = new javax.swing.JRadioButtonMenuItem();
@@ -524,6 +525,15 @@ public class frmMain extends javax.swing.JFrame {
             }
         });
         mnuSystem.add(menuIChangePass);
+
+        mnuIConfiguration.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.ALT_MASK));
+        mnuIConfiguration.setText("Configuration DB");
+        mnuIConfiguration.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuIConfigurationActionPerformed(evt);
+            }
+        });
+        mnuSystem.add(mnuIConfiguration);
 
         mnuOptions.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/gear.png"))); // NOI18N
         mnuOptions.setText("Options");
@@ -1011,6 +1021,12 @@ public class frmMain extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jideBtnReportActionPerformed
 
+    private void mnuIConfigurationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuIConfigurationActionPerformed
+        // TODO add your handling code here:
+        dlgConfigurationDB configurationDB = new dlgConfigurationDB(this, true);
+        configurationDB.setVisible(true);
+    }//GEN-LAST:event_mnuIConfigurationActionPerformed
+
     public void isLogout() {
 //        pnlHome.removeAll();
 //        pnlHome.add(homeAdmin);
@@ -1197,6 +1213,7 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JMenuBar mnuBSystem;
     private javax.swing.JMenu mnuHelp;
     private javax.swing.JMenuItem mnuIAbout;
+    private javax.swing.JMenuItem mnuIConfiguration;
     private javax.swing.JMenuItem mnuIExit;
     private javax.swing.JMenuItem mnuIHelpContent;
     private javax.swing.JMenuItem mnuILoginSystem;

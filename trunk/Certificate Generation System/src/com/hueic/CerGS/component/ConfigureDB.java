@@ -41,19 +41,20 @@ public class ConfigureDB {
                     config.setPassword(properties.getProperty("password"));
                 }
             } catch (Exception ex) {
-                Logger.getLogger(RememberAccount.class.getName()).log(Level.SEVERE, null, ex);
+                
             } finally {
                 try {
                     fis.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(RememberAccount.class.getName()).log(Level.SEVERE, null, ex);
+                   
                 }
             }
         }
         return config;
     }
 
-    public void writeFile(Configure config) {
+    public boolean writeFile(Configure config) {
+        boolean status = false;
         FileOutputStream fos = null;
         try {
             Properties properties = new Properties();
@@ -65,15 +66,15 @@ public class ConfigureDB {
             File file = new File(fileName);
             fos = new FileOutputStream(file, false);
             properties.store(fos, null);
+            status = true;
         } catch (IOException ex) {
-            Logger.getLogger(RememberAccount.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 fos.close();
             } catch (IOException ex) {
-                Logger.getLogger(RememberAccount.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        return status;
     }
 
     //xoa cac du lieu tai khoan da dang nhap vo trong tai khoan
@@ -86,12 +87,12 @@ public class ConfigureDB {
             properties.load(fis);
             properties.clear();
         } catch (IOException ex) {
-            Logger.getLogger(RememberAccount.class.getName()).log(Level.SEVERE, null, ex);
+            
         } finally {
             try {
                 fis.close();
             } catch (IOException ex) {
-                Logger.getLogger(RememberAccount.class.getName()).log(Level.SEVERE, null, ex);
+               
             }
         }
     }
