@@ -181,9 +181,12 @@ public class pnlEmployee extends javax.swing.JPanel {
         lblCount = new javax.swing.JLabel();
         filterText = new javax.swing.JTextField();
         btnFilter = new javax.swing.JButton();
+        lblEnterFilter = new javax.swing.JLabel();
         panelContent = new javax.swing.JPanel();
         srcPaneEmployee = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
+        pnlButtonReport = new javax.swing.JPanel();
+        btnReport = new javax.swing.JButton();
 
         setMinimumSize(new java.awt.Dimension(800, 600));
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -767,7 +770,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 20);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelDisplay.add(lblCount, gridBagConstraints);
 
         filterText.setMinimumSize(new java.awt.Dimension(200, 20));
@@ -778,10 +781,10 @@ public class pnlEmployee extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 400, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelDisplay.add(filterText, gridBagConstraints);
 
         btnFilter.setText("Filter");
@@ -794,11 +797,19 @@ public class pnlEmployee extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelDisplay.add(btnFilter, gridBagConstraints);
+
+        lblEnterFilter.setText("Enter filter:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 360, 5, 5);
+        panelDisplay.add(lblEnterFilter, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -811,9 +822,9 @@ public class pnlEmployee extends javax.swing.JPanel {
         panelContent.setPreferredSize(new java.awt.Dimension(860, 250));
         panelContent.setLayout(new java.awt.GridBagLayout());
 
-        srcPaneEmployee.setMinimumSize(new java.awt.Dimension(840, 240));
+        srcPaneEmployee.setMinimumSize(new java.awt.Dimension(840, 200));
         srcPaneEmployee.setOpaque(false);
-        srcPaneEmployee.setPreferredSize(new java.awt.Dimension(840, 240));
+        srcPaneEmployee.setPreferredSize(new java.awt.Dimension(840, 200));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -826,8 +837,8 @@ public class pnlEmployee extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tableContent.setMinimumSize(new java.awt.Dimension(770, 240));
-        tableContent.setPreferredSize(new java.awt.Dimension(770, 240));
+        tableContent.setMinimumSize(new java.awt.Dimension(770, 200));
+        tableContent.setPreferredSize(new java.awt.Dimension(770, 200));
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableContentMouseClicked(evt);
@@ -835,7 +846,26 @@ public class pnlEmployee extends javax.swing.JPanel {
         });
         srcPaneEmployee.setViewportView(tableContent);
 
-        panelContent.add(srcPaneEmployee, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelContent.add(srcPaneEmployee, gridBagConstraints);
+
+        pnlButtonReport.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
+        btnReport.setText("Report");
+        btnReport.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnReport.setMaximumSize(new java.awt.Dimension(75, 23));
+        btnReport.setMinimumSize(new java.awt.Dimension(75, 23));
+        btnReport.setPreferredSize(new java.awt.Dimension(75, 23));
+        pnlButtonReport.add(btnReport);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
+        panelContent.add(pnlButtonReport, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1047,6 +1077,7 @@ public class pnlEmployee extends javax.swing.JPanel {
     private javax.swing.JButton btnFilter;
     private javax.swing.ButtonGroup btnGGender1;
     private javax.swing.ButtonGroup btnGGender2;
+    private javax.swing.JButton btnReport;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
     private com.toedter.calendar.JDateChooser dateChooserDateEnd;
@@ -1059,6 +1090,7 @@ public class pnlEmployee extends javax.swing.JPanel {
     private javax.swing.JLabel lblCount;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblEmployeeID;
+    private javax.swing.JLabel lblEnterFilter;
     private javax.swing.JLabel lblFirstName;
     private javax.swing.JLabel lblFirstname;
     private javax.swing.JLabel lblGender;
@@ -1080,6 +1112,7 @@ public class pnlEmployee extends javax.swing.JPanel {
     private javax.swing.JPanel panelContent;
     private javax.swing.JPanel panelDisplay;
     private javax.swing.JPanel pnlButtonEdit;
+    private javax.swing.JPanel pnlButtonReport;
     private javax.swing.JPanel pnlButtonSearch;
     private javax.swing.JPanel pnlDown;
     public javax.swing.JPanel pnlEdit;

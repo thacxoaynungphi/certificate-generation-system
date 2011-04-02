@@ -182,6 +182,9 @@ public class pnlCertificate extends javax.swing.JPanel {
         tableContent = new javax.swing.JTable();
         filterText = new javax.swing.JTextField();
         btnFilter = new javax.swing.JButton();
+        lblEnterFilter = new javax.swing.JLabel();
+        pnlButtonReport = new javax.swing.JPanel();
+        btnReport = new javax.swing.JButton();
 
         setLayout(new java.awt.GridBagLayout());
 
@@ -533,8 +536,8 @@ public class pnlCertificate extends javax.swing.JPanel {
         pnlDown.setPreferredSize(new java.awt.Dimension(860, 400));
         pnlDown.setLayout(new java.awt.GridBagLayout());
 
-        srcPanelCertificate.setMinimumSize(new java.awt.Dimension(840, 340));
-        srcPanelCertificate.setPreferredSize(new java.awt.Dimension(840, 340));
+        srcPanelCertificate.setMinimumSize(new java.awt.Dimension(840, 300));
+        srcPanelCertificate.setPreferredSize(new java.awt.Dimension(840, 300));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -547,8 +550,8 @@ public class pnlCertificate extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tableContent.setMinimumSize(new java.awt.Dimension(770, 340));
-        tableContent.setPreferredSize(new java.awt.Dimension(770, 340));
+        tableContent.setMinimumSize(new java.awt.Dimension(770, 300));
+        tableContent.setPreferredSize(new java.awt.Dimension(770, 300));
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 tableContentMouseReleased(evt);
@@ -559,7 +562,7 @@ public class pnlCertificate extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlDown.add(srcPanelCertificate, gridBagConstraints);
 
@@ -576,10 +579,10 @@ public class pnlCertificate extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 560, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlDown.add(filterText, gridBagConstraints);
 
         btnFilter.setText("Filter");
@@ -592,11 +595,36 @@ public class pnlCertificate extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlDown.add(btnFilter, gridBagConstraints);
+
+        lblEnterFilter.setText("Enter filter:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 490, 5, 5);
+        pnlDown.add(lblEnterFilter, gridBagConstraints);
+
+        pnlButtonReport.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
+        btnReport.setText("Report");
+        btnReport.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnReport.setMaximumSize(new java.awt.Dimension(75, 23));
+        btnReport.setMinimumSize(new java.awt.Dimension(75, 23));
+        btnReport.setPreferredSize(new java.awt.Dimension(75, 23));
+        pnlButtonReport.add(btnReport);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
+        pnlDown.add(pnlButtonReport, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -771,6 +799,7 @@ public class pnlCertificate extends javax.swing.JPanel {
     private javax.swing.JButton btnChooseStudentIdSearch;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnFilter;
+    private javax.swing.JButton btnReport;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnUpdate;
     private com.toedter.calendar.JDateChooser dateChooseDegreeDay;
@@ -778,6 +807,7 @@ public class pnlCertificate extends javax.swing.JPanel {
     private javax.swing.JTextField filterText;
     private javax.swing.JLabel lblDegreeDay;
     private javax.swing.JLabel lblDegreeDaySearch;
+    private javax.swing.JLabel lblEnterFilter;
     private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblIDSearch;
     private javax.swing.JLabel lblScore;
@@ -787,6 +817,7 @@ public class pnlCertificate extends javax.swing.JPanel {
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblTitleSearch;
     private javax.swing.JPanel pnlButtonEdit;
+    private javax.swing.JPanel pnlButtonReport;
     private javax.swing.JPanel pnlButtonSearch;
     private javax.swing.JPanel pnlDown;
     public javax.swing.JPanel pnlEdit;
