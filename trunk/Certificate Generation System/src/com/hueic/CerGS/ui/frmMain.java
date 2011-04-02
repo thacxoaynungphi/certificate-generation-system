@@ -15,7 +15,6 @@ import com.hueic.CerGS.entity.Account;
 import com.hueic.CerGS.component.GUIProperties;
 import com.hueic.CerGS.component.IconSystem;
 import com.hueic.CerGS.dao.GUIDAO;
-import com.hueic.CerGS.ui.report.pnlStudentReport;
 import java.net.URL;
 import javax.help.CSH;
 import javax.help.HelpBroker;
@@ -43,6 +42,10 @@ public class frmMain extends javax.swing.JFrame {
     pnlSubject subject = new pnlSubject();
     pnlStudent student = new pnlStudent();
     pnlEmployee emp = new pnlEmployee();
+    pnlReport report = new pnlReport(this);
+    pnlViewMark viewMark = new pnlViewMark();
+    pnlViewPayment viewPayment = new pnlViewPayment();
+    pnlDevelopDegree developDegree = new pnlDevelopDegree();
 
     public frmMain() {
         initComponents();
@@ -142,6 +145,9 @@ public class frmMain extends javax.swing.JFrame {
         pnlCertificate = new javax.swing.JPanel();
         pnlAccount = new javax.swing.JPanel();
         pnlPermission = new javax.swing.JPanel();
+        pnlViewMark = new javax.swing.JPanel();
+        pnlViewPayment = new javax.swing.JPanel();
+        pnlDevelopDegree = new javax.swing.JPanel();
         pnlReport = new javax.swing.JPanel();
         StatusPnl = new javax.swing.JPanel();
         mnuBSystem = new javax.swing.JMenuBar();
@@ -330,7 +336,7 @@ public class frmMain extends javax.swing.JFrame {
 
         tpnBusiness.setBackground(new java.awt.Color(255, 255, 255));
         tpnBusiness.setTabPlacement(javax.swing.JTabbedPane.LEFT);
-        tpnBusiness.setFont(new java.awt.Font("Tahoma", 1, 12));
+        tpnBusiness.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         tpnBusiness.setMaximumSize(new java.awt.Dimension(1024, 600));
         tpnBusiness.setMinimumSize(new java.awt.Dimension(1024, 600));
         tpnBusiness.setPreferredSize(new java.awt.Dimension(1024, 600));
@@ -687,16 +693,71 @@ public class frmMain extends javax.swing.JFrame {
         pnlPermission = per;
         tpnBusiness.addTab("Permission", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlPermission); // NOI18N
 
+        pnlViewMark.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout pnlViewMarkLayout = new javax.swing.GroupLayout(pnlViewMark);
+        pnlViewMark.setLayout(pnlViewMarkLayout);
+        pnlViewMarkLayout.setHorizontalGroup(
+            pnlViewMarkLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        pnlViewMarkLayout.setVerticalGroup(
+            pnlViewMarkLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        pnlViewMark = viewMark;
+
+        tpnBusiness.addTab("View Mark", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlViewMark); // NOI18N
+
+        pnlViewPayment.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout pnlViewPaymentLayout = new javax.swing.GroupLayout(pnlViewPayment);
+        pnlViewPayment.setLayout(pnlViewPaymentLayout);
+        pnlViewPaymentLayout.setHorizontalGroup(
+            pnlViewPaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        pnlViewPaymentLayout.setVerticalGroup(
+            pnlViewPaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        pnlViewPayment = viewPayment;
+
+        tpnBusiness.addTab("View Payment", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlViewPayment); // NOI18N
+
+        pnlDevelopDegree.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout pnlDevelopDegreeLayout = new javax.swing.GroupLayout(pnlDevelopDegree);
+        pnlDevelopDegree.setLayout(pnlDevelopDegreeLayout);
+        pnlDevelopDegreeLayout.setHorizontalGroup(
+            pnlDevelopDegreeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        pnlDevelopDegreeLayout.setVerticalGroup(
+            pnlDevelopDegreeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        pnlDevelopDegree =  developDegree;
+
+        tpnBusiness.addTab("Develop Degree", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlDevelopDegree); // NOI18N
+
+        pnlReport.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout pnlReportLayout = new javax.swing.GroupLayout(pnlReport);
         pnlReport.setLayout(pnlReportLayout);
         pnlReportLayout.setHorizontalGroup(
             pnlReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 860, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         pnlReportLayout.setVerticalGroup(
             pnlReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 595, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        pnlReport = report;
 
         tpnBusiness.addTab("Report", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlReport); // NOI18N
 
@@ -1246,8 +1307,6 @@ public class frmMain extends javax.swing.JFrame {
 
     private void jideBtnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnReportActionPerformed
         // TODO add your handling code here:
-        pnlReport.add(new pnlStudentReport("CPISM"));
-        pnlReport.setSize(860, 600);
         tpnBusiness.setSelectedComponent(pnlReport);
 
     }//GEN-LAST:event_jideBtnReportActionPerformed
@@ -1337,15 +1396,18 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JPanel pnlAccount;
     private javax.swing.JPanel pnlCertificate;
     private javax.swing.JPanel pnlCourse;
+    private javax.swing.JPanel pnlDevelopDegree;
     private javax.swing.JPanel pnlEmployee;
     private javax.swing.JPanel pnlHome;
     private javax.swing.JPanel pnlMark;
     private javax.swing.JPanel pnlPayment;
     private javax.swing.JPanel pnlPermission;
     private javax.swing.JPanel pnlRegister;
-    private javax.swing.JPanel pnlReport;
+    public javax.swing.JPanel pnlReport;
     private javax.swing.JPanel pnlStudent;
     private javax.swing.JPanel pnlSubject;
+    private javax.swing.JPanel pnlViewMark;
+    private javax.swing.JPanel pnlViewPayment;
     private javax.swing.JRadioButtonMenuItem radioDarkStar;
     private javax.swing.JRadioButtonMenuItem radioDesertBlue;
     private javax.swing.JRadioButtonMenuItem radioDesertGreen;

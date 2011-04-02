@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  *
  * @author nhchung
  */
-public class pnlCertificate extends javax.swing.JPanel {
+public class pnlCertificateReport extends javax.swing.JPanel {
 
     private int certificateId;
     private String courseId;
@@ -32,7 +32,7 @@ public class pnlCertificate extends javax.swing.JPanel {
     private CertificateReportManager cerReportManager;
 
     /** Creates new form pnlCertificate */
-    public pnlCertificate() {
+    public pnlCertificateReport() {
         initComponents();
         this.certificateId = certificateId;
         registerDAO = new RegisterDAO();
