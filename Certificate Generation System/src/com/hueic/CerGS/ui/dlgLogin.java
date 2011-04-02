@@ -30,6 +30,7 @@ public class dlgLogin extends javax.swing.JDialog {
     /** Creates new form dlgLogin */
     public dlgLogin(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.main = (frmMain) parent;
         initComponents();
         setLocationRelativeTo(null);
         bindingData();
@@ -244,11 +245,12 @@ public class dlgLogin extends javax.swing.JDialog {
                 }
                 main.isLogin();
                 this.dispose();
+                System.out.println("Den day");
             } else {
                 JOptionPane.showMessageDialog(this, accDao.getLastError(), "Login", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
-            
+            System.out.println("ex : " + ex.toString());
         }
 }//GEN-LAST:event_btnLoginActionPerformed
 

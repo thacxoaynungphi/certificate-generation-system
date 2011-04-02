@@ -46,6 +46,8 @@ public class frmMain extends javax.swing.JFrame {
     pnlViewMark viewMark = new pnlViewMark();
     pnlViewPayment viewPayment = new pnlViewPayment();
     pnlDevelopDegree developDegree = new pnlDevelopDegree();
+    pnlHome homeAdmin = new pnlHome(this);
+    pnlReport report = new pnlReport();
     PermissionDAO perDao;
 
     public frmMain() {
@@ -109,34 +111,6 @@ public class frmMain extends javax.swing.JFrame {
         panelLeft = new javax.swing.JPanel();
         tpnBusiness = new javax.swing.JTabbedPane();
         pnlHome = new javax.swing.JPanel();
-        panelRight = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        lblCampaignMaster1 = new javax.swing.JLabel();
-        detail_Campaign_Description1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
-        lblCampaignMaster2 = new javax.swing.JLabel();
-        detail_Campaign_Description2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
-        lblCampaignMaster3 = new javax.swing.JLabel();
-        detail_Campaign_Description3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jPanel8 = new javax.swing.JPanel();
-        lblCampaignMaster4 = new javax.swing.JLabel();
-        detail_Campaign_Description4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jPanel9 = new javax.swing.JPanel();
-        lblCampaignMaster5 = new javax.swing.JLabel();
-        detail_Campaign_Description5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jPanel10 = new javax.swing.JPanel();
-        lblCampaignMaster6 = new javax.swing.JLabel();
-        detail_Campaign_Description6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         pnlEmployee = new javax.swing.JPanel();
         pnlStudent = new javax.swing.JPanel();
         pnlRegister = new javax.swing.JPanel();
@@ -154,7 +128,6 @@ public class frmMain extends javax.swing.JFrame {
         StatusPnl = new javax.swing.JPanel();
         mnuBSystem = new javax.swing.JMenuBar();
         mnuSystem = new javax.swing.JMenu();
-        mnuISwitchUser = new javax.swing.JMenuItem();
         mnuILoginSystem = new javax.swing.JMenuItem();
         mnuILogoutSystem = new javax.swing.JMenuItem();
         menuIChangePass = new javax.swing.JMenuItem();
@@ -350,7 +323,7 @@ public class frmMain extends javax.swing.JFrame {
         tpnBusiness.setBackground(new java.awt.Color(255, 255, 255));
         tpnBusiness.setTabPlacement(javax.swing.JTabbedPane.LEFT);
         tpnBusiness.setEnabled(false);
-        tpnBusiness.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        tpnBusiness.setFont(new java.awt.Font("Tahoma", 1, 12));
         tpnBusiness.setMaximumSize(new java.awt.Dimension(1024, 600));
         tpnBusiness.setMinimumSize(new java.awt.Dimension(1024, 600));
         tpnBusiness.setPreferredSize(new java.awt.Dimension(1024, 600));
@@ -363,300 +336,7 @@ public class frmMain extends javax.swing.JFrame {
         pnlHome.setRequestFocusEnabled(false);
         pnlHome.setLayout(new java.awt.GridBagLayout());
 
-        panelRight.setBackground(new java.awt.Color(255, 255, 255));
-        panelRight.setMaximumSize(new java.awt.Dimension(860, 600));
-        panelRight.setMinimumSize(new java.awt.Dimension(860, 600));
-        panelRight.setPreferredSize(new java.awt.Dimension(860, 600));
-        panelRight.setLayout(new java.awt.GridBagLayout());
-
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 18));
-        jLabel15.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel15.setText("<html>\n<body>\nCertificate Generator System\n</body>\n</html>");
-        jLabel15.setMinimumSize(new java.awt.Dimension(400, 40));
-        jLabel15.setPreferredSize(new java.awt.Dimension(400, 40));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-        panelRight.add(jLabel15, gridBagConstraints);
-
-        jLabel16.setForeground(new java.awt.Color(3, 3, 3));
-        jLabel16.setText("<html>\n<body>\nThis is a Certificate Department which works for “ABC” institute for developing  the certificate for the<br/> students who had completed their course. This system also deals with the student  registration,<br/> checking the payment scenario, inputting the marks of the students and after all verification is<br/>  done they develop the certificate of completion of the course for the students.\n</body>\n</html>\n");
-        jLabel16.setMinimumSize(new java.awt.Dimension(700, 80));
-        jLabel16.setPreferredSize(new java.awt.Dimension(700, 80));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 20, 5, 0);
-        panelRight.add(jLabel16, gridBagConstraints);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/logoFinal.png"))); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.insets = new java.awt.Insets(40, 120, 0, 10);
-        panelRight.add(jLabel1, gridBagConstraints);
-
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setMinimumSize(new java.awt.Dimension(280, 134));
-        jPanel5.setPreferredSize(new java.awt.Dimension(280, 134));
-        jPanel5.setLayout(new java.awt.GridBagLayout());
-
-        lblCampaignMaster1.setFont(new java.awt.Font("Tahoma", 1, 12));
-        lblCampaignMaster1.setForeground(new java.awt.Color(153, 0, 0));
-        lblCampaignMaster1.setText("Manager Payment");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipady = 9;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel5.add(lblCampaignMaster1, gridBagConstraints);
-
-        detail_Campaign_Description1.setFont(new java.awt.Font("Arial", 0, 11));
-        detail_Campaign_Description1.setText("<html>Master data for campaigns with<br>each new product and given<br>periods."); // NOI18N
-        detail_Campaign_Description1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        detail_Campaign_Description1.setMinimumSize(new java.awt.Dimension(153, 42));
-        detail_Campaign_Description1.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel5.add(detail_Campaign_Description1, gridBagConstraints);
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Dollar.png"))); // NOI18N
-        jLabel2.setMaximumSize(new java.awt.Dimension(101, 101));
-        jLabel2.setMinimumSize(new java.awt.Dimension(101, 101));
-        jLabel2.setPreferredSize(new java.awt.Dimension(101, 101));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel5.add(jLabel2, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
-        panelRight.add(jPanel5, gridBagConstraints);
-
-        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel6.setMinimumSize(new java.awt.Dimension(280, 134));
-        jPanel6.setPreferredSize(new java.awt.Dimension(280, 134));
-        jPanel6.setLayout(new java.awt.GridBagLayout());
-
-        lblCampaignMaster2.setFont(new java.awt.Font("Tahoma", 1, 12));
-        lblCampaignMaster2.setForeground(new java.awt.Color(153, 0, 0));
-        lblCampaignMaster2.setText("Manager Employee");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipady = 9;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel6.add(lblCampaignMaster2, gridBagConstraints);
-
-        detail_Campaign_Description2.setFont(new java.awt.Font("Arial", 0, 11));
-        detail_Campaign_Description2.setText("<html>Master data for campaigns with<br>each new product and given<br>periods."); // NOI18N
-        detail_Campaign_Description2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        detail_Campaign_Description2.setMinimumSize(new java.awt.Dimension(153, 42));
-        detail_Campaign_Description2.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel6.add(detail_Campaign_Description2, gridBagConstraints);
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/emp_icon.png"))); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel6.add(jLabel3, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
-        panelRight.add(jPanel6, gridBagConstraints);
-
-        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel7.setMinimumSize(new java.awt.Dimension(280, 134));
-        jPanel7.setPreferredSize(new java.awt.Dimension(280, 134));
-        jPanel7.setLayout(new java.awt.GridBagLayout());
-
-        lblCampaignMaster3.setFont(new java.awt.Font("Tahoma", 1, 12));
-        lblCampaignMaster3.setForeground(new java.awt.Color(153, 0, 0));
-        lblCampaignMaster3.setText("Manager Student");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipady = 9;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel7.add(lblCampaignMaster3, gridBagConstraints);
-
-        detail_Campaign_Description3.setFont(new java.awt.Font("Arial", 0, 11));
-        detail_Campaign_Description3.setText("<html>Master data for campaigns with<br>each new product and given<br>periods."); // NOI18N
-        detail_Campaign_Description3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        detail_Campaign_Description3.setMinimumSize(new java.awt.Dimension(153, 42));
-        detail_Campaign_Description3.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel7.add(detail_Campaign_Description3, gridBagConstraints);
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/student_icon.png"))); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel7.add(jLabel4, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
-        panelRight.add(jPanel7, gridBagConstraints);
-
-        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel8.setMinimumSize(new java.awt.Dimension(280, 134));
-        jPanel8.setPreferredSize(new java.awt.Dimension(280, 134));
-        jPanel8.setLayout(new java.awt.GridBagLayout());
-
-        lblCampaignMaster4.setFont(new java.awt.Font("Tahoma", 1, 12));
-        lblCampaignMaster4.setForeground(new java.awt.Color(153, 0, 0));
-        lblCampaignMaster4.setText("Manager Register");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipady = 9;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel8.add(lblCampaignMaster4, gridBagConstraints);
-
-        detail_Campaign_Description4.setFont(new java.awt.Font("Arial", 0, 11));
-        detail_Campaign_Description4.setText("<html>Master data for campaigns with<br>each new product and given<br>periods."); // NOI18N
-        detail_Campaign_Description4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        detail_Campaign_Description4.setMinimumSize(new java.awt.Dimension(153, 42));
-        detail_Campaign_Description4.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel8.add(detail_Campaign_Description4, gridBagConstraints);
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/register_icon.jpg"))); // NOI18N
-        jLabel5.setMaximumSize(new java.awt.Dimension(101, 101));
-        jLabel5.setMinimumSize(new java.awt.Dimension(101, 101));
-        jLabel5.setPreferredSize(new java.awt.Dimension(101, 101));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel8.add(jLabel5, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
-        panelRight.add(jPanel8, gridBagConstraints);
-
-        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel9.setMinimumSize(new java.awt.Dimension(280, 134));
-        jPanel9.setPreferredSize(new java.awt.Dimension(280, 134));
-        jPanel9.setLayout(new java.awt.GridBagLayout());
-
-        lblCampaignMaster5.setFont(new java.awt.Font("Tahoma", 1, 12));
-        lblCampaignMaster5.setForeground(new java.awt.Color(153, 0, 0));
-        lblCampaignMaster5.setText("Manager Mark");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipady = 9;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel9.add(lblCampaignMaster5, gridBagConstraints);
-
-        detail_Campaign_Description5.setFont(new java.awt.Font("Arial", 0, 11));
-        detail_Campaign_Description5.setText("<html>Master data for campaigns with<br>each new product and given<br>periods."); // NOI18N
-        detail_Campaign_Description5.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        detail_Campaign_Description5.setMinimumSize(new java.awt.Dimension(153, 42));
-        detail_Campaign_Description5.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel9.add(detail_Campaign_Description5, gridBagConstraints);
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/mark_icon.jpg"))); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel9.add(jLabel6, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
-        panelRight.add(jPanel9, gridBagConstraints);
-
-        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel10.setMinimumSize(new java.awt.Dimension(280, 134));
-        jPanel10.setPreferredSize(new java.awt.Dimension(280, 134));
-        jPanel10.setLayout(new java.awt.GridBagLayout());
-
-        lblCampaignMaster6.setFont(new java.awt.Font("Tahoma", 1, 12));
-        lblCampaignMaster6.setForeground(new java.awt.Color(153, 0, 0));
-        lblCampaignMaster6.setText("Manager Certificate");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipady = 9;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel10.add(lblCampaignMaster6, gridBagConstraints);
-
-        detail_Campaign_Description6.setFont(new java.awt.Font("Arial", 0, 11));
-        detail_Campaign_Description6.setText("<html>Master data for campaigns with<br>each new product and given<br>periods."); // NOI18N
-        detail_Campaign_Description6.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        detail_Campaign_Description6.setMinimumSize(new java.awt.Dimension(153, 42));
-        detail_Campaign_Description6.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel10.add(detail_Campaign_Description6, gridBagConstraints);
-
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Certificate_icon_blue.png"))); // NOI18N
-        jLabel7.setMaximumSize(new java.awt.Dimension(101, 101));
-        jLabel7.setMinimumSize(new java.awt.Dimension(101, 101));
-        jLabel7.setPreferredSize(new java.awt.Dimension(101, 101));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel10.add(jLabel7, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
-        panelRight.add(jPanel10, gridBagConstraints);
-
-        pnlHome.add(panelRight, new java.awt.GridBagConstraints());
+        pnlHome = homeAdmin;
 
         tpnBusiness.addTab("Home                  ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlHome); // NOI18N
 
@@ -812,11 +492,6 @@ public class frmMain extends javax.swing.JFrame {
 
         mnuSystem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/gear.png"))); // NOI18N
         mnuSystem.setText("System");
-
-        mnuISwitchUser.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
-        mnuISwitchUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
-        mnuISwitchUser.setText("Switch User");
-        mnuSystem.add(mnuISwitchUser);
 
         mnuILoginSystem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.ALT_MASK));
         mnuILoginSystem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/IconLogin.png"))); // NOI18N
@@ -1077,7 +752,7 @@ public class frmMain extends javax.swing.JFrame {
 
     private void mnuILoginSystemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuILoginSystemActionPerformed
         // TODO add your handling code here:
-        dlgLogin login = new dlgLogin(this);
+        dlgLogin login = new dlgLogin(this, true);
         login.setVisible(true);
     }//GEN-LAST:event_mnuILoginSystemActionPerformed
 
@@ -1146,8 +821,8 @@ public class frmMain extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (this.accCur != null) {
             accCur = null;
-            this.setVisible(false);
-            dlgLogin login = new dlgLogin(this);
+            this.isLogout();
+            dlgLogin login = new dlgLogin(this, true);
             login.setVisible(true);
         }
     }//GEN-LAST:event_mnuILogoutSystemActionPerformed
@@ -1336,131 +1011,153 @@ public class frmMain extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jideBtnReportActionPerformed
 
+    public void isLogout() {
+//        pnlHome.removeAll();
+//        pnlHome.add(homeAdmin);
+//
+//        pnlEmployee.removeAll();
+//        pnlEmployee.add(emp);
+//
+//        pnlStudent.removeAll();
+//        pnlStudent.add(student);
+//
+//        pnlRegister.removeAll();
+//        pnlRegister.add(register);
+//
+//        pnlCourse.removeAll();
+//        pnlCourse.add(course);
+//
+//        pnlPayment.removeAll();
+//        pnlPayment.add(payment);
+//
+//        pnlSubject.removeAll();
+//        pnlSubject.add(subject);
+//
+//        pnlMark.removeAll();
+//        pnlMark.add(mark);
+//
+//        pnlCertificate.removeAll();
+//        pnlCertificate.add(cer);
+//
+//        pnlAccount.removeAll();
+//        pnlAccount.add(account);
+//
+//        pnlPermission.removeAll();
+//        pnlPermission.add(per);
+//
+//        pnlViewMark.removeAll();
+//        pnlViewMark.add(viewMark);
+//
+//        pnlViewPayment.removeAll();
+//        pnlViewPayment.add(viewPayment);
+//
+//        pnlDevelopDegree.removeAll();
+//        pnlDevelopDegree.add(developDegree);
+//        pnlReport.add(report);
+
+        tpnBusiness.setEnabled(false);
+        jideBtnHome.setEnabled(false);
+        jideBtnEmployee.setEnabled(false);
+        jideBtnStudent.setEnabled(false);
+        jideBtnCourse.setEnabled(false);
+        jideBtnSubject.setEnabled(false);
+        jideBtnAccount.setEnabled(false);
+        jideBtnCertificate.setEnabled(false);
+        jideBtnAccount.setEnabled(false);
+        jideBtnMark.setEnabled(false);
+        jideBtnReport.setEnabled(false);
+        jideBtnPayment.setEnabled(false);
+        jideBtnRegister.setEnabled(false);
+
+        mnuILogoutSystem.setVisible(false);
+        tpnBusiness.setEnabled(false);
+        menuIChangePass.setEnabled(false);
+        mnuOptions.setEnabled(false);
+        mnuILoginSystem.setVisible(true);
+    }
+
     public void isLogin() {
         tpnBusiness.setSelectedComponent(pnlHome);
-        pnlHome.setVisible(false);
-        pnlHome.setEnabled(false);
-
-        pnlEmployee.setVisible(false);
-        pnlEmployee.setEnabled(false);
-
-        pnlStudent.setVisible(false);
-        pnlStudent.setEnabled(false);
-
-        pnlRegister.setVisible(false);
-        pnlRegister.setEnabled(false);
-
-
-        pnlCourse.setVisible(false);
-        pnlCourse.setEnabled(false);
-
-        pnlSubject.setVisible(false);
-        pnlSubject.setEnabled(false);
-
-        pnlMark.setVisible(false);
-        pnlMark.setEnabled(false);
-
-        pnlCertificate.setVisible(false);
-        pnlCertificate.setEnabled(false);
-
-        pnlAccount.setVisible(false);
-        pnlAccount.setEnabled(false);
-
-        pnlPermission.setVisible(false);
-        pnlPermission.setEnabled(false);
-
-
-        pnlViewMark.setVisible(false);
-        pnlViewMark.setEnabled(false);
-
-        pnlViewPayment.setVisible(false);
-        pnlViewPayment.setEnabled(false);
-
-        pnlDevelopDegree.setVisible(false);
-        pnlDevelopDegree.setEnabled(false);
-
-        pnlReport.setVisible(false);
-        pnlReport.setEnabled(false);
+        jideBtnHome.setEnabled(true);
+        jideBtnEmployee.setEnabled(true);
+        jideBtnStudent.setEnabled(true);
+        jideBtnCourse.setEnabled(true);
+        jideBtnSubject.setEnabled(true);
+        jideBtnAccount.setEnabled(true);
+        jideBtnCertificate.setEnabled(true);
+        jideBtnAccount.setEnabled(true);
+        jideBtnMark.setEnabled(true);
+        jideBtnReport.setEnabled(true);
+        jideBtnPayment.setEnabled(true);
+        jideBtnRegister.setEnabled(true);
 
         if (this.accCur != null) {
             mnuILogoutSystem.setVisible(true);
             mnuILogoutSystem.setEnabled(true);
-            mnuISwitchUser.setEnabled(true);
             tpnBusiness.setEnabled(true);
             menuIChangePass.setEnabled(true);
             mnuOptions.setEnabled(true);
             mnuILoginSystem.setVisible(false);
-            mnuILoginSystem.setVisible(true);
+
             if (perDao.readByName("Administrators").getId() == this.accCur.getPermission()) {
-                pnlHome.setVisible(true);
-                pnlHome.setEnabled(true);
-
-                pnlEmployee.setVisible(true);
-                pnlEmployee.setEnabled(true);
-
-                pnlStudent.setVisible(true);
-                pnlStudent.setEnabled(true);
-
-                pnlRegister.setVisible(true);
-                pnlRegister.setEnabled(true);
-
-
-                pnlCourse.setVisible(true);
-                pnlCourse.setEnabled(true);
-
-                pnlSubject.setVisible(true);
-                pnlSubject.setEnabled(true);
-
-                pnlMark.setVisible(true);
-                pnlMark.setEnabled(true);
-
-                pnlCertificate.setVisible(true);
-                pnlCertificate.setEnabled(true);
-
-                pnlAccount.setVisible(true);
-                pnlAccount.setEnabled(true);
-
-                pnlPermission.setVisible(true);
-                pnlPermission.setEnabled(true);
-
-
-                pnlViewMark.setVisible(true);
-                pnlViewMark.setEnabled(true);
-
-                pnlViewPayment.setVisible(true);
-                pnlViewPayment.setEnabled(true);
-
-                pnlDevelopDegree.setVisible(true);
-                pnlDevelopDegree.setEnabled(true);
-
-                pnlReport.setVisible(true);
-                pnlReport.setEnabled(true);
-
             } else if (perDao.readByName("Employee").getId() == this.accCur.getPermission()) {
-                System.out.println("Nhan vien");
-                pnlViewMark.setVisible(true);
-                pnlViewMark.setEnabled(true);
 
-                pnlViewPayment.setVisible(true);
-                pnlViewPayment.setEnabled(true);
+                tpnBusiness.remove(pnlEmployee);
+                tpnBusiness.remove(pnlStudent);
+                tpnBusiness.remove(pnlRegister);
+                tpnBusiness.remove(pnlCourse);
+                tpnBusiness.remove(pnlSubject);
+                tpnBusiness.remove(pnlPayment);
+                tpnBusiness.remove(pnlMark);
+                tpnBusiness.remove(pnlCertificate);
+                tpnBusiness.remove(pnlPermission);
+                tpnBusiness.remove(pnlAccount);
+                pnlHome.removeAll();
+                pnlHome.add(new pnlHomeEmp(this));
 
-                pnlDevelopDegree.setVisible(true);
-                pnlDevelopDegree.setEnabled(true);
+                jideBtnEmployee.setVisible(false);
+                jideBtnStudent.setVisible(false);
+                jideBtnCourse.setVisible(false);
+                jideBtnSubject.setVisible(false);
+                jideBtnAccount.setVisible(false);
+                jideBtnCertificate.setVisible(false);
+                jideBtnAccount.setVisible(false);
+                jideBtnMark.setVisible(false);
+                jideBtnRegister.setVisible(false);
+                jideBtnPayment.setVisible(false);
+
             } else {
-                pnlViewMark.setVisible(true);
-                pnlViewMark.setEnabled(true);
+                tpnBusiness.remove(pnlEmployee);
+                tpnBusiness.remove(pnlStudent);
+                tpnBusiness.remove(pnlRegister);
+                tpnBusiness.remove(pnlCourse);
+                tpnBusiness.remove(pnlSubject);
+                tpnBusiness.remove(pnlPayment);
+                tpnBusiness.remove(pnlMark);
+                tpnBusiness.remove(pnlCertificate);
+                tpnBusiness.remove(pnlPermission);
+                tpnBusiness.remove(pnlDevelopDegree);
+                tpnBusiness.remove(pnlAccount);
+                pnlHome.removeAll();
+                pnlHome.add(new pnlHomeStudent(this));
 
-                pnlViewPayment.setVisible(true);
-                pnlViewPayment.setEnabled(true);
+
+                jideBtnEmployee.setVisible(false);
+                jideBtnStudent.setVisible(false);
+                jideBtnCourse.setVisible(false);
+                jideBtnSubject.setVisible(false);
+                jideBtnAccount.setVisible(false);
+                jideBtnCertificate.setVisible(false);
+                jideBtnAccount.setVisible(false);
+                jideBtnMark.setVisible(false);
+                jideBtnPayment.setVisible(false);
+                jideBtnRegister.setVisible(false);
             }
         } else {
             mnuILogoutSystem.setVisible(false);
-            mnuISwitchUser.setVisible(false);
             tpnBusiness.setEnabled(false);
             menuIChangePass.setEnabled(false);
             mnuOptions.setEnabled(false);
-
-
             mnuILoginSystem.setVisible(true);
         }
     }
@@ -1484,27 +1181,6 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JPanel StatusPnl;
     private javax.swing.ButtonGroup buttonGroupSkin;
     private javax.swing.ButtonGroup buttonGroupTheme;
-    private javax.swing.JLabel detail_Campaign_Description1;
-    private javax.swing.JLabel detail_Campaign_Description2;
-    private javax.swing.JLabel detail_Campaign_Description3;
-    private javax.swing.JLabel detail_Campaign_Description4;
-    private javax.swing.JLabel detail_Campaign_Description5;
-    private javax.swing.JLabel detail_Campaign_Description6;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private com.jidesoft.swing.JideButton jideBtnAccount;
     private com.jidesoft.swing.JideButton jideBtnCertificate;
@@ -1517,12 +1193,6 @@ public class frmMain extends javax.swing.JFrame {
     private com.jidesoft.swing.JideButton jideBtnReport;
     private com.jidesoft.swing.JideButton jideBtnStudent;
     private com.jidesoft.swing.JideButton jideBtnSubject;
-    private javax.swing.JLabel lblCampaignMaster1;
-    private javax.swing.JLabel lblCampaignMaster2;
-    private javax.swing.JLabel lblCampaignMaster3;
-    private javax.swing.JLabel lblCampaignMaster4;
-    private javax.swing.JLabel lblCampaignMaster5;
-    private javax.swing.JLabel lblCampaignMaster6;
     private javax.swing.JMenuItem menuIChangePass;
     private javax.swing.JMenuBar mnuBSystem;
     private javax.swing.JMenu mnuHelp;
@@ -1531,14 +1201,12 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuIHelpContent;
     private javax.swing.JMenuItem mnuILoginSystem;
     private javax.swing.JMenuItem mnuILogoutSystem;
-    private javax.swing.JMenuItem mnuISwitchUser;
     private javax.swing.JMenu mnuOptions;
     private javax.swing.JMenu mnuSkin;
     private javax.swing.JMenu mnuSystem;
     private javax.swing.JMenu mnuTheme;
     private javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelLogo;
-    private javax.swing.JPanel panelRight;
     private javax.swing.JPanel pnlAccount;
     private javax.swing.JPanel pnlCertificate;
     private javax.swing.JPanel pnlCourse;
