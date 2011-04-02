@@ -182,9 +182,12 @@ public class pnlStudent extends javax.swing.JPanel {
         lblCount = new javax.swing.JLabel();
         btnFilter = new javax.swing.JButton();
         filterText = new javax.swing.JTextField();
+        lblEnterFiter = new javax.swing.JLabel();
         panelTable = new javax.swing.JPanel();
         srcPanelContent = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        btnReport = new javax.swing.JButton();
 
         setLayout(new java.awt.GridBagLayout());
 
@@ -750,7 +753,7 @@ public class pnlStudent extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -764,11 +767,18 @@ public class pnlStudent extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 440, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelTop.add(filterText, gridBagConstraints);
+
+        lblEnterFiter.setText("Enter fiter: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 380, 5, 5);
+        panelTop.add(lblEnterFiter, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -782,8 +792,8 @@ public class pnlStudent extends javax.swing.JPanel {
         panelTable.setRequestFocusEnabled(false);
         panelTable.setLayout(new java.awt.GridBagLayout());
 
-        srcPanelContent.setMinimumSize(new java.awt.Dimension(840, 240));
-        srcPanelContent.setPreferredSize(new java.awt.Dimension(840, 240));
+        srcPanelContent.setMinimumSize(new java.awt.Dimension(840, 220));
+        srcPanelContent.setPreferredSize(new java.awt.Dimension(840, 220));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -796,8 +806,8 @@ public class pnlStudent extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tableContent.setMinimumSize(new java.awt.Dimension(770, 240));
-        tableContent.setPreferredSize(new java.awt.Dimension(770, 240));
+        tableContent.setMinimumSize(new java.awt.Dimension(770, 220));
+        tableContent.setPreferredSize(new java.awt.Dimension(770, 220));
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 tableContentMouseReleased(evt);
@@ -811,6 +821,24 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         panelTable.add(srcPanelContent, gridBagConstraints);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
+        btnReport.setText("Report");
+        btnReport.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnReport.setMaximumSize(new java.awt.Dimension(75, 23));
+        btnReport.setMinimumSize(new java.awt.Dimension(75, 23));
+        btnReport.setPreferredSize(new java.awt.Dimension(75, 23));
+        jPanel2.add(btnReport);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelTable.add(jPanel2, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -949,6 +977,7 @@ public class pnlStudent extends javax.swing.JPanel {
     private javax.swing.JButton btnFilter;
     private javax.swing.ButtonGroup btnGGender1;
     private javax.swing.ButtonGroup btnGGender2;
+    private javax.swing.JButton btnReport;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnUpdate;
     private com.toedter.calendar.JDateChooser dateChooserDateEnd;
@@ -956,11 +985,13 @@ public class pnlStudent extends javax.swing.JPanel {
     private javax.swing.JTextField filterText;
     private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblBirthday;
     private javax.swing.JLabel lblBirthday1;
     private javax.swing.JLabel lblCount;
     private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblEnterFiter;
     private javax.swing.JLabel lblFirstName;
     private javax.swing.JLabel lblFirstname;
     private javax.swing.JLabel lblGender;

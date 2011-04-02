@@ -16,7 +16,7 @@ import javax.swing.JPanel;
  *
  * @author Ngo Phuoc Thien
  */
-public class pnlBackgroud {
+public class pnlBackground {
 
     private static final GridBagConstraints gbc;
 

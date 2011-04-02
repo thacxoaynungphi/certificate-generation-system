@@ -220,6 +220,8 @@ public class pnlSubject extends javax.swing.JPanel {
         tableContent = new javax.swing.JTable();
         btnFilter = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        btnReport = new javax.swing.JButton();
 
         setLayout(new java.awt.GridBagLayout());
 
@@ -596,12 +598,12 @@ public class pnlSubject extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelLeft.add(filterText, gridBagConstraints);
 
-        srcPanelSubject.setMinimumSize(new java.awt.Dimension(840, 327));
-        srcPanelSubject.setPreferredSize(new java.awt.Dimension(840, 327));
+        srcPanelSubject.setMinimumSize(new java.awt.Dimension(840, 300));
+        srcPanelSubject.setPreferredSize(new java.awt.Dimension(840, 300));
         srcPanelSubject.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 srcPanelSubjectMouseReleased(evt);
@@ -650,7 +652,7 @@ public class pnlSubject extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelLeft.add(btnFilter, gridBagConstraints);
 
@@ -659,9 +661,25 @@ public class pnlSubject extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 500, 5, 5);
         panelLeft.add(jLabel1, gridBagConstraints);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnReport.setText("Report");
+        btnReport.setMaximumSize(new java.awt.Dimension(75, 23));
+        btnReport.setMinimumSize(new java.awt.Dimension(75, 23));
+        btnReport.setPreferredSize(new java.awt.Dimension(75, 23));
+        jPanel1.add(btnReport);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelLeft.add(jPanel1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -886,10 +904,12 @@ public class pnlSubject extends javax.swing.JPanel {
     private javax.swing.JButton btnChooseCourIDSearch;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnFilter;
+    private javax.swing.JButton btnReport;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JTextField filterText;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCoefficient;
     private javax.swing.JLabel lblCoefficientSearch;
     private javax.swing.JLabel lblCourseID;
