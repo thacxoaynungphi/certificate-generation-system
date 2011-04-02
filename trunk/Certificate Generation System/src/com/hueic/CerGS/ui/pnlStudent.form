@@ -1008,10 +1008,10 @@
             <Container class="javax.swing.JScrollPane" name="srcPanelContent">
               <Properties>
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[860, 240]"/>
+                  <Dimension value="[840, 240]"/>
                 </Property>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[860, 240]"/>
+                  <Dimension value="[840, 240]"/>
                 </Property>
               </Properties>
               <AuxValues>

@@ -402,6 +402,7 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         panel1.add(lblType, gridBagConstraints);
 
+        txtPassword.setMinimumSize(new java.awt.Dimension(200, 20));
         txtPassword.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;

@@ -4,11 +4,11 @@
  */
 
 /*
- * frmDevelopDegree.java
+ * pnlDevelopDegree.java
  *
- * Created on Mar 26, 2011, 3:08:08 PM
+ * Created on Apr 2, 2011, 9:06:01 AM
  */
-package com.hueic.CerGS.ui.main.employee;
+package com.hueic.CerGS.ui;
 
 import com.hueic.CerGS.component.IconSystem;
 import com.hueic.CerGS.dao.CourseDAO;
@@ -32,8 +32,9 @@ import javax.swing.table.TableRowSorter;
  *
  * @author qhvic
  */
-public class frmDevelopDegree extends javax.swing.JFrame {
+public class pnlDevelopDegree extends javax.swing.JPanel {
 
+    /** Creates new form pnlDevelopDegree */
     /** Creates new form frmDevelopDegree */
     private CourseDAO courseDAO;
     private RegisterDAO registerDAO;
@@ -43,10 +44,8 @@ public class frmDevelopDegree extends javax.swing.JFrame {
     private TableRowSorter<TableModel> sorter;
     private ArrayList<Mark> listMark;
 
-    public frmDevelopDegree() {
+    public pnlDevelopDegree() {
         initComponents();
-        setLocationRelativeTo(null);
-        new IconSystem(this);
         courseDAO = new CourseDAO();
         registerDAO = new RegisterDAO();
         markDAO = new MarkDAO();
@@ -154,20 +153,20 @@ public class frmDevelopDegree extends javax.swing.JFrame {
         filterText = new javax.swing.JTextField();
         btnFilter = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Develop Degree");
-        setResizable(false);
-        getContentPane().setLayout(new java.awt.GridBagLayout());
+        setMinimumSize(new java.awt.Dimension(860, 600));
+        setPreferredSize(new java.awt.Dimension(860, 600));
+        setLayout(new java.awt.GridBagLayout());
 
         panelContent.setBackground(new java.awt.Color(255, 255, 255));
         panelContent.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Develop Degree", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(3, 3, 3))); // NOI18N
-        panelContent.setPreferredSize(new java.awt.Dimension(832, 310));
+        panelContent.setMinimumSize(new java.awt.Dimension(860, 600));
+        panelContent.setPreferredSize(new java.awt.Dimension(860, 600));
         panelContent.setLayout(new java.awt.GridBagLayout());
 
         lblCourseID.setForeground(new java.awt.Color(3, 3, 3));
         lblCourseID.setText("Choose Course ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(lblCourseID, gridBagConstraints);
 
@@ -176,11 +175,12 @@ public class frmDevelopDegree extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(lblStudentID, gridBagConstraints);
 
         cbxCourseID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxCourseID.setMinimumSize(new java.awt.Dimension(200, 20));
         cbxCourseID.setPreferredSize(new java.awt.Dimension(200, 20));
         cbxCourseID.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -188,12 +188,12 @@ public class frmDevelopDegree extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(cbxCourseID, gridBagConstraints);
 
         cbxStudentID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxStudentID.setMinimumSize(new java.awt.Dimension(200, 20));
         cbxStudentID.setPreferredSize(new java.awt.Dimension(200, 20));
         cbxStudentID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -203,12 +203,12 @@ public class frmDevelopDegree extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(cbxStudentID, gridBagConstraints);
 
-        srcPanelViewMark.setPreferredSize(new java.awt.Dimension(800, 150));
+        srcPanelViewMark.setMinimumSize(new java.awt.Dimension(840, 450));
+        srcPanelViewMark.setPreferredSize(new java.awt.Dimension(840, 450));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -226,12 +226,13 @@ public class frmDevelopDegree extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(srcPanelViewMark, gridBagConstraints);
 
         panelButton.setBackground(new java.awt.Color(255, 255, 255));
-        panelButton.setPreferredSize(new java.awt.Dimension(280, 30));
+        panelButton.setMinimumSize(new java.awt.Dimension(258, 30));
+        panelButton.setPreferredSize(new java.awt.Dimension(258, 30));
 
         btnCreate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
         btnCreate.setText("Create");
@@ -253,10 +254,10 @@ public class frmDevelopDegree extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(panelButton, gridBagConstraints);
 
         lblTitleAverageMark.setForeground(new java.awt.Color(3, 3, 3));
@@ -274,7 +275,7 @@ public class frmDevelopDegree extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(lblTitleGrade, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -288,10 +289,10 @@ public class frmDevelopDegree extends javax.swing.JFrame {
         lblFilter.setForeground(new java.awt.Color(3, 3, 3));
         lblFilter.setText("Enter Filter:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 150, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 230, 5, 5);
         panelContent.add(lblFilter, gridBagConstraints);
 
         filterText.setMinimumSize(new java.awt.Dimension(150, 20));
@@ -302,35 +303,51 @@ public class frmDevelopDegree extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(filterText, gridBagConstraints);
 
         btnFilter.setText("Filter");
         btnFilter.setMaximumSize(new java.awt.Dimension(90, 23));
-        btnFilter.setMinimumSize(new java.awt.Dimension(90, 23));
-        btnFilter.setPreferredSize(new java.awt.Dimension(90, 23));
+        btnFilter.setMinimumSize(new java.awt.Dimension(75, 23));
+        btnFilter.setPreferredSize(new java.awt.Dimension(75, 23));
         btnFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFilterActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(btnFilter, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        getContentPane().add(panelContent, gridBagConstraints);
-
-        pack();
+        add(panelContent, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cbxCourseIDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxCourseIDItemStateChanged
+        // TODO add your handling code here:
+        if (cbxCourseID.getItemCount() - 1 == listCourse.size()) {
+            String courid = cbxCourseID.getSelectedItem().toString();
+            if (courid != null && !courid.equals("----All----")) {
+                listRegister = registerDAO.readByCourseId(courid);
+                if (listRegister != null) {
+                    loadCBXStudent();
+                }
+            } else {
+                listRegister = registerDAO.readByAll();
+                if (listRegister != null) {
+                    loadCBXStudent();
+                }
+            }
+        }
+}//GEN-LAST:event_cbxCourseIDItemStateChanged
 
     private void cbxStudentIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxStudentIDActionPerformed
         // TODO add your handling code here:
@@ -349,25 +366,7 @@ public class frmDevelopDegree extends javax.swing.JFrame {
                 }
             }
         }
-    }//GEN-LAST:event_cbxStudentIDActionPerformed
-
-    private void cbxCourseIDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxCourseIDItemStateChanged
-        // TODO add your handling code here:
-        if (cbxCourseID.getItemCount() - 1 == listCourse.size()) {
-            String courid = cbxCourseID.getSelectedItem().toString();
-            if (courid != null && !courid.equals("----All----")) {
-                listRegister = registerDAO.readByCourseId(courid);
-                if (listRegister != null) {
-                    loadCBXStudent();
-                }
-            } else {
-                listRegister = registerDAO.readByAll();
-                if (listRegister != null) {
-                    loadCBXStudent();
-                }
-            }
-        }
-    }//GEN-LAST:event_cbxCourseIDItemStateChanged
+}//GEN-LAST:event_cbxStudentIDActionPerformed
 
     public void searchStart() {
         if (!listMark.isEmpty()) {
@@ -384,30 +383,17 @@ public class frmDevelopDegree extends javax.swing.JFrame {
             }
         }
     }
-
-    private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
-        // TODO add your handling code here:
-        searchStart();
-    }//GEN-LAST:event_btnFilterActionPerformed
-
     private void filterTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             searchStart();
         }
-    }//GEN-LAST:event_filterTextKeyPressed
+}//GEN-LAST:event_filterTextKeyPressed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new frmDevelopDegree().setVisible(true);
-            }
-        });
-    }
+    private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
+        // TODO add your handling code here:
+        searchStart();
+}//GEN-LAST:event_btnFilterActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnCreate;

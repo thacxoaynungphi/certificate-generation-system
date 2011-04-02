@@ -166,6 +166,7 @@ public class pnlCourse extends javax.swing.JPanel {
         filterText = new javax.swing.JTextField();
         btnFilter = new javax.swing.JButton();
 
+        setPreferredSize(new java.awt.Dimension(800, 600));
         setLayout(new java.awt.GridBagLayout());
 
         tpCourse.setMinimumSize(new java.awt.Dimension(860, 200));
