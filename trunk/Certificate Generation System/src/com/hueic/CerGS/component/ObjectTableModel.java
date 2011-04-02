@@ -112,8 +112,11 @@ public class ObjectTableModel extends AbstractTableModel {
         Object obj = null;
         try {
             //Loi o day
+            this.getColumnPropertyIndex(columnIndex - 1);
+            System.out.println("Hai");
             obj = ((PropertyIndex) this.tableData.get(rowIndex)).getPropertyValue(this.getColumnPropertyIndex(columnIndex - 1));
         } catch (Exception ex) {
+            System.out.println(ex.toString());
         }
         return obj;
     }

@@ -77,11 +77,13 @@ public class pnlSubject extends javax.swing.JPanel {
 
     public void loadData() {
         filter = new ArrayList<Subject>();
+        filter.clear();
         for (Subject sub : listSubject) {
             if (sub.getId().toLowerCase().matches(".*" + txtSubjectIdSearch.getText().trim().toLowerCase() + ".*")
                     && sub.getName().toLowerCase().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")
                     && String.valueOf(sub.getCoefficient()).toLowerCase().matches(".*" + txtCoefficientSearch.getText().trim().toLowerCase() + ".*")
                     && sub.getCourseID().toLowerCase().matches(".*" + txtCoureIDSearch.getText().trim().toLowerCase() + ".*")) {
+                System.out.println("co du lieu");
                 filter.add(sub);
             }
         }
@@ -786,8 +788,7 @@ public class pnlSubject extends javax.swing.JPanel {
             btnUpdate.setEnabled(true);
             btnDelete.setEnabled(true);
             txtCoureID.setVisible(true);
-            loadDetails(
-                    findSubject(txtSubjectId.getText()));
+            loadDetails( findSubject(txtSubjectId.getText()));
 
 
         } else {
@@ -876,8 +877,7 @@ public class pnlSubject extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Create Subject", JOptionPane.INFORMATION_MESSAGE);
                     listSubject.add(subject);
                     loadData();
-                    loadDetails(
-                            subject);
+                    loadDetails(subject);
                     isAdd = false;
                     btnUpdate.setEnabled(true);
                     btnDelete.setEnabled(true);
@@ -896,7 +896,6 @@ public class pnlSubject extends javax.swing.JPanel {
 
         }
 }//GEN-LAST:event_btnAddActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
