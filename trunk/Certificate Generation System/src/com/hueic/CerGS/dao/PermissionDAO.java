@@ -4,7 +4,7 @@
  */
 package com.hueic.CerGS.dao;
 
-import com.hueic.CerGS.dao.inteface.IPermissionDAO;
+import com.hueic.CerGS.dao.IDao.IPermissionDAO;
 import com.hueic.CerGS.entity.Permission;
 import com.hueic.CerGS.util.Configure;
 import java.sql.ResultSet;

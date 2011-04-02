@@ -4,7 +4,7 @@
  */
 package com.hueic.CerGS.dao;
 
-import com.hueic.CerGS.dao.inteface.IPaymentDAO;
+import com.hueic.CerGS.dao.IDao.IPaymentDAO;
 import com.hueic.CerGS.entity.Payment;
 import com.hueic.CerGS.util.Configure;
 import java.sql.Date;

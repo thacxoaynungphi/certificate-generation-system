@@ -4,7 +4,7 @@
  */
 package com.hueic.CerGS.dao;
 
-import com.hueic.CerGS.dao.inteface.IMarkDAO;
+import com.hueic.CerGS.dao.IDao.IMarkDAO;
 import com.hueic.CerGS.entity.Mark;
 import com.hueic.CerGS.util.Configure;
 import java.sql.ResultSet;

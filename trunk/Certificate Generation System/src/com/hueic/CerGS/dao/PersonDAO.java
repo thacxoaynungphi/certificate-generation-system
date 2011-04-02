@@ -4,7 +4,7 @@
  */
 package com.hueic.CerGS.dao;
 
-import com.hueic.CerGS.dao.inteface.IPersonDAO;
+import com.hueic.CerGS.dao.IDao.IPersonDAO;
 import com.hueic.CerGS.entity.Person;
 import com.hueic.CerGS.util.Configure;
 import java.sql.Date;

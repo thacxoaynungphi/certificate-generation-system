@@ -102,10 +102,10 @@ public class pnlMark extends javax.swing.JPanel {
         }
 
         ColumnData[] columns = {
-            new ColumnData("ID", 100, SwingConstants.LEFT, 1),
-            new ColumnData("Student ID", 140, SwingConstants.LEFT, 2),
+            new ColumnData("ID", 140, SwingConstants.LEFT, 1),
+            new ColumnData("Student ID", 170, SwingConstants.LEFT, 2),
             new ColumnData("Subject ID", 170, SwingConstants.LEFT, 3),
-            new ColumnData("Mark", 260, SwingConstants.LEFT, 4)
+            new ColumnData("Mark", 150, SwingConstants.LEFT, 4)
         };
         tableModel = new ObjectTableModel(tableContent, columns, filter);
         sorter = new TableRowSorter<TableModel>(tableModel);

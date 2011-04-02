@@ -4,7 +4,7 @@
  */
 package com.hueic.CerGS.dao;
 
-import com.hueic.CerGS.dao.inteface.IEmployeeDAO;
+import com.hueic.CerGS.dao.IDao.IEmployeeDAO;
 import com.hueic.CerGS.entity.Employee;
 import com.hueic.CerGS.entity.Person;
 import java.util.Date;
