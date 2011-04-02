@@ -10,7 +10,8 @@
  */
 package com.hueic.CerGS.ui;
 
-import com.hueic.CerGS.component.IconSystem;
+import com.hueic.CerGS.component.ColumnData;
+import com.hueic.CerGS.component.ObjectTableModel;
 import com.hueic.CerGS.dao.CourseDAO;
 import com.hueic.CerGS.dao.MarkDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
@@ -24,7 +25,7 @@ import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.SwingConstants;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -43,6 +44,9 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
     private ArrayList<Register> listRegister;
     private TableRowSorter<TableModel> sorter;
     private ArrayList<Mark> listMark;
+    private ObjectTableModel tableModel;
+    private JTable headerTable;
+    
 
     public pnlDevelopDegree() {
         initComponents();
@@ -82,46 +86,26 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
     }
 
     public void loadData(ArrayList<Mark> listMark) {
-        String[] columns = {"Id", "StudentId", "SubjectId", "Mark"};
-        Object[][] rows = new Object[listMark.size()][4];
-        int index = 0;
-        for (int i = 0; i < listMark.size(); i++) {
-            Mark mark = listMark.get(i);
-            rows[index][0] = mark.getId();
-            rows[index][1] = mark.getStudentId();
-            rows[index][2] = mark.getSubjectId();
-            rows[index][3] = mark.getMark();
-            index++;
-        }
-        TableModel model = new DefaultTableModel(rows, columns) {
 
-            public Class getColumnClass(int column) {
-                Class returnValue;
-                if ((column >= 0) && (column < getColumnCount())) {
-                    returnValue = getValueAt(0, column).getClass();
-                } else {
-                    returnValue = Object.class;
-                }
-                return returnValue;
-            }
-            boolean[] canEdit = new boolean[]{
-                false, false, false, false
-            };
-
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return canEdit[column];
-            }
-        };
-        tableContent = new JTable(model);
-        sorter = new TableRowSorter<TableModel>(model);
+        ColumnData[] columns = {
+            new ColumnData("ID", 135, SwingConstants.LEFT, 1),
+            new ColumnData("Student ID", 100, SwingConstants.LEFT, 2),
+            new ColumnData("Subject Id", 140, SwingConstants.LEFT, 3),
+            new ColumnData("Mark", 170, SwingConstants.LEFT, 4),};
+        tableModel = new ObjectTableModel(tableContent, columns, listMark);
+        sorter = new TableRowSorter<TableModel>(tableModel);
         tableContent.setRowSorter(sorter);
+        headerTable = tableModel.getHeaderTable();
+        // Create numbering column
+        headerTable.createDefaultColumnsFromModel();
         tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        JViewport viewPort = new JViewport();
-        viewPort.setView(tableContent);
-        viewPort.setPreferredSize(tableContent.getMaximumSize());
-        srcPanelViewMark.setRowHeader(viewPort);
-        srcPanelViewMark.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
+        // Put it in a viewport that we can control a bit
+        JViewport viewport = new JViewport();
+        // Display numbering column
+        viewport.setView(headerTable);
+        viewport.setPreferredSize(headerTable.getMaximumSize());
+        srcPanelViewMark.setRowHeader(viewport);
+        srcPanelViewMark.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, headerTable.getTableHeader());
     }
 
     /** This method is called from within the constructor to

@@ -8,14 +8,13 @@
  *
  * Created on Apr 2, 2011, 9:42:44 AM
  */
-
 package com.hueic.CerGS.ui;
 
-import com.hueic.CerGS.component.IconSystem;
+import com.hueic.CerGS.component.ColumnData;
+import com.hueic.CerGS.component.ObjectTableModel;
 import com.hueic.CerGS.dao.CourseDAO;
 import com.hueic.CerGS.dao.PaymentDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
-import com.hueic.CerGS.dao.StudentDAO;
 import com.hueic.CerGS.entity.Course;
 import com.hueic.CerGS.entity.Payment;
 import com.hueic.CerGS.entity.Register;
@@ -26,9 +25,10 @@ import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.SwingConstants;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author qhvic
@@ -36,7 +36,7 @@ import javax.swing.table.TableRowSorter;
 public class pnlViewPayment extends javax.swing.JPanel {
 
     /** Creates new form pnlViewPayment */
-     private int currentId;
+    private int currentId;
     private ArrayList<Payment> listPayments = new ArrayList<Payment>();
     private PaymentDAO paymentDao;
     TableRowSorter<TableModel> sorter;
@@ -44,6 +44,8 @@ public class pnlViewPayment extends javax.swing.JPanel {
     private RegisterDAO registerDao;
     public ArrayList<Course> listCourse;
     public ArrayList<Register> listRegister;
+    private ObjectTableModel tableModel;
+    private JTable headerTable;
 
     public pnlViewPayment() {
         initComponents();
@@ -59,56 +61,25 @@ public class pnlViewPayment extends javax.swing.JPanel {
     }
 
     public void loadData(ArrayList<Payment> listPayments) {
-        String[] columns = {"Id", "StudentId", "StudentName", "Money", "Payday"};
-        Object[][] rows = new Object[listPayments.size()][5];
-        int index = 0;
-        for (int i = 0; i < listPayments.size(); i++) {
-            Payment payment = listPayments.get(i);
-            String id = new RegisterDAO().readByStudentId(payment.getStudentId()).getId();
-
-            rows[index][0] = payment.getId();
-            rows[index][1] = payment.getStudentId();
-            rows[index][2] = new StudentDAO().readByID(id).getFullName();
-            rows[index][3] = payment.getMoney();
-            rows[index][4] = payment.getPayday();
-            index++;
-        }
-        TableModel model = new DefaultTableModel(rows, columns) {
-
-            public Class getColumnClass(int column) {
-                Class returnValue;
-                if ((column >= 0) && (column < getColumnCount())) {
-                    returnValue = getValueAt(0, column).getClass();
-                } else {
-                    returnValue = Object.class;
-                }
-                return returnValue;
-            }
-            boolean[] canEdit = new boolean[]{
-                false, false, false, false, false
-            };
-
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return canEdit[column];
-            }
-        };
-        tableContent = new JTable(model);
-        tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
-
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableContentMouseClicked(evt);
-            }
-        });
-        sorter = new TableRowSorter<TableModel>(model);
+        ColumnData[] columns = {
+            new ColumnData("ID", 135, SwingConstants.LEFT, 1),
+            new ColumnData("Student ID", 100, SwingConstants.LEFT, 2),
+            new ColumnData("Money", 140, SwingConstants.LEFT, 3),
+            new ColumnData("Payday", 170, SwingConstants.LEFT, 4),};
+        tableModel = new ObjectTableModel(tableContent, columns, listPayments);
+        sorter = new TableRowSorter<TableModel>(tableModel);
         tableContent.setRowSorter(sorter);
+        headerTable = tableModel.getHeaderTable();
+        // Create numbering column
+        headerTable.createDefaultColumnsFromModel();
         tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        JViewport viewPort = new JViewport();
-        viewPort.setView(tableContent);
-        viewPort.setPreferredSize(tableContent.getMaximumSize());
-
-        srcPanelPayment.setRowHeader(viewPort);
-        srcPanelPayment.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, tableContent.getTableHeader());
+        // Put it in a viewport that we can control a bit
+        JViewport viewport = new JViewport();
+        // Display numbering column
+        viewport.setView(headerTable);
+        viewport.setPreferredSize(headerTable.getMaximumSize());
+        srcPanelPayment.setRowHeader(viewport);
+        srcPanelPayment.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, headerTable.getTableHeader());
     }
 
     public void load(ArrayList<Payment> listPayments, String courseId, String studentid) {
@@ -156,6 +127,7 @@ public class pnlViewPayment extends javax.swing.JPanel {
             }
         }
     }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -431,8 +403,6 @@ public class pnlViewPayment extends javax.swing.JPanel {
         // TODO add your handling code here:
         searchStart();
 }//GEN-LAST:event_btnFilterActionPerformed
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnFilter;
@@ -452,5 +422,4 @@ public class pnlViewPayment extends javax.swing.JPanel {
     private javax.swing.JScrollPane srcPanelPayment;
     private javax.swing.JTable tableContent;
     // End of variables declaration//GEN-END:variables
-
 }
