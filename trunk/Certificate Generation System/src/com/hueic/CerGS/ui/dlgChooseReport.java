@@ -18,7 +18,9 @@ import com.hueic.CerGS.entity.Subject;
 import com.hueic.CerGS.ui.report.pnlCertificateDevelopedReport;
 import com.hueic.CerGS.ui.report.pnlCertificateReport;
 import com.hueic.CerGS.ui.report.pnlCourseReport;
+import com.hueic.CerGS.ui.report.pnlEmployeeDetailReport;
 import com.hueic.CerGS.ui.report.pnlEmployeeReport;
+import com.hueic.CerGS.ui.report.pnlStudentDetailReport;
 import com.hueic.CerGS.ui.report.pnlStudentFeeReport;
 import com.hueic.CerGS.ui.report.pnlStudentMarkReport;
 import com.hueic.CerGS.ui.report.pnlStudentReport;
@@ -91,6 +93,16 @@ public class dlgChooseReport extends javax.swing.JPanel {
     public void getCourseReport(ArrayList<Course> list) {
         pnlCourseReport courseReport = new pnlCourseReport(list);
         this.pnlBrowser.add(courseReport);
+    }
+
+    public void getEmployeeDetailsReport(Employee emp) {
+        pnlEmployeeDetailReport employeeDetailReport = new pnlEmployeeDetailReport(emp);
+        this.pnlBrowser.add(employeeDetailReport);
+    }
+
+    public void getStudentDetailsReport(Student student) {
+        pnlStudentDetailReport studentDetailReport = new pnlStudentDetailReport(student);
+        this.pnlBrowser.add(studentDetailReport);
     }
 
     /** This method is called from within the constructor to

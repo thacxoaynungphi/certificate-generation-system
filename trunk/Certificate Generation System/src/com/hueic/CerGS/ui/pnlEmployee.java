@@ -218,6 +218,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         srcPaneEmployee = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
         pnlButtonReport = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         btnReport = new javax.swing.JButton();
 
         setMinimumSize(new java.awt.Dimension(800, 600));
@@ -894,6 +895,16 @@ public class pnlEmployee extends javax.swing.JPanel {
 
         pnlButtonReport.setBackground(new java.awt.Color(255, 255, 255));
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
+        jButton1.setText("Report Details");
+        jButton1.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        pnlButtonReport.add(jButton1);
+
         btnReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
         btnReport.setText("Report");
         btnReport.setMargin(new java.awt.Insets(2, 5, 2, 5));
@@ -1155,6 +1166,21 @@ public class pnlEmployee extends javax.swing.JPanel {
         frm.pnlReport.add(report);
         frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
     }//GEN-LAST:event_btnReportActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int index = this.tableContent.getSelectedRow();
+        if (index != -1) {
+            Employee emp = filter.get(index);
+            frm.pnlReport.removeAll();
+            dlgChooseReport report = new dlgChooseReport(frm, this);
+            report.getEmployeeDetailsReport(emp);
+            report.setVisible(true);
+            report.setSize(860, 600);
+            frm.pnlReport.add(report);
+            frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddEdit;
     private javax.swing.JButton btnBrowseEdit;
@@ -1171,6 +1197,7 @@ public class pnlEmployee extends javax.swing.JPanel {
     private com.toedter.calendar.JDateChooser dateChooserDateEndSearch;
     private com.toedter.calendar.JDateChooser dateChooserDateStartSearch;
     private javax.swing.JTextField filterText;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblBeginwork;
     private javax.swing.JLabel lblBirthday;

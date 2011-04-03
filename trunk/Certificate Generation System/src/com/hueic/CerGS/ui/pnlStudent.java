@@ -40,10 +40,21 @@ public class pnlStudent extends javax.swing.JPanel {
     private ObjectTableModel tableModel;
     private JTable headerTable;
     private boolean isAdd;
-
+    frmMain frm;
+    
     /** Creates new form pnlStudent */
     public pnlStudent() {
         initComponents();
+        txtIDEdit.setEnabled(false);
+        isAdd = false;
+        liststudent = studentDao.readByAll();
+        btnCancelEdit.setVisible(false);
+        loadTable(liststudent);
+    }
+
+    public pnlStudent(frmMain frm) {
+        initComponents();
+        this.frm = frm;
         txtIDEdit.setEnabled(false);
         isAdd = false;
         liststudent = studentDao.readByAll();
@@ -190,6 +201,7 @@ public class pnlStudent extends javax.swing.JPanel {
         srcPanelContent = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
+        btnReportDetails = new javax.swing.JButton();
         btnReport = new javax.swing.JButton();
 
         setLayout(new java.awt.GridBagLayout());
@@ -817,6 +829,16 @@ public class pnlStudent extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
+        btnReportDetails.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
+        btnReportDetails.setText("Report Details");
+        btnReportDetails.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnReportDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportDetailsActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnReportDetails);
+
         btnReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
         btnReport.setText("Report");
         btnReport.setMargin(new java.awt.Insets(2, 5, 2, 5));
@@ -1045,6 +1067,21 @@ public class pnlStudent extends javax.swing.JPanel {
             btnCancelEdit.setVisible(false);
         }
     }//GEN-LAST:event_btnCancelEditActionPerformed
+
+    private void btnReportDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportDetailsActionPerformed
+        // TODO add your handling code here:
+        int index = this.tableContent.getSelectedRow();
+        if (index != -1) {
+            Student student = filter.get(index);
+            frm.pnlReport.removeAll();
+            dlgChooseReport report = new dlgChooseReport(frm, this);
+            report.getStudentDetailsReport(student);
+            report.setVisible(true);
+            report.setSize(860, 600);
+            frm.pnlReport.add(report);
+            frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+        }
+    }//GEN-LAST:event_btnReportDetailsActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddEdit;
     private javax.swing.JButton btnBrowseEdit;
@@ -1054,6 +1091,7 @@ public class pnlStudent extends javax.swing.JPanel {
     private javax.swing.ButtonGroup btnGGender1;
     private javax.swing.ButtonGroup btnGGender2;
     private javax.swing.JButton btnReport;
+    private javax.swing.JButton btnReportDetails;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnUpdateEdit;
     private com.toedter.calendar.JDateChooser dateChBirthdayEdit;
