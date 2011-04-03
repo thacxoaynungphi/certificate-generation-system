@@ -1180,6 +1180,8 @@ public class pnlEmployee extends javax.swing.JPanel {
             report.setSize(860, 600);
             frm.pnlReport.add(report);
             frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+        } else {
+            JOptionPane.showMessageDialog(this, "You are choose employee!", "Report details employee", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables

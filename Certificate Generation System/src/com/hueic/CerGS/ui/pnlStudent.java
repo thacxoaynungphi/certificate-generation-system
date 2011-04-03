@@ -1102,6 +1102,8 @@ public class pnlStudent extends javax.swing.JPanel {
             report.setSize(860, 600);
             frm.pnlReport.add(report);
             frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+        } else {
+            JOptionPane.showMessageDialog(this, "You are choose student!", "Report details student", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnReportDetailsActionPerformed
 

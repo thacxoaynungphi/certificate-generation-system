@@ -204,6 +204,11 @@ public class dlgLogin extends javax.swing.JDialog {
                 btnResetActionPerformed(evt);
             }
         });
+        btnReset.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnResetKeyPressed(evt);
+            }
+        });
         panelButton.add(btnReset);
 
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
@@ -213,6 +218,11 @@ public class dlgLogin extends javax.swing.JDialog {
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelActionPerformed(evt);
+            }
+        });
+        btnCancel.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnCancelKeyPressed(evt);
             }
         });
         panelButton.add(btnCancel);
@@ -307,6 +317,20 @@ public class dlgLogin extends javax.swing.JDialog {
             login();
         }
     }//GEN-LAST:event_txtPasswordKeyPressed
+
+    private void btnResetKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnResetKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtUsername.setText(null);
+            txtPassword.setText(null);
+            cbxPermission.setSelectedIndex(0);
+        }
+    }//GEN-LAST:event_btnResetKeyPressed
+
+    private void btnCancelKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCancelKeyPressed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnCancelKeyPressed
     /**
      * @param args the command line arguments
      */
