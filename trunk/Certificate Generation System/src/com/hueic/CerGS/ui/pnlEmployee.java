@@ -104,6 +104,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         });
         sorter = new TableRowSorter<TableModel>(tableModel);
         tableContent.setRowSorter(sorter);
+        lblCount.setText(String.valueOf(listEmp.size()));
         headerTable = tableModel.getHeaderTable();
         // Create numbering column
         headerTable.createDefaultColumnsFromModel();

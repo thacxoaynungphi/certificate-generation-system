@@ -59,6 +59,7 @@ public class pnlSubject extends javax.swing.JPanel {
         if (listSubject.size() != 0) {
             loadDetails(listSubject.get(0));
         }
+        btnCancel.setVisible(false);
     }
 
     public pnlSubject(frmMain frm) {
@@ -73,6 +74,7 @@ public class pnlSubject extends javax.swing.JPanel {
         if (listSubject.size() != 0) {
             loadDetails(listSubject.get(0));
         }
+        btnCancel.setVisible(false);
     }
 
     public void loadData() {
@@ -339,7 +341,6 @@ public class pnlSubject extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 5, 5);
         panelRight.add(panelButton, gridBagConstraints);
 
-        txtName.setEnabled(false);
         txtName.setMinimumSize(new java.awt.Dimension(200, 20));
         txtName.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -349,7 +350,6 @@ public class pnlSubject extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 9, 5, 5);
         panelRight.add(txtName, gridBagConstraints);
 
-        txtCoefficient.setEnabled(false);
         txtCoefficient.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
@@ -367,9 +367,9 @@ public class pnlSubject extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(lblSubjectID, gridBagConstraints);
 
-        txtSubjectId.setEnabled(false);
         txtSubjectId.setMinimumSize(new java.awt.Dimension(200, 20));
         txtSubjectId.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtSubjectId.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -386,7 +386,6 @@ public class pnlSubject extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
         panelRight.add(sepa1, gridBagConstraints);
 
-        txtCoureID.setEnabled(false);
         txtCoureID.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
@@ -787,21 +786,10 @@ public class pnlSubject extends javax.swing.JPanel {
             isAdd = false;
             btnUpdate.setEnabled(true);
             btnDelete.setEnabled(true);
-            txtCoureID.setVisible(true);
-
-
-        } else if (isUpdate) {
-            isUpdate = false;
-            btnUpdate.setEnabled(true);
-            btnDelete.setEnabled(true);
-            txtCoureID.setVisible(true);
-            loadDetails(findSubject(txtSubjectId.getText()));
-
-
+            btnCancel.setVisible(false);
+            txtSubjectId.setRequestFocusEnabled(false);
         } else {
             loadDetails(listSubject.get(0));
-
-
         }
 }//GEN-LAST:event_btnCancelActionPerformed
 
@@ -823,38 +811,24 @@ public class pnlSubject extends javax.swing.JPanel {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         try {
-            if (!isUpdate) {
-                txtCoureID.setVisible(false);
-                isUpdate = true;
+            String subjectId = txtSubjectId.getText();
+            String subjectName = txtName.getText();
 
+            int coefficient = Integer.parseInt(txtCoefficient.getText());
+            String courseId = txtCoureID.getText();
+            Subject subject = new Subject(subjectId, subjectName, coefficient, courseId);
 
+            if (subjectDao.update(subject)) {
+                JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Update Subject", JOptionPane.INFORMATION_MESSAGE);
+                listSubject.remove(findSubject(subjectId));
+                listSubject.add(subject);
+                loadData();
+                loadDetails(subject);
             } else {
-                isUpdate = false;
-                String subjectId = txtSubjectId.getText();
-                String subjectName = txtName.getText();
-
-
-                int coefficient = Integer.parseInt(txtCoefficient.getText());
-                String courseId = txtCoureID.getText();
-                Subject subject = new Subject(subjectId, subjectName, coefficient, courseId);
-
-
-                if (subjectDao.update(subject)) {
-                    JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Update Subject", JOptionPane.INFORMATION_MESSAGE);
-                    listSubject.remove(findSubject(subjectId));
-                    listSubject.add(subject);
-                    loadData();
-                    loadDetails(subject);
-                } else {
-                    JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Update Subject", JOptionPane.ERROR_MESSAGE);
-
-
-                }
+                JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Update Subject", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
             System.out.println(e.toString());
-
-
         }
 }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -863,18 +837,24 @@ public class pnlSubject extends javax.swing.JPanel {
         try {
             if (!isAdd) {
                 isAdd = true;
+                btnCancel.setVisible(true);
                 btnUpdate.setEnabled(false);
                 btnDelete.setEnabled(false);
-                txtCoureID.setVisible(false);
+                txtCoureID.setText(null);
                 txtSubjectId.setText(null);
+                txtSubjectId.setRequestFocusEnabled(true);
                 txtName.setText(null);
                 txtCoefficient.setText(null);
 
             } else {
+                isAdd = false;
+                btnUpdate.setEnabled(true);
+                btnDelete.setEnabled(true);
+                btnCancel.setVisible(false);
+                txtSubjectId.setRequestFocusEnabled(false);
+
                 String subjectId = txtSubjectId.getText();
                 String subjectName = txtName.getText();
-
-
                 int coefficient = Integer.parseInt(txtCoefficient.getText());
                 String courseId = txtCoureID.getText();
                 Subject subject = new Subject(subjectId, subjectName, coefficient, courseId);
@@ -885,10 +865,7 @@ public class pnlSubject extends javax.swing.JPanel {
                     listSubject.add(subject);
                     loadData();
                     loadDetails(subject);
-                    isAdd = false;
-                    btnUpdate.setEnabled(true);
-                    btnDelete.setEnabled(true);
-                    txtCoureID.setVisible(true);
+
                 } else {
                     JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Create Subject", JOptionPane.ERROR_MESSAGE);
                 }

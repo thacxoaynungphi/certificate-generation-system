@@ -234,7 +234,6 @@ public class pnlCourse extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         pnlTop1.add(lblTotalFees, gridBagConstraints);
 
-        txtTotalFees.setEditable(false);
         txtTotalFees.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
@@ -312,6 +311,7 @@ public class pnlCourse extends javax.swing.JPanel {
         pnlTop1.add(lblID, gridBagConstraints);
 
         txtID.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtID.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;

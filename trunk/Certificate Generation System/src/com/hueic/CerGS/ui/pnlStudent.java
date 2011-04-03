@@ -88,7 +88,7 @@ public class pnlStudent extends javax.swing.JPanel {
                 filter.add(emp);
             }
         }
-        if (filter.size() != 0) {
+        if (!filter.isEmpty()) {
             loadDetails(filter.get(0));
         }
         ColumnData[] columns = {
@@ -102,6 +102,7 @@ public class pnlStudent extends javax.swing.JPanel {
         tableModel = new ObjectTableModel(tableContent, columns, filter);
         sorter = new TableRowSorter<TableModel>(tableModel);
         tableContent.setRowSorter(sorter);
+        lblCount.setText(String.valueOf(liststudent.size()));
         headerTable = tableModel.getHeaderTable();
         // Create numbering column
         headerTable.createDefaultColumnsFromModel();
@@ -751,7 +752,7 @@ public class pnlStudent extends javax.swing.JPanel {
         panelTop.setLayout(new java.awt.GridBagLayout());
 
         lblHienthi1.setForeground(new java.awt.Color(3, 3, 3));
-        lblHienthi1.setText("Total employees:");
+        lblHienthi1.setText("Total Students:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
