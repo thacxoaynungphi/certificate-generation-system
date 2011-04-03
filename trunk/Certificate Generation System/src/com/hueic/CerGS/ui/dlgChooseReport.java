@@ -17,7 +17,7 @@ import com.hueic.CerGS.entity.Student;
 import com.hueic.CerGS.ui.report.pnlCertificateDevelopedReport;
 import com.hueic.CerGS.ui.report.pnlCertificateReport;
 import com.hueic.CerGS.ui.report.pnlEmployeeReport;
-import com.hueic.CerGS.ui.report.pnlStudentFeeReport;
+import com.hueic.CerGS.ui.report.pnlFeeReport;
 import com.hueic.CerGS.ui.report.pnlStudentMarkReport;
 import com.hueic.CerGS.ui.report.pnlStudentNewRegistrationReport;
 import com.hueic.CerGS.ui.report.pnlStudentReport;
@@ -34,7 +34,7 @@ public class dlgChooseReport extends javax.swing.JPanel {
     pnlCertificateReport cerReport;
     pnlCertificateDevelopedReport cerDevReport;
     pnlEmployeeReport empReport;
-    pnlStudentFeeReport feeReport;
+    pnlFeeReport feeReport;
     pnlStudentMarkReport markReport;
     pnlStudentNewRegistrationReport newRegistratorReport;
     pnlStudentReport studentReport;
@@ -64,7 +64,7 @@ public class dlgChooseReport extends javax.swing.JPanel {
                 this.pnlBrowser = empReport;
                 break;
             case 3:
-                feeReport = new pnlStudentFeeReport(listPayment);
+                feeReport = new pnlFeeReport(listPayment);
                 this.pnlBrowser = feeReport;
                 break;
             case 4:

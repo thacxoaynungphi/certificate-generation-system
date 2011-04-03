@@ -21,7 +21,7 @@ import org.apache.commons.collections.FastHashMap;
  *
  * @author Wind
  */
-public class StudentFeesInCourseReportManager extends ReportManager {
+public class FeeReportManager extends ReportManager {
 
     private String courseId;
     private StudentDAO studentDAO;
@@ -29,7 +29,7 @@ public class StudentFeesInCourseReportManager extends ReportManager {
     private RegisterDAO registerDAO;
     private ArrayList<Payment> listPayment;
 
-    public StudentFeesInCourseReportManager(ArrayList<Payment> listPayment){
+    public FeeReportManager(ArrayList<Payment> listPayment){
         studentDAO = new StudentDAO();
         courseDAO = new CourseDAO();
         registerDAO = new RegisterDAO();
