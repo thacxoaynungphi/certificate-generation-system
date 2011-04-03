@@ -14,9 +14,23 @@ import com.hueic.CerGS.component.ColumnData;
 import com.hueic.CerGS.component.ObjectTableModel;
 import com.hueic.CerGS.dao.StudentDAO;
 import com.hueic.CerGS.entity.Student;
+import com.lowagie.text.BadElementException;
+import com.lowagie.text.Image;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.PatternSyntaxException;
+import javax.imageio.ImageIO;
 import javax.swing.CellEditor;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
@@ -24,6 +38,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -41,7 +56,7 @@ public class pnlStudent extends javax.swing.JPanel {
     private JTable headerTable;
     private boolean isAdd;
     frmMain frm;
-    
+
     /** Creates new form pnlStudent */
     public pnlStudent() {
         initComponents();
@@ -371,6 +386,11 @@ public class pnlStudent extends javax.swing.JPanel {
         btnBrowseEdit.setMaximumSize(new java.awt.Dimension(70, 23));
         btnBrowseEdit.setMinimumSize(new java.awt.Dimension(70, 23));
         btnBrowseEdit.setPreferredSize(new java.awt.Dimension(60, 20));
+        btnBrowseEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBrowseEditActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 4;
@@ -1082,6 +1102,59 @@ public class pnlStudent extends javax.swing.JPanel {
             frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
         }
     }//GEN-LAST:event_btnReportDetailsActionPerformed
+
+    public void copyImage(String source,String destination) {
+        try {
+
+            File sourceFile = new File(source);
+            BufferedInputStream bis = new BufferedInputStream(new FileInputStream(sourceFile), 4096);
+            File targetFile = new File(destination);
+            BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(targetFile), 4096);
+            int theChar;
+            while ((theChar = bis.read()) != -1) {
+                bos.write(theChar);
+            }
+            bos.close();
+            bis.close();
+            System.out.println("copy done!");
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    private void btnBrowseEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseEditActionPerformed
+        // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "JPG, GIF, & PNG Images", "jpg", "gif", "png");
+        chooser.setFileFilter(filter);
+        int returnVal = chooser.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            System.out.println("You chose to open this file: "
+                    + chooser.getSelectedFile().getName());
+            try {
+                //Image img = ImageReadWrite.read(chooser.getSelectedFile());
+                File file = chooser.getSelectedFile();
+                Image image = Image.getInstance(file.getPath());
+
+                System.out.println("W" + image.getWidth() + " H : " + image.getHeight());
+                if (image.getWidth() < 9 && image.getHeight() < 10) {
+                   //copyImage(file.getPath(), this.getClass().getResource("/com/hueic/CerGS/avatar/" + file.getName()));
+                }
+            } catch (BadElementException ex) {
+                Logger.getLogger(pnlStudent.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(pnlStudent.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_btnBrowseEditActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddEdit;
     private javax.swing.JButton btnBrowseEdit;

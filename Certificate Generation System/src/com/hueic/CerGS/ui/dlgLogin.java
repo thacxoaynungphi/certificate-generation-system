@@ -15,6 +15,8 @@ import com.hueic.CerGS.dao.AccountDAO;
 import com.hueic.CerGS.dao.PermissionDAO;
 import com.hueic.CerGS.entity.Account;
 import com.hueic.CerGS.entity.Permission;
+import java.awt.RenderingHints.Key;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -81,6 +83,11 @@ public class dlgLogin extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         panelLogo.setBackground(new java.awt.Color(255, 255, 255));
@@ -181,6 +188,11 @@ public class dlgLogin extends javax.swing.JDialog {
                 btnLoginActionPerformed(evt);
             }
         });
+        btnLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnLoginKeyPressed(evt);
+            }
+        });
         panelButton.add(btnLogin);
 
         btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
@@ -231,6 +243,10 @@ public class dlgLogin extends javax.swing.JDialog {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
+        login();
+}//GEN-LAST:event_btnLoginActionPerformed
+
+    public void login() {
         try {
             String username = txtUsername.getText();
             String password = String.valueOf(txtPassword.getPassword());
@@ -252,8 +268,7 @@ public class dlgLogin extends javax.swing.JDialog {
         } catch (Exception ex) {
             System.out.println("ex : " + ex.toString());
         }
-}//GEN-LAST:event_btnLoginActionPerformed
-
+    }
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
         txtUsername.setText(null);
@@ -267,6 +282,19 @@ public class dlgLogin extends javax.swing.JDialog {
         this.dispose();
 }//GEN-LAST:event_btnCancelActionPerformed
 
+    private void btnLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnLoginKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            login();
+        }
+    }//GEN-LAST:event_btnLoginKeyPressed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            login();
+        }
+    }//GEN-LAST:event_formKeyPressed
     /**
      * @param args the command line arguments
      */
