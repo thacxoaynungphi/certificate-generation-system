@@ -19,10 +19,10 @@ import javax.swing.JOptionPane;
  *
  * @author Wind
  */
-public class EmployeeDetailReport extends javax.swing.JPanel {
+public class pnlEmployeeDetailReport extends javax.swing.JPanel {
 
     /** Creates new form EmployeeDetailReport */
-    public EmployeeDetailReport(Employee emp) {
+    public pnlEmployeeDetailReport(Employee emp) {
         initComponents();
         EmployeeDetailReportManager detailsReportManager = new EmployeeDetailReportManager(emp);
         try {
