@@ -1207,22 +1207,9 @@ public class frmMain extends javax.swing.JFrame {
             mnuILoginSystem.setVisible(true);
         }
     }
-
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new frmMain().setVisible(true);
-
-
-            }
-        });
-
-
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel StatusPnl;
     private javax.swing.ButtonGroup buttonGroupSkin;
