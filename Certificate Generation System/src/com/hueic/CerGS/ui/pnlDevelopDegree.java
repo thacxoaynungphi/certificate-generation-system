@@ -20,7 +20,6 @@ import com.hueic.CerGS.entity.Mark;
 import com.hueic.CerGS.entity.Register;
 import java.util.ArrayList;
 import java.util.regex.PatternSyntaxException;
-import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
@@ -57,6 +56,8 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
         markDAO = new MarkDAO();
         listCourse = courseDAO.readByAll();
         listRegister = registerDAO.readByAll();
+        listMark = markDAO.readByAll();
+        loadData(listMark);
         loadCBXCourse();
         loadCBXStudent();
     }
@@ -88,7 +89,6 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
     }
 
     public void loadData(ArrayList<Mark> listMark) {
-
         ColumnData[] columns = {
             new ColumnData("ID", 135, SwingConstants.LEFT, 1),
             new ColumnData("Student ID", 100, SwingConstants.LEFT, 2),
