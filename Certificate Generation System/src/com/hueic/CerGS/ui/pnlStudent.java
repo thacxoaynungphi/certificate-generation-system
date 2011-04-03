@@ -54,9 +54,9 @@ public class pnlStudent extends javax.swing.JPanel {
     public void loadTable(ArrayList<Student> liststudent) {
         filter = new ArrayList<Student>();
         for (Student emp : liststudent) {
-            if (emp.getId().toLowerCase().matches(".*" + txtStudentId.getText().trim().toLowerCase() + ".*")
-                    && emp.getFirstName().toLowerCase().matches(".*" + txtFirstName.getText().trim().toLowerCase() + ".*")
-                    && emp.getLastName().toLowerCase().matches(".*" + txtLastName.getText().trim().toLowerCase() + ".*")) {
+            if (emp.getId().toLowerCase().matches(".*" + txtStudentIdSearch.getText().trim().toLowerCase() + ".*")
+                    && emp.getFirstName().toLowerCase().matches(".*" + txtFirstNameSearch.getText().trim().toLowerCase() + ".*")
+                    && emp.getLastName().toLowerCase().matches(".*" + txtLastNameSearch.getText().trim().toLowerCase() + ".*")) {
                 // if(dateChooserDateEnd.getDate() != null && dateChooserDateStart.getDate() != null)
                 //Chua de che do ngay va gender
                 filter.add(emp);
@@ -165,20 +165,20 @@ public class pnlStudent extends javax.swing.JPanel {
         panelInfo = new javax.swing.JPanel();
         lblStudentId = new javax.swing.JLabel();
         lblFirstName = new javax.swing.JLabel();
-        txtFirstName = new javax.swing.JTextField();
+        txtFirstNameSearch = new javax.swing.JTextField();
         lblLastName = new javax.swing.JLabel();
-        txtLastName = new javax.swing.JTextField();
+        txtLastNameSearch = new javax.swing.JTextField();
         lblBirthday1 = new javax.swing.JLabel();
-        dateChooserDateStart = new com.toedter.calendar.JDateChooser();
-        dateChooserDateEnd = new com.toedter.calendar.JDateChooser();
+        dateChooserDateStartSearch = new com.toedter.calendar.JDateChooser();
+        dateChooserDateEndSearch = new com.toedter.calendar.JDateChooser();
         lblGender1 = new javax.swing.JLabel();
-        radioMale1 = new javax.swing.JRadioButton();
-        radioFemale1 = new javax.swing.JRadioButton();
+        radioMaleSearch = new javax.swing.JRadioButton();
+        radioFemaleSearch = new javax.swing.JRadioButton();
         lblTitle1 = new javax.swing.JLabel();
         sepaCourse = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
         btnReset = new javax.swing.JButton();
-        txtStudentId = new javax.swing.JTextField();
+        txtStudentIdSearch = new javax.swing.JTextField();
         panelContent = new javax.swing.JPanel();
         panelTop = new javax.swing.JPanel();
         lblHienthi1 = new javax.swing.JLabel();
@@ -546,11 +546,11 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(lblFirstName, gridBagConstraints);
 
-        txtFirstName.setMinimumSize(new java.awt.Dimension(150, 20));
-        txtFirstName.setPreferredSize(new java.awt.Dimension(200, 20));
-        txtFirstName.addCaretListener(new javax.swing.event.CaretListener() {
+        txtFirstNameSearch.setMinimumSize(new java.awt.Dimension(150, 20));
+        txtFirstNameSearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtFirstNameSearch.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtFirstNameCaretUpdate(evt);
+                txtFirstNameSearchCaretUpdate(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -558,7 +558,7 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelInfo.add(txtFirstName, gridBagConstraints);
+        panelInfo.add(txtFirstNameSearch, gridBagConstraints);
 
         lblLastName.setForeground(new java.awt.Color(3, 3, 3));
         lblLastName.setText("Last Name: ");
@@ -569,11 +569,11 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(lblLastName, gridBagConstraints);
 
-        txtLastName.setMinimumSize(new java.awt.Dimension(150, 20));
-        txtLastName.setPreferredSize(new java.awt.Dimension(200, 20));
-        txtLastName.addCaretListener(new javax.swing.event.CaretListener() {
+        txtLastNameSearch.setMinimumSize(new java.awt.Dimension(150, 20));
+        txtLastNameSearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtLastNameSearch.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtLastNameCaretUpdate(evt);
+                txtLastNameSearchCaretUpdate(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -581,7 +581,7 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelInfo.add(txtLastName, gridBagConstraints);
+        panelInfo.add(txtLastNameSearch, gridBagConstraints);
 
         lblBirthday1.setForeground(new java.awt.Color(3, 3, 3));
         lblBirthday1.setText("Birthday: ");
@@ -592,25 +592,25 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         panelInfo.add(lblBirthday1, gridBagConstraints);
 
-        dateChooserDateStart.setMinimumSize(new java.awt.Dimension(150, 20));
-        dateChooserDateStart.setPreferredSize(new java.awt.Dimension(200, 20));
+        dateChooserDateStartSearch.setMinimumSize(new java.awt.Dimension(150, 20));
+        dateChooserDateStartSearch.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelInfo.add(dateChooserDateStart, gridBagConstraints);
+        panelInfo.add(dateChooserDateStartSearch, gridBagConstraints);
 
-        dateChooserDateEnd.setMinimumSize(new java.awt.Dimension(150, 20));
-        dateChooserDateEnd.setPreferredSize(new java.awt.Dimension(200, 20));
+        dateChooserDateEndSearch.setMinimumSize(new java.awt.Dimension(150, 20));
+        dateChooserDateEndSearch.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelInfo.add(dateChooserDateEnd, gridBagConstraints);
+        panelInfo.add(dateChooserDateEndSearch, gridBagConstraints);
 
         lblGender1.setForeground(new java.awt.Color(3, 3, 3));
         lblGender1.setText("Gender:");
@@ -621,27 +621,27 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         panelInfo.add(lblGender1, gridBagConstraints);
 
-        radioMale1.setBackground(new java.awt.Color(255, 255, 255));
-        btnGGender2.add(radioMale1);
-        radioMale1.setForeground(new java.awt.Color(3, 3, 3));
-        radioMale1.setText("Male");
+        radioMaleSearch.setBackground(new java.awt.Color(255, 255, 255));
+        btnGGender2.add(radioMaleSearch);
+        radioMaleSearch.setForeground(new java.awt.Color(3, 3, 3));
+        radioMaleSearch.setText("Male");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelInfo.add(radioMale1, gridBagConstraints);
+        panelInfo.add(radioMaleSearch, gridBagConstraints);
 
-        radioFemale1.setBackground(new java.awt.Color(255, 255, 255));
-        btnGGender2.add(radioFemale1);
-        radioFemale1.setForeground(new java.awt.Color(3, 3, 3));
-        radioFemale1.setText("FeMale");
+        radioFemaleSearch.setBackground(new java.awt.Color(255, 255, 255));
+        btnGGender2.add(radioFemaleSearch);
+        radioFemaleSearch.setForeground(new java.awt.Color(3, 3, 3));
+        radioFemaleSearch.setText("FeMale");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelInfo.add(radioFemale1, gridBagConstraints);
+        panelInfo.add(radioFemaleSearch, gridBagConstraints);
 
         lblTitle1.setFont(new java.awt.Font("Tahoma", 1, 12));
         lblTitle1.setForeground(new java.awt.Color(102, 0, 102));
@@ -685,11 +685,11 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(15, 5, 5, 5);
         panelInfo.add(jPanel1, gridBagConstraints);
 
-        txtStudentId.setMinimumSize(new java.awt.Dimension(200, 20));
-        txtStudentId.setPreferredSize(new java.awt.Dimension(200, 20));
-        txtStudentId.addCaretListener(new javax.swing.event.CaretListener() {
+        txtStudentIdSearch.setMinimumSize(new java.awt.Dimension(200, 20));
+        txtStudentIdSearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtStudentIdSearch.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtStudentIdCaretUpdate(evt);
+                txtStudentIdSearchCaretUpdate(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -697,7 +697,7 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelInfo.add(txtStudentId, gridBagConstraints);
+        panelInfo.add(txtStudentIdSearch, gridBagConstraints);
 
         pnlSearch.add(panelInfo, new java.awt.GridBagConstraints());
 
@@ -882,6 +882,12 @@ public class pnlStudent extends javax.swing.JPanel {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
+        txtStudentIdSearch.setText(null);
+        txtFirstNameSearch.setText(null);
+        txtLastNameSearch.setText(null);
+        dateChooserDateEndSearch.setDate(null);
+        dateChooserDateStartSearch.setDate(null);
+        radioMaleSearch.setSelected(true);
     }//GEN-LAST:event_btnResetActionPerformed
 
     public void loadDetails(Student student) {
@@ -997,20 +1003,20 @@ public class pnlStudent extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_tableContentMouseReleased
 
-    private void txtStudentIdCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtStudentIdCaretUpdate
+    private void txtStudentIdSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtStudentIdSearchCaretUpdate
         // TODO add your handling code here:
         loadTable(liststudent);
-    }//GEN-LAST:event_txtStudentIdCaretUpdate
+    }//GEN-LAST:event_txtStudentIdSearchCaretUpdate
 
-    private void txtFirstNameCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtFirstNameCaretUpdate
+    private void txtFirstNameSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtFirstNameSearchCaretUpdate
         // TODO add your handling code here:
         loadTable(liststudent);
-    }//GEN-LAST:event_txtFirstNameCaretUpdate
+    }//GEN-LAST:event_txtFirstNameSearchCaretUpdate
 
-    private void txtLastNameCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtLastNameCaretUpdate
+    private void txtLastNameSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtLastNameSearchCaretUpdate
         // TODO add your handling code here:
         loadTable(liststudent);
-    }//GEN-LAST:event_txtLastNameCaretUpdate
+    }//GEN-LAST:event_txtLastNameSearchCaretUpdate
 
     private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
         // TODO add your handling code here:
@@ -1051,8 +1057,8 @@ public class pnlStudent extends javax.swing.JPanel {
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnUpdateEdit;
     private com.toedter.calendar.JDateChooser dateChBirthdayEdit;
-    private com.toedter.calendar.JDateChooser dateChooserDateEnd;
-    private com.toedter.calendar.JDateChooser dateChooserDateStart;
+    private com.toedter.calendar.JDateChooser dateChooserDateEndSearch;
+    private com.toedter.calendar.JDateChooser dateChooserDateStartSearch;
     private javax.swing.JTextField filterText;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -1088,10 +1094,10 @@ public class pnlStudent extends javax.swing.JPanel {
     private javax.swing.JPanel panelTop;
     public javax.swing.JPanel pnlEdit;
     public javax.swing.JPanel pnlSearch;
-    private javax.swing.JRadioButton radioFemale1;
     private javax.swing.JRadioButton radioFemaleEdit;
-    private javax.swing.JRadioButton radioMale1;
+    private javax.swing.JRadioButton radioFemaleSearch;
     private javax.swing.JRadioButton radioMaleEdit;
+    private javax.swing.JRadioButton radioMaleSearch;
     private javax.swing.JSeparator sepaAddStu;
     private javax.swing.JSeparator sepaCourse;
     private javax.swing.JScrollPane srcPanelContent;
@@ -1099,14 +1105,14 @@ public class pnlStudent extends javax.swing.JPanel {
     public javax.swing.JTabbedPane tpStudent;
     private javax.swing.JTextField txtAddressEdit;
     private javax.swing.JTextField txtEmailEdit;
-    private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtFirstNameEdit;
+    private javax.swing.JTextField txtFirstNameSearch;
     private javax.swing.JTextField txtIDEdit;
     private javax.swing.JTextField txtImageEdit;
-    private javax.swing.JTextField txtLastName;
     private javax.swing.JTextField txtLastNameEdit;
+    private javax.swing.JTextField txtLastNameSearch;
     private javax.swing.JTextField txtPhoneEdit;
-    private javax.swing.JTextField txtStudentId;
+    private javax.swing.JTextField txtStudentIdSearch;
     // End of variables declaration//GEN-END:variables
 
     String getSelectedCode() {

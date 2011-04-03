@@ -756,6 +756,10 @@ public class pnlCourse extends javax.swing.JPanel {
     }
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
+        txtIDSearch.setText(null);
+        txtNameSearch.setText(null);
+        txtTotalFeesSearch.setText(null);
+        radioEnableSearch.setSelected(true);
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate

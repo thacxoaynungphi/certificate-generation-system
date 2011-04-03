@@ -862,6 +862,11 @@ public class pnlRegister extends javax.swing.JPanel {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
+        txtIdSearch.setText(null);
+        txtStudentIdSearch.setText(null);
+        txtCourseIDSearch.setText(null);
+        txtFeesStructeSearch.setText(null);
+        dateChRegistrationDateSearch.setDate(null);
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnChooseCourseIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseCourseIdActionPerformed

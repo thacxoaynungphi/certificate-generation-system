@@ -1035,24 +1035,13 @@ public class pnlEmployee extends javax.swing.JPanel {
 
     private void btnResetSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetSearchActionPerformed
         // TODO add your handling code here:
-        String firstName = txtFirstNameSearch.getText();
-        String lastName = txtLastNameSearch.getText();
-        Date startDate = dateChooserDateStartSearch.getDate();
-        Date endDate = dateChooserDateEndSearch.getDate();
-        int gender = -1;
-        if (radioFemaleSearch.isSelected()) {
-            gender = 0;
-        } else if (radioMaleSearch.isSelected()) {
-            gender = 1;
-        }
-        listEmp.clear();
-        listEmp = empDao.readByCommand(firstName, lastName, startDate, endDate, gender);
-        if (listEmp != null) {
-            System.out.println("Size : " + listEmp.size());
-            loadData(listEmp);
-        } else {
-            System.out.println("Null rui");
-        }
+
+        txtEmployeeIdSearch.setText(null);
+        txtFirstNameSearch.setText(null);
+        txtLastNameSearch.setText(null);
+        dateChooserDateEndSearch.setDate(null);
+        dateChooserDateStartSearch.setDate(null);
+        radioMaleSearch.setSelected(true);
 }//GEN-LAST:event_btnResetSearchActionPerformed
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
