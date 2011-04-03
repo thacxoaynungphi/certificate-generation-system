@@ -34,7 +34,6 @@ public class AppStatusBar {
         if (frm.accCur != null) {
             final JLabel statusZone = statusBarFactory.addZone("statusZone", "25%", "Ready");
             statusBarFactory.addSeparator("sepIZone", "0.2%", "separator.png");
-            System.out.println("Username : " + frm.accCur.getUsername());
             final JLabel userZone = statusBarFactory.addZone("userZone", "50%", "User login: " + frm.accCur.getUsername());
             statusBarFactory.addSeparator("sepIZone1", "0.2%", "separator.png");
         } else {

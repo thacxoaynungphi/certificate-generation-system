@@ -728,23 +728,17 @@ public class pnlMark extends javax.swing.JPanel {
 
                 resetDetails();
             } else {
-
                 isAdd = false;
                 txtMarkId.setEnabled(true);
                 btnUpdate.setEnabled(true);
                 btnDelete.setEnabled(true);
                 btnCancel.setVisible(false);
-
                 Mark mark = new Mark();
-
                 mark.setStudentId(txtStudentId.getText());
                 mark.setMark(Float.parseFloat(txtMark.getText()));
                 mark.setSubjectId(txtSubjectID.getText());
-
                 if (markDAO.create(mark)) {
-                    JOptionPane.showMessageDialog(this, "123", "Mark Add", JOptionPane.INFORMATION_MESSAGE);
-                    listMark.clear();
-                    listMark = markDAO.readByAll();
+                    listMark.add(mark);
                     loadData(listMark);
                     loadDetails(listMark.get(0));
                     JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Add", JOptionPane.INFORMATION_MESSAGE);
@@ -753,7 +747,7 @@ public class pnlMark extends javax.swing.JPanel {
                 }
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Mark Add", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,markDAO.getLastError(), "Mark Add", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnAddActionPerformed
 

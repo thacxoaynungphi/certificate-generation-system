@@ -202,9 +202,8 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
         boolean status = false;
         Register register = registerDAO.readByStudentId(mark.getStudentId());
         Subject subject = subjectDAO.readByID(mark.getSubjectId());
-        ArrayList<Subject> listSub = subjectDAO.readByCourseId(register.getCourseId());
 
-        if (listSub.contains(subject)) {
+        if (subject.getCourseID().equals(register.getCourseId())) {
             con = db.getConnection();
             String sqlcommand = "insert into Mark(StudentId,SubjectId,Mark) values(?, ?, ?)";
             try {
@@ -224,7 +223,7 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
                 db.closeConnection();
             }
         } else {
-            setLastError(String.format("Student has id : '%d' not learning subject has id : '&d'", mark.getStudentId(), mark.getSubjectId()));
+            setLastError(String.format("Student not learning subject " + subject.getName()));
         }
         return status;
     }
