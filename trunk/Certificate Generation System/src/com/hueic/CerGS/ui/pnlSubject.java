@@ -85,7 +85,6 @@ public class pnlSubject extends javax.swing.JPanel {
                     && sub.getName().toLowerCase().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")
                     && String.valueOf(sub.getCoefficient()).toLowerCase().matches(".*" + txtCoefficientSearch.getText().trim().toLowerCase() + ".*")
                     && sub.getCourseID().toLowerCase().matches(".*" + txtCoureIDSearch.getText().trim().toLowerCase() + ".*")) {
-                System.out.println("co du lieu");
                 filter.add(sub);
             }
         }
@@ -481,7 +480,7 @@ public class pnlSubject extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.insets = new java.awt.Insets(15, 0, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 20, 5);
         panelRightSearch.add(panelButtonSearch, gridBagConstraints);
 
         txtNameSearch.setPreferredSize(new java.awt.Dimension(180, 20));
@@ -541,7 +540,6 @@ public class pnlSubject extends javax.swing.JPanel {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
         panelRightSearch.add(sepa2Search, gridBagConstraints);
 
         txtCoureIDSearch.setPreferredSize(new java.awt.Dimension(200, 20));
