@@ -385,7 +385,6 @@ public class pnlCourse extends javax.swing.JPanel {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
         pnlTop2.add(sepaCourseSearch, gridBagConstraints);
 
         lblNameSearch.setForeground(new java.awt.Color(3, 3, 3));
@@ -438,7 +437,7 @@ public class pnlCourse extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.insets = new java.awt.Insets(15, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 20, 5);
         pnlTop2.add(pnlButtonSearch, gridBagConstraints);
 
         lblIDSearch.setForeground(new java.awt.Color(3, 3, 3));

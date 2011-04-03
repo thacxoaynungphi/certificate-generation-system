@@ -37,8 +37,8 @@ public class EmployeeDetailReportManager extends ReportManager{
         HashMap row = new HashMap();
         DateFormat dateFormat = DateFormat.getInstance();
 
-        row.put("STUDENTID", employee.getId());
-        row.put("STUDENTNAME", employee.getFullName());
+        row.put("EMPID", employee.getId());
+        row.put("NAME", employee.getFullName());
 
         if(employee.getGender() == 0) row.put("GENDER", "MALE");
         else row.put("GENDER", "FEMALE");

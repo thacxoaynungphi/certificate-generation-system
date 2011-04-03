@@ -804,8 +804,8 @@ public class pnlPayment extends javax.swing.JPanel {
     private void btnChooseStudentIdSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseStudentIdSearchActionPerformed
         // TODO add your handling code here:
         dlgChoose dlg = new dlgChoose(frm, txtStudentIdSearch, true, 12);
-        dlg.setTitle("Browse Order");
-        dlg.setSize(868, 616);
+        dlg.setTitle("Browse Student");
+        dlg.setSize(868, 580);
         dlg.setLocationRelativeTo(null);
         dlg.setVisible(true);
     }//GEN-LAST:event_btnChooseStudentIdSearchActionPerformed
@@ -813,8 +813,8 @@ public class pnlPayment extends javax.swing.JPanel {
     private void btnChooseCourseSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseCourseSearchActionPerformed
         // TODO add your handling code here:
         dlgChoose dlg = new dlgChoose(frm, txtCourseIdSearch, true, 7);
-        dlg.setTitle("Browse Order");
-        dlg.setSize(868, 616);
+        dlg.setTitle("Browse Course");
+        dlg.setSize(868, 580);
         dlg.setLocationRelativeTo(null);
         dlg.setVisible(true);
     }//GEN-LAST:event_btnChooseCourseSearchActionPerformed
@@ -822,8 +822,8 @@ public class pnlPayment extends javax.swing.JPanel {
     private void btnChooseCourseIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseCourseIdActionPerformed
         // TODO add your handling code here:
         dlgChoose dlg = new dlgChoose(frm, txtCourseId, true, 7);
-        dlg.setTitle("Browse Order");
-        dlg.setSize(868, 616);
+        dlg.setTitle("Browse Course");
+        dlg.setSize(868, 580);
         dlg.setLocationRelativeTo(null);
         dlg.setVisible(true);
     }//GEN-LAST:event_btnChooseCourseIdActionPerformed
@@ -831,8 +831,8 @@ public class pnlPayment extends javax.swing.JPanel {
     private void btnChooseStudentIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseStudentIdActionPerformed
         // TODO add your handling code here:
         dlgChoose dlg = new dlgChoose(frm, txtStudentId, true, 12);
-        dlg.setTitle("Browse Order");
-        dlg.setSize(868, 616);
+        dlg.setTitle("Browse Student");
+        dlg.setSize(868, 580);
         dlg.setLocationRelativeTo(null);
         dlg.setVisible(true);
     }//GEN-LAST:event_btnChooseStudentIdActionPerformed
