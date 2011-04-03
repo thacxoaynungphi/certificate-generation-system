@@ -340,11 +340,11 @@ public class pnlSubject extends javax.swing.JPanel {
         panelRight.add(panelButton, gridBagConstraints);
 
         txtName.setEnabled(false);
-        txtName.setPreferredSize(new java.awt.Dimension(180, 20));
+        txtName.setMinimumSize(new java.awt.Dimension(200, 20));
+        txtName.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 9, 5, 5);
         panelRight.add(txtName, gridBagConstraints);
@@ -368,11 +368,11 @@ public class pnlSubject extends javax.swing.JPanel {
         panelRight.add(lblSubjectID, gridBagConstraints);
 
         txtSubjectId.setEnabled(false);
-        txtSubjectId.setPreferredSize(new java.awt.Dimension(180, 20));
+        txtSubjectId.setMinimumSize(new java.awt.Dimension(200, 20));
+        txtSubjectId.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(3, 9, 5, 5);
         panelRight.add(txtSubjectId, gridBagConstraints);
