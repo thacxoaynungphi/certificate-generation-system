@@ -6,6 +6,8 @@ package com.hueic.CerGS.dao;
 
 import com.hueic.CerGS.dao.IDao.IMarkDAO;
 import com.hueic.CerGS.entity.Mark;
+import com.hueic.CerGS.entity.Register;
+import com.hueic.CerGS.entity.Subject;
 import com.hueic.CerGS.util.Configure;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +19,14 @@ import java.util.ArrayList;
  */
 public class MarkDAO extends BaseDAO implements IMarkDAO {
 
+    private SubjectDAO subjectDAO;
+    private RegisterDAO registerDAO;
+    private CourseDAO courseDAO;
+
     public MarkDAO() {
+        subjectDAO = new SubjectDAO();
+        registerDAO = new RegisterDAO();
+        courseDAO = new CourseDAO();
         db = new Configure();
     }
 
@@ -40,7 +49,7 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
             }
             setLastError("Read data successful");
         } catch (Exception ex) {
-             setLastError("SQL Error");
+            setLastError("SQL Error");
         } finally {
             db.closeConnection();
         }
@@ -122,7 +131,7 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
             }
             setLastError("Read data successful");
         } catch (Exception ex) {
-             setLastError("SQL Error");
+            setLastError("SQL Error");
         } finally {
             db.closeConnection();
         }
@@ -189,66 +198,81 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
         return grades;
     }
 
-    public boolean create(Mark Marks) {
+    public boolean create(Mark mark) {
         boolean status = false;
-        con = db.getConnection();
-        String sqlcommand = "insert into Mark(StudentId,SubjectId,Mark) values(?, ?, ?)";
-        try {
-            pst = con.prepareStatement(sqlcommand);
-            pst.setString(1, Marks.getStudentId());
-            pst.setString(2, Marks.getSubjectId());
-            pst.setFloat(3, Marks.getMark());
-            if (pst.executeUpdate() > 0) {
-                setLastError("Add mark successful");
-                status = true;
-            } else {
-                setLastError("Add mark unsuccessful");
+        Register register = registerDAO.readByStudentId(mark.getStudentId());
+        Subject subject = subjectDAO.readByID(mark.getSubjectId());
+        ArrayList<Subject> listSub = subjectDAO.readByCourseId(register.getCourseId());
+
+        if (listSub.contains(subject)) {
+            con = db.getConnection();
+            String sqlcommand = "insert into Mark(StudentId,SubjectId,Mark) values(?, ?, ?)";
+            try {
+                pst = con.prepareStatement(sqlcommand);
+                pst.setString(1, mark.getStudentId());
+                pst.setString(2, mark.getSubjectId());
+                pst.setFloat(3, mark.getMark());
+                if (pst.executeUpdate() > 0) {
+                    setLastError("Add mark successful");
+                    status = true;
+                } else {
+                    setLastError("Add mark unsuccessful");
+                }
+            } catch (SQLException ex) {
+                setLastError("SQL Error!!!");
+            } finally {
+                db.closeConnection();
             }
-        } catch (SQLException ex) {
-            setLastError("SQL Error!!!");
-        } finally {
-            db.closeConnection();
-            return status;
+        } else {
+            setLastError(String.format("Student has id : '%d' not learning subject has id : '&d'", mark.getStudentId(), mark.getSubjectId()));
         }
+        return status;
     }
 
-    public boolean update(Mark Marks) {
+    public boolean update(Mark mark) {
         boolean status = false;
-        con = db.getConnection();
-        String sqlcommand = "select * from Mark where Id = ?";
+        Register register = registerDAO.readByStudentId(mark.getStudentId());
+        Subject subject = subjectDAO.readByID(mark.getSubjectId());
+        ArrayList<Subject> listSub = subjectDAO.readByCourseId(register.getCourseId());
 
-        try {
-            pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            pst.setInt(1, Marks.getId());
+        if (listSub.contains(subject)) {
+            con = db.getConnection();
+            String sqlcommand = "select * from Mark where Id = ?";
 
-            rs = pst.executeQuery();
-            if (rs.first()) {
-                rs.updateString("StudentId", Marks.getStudentId());
-                rs.updateString("SubjectId", Marks.getSubjectId());
-                rs.updateFloat("Mark", Marks.getMark());
-                rs.updateRow();
+            try {
+                pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+                pst.setInt(1, mark.getId());
 
-                setLastError("Add mark successful");
-                status = true;
-            } else {
-                setLastError("Add mark unsuccessful");
+                rs = pst.executeQuery();
+                if (rs.first()) {
+                    rs.updateString("StudentId", mark.getStudentId());
+                    rs.updateString("SubjectId", mark.getSubjectId());
+                    rs.updateFloat("Mark", mark.getMark());
+                    rs.updateRow();
+
+                    setLastError("Add mark successful");
+                    status = true;
+                } else {
+                    setLastError("Add mark unsuccessful");
+                }
+            } catch (SQLException ex) {
+                setLastError("SQL Error!!!");
+            } finally {
+                db.closeConnection();
+
             }
-        } catch (SQLException ex) {
-            setLastError("SQL Error!!!");
-        } finally {
-            db.closeConnection();
-            return status;
         }
+        return status;
     }
 
-    public boolean delete(Mark Marks) {
+    public boolean delete(Mark mark) {
         boolean status = false;
         con = db.getConnection();
         String sqlcommand = "delete from Mark where Id = ?";
 
         try {
             pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            pst.setInt(1, Marks.getId());
+            pst.setInt(1, mark.getId());
             if (pst.executeUpdate() > 0) {
                 setLastError("Add mark successful");
                 status = true;

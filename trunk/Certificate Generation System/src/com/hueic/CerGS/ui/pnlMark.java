@@ -128,7 +128,10 @@ public class pnlMark extends javax.swing.JPanel {
     }
 
     public void resetDetails(){
-//        txt
+        txtMarkId.setText(null);
+        txtStudentId.setText(null);
+        txtSubjectID.setText(null);
+        txtMark.setText(null);
     }
 
     public void loadDetails(Mark mark) {
@@ -286,9 +289,9 @@ public class pnlMark extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         pnlTop1.add(lblMark, gridBagConstraints);
 
-        txtMarkId.setEnabled(false);
         txtMarkId.setMinimumSize(new java.awt.Dimension(200, 20));
         txtMarkId.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtMarkId.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -718,23 +721,32 @@ public class pnlMark extends javax.swing.JPanel {
         try {
             if (!isAdd) {
                 isAdd = true;
+                txtMarkId.setEnabled(false);
                 btnCancel.setVisible(true);
                 btnUpdate.setEnabled(false);
                 btnDelete.setEnabled(false);
 
+                resetDetails();
             } else {
+
                 isAdd = false;
+                txtMarkId.setEnabled(true);
                 btnUpdate.setEnabled(true);
                 btnDelete.setEnabled(true);
                 btnCancel.setVisible(false);
 
                 Mark mark = new Mark();
+                
                 mark.setStudentId(txtStudentId.getText());
                 mark.setMark(Float.parseFloat(txtMark.getText()));
                 mark.setSubjectId(txtStudentId.getText());
+
                 if (markDAO.create(mark)) {
-                    listMark.add(mark);
+                    JOptionPane.showMessageDialog(this, "123", "Mark Add", JOptionPane.INFORMATION_MESSAGE);
+                    listMark.clear();
+                    listMark = markDAO.readByAll();
                     loadData(listMark);
+                    loadDetails(listMark.get(0));
                     JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Add", JOptionPane.INFORMATION_MESSAGE);
                 }else{
                     JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Add", JOptionPane.ERROR_MESSAGE);
@@ -779,6 +791,7 @@ public class pnlMark extends javax.swing.JPanel {
             btnUpdate.setEnabled(true);
             btnDelete.setEnabled(true);
             btnCancel.setVisible(false);
+            txtMarkId.setEnabled(true);
         }
 
         loadDetails(listMark.get(0));
@@ -799,7 +812,7 @@ public class pnlMark extends javax.swing.JPanel {
 
     private void btnChooseStudentIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseStudentIdActionPerformed
         // TODO add your handling code here:
-        dlgChoose dlg = new dlgChoose(frm, txtSubjectID, true, 12);
+        dlgChoose dlg = new dlgChoose(frm, txtStudentId, true, 12);
         dlg.setTitle("Browse Order");
         dlg.setSize(868, 616);
         dlg.setLocationRelativeTo(null);

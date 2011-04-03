@@ -225,6 +225,11 @@ public class dlgLogin extends javax.swing.JDialog {
         panelContent.add(panelButton, gridBagConstraints);
 
         txtPassword.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -295,6 +300,13 @@ public class dlgLogin extends javax.swing.JDialog {
             login();
         }
     }//GEN-LAST:event_formKeyPressed
+
+    private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            login();
+        }
+    }//GEN-LAST:event_txtPasswordKeyPressed
     /**
      * @param args the command line arguments
      */

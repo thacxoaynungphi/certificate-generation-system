@@ -22,7 +22,7 @@ import javax.swing.JTextField;
 public class dlgChoose extends javax.swing.JDialog {
 
     private JPanel pnlBrowser;
-    private JTextField txfID;
+    private JTextField txtID;
     private int type;
     pnlAccount acc;
     pnlCertificate certificate;
@@ -37,10 +37,10 @@ public class dlgChoose extends javax.swing.JDialog {
     frmMain main;
 
     /** Creates new form ManagementDlg */
-    public dlgChoose(frmMain main, JTextField txfID, boolean modal, int type) {
+    public dlgChoose(frmMain main, JTextField txtId, boolean modal, int type) {
         super(main, modal);
         this.main = main;
-        this.txfID = txfID;
+        this.txtID = txtId;
         this.type = type;
         acc = new pnlAccount();
         certificate = new pnlCertificate();
@@ -202,7 +202,7 @@ public class dlgChoose extends javax.swing.JDialog {
                 break;
         }
         if (!priSelected.equals("")) {
-            txfID.setText(priSelected);
+            txtID.setText(priSelected);
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Please choose one");
