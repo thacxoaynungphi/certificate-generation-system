@@ -167,6 +167,8 @@ public class pnlCourse extends javax.swing.JPanel {
         tableContent = new javax.swing.JTable();
         filterText = new javax.swing.JTextField();
         btnFilter = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        btnReport = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(800, 600));
         setLayout(new java.awt.GridBagLayout());
@@ -508,8 +510,8 @@ public class pnlCourse extends javax.swing.JPanel {
         pnlDown.setRequestFocusEnabled(false);
         pnlDown.setLayout(new java.awt.GridBagLayout());
 
-        srcPanelCourse.setMinimumSize(new java.awt.Dimension(840, 340));
-        srcPanelCourse.setPreferredSize(new java.awt.Dimension(840, 340));
+        srcPanelCourse.setMinimumSize(new java.awt.Dimension(840, 300));
+        srcPanelCourse.setPreferredSize(new java.awt.Dimension(840, 300));
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -522,8 +524,8 @@ public class pnlCourse extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tableContent.setMinimumSize(new java.awt.Dimension(770, 340));
-        tableContent.setPreferredSize(new java.awt.Dimension(770, 340));
+        tableContent.setMinimumSize(new java.awt.Dimension(770, 300));
+        tableContent.setPreferredSize(new java.awt.Dimension(770, 300));
         tableContent.getTableHeader().setReorderingAllowed(false);
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -568,6 +570,27 @@ public class pnlCourse extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlDown.add(btnFilter, gridBagConstraints);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnReport.setText("Report");
+        btnReport.setMaximumSize(new java.awt.Dimension(75, 23));
+        btnReport.setMinimumSize(new java.awt.Dimension(75, 23));
+        btnReport.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnReport);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        pnlDown.add(jPanel1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -738,6 +761,12 @@ public class pnlCourse extends javax.swing.JPanel {
         // TODO add your handling code here:
         loadData(listCourses);
     }//GEN-LAST:event_txtTotalFeesSearchCaretUpdate
+
+    private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnReportActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
@@ -745,9 +774,11 @@ public class pnlCourse extends javax.swing.JPanel {
     private javax.swing.JButton btnFilter;
     private javax.swing.ButtonGroup btnGStatus1;
     private javax.swing.ButtonGroup btnGStatus2;
+    private javax.swing.JButton btnReport;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JTextField filterText;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblIDSearch;
     private javax.swing.JLabel lblName;

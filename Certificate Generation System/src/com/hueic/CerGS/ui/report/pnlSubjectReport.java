@@ -4,32 +4,34 @@
  */
 
 /*
- * pnlCertificate.java
+ * pnllSubjectReport.java
  *
- * Created on Apr 2, 2011, 3:41:08 AM
+ * Created on Apr 3, 2011, 8:35:33 AM
  */
 package com.hueic.CerGS.ui.report;
 
-import com.hueic.CerGS.component.report.CertificateReportManager;
+import com.hueic.CerGS.component.report.SubjectReportManager;
+import com.hueic.CerGS.entity.Subject;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author nhchung
  */
-public class pnlCertificateReport extends javax.swing.JPanel {
+public class pnlSubjectReport extends javax.swing.JPanel {
 
-    private CertificateReportManager cerReportManager;
-
-    /** Creates new form pnlCertificate */
-    public pnlCertificateReport(String studentId) {
+    /** Creates new form pnllSubjectReport */
+    public pnlSubjectReport(ArrayList<Subject> listSubject) {
         initComponents();
-       // setLayout(new BorderLayout());
-        cerReportManager = new CertificateReportManager(studentId);
-        try {
-            this.add(cerReportManager.getPanelViewer(true));
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.toString(), "Report Message", JOptionPane.ERROR_MESSAGE);
+        SubjectReportManager subjectReport = new SubjectReportManager(listSubject);
+        //JPanel panel = studentReport.getEnumerationViewer(studentList, true);
+        if (subjectReport != null) {
+            try {
+                this.add(subjectReport.getPanelViewer(true));
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.toString(), "Report Message", JOptionPane.ERROR_MESSAGE);
+            }
         }
         this.setSize(860, 580);
         this.setVisible(true);

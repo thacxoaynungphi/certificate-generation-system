@@ -26,9 +26,8 @@ public class pnlStudentReport extends javax.swing.JPanel {
     /** Creates new form pnlStudentReport */
     public pnlStudentReport(ArrayList<Student> listStudent) {
         initComponents();
-        ArrayList<Register> regisList = new RegisterDAO().readByAll();
         StudentReportManager studentReport = new StudentReportManager(listStudent);
-        if (regisList != null) {
+        if (studentReport != null) {
             try {
                 this.add(studentReport.getPanelViewer(true));
             } catch (Exception ex) {
