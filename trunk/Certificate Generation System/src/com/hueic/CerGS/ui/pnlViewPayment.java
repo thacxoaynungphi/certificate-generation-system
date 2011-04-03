@@ -110,8 +110,8 @@ public class pnlViewPayment extends javax.swing.JPanel {
                 lblTitleAmount.setVisible(false);
                 lblTitleTotal.setVisible(false);
             } else {
-                lblTotalTheDeposit.setText(String.valueOf(courseDao.readById(registerDao.readByStudentId(studentid).getCourseId()).getTotalFees() - money));
-                lblAmountRemaining.setText(String.valueOf(money));
+                lblTotalTheDeposit.setText(String.valueOf(money));
+                lblAmountRemaining.setText(String.valueOf(courseDao.readById(registerDao.readByStudentId(studentid).getCourseId()).getTotalFees() - money));
             }
         }
     }
