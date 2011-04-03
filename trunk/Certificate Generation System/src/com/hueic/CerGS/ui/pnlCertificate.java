@@ -167,7 +167,7 @@ public class pnlCertificate extends javax.swing.JPanel {
         lblStudentIDSearch = new javax.swing.JLabel();
         lblScoreSearch = new javax.swing.JLabel();
         lblDegreeDaySearch = new javax.swing.JLabel();
-        txtScoreSearch = new javax.swing.JTextField();
+        txtMarkSearch = new javax.swing.JTextField();
         pnlButtonSearch = new javax.swing.JPanel();
         btnReset = new javax.swing.JButton();
         lblTitleSearch = new javax.swing.JLabel();
@@ -386,7 +386,7 @@ public class pnlCertificate extends javax.swing.JPanel {
         pnlTop2.add(lblStudentIDSearch, gridBagConstraints);
 
         lblScoreSearch.setForeground(new java.awt.Color(3, 3, 3));
-        lblScoreSearch.setText("Score:");
+        lblScoreSearch.setText("Mark :");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
@@ -403,10 +403,10 @@ public class pnlCertificate extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         pnlTop2.add(lblDegreeDaySearch, gridBagConstraints);
 
-        txtScoreSearch.setPreferredSize(new java.awt.Dimension(200, 20));
-        txtScoreSearch.addCaretListener(new javax.swing.event.CaretListener() {
+        txtMarkSearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtMarkSearch.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtScoreSearchCaretUpdate(evt);
+                txtMarkSearchCaretUpdate(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -414,7 +414,7 @@ public class pnlCertificate extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlTop2.add(txtScoreSearch, gridBagConstraints);
+        pnlTop2.add(txtMarkSearch, gridBagConstraints);
 
         pnlButtonSearch.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -741,6 +741,11 @@ public class pnlCertificate extends javax.swing.JPanel {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
+        txtIDSearch.setText(null);
+        txtMarkSearch.setText(null);
+        txtStudentIDSearch.setText(null);
+        dateChooseDegreeDaySearch.setDate(null);
+
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnChooseStudentIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseStudentIdActionPerformed
@@ -776,10 +781,10 @@ public class pnlCertificate extends javax.swing.JPanel {
         loadData(listCertificate);
     }//GEN-LAST:event_txtStudentIDSearchCaretUpdate
 
-    private void txtScoreSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtScoreSearchCaretUpdate
+    private void txtMarkSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtMarkSearchCaretUpdate
         // TODO add your handling code here:
         loadData(listCertificate);
-    }//GEN-LAST:event_txtScoreSearchCaretUpdate
+    }//GEN-LAST:event_txtMarkSearchCaretUpdate
 
     private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
         // TODO add your handling code here:
@@ -847,8 +852,8 @@ public class pnlCertificate extends javax.swing.JPanel {
     public javax.swing.JTabbedPane tpCertificate;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtIDSearch;
+    private javax.swing.JTextField txtMarkSearch;
     private javax.swing.JTextField txtScore;
-    private javax.swing.JTextField txtScoreSearch;
     private javax.swing.JTextField txtStudentID;
     private javax.swing.JTextField txtStudentIDSearch;
     // End of variables declaration//GEN-END:variables

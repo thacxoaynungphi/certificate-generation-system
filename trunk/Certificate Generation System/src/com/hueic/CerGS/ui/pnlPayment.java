@@ -701,6 +701,10 @@ public class pnlPayment extends javax.swing.JPanel {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
+        txtCourseIdSearch.setText(null);
+        txtStudentIdSearch.setText(null);
+        txtMoneySearch.setText(null);
+        dateChPayDaySearch.setDate(null);
 }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed

@@ -592,6 +592,8 @@ public class pnlPermission extends javax.swing.JPanel {
 
     private void txtIdCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtIdCaretUpdate
         // TODO add your handling code here:
+        txtIdSearch.setText(null);
+        txtNameSearch.setText(null);
 }//GEN-LAST:event_txtIdCaretUpdate
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed

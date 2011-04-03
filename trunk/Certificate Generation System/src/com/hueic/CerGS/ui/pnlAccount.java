@@ -711,6 +711,8 @@ public class pnlAccount extends javax.swing.JPanel {
 
     private void btnAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd1ActionPerformed
         // TODO add your handling code here:
+        txtUsernameSearch.setText(null);
+        txtPermissionSearch.setText(null);
 }//GEN-LAST:event_btnAdd1ActionPerformed
 
     private void btnChoosePermissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChoosePermissionActionPerformed
