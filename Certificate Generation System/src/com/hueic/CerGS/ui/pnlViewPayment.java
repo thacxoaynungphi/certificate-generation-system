@@ -46,9 +46,24 @@ public class pnlViewPayment extends javax.swing.JPanel {
     public ArrayList<Register> listRegister;
     private ObjectTableModel tableModel;
     private JTable headerTable;
+    frmMain frm;
 
     public pnlViewPayment() {
         initComponents();
+        paymentDao = new PaymentDAO();
+        courseDao = new CourseDAO();
+        registerDao = new RegisterDAO();
+        listPayments = paymentDao.readByAll();
+        listCourse = courseDao.readByAll();
+        listRegister = registerDao.readByAll();
+        loadData(listPayments);
+        loadDataCBXCourse();
+        loadDataCBXStudent();
+    }
+
+    public pnlViewPayment(frmMain frm) {
+        initComponents();
+        this.frm = frm;
         paymentDao = new PaymentDAO();
         courseDao = new CourseDAO();
         registerDao = new RegisterDAO();
@@ -147,7 +162,6 @@ public class pnlViewPayment extends javax.swing.JPanel {
         tableContent = new javax.swing.JTable();
         panelButton = new javax.swing.JPanel();
         btnReport = new javax.swing.JButton();
-        btnCancel = new javax.swing.JButton();
         lblTitleTotal = new javax.swing.JLabel();
         lblTitleAmount = new javax.swing.JLabel();
         lblTotalTheDeposit = new javax.swing.JLabel();
@@ -241,25 +255,19 @@ public class pnlViewPayment extends javax.swing.JPanel {
         panelContent.add(srcPanelPayment, gridBagConstraints);
 
         panelButton.setBackground(new java.awt.Color(255, 255, 255));
-        panelButton.setMinimumSize(new java.awt.Dimension(160, 30));
-        panelButton.setPreferredSize(new java.awt.Dimension(160, 30));
+        panelButton.setMinimumSize(new java.awt.Dimension(90, 30));
+        panelButton.setPreferredSize(new java.awt.Dimension(90, 30));
 
         btnReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
         btnReport.setText("Report");
         btnReport.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnReport.setPreferredSize(new java.awt.Dimension(75, 23));
-        panelButton.add(btnReport);
-
-        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
-        btnCancel.setText("Cancel");
-        btnCancel.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnCancel.setPreferredSize(new java.awt.Dimension(75, 23));
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+        btnReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelActionPerformed(evt);
+                btnReportActionPerformed(evt);
             }
         });
-        panelButton.add(btnCancel);
+        panelButton.add(btnReport);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -372,10 +380,6 @@ public class pnlViewPayment extends javax.swing.JPanel {
         // TODO add your handling code here:
 }//GEN-LAST:event_tableContentMouseClicked
 
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_btnCancelActionPerformed
-
     public void searchStart() {
         if (!listPayments.isEmpty()) {
             String text = filterText.getText();
@@ -399,11 +403,20 @@ public class pnlViewPayment extends javax.swing.JPanel {
 
     private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
         // TODO add your handling code here:
-         searchStart();
+        searchStart();
     }//GEN-LAST:event_filterTextCaretUpdate
 
+    private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
+        // TODO add your handling code here:
+        frm.pnlReport.removeAll();
+        dlgChooseReport report = new dlgChooseReport(frm, this);
+        report.getStudentFeeReport(this.cbxStudentID.getSelectedItem().toString());
+        report.setVisible(true);
+        report.setSize(860, 600);
+        frm.pnlReport.add(report);
+        frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+    }//GEN-LAST:event_btnReportActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnFilter;
     private javax.swing.JButton btnReport;
     private javax.swing.JComboBox cbxCourseID;

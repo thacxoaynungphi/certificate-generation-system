@@ -758,7 +758,13 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="btnReport">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/hueic/CerGS/images/reports-icon.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Report"/>
+                <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+                  <Insets value="[2, 5, 2, 5]"/>
+                </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[75, 23]"/>
                 </Property>
@@ -769,6 +775,9 @@
                   <Dimension value="[75, 23]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReportActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

@@ -43,10 +43,24 @@ public class pnlEmployee extends javax.swing.JPanel {
     TableRowSorter<TableModel> sorter;
     private ObjectTableModel tableModel;
     private JTable headerTable;
+    frmMain frm;
 
     /** Creates new form pnlEmployee */
     public pnlEmployee() {
         initComponents();
+        isAdd = false;
+        btnCancelEdit.setVisible(false);
+        empDao = new EmployeeDAO();
+        listEmp = empDao.readByAll();
+        if (!listEmp.isEmpty()) {
+            loadData(listEmp);
+            loadDetails(listEmp.get(0));
+        }
+    }
+
+    public pnlEmployee(frmMain frm) {
+        initComponents();
+        this.frm = frm;
         isAdd = false;
         btnCancelEdit.setVisible(false);
         empDao = new EmployeeDAO();
@@ -886,6 +900,11 @@ public class pnlEmployee extends javax.swing.JPanel {
         btnReport.setMaximumSize(new java.awt.Dimension(75, 23));
         btnReport.setMinimumSize(new java.awt.Dimension(75, 23));
         btnReport.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportActionPerformed(evt);
+            }
+        });
         pnlButtonReport.add(btnReport);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1136,6 +1155,17 @@ public class pnlEmployee extends javax.swing.JPanel {
         }
         JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Delete", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnDeleteEditActionPerformed
+
+    private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
+        // TODO add your handling code here:
+        frm.pnlReport.removeAll();
+        dlgChooseReport report = new dlgChooseReport(frm, this);
+        report.getEmployeeReport(filter);
+        report.setVisible(true);
+        report.setSize(860, 600);
+        frm.pnlReport.add(report);
+        frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+    }//GEN-LAST:event_btnReportActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddEdit;
     private javax.swing.JButton btnBrowseEdit;
@@ -1144,6 +1174,7 @@ public class pnlEmployee extends javax.swing.JPanel {
     private javax.swing.JButton btnFilter;
     private javax.swing.ButtonGroup btnGGender1;
     private javax.swing.ButtonGroup btnGGender2;
+    private javax.swing.JButton btnReport;
     private javax.swing.JButton btnResetSearch;
     private javax.swing.JButton btnUpdateEdit;
     private com.toedter.calendar.JDateChooser dateChBeginWorkEdit;
@@ -1207,7 +1238,6 @@ public class pnlEmployee extends javax.swing.JPanel {
     private javax.swing.JTextField txtLastNameSearch;
     private javax.swing.JTextField txtPhoneEdit;
     // End of variables declaration//GEN-END:variables
-    private javax.swing.JButton btnReport;
 
     String getSelectedType() {
         try {
