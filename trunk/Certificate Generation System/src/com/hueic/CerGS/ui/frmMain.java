@@ -38,7 +38,7 @@ public class frmMain extends javax.swing.JFrame {
     pnlCourse course = new pnlCourse(this);
     pnlMark mark = new pnlMark(this);
     pnlPayment payment = new pnlPayment(this);
-    pnlRegister register = new pnlRegister();
+    pnlRegister register = new pnlRegister(this);
     pnlPermission per = new pnlPermission();
     pnlSubject subject = new pnlSubject(this);
     pnlStudent student = new pnlStudent(this);

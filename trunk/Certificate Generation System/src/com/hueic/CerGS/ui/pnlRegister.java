@@ -127,13 +127,14 @@ public class pnlRegister extends javax.swing.JPanel {
         srcPanelRegister.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, headerTable.getTableHeader());
     }
 
-    public void resetDetails(){
+    public void resetDetails() {
         txtId.setText("");
         txtCourseID.setText("");
         txtStudentId.setText("");
         cbxFeeStructe.setSelectedIndex(0);
         dateChRegistrationDate.setDate(null);
     }
+
     public void loadDetails(Register register) {
         txtId.setText(register.getStudentId());
         cbxFeeStructe.setSelectedIndex(register.getFeesStructe());
@@ -754,6 +755,11 @@ public class pnlRegister extends javax.swing.JPanel {
         btnReport.setMaximumSize(new java.awt.Dimension(75, 23));
         btnReport.setMinimumSize(new java.awt.Dimension(75, 23));
         btnReport.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnReport);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -828,13 +834,13 @@ public class pnlRegister extends javax.swing.JPanel {
             if (regisDAO.update(register)) {
                 JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Update Subject", JOptionPane.INFORMATION_MESSAGE);
                 int index = findByStudentId(studentId);
-                if(index != -1) {
+                if (index != -1) {
                     regisList.remove(index);
                     regisList.add(register);
                 } else {
                     JOptionPane.showMessageDialog(this, "not found Student has Id is " + studentId, "Register Update", JOptionPane.ERROR_MESSAGE);
                 }
-                
+
                 loadData(regisList);
                 loadDetails(register);
 //                txtCourseID.setVisible(true);
@@ -977,6 +983,17 @@ public class pnlRegister extends javax.swing.JPanel {
             btnCancelEdit.setVisible(false);
         }
     }//GEN-LAST:event_btnCancelEditActionPerformed
+
+    private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
+        // TODO add your handling code here:
+        frm.pnlReport.removeAll();
+        dlgChooseReport report = new dlgChooseReport(frm, this);
+        report.getRegisterReport(filter);
+        report.setVisible(true);
+        report.setSize(860, 600);
+        frm.pnlReport.add(report);
+        frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+    }//GEN-LAST:event_btnReportActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancelEdit;
