@@ -12,6 +12,7 @@ package com.hueic.CerGS.ui.report;
 
 import com.hueic.CerGS.component.report.FeeReportManager;
 import com.hueic.CerGS.entity.Payment;
+import com.hueic.CerGS.entity.Student;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -33,8 +34,6 @@ public class pnlFeeReport extends javax.swing.JPanel {
         this.setSize(860, 550);
         this.setVisible(true);
     }
-
-    
 
     /** This method is called from within the constructor to
      * initialize the form.

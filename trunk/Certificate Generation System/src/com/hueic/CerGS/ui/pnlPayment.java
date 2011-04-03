@@ -667,6 +667,11 @@ public class pnlPayment extends javax.swing.JPanel {
         btnReport.setMaximumSize(new java.awt.Dimension(75, 23));
         btnReport.setMinimumSize(new java.awt.Dimension(75, 23));
         btnReport.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnReport);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -861,6 +866,17 @@ public class pnlPayment extends javax.swing.JPanel {
         // TODO add your handling code here:
         loadData(listPayments);
     }//GEN-LAST:event_txtMoneySearchCaretUpdate
+
+    private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
+        // TODO add your handling code here:
+        frm.pnlReport.removeAll();
+        dlgChooseReport report = new dlgChooseReport(frm, this);
+        report.getFeesReport(filter);
+        report.setVisible(true);
+        report.setSize(860, 600);
+        frm.pnlReport.add(report);
+        frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+    }//GEN-LAST:event_btnReportActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;

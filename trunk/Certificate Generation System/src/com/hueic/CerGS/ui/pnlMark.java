@@ -127,7 +127,7 @@ public class pnlMark extends javax.swing.JPanel {
         srcPanelMark.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, headerTable.getTableHeader());
     }
 
-    public void resetDetails(){
+    public void resetDetails() {
         txtMarkId.setText(null);
         txtStudentId.setText(null);
         txtSubjectID.setText(null);
@@ -748,7 +748,7 @@ public class pnlMark extends javax.swing.JPanel {
                     loadData(listMark);
                     loadDetails(listMark.get(0));
                     JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Add", JOptionPane.INFORMATION_MESSAGE);
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Add", JOptionPane.ERROR_MESSAGE);
                 }
             }
@@ -876,8 +876,8 @@ public class pnlMark extends javax.swing.JPanel {
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
         // TODO add your handling code here:
         frm.pnlReport.removeAll();
-        JPanel report = new dlgChooseReport(frm, this);
-        //chua chon
+        dlgChooseReport report = new dlgChooseReport(frm, this);
+        report.getMarkAllReport(filter);
         report.setVisible(true);
         report.setSize(860, 600);
         frm.pnlReport.add(report);
