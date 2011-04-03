@@ -388,13 +388,15 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
-        frm.pnlReport.removeAll();
-        dlgChooseReport report = new dlgChooseReport(frm, this);
-        report.getCertificateReport(this.cbxStudentID.getSelectedItem().toString());
-        report.setVisible(true);
-        report.setSize(860, 600);
-        frm.pnlReport.add(report);
-        frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+        if (!this.cbxStudentID.getSelectedItem().toString().equals("----All----")) {
+            frm.pnlReport.removeAll();
+            dlgChooseReport report = new dlgChooseReport(frm, this);
+            report.getCertificateReport(this.cbxStudentID.getSelectedItem().toString());
+            report.setVisible(true);
+            report.setSize(860, 600);
+            frm.pnlReport.add(report);
+            frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+        }
     }//GEN-LAST:event_btnCreateActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
