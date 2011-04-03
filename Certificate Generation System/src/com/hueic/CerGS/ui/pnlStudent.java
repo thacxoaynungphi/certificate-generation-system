@@ -28,7 +28,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.PatternSyntaxException;
-import javax.imageio.ImageIO;
 import javax.swing.CellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -302,7 +301,7 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent1.add(lblAddress, gridBagConstraints);
 
@@ -315,9 +314,10 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         panelContent1.add(lblImage1, gridBagConstraints);
 
-        lblImage2.setMaximumSize(new java.awt.Dimension(90, 120));
-        lblImage2.setMinimumSize(new java.awt.Dimension(90, 120));
-        lblImage2.setPreferredSize(new java.awt.Dimension(90, 120));
+        lblImage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/avatar/Untitled.png"))); // NOI18N
+        lblImage2.setMaximumSize(new java.awt.Dimension(85, 115));
+        lblImage2.setMinimumSize(new java.awt.Dimension(85, 115));
+        lblImage2.setPreferredSize(new java.awt.Dimension(85, 115));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 5;
@@ -1105,12 +1105,13 @@ public class pnlStudent extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnReportDetailsActionPerformed
 
+    //TODO: copy file chua xac dinh duoc duong dan cua file
     public void copyImage(String source, String destination) {
         try {
             File sourceFile = new File(source);
             BufferedInputStream bis = new BufferedInputStream(new FileInputStream(sourceFile), 4096);
+
             File targetFile = new File(destination);
-            //File targetFile = new File(getClass().getResource(destination));
             BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(targetFile), 4096);
             int theChar;
             while ((theChar = bis.read()) != -1) {
@@ -1134,8 +1135,6 @@ public class pnlStudent extends javax.swing.JPanel {
         chooser.setFileFilter(filter);
         int returnVal = chooser.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
-            System.out.println("You chose to open this file: "
-                    + chooser.getSelectedFile().getName());
             try {
                 File file = chooser.getSelectedFile();
                 Image image = Image.getInstance(file.getPath());

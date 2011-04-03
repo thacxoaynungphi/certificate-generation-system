@@ -10,12 +10,16 @@
  */
 package com.hueic.CerGS.ui;
 
-import com.hueic.CerGS.dao.EmployeeDAO;
-import com.hueic.CerGS.dao.SubjectDAO;
-import com.hueic.CerGS.ui.report.pnlCertificateReport;
-import com.hueic.CerGS.ui.report.pnlEmployeeReport;
-import com.hueic.CerGS.ui.report.pnlSubjectReport;
-import javax.swing.JPanel;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  *
@@ -26,18 +30,68 @@ public class Hiaahsjas extends javax.swing.JFrame {
     /** Creates new form Hiaahsjas */
     public Hiaahsjas() {
         initComponents();
+        try {
+            copyImage("C:image1.png", "D:image1.png");
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        }
+        //copy("C:/Users/nhchung/Desktop/Untitled.png", "/com/hueic/CerGS/avatar/Charge1.png");
         //pnlSubject subject = new pnlSubject();
 //        SubjectDAO subjectDao = new SubjectDAO();
 //
 //        //JPanel report = new pnlCertificateReport("CPISM2");
 //        JPanel report = new pnlSubjectReport(subjectDao.readByAll());
-        EmployeeDAO empDao = new EmployeeDAO();
-        JPanel report = new pnlEmployeeReport(empDao.readByAll());
-        this.add(report);
-       // this.add(subject);
+//        EmployeeDAO empDao = new EmployeeDAO();
+//        JPanel report = new pnlEmployeeReport(empDao.readByAll());
+//        this.add(report);
+        // this.add(subject);
         this.setSize(860, 600);
         this.setVisible(true);
 
+    }
+
+    public void copy(String source, String destination) {
+        FileInputStream fis = null;
+        try {
+            fis = new FileInputStream(new File(source));
+            FileOutputStream fos = new FileOutputStream(new File(destination));
+            int c;
+            while ((c = fis.read()) != -1) {
+                fos.write(c);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Hiaahsjas.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                fis.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Hiaahsjas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }
+
+    public void copyImage(String source, String destination) {
+        try {
+            File sourceFile = new File(source);
+            BufferedInputStream bis = new BufferedInputStream(new FileInputStream(sourceFile), 4096);
+            // File targetFile = new File(destination);
+            File targetFile = new File(destination);
+            System.out.println("Sao the");
+            //File targetFile = new File(getClass().getResource(destination));
+            BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(targetFile), 4096);
+            System.out.println("Sao do nhi");
+            int theChar;
+            while ((theChar = bis.read()) != -1) {
+                bos.write(theChar);
+            }
+            bos.close();
+            bis.close();
+            System.out.println("copy done!");
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     /** This method is called from within the constructor to

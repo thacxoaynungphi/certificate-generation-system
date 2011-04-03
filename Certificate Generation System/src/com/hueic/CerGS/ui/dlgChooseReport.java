@@ -15,6 +15,7 @@ import com.hueic.CerGS.entity.Course;
 import com.hueic.CerGS.entity.Employee;
 import com.hueic.CerGS.entity.Mark;
 import com.hueic.CerGS.entity.Payment;
+import com.hueic.CerGS.entity.Register;
 import com.hueic.CerGS.entity.Student;
 import com.hueic.CerGS.entity.Subject;
 import com.hueic.CerGS.ui.report.pnlCertificateDevelopedReport;
@@ -23,6 +24,7 @@ import com.hueic.CerGS.ui.report.pnlCourseReport;
 import com.hueic.CerGS.ui.report.pnlEmployeeDetailReport;
 import com.hueic.CerGS.ui.report.pnlEmployeeReport;
 import com.hueic.CerGS.ui.report.pnlFeeReport;
+import com.hueic.CerGS.ui.report.pnlRegisterReport;
 import com.hueic.CerGS.ui.report.pnlStudentDetailReport;
 import com.hueic.CerGS.ui.report.pnlStudentFeeReport;
 import com.hueic.CerGS.ui.report.pnlStudentMarkAllReport;
@@ -117,6 +119,11 @@ public class dlgChooseReport extends javax.swing.JPanel {
     public void getMarkAllReport(ArrayList<Mark> list) {
         pnlStudentMarkAllReport markAllReport = new pnlStudentMarkAllReport(list);
         this.pnlBrowser.add(markAllReport);
+    }
+
+    public void getRegisterReport(ArrayList<Register> list) {
+        pnlRegisterReport registerReport = new pnlRegisterReport(list);
+        this.pnlBrowser.add(registerReport);
     }
 
     /** This method is called from within the constructor to
