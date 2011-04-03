@@ -5,12 +5,22 @@
 <toc version="2.0">
 <tocitem text="Certifical Genranel System" image="openbook">
    <tocitem text="Tutorial" target="start" expand="true" image="chapter">
-	   <tocitem text="Account Login" target="AccountLogin" image="topic"/>
-	   <tocitem text="Tutorial Admin" target="Admin" image="topic"/>
-	   <tocitem text="Tutorial Account" target="Account" image="topic"/>
-       <tocitem text="Tutorial Student" target="Student" image="topic"/>
-       <tocitem text="Tutorial Employee" target="Employee" image="topic"/>
-       <tocitem text="Tutorial Search" target="Search" image="topic"/>
+	   <tocitem text="Account Account" target="Account" image="topic"/>
+            <tocitem text="Tutorial Admin" target="Admin" image="topic"/>
+	   <tocitem text="Tutorial Certifiate" target="Certifiate" image="topic"/>
+	   <tocitem text="Tutorial Change Password" target="ChangePassword" image="topic"/>
+            <tocitem text="Tutorial Course" target="Course" image="topic"/>
+            <tocitem text="Tutorial Employee" target="Employee" image="topic"/>
+            <tocitem text="Tutorial Login" target="Login" image="topic"/>
+            <tocitem text="Tutorial Mark" target="Mark" image="topic"/>
+            <tocitem text="Tutorial Payment" target="Payment" image="topic"/>
+            <tocitem text="Tutorial Permission" target="Permission" image="topic"/>
+            <tocitem text="Tutorial Register" target="Register" image="topic"/>
+            <tocitem text="Tutorial Student" target="Student" image="topic"/>
+            <tocitem text="Tutorial Subject" target="Subject" image="topic"/>
+            <tocitem text="Tutorial View Mark" target="ViewMark" image="topic"/>
+            <tocitem text="Tutorial View Payment" target="ViewPayment" image="topic"/>
+            <tocitem text="Tutorial Develop Degree" target="DevelopDegree" image="topic"/>
    </tocitem>
 </tocitem>
 </toc>

@@ -177,6 +177,7 @@ public class frmMain extends javax.swing.JFrame {
         tbMenu.setPreferredSize(new java.awt.Dimension(1024, 40));
 
         jideBtnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/home_icon.png"))); // NOI18N
+        jideBtnHome.setToolTipText("Home");
         jideBtnHome.setEnabled(false);
         jideBtnHome.setFocusable(false);
         jideBtnHome.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -189,6 +190,7 @@ public class frmMain extends javax.swing.JFrame {
         tbMenu.add(jideBtnHome);
 
         jideBtnEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/emp_icon_32.png"))); // NOI18N
+        jideBtnEmployee.setToolTipText("Manager Employee");
         jideBtnEmployee.setEnabled(false);
         jideBtnEmployee.setFocusable(false);
         jideBtnEmployee.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -201,6 +203,7 @@ public class frmMain extends javax.swing.JFrame {
         tbMenu.add(jideBtnEmployee);
 
         jideBtnStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/student_icon -32.png"))); // NOI18N
+        jideBtnStudent.setToolTipText("Manager Student");
         jideBtnStudent.setEnabled(false);
         jideBtnStudent.setFocusable(false);
         jideBtnStudent.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -213,6 +216,7 @@ public class frmMain extends javax.swing.JFrame {
         tbMenu.add(jideBtnStudent);
 
         jideBtnRegister.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/icon_register.png"))); // NOI18N
+        jideBtnRegister.setToolTipText("Manager Register");
         jideBtnRegister.setEnabled(false);
         jideBtnRegister.setFocusable(false);
         jideBtnRegister.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -225,6 +229,7 @@ public class frmMain extends javax.swing.JFrame {
         tbMenu.add(jideBtnRegister);
 
         jideBtnCourse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/icon_course.png"))); // NOI18N
+        jideBtnCourse.setToolTipText("Manager Course");
         jideBtnCourse.setEnabled(false);
         jideBtnCourse.setFocusable(false);
         jideBtnCourse.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -237,6 +242,7 @@ public class frmMain extends javax.swing.JFrame {
         tbMenu.add(jideBtnCourse);
 
         jideBtnSubject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/subject_icon.png"))); // NOI18N
+        jideBtnSubject.setToolTipText("Manager Subject");
         jideBtnSubject.setEnabled(false);
         jideBtnSubject.setFocusable(false);
         jideBtnSubject.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -249,6 +255,7 @@ public class frmMain extends javax.swing.JFrame {
         tbMenu.add(jideBtnSubject);
 
         jideBtnCertificate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Certificate_icon_32.png"))); // NOI18N
+        jideBtnCertificate.setToolTipText("Manager Certificate");
         jideBtnCertificate.setEnabled(false);
         jideBtnCertificate.setFocusable(false);
         jideBtnCertificate.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -261,6 +268,7 @@ public class frmMain extends javax.swing.JFrame {
         tbMenu.add(jideBtnCertificate);
 
         jideBtnAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/account_icon -32.png"))); // NOI18N
+        jideBtnAccount.setToolTipText("Manager Account");
         jideBtnAccount.setEnabled(false);
         jideBtnAccount.setFocusable(false);
         jideBtnAccount.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -273,6 +281,7 @@ public class frmMain extends javax.swing.JFrame {
         tbMenu.add(jideBtnAccount);
 
         jideBtnMark.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/mark_icon_32.png"))); // NOI18N
+        jideBtnMark.setToolTipText("Manager Mark");
         jideBtnMark.setEnabled(false);
         jideBtnMark.setFocusable(false);
         jideBtnMark.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -285,6 +294,7 @@ public class frmMain extends javax.swing.JFrame {
         tbMenu.add(jideBtnMark);
 
         jideBtnPayment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Dollar_32.png"))); // NOI18N
+        jideBtnPayment.setToolTipText("Manager Payment");
         jideBtnPayment.setEnabled(false);
         jideBtnPayment.setFocusable(false);
         jideBtnPayment.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -297,6 +307,7 @@ public class frmMain extends javax.swing.JFrame {
         tbMenu.add(jideBtnPayment);
 
         jideBtnReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Statistic_bg.png"))); // NOI18N
+        jideBtnReport.setToolTipText("Manager Report");
         jideBtnReport.setEnabled(false);
         jideBtnReport.setFocusable(false);
         jideBtnReport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -516,9 +527,7 @@ public class frmMain extends javax.swing.JFrame {
         mnuSystem.add(mnuILogoutSystem);
 
         menuIChangePass.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK));
-        menuIChangePass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/iconchangepassword.png"))); // NOI18N
         menuIChangePass.setText("Change Password");
-        menuIChangePass.setEnabled(false);
         menuIChangePass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuIChangePassActionPerformed(evt);
