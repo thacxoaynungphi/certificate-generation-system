@@ -66,7 +66,7 @@ public class pnlRegister extends javax.swing.JPanel {
         studentList = studentDAO.readByAll();
         courseIdList = courseDAO.readByAll();
         btnCancelEdit.setVisible(false);
-        if (regisList.size() != 0) {
+        if (!regisList.isEmpty()) {
             loadData(regisList);
             loadDetails(regisList.get(0));
         }
@@ -100,7 +100,7 @@ public class pnlRegister extends javax.swing.JPanel {
                 filter.add(sub);
             }
         }
-        if (filter.size() != 0) {
+        if (!filter.isEmpty()) {
             loadDetails(filter.get(0));
         }
 
@@ -131,24 +131,24 @@ public class pnlRegister extends javax.swing.JPanel {
         txtId.setText("");
         txtCourseID.setText("");
         txtStudentId.setText("");
-        txtFeesStructe.setText("");
+        cbxFeeStructe.setSelectedIndex(0);
         dateChRegistrationDate.setDate(null);
     }
     public void loadDetails(Register register) {
         txtId.setText(register.getStudentId());
-        txtFeesStructe.setText(String.valueOf(register.getFeesStructe()));
+        cbxFeeStructe.setSelectedIndex(register.getFeesStructe());
         dateChRegistrationDate.setDate(register.getRegisDate());
         txtCourseID.setText(register.getCourseId());
         txtStudentId.setText(register.getId());
     }
 
-    public Register findByStudentId(String studentId) {
+    public int findByStudentId(String studentId) {
         for (int i = 0; i < regisList.size(); i++) {
-            if (regisList.get(i).getStudentId().equals(studentId)) {
-                return regisList.get(i);
+            if (regisList.get(i).getStudentId().compareTo(studentId) == 0) {
+                return i;
             }
         }
-        return null;
+        return -1;
     }
 
     public void searchStart() {
@@ -183,11 +183,11 @@ public class pnlRegister extends javax.swing.JPanel {
         sepa1 = new javax.swing.JSeparator();
         lblID = new javax.swing.JLabel();
         lblCourseID = new javax.swing.JLabel();
+        cbxFeeStructe = new javax.swing.JComboBox();
         lblFeesStructe = new javax.swing.JLabel();
         lblStudentID = new javax.swing.JLabel();
         lblRegistrationDate = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
-        txtFeesStructe = new javax.swing.JTextField();
         dateChRegistrationDate = new com.toedter.calendar.JDateChooser();
         panelButon = new javax.swing.JPanel();
         btnAdd = new javax.swing.JButton();
@@ -276,6 +276,14 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(lblCourseID, gridBagConstraints);
 
+        cbxFeeStructe.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Full Payment", "Installment Payment" }));
+        cbxFeeStructe.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight.add(cbxFeeStructe, gridBagConstraints);
+
         lblFeesStructe.setForeground(new java.awt.Color(3, 3, 3));
         lblFeesStructe.setText("Fees Structe:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -315,19 +323,6 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(txtId, gridBagConstraints);
-
-        txtFeesStructe.setPreferredSize(new java.awt.Dimension(200, 20));
-        txtFeesStructe.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtFeesStructeCaretUpdate(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(txtFeesStructe, gridBagConstraints);
 
         dateChRegistrationDate.setDateFormatString("MM/dd/yyyy");
         dateChRegistrationDate.setMaximumSize(new java.awt.Dimension(200, 20));
@@ -799,7 +794,7 @@ public class pnlRegister extends javax.swing.JPanel {
                 btnCancelEdit.setVisible(false);
                 String Id = txtStudentId.getText();
                 String studentId = txtId.getText();
-                int feesStructe = Integer.parseInt(txtFeesStructe.getText());
+                int feesStructe = cbxFeeStructe.getSelectedIndex();
                 Date regDate = new java.sql.Date(dateChRegistrationDate.getDate().getTime());
                 String courseId = txtCourseID.getText();
                 Register register = new Register(Id, courseId, feesStructe, (java.sql.Date) regDate, studentId);
@@ -823,20 +818,27 @@ public class pnlRegister extends javax.swing.JPanel {
         // TODO add your handling code here:
         //TODO: chua xu ly viec cap nhap khoa se bi anh huong den cac bang khac
         try {
-            String Id = txtStudentId.getText();
+
+            String id = txtStudentId.getText();
             String studentId = txtId.getText();
-            int feesStructe = Integer.parseInt(txtFeesStructe.getText());
+            int feesStructe = cbxFeeStructe.getSelectedIndex();
             Date regDate = new java.sql.Date(dateChRegistrationDate.getDate().getTime());
             String courseId = txtCourseID.getText();
-            Register register = new Register(Id, courseId, feesStructe, (java.sql.Date) regDate, studentId);
+            Register register = new Register(id, courseId, feesStructe, (java.sql.Date) regDate, studentId);
             if (regisDAO.update(register)) {
                 JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Update Subject", JOptionPane.INFORMATION_MESSAGE);
-                regisList.remove(findByStudentId(studentIdtemp));
-                regisList.add(register);
+                int index = findByStudentId(studentId);
+                if(index != -1) {
+                    regisList.remove(index);
+                    regisList.add(register);
+                } else {
+                    JOptionPane.showMessageDialog(this, "not found Student has Id is " + studentId, "Register Update", JOptionPane.ERROR_MESSAGE);
+                }
+                
                 loadData(regisList);
                 loadDetails(register);
-                txtCourseID.setVisible(true);
-                txtStudentId.setVisible(true);
+//                txtCourseID.setVisible(true);
+//                txtStudentId.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Update Subject", JOptionPane.ERROR_MESSAGE);
             }
@@ -912,13 +914,13 @@ public class pnlRegister extends javax.swing.JPanel {
 
     private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
         // TODO add your handling code here:
-        if (regisList.size() != 0) {
-            int index = tableContent.getSelectedRow();
-            if (index != -1) {
-                String studentId = tableContent.getValueAt(index, 0).toString();
-                Register reg = findByStudentId(studentId);
-                if (reg != null) {
-                    loadDetails(reg);
+        if (!regisList.isEmpty()) {
+            int tableIndex = tableContent.getSelectedRow();
+            if (tableIndex != -1) {
+                String studentId = tableContent.getValueAt(tableIndex, 0).toString();
+                int listIndex = findByStudentId(studentId);
+                if (listIndex != -1) {
+                    loadDetails(regisList.get(listIndex));
                 }
             }
         }
@@ -931,10 +933,6 @@ public class pnlRegister extends javax.swing.JPanel {
     private void txtCourseIDCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtCourseIDCaretUpdate
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCourseIDCaretUpdate
-
-    private void txtFeesStructeCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtFeesStructeCaretUpdate
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFeesStructeCaretUpdate
 
     private void txtStudentIdCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtStudentIdCaretUpdate
         // TODO add your handling code here:
@@ -991,6 +989,7 @@ public class pnlRegister extends javax.swing.JPanel {
     private javax.swing.JButton btnReport;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox cbxFeeStructe;
     private com.toedter.calendar.JDateChooser dateChRegistrationDate;
     private com.toedter.calendar.JDateChooser dateChRegistrationDateSearch;
     private javax.swing.JTextField filterText;
@@ -1022,7 +1021,6 @@ public class pnlRegister extends javax.swing.JPanel {
     public javax.swing.JTabbedPane tpRegister;
     private javax.swing.JTextField txtCourseID;
     private javax.swing.JTextField txtCourseIDSearch;
-    private javax.swing.JTextField txtFeesStructe;
     private javax.swing.JTextField txtFeesStructeSearch;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtIdSearch;

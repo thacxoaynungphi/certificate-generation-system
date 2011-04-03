@@ -22,6 +22,7 @@ import com.hueic.CerGS.entity.Register;
 import com.hueic.CerGS.entity.Subject;
 import java.util.ArrayList;
 import java.util.regex.PatternSyntaxException;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JViewport;
@@ -69,6 +70,7 @@ public class pnlMark extends javax.swing.JPanel {
             loadData(listMark);
             loadDetails(listMark.get(0));
         }
+        btnCancel.setVisible(false);
     }
 
     public pnlMark(frmMain frm) {
@@ -86,6 +88,7 @@ public class pnlMark extends javax.swing.JPanel {
             loadData(listMark);
             loadDetails(listMark.get(0));
         }
+        btnCancel.setVisible(false);
     }
 
     public void loadData(ArrayList<Mark> listMark) {
@@ -122,6 +125,10 @@ public class pnlMark extends javax.swing.JPanel {
         viewport.setPreferredSize(headerTable.getMaximumSize());
         srcPanelMark.setRowHeader(viewport);
         srcPanelMark.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, headerTable.getTableHeader());
+    }
+
+    public void resetDetails(){
+//        txt
     }
 
     public void loadDetails(Mark mark) {
@@ -367,6 +374,11 @@ public class pnlMark extends javax.swing.JPanel {
 
         txtStudentId.setMinimumSize(new java.awt.Dimension(200, 20));
         txtStudentId.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtStudentId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtStudentIdActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -706,23 +718,26 @@ public class pnlMark extends javax.swing.JPanel {
         try {
             if (!isAdd) {
                 isAdd = true;
-                txtStudentId.setVisible(false);
-                txtSubjectID.setVisible(false);
+                btnCancel.setVisible(true);
                 btnUpdate.setEnabled(false);
                 btnDelete.setEnabled(false);
+
             } else {
+                isAdd = false;
+                btnUpdate.setEnabled(true);
+                btnDelete.setEnabled(true);
+                btnCancel.setVisible(false);
+
                 Mark mark = new Mark();
                 mark.setStudentId(txtStudentId.getText());
                 mark.setMark(Float.parseFloat(txtMark.getText()));
                 mark.setSubjectId(txtStudentId.getText());
                 if (markDAO.create(mark)) {
-                    isAdd = false;
-                    txtStudentId.setVisible(true);
-                    txtSubjectID.setVisible(true);
-                    btnUpdate.setEnabled(true);
-                    btnDelete.setEnabled(true);
                     listMark.add(mark);
                     loadData(listMark);
+                    JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Add", JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Add", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } catch (Exception ex) {
@@ -759,6 +774,14 @@ public class pnlMark extends javax.swing.JPanel {
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
+        if (isAdd) {
+            isAdd = false;
+            btnUpdate.setEnabled(true);
+            btnDelete.setEnabled(true);
+            btnCancel.setVisible(false);
+        }
+
+        loadDetails(listMark.get(0));
 }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
@@ -846,6 +869,10 @@ public class pnlMark extends javax.swing.JPanel {
         frm.pnlReport.add(report);
         frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
     }//GEN-LAST:event_btnReportActionPerformed
+
+    private void txtStudentIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtStudentIdActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;

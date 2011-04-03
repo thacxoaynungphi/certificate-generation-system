@@ -130,7 +130,11 @@ public class Register implements PropertyIndex {
                 value = String.valueOf(this.getCourseId());
                 break;
             case 3:
-                value = String.valueOf(this.getFeesStructe());
+                if(this.getFeesStructe() == 1){
+                    value = "Installment Payment";
+                } else {
+                    value = "Full Payment";
+                }
                 break;
             case 4:
                 value = String.valueOf(this.getRegisDate());
