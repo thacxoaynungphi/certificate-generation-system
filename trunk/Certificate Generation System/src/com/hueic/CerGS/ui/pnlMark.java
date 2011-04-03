@@ -739,7 +739,7 @@ public class pnlMark extends javax.swing.JPanel {
                 
                 mark.setStudentId(txtStudentId.getText());
                 mark.setMark(Float.parseFloat(txtMark.getText()));
-                mark.setSubjectId(txtStudentId.getText());
+                mark.setSubjectId(txtSubjectID.getText());
 
                 if (markDAO.create(mark)) {
                     JOptionPane.showMessageDialog(this, "123", "Mark Add", JOptionPane.INFORMATION_MESSAGE);
@@ -753,6 +753,7 @@ public class pnlMark extends javax.swing.JPanel {
                 }
             }
         } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Mark Add", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnAddActionPerformed
 

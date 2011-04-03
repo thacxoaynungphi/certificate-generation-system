@@ -55,7 +55,7 @@ public class StudentMarkAllReportManager extends ReportManager {
 
             Subject sub = subjectDAO.readByID(mark.getSubjectId());
 
-            row.put("ID", mark.getId());
+            row.put("ID", String.valueOf(mark.getId()));
             row.put("COURSE", courseDAO.readById(sub.getCourseID()).getName());
             row.put("SUBJECT", sub.getName());
             row.put("MARK", mark.getMark());

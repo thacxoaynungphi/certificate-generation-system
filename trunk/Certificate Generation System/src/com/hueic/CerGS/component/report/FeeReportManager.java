@@ -23,7 +23,6 @@ import org.apache.commons.collections.FastHashMap;
  */
 public class FeeReportManager extends ReportManager {
 
-    private String courseId;
     private StudentDAO studentDAO;
     private CourseDAO courseDAO;
     private RegisterDAO registerDAO;
@@ -60,12 +59,18 @@ public class FeeReportManager extends ReportManager {
             row = new HashMap();
             Register reg = registerDAO.readByStudentId(pay.getStudentId());
             Course course = courseDAO.readById(reg.getCourseId());
+            
+            System.out.println(pay.getStudentId());
+            System.out.println(studentDAO.readByID(reg.getId()).getFullName());
+            System.out.println(course.getName());
+            System.out.println(pay.getMoney());
+            System.out.println(courseDAO.readById(course.getId()).getTotalFees() - pay.getMoney());
 
             row.put("ID", pay.getStudentId());
             row.put("NAME", studentDAO.readByID(reg.getId()).getFullName());
             row.put("COURSE", course.getName());
             row.put("PAYMENT", pay.getMoney());
-            row.put("ARREARS", courseDAO.readById(courseId).getTotalFees() - pay.getMoney());
+            row.put("ARREARS", courseDAO.readById(course.getId()).getTotalFees() - pay.getMoney());
 
             reportRows.add(row);
         }
