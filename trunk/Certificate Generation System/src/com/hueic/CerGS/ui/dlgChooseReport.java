@@ -12,16 +12,15 @@ package com.hueic.CerGS.ui;
 
 import com.hueic.CerGS.entity.Certificate;
 import com.hueic.CerGS.entity.Employee;
-import com.hueic.CerGS.entity.Payment;
 import com.hueic.CerGS.entity.Student;
+import com.hueic.CerGS.entity.Subject;
 import com.hueic.CerGS.ui.report.pnlCertificateDevelopedReport;
 import com.hueic.CerGS.ui.report.pnlCertificateReport;
 import com.hueic.CerGS.ui.report.pnlEmployeeReport;
-import com.hueic.CerGS.ui.report.pnlFeeReport;
+import com.hueic.CerGS.ui.report.pnlStudentFeeReport;
 import com.hueic.CerGS.ui.report.pnlStudentMarkReport;
-import com.hueic.CerGS.ui.report.pnlStudentNewRegistrationReport;
 import com.hueic.CerGS.ui.report.pnlStudentReport;
-import com.hueic.CerGS.ui.report.pnlSubjectInCourseReport;
+import com.hueic.CerGS.ui.report.pnlSubjectReport;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 
@@ -34,11 +33,9 @@ public class dlgChooseReport extends javax.swing.JPanel {
     pnlCertificateReport cerReport;
     pnlCertificateDevelopedReport cerDevReport;
     pnlEmployeeReport empReport;
-    pnlFeeReport feeReport;
+    pnlStudentFeeReport feeReport;
     pnlStudentMarkReport markReport;
-    pnlStudentNewRegistrationReport newRegistratorReport;
     pnlStudentReport studentReport;
-    pnlSubjectInCourseReport subInCourseRerport;
     String courseId = "ARENA";
     String studentId;
     String subjectId;
@@ -46,47 +43,46 @@ public class dlgChooseReport extends javax.swing.JPanel {
     frmMain parent;
 
     /** Creates new form dlgChooseReport */
-    public dlgChooseReport(frmMain parent, JPanel pnlOld, int type, String studentId, ArrayList<Payment> listPayment, ArrayList<Certificate> listCer, ArrayList<Employee> listEmp) {
+    public dlgChooseReport(frmMain parent, JPanel pnlOld) {
         initComponents();
         this.pnlOld = pnlOld;
         this.parent = parent;
-        switch (type) {
-            case 0:
-                cerReport = new pnlCertificateReport(studentId);
-                this.pnlBrowser = cerReport;
-                break;
-            case 1:
-                cerDevReport = new pnlCertificateDevelopedReport(listCer);
-                this.pnlBrowser = cerDevReport;
-                break;
-            case 2:
-                empReport = new pnlEmployeeReport(listEmp);
-                this.pnlBrowser = empReport;
-                break;
-            case 3:
-                feeReport = new pnlFeeReport(listPayment);
-                this.pnlBrowser = feeReport;
-                break;
-            case 4:
-                markReport = new pnlStudentMarkReport(studentId);
-                this.pnlBrowser = markReport;
-                break;
-            case 5:
-                newRegistratorReport = new pnlStudentNewRegistrationReport(courseId);
-                this.pnlBrowser = newRegistratorReport;
-                break;
-            case 6:
-                studentReport = new pnlStudentReport(courseId);
-                this.pnlBrowser.add(studentReport);
-                System.out.println("hi");
-                break;
-            case 7:
-                subInCourseRerport = new pnlSubjectInCourseReport(subjectId);
-                this.pnlBrowser = subInCourseRerport;
-                break;
-        }
     }
 
+    public void getCertificateReport(String studentId) {
+        cerReport = new pnlCertificateReport(studentId);
+        this.pnlBrowser = cerReport;
+    }
+
+    public void getCertificateDevelopedReport(ArrayList<Certificate> list) {
+        cerDevReport = new pnlCertificateDevelopedReport(list);
+        this.pnlBrowser = cerDevReport;
+    }
+
+    public void getEmployeeReport(ArrayList<Employee> list) {
+        empReport = new pnlEmployeeReport(list);
+        this.pnlBrowser = empReport;
+    }
+
+    public void getStudentReport(ArrayList<Student> list) {
+        studentReport = new pnlStudentReport(list);
+        this.pnlBrowser = studentReport;
+    }
+
+    public void getStudentFeeReport(String studentId) {
+        feeReport = new pnlStudentFeeReport(studentId);
+        this.pnlBrowser = feeReport;
+    }
+
+    public void getStudentMarkReport(String studentId) {
+        markReport = new pnlStudentMarkReport(studentId);
+        this.pnlBrowser = markReport;
+    }
+
+    public void getSubjectReport(ArrayList<Subject> list) {
+        pnlSubjectReport subjectReport = new pnlSubjectReport(list);
+        this.pnlBrowser = subjectReport;
+    }
 
     /** This method is called from within the constructor to
      * initialize the form.

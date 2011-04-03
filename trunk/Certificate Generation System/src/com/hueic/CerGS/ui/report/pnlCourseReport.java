@@ -4,29 +4,34 @@
  */
 
 /*
- * pnl.java
+ * pnlCourseReport.java
  *
- * Created on Apr 2, 2011, 3:20:31 AM
+ * Created on Apr 3, 2011, 8:38:27 AM
  */
 package com.hueic.CerGS.ui.report;
 
-import com.hueic.CerGS.component.report.SubjectInCourseReportManager;
+import com.hueic.CerGS.component.report.CourseReportManager;
+import com.hueic.CerGS.entity.Course;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author nhchung
  */
-public class pnlSubjectInCourseReport extends javax.swing.JPanel {
+public class pnlCourseReport extends javax.swing.JPanel {
 
-    /** Creates new form pnl */
-    public pnlSubjectInCourseReport(String courseId) {
+    /** Creates new form pnlCourseReport */
+    public pnlCourseReport(ArrayList<Course> listCourse) {
         initComponents();
-        SubjectInCourseReportManager report = new SubjectInCourseReportManager(courseId);
-        try {
-            this.add(report.getPanelViewer(true));
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.toString(), "Report Message", JOptionPane.ERROR_MESSAGE);
+        CourseReportManager courseReport = new CourseReportManager(listCourse);
+        //JPanel panel = studentReport.getEnumerationViewer(studentList, true);
+        if (courseReport != null) {
+            try {
+                this.add(courseReport.getPanelViewer(true));
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.toString(), "Report Message", JOptionPane.ERROR_MESSAGE);
+            }
         }
         this.setSize(860, 580);
         this.setVisible(true);

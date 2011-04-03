@@ -14,10 +14,10 @@ import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
  *
  * @author Wind
  */
-public class CourseReport extends ReportManager {
+public class CourseReportManager extends ReportManager {
     private ArrayList<Course> listCourse;
 
-    public CourseReport(ArrayList<Course> listCourse) {
+    public CourseReportManager(ArrayList<Course> listCourse) {
         this.listCourse = listCourse;
 
         jasperFileName = "Course.jasper";
