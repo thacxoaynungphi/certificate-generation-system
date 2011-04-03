@@ -13,6 +13,8 @@ package com.hueic.CerGS.ui;
 import com.hueic.CerGS.entity.Certificate;
 import com.hueic.CerGS.entity.Course;
 import com.hueic.CerGS.entity.Employee;
+import com.hueic.CerGS.entity.Mark;
+import com.hueic.CerGS.entity.Payment;
 import com.hueic.CerGS.entity.Student;
 import com.hueic.CerGS.entity.Subject;
 import com.hueic.CerGS.ui.report.pnlCertificateDevelopedReport;
@@ -20,8 +22,10 @@ import com.hueic.CerGS.ui.report.pnlCertificateReport;
 import com.hueic.CerGS.ui.report.pnlCourseReport;
 import com.hueic.CerGS.ui.report.pnlEmployeeDetailReport;
 import com.hueic.CerGS.ui.report.pnlEmployeeReport;
+import com.hueic.CerGS.ui.report.pnlFeeReport;
 import com.hueic.CerGS.ui.report.pnlStudentDetailReport;
 import com.hueic.CerGS.ui.report.pnlStudentFeeReport;
+import com.hueic.CerGS.ui.report.pnlStudentMarkAllReport;
 import com.hueic.CerGS.ui.report.pnlStudentMarkReport;
 import com.hueic.CerGS.ui.report.pnlStudentReport;
 import com.hueic.CerGS.ui.report.pnlSubjectReport;
@@ -103,6 +107,16 @@ public class dlgChooseReport extends javax.swing.JPanel {
     public void getStudentDetailsReport(Student student) {
         pnlStudentDetailReport studentDetailReport = new pnlStudentDetailReport(student);
         this.pnlBrowser.add(studentDetailReport);
+    }
+
+    public void getFeesReport(ArrayList<Payment> list) {
+        pnlFeeReport feeReport = new pnlFeeReport(list);
+        this.pnlBrowser.add(feeReport);
+    }
+
+    public void getMarkAllReport(ArrayList<Mark> list) {
+        pnlStudentMarkAllReport markAllReport = new pnlStudentMarkAllReport(list);
+        this.pnlBrowser.add(markAllReport);
     }
 
     /** This method is called from within the constructor to

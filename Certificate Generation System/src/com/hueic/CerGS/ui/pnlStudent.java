@@ -30,6 +30,7 @@ import java.util.logging.Logger;
 import java.util.regex.PatternSyntaxException;
 import javax.imageio.ImageIO;
 import javax.swing.CellEditor;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -88,7 +89,7 @@ public class pnlStudent extends javax.swing.JPanel {
                 filter.add(emp);
             }
         }
-        if (!filter.isEmpty()) {
+        if (filter.size() != 0) {
             loadDetails(filter.get(0));
         }
         ColumnData[] columns = {
@@ -102,7 +103,6 @@ public class pnlStudent extends javax.swing.JPanel {
         tableModel = new ObjectTableModel(tableContent, columns, filter);
         sorter = new TableRowSorter<TableModel>(tableModel);
         tableContent.setRowSorter(sorter);
-        lblCount.setText(String.valueOf(liststudent.size()));
         headerTable = tableModel.getHeaderTable();
         // Create numbering column
         headerTable.createDefaultColumnsFromModel();
@@ -315,13 +315,14 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         panelContent1.add(lblImage1, gridBagConstraints);
 
-        lblImage2.setPreferredSize(new java.awt.Dimension(80, 80));
+        lblImage2.setMaximumSize(new java.awt.Dimension(90, 120));
+        lblImage2.setMinimumSize(new java.awt.Dimension(90, 120));
+        lblImage2.setPreferredSize(new java.awt.Dimension(90, 120));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.gridheight = 3;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent1.add(lblImage2, gridBagConstraints);
 
         txtFirstNameEdit.setPreferredSize(new java.awt.Dimension(200, 20));
@@ -463,7 +464,7 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.gridwidth = 9;
-        gridBagConstraints.insets = new java.awt.Insets(20, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent1.add(panelButton, gridBagConstraints);
 
         lblStart1.setForeground(new java.awt.Color(255, 0, 0));
@@ -1104,12 +1105,12 @@ public class pnlStudent extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnReportDetailsActionPerformed
 
-    public void copyImage(String source,String destination) {
+    public void copyImage(String source, String destination) {
         try {
-
             File sourceFile = new File(source);
             BufferedInputStream bis = new BufferedInputStream(new FileInputStream(sourceFile), 4096);
             File targetFile = new File(destination);
+            //File targetFile = new File(getClass().getResource(destination));
             BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(targetFile), 4096);
             int theChar;
             while ((theChar = bis.read()) != -1) {
@@ -1123,9 +1124,10 @@ public class pnlStudent extends javax.swing.JPanel {
             ex.printStackTrace();
         }
     }
-    
+
     private void btnBrowseEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseEditActionPerformed
         // TODO add your handling code here:
+        //TODO: chua fix duoc update anh
         JFileChooser chooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
                 "JPG, GIF, & PNG Images", "jpg", "gif", "png");
@@ -1135,13 +1137,18 @@ public class pnlStudent extends javax.swing.JPanel {
             System.out.println("You chose to open this file: "
                     + chooser.getSelectedFile().getName());
             try {
-                //Image img = ImageReadWrite.read(chooser.getSelectedFile());
                 File file = chooser.getSelectedFile();
                 Image image = Image.getInstance(file.getPath());
-
                 System.out.println("W" + image.getWidth() + " H : " + image.getHeight());
-                if (image.getWidth() < 9 && image.getHeight() < 10) {
-                   //copyImage(file.getPath(), this.getClass().getResource("/com/hueic/CerGS/avatar/" + file.getName()));
+                if (image.getWidth() <= 85 && image.getWidth() > 0 && image.getHeight() <= 113 && image.getHeight() > 0) {
+                    ImageIcon icon = new ImageIcon(file.getPath());
+                    System.out.println("W" + icon.getIconWidth() + " H : " + icon.getIconHeight());
+                    lblImage1.setIcon(icon);
+                    txtImageEdit.setText(file.getPath());
+                    System.out.println("W" + image.getWidth() + " H : " + image.getHeight());
+                    System.out.println("/com/hueic/CerGS/avatar/" + file.getName());
+                    System.out.println("Path : " + file.getPath());
+                    copyImage(file.getPath(), "/com/hueic/CerGS/avatar/" + file.getName());
                 }
             } catch (BadElementException ex) {
                 Logger.getLogger(pnlStudent.class.getName()).log(Level.SEVERE, null, ex);
