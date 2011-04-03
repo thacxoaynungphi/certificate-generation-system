@@ -751,8 +751,8 @@ public class pnlCertificate extends javax.swing.JPanel {
     private void btnChooseStudentIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseStudentIdActionPerformed
         // TODO add your handling code here:
         dlgChoose dlg = new dlgChoose(frm, txtStudentID, true, 12);
-        dlg.setTitle("Browse Order");
-        dlg.setSize(868, 616);
+        dlg.setTitle("Browse Student");
+        dlg.setSize(868, 580);
         dlg.setLocationRelativeTo(null);
         dlg.setVisible(true);
     }//GEN-LAST:event_btnChooseStudentIdActionPerformed
@@ -760,8 +760,8 @@ public class pnlCertificate extends javax.swing.JPanel {
     private void btnChooseStudentIdSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseStudentIdSearchActionPerformed
         // TODO add your handling code here:
         dlgChoose dlg = new dlgChoose(frm, txtStudentIDSearch, true, 12);
-        dlg.setTitle("Browse Order");
-        dlg.setSize(868, 616);
+        dlg.setTitle("Browse Student");
+        dlg.setSize(868, 580);
         dlg.setLocationRelativeTo(null);
         dlg.setVisible(true);
     }//GEN-LAST:event_btnChooseStudentIdSearchActionPerformed

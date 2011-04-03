@@ -718,8 +718,8 @@ public class pnlAccount extends javax.swing.JPanel {
     private void btnChoosePermissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChoosePermissionActionPerformed
         // TODO add your handling code here:
         dlgChoose dlg = new dlgChoose(frm, txtType, true, 11);
-        dlg.setTitle("Browse Order");
-        dlg.setSize(868, 616);
+        dlg.setTitle("Browse Permission");
+        dlg.setSize(868, 580);
         dlg.setLocationRelativeTo(null);
         dlg.setVisible(true);
     }//GEN-LAST:event_btnChoosePermissionActionPerformed
@@ -759,8 +759,8 @@ public class pnlAccount extends javax.swing.JPanel {
     private void btnChoosePerSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChoosePerSearchActionPerformed
         // TODO add your handling code here:
         dlgChoose dlg = new dlgChoose(frm, txtPermissionSearch, true, 11);
-        dlg.setTitle("Browse Order");
-        dlg.setSize(868, 616);
+        dlg.setTitle("Browse Permission");
+        dlg.setSize(868, 580);
         dlg.setLocationRelativeTo(null);
         dlg.setVisible(true);
     }//GEN-LAST:event_btnChoosePerSearchActionPerformed

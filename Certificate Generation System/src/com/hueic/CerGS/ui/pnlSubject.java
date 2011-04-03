@@ -737,8 +737,8 @@ public class pnlSubject extends javax.swing.JPanel {
     private void btnChooseCourIDSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseCourIDSearchActionPerformed
         // TODO add your handling code here:
         dlgChoose dlg = new dlgChoose(frm, txtCoureIDSearch, true, 7);
-        dlg.setTitle("Browse Order");
-        dlg.setSize(868, 616);
+        dlg.setTitle("Browse Course");
+        dlg.setSize(868, 580);
         dlg.setLocationRelativeTo(null);
         dlg.setVisible(true);
 }//GEN-LAST:event_btnChooseCourIDSearchActionPerformed
@@ -774,8 +774,8 @@ public class pnlSubject extends javax.swing.JPanel {
     private void btnChooseCourIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseCourIDActionPerformed
         // TODO add your handling code here:
         dlgChoose dlg = new dlgChoose(frm, txtCoureID, true, 7);
-        dlg.setTitle("Browse Order");
-        dlg.setSize(868, 616);
+        dlg.setTitle("Browse Course");
+        dlg.setSize(868, 580);
         dlg.setLocationRelativeTo(null);
         dlg.setVisible(true);
 }//GEN-LAST:event_btnChooseCourIDActionPerformed

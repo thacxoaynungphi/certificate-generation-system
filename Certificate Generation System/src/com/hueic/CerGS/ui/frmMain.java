@@ -65,9 +65,12 @@ public class frmMain extends javax.swing.JFrame {
         mnuIHelpContent.addActionListener(new CSH.DisplayHelpFromSource(hb));
     }
 
-    private void initStatusBar() {
-        AppStatusBar status = new AppStatusBar();
+    public void initStatusBar() {
+        this.StatusPnl.removeAll();
+        AppStatusBar status = new AppStatusBar(this);
         this.StatusPnl.add(status.getBar());
+        // this.StatusPnl.repaint();
+        this.tpnBusiness.setSelectedComponent(pnlHome);
     }
 
     public HelpSet getHelpSet(String helpsetfile) {
@@ -138,6 +141,7 @@ public class frmMain extends javax.swing.JFrame {
         radioMetal = new javax.swing.JRadioButtonMenuItem();
         radioNimbus = new javax.swing.JRadioButtonMenuItem();
         radioJgoodies = new javax.swing.JRadioButtonMenuItem();
+        radioWindowsXP = new javax.swing.JRadioButtonMenuItem();
         mnuTheme = new javax.swing.JMenu();
         radioDarkStar = new javax.swing.JRadioButtonMenuItem();
         radioDesertBlue = new javax.swing.JRadioButtonMenuItem();
@@ -587,6 +591,15 @@ public class frmMain extends javax.swing.JFrame {
         });
         mnuSkin.add(radioJgoodies);
 
+        buttonGroupSkin.add(radioWindowsXP);
+        radioWindowsXP.setText("Windows XP");
+        radioWindowsXP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioWindowsXPActionPerformed(evt);
+            }
+        });
+        mnuSkin.add(radioWindowsXP);
+
         mnuOptions.add(mnuSkin);
 
         mnuTheme.setText("Theme");
@@ -840,6 +853,7 @@ public class frmMain extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (this.accCur != null) {
             accCur = null;
+            initStatusBar();
             this.isLogout();
             dlgLogin login = new dlgLogin(this, true);
             login.setVisible(true);
@@ -1035,6 +1049,13 @@ public class frmMain extends javax.swing.JFrame {
         dlgConfigurationDB configurationDB = new dlgConfigurationDB(this, true);
         configurationDB.setVisible(true);
     }//GEN-LAST:event_mnuIConfigurationActionPerformed
+
+    private void radioWindowsXPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioWindowsXPActionPerformed
+        // TODO add your handling code here:
+        if (radioWindowsXP.isSelected()) {
+            guidao.setGUI(guip.PLAF_WINDOWSXP, theme);
+        }
+    }//GEN-LAST:event_radioWindowsXPActionPerformed
 
     public void isLogout() {
 //        pnlHome.removeAll();
@@ -1267,6 +1288,7 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JRadioButtonMenuItem radioSkyRed;
     private javax.swing.JRadioButtonMenuItem radioSkyYellow;
     private javax.swing.JRadioButtonMenuItem radioWindows;
+    private javax.swing.JRadioButtonMenuItem radioWindowsXP;
     private javax.swing.JToolBar tbMenu;
     public javax.swing.JTabbedPane tpnBusiness;
     // End of variables declaration//GEN-END:variables

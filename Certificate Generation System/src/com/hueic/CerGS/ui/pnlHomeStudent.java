@@ -73,7 +73,7 @@ public class pnlHomeStudent extends javax.swing.JPanel {
         panelRight.setPreferredSize(new java.awt.Dimension(860, 600));
         panelRight.setLayout(new java.awt.GridBagLayout());
 
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLabel15.setForeground(new java.awt.Color(0, 0, 102));
         jLabel15.setText("<html> <body> Certificate Generator System 2</body> </html>");
         jLabel15.setMinimumSize(new java.awt.Dimension(400, 40));

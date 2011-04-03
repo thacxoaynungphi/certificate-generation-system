@@ -275,8 +275,8 @@ public class dlgLogin extends javax.swing.JDialog {
                     rememberAccount.writeFile(acc);
                 }
                 main.isLogin();
+                main.initStatusBar();
                 this.dispose();
-                System.out.println("Den day");
             } else {
                 JOptionPane.showMessageDialog(this, accDao.getLastError(), "Login", JOptionPane.ERROR_MESSAGE);
             }
