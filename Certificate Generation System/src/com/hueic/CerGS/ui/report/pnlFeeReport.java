@@ -4,33 +4,35 @@
  */
 
 /*
- * StudentFeeReport.java
+ * pnlStudentFeeReport.java
  *
- * Created on Apr 3, 2011, 8:49:37 AM
+ * Created on Apr 2, 2011, 3:44:38 AM
  */
-
 package com.hueic.CerGS.ui.report;
 
-import com.hueic.CerGS.component.report.StudentFeeReportManger;
+import com.hueic.CerGS.component.report.FeeReportManager;
+import com.hueic.CerGS.entity.Payment;
+import com.hueic.CerGS.entity.Student;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+
 /**
  *
- * @author Wind
+ * @author nhchung
  */
-public class pnlStudentFeeReport extends javax.swing.JPanel {
+public class pnlFeeReport extends javax.swing.JPanel {
 
-    /** Creates new form StudentFeeReport */
-    public pnlStudentFeeReport(String studentId) {
+    /** Creates new form pnlStudentFeeReport */
+    public pnlFeeReport(ArrayList<Payment> listPayment) {
         initComponents();
-        StudentFeeReportManger studentFeeReport = new StudentFeeReportManger(studentId);
+        FeeReportManager studentFee = new FeeReportManager(listPayment);
         try {
-            this.add(studentFeeReport.getPanelViewer(true));
+            this.add(studentFee.getPanelViewer(true));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.toString(), "Report Message", JOptionPane.ERROR_MESSAGE);
         }
-
-        setSize(860, 580);
-        setVisible(true);
+        this.setSize(860, 550);
+        this.setVisible(true);
     }
 
     /** This method is called from within the constructor to
@@ -53,9 +55,6 @@ public class pnlStudentFeeReport extends javax.swing.JPanel {
             .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-
 }

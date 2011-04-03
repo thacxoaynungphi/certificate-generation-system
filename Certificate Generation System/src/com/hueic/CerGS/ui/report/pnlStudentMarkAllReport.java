@@ -4,27 +4,30 @@
  */
 
 /*
- * StudentFeeReport.java
+ * pnlStudentMarkAllReport.java
  *
- * Created on Apr 3, 2011, 8:49:37 AM
+ * Created on Apr 3, 2011, 8:55:39 AM
  */
 
 package com.hueic.CerGS.ui.report;
 
-import com.hueic.CerGS.component.report.StudentFeeReportManger;
+import com.hueic.CerGS.component.report.StudentMarkAllReportManager;
+import com.hueic.CerGS.entity.Mark;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author Wind
  */
-public class pnlStudentFeeReport extends javax.swing.JPanel {
+public class pnlStudentMarkAllReport extends javax.swing.JPanel {
 
-    /** Creates new form StudentFeeReport */
-    public pnlStudentFeeReport(String studentId) {
+    /** Creates new form pnlStudentMarkAllReport */
+    public pnlStudentMarkAllReport(ArrayList<Mark> listMark) {
         initComponents();
-        StudentFeeReportManger studentFeeReport = new StudentFeeReportManger(studentId);
+        StudentMarkAllReportManager studentMarkAllReportManager = new StudentMarkAllReportManager(listMark);
         try {
-            this.add(studentFeeReport.getPanelViewer(true));
+            this.add(studentMarkAllReportManager.getPanelViewer(true));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.toString(), "Report Message", JOptionPane.ERROR_MESSAGE);
         }

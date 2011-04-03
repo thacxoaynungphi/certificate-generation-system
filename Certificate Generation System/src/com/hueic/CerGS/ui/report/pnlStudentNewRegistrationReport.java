@@ -11,6 +11,8 @@
 package com.hueic.CerGS.ui.report;
 
 import com.hueic.CerGS.component.report.StudentNewRegistrationInCourse;
+import com.hueic.CerGS.entity.Student;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,9 +22,9 @@ import javax.swing.JOptionPane;
 public class pnlStudentNewRegistrationReport extends javax.swing.JPanel {
 
     /** Creates new form NewJPanel */
-    public pnlStudentNewRegistrationReport(String courseId) {
+    public pnlStudentNewRegistrationReport(ArrayList<Student> listStudent) {
         initComponents();
-        StudentNewRegistrationInCourse studentReport = new StudentNewRegistrationInCourse(courseId);
+        StudentNewRegistrationInCourse studentReport = new StudentNewRegistrationInCourse(listStudent);
         try {
             this.add(studentReport.getPanelViewer(true));
         } catch (Exception ex) {
