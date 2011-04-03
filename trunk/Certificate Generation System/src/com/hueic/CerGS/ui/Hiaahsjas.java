@@ -10,7 +10,11 @@
  */
 package com.hueic.CerGS.ui;
 
+import com.hueic.CerGS.dao.EmployeeDAO;
+import com.hueic.CerGS.dao.SubjectDAO;
 import com.hueic.CerGS.ui.report.pnlCertificateReport;
+import com.hueic.CerGS.ui.report.pnlEmployeeReport;
+import com.hueic.CerGS.ui.report.pnlSubjectReport;
 import javax.swing.JPanel;
 
 /**
@@ -23,7 +27,12 @@ public class Hiaahsjas extends javax.swing.JFrame {
     public Hiaahsjas() {
         initComponents();
         //pnlSubject subject = new pnlSubject();
-        JPanel report = new pnlCertificateReport("CPISM2");
+//        SubjectDAO subjectDao = new SubjectDAO();
+//
+//        //JPanel report = new pnlCertificateReport("CPISM2");
+//        JPanel report = new pnlSubjectReport(subjectDao.readByAll());
+        EmployeeDAO empDao = new EmployeeDAO();
+        JPanel report = new pnlEmployeeReport(empDao.readByAll());
         this.add(report);
        // this.add(subject);
         this.setSize(860, 600);

@@ -33,7 +33,7 @@ public class pnlSubjectReport extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, ex.toString(), "Report Message", JOptionPane.ERROR_MESSAGE);
             }
         }
-        this.setSize(860, 580);
+        this.setSize(860, 550);
         this.setVisible(true);
     }
 

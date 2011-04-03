@@ -11,11 +11,13 @@
 package com.hueic.CerGS.ui;
 
 import com.hueic.CerGS.entity.Certificate;
+import com.hueic.CerGS.entity.Course;
 import com.hueic.CerGS.entity.Employee;
 import com.hueic.CerGS.entity.Student;
 import com.hueic.CerGS.entity.Subject;
 import com.hueic.CerGS.ui.report.pnlCertificateDevelopedReport;
 import com.hueic.CerGS.ui.report.pnlCertificateReport;
+import com.hueic.CerGS.ui.report.pnlCourseReport;
 import com.hueic.CerGS.ui.report.pnlEmployeeReport;
 import com.hueic.CerGS.ui.report.pnlStudentFeeReport;
 import com.hueic.CerGS.ui.report.pnlStudentMarkReport;
@@ -45,43 +47,50 @@ public class dlgChooseReport extends javax.swing.JPanel {
     /** Creates new form dlgChooseReport */
     public dlgChooseReport(frmMain parent, JPanel pnlOld) {
         initComponents();
+        setVisible(true);
+        setSize(860, 600);
         this.pnlOld = pnlOld;
         this.parent = parent;
     }
 
     public void getCertificateReport(String studentId) {
         cerReport = new pnlCertificateReport(studentId);
-        this.pnlBrowser = cerReport;
+        this.pnlBrowser.add(cerReport);
     }
 
     public void getCertificateDevelopedReport(ArrayList<Certificate> list) {
         cerDevReport = new pnlCertificateDevelopedReport(list);
-        this.pnlBrowser = cerDevReport;
+        this.pnlBrowser.add(cerDevReport);
     }
 
     public void getEmployeeReport(ArrayList<Employee> list) {
         empReport = new pnlEmployeeReport(list);
-        this.pnlBrowser = empReport;
+        this.pnlBrowser.add(empReport);
     }
 
     public void getStudentReport(ArrayList<Student> list) {
         studentReport = new pnlStudentReport(list);
-        this.pnlBrowser = studentReport;
+        this.pnlBrowser.add(studentReport);
     }
 
     public void getStudentFeeReport(String studentId) {
         feeReport = new pnlStudentFeeReport(studentId);
-        this.pnlBrowser = feeReport;
+        this.pnlBrowser.add(feeReport);
     }
 
     public void getStudentMarkReport(String studentId) {
         markReport = new pnlStudentMarkReport(studentId);
-        this.pnlBrowser = markReport;
+        this.pnlBrowser.add(markReport);
     }
 
     public void getSubjectReport(ArrayList<Subject> list) {
         pnlSubjectReport subjectReport = new pnlSubjectReport(list);
-        this.pnlBrowser = subjectReport;
+        this.pnlBrowser.add(subjectReport);
+    }
+
+    public void getCourseReport(ArrayList<Course> list) {
+        pnlCourseReport courseReport = new pnlCourseReport(list);
+        this.pnlBrowser.add(courseReport);
     }
 
     /** This method is called from within the constructor to
@@ -125,8 +134,8 @@ public class dlgChooseReport extends javax.swing.JPanel {
         add(pnlButton, gridBagConstraints);
 
         pnlBrowser.setBackground(new java.awt.Color(255, 255, 255));
-        pnlBrowser.setMinimumSize(new java.awt.Dimension(860, 550));
-        pnlBrowser.setPreferredSize(new java.awt.Dimension(860, 550));
+        pnlBrowser.setMinimumSize(new java.awt.Dimension(860, 560));
+        pnlBrowser.setPreferredSize(new java.awt.Dimension(860, 560));
         pnlBrowser.setLayout(new java.awt.BorderLayout());
 
         pnlBrowser = pnlBrowser;

@@ -6,9 +6,11 @@ package com.hueic.CerGS.component.report;
 
 import com.hueic.CerGS.dao.CertificateDAO;
 import com.hueic.CerGS.dao.CourseDAO;
+import com.hueic.CerGS.dao.MarkDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.dao.StudentDAO;
 import com.hueic.CerGS.entity.Certificate;
+import com.hueic.CerGS.entity.Mark;
 import com.hueic.CerGS.entity.Register;
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ public class CertificateDevelopedReportManager extends ReportManager {
     private StudentDAO studentDAO;
     private CourseDAO courseDAO;
     private RegisterDAO registerDAO;
+    private MarkDAO markDao;
 
     public CertificateDevelopedReportManager(ArrayList<Certificate> listCertificate) {
         jasperFileName = "CertificateDeveloped.jasper";
@@ -33,6 +36,7 @@ public class CertificateDevelopedReportManager extends ReportManager {
         studentDAO = new StudentDAO();
         courseDAO = new CourseDAO();
         registerDAO = new RegisterDAO();
+        markDao = new MarkDAO();
 
         this.listCertificate = listCertificate;
 
@@ -60,26 +64,14 @@ public class CertificateDevelopedReportManager extends ReportManager {
         for (Certificate cer : listCertificate) {
             row = new HashMap();
             row.put("CERNUMBER", cer.getId());
-            
+
             Register reg = registerDAO.readByStudentId(cer.getStudentID());
 
             row.put("STUDENTID", cer.getStudentID());
             row.put("STUDENTNAME", studentDAO.readByID(reg.getId()).getFullName());
             row.put("COURSENAME", courseDAO.readById(reg.getCourseId()).getName());
             row.put("DEGREEDATE", DateFormat.getInstance().format(cer.getDegreeDay()));
-
-            String grade = "";
-            if (cer.getMark() >= 7.5) {
-                grade = "DISTINSTION";
-            } else if (cer.getMark() > 50) {
-                grade = "B";
-            } else if (cer.getMark() > 40) {
-                grade = "C";
-            } else {
-                grade = "Unpass";
-            }
-
-            row.put("GRADE", grade);
+            row.put("GRADE", markDao.getGrades(cer.getMark()));
 
             collection.add(row);
         }

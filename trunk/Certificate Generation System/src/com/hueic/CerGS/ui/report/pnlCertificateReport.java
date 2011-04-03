@@ -31,7 +31,7 @@ public class pnlCertificateReport extends javax.swing.JPanel {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.toString(), "Report Message", JOptionPane.ERROR_MESSAGE);
         }
-        this.setSize(860, 580);
+        this.setSize(860, 550);
         this.setVisible(true);
     }
 

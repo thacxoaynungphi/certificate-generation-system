@@ -616,6 +616,11 @@ public class pnlCertificate extends javax.swing.JPanel {
         btnReport.setMaximumSize(new java.awt.Dimension(75, 23));
         btnReport.setMinimumSize(new java.awt.Dimension(75, 23));
         btnReport.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportActionPerformed(evt);
+            }
+        });
         pnlButtonReport.add(btnReport);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -792,6 +797,17 @@ public class pnlCertificate extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, ex.toString(), "Error!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_tableContentMouseReleased
+
+    private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
+        // TODO add your handling code here:
+        frm.pnlReport.removeAll();
+        dlgChooseReport report = new dlgChooseReport(frm, this);
+        report.getCertificateDevelopedReport(filter);
+        report.setVisible(true);
+        report.setSize(860, 600);
+        frm.pnlReport.add(report);
+        frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+    }//GEN-LAST:event_btnReportActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;

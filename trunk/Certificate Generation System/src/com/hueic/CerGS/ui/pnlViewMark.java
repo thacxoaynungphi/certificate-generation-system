@@ -45,9 +45,24 @@ public class pnlViewMark extends javax.swing.JPanel {
     public ArrayList<Register> listRegister;
     private ObjectTableModel tableModel;
     private JTable headerTable;
+    frmMain frm;
 
     public pnlViewMark() {
         initComponents();
+        markDAO = new MarkDAO();
+        courseDao = new CourseDAO();
+        registerDao = new RegisterDAO();
+        listMarks = markDAO.readByAll();
+        listCourse = courseDao.readByAll();
+        listRegister = registerDao.readByAll();
+        loadData(listMarks);
+        loadDataCBXCourse();
+        loadDataCBXStudent();
+    }
+
+    public pnlViewMark(frmMain frm) {
+        initComponents();
+        this.frm = frm;
         markDAO = new MarkDAO();
         courseDao = new CourseDAO();
         registerDao = new RegisterDAO();
@@ -231,6 +246,11 @@ public class pnlViewMark extends javax.swing.JPanel {
         btnReport.setText("Report");
         btnReport.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnReport.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(0, 50, 0, 0);
@@ -341,6 +361,17 @@ public class pnlViewMark extends javax.swing.JPanel {
         // TODO add your handling code here:
         searchStart();
     }//GEN-LAST:event_filterTextCaretUpdate
+
+    private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
+        // TODO add your handling code here:
+        frm.pnlReport.removeAll();
+        dlgChooseReport report = new dlgChooseReport(frm, this);
+        report.getStudentMarkReport(this.cbxStudentID.getSelectedItem().toString());
+        report.setVisible(true);
+        report.setSize(860, 600);
+        frm.pnlReport.add(report);
+        frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+    }//GEN-LAST:event_btnReportActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFilter;
     private javax.swing.JButton btnReport;

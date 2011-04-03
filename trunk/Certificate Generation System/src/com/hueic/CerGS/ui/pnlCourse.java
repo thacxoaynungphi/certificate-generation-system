@@ -39,8 +39,22 @@ public class pnlCourse extends javax.swing.JPanel {
     private ObjectTableModel tableModel;
     private JTable headerTable;
     ArrayList<Course> filter = null;
+    frmMain frm;
 
     /** Creates new form pnlCourse */
+    public pnlCourse(frmMain frm) {
+        initComponents();
+        this.frm = frm;
+        isAdd = false;
+        btnCancel.setVisible(false);
+        courseDao = new CourseDAO();
+        listCourses = courseDao.readByAll();
+        loadData(listCourses);
+        if (!listCourses.isEmpty()) {
+            loadDetails(listCourses.get(0));
+        }
+    }
+
     public pnlCourse() {
         initComponents();
         isAdd = false;
@@ -573,7 +587,9 @@ public class pnlCourse extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
+        btnReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
         btnReport.setText("Report");
+        btnReport.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnReport.setMaximumSize(new java.awt.Dimension(75, 23));
         btnReport.setMinimumSize(new java.awt.Dimension(75, 23));
         btnReport.setPreferredSize(new java.awt.Dimension(75, 23));
@@ -696,14 +712,14 @@ public class pnlCourse extends javax.swing.JPanel {
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
         if (isAdd) {
-                isAdd = false;
-                btnUpdate.setEnabled(true);
-                btnDelete.setEnabled(true);
-                txtTotalFees.setEditable(false);
-                btnCancel.setVisible(false);
+            isAdd = false;
+            btnUpdate.setEnabled(true);
+            btnDelete.setEnabled(true);
+            txtTotalFees.setEditable(false);
+            btnCancel.setVisible(false);
 
-                loadDetails(listCourses.get(0));
-            }
+            loadDetails(listCourses.get(0));
+        }
 }//GEN-LAST:event_btnCancelActionPerformed
 
     private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
@@ -764,9 +780,15 @@ public class pnlCourse extends javax.swing.JPanel {
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_btnReportActionPerformed
+        frm.pnlReport.removeAll();
+        dlgChooseReport report = new dlgChooseReport(frm, this);
+        report.getCourseReport(filter);
+        report.setVisible(true);
+        report.setSize(860, 600);
+        frm.pnlReport.add(report);
+        frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
 
+    }//GEN-LAST:event_btnReportActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;

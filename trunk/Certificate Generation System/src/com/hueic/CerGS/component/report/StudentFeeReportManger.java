@@ -49,7 +49,7 @@ public class StudentFeeReportManger extends ReportManager{
         for(Payment pay : listPayment){
             row = new HashMap();
             row.put("DATE", DateFormat.getInstance().format(pay.getPayday()));
-            row.put("PAYMENT", pay.getMoney());
+            row.put("FEE", pay.getMoney());
 
             reportRows.add(row);
         }
