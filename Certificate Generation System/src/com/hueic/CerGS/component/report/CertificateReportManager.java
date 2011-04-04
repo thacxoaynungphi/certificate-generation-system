@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import javax.smartcardio.Card;
 import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
 
 /**
@@ -65,7 +64,7 @@ public class CertificateReportManager extends ReportManager{
         return parameterMap;
     }
 
-    public JRMapCollectionDataSource getDataSource(){
+    private JRMapCollectionDataSource getDataSource(){
         ArrayList collection = new ArrayList();
         HashMap row = new HashMap();
         Calendar calendar = Calendar.getInstance();

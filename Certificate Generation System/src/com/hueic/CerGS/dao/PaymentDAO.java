@@ -11,8 +11,6 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -107,6 +105,26 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
             setLastError("Data not valid");
         }
         return payList;
+    }
+
+    public float getCurrentTotalDiposit(Payment pay){
+        float money = 0.0f;
+        con = db.getConnection();
+        String sqlcommand = "select sum(Money) from Payment where StudentId = ? and Payday <= ?";
+        try {
+            pst = con.prepareStatement(sqlcommand);
+            pst.setString(1, pay.getStudentId());
+            pst.setDate(2, pay.getPayday());
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                money = rs.getFloat(1);
+            }
+        } catch (SQLException ex) {
+            setLastError("SQL Error!!!");
+        } finally {
+            db.closeConnection();
+        }
+        return money;
     }
 
     public float getTotalDiposit(String studentId) {
