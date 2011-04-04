@@ -95,8 +95,8 @@ public class pnlSubject extends javax.swing.JPanel {
         ColumnData[] columns = {
             new ColumnData("ID", 135, SwingConstants.LEFT, 1),
             new ColumnData("Name", 200, SwingConstants.LEFT, 2),
-            new ColumnData("Course ID", 140, SwingConstants.LEFT, 3),
-            new ColumnData("Coefficient", 100, SwingConstants.LEFT, 4),
+            new ColumnData("Course ID", 140, SwingConstants.LEFT, 4),
+            new ColumnData("Coefficient", 100, SwingConstants.LEFT, 3),
             new ColumnData("Status", 100, SwingConstants.LEFT, 5)
         };
         tableModel = new ObjectTableModel(tableContent, columns, filter);
@@ -875,13 +875,18 @@ public class pnlSubject extends javax.swing.JPanel {
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
         // TODO add your handling code here:
-        frm.pnlReport.removeAll();
-        dlgChooseReport report = new dlgChooseReport(frm, this);
-        report.getSubjectReport(filter);
-        report.setVisible(true);
-        report.setSize(860, 600);
-        frm.pnlReport.add(report);
-        frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+        if (filter.size() != 0) {
+            frm.pnlReport.removeAll();
+            dlgChooseReport report = new dlgChooseReport(frm, this);
+            report.getSubjectReport(filter);
+            report.setVisible(true);
+            report.setSize(860, 600);
+            frm.pnlReport.add(report);
+            frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+        }
+         else {
+            JOptionPane.showMessageDialog(this, "No data!", "Report Message", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnReportActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;

@@ -746,7 +746,7 @@ public class pnlMark extends javax.swing.JPanel {
                 }
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this,markDAO.getLastError(), "Mark Add", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Add", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnAddActionPerformed
 
@@ -868,13 +868,17 @@ public class pnlMark extends javax.swing.JPanel {
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
         // TODO add your handling code here:
-        frm.pnlReport.removeAll();
-        dlgChooseReport report = new dlgChooseReport(frm, this);
-        report.getMarkAllReport(filter);
-        report.setVisible(true);
-        report.setSize(860, 600);
-        frm.pnlReport.add(report);
-        frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+        if (filter.size() != 0) {
+            frm.pnlReport.removeAll();
+            dlgChooseReport report = new dlgChooseReport(frm, this);
+            report.getMarkAllReport(filter);
+            report.setVisible(true);
+            report.setSize(860, 600);
+            frm.pnlReport.add(report);
+            frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+        } else {
+            JOptionPane.showMessageDialog(this, "No data!", "Report Message", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnReportActionPerformed
 
     private void txtStudentIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentIdActionPerformed

@@ -783,13 +783,17 @@ public class pnlCourse extends javax.swing.JPanel {
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
         // TODO add your handling code here:
-        frm.pnlReport.removeAll();
-        dlgChooseReport report = new dlgChooseReport(frm, this);
-        report.getCourseReport(filter);
-        report.setVisible(true);
-        report.setSize(860, 600);
-        frm.pnlReport.add(report);
-        frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+        if (filter.size() != 0) {
+            frm.pnlReport.removeAll();
+            dlgChooseReport report = new dlgChooseReport(frm, this);
+            report.getCourseReport(filter);
+            report.setVisible(true);
+            report.setSize(860, 600);
+            frm.pnlReport.add(report);
+            frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+        } else {
+            JOptionPane.showMessageDialog(this, "No data!", "Report Message", JOptionPane.INFORMATION_MESSAGE);
+        }
 
     }//GEN-LAST:event_btnReportActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
