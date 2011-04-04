@@ -130,7 +130,7 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
         tableContent = new javax.swing.JTable();
         pnlButton = new javax.swing.JPanel();
         btnCreate = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnReport = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         lblTitleAverageMark = new javax.swing.JLabel();
         lblTitleGrade = new javax.swing.JLabel();
@@ -234,15 +234,15 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
         });
         pnlButton.add(btnCreate);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
-        jButton1.setText("Report Mark");
-        jButton1.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
+        btnReport.setText("Report Mark");
+        btnReport.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnReportActionPerformed(evt);
             }
         });
-        pnlButton.add(jButton1);
+        pnlButton.add(btnReport);
 
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
         btnCancel.setText("Cancel");
@@ -409,7 +409,7 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnCreateActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
         // TODO add your handling code here:
         frm.pnlReport.removeAll();
         dlgChooseReport report = new dlgChooseReport(frm, this);
@@ -418,15 +418,15 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
         report.setSize(860, 600);
         frm.pnlReport.add(report);
         frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnReportActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnFilter;
+    private javax.swing.JButton btnReport;
     private javax.swing.JComboBox cbxCourseID;
     private javax.swing.JComboBox cbxStudentID;
     private javax.swing.JTextField filterText;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lblCourseID;
     private javax.swing.JLabel lblFilter;
     private javax.swing.JLabel lblGrade;
