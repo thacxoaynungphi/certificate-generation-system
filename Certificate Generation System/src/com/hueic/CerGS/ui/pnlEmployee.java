@@ -326,13 +326,16 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         pnlTop1.add(lblImage1, gridBagConstraints);
 
-        lblImage2.setPreferredSize(new java.awt.Dimension(80, 80));
+        lblImage2.setMaximumSize(new java.awt.Dimension(87, 115));
+        lblImage2.setMinimumSize(new java.awt.Dimension(87, 115));
+        lblImage2.setPreferredSize(new java.awt.Dimension(87, 115));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
         pnlTop1.add(lblImage2, gridBagConstraints);
 
         txtFirstNameEdit.setPreferredSize(new java.awt.Dimension(200, 20));
@@ -546,7 +549,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlTop1.add(lblStart6, gridBagConstraints);
 
-        dateChBirthdayEdit.setDateFormatString("MM\\dd\\yyyy");
+        dateChBirthdayEdit.setDateFormatString("MM/dd/yyyy");
         dateChBirthdayEdit.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -962,9 +965,11 @@ public class pnlEmployee extends javax.swing.JPanel {
                 Image image = Image.getInstance(file.getPath());
                 if (image.getWidth() <= 85 && image.getWidth() > 0 && image.getHeight() <= 113 && image.getHeight() > 0) {
                     ImageIcon icon = new ImageIcon(file.getPath());
-                    lblImage1.setIcon(icon);
+                    lblImage2.setIcon(icon);
                     txtImageEdit.setText(file.getPath());
                     LoadImage.copyImage(file.getPath(), System.getProperty("user.dir") + "/avatar/" + file.getName());
+                } else {
+                    JOptionPane.showMessageDialog(this, "No choose file", "Choose Iamge", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (BadElementException ex) {
                 Logger.getLogger(pnlStudent.class.getName()).log(Level.SEVERE, null, ex);
@@ -1006,7 +1011,13 @@ public class pnlEmployee extends javax.swing.JPanel {
                 emp.setPhone(txtPhoneEdit.getText());
                 emp.setEmail(txtEmailEdit.getText());
                 emp.setAddress(txtAddressEdit.getText());
-                emp.setImage(txtImageEdit.getText());
+                File file = new File(txtImageEdit.getText());
+                String name = file.getName();
+                String extension;
+                int dotPos = name.lastIndexOf(".");
+                extension = name.substring(dotPos);
+                LoadImage.copyImage(file.getPath(), System.getProperty("user.dir") + "/avatar/" + emp.getId() + extension);
+                emp.setImage(emp.getId() + extension);
                 emp.setBeginWork(new java.sql.Date(dateChBeginWorkEdit.getDate().getTime()));
                 emp.setStatus(1);
 
@@ -1044,7 +1055,13 @@ public class pnlEmployee extends javax.swing.JPanel {
             emp.setPhone(txtPhoneEdit.getText());
             emp.setEmail(txtEmailEdit.getText());
             emp.setAddress(txtAddressEdit.getText());
-            emp.setImage(txtImageEdit.getText());
+            File file = new File(txtImageEdit.getText());
+            String name = file.getName();
+            String extension;
+            int dotPos = name.lastIndexOf(".");
+            extension = name.substring(dotPos);
+            LoadImage.copyImage(file.getPath(), System.getProperty("user.dir") + "/avatar/" + emp.getId() + extension);
+            emp.setImage(emp.getId() + extension);
             emp.setStatus(1);
             EmployeeDAO empDao = new EmployeeDAO();
             if (empDao.update(emp)) {
@@ -1129,13 +1146,12 @@ public class pnlEmployee extends javax.swing.JPanel {
         txtEmailEdit.setText(emp.getEmail());
         txtAddressEdit.setText(emp.getAddress());
         txtImageEdit.setText(emp.getImage());
-        if (emp.getImage() != null) {
-            System.out.println("Chay anh");
-            lblImage1.setIcon(new ImageIcon(System.getProperty("user.dir") + "/avatar/" + emp.getImage()));
-            System.out.println("Anh  : " + System.getProperty("user.dir") + "/avatar/" + emp.getImage());
+        if (emp.getImage().length() != 0) {
+            lblImage2.setIcon(null);
+            lblImage2.setIcon(new ImageIcon(System.getProperty("user.dir") + "/avatar/" + emp.getImage()));
         } else {
             //TODO: hien thi anh khi khong co avatar
-            // lblImage1.setIcon(new ImageIcon(System.getProperty("user.dir") + student.getImage()));
+            lblImage2.setIcon(new ImageIcon(System.getProperty("user.dir") + "/avatar/no images.jpg"));
         }
         try {
             dateChBeginWorkEdit.setDate(emp.getBeginWork());

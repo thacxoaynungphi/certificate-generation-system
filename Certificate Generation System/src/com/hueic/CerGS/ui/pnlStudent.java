@@ -315,14 +315,15 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         panelContent1.add(lblImage1, gridBagConstraints);
 
-        lblImage2.setMaximumSize(new java.awt.Dimension(85, 115));
-        lblImage2.setMinimumSize(new java.awt.Dimension(85, 115));
-        lblImage2.setPreferredSize(new java.awt.Dimension(85, 115));
+        lblImage2.setMaximumSize(new java.awt.Dimension(87, 115));
+        lblImage2.setMinimumSize(new java.awt.Dimension(87, 115));
+        lblImage2.setPreferredSize(new java.awt.Dimension(87, 115));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.gridheight = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         panelContent1.add(lblImage2, gridBagConstraints);
 
         txtFirstNameEdit.setPreferredSize(new java.awt.Dimension(200, 20));
@@ -464,7 +465,7 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.gridwidth = 9;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         panelContent1.add(panelButton, gridBagConstraints);
 
         lblStart1.setForeground(new java.awt.Color(255, 0, 0));
@@ -517,7 +518,7 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent1.add(lblStart4, gridBagConstraints);
 
-        dateChBirthdayEdit.setDateFormatString("MM\\dd\\yyyy");
+        dateChBirthdayEdit.setDateFormatString("MM/dd/yyyy");
         dateChBirthdayEdit.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -864,9 +865,9 @@ public class pnlStudent extends javax.swing.JPanel {
         btnReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
         btnReport.setText("Report");
         btnReport.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnReport.setMaximumSize(new java.awt.Dimension(75, 23));
-        btnReport.setMinimumSize(new java.awt.Dimension(75, 23));
-        btnReport.setPreferredSize(new java.awt.Dimension(75, 23));
+        btnReport.setMaximumSize(new java.awt.Dimension(75, 25));
+        btnReport.setMinimumSize(new java.awt.Dimension(75, 25));
+        btnReport.setPreferredSize(new java.awt.Dimension(75, 25));
         jPanel2.add(btnReport);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -910,7 +911,16 @@ public class pnlStudent extends javax.swing.JPanel {
             student.setPhone(txtPhoneEdit.getText());
             student.setEmail(txtEmailEdit.getText());
             student.setAddress(txtAddressEdit.getText());
-            student.setImage(txtImageEdit.getText());
+            try {
+                File file = new File(txtImageEdit.getText());
+                String name = file.getName();
+                String extension;
+                int dotPos = name.lastIndexOf(".");
+                extension = name.substring(dotPos);
+                LoadImage.copyImage(file.getPath(), System.getProperty("user.dir") + "/avatar/" + student.getId() + extension);
+                student.setImage(student.getId() + extension);
+            } catch (Exception ex) {
+            }
             student.setStatus(1);
             StudentDAO studentDAO = new StudentDAO();
             if (studentDAO.update(student)) {
@@ -954,13 +964,13 @@ public class pnlStudent extends javax.swing.JPanel {
         txtEmailEdit.setText(student.getEmail());
         txtAddressEdit.setText(student.getAddress());
         txtImageEdit.setText(student.getImage());
-        if (student.getImage() != null) {
-            System.out.println("Chay anh");
-            lblImage1.setIcon(new ImageIcon(System.getProperty("user.dir") + "/avatar/" + student.getImage()));
-            System.out.println("Anh  : " + System.getProperty("user.dir") + "/avatar/" + student.getImage());
+        System.out.println("Image : " + student.getImage());
+        if (student.getImage().length() != 0) {
+            lblImage2.setIcon(null);
+            lblImage2.setIcon(new ImageIcon(System.getProperty("user.dir") + "/avatar/" + student.getImage()));
         } else {
             //TODO: hien thi anh khi khong co avatar
-            // lblImage1.setIcon(new ImageIcon(System.getProperty("user.dir") + student.getImage()));
+            lblImage2.setIcon(new ImageIcon(System.getProperty("user.dir") + "/avatar/no images.jpg"));
         }
     }
 
@@ -1026,7 +1036,13 @@ public class pnlStudent extends javax.swing.JPanel {
                 student.setPhone(txtPhoneEdit.getText());
                 student.setEmail(txtEmailEdit.getText());
                 student.setAddress(txtAddressEdit.getText());
-                student.setImage(txtImageEdit.getText());
+                File file = new File(txtImageEdit.getText());
+                String name = file.getName();
+                String extension;
+                int dotPos = name.lastIndexOf(".");
+                extension = name.substring(dotPos);
+                LoadImage.copyImage(file.getPath(), System.getProperty("user.dir") + "/avatar/" + student.getId() + extension);
+                student.setImage(student.getId() + extension);
                 student.setBirthDay(new java.sql.Date(dateChBirthdayEdit.getDate().getTime()));
                 student.setStatus(1);
                 StudentDAO studentDao = new StudentDAO();
@@ -1131,9 +1147,10 @@ public class pnlStudent extends javax.swing.JPanel {
                 Image image = Image.getInstance(file.getPath());
                 if (image.getWidth() <= 85 && image.getWidth() > 0 && image.getHeight() <= 113 && image.getHeight() > 0) {
                     ImageIcon icon = new ImageIcon(file.getPath());
-                    lblImage1.setIcon(icon);
+                    lblImage2.setIcon(icon);
                     txtImageEdit.setText(file.getPath());
-                    LoadImage.copyImage(file.getPath(), System.getProperty("user.dir") + "/avatar/" + file.getName());
+                } else {
+                    JOptionPane.showMessageDialog(this, "No choose file", "Choose Iamge", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (BadElementException ex) {
                 Logger.getLogger(pnlStudent.class.getName()).log(Level.SEVERE, null, ex);
