@@ -438,7 +438,7 @@ public class pnlViewPayment extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (!this.cbxStudentID.getSelectedItem().equals("------")) {
             frm.pnlReport.removeAll();
-            dlgChooseReport report = new dlgChooseReport(frm, this);
+            dlgChooseReport report = new dlgChooseReport(frm, frm.pnlViewPaymentTab);
             report.getStudentFeeReport(this.cbxStudentID.getSelectedItem().toString());
             report.setVisible(true);
             report.setSize(860, 600);

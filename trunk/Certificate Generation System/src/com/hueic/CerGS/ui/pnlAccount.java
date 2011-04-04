@@ -719,7 +719,7 @@ public class pnlAccount extends javax.swing.JPanel {
         // TODO add your handling code here:
         dlgChoose dlg = new dlgChoose(frm, txtType, true, 11);
         dlg.setTitle("Browse Permission");
-        dlg.setSize(868, 580);
+        dlg.setSize(868, 600);
         dlg.setLocationRelativeTo(null);
         dlg.setVisible(true);
     }//GEN-LAST:event_btnChoosePermissionActionPerformed
