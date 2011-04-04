@@ -74,6 +74,7 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
                 cbxCourseID.addItem(listCourse.get(i).getId());
             }
         }
+
     }
 
     public void loadCBXStudent() {
@@ -352,7 +353,7 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (cbxStudentID.getItemCount() - 1 == listRegister.size()) {
             String studentId = cbxStudentID.getSelectedItem().toString();
-            if (studentId != null && !studentId.equals("----Id----")) {
+            if (studentId != null && !studentId.equals("----All----")) {
                 listMark = markDAO.readByStudentID(studentId);
                 loadData(listMark);
                 if (markDAO.isCompleteCourse(registerDAO.readByStudentId(studentId).getCourseId(), studentId)) {
@@ -365,6 +366,9 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
                     lblTotalMark.setText("NA");
                     lblGrade.setText("NA");
                 }
+            } else {
+                listMark = markDAO.readByAll();
+                loadData(listMark);
             }
         }
 }//GEN-LAST:event_cbxStudentIDActionPerformed
@@ -411,13 +415,17 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
         // TODO add your handling code here:
-        frm.pnlReport.removeAll();
-        dlgChooseReport report = new dlgChooseReport(frm, this);
-        report.getMarkAllReport(listMark);
-        report.setVisible(true);
-        report.setSize(860, 600);
-        frm.pnlReport.add(report);
-        frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+        if (listMark.size() != 0) {
+            frm.pnlReport.removeAll();
+            dlgChooseReport report = new dlgChooseReport(frm, this);
+            report.getMarkAllReport(listMark);
+            report.setVisible(true);
+            report.setSize(860, 600);
+            frm.pnlReport.add(report);
+            frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+        } else {
+            JOptionPane.showMessageDialog(this, "No data!", "Report Message", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnReportActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
