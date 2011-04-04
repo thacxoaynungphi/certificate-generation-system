@@ -19,21 +19,19 @@ public class Certificate implements PropertyIndex {
     //field
     private int id;
     private String studentID;
-    private float mark;
+//    private float mark;
     private Date degreeDay;
 
     //contruction
     public Certificate() {
         id = 0;
         studentID = null;
-        mark = 0;
         degreeDay = null;
     }
 
-    public Certificate(int id, String studentID, float mark, Date degreeDay) throws Exception {
+    public Certificate(int id, String studentID, Date degreeDay) throws Exception {
         setId(id);
         setStudentID(studentID);
-        setMark(mark);
         setDegreeDay(degreeDay);
     }
 
@@ -71,24 +69,6 @@ public class Certificate implements PropertyIndex {
     }
 
     /**
-     * @return the sourse
-     */
-    public float getMark() {
-        return mark;
-    }
-
-    /**
-     * @param sourse the sourse to set
-     */
-    public void setMark(float mark) throws Exception {
-        if (mark < 0 || mark > 100) {
-            throw new Exception("Mark invalidation");
-        } else {
-            this.mark = mark;
-        }
-    }
-
-    /**
      * @return the degreeDay
      */
     public Date getDegreeDay() {
@@ -116,18 +96,18 @@ public class Certificate implements PropertyIndex {
                 value = String.valueOf(this.getStudentID());
                 break;
             case 3:
-                value = String.valueOf(this.getMark());
-                break;
-            case 4:
+//                value = String.valueOf(this.getMark());
+//                break;
+//            case 4:
                 value = String.valueOf(this.getDegreeDay());
                 break;
         }
         return value;
     }
 
-    public String getGrade(){
-        return new MarkDAO().getGrades(getMark());
-    }
+//    public String getGrade(){
+//        return new MarkDAO().getGrades(getMark());
+//    }
     
     public void setPropertyValue(int index, Object value) {
     }
