@@ -6,7 +6,6 @@
 package com.hueic.CerGS.component.report;
 
 import com.hueic.CerGS.dao.CourseDAO;
-import com.hueic.CerGS.dao.PaymentDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.dao.StudentDAO;
 import com.hueic.CerGS.entity.Course;
@@ -15,7 +14,6 @@ import com.hueic.CerGS.entity.Register;
 import java.util.ArrayList;
 import java.util.HashMap;
 import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
-import org.apache.commons.collections.FastHashMap;
 
 /**
  *
