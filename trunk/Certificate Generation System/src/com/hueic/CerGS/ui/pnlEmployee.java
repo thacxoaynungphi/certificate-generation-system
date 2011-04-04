@@ -11,11 +11,19 @@
 package com.hueic.CerGS.ui;
 
 import com.hueic.CerGS.component.ColumnData;
+import com.hueic.CerGS.component.LoadImage;
 import com.hueic.CerGS.component.ObjectTableModel;
 import com.hueic.CerGS.dao.EmployeeDAO;
 import com.hueic.CerGS.entity.Employee;
+import com.lowagie.text.BadElementException;
+import com.lowagie.text.Image;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.PatternSyntaxException;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -26,6 +34,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -942,18 +951,33 @@ public class pnlEmployee extends javax.swing.JPanel {
 
     private void btnBrowseEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseEditActionPerformed
         // TODO add your handling code here:
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogType(JFileChooser.OPEN_DIALOG);
-        fileChooser.showOpenDialog(this);
-        String path = null;
-        try {
-            path = fileChooser.getSelectedFile().getPath();
-        } catch (Exception ex) {
-            return;
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "JPG, GIF, & PNG Images", "jpg", "gif", "png");
+        chooser.setFileFilter(filter);
+        int returnVal = chooser.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            try {
+                File file = chooser.getSelectedFile();
+                Image image = Image.getInstance(file.getPath());
+                if (image.getWidth() <= 85 && image.getWidth() > 0 && image.getHeight() <= 113 && image.getHeight() > 0) {
+                    ImageIcon icon = new ImageIcon(file.getPath());
+                    lblImage1.setIcon(icon);
+                    txtImageEdit.setText(file.getPath());
+                    LoadImage.copyImage(file.getPath(), System.getProperty("user.dir") + "/avatar/" + file.getName());
+                }
+            } catch (BadElementException ex) {
+                Logger.getLogger(pnlStudent.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(pnlStudent.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
-        txtImageEdit.setText(path);
-        ImageIcon icon = new ImageIcon(path);
-        lblImage2.setIcon(icon);
 }//GEN-LAST:event_btnBrowseEditActionPerformed
 
     private void btnAddEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEditActionPerformed
@@ -1105,6 +1129,14 @@ public class pnlEmployee extends javax.swing.JPanel {
         txtEmailEdit.setText(emp.getEmail());
         txtAddressEdit.setText(emp.getAddress());
         txtImageEdit.setText(emp.getImage());
+        if (emp.getImage() != null) {
+            System.out.println("Chay anh");
+            lblImage1.setIcon(new ImageIcon(System.getProperty("user.dir") + "/avatar/" + emp.getImage()));
+            System.out.println("Anh  : " + System.getProperty("user.dir") + "/avatar/" + emp.getImage());
+        } else {
+            //TODO: hien thi anh khi khong co avatar
+            // lblImage1.setIcon(new ImageIcon(System.getProperty("user.dir") + student.getImage()));
+        }
         try {
             dateChBeginWorkEdit.setDate(emp.getBeginWork());
         } catch (Exception ex) {

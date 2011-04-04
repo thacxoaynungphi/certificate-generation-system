@@ -11,6 +11,7 @@
 package com.hueic.CerGS.ui;
 
 import com.hueic.CerGS.component.ColumnData;
+import com.hueic.CerGS.component.LoadImage;
 import com.hueic.CerGS.component.ObjectTableModel;
 import com.hueic.CerGS.dao.StudentDAO;
 import com.hueic.CerGS.entity.Student;
@@ -314,7 +315,6 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         panelContent1.add(lblImage1, gridBagConstraints);
 
-        lblImage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/avatar/Untitled.png"))); // NOI18N
         lblImage2.setMaximumSize(new java.awt.Dimension(85, 115));
         lblImage2.setMinimumSize(new java.awt.Dimension(85, 115));
         lblImage2.setPreferredSize(new java.awt.Dimension(85, 115));
@@ -954,6 +954,14 @@ public class pnlStudent extends javax.swing.JPanel {
         txtEmailEdit.setText(student.getEmail());
         txtAddressEdit.setText(student.getAddress());
         txtImageEdit.setText(student.getImage());
+        if (student.getImage() != null) {
+            System.out.println("Chay anh");
+            lblImage1.setIcon(new ImageIcon(System.getProperty("user.dir") + "/avatar/" + student.getImage()));
+            System.out.println("Anh  : " + System.getProperty("user.dir") + "/avatar/" + student.getImage());
+        } else {
+            //TODO: hien thi anh khi khong co avatar
+            // lblImage1.setIcon(new ImageIcon(System.getProperty("user.dir") + student.getImage()));
+        }
     }
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
@@ -1108,29 +1116,10 @@ public class pnlStudent extends javax.swing.JPanel {
     }//GEN-LAST:event_btnReportDetailsActionPerformed
 
     //TODO: copy file chua xac dinh duoc duong dan cua file
-    public void copyImage(String source, String destination) {
-        try {
-            File sourceFile = new File(source);
-            BufferedInputStream bis = new BufferedInputStream(new FileInputStream(sourceFile), 4096);
-
-            File targetFile = new File(destination);
-            BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(targetFile), 4096);
-            int theChar;
-            while ((theChar = bis.read()) != -1) {
-                bos.write(theChar);
-            }
-            bos.close();
-            bis.close();
-            System.out.println("copy done!");
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
     private void btnBrowseEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseEditActionPerformed
         // TODO add your handling code here:
         //TODO: chua fix duoc update anh
+
         JFileChooser chooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
                 "JPG, GIF, & PNG Images", "jpg", "gif", "png");
@@ -1140,16 +1129,11 @@ public class pnlStudent extends javax.swing.JPanel {
             try {
                 File file = chooser.getSelectedFile();
                 Image image = Image.getInstance(file.getPath());
-                System.out.println("W" + image.getWidth() + " H : " + image.getHeight());
                 if (image.getWidth() <= 85 && image.getWidth() > 0 && image.getHeight() <= 113 && image.getHeight() > 0) {
                     ImageIcon icon = new ImageIcon(file.getPath());
-                    System.out.println("W" + icon.getIconWidth() + " H : " + icon.getIconHeight());
                     lblImage1.setIcon(icon);
                     txtImageEdit.setText(file.getPath());
-                    System.out.println("W" + image.getWidth() + " H : " + image.getHeight());
-                    System.out.println("/com/hueic/CerGS/avatar/" + file.getName());
-                    System.out.println("Path : " + file.getPath());
-                    copyImage(file.getPath(), "/com/hueic/CerGS/avatar/" + file.getName());
+                    LoadImage.copyImage(file.getPath(), System.getProperty("user.dir") + "/avatar/" + file.getName());
                 }
             } catch (BadElementException ex) {
                 Logger.getLogger(pnlStudent.class.getName()).log(Level.SEVERE, null, ex);
