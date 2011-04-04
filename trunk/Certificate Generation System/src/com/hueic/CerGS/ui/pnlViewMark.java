@@ -14,6 +14,7 @@ import com.hueic.CerGS.component.ColumnData;
 import com.hueic.CerGS.component.ObjectTableModel;
 import com.hueic.CerGS.dao.CourseDAO;
 import com.hueic.CerGS.dao.MarkDAO;
+import com.hueic.CerGS.dao.PermissionDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.entity.Course;
 import com.hueic.CerGS.entity.Mark;
@@ -47,6 +48,7 @@ public class pnlViewMark extends javax.swing.JPanel {
     private ObjectTableModel tableModel;
     private JTable headerTable;
     frmMain frm;
+    public boolean isStudent = false;
 
     public pnlViewMark() {
         initComponents();
@@ -67,12 +69,24 @@ public class pnlViewMark extends javax.swing.JPanel {
         markDAO = new MarkDAO();
         courseDao = new CourseDAO();
         registerDao = new RegisterDAO();
-        listMarks = markDAO.readByAll();
-        listCourse = courseDao.readByAll();
-        listRegister = registerDao.readByAll();
-        loadData(listMarks);
-        loadDataCBXCourse();
-        loadDataCBXStudent();
+        PermissionDAO perDao = new PermissionDAO();
+        if (perDao.readByID(frm.accCur.getPermission()).getName().equals("Student")) {
+            listMarks = markDAO.readByStudentIDOfPerson(frm.accCur.getUsername(), "");
+            listCourse = courseDao.readCourseRegisterByStudentIdOfPerson(frm.accCur.getUsername());
+            loadData(listMarks);
+            loadDataCBXCourse();
+            isStudent = true;
+            cbxStudentID.setVisible(false);
+            lblStudentID.setVisible(false);
+        } else {
+            listMarks = markDAO.readByAll();
+            listCourse = courseDao.readByAll();
+            listRegister = registerDao.readByAll();
+            loadData(listMarks);
+            loadDataCBXCourse();
+            loadDataCBXStudent();
+        }
+
     }
 
     public void loadData(ArrayList<Mark> listMarks) {
@@ -315,15 +329,25 @@ public class pnlViewMark extends javax.swing.JPanel {
         if (cbxCourseID.getItemCount() - 1 == listCourse.size()) {
             String coursid = cbxCourseID.getSelectedItem().toString();
             if (coursid.equals("-- All --")) {
-                listMarks = markDAO.readByAll();
-                loadData(listMarks);
-                listRegister = registerDao.readByAll();
-                loadDataCBXStudent();
+                if (isStudent == false) {
+                    listMarks = markDAO.readByAll();
+                    loadData(listMarks);
+                    listRegister = registerDao.readByAll();
+                    loadDataCBXStudent();
+                } else {
+                    listMarks = markDAO.readByStudentIDOfPerson(frm.accCur.getUsername(), "");
+                    loadData(listMarks);
+                }
             } else {
-                listMarks = markDAO.readBYCourseID(coursid);
-                loadData(listMarks);
-                listRegister = registerDao.readByCourseId(coursid);
-                loadDataCBXStudent();
+                if (isStudent == false) {
+                    listMarks = markDAO.readBYCourseID(coursid);
+                    loadData(listMarks);
+                    listRegister = registerDao.readByCourseId(coursid);
+                    loadDataCBXStudent();
+                } else {
+                    listMarks = markDAO.readByStudentIDOfPerson(coursid, coursid);
+                    loadData(listMarks);
+                }
             }
         }
 }//GEN-LAST:event_cbxCourseIDItemStateChanged

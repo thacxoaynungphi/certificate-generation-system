@@ -47,7 +47,30 @@ public class CourseDAO extends BaseDAO implements ICourseDAO {
             db.closeConnection();
             return result;
         }
+    }
 
+    public ArrayList<Course> readCourseRegisterByStudentIdOfPerson(String studentIdOfPerson) {
+        ArrayList<Course> result = new ArrayList<Course>();
+        con = db.getConnection();
+        String sqlcommand = "select * from Course where Id in (select CourseId from Register where Id = ?)";
+        try {
+            pst = con.prepareStatement(sqlcommand);
+            pst.setString(1, studentIdOfPerson);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                Course course = new Course();
+                course.setId(rs.getString(1));
+                course.setName(rs.getString(2));
+                course.setTotalFees(rs.getFloat(3));
+                course.setStatus(rs.getInt(4));
+                result.add(course);
+            }
+        } catch (SQLException ex) {
+            setLastError("SQL Error!!!");
+        } finally {
+            db.closeConnection();
+            return result;
+        }
     }
 
     public Course readById(String id) {

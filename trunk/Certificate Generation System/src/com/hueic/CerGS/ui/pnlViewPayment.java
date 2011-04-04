@@ -14,6 +14,7 @@ import com.hueic.CerGS.component.ColumnData;
 import com.hueic.CerGS.component.ObjectTableModel;
 import com.hueic.CerGS.dao.CourseDAO;
 import com.hueic.CerGS.dao.PaymentDAO;
+import com.hueic.CerGS.dao.PermissionDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.entity.Course;
 import com.hueic.CerGS.entity.Payment;
@@ -36,6 +37,7 @@ import javax.swing.table.TableRowSorter;
  */
 public class pnlViewPayment extends javax.swing.JPanel {
 
+    public boolean isStudent = false;
     /** Creates new form pnlViewPayment */
     private int currentId;
     private ArrayList<Payment> listPayments = new ArrayList<Payment>();
@@ -68,12 +70,23 @@ public class pnlViewPayment extends javax.swing.JPanel {
         paymentDao = new PaymentDAO();
         courseDao = new CourseDAO();
         registerDao = new RegisterDAO();
-        listPayments = paymentDao.readByAll();
-        listCourse = courseDao.readByAll();
-        listRegister = registerDao.readByAll();
-        loadData(listPayments);
-        loadDataCBXCourse();
-        loadDataCBXStudent();
+        PermissionDAO perDao = new PermissionDAO();
+        if (perDao.readByID(frm.accCur.getPermission()).getName().equals("Student")) {
+            listPayments = paymentDao.readByStudentIdOfPerson(frm.accCur.getUsername(), "");
+            listCourse = courseDao.readCourseRegisterByStudentIdOfPerson(frm.accCur.getUsername());
+            loadData(listPayments);
+            loadDataCBXCourse();
+            isStudent = true;
+            cbxStudentID.setVisible(false);
+            lblStudentID.setVisible(false);
+        } else {
+            listPayments = paymentDao.readByAll();
+            listCourse = courseDao.readByAll();
+            listRegister = registerDao.readByAll();
+            loadData(listPayments);
+            loadDataCBXCourse();
+            loadDataCBXStudent();
+        }
     }
 
     public void loadData(ArrayList<Payment> listPayments) {
@@ -359,11 +372,25 @@ public class pnlViewPayment extends javax.swing.JPanel {
         if (cbxCourseID.getItemCount() - 1 == listCourse.size()) {
             String coursid = cbxCourseID.getSelectedItem().toString();
             if (coursid.equals("-- All --")) {
-                listRegister = registerDao.readByAll();
-                loadDataCBXStudent();
+                if (isStudent == false) {
+                    listRegister = registerDao.readByAll();
+                    loadDataCBXStudent();
+                } else {
+                    listPayments = paymentDao.readByStudentIdOfPerson(frm.accCur.getUsername(), "");
+                    loadData(listPayments);
+                }
             } else {
-                listRegister = registerDao.readByCourseId(coursid);
-                loadDataCBXStudent();
+                if (isStudent == false) {
+                    listRegister = registerDao.readByCourseId(coursid);
+                    loadDataCBXStudent();
+                } else {
+
+                    listPayments = paymentDao.readByStudentIdOfPerson(frm.accCur.getUsername(), coursid);
+                    float money = paymentDao.getTotalDiposit(registerDao.readById(frm.accCur.getUsername(), coursid).getStudentId());
+                    lblTotalTheDeposit.setText(String.valueOf(money));
+                    lblAmountRemaining.setText(String.valueOf(courseDao.readById(coursid).getTotalFees() - money));
+                    loadData(listPayments);
+                }
             }
         }
 }//GEN-LAST:event_cbxCourseIDItemStateChanged
