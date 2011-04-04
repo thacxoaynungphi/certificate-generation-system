@@ -10,7 +10,6 @@ import com.hueic.CerGS.dao.MarkDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.dao.StudentDAO;
 import com.hueic.CerGS.entity.Certificate;
-import com.hueic.CerGS.entity.Mark;
 import com.hueic.CerGS.entity.Register;
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -47,7 +46,7 @@ public class CertificateDevelopedReportManager extends ReportManager {
     private HashMap getParameterReport() {
         parameterMap = new HashMap();
 
-        parameterMap.put("CERNUMBER", "Certificate Code");
+        parameterMap.put("CERNUMBER", "Certificate Number");
         parameterMap.put("STUDENTID", "Student Code");
         parameterMap.put("STUDENTNAME", "Student Name");
         parameterMap.put("COURSENAME", "Course Name");
