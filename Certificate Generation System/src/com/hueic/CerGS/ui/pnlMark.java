@@ -23,7 +23,6 @@ import com.hueic.CerGS.entity.Subject;
 import java.util.ArrayList;
 import java.util.regex.PatternSyntaxException;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;

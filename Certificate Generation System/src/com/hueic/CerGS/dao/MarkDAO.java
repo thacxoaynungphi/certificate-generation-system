@@ -138,6 +138,41 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
         return result;
     }
 
+    public ArrayList<Mark> readByStudentIDOfPerson(String studentIdOfPerson, String courseId) {
+        ArrayList<Mark> result = new ArrayList<Mark>();
+        con = db.getConnection();
+        Mark mark = null;
+        try {
+            if (courseId.length() == 0) {
+                String sqlcommand = "select * from Mark where StudentId in (select StudentId from Register where Id =  ?)";
+                pst = con.prepareStatement(sqlcommand);
+                pst.setString(1, studentIdOfPerson);
+
+            } else {
+                String sqlcommand = "select * from Mark where StudentId in (select StudentId from Register where Id =  ? and CourseId = ? )";
+                pst = con.prepareStatement(sqlcommand);
+                pst.setString(1, studentIdOfPerson);
+                pst.setString(2, courseId);
+            }
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                System.out.println("Chay di ma");
+                mark = new Mark();
+                mark.setId(rs.getInt("Id"));
+                mark.setStudentId(rs.getString("StudentId"));
+                mark.setSubjectId(rs.getString("SubjectId"));
+                mark.setMark(rs.getFloat("Mark"));
+                result.add(mark);
+            }
+            setLastError("Read data successful");
+        } catch (Exception ex) {
+            setLastError("SQL Error");
+        } finally {
+            db.closeConnection();
+        }
+        return result;
+    }
+
     public boolean isCompleteCourse(String courseId, String studentId) {
         boolean status = true;
         con = db.getConnection();

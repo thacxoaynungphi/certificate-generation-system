@@ -15,10 +15,10 @@ import com.hueic.CerGS.dao.AccountDAO;
 import com.hueic.CerGS.dao.PermissionDAO;
 import com.hueic.CerGS.entity.Account;
 import com.hueic.CerGS.entity.Permission;
-import java.awt.RenderingHints.Key;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -275,6 +275,19 @@ public class dlgLogin extends javax.swing.JDialog {
                     rememberAccount.writeFile(acc);
                 }
                 main.isLogin();
+                main.pnlViewPaymentTab.removeAll();
+                // main.viewPayment = new pnlViewPayment(main);
+                JPanel panelviewPayment = new pnlViewPayment(main);
+                panelviewPayment.setVisible(true);
+                panelviewPayment.setSize(860, 600);
+                main.pnlViewPaymentTab.add(panelviewPayment);
+                main.pnlViewMarkTab.removeAll();
+                //main.viewMark = new pnlViewMark(main);
+                JPanel panelviewMark = new pnlViewMark(main);
+                panelviewMark.setVisible(true);
+                panelviewMark.setSize(860, 600);
+                main.pnlViewMarkTab.add(panelviewMark);
+                System.out.println("Sao the nhi chan qua");
                 main.initStatusBar();
                 this.dispose();
             } else {

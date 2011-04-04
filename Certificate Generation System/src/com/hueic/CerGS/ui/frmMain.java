@@ -43,8 +43,8 @@ public class frmMain extends javax.swing.JFrame {
     pnlSubject subject = new pnlSubject(this);
     pnlStudent student = new pnlStudent(this);
     pnlEmployee emp = new pnlEmployee(this);
-    pnlViewMark viewMark = new pnlViewMark(this);
-    pnlViewPayment viewPayment = new pnlViewPayment(this);
+    pnlViewMark viewMark;
+    pnlViewPayment viewPayment;
     pnlDevelopDegree developDegree = new pnlDevelopDegree(this);
     pnlHome homeAdmin = new pnlHome(this);
     pnlReport report = new pnlReport();
@@ -71,7 +71,7 @@ public class frmMain extends javax.swing.JFrame {
         AppStatusBar status = new AppStatusBar(this);
         this.StatusPnl.add(status.getBar());
         // this.StatusPnl.repaint();
-        this.tpnBusiness.setSelectedComponent(pnlHome);
+        this.tpnBusiness.setSelectedComponent(pnlHomeTab);
     }
 
     public HelpSet getHelpSet(String helpsetfile) {
@@ -114,19 +114,19 @@ public class frmMain extends javax.swing.JFrame {
         jideBtnReport = new com.jidesoft.swing.JideButton();
         panelLeft = new javax.swing.JPanel();
         tpnBusiness = new javax.swing.JTabbedPane();
-        pnlHome = new javax.swing.JPanel();
-        pnlEmployee = new javax.swing.JPanel();
-        pnlStudent = new javax.swing.JPanel();
-        pnlRegister = new javax.swing.JPanel();
-        pnlCourse = new javax.swing.JPanel();
-        pnlPayment = new javax.swing.JPanel();
-        pnlSubject = new javax.swing.JPanel();
-        pnlMark = new javax.swing.JPanel();
-        pnlCertificate = new javax.swing.JPanel();
-        pnlAccount = new javax.swing.JPanel();
-        pnlPermission = new javax.swing.JPanel();
-        pnlViewMark = new javax.swing.JPanel();
-        pnlViewPayment = new javax.swing.JPanel();
+        pnlHomeTab = new javax.swing.JPanel();
+        pnlEmployeeTab = new javax.swing.JPanel();
+        pnlStudentTab = new javax.swing.JPanel();
+        pnlRegisterTab = new javax.swing.JPanel();
+        pnlCourseTab = new javax.swing.JPanel();
+        pnlPaymentTab = new javax.swing.JPanel();
+        pnlSubjectTab = new javax.swing.JPanel();
+        pnlMarkTab = new javax.swing.JPanel();
+        pnlCertificateTab = new javax.swing.JPanel();
+        pnlAccountTab = new javax.swing.JPanel();
+        pnlPermissionTab = new javax.swing.JPanel();
+        pnlViewMarkTab = new javax.swing.JPanel();
+        pnlViewPaymentTab = new javax.swing.JPanel();
         pnlDevelopDegree = new javax.swing.JPanel();
         pnlReport = new javax.swing.JPanel();
         StatusPnl = new javax.swing.JPanel();
@@ -339,117 +339,111 @@ public class frmMain extends javax.swing.JFrame {
 
         tpnBusiness.setBackground(new java.awt.Color(255, 255, 255));
         tpnBusiness.setTabPlacement(javax.swing.JTabbedPane.LEFT);
-        tpnBusiness.setEnabled(false);
-        tpnBusiness.setFont(new java.awt.Font("Tahoma", 1, 12));
         tpnBusiness.setMaximumSize(new java.awt.Dimension(1024, 600));
         tpnBusiness.setMinimumSize(new java.awt.Dimension(1024, 600));
         tpnBusiness.setPreferredSize(new java.awt.Dimension(1024, 600));
 
-        pnlHome.setBackground(new java.awt.Color(255, 255, 255));
-        pnlHome.setEnabled(false);
-        pnlHome.setMaximumSize(new java.awt.Dimension(800, 600));
-        pnlHome.setMinimumSize(new java.awt.Dimension(800, 600));
-        pnlHome.setPreferredSize(new java.awt.Dimension(800, 600));
-        pnlHome.setRequestFocusEnabled(false);
-        pnlHome.setLayout(new java.awt.GridBagLayout());
+        pnlHomeTab.setBackground(new java.awt.Color(255, 255, 255));
+        pnlHomeTab.setEnabled(false);
+        pnlHomeTab.setMaximumSize(new java.awt.Dimension(800, 600));
+        pnlHomeTab.setMinimumSize(new java.awt.Dimension(800, 600));
+        pnlHomeTab.setPreferredSize(new java.awt.Dimension(800, 600));
+        pnlHomeTab.setRequestFocusEnabled(false);
+        pnlHomeTab.setLayout(new java.awt.GridBagLayout());
 
-        pnlHome = homeAdmin;
+        pnlHomeTab = homeAdmin;
 
-        tpnBusiness.addTab("Home                  ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlHome); // NOI18N
+        tpnBusiness.addTab("Home                  ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlHomeTab); // NOI18N
 
-        pnlEmployee.setBackground(new java.awt.Color(255, 255, 255));
-        pnlEmployee.setEnabled(false);
+        pnlEmployeeTab.setBackground(new java.awt.Color(255, 255, 255));
+        pnlEmployeeTab.setEnabled(false);
 
-        pnlEmployee = emp;
+        pnlEmployeeTab = emp;
 
-        tpnBusiness.addTab("Employee            ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlEmployee); // NOI18N
+        tpnBusiness.addTab("Employee            ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlEmployeeTab); // NOI18N
 
-        pnlStudent.setBackground(new java.awt.Color(255, 255, 255));
-        pnlStudent.setEnabled(false);
+        pnlStudentTab.setBackground(new java.awt.Color(255, 255, 255));
+        pnlStudentTab.setEnabled(false);
 
-        pnlStudent = student;
+        pnlStudentTab = student;
 
-        tpnBusiness.addTab("Student", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlStudent); // NOI18N
+        tpnBusiness.addTab("Student", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlStudentTab); // NOI18N
 
-        pnlRegister.setBackground(new java.awt.Color(255, 255, 255));
-        pnlRegister.setEnabled(false);
-        pnlRegister = register;
-        tpnBusiness.addTab("Register", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlRegister); // NOI18N
+        pnlRegisterTab.setBackground(new java.awt.Color(255, 255, 255));
+        pnlRegisterTab.setEnabled(false);
+        pnlRegisterTab = register;
+        tpnBusiness.addTab("Register", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlRegisterTab); // NOI18N
 
-        pnlCourse.setBackground(new java.awt.Color(255, 255, 255));
-        pnlCourse.setEnabled(false);
+        pnlCourseTab.setBackground(new java.awt.Color(255, 255, 255));
+        pnlCourseTab.setEnabled(false);
 
-        pnlCourse = course;
+        pnlCourseTab = course;
 
-        tpnBusiness.addTab("Course", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlCourse); // NOI18N
+        tpnBusiness.addTab("Course", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlCourseTab); // NOI18N
 
-        pnlPayment.setBackground(new java.awt.Color(255, 255, 255));
-        pnlPayment.setEnabled(false);
-        pnlPayment = payment;
-        tpnBusiness.addTab("Payment", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlPayment); // NOI18N
+        pnlPaymentTab.setBackground(new java.awt.Color(255, 255, 255));
+        pnlPaymentTab.setEnabled(false);
+        pnlPaymentTab = payment;
+        tpnBusiness.addTab("Payment", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlPaymentTab); // NOI18N
 
-        pnlSubject.setBackground(new java.awt.Color(255, 255, 255));
-        pnlSubject.setEnabled(false);
-        pnlSubject = subject;
-        tpnBusiness.addTab("Subject", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlSubject); // NOI18N
+        pnlSubjectTab.setBackground(new java.awt.Color(255, 255, 255));
+        pnlSubjectTab.setEnabled(false);
+        pnlSubjectTab = subject;
+        tpnBusiness.addTab("Subject", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlSubjectTab); // NOI18N
 
-        pnlMark.setBackground(new java.awt.Color(255, 255, 255));
-        pnlMark.setEnabled(false);
-        pnlMark = mark;
-        tpnBusiness.addTab("Mark", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlMark); // NOI18N
+        pnlMarkTab.setBackground(new java.awt.Color(255, 255, 255));
+        pnlMarkTab.setEnabled(false);
+        pnlMarkTab = mark;
+        tpnBusiness.addTab("Mark", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlMarkTab); // NOI18N
 
-        pnlCertificate.setBackground(new java.awt.Color(255, 255, 255));
-        pnlCertificate.setEnabled(false);
-        pnlCertificate = cer;
-        tpnBusiness.addTab("Certificate", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlCertificate); // NOI18N
+        pnlCertificateTab.setBackground(new java.awt.Color(255, 255, 255));
+        pnlCertificateTab.setEnabled(false);
+        pnlCertificateTab = cer;
+        tpnBusiness.addTab("Certificate", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlCertificateTab); // NOI18N
 
-        pnlAccount.setBackground(new java.awt.Color(255, 255, 255));
-        pnlAccount.setEnabled(false);
-        pnlAccount = account;
-        tpnBusiness.addTab("Account             ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlAccount); // NOI18N
+        pnlAccountTab.setBackground(new java.awt.Color(255, 255, 255));
+        pnlAccountTab.setEnabled(false);
+        pnlAccountTab = account;
+        tpnBusiness.addTab("Account             ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlAccountTab); // NOI18N
 
-        pnlPermission.setBackground(new java.awt.Color(255, 255, 255));
-        pnlPermission.setEnabled(false);
-        pnlPermission.setMinimumSize(new java.awt.Dimension(860, 600));
-        pnlPermission.setPreferredSize(new java.awt.Dimension(860, 600));
-        pnlPermission = per;
-        tpnBusiness.addTab("Permission", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlPermission); // NOI18N
+        pnlPermissionTab.setBackground(new java.awt.Color(255, 255, 255));
+        pnlPermissionTab.setEnabled(false);
+        pnlPermissionTab.setMinimumSize(new java.awt.Dimension(860, 600));
+        pnlPermissionTab.setPreferredSize(new java.awt.Dimension(860, 600));
+        pnlPermissionTab = per;
+        tpnBusiness.addTab("Permission", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlPermissionTab); // NOI18N
 
-        pnlViewMark.setBackground(new java.awt.Color(255, 255, 255));
-        pnlViewMark.setEnabled(false);
+        pnlViewMarkTab.setBackground(new java.awt.Color(255, 255, 255));
+        pnlViewMarkTab.setEnabled(false);
 
-        javax.swing.GroupLayout pnlViewMarkLayout = new javax.swing.GroupLayout(pnlViewMark);
-        pnlViewMark.setLayout(pnlViewMarkLayout);
-        pnlViewMarkLayout.setHorizontalGroup(
-            pnlViewMarkLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 860, Short.MAX_VALUE)
+        javax.swing.GroupLayout pnlViewMarkTabLayout = new javax.swing.GroupLayout(pnlViewMarkTab);
+        pnlViewMarkTab.setLayout(pnlViewMarkTabLayout);
+        pnlViewMarkTabLayout.setHorizontalGroup(
+            pnlViewMarkTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 885, Short.MAX_VALUE)
         );
-        pnlViewMarkLayout.setVerticalGroup(
-            pnlViewMarkLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pnlViewMarkTabLayout.setVerticalGroup(
+            pnlViewMarkTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 595, Short.MAX_VALUE)
         );
 
-        pnlViewMark = viewMark;
+        tpnBusiness.addTab("View Mark", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlViewMarkTab); // NOI18N
 
-        tpnBusiness.addTab("View Mark", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlViewMark); // NOI18N
+        pnlViewPaymentTab.setBackground(new java.awt.Color(255, 255, 255));
+        pnlViewPaymentTab.setEnabled(false);
 
-        pnlViewPayment.setBackground(new java.awt.Color(255, 255, 255));
-        pnlViewPayment.setEnabled(false);
-
-        javax.swing.GroupLayout pnlViewPaymentLayout = new javax.swing.GroupLayout(pnlViewPayment);
-        pnlViewPayment.setLayout(pnlViewPaymentLayout);
-        pnlViewPaymentLayout.setHorizontalGroup(
-            pnlViewPaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 860, Short.MAX_VALUE)
+        javax.swing.GroupLayout pnlViewPaymentTabLayout = new javax.swing.GroupLayout(pnlViewPaymentTab);
+        pnlViewPaymentTab.setLayout(pnlViewPaymentTabLayout);
+        pnlViewPaymentTabLayout.setHorizontalGroup(
+            pnlViewPaymentTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 885, Short.MAX_VALUE)
         );
-        pnlViewPaymentLayout.setVerticalGroup(
-            pnlViewPaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pnlViewPaymentTabLayout.setVerticalGroup(
+            pnlViewPaymentTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 595, Short.MAX_VALUE)
         );
 
-        pnlViewPayment = viewPayment;
-
-        tpnBusiness.addTab("View Payment", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlViewPayment); // NOI18N
+        tpnBusiness.addTab("View Payment", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlViewPaymentTab); // NOI18N
 
         pnlDevelopDegree.setBackground(new java.awt.Color(255, 255, 255));
         pnlDevelopDegree.setEnabled(false);
@@ -458,7 +452,7 @@ public class frmMain extends javax.swing.JFrame {
         pnlDevelopDegree.setLayout(pnlDevelopDegreeLayout);
         pnlDevelopDegreeLayout.setHorizontalGroup(
             pnlDevelopDegreeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 860, Short.MAX_VALUE)
+            .addGap(0, 885, Short.MAX_VALUE)
         );
         pnlDevelopDegreeLayout.setVerticalGroup(
             pnlDevelopDegreeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -476,7 +470,7 @@ public class frmMain extends javax.swing.JFrame {
         pnlReport.setLayout(pnlReportLayout);
         pnlReportLayout.setHorizontalGroup(
             pnlReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 860, Short.MAX_VALUE)
+            .addGap(0, 885, Short.MAX_VALUE)
         );
         pnlReportLayout.setVerticalGroup(
             pnlReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -991,52 +985,52 @@ public class frmMain extends javax.swing.JFrame {
 
     private void jideBtnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnHomeActionPerformed
         // TODO add your handling code here:
-        tpnBusiness.setSelectedComponent(pnlHome);
+        tpnBusiness.setSelectedComponent(pnlHomeTab);
     }//GEN-LAST:event_jideBtnHomeActionPerformed
 
     private void jideBtnEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnEmployeeActionPerformed
         // TODO add your handling code here:
-        tpnBusiness.setSelectedComponent(pnlEmployee);
+        tpnBusiness.setSelectedComponent(pnlEmployeeTab);
     }//GEN-LAST:event_jideBtnEmployeeActionPerformed
 
     private void jideBtnStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnStudentActionPerformed
         // TODO add your handling code here:
-        tpnBusiness.setSelectedComponent(pnlStudent);
+        tpnBusiness.setSelectedComponent(pnlStudentTab);
     }//GEN-LAST:event_jideBtnStudentActionPerformed
 
     private void jideBtnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnRegisterActionPerformed
         // TODO add your handling code here:
-        tpnBusiness.setSelectedComponent(pnlRegister);
+        tpnBusiness.setSelectedComponent(pnlRegisterTab);
     }//GEN-LAST:event_jideBtnRegisterActionPerformed
 
     private void jideBtnCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnCourseActionPerformed
         // TODO add your handling code here:
-        tpnBusiness.setSelectedComponent(pnlCourse);
+        tpnBusiness.setSelectedComponent(pnlCourseTab);
     }//GEN-LAST:event_jideBtnCourseActionPerformed
 
     private void jideBtnSubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnSubjectActionPerformed
         // TODO add your handling code here:
-        tpnBusiness.setSelectedComponent(pnlSubject);
+        tpnBusiness.setSelectedComponent(pnlSubjectTab);
     }//GEN-LAST:event_jideBtnSubjectActionPerformed
 
     private void jideBtnCertificateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnCertificateActionPerformed
         // TODO add your handling code here:
-        tpnBusiness.setSelectedComponent(pnlCertificate);
+        tpnBusiness.setSelectedComponent(pnlCertificateTab);
     }//GEN-LAST:event_jideBtnCertificateActionPerformed
 
     private void jideBtnAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnAccountActionPerformed
         // TODO add your handling code here:
-        tpnBusiness.setSelectedComponent(pnlAccount);
+        tpnBusiness.setSelectedComponent(pnlAccountTab);
     }//GEN-LAST:event_jideBtnAccountActionPerformed
 
     private void jideBtnMarkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnMarkActionPerformed
         // TODO add your handling code here:
-        tpnBusiness.setSelectedComponent(pnlMark);
+        tpnBusiness.setSelectedComponent(pnlMarkTab);
     }//GEN-LAST:event_jideBtnMarkActionPerformed
 
     private void jideBtnPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnPaymentActionPerformed
         // TODO add your handling code here:
-        tpnBusiness.setSelectedComponent(pnlPayment);
+        tpnBusiness.setSelectedComponent(pnlPaymentTab);
     }//GEN-LAST:event_jideBtnPaymentActionPerformed
 
     private void jideBtnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jideBtnReportActionPerformed
@@ -1124,7 +1118,7 @@ public class frmMain extends javax.swing.JFrame {
     }
 
     public void isLogin() {
-        tpnBusiness.setSelectedComponent(pnlHome);
+        tpnBusiness.setSelectedComponent(pnlHomeTab);
         jideBtnHome.setEnabled(true);
         jideBtnEmployee.setEnabled(true);
         jideBtnStudent.setEnabled(true);
@@ -1149,18 +1143,18 @@ public class frmMain extends javax.swing.JFrame {
             if (perDao.readByName("Admin").getId() == this.accCur.getPermission()) {
             } else if (perDao.readByName("Employee").getId() == this.accCur.getPermission()) {
 
-                tpnBusiness.remove(pnlEmployee);
-                tpnBusiness.remove(pnlStudent);
-                tpnBusiness.remove(pnlRegister);
-                tpnBusiness.remove(pnlCourse);
-                tpnBusiness.remove(pnlSubject);
-                tpnBusiness.remove(pnlPayment);
-                tpnBusiness.remove(pnlMark);
-                tpnBusiness.remove(pnlCertificate);
-                tpnBusiness.remove(pnlPermission);
-                tpnBusiness.remove(pnlAccount);
-                pnlHome.removeAll();
-                pnlHome.add(new pnlHomeEmp(this));
+                tpnBusiness.remove(pnlEmployeeTab);
+                tpnBusiness.remove(pnlStudentTab);
+                tpnBusiness.remove(pnlRegisterTab);
+                tpnBusiness.remove(pnlCourseTab);
+                tpnBusiness.remove(pnlSubjectTab);
+                tpnBusiness.remove(pnlPaymentTab);
+                tpnBusiness.remove(pnlMarkTab);
+                tpnBusiness.remove(pnlCertificateTab);
+                tpnBusiness.remove(pnlPermissionTab);
+                tpnBusiness.remove(pnlAccountTab);
+                pnlHomeTab.removeAll();
+                pnlHomeTab.add(new pnlHomeEmp(this));
 
                 jideBtnEmployee.setVisible(false);
                 jideBtnStudent.setVisible(false);
@@ -1174,19 +1168,19 @@ public class frmMain extends javax.swing.JFrame {
                 jideBtnPayment.setVisible(false);
 
             } else {
-                tpnBusiness.remove(pnlEmployee);
-                tpnBusiness.remove(pnlStudent);
-                tpnBusiness.remove(pnlRegister);
-                tpnBusiness.remove(pnlCourse);
-                tpnBusiness.remove(pnlSubject);
-                tpnBusiness.remove(pnlPayment);
-                tpnBusiness.remove(pnlMark);
-                tpnBusiness.remove(pnlCertificate);
-                tpnBusiness.remove(pnlPermission);
+                tpnBusiness.remove(pnlEmployeeTab);
+                tpnBusiness.remove(pnlStudentTab);
+                tpnBusiness.remove(pnlRegisterTab);
+                tpnBusiness.remove(pnlCourseTab);
+                tpnBusiness.remove(pnlSubjectTab);
+                tpnBusiness.remove(pnlPaymentTab);
+                tpnBusiness.remove(pnlMarkTab);
+                tpnBusiness.remove(pnlCertificateTab);
+                tpnBusiness.remove(pnlPermissionTab);
                 tpnBusiness.remove(pnlDevelopDegree);
-                tpnBusiness.remove(pnlAccount);
-                pnlHome.removeAll();
-                pnlHome.add(new pnlHomeStudent(this));
+                tpnBusiness.remove(pnlAccountTab);
+                pnlHomeTab.removeAll();
+                pnlHomeTab.add(new pnlHomeStudent(this));
 
 
                 jideBtnEmployee.setVisible(false);
@@ -1242,21 +1236,21 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JMenu mnuTheme;
     private javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelLogo;
-    private javax.swing.JPanel pnlAccount;
-    private javax.swing.JPanel pnlCertificate;
-    private javax.swing.JPanel pnlCourse;
+    private javax.swing.JPanel pnlAccountTab;
+    private javax.swing.JPanel pnlCertificateTab;
+    private javax.swing.JPanel pnlCourseTab;
     private javax.swing.JPanel pnlDevelopDegree;
-    private javax.swing.JPanel pnlEmployee;
-    private javax.swing.JPanel pnlHome;
-    private javax.swing.JPanel pnlMark;
-    private javax.swing.JPanel pnlPayment;
-    private javax.swing.JPanel pnlPermission;
-    private javax.swing.JPanel pnlRegister;
+    private javax.swing.JPanel pnlEmployeeTab;
+    private javax.swing.JPanel pnlHomeTab;
+    private javax.swing.JPanel pnlMarkTab;
+    private javax.swing.JPanel pnlPaymentTab;
+    private javax.swing.JPanel pnlPermissionTab;
+    private javax.swing.JPanel pnlRegisterTab;
     public javax.swing.JPanel pnlReport;
-    private javax.swing.JPanel pnlStudent;
-    private javax.swing.JPanel pnlSubject;
-    private javax.swing.JPanel pnlViewMark;
-    private javax.swing.JPanel pnlViewPayment;
+    private javax.swing.JPanel pnlStudentTab;
+    private javax.swing.JPanel pnlSubjectTab;
+    public javax.swing.JPanel pnlViewMarkTab;
+    public javax.swing.JPanel pnlViewPaymentTab;
     private javax.swing.JRadioButtonMenuItem radioDarkStar;
     private javax.swing.JRadioButtonMenuItem radioDesertBlue;
     private javax.swing.JRadioButtonMenuItem radioDesertGreen;

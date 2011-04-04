@@ -54,6 +54,7 @@ public class pnlPayment extends javax.swing.JPanel {
     frmMain frm;
 
     /** Creates new form pnlPayment */
+    
     public pnlPayment() {
         initComponents();
         registerDAO = new RegisterDAO();
