@@ -339,6 +339,7 @@ public class frmMain extends javax.swing.JFrame {
 
         tpnBusiness.setBackground(new java.awt.Color(255, 255, 255));
         tpnBusiness.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+        tpnBusiness.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         tpnBusiness.setMaximumSize(new java.awt.Dimension(1024, 600));
         tpnBusiness.setMinimumSize(new java.awt.Dimension(1024, 600));
         tpnBusiness.setPreferredSize(new java.awt.Dimension(1024, 600));
@@ -420,7 +421,7 @@ public class frmMain extends javax.swing.JFrame {
         pnlViewMarkTab.setLayout(pnlViewMarkTabLayout);
         pnlViewMarkTabLayout.setHorizontalGroup(
             pnlViewMarkTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 885, Short.MAX_VALUE)
+            .addGap(0, 860, Short.MAX_VALUE)
         );
         pnlViewMarkTabLayout.setVerticalGroup(
             pnlViewMarkTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -436,7 +437,7 @@ public class frmMain extends javax.swing.JFrame {
         pnlViewPaymentTab.setLayout(pnlViewPaymentTabLayout);
         pnlViewPaymentTabLayout.setHorizontalGroup(
             pnlViewPaymentTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 885, Short.MAX_VALUE)
+            .addGap(0, 860, Short.MAX_VALUE)
         );
         pnlViewPaymentTabLayout.setVerticalGroup(
             pnlViewPaymentTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -452,7 +453,7 @@ public class frmMain extends javax.swing.JFrame {
         pnlDevelopDegree.setLayout(pnlDevelopDegreeLayout);
         pnlDevelopDegreeLayout.setHorizontalGroup(
             pnlDevelopDegreeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 885, Short.MAX_VALUE)
+            .addGap(0, 860, Short.MAX_VALUE)
         );
         pnlDevelopDegreeLayout.setVerticalGroup(
             pnlDevelopDegreeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -470,7 +471,7 @@ public class frmMain extends javax.swing.JFrame {
         pnlReport.setLayout(pnlReportLayout);
         pnlReportLayout.setHorizontalGroup(
             pnlReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 885, Short.MAX_VALUE)
+            .addGap(0, 860, Short.MAX_VALUE)
         );
         pnlReportLayout.setVerticalGroup(
             pnlReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

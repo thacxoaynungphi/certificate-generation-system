@@ -391,7 +391,7 @@ public class pnlViewMark extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (!this.cbxStudentID.getSelectedItem().toString().equals("------")) {
             frm.pnlReport.removeAll();
-            dlgChooseReport report = new dlgChooseReport(frm, this);
+            dlgChooseReport report = new dlgChooseReport(frm, frm.pnlViewMarkTab);
             report.getStudentMarkReport(this.cbxStudentID.getSelectedItem().toString());
             report.setVisible(true);
             report.setSize(860, 600);

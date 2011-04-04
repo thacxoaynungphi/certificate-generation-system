@@ -276,16 +276,18 @@ public class dlgLogin extends javax.swing.JDialog {
                 }
                 main.isLogin();
                 main.pnlViewPaymentTab.removeAll();
-                // main.viewPayment = new pnlViewPayment(main);
+
                 JPanel panelviewPayment = new pnlViewPayment(main);
                 panelviewPayment.setVisible(true);
                 panelviewPayment.setSize(860, 600);
+                main.viewPayment = (pnlViewPayment) panelviewPayment;
                 main.pnlViewPaymentTab.add(panelviewPayment);
                 main.pnlViewMarkTab.removeAll();
-                //main.viewMark = new pnlViewMark(main);
+
                 JPanel panelviewMark = new pnlViewMark(main);
                 panelviewMark.setVisible(true);
                 panelviewMark.setSize(860, 600);
+                main.viewMark = (pnlViewMark) panelviewMark;
                 main.pnlViewMarkTab.add(panelviewMark);
                 System.out.println("Sao the nhi chan qua");
                 main.initStatusBar();

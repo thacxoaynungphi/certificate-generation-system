@@ -154,8 +154,6 @@ public class pnlPermission extends javax.swing.JPanel {
         filterText = new javax.swing.JTextField();
         btnFilter = new javax.swing.JButton();
         lblEnterNameStudent = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        btnReport = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(860, 600));
         setLayout(new java.awt.GridBagLayout());
@@ -523,24 +521,6 @@ public class pnlPermission extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 490, 5, 5);
         panelLeft.add(lblEnterNameStudent, gridBagConstraints);
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        btnReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
-        btnReport.setText("Report");
-        btnReport.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnReport.setMaximumSize(new java.awt.Dimension(75, 23));
-        btnReport.setMinimumSize(new java.awt.Dimension(75, 23));
-        btnReport.setPreferredSize(new java.awt.Dimension(75, 23));
-        jPanel2.add(btnReport);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 0);
-        panelLeft.add(jPanel2, gridBagConstraints);
-
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -681,11 +661,9 @@ public class pnlPermission extends javax.swing.JPanel {
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnFilter;
-    private javax.swing.JButton btnReport;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JTextField filterText;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblEnterNameStudent;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblPasswordSearch;
