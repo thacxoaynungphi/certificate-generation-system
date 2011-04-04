@@ -29,8 +29,6 @@ public class LoadImage {
             }
             bos.close();
             bis.close();
-            System.out.println("copy done!");
-
         } catch (Exception ex) {
             ex.printStackTrace();
         }
