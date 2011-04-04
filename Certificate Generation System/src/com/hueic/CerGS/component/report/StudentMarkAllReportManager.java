@@ -6,8 +6,11 @@
 package com.hueic.CerGS.component.report;
 
 import com.hueic.CerGS.dao.CourseDAO;
+import com.hueic.CerGS.dao.RegisterDAO;
+import com.hueic.CerGS.dao.StudentDAO;
 import com.hueic.CerGS.dao.SubjectDAO;
 import com.hueic.CerGS.entity.Mark;
+import com.hueic.CerGS.entity.Register;
 import com.hueic.CerGS.entity.Subject;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,7 +23,9 @@ import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
 public class StudentMarkAllReportManager extends ReportManager {
     private ArrayList<Mark> listMark;
     private SubjectDAO subjectDAO;
+    private RegisterDAO registerDAO;
     private CourseDAO courseDAO;
+    private StudentDAO studentDAO;
 
     public StudentMarkAllReportManager(ArrayList<Mark> listMark) {
         this.listMark = listMark;
@@ -28,6 +33,8 @@ public class StudentMarkAllReportManager extends ReportManager {
         jasperFileName = "StudentMarkAll.jasper";
         subjectDAO = new SubjectDAO();
         courseDAO = new CourseDAO();
+        studentDAO = new StudentDAO();
+        registerDAO = new RegisterDAO();
 
         parameterMap = getParameterMap();
         dataCollection = getJRDataSource();
@@ -37,7 +44,8 @@ public class StudentMarkAllReportManager extends ReportManager {
         parameterMap = new HashMap();
 
         parameterMap.put("ID", "Number");
-        parameterMap.put("GRADE", "Grade");
+        parameterMap.put("STUDENTID", "Student Code");
+        parameterMap.put("STUDENTNAME", "Student Name");
         parameterMap.put("SUBJECT", "Subject's Name");
         parameterMap.put("COURSE", "Course's Name");
         parameterMap.put("MARK", "Mark");
@@ -52,28 +60,16 @@ public class StudentMarkAllReportManager extends ReportManager {
 
         for (Mark mark : listMark) {
             row = new HashMap();
-
+            Register reg = registerDAO.readByStudentId(mark.getStudentId());
             Subject sub = subjectDAO.readByID(mark.getSubjectId());
 
-            row.put("ID", String.valueOf(mark.getId()));
+            row.put("ID", mark.getId());
+            row.put("STUDENTID", mark.getStudentId());
+            row.put("STUDENTNAME", studentDAO.readByID(reg.getId()).getFullName());
             row.put("COURSE", courseDAO.readById(sub.getCourseID()).getName());
             row.put("SUBJECT", sub.getName());
             row.put("MARK", mark.getMark());
-            String grade = "";
-            if (mark.getMark() >= 7.5) {
-                grade = "DISTINSTION";
-            } else if (mark.getMark() > 60) {
-                grade = "A";
-            } else if (mark.getMark() > 50) {
-                grade = "B";
-            } else if (mark.getMark() > 40) {
-                grade = "C";
-            } else {
-                grade = "Unpass";
-            }
-
-            row.put("GRADE", grade);
-
+            
             reportRows.add(row);
         }
         dataCollection = new JRMapCollectionDataSource(reportRows);

@@ -868,6 +868,11 @@ public class pnlStudent extends javax.swing.JPanel {
         btnReport.setMaximumSize(new java.awt.Dimension(75, 25));
         btnReport.setMinimumSize(new java.awt.Dimension(75, 25));
         btnReport.setPreferredSize(new java.awt.Dimension(75, 25));
+        btnReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnReport);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1165,6 +1170,11 @@ public class pnlStudent extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_btnBrowseEditActionPerformed
+
+    private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnReportActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddEdit;
     private javax.swing.JButton btnBrowseEdit;
