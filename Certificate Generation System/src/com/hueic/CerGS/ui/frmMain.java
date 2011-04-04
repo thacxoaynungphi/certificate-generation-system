@@ -63,6 +63,7 @@ public class frmMain extends javax.swing.JFrame {
         HelpBroker hb = hs.createHelpBroker();
         CSH.setHelpIDString(mnuIHelpContent, "top");
         mnuIHelpContent.addActionListener(new CSH.DisplayHelpFromSource(hb));
+        System.out.println("Dir: " + System.getProperty("user.dir"));
     }
 
     public void initStatusBar() {
