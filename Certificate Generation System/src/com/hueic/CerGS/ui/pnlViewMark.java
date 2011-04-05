@@ -40,7 +40,6 @@ public class pnlViewMark extends javax.swing.JPanel {
     /** Creates new form pnlViewMark */
     private ArrayList<Mark> listMarks = new ArrayList<Mark>();
     private MarkDAO markDAO;
-    TableRowSorter<TableModel> sorter;
     private CourseDAO courseDao;
     private RegisterDAO registerDao;
     public ArrayList<Course> listCourse;
@@ -49,6 +48,7 @@ public class pnlViewMark extends javax.swing.JPanel {
     private JTable headerTable;
     frmMain frm;
     public boolean isStudent = false;
+    private ArrayList<Mark> filter;
 
     public pnlViewMark() {
         initComponents();
@@ -89,15 +89,25 @@ public class pnlViewMark extends javax.swing.JPanel {
 
     }
 
+    public void loadFiter(String text, ArrayList<Mark> listMark) {
+        filter = new ArrayList<Mark>();
+        for (Mark mark : listMark) {
+            if (mark.getStudentId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                    || String.valueOf(mark.getMark()).toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                    || mark.getSubjectId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
+                filter.add(mark);
+            }
+        }
+        loadData(listMarks);
+    }
+
     public void loadData(ArrayList<Mark> listMarks) {
         ColumnData[] columns = {
             new ColumnData("ID", 135, SwingConstants.LEFT, 1),
             new ColumnData("Student ID", 100, SwingConstants.LEFT, 2),
-            new ColumnData("Mark", 140, SwingConstants.LEFT, 3),
-            new ColumnData("Degree Day", 170, SwingConstants.LEFT, 4),};
+            new ColumnData("Subject", 140, SwingConstants.LEFT, 3),
+            new ColumnData("Mark", 170, SwingConstants.LEFT, 4),};
         tableModel = new ObjectTableModel(tableContent, columns, listMarks);
-        sorter = new TableRowSorter<TableModel>(tableModel);
-        tableContent.setRowSorter(sorter);
         headerTable = tableModel.getHeaderTable();
         // Create numbering column
         headerTable.createDefaultColumnsFromModel();
@@ -361,29 +371,15 @@ public class pnlViewMark extends javax.swing.JPanel {
         }
 }//GEN-LAST:event_cbxStudentIDItemStateChanged
 
-    public void searchStart() {
-        if (!listMarks.isEmpty()) {
-            String text = filterText.getText();
-            if (text.length() == 0) {
-                sorter.setRowFilter(null);
-            } else {
-                try {
-                    sorter.setRowFilter(RowFilter.regexFilter(text));
-                } catch (PatternSyntaxException pse) {
-                    System.err.println("Bad regex pattern");
-                }
-            }
-        }
-    }
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
-        searchStart();
+        loadFiter(filterText.getText(), listMarks);
 }//GEN-LAST:event_btnFilterActionPerformed
 
     private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
         // TODO add your handling code here:
-        searchStart();
+        loadFiter(filterText.getText(), listMarks);
     }//GEN-LAST:event_filterTextCaretUpdate
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
@@ -399,7 +395,7 @@ public class pnlViewMark extends javax.swing.JPanel {
                 frm.pnlReport.add(report);
                 frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
             } else {
-                 JOptionPane.showMessageDialog(this, "You are choose course!", "Report mark for student", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "You are choose course!", "Report mark for student", JOptionPane.INFORMATION_MESSAGE);
             }
         } else {
             if (!this.cbxStudentID.getSelectedItem().toString().equals("------")) {

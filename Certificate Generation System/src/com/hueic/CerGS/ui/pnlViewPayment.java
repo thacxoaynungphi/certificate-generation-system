@@ -50,6 +50,7 @@ public class pnlViewPayment extends javax.swing.JPanel {
     private ObjectTableModel tableModel;
     private JTable headerTable;
     frmMain frm;
+    private ArrayList<Payment> filter;
 
     public pnlViewPayment() {
         initComponents();
@@ -87,6 +88,17 @@ public class pnlViewPayment extends javax.swing.JPanel {
             loadDataCBXCourse();
             loadDataCBXStudent();
         }
+    }
+
+    public void loadFiter(String text, ArrayList<Payment> listPayments) {
+        filter = new ArrayList<Payment>();
+        for (Payment pay : listPayments) {
+            if (pay.getStudentId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                    || registerDao.readByStudentId(pay.getStudentId()).getCourseId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
+                filter.add(pay);
+            }
+        }
+        loadData(filter);
     }
 
     public void loadData(ArrayList<Payment> listPayments) {
@@ -408,29 +420,14 @@ public class pnlViewPayment extends javax.swing.JPanel {
         // TODO add your handling code here:
 }//GEN-LAST:event_tableContentMouseClicked
 
-    public void searchStart() {
-        if (!listPayments.isEmpty()) {
-            String text = filterText.getText();
-            if (text.length() == 0) {
-                sorter.setRowFilter(null);
-            } else {
-                try {
-                    sorter.setRowFilter(RowFilter.regexFilter(text));
-                } catch (PatternSyntaxException pse) {
-                    System.err.println("Bad regex pattern");
-                }
-            }
-        }
-    }
-
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
-        searchStart();
+        loadFiter(filterText.getText(), listPayments);
 }//GEN-LAST:event_btnFilterActionPerformed
 
     private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
         // TODO add your handling code here:
-        searchStart();
+        loadFiter(filterText.getText(), listPayments);
     }//GEN-LAST:event_filterTextCaretUpdate
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed

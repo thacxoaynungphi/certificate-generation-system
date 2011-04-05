@@ -48,6 +48,7 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
     private ObjectTableModel tableModel;
     private JTable headerTable;
     frmMain frm;
+    private ArrayList<Mark> filter;
 
     public pnlDevelopDegree(frmMain main) {
         initComponents();
@@ -88,6 +89,18 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
                 cbxStudentID.addItem(listRegister.get(i).getStudentId());
             }
         }
+    }
+
+    public void loadFiter(String text,ArrayList<Mark> listMark) {
+        filter = new ArrayList<Mark>();
+        for (Mark mark : listMark) {
+            if (mark.getStudentId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                    || String.valueOf(mark.getMark()).toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                    || mark.getSubjectId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
+                filter.add(mark);
+            }
+        }
+        loadData(filter);
     }
 
     public void loadData(ArrayList<Mark> listMark) {
@@ -373,29 +386,14 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
         }
 }//GEN-LAST:event_cbxStudentIDActionPerformed
 
-    public void searchStart() {
-        if (!listMark.isEmpty()) {
-            String text = filterText.getText();
-            System.out.println("Text :" + text);
-            if (text.length() == 0) {
-                sorter.setRowFilter(null);
-            } else {
-                try {
-                    sorter.setRowFilter(RowFilter.regexFilter(text));
-                } catch (PatternSyntaxException pse) {
-                    System.err.println("Bad regex pattern");
-                }
-            }
-        }
-    }
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
-        searchStart();
+       loadFiter(filterText.getText(), listMark);
 }//GEN-LAST:event_btnFilterActionPerformed
 
     private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
         // TODO add your handling code here:
-        searchStart();
+       loadFiter(filterText.getText(), listMark);
     }//GEN-LAST:event_filterTextCaretUpdate
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
