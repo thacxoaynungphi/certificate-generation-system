@@ -20,6 +20,8 @@ import com.hueic.CerGS.entity.Course;
 import com.hueic.CerGS.entity.Payment;
 import com.hueic.CerGS.entity.Register;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.PatternSyntaxException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -60,6 +62,7 @@ public class pnlPayment extends javax.swing.JPanel {
         studentDAO = new StudentDAO();
         courseDao = new CourseDAO();
 
+        btnCancel.setVisible(false);
         paymentDao = new PaymentDAO();
         listPayments = paymentDao.readByAll();
         listCourse = courseDao.readByAll();
@@ -78,6 +81,7 @@ public class pnlPayment extends javax.swing.JPanel {
         studentDAO = new StudentDAO();
         courseDao = new CourseDAO();
 
+        btnCancel.setVisible(false);
         paymentDao = new PaymentDAO();
         listPayments = paymentDao.readByAll();
         listCourse = courseDao.readByAll();
@@ -93,9 +97,8 @@ public class pnlPayment extends javax.swing.JPanel {
         filter = new ArrayList<Payment>();
         for (Payment pay : listPayments) {
             if (pay.getStudentId().toLowerCase().matches(".*" + txtStudentIdSearch.getText().trim().toLowerCase() + ".*")
-                    && registerDAO.readByStudentId(pay.getStudentId()).getCourseId().toLowerCase().matches(".*" + txtCourseIdSearch.getText().trim().toLowerCase() + ".*")
-                    ) {
-                    filter.add(pay);
+                    && registerDAO.readByStudentId(pay.getStudentId()).getCourseId().toLowerCase().matches(".*" + txtCourseIdSearch.getText().trim().toLowerCase() + ".*")) {
+                filter.add(pay);
             }
         }
         if (filter.size() != 0) {
@@ -366,9 +369,9 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(dateChPayDay, gridBagConstraints);
 
-        txtId.setEnabled(false);
         txtId.setMinimumSize(new java.awt.Dimension(200, 20));
         txtId.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtId.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -378,6 +381,7 @@ public class pnlPayment extends javax.swing.JPanel {
 
         txtStudentId.setMinimumSize(new java.awt.Dimension(200, 20));
         txtStudentId.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtStudentId.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -662,15 +666,8 @@ public class pnlPayment extends javax.swing.JPanel {
             isAdd = false;
             btnUpdate.setEnabled(true);
             btnDelete.setEnabled(true);
-            txtId.setVisible(true);
-            txtStudentId.setVisible(true);
-        } else if (isUpdate) {
-            isUpdate = false;
-            txtId.setVisible(true);
-            txtStudentId.setVisible(true);
-            loadDetails(getPaymentById(currentId));
-        } else {
-            loadDetails(listPayments.get(0));
+            btnCancel.setVisible(false);
+            txtStudentId.setRequestFocusEnabled(false);
         }
 }//GEN-LAST:event_btnCancelActionPerformed
 
@@ -679,7 +676,7 @@ public class pnlPayment extends javax.swing.JPanel {
         if (paymentDao.delete(currentId)) {
             listPayments.remove(getPaymentById(currentId));
             loadData(listPayments);
-            if (listPayments.size() != 0) {
+            if (!listPayments.isEmpty()) {
                 loadDetails(listPayments.get(0));
             }
             JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Delete payment", JOptionPane.INFORMATION_MESSAGE, null);
@@ -687,55 +684,81 @@ public class pnlPayment extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Delete payment", JOptionPane.ERROR_MESSAGE, null);
         }
 }//GEN-LAST:event_btnDeleteActionPerformed
-
+    public Payment getPaymentFromForm() throws Exception {
+        Payment payment = new Payment();
+        try {
+            String id = txtId.getText();
+            if(!id.isEmpty()) payment.setId(Integer.parseInt(id));
+            
+            payment.setMoney(Float.parseFloat(txtMoney.getText()));
+            payment.setPayday(new java.sql.Date(dateChPayDay.getDate().getTime()));
+            payment.setStudentId(txtStudentId.getText());
+        } catch (Exception ex) {
+            throw ex;
+        }
+        return payment;
+    }
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         try {
-            if (!isUpdate) {
-                txtId.setVisible(true);
-                txtStudentId.setVisible(true);
-                isUpdate = true;
+            Payment pay = getPaymentFromForm();
+            Payment currentPay = getPaymentById(currentId);
+
+            Course course = courseDao.readById(registerDAO.readByStudentId(pay.getStudentId()).getCourseId());
+            if (pay.getMoney() > course.getTotalFees() - (paymentDao.getCurrentTotalDiposit(currentPay) - currentPay.getMoney())) {
+                JOptionPane.showMessageDialog(this, "You can't pay greater your total arrears", "Payment Update", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (paymentDao.update(pay)) {
+                JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Update Payment", JOptionPane.INFORMATION_MESSAGE);
+
+                listPayments = paymentDao.readByAll();
+                loadData(listPayments);
+                loadDetails(listPayments.get(0));
             } else {
-                isUpdate = false;
-                Payment pay = getPaymentById(currentId);
-                pay.setMoney(Float.parseFloat(txtMoney.getText()));
-                pay.setPayday(new java.sql.Date(dateChPayDay.getDate().getTime()));
-                if (paymentDao.update(pay)) {
-                    JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Update Payment", JOptionPane.INFORMATION_MESSAGE);
-                    loadData(listPayments);
-                    loadDetails(pay);
-                } else {
-                    JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Update Payment", JOptionPane.ERROR_MESSAGE);
-                }
+                JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Update Payment", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Update Payment", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, e.toString(), "Update Payment", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnUpdateActionPerformed
 
+    public void resetDetails() {
+        txtId.setText(null);
+        txtStudentId.setText(null);
+        txtMoney.setText(null);
+        dateChPayDay.setDate(null);
+    }
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         try {
             if (!isAdd) {
                 isAdd = true;
                 btnUpdate.setEnabled(false);
                 btnDelete.setEnabled(false);
-                txtId.setVisible(true);
-                txtStudentId.setVisible(true);
+                btnCancel.setVisible(true);
+                txtStudentId.setRequestFocusEnabled(true);
+                resetDetails();
             } else {
                 //TODO: chua lay duoc chi so tu tang cua ban ghi moi dua vo
-                Payment payment = new Payment();
-                payment.setMoney(Float.parseFloat(txtMoney.getText()));
-                payment.setPayday(new java.sql.Date(dateChPayDay.getDate().getTime()));
-                payment.setStudentId((String) txtStudentId.getText());
-                if (paymentDao.create(payment)) {
+                Payment pay = getPaymentFromForm();
+                Course course = courseDao.readById(registerDAO.readByStudentId(pay.getStudentId()).getCourseId());
+                
+                if (pay.getMoney() > course.getTotalFees() - (paymentDao.getCurrentTotalDiposit(pay))) {
+                    JOptionPane.showMessageDialog(this, "You can't pay greater your total arrears", "Payment Update", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                if (paymentDao.create(pay)) {
                     JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Create Payment", JOptionPane.INFORMATION_MESSAGE);
-                    listPayments.add(payment);
+
+                    listPayments = paymentDao.readByAll();
                     loadData(listPayments);
-                    loadDetails(payment);
+                    loadDetails(listPayments.get(0));
+
                     isAdd = false;
                     btnUpdate.setEnabled(true);
                     btnDelete.setEnabled(true);
-                    txtId.setVisible(true);
-                    txtStudentId.setVisible(true);
+                    btnCancel.setVisible(false);
+                    txtStudentId.setRequestFocusEnabled(false);
                 } else {
                     JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Create Payment", JOptionPane.ERROR_MESSAGE);
                 }
@@ -799,7 +822,7 @@ public class pnlPayment extends javax.swing.JPanel {
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
         // TODO add your handling code here:
-        if (filter.size() != 0) {
+        if (!filter.isEmpty()) {
             frm.pnlReport.removeAll();
             dlgChooseReport report = new dlgChooseReport(frm, this);
             report.getFeesReport(filter);
@@ -817,7 +840,6 @@ public class pnlPayment extends javax.swing.JPanel {
         // TODO add your handling code here:
         loadData(listPayments);
     }//GEN-LAST:event_dateChPayDayCaretPositionChanged
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
