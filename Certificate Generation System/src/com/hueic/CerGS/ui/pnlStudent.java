@@ -79,14 +79,39 @@ public class pnlStudent extends javax.swing.JPanel {
     }
 
     public void loadTable(ArrayList<Student> liststudent) {
+        System.out.println("Date Start :" + dateChooserDateStartSearch.getDate());
+        System.out.println("Date End   :" + dateChooserDateEndSearch.getDate());
         filter = new ArrayList<Student>();
+        boolean status = false;
         for (Student emp : liststudent) {
+            status = false;
             if (emp.getId().toLowerCase().matches(".*" + txtStudentIdSearch.getText().trim().toLowerCase() + ".*")
                     && emp.getFirstName().toLowerCase().matches(".*" + txtFirstNameSearch.getText().trim().toLowerCase() + ".*")
                     && emp.getLastName().toLowerCase().matches(".*" + txtLastNameSearch.getText().trim().toLowerCase() + ".*")) {
-                // if(dateChooserDateEnd.getDate() != null && dateChooserDateStart.getDate() != null)
+                if (dateChooserDateEndSearch.getDate() != null && dateChooserDateStartSearch.getDate() != null) {
+                    if (emp.getBirthDay().after(dateChooserDateStartSearch.getDate()) && emp.getBirthDay().before(dateChooserDateEndSearch.getDate())) {
+                        if (radioMaleSearch.isSelected() && radioFemaleSearch.isSelected()) {
+                            filter.add(emp);
+                        } else if (radioMaleSearch.isSelected() && emp.getGender() == 0) {
+                            filter.add(emp);
+                        } else if (radioFemaleSearch.isSelected() && emp.getGender() == 1) {
+                            filter.add(emp);
+                        } else {
+                            filter.add(emp);
+                        }
+                    }
+                } else {
+                    if (radioMaleSearch.isSelected() && radioFemaleSearch.isSelected()) {
+                        filter.add(emp);
+                    } else if (radioMaleSearch.isSelected() && emp.getGender() == 0) {
+                        filter.add(emp);
+                    } else if (radioFemaleSearch.isSelected() && emp.getGender() == 1) {
+                        filter.add(emp);
+                    } else {
+                        filter.add(emp);
+                    }
+                }
                 //Chua de che do ngay va gender
-                filter.add(emp);
             }
         }
         if (filter.size() != 0) {
@@ -629,6 +654,22 @@ public class pnlStudent extends javax.swing.JPanel {
 
         dateChooserDateStartSearch.setMinimumSize(new java.awt.Dimension(150, 20));
         dateChooserDateStartSearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        dateChooserDateStartSearch.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+                dateChooserDateStartSearchCaretPositionChanged(evt);
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+            }
+        });
+        dateChooserDateStartSearch.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                dateChooserDateStartSearchAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
@@ -639,6 +680,13 @@ public class pnlStudent extends javax.swing.JPanel {
 
         dateChooserDateEndSearch.setMinimumSize(new java.awt.Dimension(150, 20));
         dateChooserDateEndSearch.setPreferredSize(new java.awt.Dimension(200, 20));
+        dateChooserDateEndSearch.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+                dateChooserDateEndSearchCaretPositionChanged(evt);
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 3;
@@ -660,6 +708,11 @@ public class pnlStudent extends javax.swing.JPanel {
         btnGGender2.add(radioMaleSearch);
         radioMaleSearch.setForeground(new java.awt.Color(3, 3, 3));
         radioMaleSearch.setText("Male");
+        radioMaleSearch.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                radioMaleSearchItemStateChanged(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 4;
@@ -671,6 +724,11 @@ public class pnlStudent extends javax.swing.JPanel {
         btnGGender2.add(radioFemaleSearch);
         radioFemaleSearch.setForeground(new java.awt.Color(3, 3, 3));
         radioFemaleSearch.setText("FeMale");
+        radioFemaleSearch.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                radioFemaleSearchItemStateChanged(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 4;
@@ -1173,7 +1231,7 @@ public class pnlStudent extends javax.swing.JPanel {
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
         // TODO add your handling code here:
-       if (filter.size() != 0) {
+        if (filter.size() != 0) {
             frm.pnlReport.removeAll();
             dlgChooseReport report = new dlgChooseReport(frm, this);
             report.getStudentReport(filter);
@@ -1181,11 +1239,34 @@ public class pnlStudent extends javax.swing.JPanel {
             report.setSize(860, 600);
             frm.pnlReport.add(report);
             frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
-        }
-        else {
+        } else {
             JOptionPane.showMessageDialog(this, "No data!", "Report Message", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnReportActionPerformed
+
+    private void radioMaleSearchItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radioMaleSearchItemStateChanged
+        // TODO add your handling code here:
+        loadTable(liststudent);
+    }//GEN-LAST:event_radioMaleSearchItemStateChanged
+
+    private void radioFemaleSearchItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radioFemaleSearchItemStateChanged
+        // TODO add your handling code here:
+        loadTable(liststudent);
+    }//GEN-LAST:event_radioFemaleSearchItemStateChanged
+
+    private void dateChooserDateStartSearchAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_dateChooserDateStartSearchAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dateChooserDateStartSearchAncestorAdded
+
+    private void dateChooserDateStartSearchCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_dateChooserDateStartSearchCaretPositionChanged
+        // TODO add your handling code here:
+        loadTable(liststudent);
+    }//GEN-LAST:event_dateChooserDateStartSearchCaretPositionChanged
+
+    private void dateChooserDateEndSearchCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_dateChooserDateEndSearchCaretPositionChanged
+        // TODO add your handling code here:
+        loadTable(liststudent);
+    }//GEN-LAST:event_dateChooserDateEndSearchCaretPositionChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddEdit;
     private javax.swing.JButton btnBrowseEdit;
