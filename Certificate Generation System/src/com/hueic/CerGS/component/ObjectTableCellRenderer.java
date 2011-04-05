@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  * Object that display on the table
- * @author Ngo Phuoc Thien
+ * @author nhchung
  */
 public class ObjectTableCellRenderer extends DefaultTableCellRenderer {
 

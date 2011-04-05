@@ -968,18 +968,15 @@ public class pnlStudent extends javax.swing.JPanel {
 
         } else {
             radioFemaleEdit.setSelected(true);
-
         }
         txtPhoneEdit.setText(student.getPhone());
         txtEmailEdit.setText(student.getEmail());
         txtAddressEdit.setText(student.getAddress());
         txtImageEdit.setText(student.getImage());
-        System.out.println("Image : " + student.getImage());
         if (student.getImage().length() != 0) {
             lblImage2.setIcon(null);
             lblImage2.setIcon(new ImageIcon(System.getProperty("user.dir") + "/avatar/" + student.getImage()));
         } else {
-            //TODO: hien thi anh khi khong co avatar
             lblImage2.setIcon(new ImageIcon(System.getProperty("user.dir") + "/avatar/no images.jpg"));
         }
     }

@@ -13,7 +13,7 @@ import javax.swing.border.EmptyBorder;
 
 /**
  * Generate status bar
- * @author Unknown
+ * @author nhchung
  */
 public class StatusBarFactory {
     protected String baseImagePath;

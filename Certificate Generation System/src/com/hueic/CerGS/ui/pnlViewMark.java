@@ -124,7 +124,11 @@ public class pnlViewMark extends javax.swing.JPanel {
     public void load(ArrayList<Mark> listMarks, String courseId, String studentid) {
 
         if (studentid.equals("------")) {
-            listMarks = markDAO.readBYCourseID(courseId);
+            if (courseId.equals("-- All --")) {
+                listMarks = markDAO.readByAll();
+            } else {
+                listMarks = markDAO.readBYCourseID(courseId);
+            }
         } else {
             listMarks = markDAO.readByStudentID(studentid);
         }
@@ -370,7 +374,6 @@ public class pnlViewMark extends javax.swing.JPanel {
             load(listMarks, courseid, studentid);
         }
 }//GEN-LAST:event_cbxStudentIDItemStateChanged
-
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:

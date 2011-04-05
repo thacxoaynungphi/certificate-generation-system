@@ -24,14 +24,12 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.PatternSyntaxException;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
-import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -1177,7 +1175,6 @@ public class pnlEmployee extends javax.swing.JPanel {
             lblImage2.setIcon(null);
             lblImage2.setIcon(new ImageIcon(System.getProperty("user.dir") + "/avatar/" + emp.getImage()));
         } else {
-            //TODO: hien thi anh khi khong co avatar
             lblImage2.setIcon(new ImageIcon(System.getProperty("user.dir") + "/avatar/no images.jpg"));
         }
         try {
