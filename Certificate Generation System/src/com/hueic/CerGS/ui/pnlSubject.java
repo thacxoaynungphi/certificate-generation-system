@@ -837,31 +837,51 @@ public class pnlSubject extends javax.swing.JPanel {
                 btnCancel.setVisible(true);
                 btnUpdate.setEnabled(false);
                 btnDelete.setEnabled(false);
+                txtSubjectId.setRequestFocusEnabled(true);
+
                 txtCoureID.setText(null);
                 txtSubjectId.setText(null);
-                txtSubjectId.setRequestFocusEnabled(true);
                 txtName.setText(null);
                 txtCoefficient.setText(null);
 
             } else {
-                isAdd = false;
-                btnUpdate.setEnabled(true);
-                btnDelete.setEnabled(true);
-                btnCancel.setVisible(false);
-                txtSubjectId.setRequestFocusEnabled(false);
 
                 String subjectId = txtSubjectId.getText();
+                if (subjectId.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Subject Id must be enter", "Subject add", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 String subjectName = txtName.getText();
-                int coefficient = Integer.parseInt(txtCoefficient.getText());
+                if (subjectName.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Subject Name must be enter", "Subject add", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                String coe = txtCoefficient.getText();
+                if (coe.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Coefficient must be enter", "Subject add", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                int coefficient = Integer.parseInt(coe);
                 String courseId = txtCoureID.getText();
-                Subject subject = new Subject(subjectId, subjectName, coefficient, courseId);
 
+                if (courseId.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Course Id must be enter", "Subject add", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                Subject subject = new Subject(subjectId, subjectName, coefficient, courseId);
 
                 if (subjectDao.create(subject)) {
                     JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Create Subject", JOptionPane.INFORMATION_MESSAGE);
                     listSubject.add(subject);
                     loadData();
                     loadDetails(subject);
+
+                    isAdd = false;
+                    btnUpdate.setEnabled(true);
+                    btnDelete.setEnabled(true);
+                    btnCancel.setVisible(false);
+                    txtSubjectId.setRequestFocusEnabled(false);
 
                 } else {
                     JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Create Subject", JOptionPane.ERROR_MESSAGE);
