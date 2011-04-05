@@ -5,7 +5,7 @@
 package com.hueic.CerGS.component;
 
 /**
- * @author Michael Hagen
+ * @author nhchung
  */
 public class GUIProperties {
 
@@ -34,17 +34,5 @@ public class GUIProperties {
 
     public String getTheme() {
         return theme;
-    }
-
-    public boolean isMetalLook() {
-        return lookAndFeel.equals(PLAF_METAL);
-    }
-
-    public boolean isNimbusLook() {
-        return lookAndFeel.equals(PLAF_NIMBUS);
-    }
-
-    public boolean isWindowsLook() {
-        return lookAndFeel.equals(PLAF_WINDOWS);
     }
 }

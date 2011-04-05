@@ -13,7 +13,7 @@ import javax.swing.table.TableRowSorter;
 
 /**
  * Get ObjectTableModel
- * @author Ngo Phuoc Thien
+ * @author nhchung
  */
 public class ObjectTableModel extends AbstractTableModel {
 

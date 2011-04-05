@@ -8,8 +8,8 @@ import java.util.TimeZone;
 import javax.swing.JLabel;
 
 /**
- * Load Status Bar
- * @author Unknown
+ * 
+ * @author nhchung
  */
 public class AppStatusBar {
 

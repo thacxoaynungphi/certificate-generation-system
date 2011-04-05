@@ -11,7 +11,7 @@ import javax.swing.table.TableCellRenderer;
 
 /**
  * Object format cells' properties
- * @author Ngo Phuoc Thien
+ * @author nhchung
  */
 public class ObjectTableHeaderRenderer extends JLabel implements TableCellRenderer {
 
