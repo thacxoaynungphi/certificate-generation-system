@@ -17,12 +17,8 @@ import com.hueic.CerGS.dao.StudentDAO;
 import com.hueic.CerGS.entity.Student;
 import com.lowagie.text.BadElementException;
 import com.lowagie.text.Image;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -79,8 +75,6 @@ public class pnlStudent extends javax.swing.JPanel {
     }
 
     public void loadTable(ArrayList<Student> liststudent) {
-        System.out.println("Date Start :" + dateChooserDateStartSearch.getDate());
-        System.out.println("Date End   :" + dateChooserDateEndSearch.getDate());
         filter = new ArrayList<Student>();
         boolean status = false;
         for (Student student : liststudent) {
@@ -88,30 +82,15 @@ public class pnlStudent extends javax.swing.JPanel {
             if (student.getId().toLowerCase().matches(".*" + txtStudentIdSearch.getText().trim().toLowerCase() + ".*")
                     && student.getFirstName().toLowerCase().matches(".*" + txtFirstNameSearch.getText().trim().toLowerCase() + ".*")
                     && student.getLastName().toLowerCase().matches(".*" + txtLastNameSearch.getText().trim().toLowerCase() + ".*")) {
-                if (dateChooserDateEndSearch.getDate() != null && dateChooserDateStartSearch.getDate() != null) {
-                    if (student.getBirthDay().after(dateChooserDateStartSearch.getDate()) && student.getBirthDay().before(dateChooserDateEndSearch.getDate())) {
-                        if (radioAll.isSelected()) {
-                            filter.add(student);
-                            System.out.println("Hi1");
-                        } else if (radioMaleSearch.isSelected() && student.getGender() == 0) {
-                            filter.add(student);
-                            System.out.println("Hi2");
-                        } else if (radioFemaleSearch.isSelected() && student.getGender() == 1) {
-                            filter.add(student);
-                            System.out.println("Hi3");
-                        }
-                    }
-                } else {
-                    if (radioAll.isSelected()) {
-                        filter.add(student);
-                        System.out.println("Hi1");
-                    } else if (radioMaleSearch.isSelected() && student.getGender() == 0) {
-                        filter.add(student);
-                        System.out.println("Hi2");
-                    } else if (radioFemaleSearch.isSelected() && student.getGender() == 1) {
-                        filter.add(student);
-                        System.out.println("Hi3");
-                    }
+                if (radioAll.isSelected()) {
+                    filter.add(student);
+                    System.out.println("Hi1");
+                } else if (radioMaleSearch.isSelected() && student.getGender() == 0) {
+                    filter.add(student);
+                    System.out.println("Hi2");
+                } else if (radioFemaleSearch.isSelected() && student.getGender() == 1) {
+                    filter.add(student);
+                    System.out.println("Hi3");
                 }
             }
         }
@@ -221,9 +200,6 @@ public class pnlStudent extends javax.swing.JPanel {
         txtFirstNameSearch = new javax.swing.JTextField();
         lblLastName = new javax.swing.JLabel();
         txtLastNameSearch = new javax.swing.JTextField();
-        lblBirthday1 = new javax.swing.JLabel();
-        dateChooserDateStartSearch = new com.toedter.calendar.JDateChooser();
-        dateChooserDateEndSearch = new com.toedter.calendar.JDateChooser();
         lblGender1 = new javax.swing.JLabel();
         radioMaleSearch = new javax.swing.JRadioButton();
         radioFemaleSearch = new javax.swing.JRadioButton();
@@ -625,9 +601,9 @@ public class pnlStudent extends javax.swing.JPanel {
         lblLastName.setForeground(new java.awt.Color(3, 3, 3));
         lblLastName.setText("Last Name: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(lblLastName, gridBagConstraints);
 
@@ -639,72 +615,19 @@ public class pnlStudent extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(txtLastNameSearch, gridBagConstraints);
-
-        lblBirthday1.setForeground(new java.awt.Color(3, 3, 3));
-        lblBirthday1.setText("Birthday: ");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
-        panelInfo.add(lblBirthday1, gridBagConstraints);
-
-        dateChooserDateStartSearch.setDateFormatString("MM/dd/yyyy");
-        dateChooserDateStartSearch.setMinimumSize(new java.awt.Dimension(150, 20));
-        dateChooserDateStartSearch.setPreferredSize(new java.awt.Dimension(200, 20));
-        dateChooserDateStartSearch.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-                dateChooserDateStartSearchCaretPositionChanged(evt);
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-            }
-        });
-        dateChooserDateStartSearch.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                dateChooserDateStartSearchAncestorAdded(evt);
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelInfo.add(dateChooserDateStartSearch, gridBagConstraints);
-
-        dateChooserDateEndSearch.setDateFormatString("MM/dd/yyyy");
-        dateChooserDateEndSearch.setMinimumSize(new java.awt.Dimension(150, 20));
-        dateChooserDateEndSearch.setPreferredSize(new java.awt.Dimension(200, 20));
-        dateChooserDateEndSearch.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-                dateChooserDateEndSearchCaretPositionChanged(evt);
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelInfo.add(dateChooserDateEndSearch, gridBagConstraints);
 
         lblGender1.setForeground(new java.awt.Color(3, 3, 3));
         lblGender1.setText("Gender:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         panelInfo.add(lblGender1, gridBagConstraints);
 
@@ -719,7 +642,7 @@ public class pnlStudent extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(radioMaleSearch, gridBagConstraints);
@@ -735,7 +658,7 @@ public class pnlStudent extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(radioFemaleSearch, gridBagConstraints);
@@ -777,7 +700,7 @@ public class pnlStudent extends javax.swing.JPanel {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 7;
         gridBagConstraints.insets = new java.awt.Insets(15, 5, 5, 5);
         panelInfo.add(jPanel1, gridBagConstraints);
@@ -807,7 +730,7 @@ public class pnlStudent extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         panelInfo.add(radioAll, gridBagConstraints);
 
@@ -1021,8 +944,6 @@ public class pnlStudent extends javax.swing.JPanel {
         txtStudentIdSearch.setText(null);
         txtFirstNameSearch.setText(null);
         txtLastNameSearch.setText(null);
-        dateChooserDateEndSearch.setDate(null);
-        dateChooserDateStartSearch.setDate(null);
         radioMaleSearch.setSelected(true);
     }//GEN-LAST:event_btnResetActionPerformed
 
@@ -1250,7 +1171,7 @@ public class pnlStudent extends javax.swing.JPanel {
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
         // TODO add your handling code here:
-       if (!filter.isEmpty()) {
+        if (!filter.isEmpty()) {
             frm.pnlReport.removeAll();
             dlgChooseReport report = new dlgChooseReport(frm, this);
             report.getStudentReport(filter);
@@ -1273,25 +1194,10 @@ public class pnlStudent extends javax.swing.JPanel {
         loadTable(liststudent);
     }//GEN-LAST:event_radioFemaleSearchItemStateChanged
 
-    private void dateChooserDateStartSearchAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_dateChooserDateStartSearchAncestorAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dateChooserDateStartSearchAncestorAdded
-
-    private void dateChooserDateStartSearchCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_dateChooserDateStartSearchCaretPositionChanged
-        // TODO add your handling code here:
-        loadTable(liststudent);
-    }//GEN-LAST:event_dateChooserDateStartSearchCaretPositionChanged
-
-    private void dateChooserDateEndSearchCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_dateChooserDateEndSearchCaretPositionChanged
-        // TODO add your handling code here:
-        loadTable(liststudent);
-    }//GEN-LAST:event_dateChooserDateEndSearchCaretPositionChanged
-
     private void radioAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAllActionPerformed
         // TODO add your handling code here:
         loadTable(liststudent);
     }//GEN-LAST:event_radioAllActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddEdit;
     private javax.swing.JButton btnBrowseEdit;
@@ -1305,14 +1211,11 @@ public class pnlStudent extends javax.swing.JPanel {
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnUpdateEdit;
     private com.toedter.calendar.JDateChooser dateChBirthdayEdit;
-    private com.toedter.calendar.JDateChooser dateChooserDateEndSearch;
-    private com.toedter.calendar.JDateChooser dateChooserDateStartSearch;
     private javax.swing.JTextField filterText;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblBirthday;
-    private javax.swing.JLabel lblBirthday1;
     private javax.swing.JLabel lblCount;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblEnterFiter;

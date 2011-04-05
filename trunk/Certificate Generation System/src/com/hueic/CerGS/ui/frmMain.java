@@ -1055,48 +1055,6 @@ public class frmMain extends javax.swing.JFrame {
     }//GEN-LAST:event_radioWindowsXPActionPerformed
 
     public void isLogout() {
-//        pnlHome.removeAll();
-//        pnlHome.add(homeAdmin);
-//
-//        pnlEmployee.removeAll();
-//        pnlEmployee.add(emp);
-//
-//        pnlStudent.removeAll();
-//        pnlStudent.add(student);
-//
-//        pnlRegister.removeAll();
-//        pnlRegister.add(register);
-//
-//        pnlCourse.removeAll();
-//        pnlCourse.add(course);
-//
-//        pnlPayment.removeAll();
-//        pnlPayment.add(payment);
-//
-//        pnlSubject.removeAll();
-//        pnlSubject.add(subject);
-//
-//        pnlMark.removeAll();
-//        pnlMark.add(mark);
-//
-//        pnlCertificate.removeAll();
-//        pnlCertificate.add(cer);
-//
-//        pnlAccount.removeAll();
-//        pnlAccount.add(account);
-//
-//        pnlPermission.removeAll();
-//        pnlPermission.add(per);
-//
-//        pnlViewMark.removeAll();
-//        pnlViewMark.add(viewMark);
-//
-//        pnlViewPayment.removeAll();
-//        pnlViewPayment.add(viewPayment);
-//
-//        pnlDevelopDegree.removeAll();
-//        pnlDevelopDegree.add(developDegree);
-//        pnlReport.add(report);
 
         tpnBusiness.removeAll();
         tpnBusiness.addTab("Home                  ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlHomeTab);
