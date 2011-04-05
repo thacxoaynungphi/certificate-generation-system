@@ -980,7 +980,7 @@ public class pnlEmployee extends javax.swing.JPanel {
                 isAdd = true;
                 txtID.setEnabled(true);
                 btnCancelEdit.setVisible(true);
-                //  resetEditDetails();
+                resetEditDetails();
             } else {
                 Employee emp = new Employee();
 
