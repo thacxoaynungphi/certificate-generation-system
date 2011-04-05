@@ -21,12 +21,10 @@ import com.hueic.CerGS.entity.Mark;
 import com.hueic.CerGS.entity.Register;
 import com.hueic.CerGS.entity.Subject;
 import java.util.ArrayList;
-import java.util.regex.PatternSyntaxException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
-import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.table.TableModel;
@@ -109,8 +107,8 @@ public class pnlMark extends javax.swing.JPanel {
         filter = new ArrayList<Mark>();
         for (Mark mark : listMark) {
             if (mark.getStudentId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
-                    && String.valueOf(mark.getMark()).toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
-                    && mark.getSubjectId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
+                    || String.valueOf(mark.getMark()).toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                    || mark.getSubjectId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
                 filter.add(mark);
             }
         }
