@@ -39,8 +39,8 @@ public class CertificateDAO extends BaseDAO implements ICertificateDAO {
             }
             setLastError("Read All successfully");
         } catch (Exception ex) {
-             setLastError("SQL Error!");
-        }finally {
+            setLastError("SQL Error!");
+        } finally {
             db.closeConnection();
         }
         return list;
@@ -63,13 +63,13 @@ public class CertificateDAO extends BaseDAO implements ICertificateDAO {
             }
             setLastError("Read  successfully");
         } catch (Exception ex) {
-           setLastError("SQL Error!");
-        } 
+            setLastError("SQL Error!");
+        }
         return cer;
     }
 
     public Certificate readByStudentId(String studentID) {
-       Certificate cer = null;
+        Certificate cer = null;
         con = db.getConnection();
         String sql = "select * from Certificate where StudentId = ?";
         try {
@@ -84,8 +84,8 @@ public class CertificateDAO extends BaseDAO implements ICertificateDAO {
                 cer.setDegreeDay(rs.getDate(4));
             }
         } catch (Exception ex) {
-             setLastError("SQL Error!");
-        }  finally {
+            setLastError("SQL Error!");
+        } finally {
             db.closeConnection();
         }
         return cer;

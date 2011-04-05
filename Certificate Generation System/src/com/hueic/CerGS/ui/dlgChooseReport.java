@@ -51,6 +51,7 @@ public class dlgChooseReport extends javax.swing.JPanel {
     String subjectId;
     JPanel pnlOld;
     frmMain parent;
+    public boolean  status = true;
 
     /** Creates new form dlgChooseReport */
     public dlgChooseReport(frmMain parent, JPanel pnlOld) {
@@ -63,6 +64,11 @@ public class dlgChooseReport extends javax.swing.JPanel {
 
     public void getCertificateReport(String studentId) {
         cerReport = new pnlCertificateReport(studentId);
+        if (cerReport.status == false) {
+            parent.tpnBusiness.setSelectedComponent(this.pnlOld);
+            status = false;
+            return;
+        }
         this.pnlBrowser.add(cerReport);
     }
 
