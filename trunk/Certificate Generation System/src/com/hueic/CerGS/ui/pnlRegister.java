@@ -763,7 +763,7 @@ public class pnlRegister extends javax.swing.JPanel {
                 btnUpdate.setEnabled(false);
                 btnDelete.setEnabled(false);
                 btnCancelEdit.setVisible(true);
-//                resetDetails();
+                resetDetails();
             } else {
                 String Id = txtStudentId.getText();
                 String studentId = txtId.getText();
