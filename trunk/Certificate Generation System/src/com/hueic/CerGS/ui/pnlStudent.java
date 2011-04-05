@@ -654,6 +654,7 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         panelInfo.add(lblBirthday1, gridBagConstraints);
 
+        dateChooserDateStartSearch.setDateFormatString("MM/dd/yyyy");
         dateChooserDateStartSearch.setMinimumSize(new java.awt.Dimension(150, 20));
         dateChooserDateStartSearch.setPreferredSize(new java.awt.Dimension(200, 20));
         dateChooserDateStartSearch.addInputMethodListener(new java.awt.event.InputMethodListener() {
@@ -680,6 +681,7 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(dateChooserDateStartSearch, gridBagConstraints);
 
+        dateChooserDateEndSearch.setDateFormatString("MM/dd/yyyy");
         dateChooserDateEndSearch.setMinimumSize(new java.awt.Dimension(150, 20));
         dateChooserDateEndSearch.setPreferredSize(new java.awt.Dimension(200, 20));
         dateChooserDateEndSearch.addInputMethodListener(new java.awt.event.InputMethodListener() {

@@ -20,7 +20,11 @@ import java.util.logging.Logger;
  */
 public class ConfigureDB {
 
-    String fileName = "src/com/hueic/CerGS/temp/ConfigureDB.properties";
+    String fileName;
+
+    public ConfigureDB() {
+        fileName = System.getProperty("user.dir") + "/config" + "/ConfigureDB.properties";
+    }
     //thuc hien lay du lieu tu trong file luu tai khoan
 
     public Configure getInfo() {
@@ -41,12 +45,10 @@ public class ConfigureDB {
                     config.setPassword(properties.getProperty("password"));
                 }
             } catch (Exception ex) {
-                
             } finally {
                 try {
                     fis.close();
                 } catch (IOException ex) {
-                   
                 }
             }
         }
@@ -87,12 +89,10 @@ public class ConfigureDB {
             properties.load(fis);
             properties.clear();
         } catch (IOException ex) {
-            
         } finally {
             try {
                 fis.close();
             } catch (IOException ex) {
-               
             }
         }
     }

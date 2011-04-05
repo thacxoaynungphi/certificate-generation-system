@@ -68,11 +68,15 @@ public class pnlCertificate extends javax.swing.JPanel {
         filter = new ArrayList<Certificate>();
         for (Certificate cer : listCertificate) {
             if (cer.getStudentID().toLowerCase().matches(".*" + txtStudentIDSearch.getText().trim().toLowerCase() + ".*") //                    && cer..getName().toLowerCase().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")
-                    //                    && String.valueOf(sub.getCoefficient()).toLowerCase().matches(".*" + txtCoefficientSearch.getText().trim().toLowerCase() + ".*")
-                    //                    && sub.getCourseID().toLowerCase().matches(".*" + txtCoureIDSearch.getText().trim().toLowerCase() + ".*")
-                    //chua xet diem va ngay thang
-                    ) {
-                filter.add(cer);
+                    && String.valueOf(cer.getId()).toLowerCase().matches(".*" + txtIDSearch.getText().trim().toLowerCase() + ".*")
+                    && String.valueOf(cer.getMark()).toLowerCase().matches(".*" + txtMarkSearch.getText().trim().toLowerCase() + ".*")) {
+                if (dateChooseDegreeDaySearch.getDate() != null) {
+                    if (dateChooseDegreeDaySearch.getDate().compareTo(cer.getDegreeDay()) == 0) {
+                        filter.add(cer);
+                    }
+                } else {
+                    filter.add(cer);
+                }
             }
         }
         if (filter.size() != 0) {
@@ -330,6 +334,7 @@ public class pnlCertificate extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlTop1.add(txtID, gridBagConstraints);
 
+        dateChooseDegreeDay.setDateFormatString("MM/dd/yyyy");
         dateChooseDegreeDay.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
@@ -479,6 +484,7 @@ public class pnlCertificate extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlTop2.add(txtIDSearch, gridBagConstraints);
 
+        dateChooseDegreeDaySearch.setDateFormatString("MM/dd/yyyy");
         dateChooseDegreeDaySearch.setMaxSelectableDate(new java.util.Date(253370743317000L));
         dateChooseDegreeDaySearch.setMaximumSize(new java.awt.Dimension(200, 20));
         dateChooseDegreeDaySearch.setMinimumSize(new java.awt.Dimension(200, 20));

@@ -568,7 +568,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         pnlTop1.add(lblBeginwork, gridBagConstraints);
 
-        dateChBeginWorkEdit.setDateFormatString("MM\\dd\\yyyy");
+        dateChBeginWorkEdit.setDateFormatString("MM/dd/yyyy");
         dateChBeginWorkEdit.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
@@ -677,6 +677,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         pnlTop2.add(lblBirthday1, gridBagConstraints);
 
+        dateChooserDateStartSearch.setDateFormatString("MM/dd/yyyy");
         dateChooserDateStartSearch.setMinimumSize(new java.awt.Dimension(150, 20));
         dateChooserDateStartSearch.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -687,6 +688,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlTop2.add(dateChooserDateStartSearch, gridBagConstraints);
 
+        dateChooserDateEndSearch.setDateFormatString("MM/dd/yyyy");
         dateChooserDateEndSearch.setMinimumSize(new java.awt.Dimension(150, 20));
         dateChooserDateEndSearch.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();

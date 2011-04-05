@@ -19,7 +19,11 @@ import java.util.logging.Logger;
  */
 public class RememberAccount {
 
-    String fileName = "src/com/hueic/CerGS/temp/UserLogin.properties";
+    String fileName;
+
+    public RememberAccount() {
+        fileName = System.getProperty("user.dir") + "/config" + "/UserLogin.properties";
+    }
     //thuc hien lay du lieu tu trong file luu tai khoan
 
     public Account getUser() {
