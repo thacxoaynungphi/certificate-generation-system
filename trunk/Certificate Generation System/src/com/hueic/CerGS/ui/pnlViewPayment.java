@@ -411,7 +411,6 @@ public class pnlViewPayment extends javax.swing.JPanel {
     public void searchStart() {
         if (!listPayments.isEmpty()) {
             String text = filterText.getText();
-            System.out.println("Text :" + text);
             if (text.length() == 0) {
                 sorter.setRowFilter(null);
             } else {
@@ -436,16 +435,31 @@ public class pnlViewPayment extends javax.swing.JPanel {
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
         // TODO add your handling code here:
-        if (!this.cbxStudentID.getSelectedItem().equals("------")) {
-            frm.pnlReport.removeAll();
-            dlgChooseReport report = new dlgChooseReport(frm, frm.pnlViewPaymentTab);
-            report.getStudentFeeReport(this.cbxStudentID.getSelectedItem().toString());
-            report.setVisible(true);
-            report.setSize(860, 600);
-            frm.pnlReport.add(report);
-            frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+        PermissionDAO perDao = new PermissionDAO();
+        if (perDao.readByID(frm.accCur.getPermission()).getName().equals("Student")) {
+            if (!cbxCourseID.getSelectedItem().toString().equals("-- All --")) {
+                frm.pnlReport.removeAll();
+                dlgChooseReport report = new dlgChooseReport(frm, frm.pnlViewPaymentTab);
+                report.getStudentFeeReport(registerDao.readById(this.frm.accCur.getUsername(), cbxCourseID.getSelectedItem().toString()).getStudentId());
+                report.setVisible(true);
+                report.setSize(860, 600);
+                frm.pnlReport.add(report);
+                frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+            } else {
+                JOptionPane.showMessageDialog(this, "You are choose course!", "Report payment student", JOptionPane.INFORMATION_MESSAGE);
+            }
         } else {
-            JOptionPane.showMessageDialog(this, "You are choose student!", "Report payment student", JOptionPane.INFORMATION_MESSAGE);
+            if (!this.cbxStudentID.getSelectedItem().equals("------")) {
+                frm.pnlReport.removeAll();
+                dlgChooseReport report = new dlgChooseReport(frm, frm.pnlViewPaymentTab);
+                report.getStudentFeeReport(this.cbxStudentID.getSelectedItem().toString());
+                report.setVisible(true);
+                report.setSize(860, 600);
+                frm.pnlReport.add(report);
+                frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+            } else {
+                JOptionPane.showMessageDialog(this, "You are choose student!", "Report payment student", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btnReportActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables

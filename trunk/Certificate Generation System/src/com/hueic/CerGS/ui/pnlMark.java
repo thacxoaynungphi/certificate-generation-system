@@ -66,7 +66,7 @@ public class pnlMark extends javax.swing.JPanel {
         courseList = courseDAO.readByAll();
         listSubject = subjectDAO.readByAll();
         if (listMark != null) {
-            loadData(listMark);
+            loadData();
             loadDetails(listMark.get(0));
         }
         btnCancel.setVisible(false);
@@ -84,13 +84,13 @@ public class pnlMark extends javax.swing.JPanel {
         courseList = courseDAO.readByAll();
         listSubject = subjectDAO.readByAll();
         if (listMark != null) {
-            loadData(listMark);
+            loadData();
             loadDetails(listMark.get(0));
         }
         btnCancel.setVisible(false);
     }
 
-    public void loadData(ArrayList<Mark> listMark) {
+    public void loadData() {
         filter = new ArrayList<Mark>();
         for (Mark mark : listMark) {
             if (mark.getStudentId().toLowerCase().matches(".*" + txtStudentIdSearch.getText().trim().toLowerCase() + ".*")
@@ -102,7 +102,25 @@ public class pnlMark extends javax.swing.JPanel {
         if (filter.size() != 0) {
             loadDetails(filter.get(0));
         }
+        loadTable(filter);
+    }
 
+    public void loadFiter(String text) {
+        filter = new ArrayList<Mark>();
+        for (Mark mark : listMark) {
+            if (mark.getStudentId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                    && String.valueOf(mark.getMark()).toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                    && mark.getSubjectId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
+                filter.add(mark);
+            }
+        }
+        if (filter.size() != 0) {
+            loadDetails(filter.get(0));
+        }
+        loadTable(filter);
+    }
+
+    public void loadTable(ArrayList<Mark> filter) {
         ColumnData[] columns = {
             new ColumnData("ID", 140, SwingConstants.LEFT, 1),
             new ColumnData("Student ID", 170, SwingConstants.LEFT, 2),
@@ -146,22 +164,6 @@ public class pnlMark extends javax.swing.JPanel {
             }
         }
         return null;
-    }
-
-    public void searchStart() {
-        if (!listMark.isEmpty()) {
-            String text = filterText.getText();
-            System.out.println("Text :" + text);
-            if (text.length() == 0) {
-                sorter.setRowFilter(null);
-            } else {
-                try {
-                    sorter.setRowFilter(RowFilter.regexFilter(text));
-                } catch (PatternSyntaxException pse) {
-                    System.err.println("Bad regex pattern");
-                }
-            }
-        }
     }
 
     /** This method is called from within the constructor to
@@ -712,7 +714,7 @@ public class pnlMark extends javax.swing.JPanel {
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
-        searchStart();
+        loadFiter(filterText.getText());
 }//GEN-LAST:event_btnFilterActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -738,7 +740,7 @@ public class pnlMark extends javax.swing.JPanel {
                 mark.setSubjectId(txtSubjectID.getText());
                 if (markDAO.create(mark)) {
                     listMark.add(mark);
-                    loadData(listMark);
+                    loadData();
                     loadDetails(listMark.get(0));
                     JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Add", JOptionPane.INFORMATION_MESSAGE);
                 } else {
@@ -757,7 +759,7 @@ public class pnlMark extends javax.swing.JPanel {
             if (mark != null) {
                 mark.setMark(Float.parseFloat(txtMark.getText()));
                 if (markDAO.update(mark)) {
-                    loadData(listMark);
+                    loadData();
                 }
             }
         } catch (Exception ex) {
@@ -771,7 +773,7 @@ public class pnlMark extends javax.swing.JPanel {
             if (mark != null) {
                 if (markDAO.delete(mark)) {
                     listMark.remove(mark);
-                    loadData(listMark);
+                    loadData();
                 }
             }
         } catch (Exception ex) {
@@ -843,27 +845,27 @@ public class pnlMark extends javax.swing.JPanel {
 
     private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
         // TODO add your handling code here:
-        searchStart();
+        loadFiter(filterText.getText());
     }//GEN-LAST:event_filterTextCaretUpdate
 
     private void txtMarkIdSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtMarkIdSearchCaretUpdate
         // TODO add your handling code here:
-        loadData(listMark);
+        loadData();
     }//GEN-LAST:event_txtMarkIdSearchCaretUpdate
 
     private void txtStudentIdSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtStudentIdSearchCaretUpdate
         // TODO add your handling code here:
-        loadData(listMark);
+        loadData();
     }//GEN-LAST:event_txtStudentIdSearchCaretUpdate
 
     private void txtSubjectIDSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtSubjectIDSearchCaretUpdate
         // TODO add your handling code here:
-        loadData(listMark);
+        loadData();
     }//GEN-LAST:event_txtSubjectIDSearchCaretUpdate
 
     private void txtMarkSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtMarkSearchCaretUpdate
         // TODO add your handling code here:
-        loadData(listMark);
+        loadData();
     }//GEN-LAST:event_txtMarkSearchCaretUpdate
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed

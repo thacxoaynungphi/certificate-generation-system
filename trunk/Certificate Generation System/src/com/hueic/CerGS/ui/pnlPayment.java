@@ -20,14 +20,10 @@ import com.hueic.CerGS.entity.Course;
 import com.hueic.CerGS.entity.Payment;
 import com.hueic.CerGS.entity.Register;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.regex.PatternSyntaxException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
-import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.table.TableModel;
@@ -68,8 +64,8 @@ public class pnlPayment extends javax.swing.JPanel {
         listCourse = courseDao.readByAll();
         //TODO: chua kiem tra xem sinh vien do da nop tien chua
         listRegister = registerDAO.readByAll();
-        if (listPayments.size() != 0) {
-            loadData(listPayments);
+        if (!listPayments.isEmpty()) {
+            loadData();
             loadDetails(listPayments.get(0));
         }
     }
@@ -88,12 +84,12 @@ public class pnlPayment extends javax.swing.JPanel {
         //TODO: chua kiem tra xem sinh vien do da nop tien chua
         listRegister = registerDAO.readByAll();
         if (listPayments.size() != 0) {
-            loadData(listPayments);
+            loadData();
             loadDetails(listPayments.get(0));
         }
     }
 
-    public void loadData(ArrayList<Payment> listPayments) {
+    public void loadData() {
         filter = new ArrayList<Payment>();
         for (Payment pay : listPayments) {
             if (pay.getStudentId().toLowerCase().matches(".*" + txtStudentIdSearch.getText().trim().toLowerCase() + ".*")
@@ -104,6 +100,24 @@ public class pnlPayment extends javax.swing.JPanel {
         if (filter.size() != 0) {
             loadDetails(filter.get(0));
         }
+        loadTable(filter);
+    }
+
+    public void loadFiter(String text) {
+        filter = new ArrayList<Payment>();
+        for (Payment pay : listPayments) {
+            if (pay.getStudentId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                    || registerDAO.readByStudentId(pay.getStudentId()).getCourseId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
+                filter.add(pay);
+            }
+        }
+        if (filter.size() != 0) {
+            loadDetails(filter.get(0));
+        }
+        loadTable(filter);
+    }
+
+    public void loadTable(ArrayList<Payment> filter) {
         ColumnData[] columns = {
             new ColumnData("ID", 100, SwingConstants.LEFT, 1),
             new ColumnData("Student ID", 140, SwingConstants.LEFT, 2),
@@ -150,21 +164,6 @@ public class pnlPayment extends javax.swing.JPanel {
             }
         }
         return -1;
-    }
-
-    public void searchStart() {
-        if (!listPayments.isEmpty()) {
-            String text = filterText.getText();
-            if (text.length() == 0) {
-                sorter.setRowFilter(null);
-            } else {
-                try {
-                    sorter.setRowFilter(RowFilter.regexFilter(text));
-                } catch (PatternSyntaxException pse) {
-                    System.err.println("Bad regex pattern");
-                }
-            }
-        }
     }
 
     /** This method is called from within the constructor to
@@ -355,13 +354,6 @@ public class pnlPayment extends javax.swing.JPanel {
         dateChPayDay.setDateFormatString("MM/dd/yyyy");
         dateChPayDay.setMinimumSize(new java.awt.Dimension(200, 20));
         dateChPayDay.setPreferredSize(new java.awt.Dimension(200, 20));
-        dateChPayDay.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-                dateChPayDayCaretPositionChanged(evt);
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 3;
@@ -651,7 +643,7 @@ public class pnlPayment extends javax.swing.JPanel {
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
-        searchStart();
+        loadFiter(filterText.getText());
 }//GEN-LAST:event_btnFilterActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
@@ -675,7 +667,7 @@ public class pnlPayment extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (paymentDao.delete(currentId)) {
             listPayments.remove(getPaymentById(currentId));
-            loadData(listPayments);
+            loadData();
             if (!listPayments.isEmpty()) {
                 loadDetails(listPayments.get(0));
             }
@@ -688,8 +680,10 @@ public class pnlPayment extends javax.swing.JPanel {
         Payment payment = new Payment();
         try {
             String id = txtId.getText();
-            if(!id.isEmpty()) payment.setId(Integer.parseInt(id));
-            
+            if (!id.isEmpty()) {
+                payment.setId(Integer.parseInt(id));
+            }
+
             payment.setMoney(Float.parseFloat(txtMoney.getText()));
             payment.setPayday(new java.sql.Date(dateChPayDay.getDate().getTime()));
             payment.setStudentId(txtStudentId.getText());
@@ -713,10 +707,20 @@ public class pnlPayment extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Update Payment", JOptionPane.INFORMATION_MESSAGE);
 
                 listPayments = paymentDao.readByAll();
-                loadData(listPayments);
+                loadData();
                 loadDetails(listPayments.get(0));
             } else {
-                JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Update Payment", JOptionPane.ERROR_MESSAGE);
+                isUpdate = false;
+                pay = getPaymentById(currentId);
+                pay.setMoney(Float.parseFloat(txtMoney.getText()));
+                pay.setPayday(new java.sql.Date(dateChPayDay.getDate().getTime()));
+                if (paymentDao.update(pay)) {
+                    JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Update Payment", JOptionPane.INFORMATION_MESSAGE);
+                    loadData();
+                    loadDetails(pay);
+                } else {
+                    JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Update Payment", JOptionPane.ERROR_MESSAGE);
+                }
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.toString(), "Update Payment", JOptionPane.ERROR_MESSAGE);
@@ -742,7 +746,7 @@ public class pnlPayment extends javax.swing.JPanel {
                 //TODO: chua lay duoc chi so tu tang cua ban ghi moi dua vo
                 Payment pay = getPaymentFromForm();
                 Course course = courseDao.readById(registerDAO.readByStudentId(pay.getStudentId()).getCourseId());
-                
+
                 if (pay.getMoney() > course.getTotalFees() - (paymentDao.getCurrentTotalDiposit(pay))) {
                     JOptionPane.showMessageDialog(this, "You can't pay greater your total arrears", "Payment Update", JOptionPane.ERROR_MESSAGE);
                     return;
@@ -751,7 +755,7 @@ public class pnlPayment extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Create Payment", JOptionPane.INFORMATION_MESSAGE);
 
                     listPayments = paymentDao.readByAll();
-                    loadData(listPayments);
+                    loadData();
                     loadDetails(listPayments.get(0));
 
                     isAdd = false;
@@ -797,7 +801,7 @@ public class pnlPayment extends javax.swing.JPanel {
 
     private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
         // TODO add your handling code here:
-        searchStart();
+        loadFiter(filterText.getText());
     }//GEN-LAST:event_filterTextCaretUpdate
 
     private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
@@ -812,12 +816,12 @@ public class pnlPayment extends javax.swing.JPanel {
 
     private void txtCourseIdSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtCourseIdSearchCaretUpdate
         // TODO add your handling code here:
-        loadData(listPayments);
+        loadData();
     }//GEN-LAST:event_txtCourseIdSearchCaretUpdate
 
     private void txtStudentIdSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtStudentIdSearchCaretUpdate
         // TODO add your handling code here:
-        loadData(listPayments);
+        loadData();
     }//GEN-LAST:event_txtStudentIdSearchCaretUpdate
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
@@ -835,11 +839,6 @@ public class pnlPayment extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_btnReportActionPerformed
-
-    private void dateChPayDayCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_dateChPayDayCaretPositionChanged
-        // TODO add your handling code here:
-        loadData(listPayments);
-    }//GEN-LAST:event_dateChPayDayCaretPositionChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;

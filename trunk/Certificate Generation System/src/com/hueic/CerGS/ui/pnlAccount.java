@@ -38,7 +38,6 @@ public class pnlAccount extends javax.swing.JPanel {
     /** Creates new form frmAcc */
     private ArrayList<Account> listAccounts = new ArrayList<Account>();
     private AccountDAO accDao;
-    TableRowSorter<TableModel> sorter;
     boolean isAdd = false;
     private PermissionDAO permissionDao;
     private PersonDAO personDao;
@@ -53,7 +52,7 @@ public class pnlAccount extends javax.swing.JPanel {
         permissionDao = new PermissionDAO();
         personDao = new PersonDAO();
         listAccounts = accDao.readByAll();
-        loadData(listAccounts);
+        loadData();
         if (listAccounts.size() != 0) {
             loadDetails(listAccounts.get(0));
         }
@@ -66,13 +65,13 @@ public class pnlAccount extends javax.swing.JPanel {
         permissionDao = new PermissionDAO();
         personDao = new PersonDAO();
         listAccounts = accDao.readByAll();
-        loadData(listAccounts);
+        loadData();
         if (listAccounts.size() != 0) {
             loadDetails(listAccounts.get(0));
         }
     }
 
-    public void loadData(ArrayList<Account> listAccounts) {
+    public void loadData() {
         filter = new ArrayList<Account>();
         for (Account acc : listAccounts) {
             if (acc.getUsername().toLowerCase().matches(".*" + txtUsernameSearch.getText().trim().toLowerCase() + ".*")
@@ -83,13 +82,29 @@ public class pnlAccount extends javax.swing.JPanel {
         if (filter.size() != 0) {
             loadDetails(filter.get(0));
         }
+        loadTable(filter);
+    }
+
+    public void loadFiter(String text) {
+        filter = new ArrayList<Account>();
+        for (Account acc : listAccounts) {
+            if (acc.getUsername().toLowerCase().matches(".*" + txtUsernameSearch.getText().trim().toLowerCase() + ".*")
+                    || String.valueOf(acc.getPermission()).toLowerCase().matches(".*" + txtPermissionSearch.getText().trim().toLowerCase() + ".*")) {
+                filter.add(acc);
+            }
+        }
+        if (filter.size() != 0) {
+            loadDetails(filter.get(0));
+        }
+        loadTable(filter);
+    }
+
+    public void loadTable(ArrayList<Account> filter) {
         ColumnData[] columns = {
             new ColumnData("Username", 135, SwingConstants.LEFT, 1),
             new ColumnData("Password", 100, SwingConstants.LEFT, 2),
             new ColumnData("Permission", 140, SwingConstants.LEFT, 3),};
         tableModel = new ObjectTableModel(tableContent, columns, filter);
-        sorter = new TableRowSorter<TableModel>(tableModel);
-        tableContent.setRowSorter(sorter);
         headerTable = tableModel.getHeaderTable();
         // Create numbering column
         headerTable.createDefaultColumnsFromModel();
@@ -591,23 +606,9 @@ public class pnlAccount extends javax.swing.JPanel {
         add(tpAccount, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    public void searchStart() {
-        if (listAccounts.size() != 0) {
-            String text = filterText.getText();
-            if (text.length() == 0) {
-                sorter.setRowFilter(null);
-            } else {
-                try {
-                    sorter.setRowFilter(RowFilter.regexFilter(text));
-                } catch (PatternSyntaxException pse) {
-                    System.err.println("Bad regex pattern");
-                }
-            }
-        }
-    }
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
-        searchStart();
+        loadFiter(filterText.getText());
 }//GEN-LAST:event_btnFilterActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -632,7 +633,7 @@ public class pnlAccount extends javax.swing.JPanel {
                     if (accDao.create(acc)) {
                         JOptionPane.showMessageDialog(this, accDao.getLastError(), "Create Account", JOptionPane.INFORMATION_MESSAGE);
                         listAccounts.add(acc);
-                        loadData(listAccounts);
+                        loadData();
                         loadDetails(acc);
                         isAdd = false;
                         btnUpdate.setEnabled(true);
@@ -664,7 +665,7 @@ public class pnlAccount extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, accDao.getLastError(), "Update Account", JOptionPane.INFORMATION_MESSAGE);
                     //listAccounts.remove(find(acc.getUsername()));
                     listAccounts.set(listAccounts.indexOf(find(acc.getUsername())), acc);
-                    loadData(listAccounts);
+                    loadData();
                     loadDetails(acc);
                 } else {
                     JOptionPane.showMessageDialog(this, accDao.getLastError(), "Update Account", JOptionPane.ERROR_MESSAGE);
@@ -684,7 +685,7 @@ public class pnlAccount extends javax.swing.JPanel {
             if (accDao.delete(username)) {
                 JOptionPane.showMessageDialog(this, accDao.getLastError(), "Delete Account", JOptionPane.INFORMATION_MESSAGE, null);
                 listAccounts.remove(find(username));
-                loadData(listAccounts);
+                loadData();
                 if (listAccounts.size() != 0) {
                     loadDetails(listAccounts.get(0));
                 }
@@ -742,17 +743,17 @@ public class pnlAccount extends javax.swing.JPanel {
 
     private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
         // TODO add your handling code here:
-        searchStart();
+        loadFiter(filterText.getText());
     }//GEN-LAST:event_filterTextCaretUpdate
 
     private void txtUsernameSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtUsernameSearchCaretUpdate
         // TODO add your handling code here:
-        loadData(listAccounts);
+        loadData();
     }//GEN-LAST:event_txtUsernameSearchCaretUpdate
 
     private void txtPermissionSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtPermissionSearchCaretUpdate
         // TODO add your handling code here:
-        loadData(listAccounts);
+        loadData();
     }//GEN-LAST:event_txtPermissionSearchCaretUpdate
 
     private void btnChoosePerSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChoosePerSearchActionPerformed

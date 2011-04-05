@@ -24,7 +24,6 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.PatternSyntaxException;
 import javax.swing.CellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -32,12 +31,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
-import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -48,7 +44,6 @@ public class pnlStudent extends javax.swing.JPanel {
     private ArrayList<Student> liststudent = new ArrayList<Student>();
     ArrayList<Student> filter = null;
     private StudentDAO studentDao = new StudentDAO();
-    TableRowSorter<TableModel> sorter;
     private ObjectTableModel tableModel;
     private JTable headerTable;
     private boolean isAdd;
@@ -61,7 +56,7 @@ public class pnlStudent extends javax.swing.JPanel {
         isAdd = false;
         liststudent = studentDao.readByAll();
         btnCancelEdit.setVisible(false);
-        loadTable(liststudent);
+        loadData(liststudent);
     }
 
     public pnlStudent(frmMain frm) {
@@ -71,32 +66,46 @@ public class pnlStudent extends javax.swing.JPanel {
         isAdd = false;
         liststudent = studentDao.readByAll();
         btnCancelEdit.setVisible(false);
-        loadTable(liststudent);
+        loadData(liststudent);
     }
 
-    public void loadTable(ArrayList<Student> liststudent) {
+    public void loadData(ArrayList<Student> liststudent) {
         filter = new ArrayList<Student>();
-        boolean status = false;
         for (Student student : liststudent) {
-            status = false;
             if (student.getId().toLowerCase().matches(".*" + txtStudentIdSearch.getText().trim().toLowerCase() + ".*")
                     && student.getFirstName().toLowerCase().matches(".*" + txtFirstNameSearch.getText().trim().toLowerCase() + ".*")
                     && student.getLastName().toLowerCase().matches(".*" + txtLastNameSearch.getText().trim().toLowerCase() + ".*")) {
                 if (radioAll.isSelected()) {
                     filter.add(student);
-                    System.out.println("Hi1");
                 } else if (radioMaleSearch.isSelected() && student.getGender() == 0) {
                     filter.add(student);
-                    System.out.println("Hi2");
                 } else if (radioFemaleSearch.isSelected() && student.getGender() == 1) {
                     filter.add(student);
-                    System.out.println("Hi3");
                 }
             }
         }
         if (filter.size() != 0) {
             loadDetails(filter.get(0));
         }
+        loadTable(filter);
+    }
+
+    public void loadFilter(String text) {
+        filter = new ArrayList<Student>();
+        for (Student student : liststudent) {
+            if (student.getId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                    || student.getFirstName().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                    || student.getLastName().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
+                filter.add(student);
+            }
+        }
+        if (filter.size() != 0) {
+            loadDetails(filter.get(0));
+        }
+        loadTable(filter);
+    }
+
+    public void loadTable(ArrayList<Student> filter) {
         ColumnData[] columns = {
             new ColumnData("ID", 135, SwingConstants.LEFT, 1),
             new ColumnData("First Name", 150, SwingConstants.LEFT, 2),
@@ -106,8 +115,6 @@ public class pnlStudent extends javax.swing.JPanel {
             new ColumnData("Phone", 100, SwingConstants.LEFT, 6)
         };
         tableModel = new ObjectTableModel(tableContent, columns, filter);
-        sorter = new TableRowSorter<TableModel>(tableModel);
-        tableContent.setRowSorter(sorter);
         headerTable = tableModel.getHeaderTable();
         // Create numbering column
         headerTable.createDefaultColumnsFromModel();
@@ -930,7 +937,7 @@ public class pnlStudent extends javax.swing.JPanel {
             StudentDAO studentDAO = new StudentDAO();
             if (studentDAO.update(student)) {
                 liststudent = studentDAO.readByAll();
-                loadTable(liststudent);
+                loadData(liststudent);
                 JOptionPane.showMessageDialog(this, studentDAO.getLastError(), "Employee Add", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, studentDAO.getLastError(), "Employee Add", JOptionPane.ERROR_MESSAGE);
@@ -944,7 +951,7 @@ public class pnlStudent extends javax.swing.JPanel {
         txtStudentIdSearch.setText(null);
         txtFirstNameSearch.setText(null);
         txtLastNameSearch.setText(null);
-        radioMaleSearch.setSelected(true);
+        radioAll.setSelected(true);
     }//GEN-LAST:event_btnResetActionPerformed
 
     public void loadDetails(Student student) {
@@ -974,26 +981,6 @@ public class pnlStudent extends javax.swing.JPanel {
         } else {
             //TODO: hien thi anh khi khong co avatar
             lblImage2.setIcon(new ImageIcon(System.getProperty("user.dir") + "/avatar/no images.jpg"));
-        }
-    }
-
-    private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
-        // TODO add your handling code here:
-        startFilter();
-}//GEN-LAST:event_btnFilterActionPerformed
-
-    public void startFilter() {
-        if (!liststudent.isEmpty()) {
-            String text = filterText.getText();
-            if (text.length() == 0) {
-                sorter.setRowFilter(null);
-            } else {
-                try {
-                    sorter.setRowFilter(RowFilter.regexFilter(text));
-                } catch (PatternSyntaxException pse) {
-                    System.err.println("Bad regex pattern");
-                }
-            }
         }
     }
 
@@ -1051,7 +1038,7 @@ public class pnlStudent extends javax.swing.JPanel {
                 StudentDAO studentDao = new StudentDAO();
                 if (studentDao.create(student)) {
                     liststudent.add(student);
-                    loadTable(liststudent);
+                    loadData(liststudent);
                     JOptionPane.showMessageDialog(this, studentDao.getLastError(), "Create Student", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(this, studentDao.getLastError(), "Create Student", JOptionPane.ERROR_MESSAGE);
@@ -1076,30 +1063,25 @@ public class pnlStudent extends javax.swing.JPanel {
 
     private void txtStudentIdSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtStudentIdSearchCaretUpdate
         // TODO add your handling code here:
-        loadTable(liststudent);
+        loadData(liststudent);
     }//GEN-LAST:event_txtStudentIdSearchCaretUpdate
 
     private void txtFirstNameSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtFirstNameSearchCaretUpdate
         // TODO add your handling code here:
-        loadTable(liststudent);
+        loadData(liststudent);
     }//GEN-LAST:event_txtFirstNameSearchCaretUpdate
 
     private void txtLastNameSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtLastNameSearchCaretUpdate
         // TODO add your handling code here:
-        loadTable(liststudent);
+        loadData(liststudent);
     }//GEN-LAST:event_txtLastNameSearchCaretUpdate
-
-    private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
-        // TODO add your handling code here:
-        startFilter();
-    }//GEN-LAST:event_filterTextCaretUpdate
 
     private void btnDeleteEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteEditActionPerformed
         // TODO add your handling code here:
         String id = txtIDEdit.getText();
         if (studentDao.delete(id)) {
             liststudent = studentDao.readByAll();
-            loadTable(liststudent);
+            loadData(liststudent);
             JOptionPane.showMessageDialog(this, studentDao.getLastError(), "Student Delete", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this, studentDao.getLastError(), "Student Delete", JOptionPane.ERROR_MESSAGE);
@@ -1186,18 +1168,28 @@ public class pnlStudent extends javax.swing.JPanel {
 
     private void radioMaleSearchItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radioMaleSearchItemStateChanged
         // TODO add your handling code here:
-        loadTable(liststudent);
+        loadData(liststudent);
     }//GEN-LAST:event_radioMaleSearchItemStateChanged
 
     private void radioFemaleSearchItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radioFemaleSearchItemStateChanged
         // TODO add your handling code here:
-        loadTable(liststudent);
+        loadData(liststudent);
     }//GEN-LAST:event_radioFemaleSearchItemStateChanged
 
     private void radioAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAllActionPerformed
         // TODO add your handling code here:
-        loadTable(liststudent);
+        loadData(liststudent);
     }//GEN-LAST:event_radioAllActionPerformed
+
+    private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
+        // TODO add your handling code here:
+        loadFilter(filterText.getText());
+}//GEN-LAST:event_btnFilterActionPerformed
+
+    private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
+        // TODO add your handling code here:
+        loadFilter(filterText.getText());
+}//GEN-LAST:event_filterTextCaretUpdate
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddEdit;
     private javax.swing.JButton btnBrowseEdit;

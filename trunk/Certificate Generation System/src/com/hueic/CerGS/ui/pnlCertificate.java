@@ -37,7 +37,6 @@ public class pnlCertificate extends javax.swing.JPanel {
     private ArrayList<Certificate> listCertificate = new ArrayList<Certificate>();
     private CertificateDAO certificateDao;
     private MarkDAO markDAO;
-    TableRowSorter<TableModel> sorter;
     RegisterDAO registerDAO = new RegisterDAO();
     private ObjectTableModel tableModel;
     private JTable headerTable;
@@ -50,7 +49,7 @@ public class pnlCertificate extends javax.swing.JPanel {
         certificateDao = new CertificateDAO();
         markDAO = new MarkDAO();
         listCertificate = certificateDao.readByAll();
-        loadData(listCertificate);
+        loadData();
         loadDetails(listCertificate.get(0));
     }
 
@@ -60,11 +59,11 @@ public class pnlCertificate extends javax.swing.JPanel {
         certificateDao = new CertificateDAO();
         markDAO = new MarkDAO();
         listCertificate = certificateDao.readByAll();
-        loadData(listCertificate);
+        loadData();
         loadDetails(listCertificate.get(0));
     }
 
-    public void loadData(ArrayList<Certificate> listCertificate) {
+    public void loadData() {
         filter = new ArrayList<Certificate>();
         for (Certificate cer : listCertificate) {
             if (cer.getStudentID().toLowerCase().matches(".*" + txtStudentIDSearch.getText().trim().toLowerCase() + ".*") //                    && cer..getName().toLowerCase().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")
@@ -75,14 +74,30 @@ public class pnlCertificate extends javax.swing.JPanel {
         if (filter.size() != 0) {
             loadDetails(filter.get(0));
         }
+        loadTable(filter);
+    }
+
+    public void loadFiter(String text) {
+        filter = new ArrayList<Certificate>();
+        for (Certificate cer : listCertificate) {
+            if (cer.getStudentID().toLowerCase().matches(".*" + txtStudentIDSearch.getText().trim().toLowerCase() + ".*") //                    && cer..getName().toLowerCase().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")
+                    || String.valueOf(cer.getId()).toLowerCase().matches(".*" + txtIDSearch.getText().trim().toLowerCase() + ".*")) {
+                filter.add(cer);
+            }
+        }
+        if (filter.size() != 0) {
+            loadDetails(filter.get(0));
+        }
+        loadTable(filter);
+    }
+
+    public void loadTable(ArrayList<Certificate> filter) {
         ColumnData[] columns = {
             new ColumnData("ID", 135, SwingConstants.LEFT, 1),
             new ColumnData("Student ID", 100, SwingConstants.LEFT, 2),
             new ColumnData("Mark", 140, SwingConstants.LEFT, 3),
             new ColumnData("Degree Day", 170, SwingConstants.LEFT, 4),};
         tableModel = new ObjectTableModel(tableContent, columns, filter);
-        sorter = new TableRowSorter<TableModel>(tableModel);
-        tableContent.setRowSorter(sorter);
         headerTable = tableModel.getHeaderTable();
         // Create numbering column
         headerTable.createDefaultColumnsFromModel();
@@ -619,7 +634,7 @@ public class pnlCertificate extends javax.swing.JPanel {
 
             if (certificateDao.create(certificate)) {
                 listCertificate.add(certificate);
-                loadData(listCertificate);
+                loadData();
             } else {
                 JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -638,7 +653,7 @@ public class pnlCertificate extends javax.swing.JPanel {
                 cer.setDegreeDay(new java.sql.Date(dateChooseDegreeDay.getDate().getTime()));
                 if (certificateDao.update(cer)) {
                     listCertificate.set(i2, cer);
-                    loadData(listCertificate);
+                    loadData();
                     JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Message", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Error", JOptionPane.ERROR_MESSAGE);
@@ -657,7 +672,7 @@ public class pnlCertificate extends javax.swing.JPanel {
         int index = getIndexCertificateInListById(id);
         if (certificateDao.delete(id)) {
             listCertificate.remove(index);
-            loadData(listCertificate);
+            loadData();
             JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Delete Certificate", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Delete Certificate", JOptionPane.INFORMATION_MESSAGE);
@@ -672,23 +687,9 @@ public class pnlCertificate extends javax.swing.JPanel {
         // TODO add your handling code here:
 }//GEN-LAST:event_filterTextKeyPressed
 
-    public void startFiter() {
-        if (!listCertificate.isEmpty()) {
-            String text = filterText.getText();
-            if (text.length() == 0) {
-                sorter.setRowFilter(null);
-            } else {
-                try {
-                    sorter.setRowFilter(RowFilter.regexFilter(text));
-                } catch (PatternSyntaxException pse) {
-                    System.err.println("Bad regex pattern");
-                }
-            }
-        }
-    }
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
-        startFiter();
+        loadFiter(filterText.getText());
 }//GEN-LAST:event_btnFilterActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
@@ -718,17 +719,17 @@ public class pnlCertificate extends javax.swing.JPanel {
 
     private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
 
-        startFiter();
+       loadFiter(filterText.getText());
     }//GEN-LAST:event_filterTextCaretUpdate
 
     private void txtIDSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtIDSearchCaretUpdate
         // TODO add your handling code here:
-        loadData(listCertificate);
+        loadData();
     }//GEN-LAST:event_txtIDSearchCaretUpdate
 
     private void txtStudentIDSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtStudentIDSearchCaretUpdate
         // TODO add your handling code here:
-        loadData(listCertificate);
+        loadData();
     }//GEN-LAST:event_txtStudentIDSearchCaretUpdate
 
     private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased

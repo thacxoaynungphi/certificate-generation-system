@@ -34,7 +34,6 @@ public class pnlCourse extends javax.swing.JPanel {
 
     private ArrayList<Course> listCourses = new ArrayList<Course>();
     private CourseDAO courseDao;
-    TableRowSorter<TableModel> sorter;
     boolean isAdd = false;
     private ObjectTableModel tableModel;
     private JTable headerTable;
@@ -49,7 +48,7 @@ public class pnlCourse extends javax.swing.JPanel {
         btnCancel.setVisible(false);
         courseDao = new CourseDAO();
         listCourses = courseDao.readByAll();
-        loadData(listCourses);
+        loadData();
         if (!listCourses.isEmpty()) {
             loadDetails(listCourses.get(0));
         }
@@ -61,13 +60,13 @@ public class pnlCourse extends javax.swing.JPanel {
         btnCancel.setVisible(false);
         courseDao = new CourseDAO();
         listCourses = courseDao.readByAll();
-        loadData(listCourses);
+        loadData();
         if (!listCourses.isEmpty()) {
             loadDetails(listCourses.get(0));
         }
     }
 
-    public void loadData(ArrayList<Course> listCourses) {
+    public void loadData() {
         filter = new ArrayList<Course>();
         for (Course course : listCourses) {
             if (course.getId().toLowerCase().matches(".*" + txtIDSearch.getText().trim().toLowerCase() + ".*")
@@ -78,6 +77,24 @@ public class pnlCourse extends javax.swing.JPanel {
         if (filter.size() != 0) {
             loadDetails(filter.get(0));
         }
+        loadTable(filter);
+    }
+
+    public void loadFiter(String text) {
+        filter = new ArrayList<Course>();
+        for (Course course : listCourses) {
+            if (course.getId().toLowerCase().matches(".*" + txtIDSearch.getText().trim().toLowerCase() + ".*")
+                    || course.getName().toLowerCase().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")) {
+                filter.add(course);
+            }
+        }
+        if (filter.size() != 0) {
+            loadDetails(filter.get(0));
+        }
+        loadTable(filter);
+    }
+
+    public void loadTable(ArrayList<Course> filter) {
         ColumnData[] columns = {
             new ColumnData("ID", 100, SwingConstants.LEFT, 1),
             new ColumnData("Name", 140, SwingConstants.LEFT, 2),
@@ -92,8 +109,6 @@ public class pnlCourse extends javax.swing.JPanel {
                 tableContentMouseClicked(evt);
             }
         });
-        sorter = new TableRowSorter<TableModel>(tableModel);
-        tableContent.setRowSorter(sorter);
         headerTable = tableModel.getHeaderTable();
         // Create numbering column
         headerTable.createDefaultColumnsFromModel();
@@ -566,26 +581,12 @@ public class pnlCourse extends javax.swing.JPanel {
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
 
-        startFiter();
+      loadFiter(filterText.getText());
 }//GEN-LAST:event_btnFilterActionPerformed
 
-    public void startFiter() {
-        if (!listCourses.isEmpty()) {
-            String text = filterText.getText();
-            if (text.length() == 0) {
-                sorter.setRowFilter(null);
-            } else {
-                try {
-                    sorter.setRowFilter(RowFilter.regexFilter(text));
-                } catch (PatternSyntaxException pse) {
-                    System.err.println("Bad regex pattern");
-                }
-            }
-        }
-    }
     private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
         // TODO add your handling code here:
-        startFiter();
+        loadFiter(filterText.getText());
     }//GEN-LAST:event_filterTextCaretUpdate
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
@@ -606,12 +607,12 @@ public class pnlCourse extends javax.swing.JPanel {
 
     private void txtNameSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtNameSearchCaretUpdate
         // TODO add your handling code here:
-        loadData(listCourses);
+        loadData();
 }//GEN-LAST:event_txtNameSearchCaretUpdate
 
     private void txtIDSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtIDSearchCaretUpdate
         // TODO add your handling code here:
-        loadData(listCourses);
+        loadData();
 }//GEN-LAST:event_txtIDSearchCaretUpdate
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
@@ -637,7 +638,7 @@ public class pnlCourse extends javax.swing.JPanel {
         String id = txtID.getText();
         if (courseDao.delete(id)) {
             listCourses.remove(find(id));
-            loadData(listCourses);
+            loadData();
             if (!listCourses.isEmpty()) {
                 loadDetails(listCourses.get(0));
             }
@@ -663,7 +664,7 @@ public class pnlCourse extends javax.swing.JPanel {
             if (courseDao.update(course)) {
                 listCourses.remove(find(course.getId()));
                 listCourses.add(course);
-                loadData(listCourses);
+                loadData();
                 loadDetails(course);
                 JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Update Course", JOptionPane.INFORMATION_MESSAGE);
 
@@ -706,7 +707,7 @@ public class pnlCourse extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Create Course", JOptionPane.INFORMATION_MESSAGE);
                     listCourses.remove(find(course.getId()));
                     listCourses.add(course);
-                    loadData(listCourses);
+                    loadData();
                     loadDetails(course);
 
                     isAdd = false;

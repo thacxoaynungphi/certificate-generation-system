@@ -80,18 +80,42 @@ public class pnlSubject extends javax.swing.JPanel {
     public void loadData() {
         filter = new ArrayList<Subject>();
         filter.clear();
-        for (Subject sub : listSubject) {
-            if (sub.getId().toLowerCase().matches(".*" + txtSubjectIdSearch.getText().trim().toLowerCase() + ".*")
-                    && sub.getName().toLowerCase().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")
-                    && String.valueOf(sub.getCoefficient()).toLowerCase().matches(".*" + txtCoefficientSearch.getText().trim().toLowerCase() + ".*")
-                    && sub.getCourseID().toLowerCase().matches(".*" + txtCoureIDSearch.getText().trim().toLowerCase() + ".*")) {
-                filter.add(sub);
+        if (listSubject.size() != 0) {
+            for (Subject sub : listSubject) {
+                if (sub.getId().toLowerCase().matches(".*" + txtSubjectIdSearch.getText().trim().toLowerCase() + ".*")
+                        && sub.getName().toLowerCase().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")
+                        && String.valueOf(sub.getCoefficient()).toLowerCase().matches(".*" + txtCoefficientSearch.getText().trim().toLowerCase() + ".*")
+                        && sub.getCourseID().toLowerCase().matches(".*" + txtCoureIDSearch.getText().trim().toLowerCase() + ".*")) {
+                    filter.add(sub);
+                }
             }
         }
         if (filter.size() != 0) {
             loadDetails(filter.get(0));
         }
+        loadTable(filter);
+    }
 
+    public void loadFilter(String text) {
+        filter = new ArrayList<Subject>();
+        filter.clear();
+        if (listSubject.size() != 0) {
+            for (Subject sub : listSubject) {
+                if (sub.getId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                        || sub.getName().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                        || String.valueOf(sub.getCoefficient()).toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                        || sub.getCourseID().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
+                    filter.add(sub);
+                }
+            }
+        }
+        if (filter.size() != 0) {
+            loadDetails(filter.get(0));
+        }
+        loadTable(filter);
+    }
+
+    public void loadTable(ArrayList<Subject> filter) {
         ColumnData[] columns = {
             new ColumnData("ID", 135, SwingConstants.LEFT, 1),
             new ColumnData("Name", 200, SwingConstants.LEFT, 2),
@@ -100,12 +124,6 @@ public class pnlSubject extends javax.swing.JPanel {
             new ColumnData("Status", 100, SwingConstants.LEFT, 5)
         };
         tableModel = new ObjectTableModel(tableContent, columns, filter);
-
-        if (filter.size() != 0) {
-            sorter = new TableRowSorter<TableModel>(tableModel);
-            tableContent.setRowSorter(sorter);
-        }
-
         headerTable = tableModel.getHeaderTable();
         // Create numbering column
         headerTable.createDefaultColumnsFromModel();
@@ -156,21 +174,6 @@ public class pnlSubject extends javax.swing.JPanel {
             }
         }
         return null;
-    }
-
-    public void searchStart() {
-        if (listSubject.size() != 0) {
-            String text = filterText.getText();
-            if (text.length() == 0) {
-                sorter.setRowFilter(null);
-            } else {
-                try {
-                    sorter.setRowFilter(RowFilter.regexFilter(text));
-                } catch (PatternSyntaxException pse) {
-                    System.err.println("Bad regex pattern");
-                }
-            }
-        }
     }
 
     /** This method is called from within the constructor to
@@ -589,9 +592,9 @@ public class pnlSubject extends javax.swing.JPanel {
 
         filterText.setMinimumSize(new java.awt.Dimension(180, 20));
         filterText.setPreferredSize(new java.awt.Dimension(180, 20));
-        filterText.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                filterTextKeyPressed(evt);
+        filterText.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                filterTextCaretUpdate(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -695,17 +698,13 @@ public class pnlSubject extends javax.swing.JPanel {
         add(panelLeft, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void filterTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextKeyPressed
-        // TODO add your handling code here:
-        searchStart();
-}//GEN-LAST:event_filterTextKeyPressed
     private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
         // TODO add your handling code here:
 }//GEN-LAST:event_tableContentMouseClicked
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
-        searchStart();
+        loadFilter(filterText.getText());
 }//GEN-LAST:event_btnFilterActionPerformed
 
     private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
@@ -883,11 +882,15 @@ public class pnlSubject extends javax.swing.JPanel {
             report.setSize(860, 600);
             frm.pnlReport.add(report);
             frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
-        }
-         else {
+        } else {
             JOptionPane.showMessageDialog(this, "No data!", "Report Message", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnReportActionPerformed
+
+    private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
+        // TODO add your handling code here:
+        loadFilter(filterText.getText().trim());
+    }//GEN-LAST:event_filterTextCaretUpdate
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
