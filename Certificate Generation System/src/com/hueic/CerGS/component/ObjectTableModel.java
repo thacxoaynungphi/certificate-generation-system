@@ -8,6 +8,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  * Get ObjectTableModel
@@ -54,6 +56,7 @@ public class ObjectTableModel extends AbstractTableModel {
         this.table.setRowHeight(18);
         this.table.setShowGrid(true);
         this.table.setModel(this);
+        this.table.setAutoCreateRowSorter(true);
         this.initTableColumns();
     }
 
@@ -109,14 +112,7 @@ public class ObjectTableModel extends AbstractTableModel {
             return "" + (rowIndex + 1);
         }
 
-        Object obj = null;
-        try {
-            //Loi o day
-            this.getColumnPropertyIndex(columnIndex - 1);
-            obj = ((PropertyIndex) this.tableData.get(rowIndex)).getPropertyValue(this.getColumnPropertyIndex(columnIndex - 1));
-        } catch (Exception ex) {
-            System.out.println(ex.toString());
-        }
+        Object obj = obj = ((PropertyIndex) this.tableData.get(rowIndex)).getPropertyValue(this.getColumnPropertyIndex(columnIndex - 1));
         return obj;
     }
 
@@ -180,7 +176,8 @@ public class ObjectTableModel extends AbstractTableModel {
             /**
              * Don't allow to change the order of column
              */
-            this.table.getTableHeader().setReorderingAllowed(false);
+            // this.table.getTableHeader().setReorderingAllowed(false);
+            this.table.getTableHeader().setReorderingAllowed(true);
         }
     }
 

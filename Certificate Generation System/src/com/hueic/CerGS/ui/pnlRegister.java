@@ -44,7 +44,6 @@ public class pnlRegister extends javax.swing.JPanel {
     private CourseDAO courseDAO;
     private RegisterDAO regisDAO;
     private StudentDAO studentDAO;
-    private TableRowSorter<TableModel> sorter;
     private SubjectDAO subjectDAO;
     private boolean isUpdate = false;
     private boolean isAdd = false;
@@ -66,7 +65,7 @@ public class pnlRegister extends javax.swing.JPanel {
         studentList = studentDAO.readByAll();
         courseIdList = courseDAO.readByAll();
         if (!regisList.isEmpty()) {
-            loadData(regisList);
+            loadData();
             loadDetails(regisList.get(0));
         }
         btnCancelEdit.setVisible(false);
@@ -83,13 +82,13 @@ public class pnlRegister extends javax.swing.JPanel {
         studentList = studentDAO.readByAll();
         courseIdList = courseDAO.readByAll();
         if (regisList.size() != 0) {
-            loadData(regisList);
+            loadData();
             loadDetails(regisList.get(0));
         }
         btnCancelEdit.setVisible(false);
     }
 
-    public void loadData(ArrayList<Register> regisList) {
+    public void loadData() {
         filter = new ArrayList<Register>();
         for (Register sub : regisList) {
             if (sub.getStudentId().toLowerCase().matches(".*" + txtIdSearch.getText().trim().toLowerCase() + ".*")
@@ -102,7 +101,26 @@ public class pnlRegister extends javax.swing.JPanel {
         if (!filter.isEmpty()) {
             loadDetails(filter.get(0));
         }
+        loadTable(regisList);
+    }
 
+    public void loadFiter(String text) {
+        filter = new ArrayList<Register>();
+        for (Register sub : regisList) {
+            if (sub.getStudentId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                    || sub.getId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                    || sub.getCourseId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                    || String.valueOf(sub.getFeesStructe()).toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
+                filter.add(sub);
+            }
+        }
+        if (!filter.isEmpty()) {
+            loadDetails(filter.get(0));
+        }
+        loadData();
+    }
+
+    public void loadTable(ArrayList<Register> regisList) {
         ColumnData[] columns = {
             new ColumnData("Student ID", 135, SwingConstants.LEFT, 5),
             new ColumnData("ID", 150, SwingConstants.LEFT, 1),
@@ -111,8 +129,6 @@ public class pnlRegister extends javax.swing.JPanel {
             new ColumnData("Registration Date", 100, SwingConstants.LEFT, 4)
         };
         tableModel = new ObjectTableModel(tableContent, columns, filter);
-        sorter = new TableRowSorter<TableModel>(tableModel);
-        tableContent.setRowSorter(sorter);
         headerTable = tableModel.getHeaderTable();
         // Create numbering column
         headerTable.createDefaultColumnsFromModel();
@@ -124,6 +140,7 @@ public class pnlRegister extends javax.swing.JPanel {
         viewport.setPreferredSize(headerTable.getMaximumSize());
         srcPanelRegister.setRowHeader(viewport);
         srcPanelRegister.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, headerTable.getTableHeader());
+
     }
 
     public void resetDetails() {
@@ -149,21 +166,6 @@ public class pnlRegister extends javax.swing.JPanel {
             }
         }
         return -1;
-    }
-
-    public void searchStart() {
-        if (regisList.size() != 0) {
-            String text = filterText.getText();
-            if (text.length() == 0) {
-                sorter.setRowFilter(null);
-            } else {
-                try {
-                    sorter.setRowFilter(RowFilter.regexFilter(text));
-                } catch (PatternSyntaxException pse) {
-                    System.err.println("Bad regex pattern");
-                }
-            }
-        }
     }
 
     /** This method is called from within the constructor to
@@ -752,7 +754,7 @@ public class pnlRegister extends javax.swing.JPanel {
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
-        searchStart();
+        loadFiter(filterText.getText());
 }//GEN-LAST:event_btnFilterActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -774,7 +776,7 @@ public class pnlRegister extends javax.swing.JPanel {
                 if (regisDAO.create(register)) {
                     JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Create Register", JOptionPane.INFORMATION_MESSAGE);
                     regisList.add(register);
-                    loadData(regisList);
+                    loadData();
                     loadDetails(register);
                     txtCourseID.setVisible(true);
                     txtStudentId.setVisible(true);
@@ -814,7 +816,7 @@ public class pnlRegister extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "not found Student has Id is " + studentId, "Register Update", JOptionPane.ERROR_MESSAGE);
                 }
 
-                loadData(regisList);
+                loadData();
                 loadDetails(register);
 //                txtCourseID.setVisible(true);
 //                txtStudentId.setVisible(true);
@@ -831,7 +833,7 @@ public class pnlRegister extends javax.swing.JPanel {
         String studentid = txtId.getText();
         if (regisDAO.delete(studentid)) {
             regisList.remove(findByStudentId(studentid));
-            loadData(regisList);
+            loadData();
             if (!regisList.isEmpty()) {
                 loadDetails(regisList.get(0));
             }
@@ -887,7 +889,7 @@ public class pnlRegister extends javax.swing.JPanel {
 
     private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
         // TODO add your handling code here:
-        searchStart();
+        loadFiter(filterText.getText());
     }//GEN-LAST:event_filterTextCaretUpdate
 
     private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
@@ -922,22 +924,22 @@ public class pnlRegister extends javax.swing.JPanel {
 
     private void txtIdSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtIdSearchCaretUpdate
         // TODO add your handling code here:
-        loadData(regisList);
+        loadData();
     }//GEN-LAST:event_txtIdSearchCaretUpdate
 
     private void txtCourseIDSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtCourseIDSearchCaretUpdate
         // TODO add your handling code here:
-        loadData(regisList);
+        loadData();
     }//GEN-LAST:event_txtCourseIDSearchCaretUpdate
 
     private void txtFeesStructeSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtFeesStructeSearchCaretUpdate
         // TODO add your handling code here:
-        loadData(regisList);
+        loadData();
     }//GEN-LAST:event_txtFeesStructeSearchCaretUpdate
 
     private void txtStudentIdSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtStudentIdSearchCaretUpdate
         // TODO add your handling code here:
-        loadData(regisList);
+        loadData();
     }//GEN-LAST:event_txtStudentIdSearchCaretUpdate
 
     private void btnCancelEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelEditActionPerformed

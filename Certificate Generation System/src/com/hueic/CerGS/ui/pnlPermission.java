@@ -15,16 +15,12 @@ import com.hueic.CerGS.component.ObjectTableModel;
 import com.hueic.CerGS.dao.PermissionDAO;
 import com.hueic.CerGS.entity.Permission;
 import java.util.ArrayList;
-import java.util.regex.PatternSyntaxException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
-import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -34,7 +30,6 @@ public class pnlPermission extends javax.swing.JPanel {
 
     private ArrayList<Permission> listPermssion = new ArrayList<Permission>();
     private PermissionDAO perDao;
-    TableRowSorter<TableModel> sorter;
     boolean isAdd = false;
     private ObjectTableModel tableModel;
     private JTable headerTable;
@@ -45,15 +40,15 @@ public class pnlPermission extends javax.swing.JPanel {
         initComponents();
         perDao = new PermissionDAO();
         listPermssion = perDao.readByAll();
-        loadData(listPermssion);
+        loadData();
         if (listPermssion.size() != 0) {
             loadDetails(listPermssion.get(0));
         }
     }
 
-    public void loadData(ArrayList<Permission> listPermission) {
+    public void loadData() {
         filter = new ArrayList<Permission>();
-        for (Permission per : listPermission) {
+        for (Permission per : listPermssion) {
             if (String.valueOf(per.getId()).toLowerCase().matches(".*" + txtIdSearch.getText().trim().toLowerCase() + ".*")
                     && per.getName().toLowerCase().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")) {
                 filter.add(per);
@@ -62,12 +57,28 @@ public class pnlPermission extends javax.swing.JPanel {
         if (filter.size() != 0) {
             loadDetails(filter.get(0));
         }
+        loadTable(filter);
+    }
+
+    public void loadFiter(String text) {
+        filter = new ArrayList<Permission>();
+        for (Permission per : listPermssion) {
+            if (String.valueOf(per.getId()).toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                    || per.getName().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
+                filter.add(per);
+            }
+        }
+        if (filter.size() != 0) {
+            loadDetails(filter.get(0));
+        }
+        loadTable(filter);
+    }
+
+    public void loadTable(ArrayList<Permission> list) {
         ColumnData[] columns = {
             new ColumnData("ID", 100, SwingConstants.LEFT, 1),
             new ColumnData("Name", 140, SwingConstants.LEFT, 2),};
         tableModel = new ObjectTableModel(tableContent, columns, filter);
-        sorter = new TableRowSorter<TableModel>(tableModel);
-        tableContent.setRowSorter(sorter);
         headerTable = tableModel.getHeaderTable();
         // Create numbering column
         headerTable.createDefaultColumnsFromModel();
@@ -95,20 +106,7 @@ public class pnlPermission extends javax.swing.JPanel {
         return null;
     }
 
-    public void searchStart() {
-        if (listPermssion.size() != 0) {
-            String text = filterText.getText();
-            if (text.length() == 0) {
-                sorter.setRowFilter(null);
-            } else {
-                try {
-                    sorter.setRowFilter(RowFilter.regexFilter(text));
-                } catch (PatternSyntaxException pse) {
-                    System.err.println("Bad regex pattern");
-                }
-            }
-        }
-    }
+ 
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -529,7 +527,7 @@ public class pnlPermission extends javax.swing.JPanel {
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
-        searchStart();
+       loadFiter(filterText.getText());
 }//GEN-LAST:event_btnFilterActionPerformed
 
     private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
@@ -552,17 +550,17 @@ public class pnlPermission extends javax.swing.JPanel {
 
     private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
         // TODO add your handling code here:
-        searchStart();
+       loadFiter(filterText.getText());
     }//GEN-LAST:event_filterTextCaretUpdate
 
     private void txtNameSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtNameSearchCaretUpdate
         // TODO add your handling code here:
-        loadData(listPermssion);
+        loadData();
 }//GEN-LAST:event_txtNameSearchCaretUpdate
 
     private void txtIdSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtIdSearchCaretUpdate
         // TODO add your handling code here:
-        loadData(listPermssion);
+        loadData();
 }//GEN-LAST:event_txtIdSearchCaretUpdate
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
@@ -574,7 +572,6 @@ public class pnlPermission extends javax.swing.JPanel {
 
     private void txtIdCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtIdCaretUpdate
         // TODO add your handling code here:
-        
 }//GEN-LAST:event_txtIdCaretUpdate
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
@@ -595,7 +592,7 @@ public class pnlPermission extends javax.swing.JPanel {
         if (perDao.delete(id)) {
             JOptionPane.showMessageDialog(this, perDao.getLastError(), "Delete Permission", JOptionPane.INFORMATION_MESSAGE, null);
             listPermssion.remove(find(id));
-            loadData(listPermssion);
+            loadData();
             if (listPermssion.size() != 0) {
                 loadDetails(listPermssion.get(0));
             }
@@ -614,7 +611,7 @@ public class pnlPermission extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, perDao.getLastError(), "Update Permission", JOptionPane.INFORMATION_MESSAGE);
                 listPermssion.remove(find(id));
                 listPermssion.add(per);
-                loadData(listPermssion);
+                loadData();
                 loadDetails(per);
                 isAdd = false;
                 btnUpdate.setEnabled(true);
@@ -642,7 +639,7 @@ public class pnlPermission extends javax.swing.JPanel {
                 if (perDao.create(per)) {
                     per = perDao.readByName(name);
                     listPermssion.add(per);
-                    loadData(listPermssion);
+                    loadData();
                     loadDetails(per);
                     isAdd = false;
                     btnUpdate.setEnabled(true);

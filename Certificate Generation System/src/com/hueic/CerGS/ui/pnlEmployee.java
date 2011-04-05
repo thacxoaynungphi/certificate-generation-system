@@ -62,7 +62,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         empDao = new EmployeeDAO();
         listEmp = empDao.readByAll();
         if (!listEmp.isEmpty()) {
-            loadData(listEmp);
+            loadData();
             loadDetails(listEmp.get(0));
         }
     }
@@ -75,12 +75,12 @@ public class pnlEmployee extends javax.swing.JPanel {
         empDao = new EmployeeDAO();
         listEmp = empDao.readByAll();
         if (!listEmp.isEmpty()) {
-            loadData(listEmp);
+            loadData();
             loadDetails(listEmp.get(0));
         }
     }
 
-    public void loadData(ArrayList<Employee> listEmp) {
+    public void loadData() {
 
         filter = new ArrayList<Employee>();
         for (Employee emp : listEmp) {
@@ -99,6 +99,24 @@ public class pnlEmployee extends javax.swing.JPanel {
         if (!filter.isEmpty()) {
             loadDetails(filter.get(0));
         }
+        loadTable(filter);
+    }
+
+    public void loadFiter(String text) {
+        filter = new ArrayList<Employee>();
+        for (Employee emp : listEmp) {
+            if (emp.getId().toLowerCase().matches(".*" + txtEmployeeIdSearch.getText().trim().toLowerCase() + ".*")
+                    || emp.getFirstName().toLowerCase().matches(".*" + txtFirstNameSearch.getText().trim().toLowerCase() + ".*")
+                    || emp.getLastName().toLowerCase().matches(".*" + txtLastNameSearch.getText().trim().toLowerCase() + ".*")) {
+            }
+        }
+        if (!filter.isEmpty()) {
+            loadDetails(filter.get(0));
+        }
+        loadTable(filter);
+    }
+
+    public void loadTable(ArrayList<Employee> filter) {
         ColumnData[] columns = {
             new ColumnData("ID", 135, SwingConstants.LEFT, 1),
             new ColumnData("First Name", 150, SwingConstants.LEFT, 2),
@@ -115,8 +133,6 @@ public class pnlEmployee extends javax.swing.JPanel {
                 tableContentMouseClicked(evt);
             }
         });
-        sorter = new TableRowSorter<TableModel>(tableModel);
-        tableContent.setRowSorter(sorter);
         lblCount.setText(String.valueOf(listEmp.size()));
         headerTable = tableModel.getHeaderTable();
         // Create numbering column
@@ -760,6 +776,7 @@ public class pnlEmployee extends javax.swing.JPanel {
 
         radioAll.setBackground(new java.awt.Color(255, 255, 255));
         btnGGender2.add(radioAll);
+        radioAll.setSelected(true);
         radioAll.setText("All");
         radioAll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1046,7 +1063,7 @@ public class pnlEmployee extends javax.swing.JPanel {
                 EmployeeDAO empDao = new EmployeeDAO();
                 if (empDao.create(emp)) {
                     listEmp.add(emp);
-                    loadData(listEmp);
+                    loadData();
                     JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Add", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Add", JOptionPane.ERROR_MESSAGE);
@@ -1093,7 +1110,7 @@ public class pnlEmployee extends javax.swing.JPanel {
             EmployeeDAO empDao = new EmployeeDAO();
             if (empDao.update(emp)) {
                 listEmp = empDao.readByAll();
-                loadData(listEmp);
+                loadData();
                 JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Add", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Add", JOptionPane.ERROR_MESSAGE);
@@ -1119,28 +1136,13 @@ public class pnlEmployee extends javax.swing.JPanel {
         txtEmployeeIdSearch.setText(null);
         txtFirstNameSearch.setText(null);
         txtLastNameSearch.setText(null);
-        radioMaleSearch.setSelected(true);
+        radioAll.setSelected(true);
 }//GEN-LAST:event_btnResetSearchActionPerformed
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
-        startFilter();
+        loadFiter(filterText.getText());
 }//GEN-LAST:event_btnFilterActionPerformed
-
-    public void startFilter() {
-        if (listEmp.size() != 0) {
-            String text = filterText.getText();
-            if (text.length() == 0) {
-                sorter.setRowFilter(null);
-            } else {
-                try {
-                    sorter.setRowFilter(RowFilter.regexFilter(text));
-                } catch (PatternSyntaxException pse) {
-                    System.err.println("Bad regex pattern");
-                }
-            }
-        }
-    }
 
     public Employee find(String value) {
         for (Employee employee : listEmp) {
@@ -1198,26 +1200,22 @@ public class pnlEmployee extends javax.swing.JPanel {
 
     private void filterTextMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_filterTextMouseReleased
         // TODO add your handling code here:
-        startFilter();
+        loadFiter(filterText.getText());
     }//GEN-LAST:event_filterTextMouseReleased
 
     private void txtEmployeeIdSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtEmployeeIdSearchCaretUpdate
         // TODO add your handling code here:
-        if (txtEmployeeIdSearch.getText().isEmpty()) {
-            loadData(empDao.readByAll());
-        } else {
-            loadData(listEmp);
-        }
+        loadData();
     }//GEN-LAST:event_txtEmployeeIdSearchCaretUpdate
 
     private void txtFirstNameSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtFirstNameSearchCaretUpdate
         // TODO add your handling code here:
-        loadData(listEmp);
+        loadData();
     }//GEN-LAST:event_txtFirstNameSearchCaretUpdate
 
     private void txtLastNameSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtLastNameSearchCaretUpdate
         // TODO add your handling code here:
-        loadData(listEmp);
+        loadData();
     }//GEN-LAST:event_txtLastNameSearchCaretUpdate
 
     private void radioFemaleEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioFemaleEditActionPerformed
@@ -1229,7 +1227,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         String id = txtID.getText();
         if (empDao.delete(id)) {
             listEmp = empDao.readByAll();
-            loadData(listEmp);
+            loadData();
         }
         JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Delete", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnDeleteEditActionPerformed
@@ -1268,17 +1266,17 @@ public class pnlEmployee extends javax.swing.JPanel {
 
     private void radioMaleSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMaleSearchActionPerformed
         // TODO add your handling code here:
-        loadData(listEmp);
+        loadData();
     }//GEN-LAST:event_radioMaleSearchActionPerformed
 
     private void radioFemaleSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioFemaleSearchActionPerformed
         // TODO add your handling code here:
-        loadData(listEmp);
+        loadData();
     }//GEN-LAST:event_radioFemaleSearchActionPerformed
 
     private void radioAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAllActionPerformed
         // TODO add your handling code here:
-        loadData(listEmp);
+        loadData();
     }//GEN-LAST:event_radioAllActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddEdit;
