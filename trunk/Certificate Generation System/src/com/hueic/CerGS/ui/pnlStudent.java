@@ -83,35 +83,36 @@ public class pnlStudent extends javax.swing.JPanel {
         System.out.println("Date End   :" + dateChooserDateEndSearch.getDate());
         filter = new ArrayList<Student>();
         boolean status = false;
-        for (Student emp : liststudent) {
+        for (Student student : liststudent) {
             status = false;
-            if (emp.getId().toLowerCase().matches(".*" + txtStudentIdSearch.getText().trim().toLowerCase() + ".*")
-                    && emp.getFirstName().toLowerCase().matches(".*" + txtFirstNameSearch.getText().trim().toLowerCase() + ".*")
-                    && emp.getLastName().toLowerCase().matches(".*" + txtLastNameSearch.getText().trim().toLowerCase() + ".*")) {
+            if (student.getId().toLowerCase().matches(".*" + txtStudentIdSearch.getText().trim().toLowerCase() + ".*")
+                    && student.getFirstName().toLowerCase().matches(".*" + txtFirstNameSearch.getText().trim().toLowerCase() + ".*")
+                    && student.getLastName().toLowerCase().matches(".*" + txtLastNameSearch.getText().trim().toLowerCase() + ".*")) {
                 if (dateChooserDateEndSearch.getDate() != null && dateChooserDateStartSearch.getDate() != null) {
-                    if (emp.getBirthDay().after(dateChooserDateStartSearch.getDate()) && emp.getBirthDay().before(dateChooserDateEndSearch.getDate())) {
-                        if (radioMaleSearch.isSelected() && radioFemaleSearch.isSelected()) {
-                            filter.add(emp);
-                        } else if (radioMaleSearch.isSelected() && emp.getGender() == 0) {
-                            filter.add(emp);
-                        } else if (radioFemaleSearch.isSelected() && emp.getGender() == 1) {
-                            filter.add(emp);
-                        } else {
-                            filter.add(emp);
+                    if (student.getBirthDay().after(dateChooserDateStartSearch.getDate()) && student.getBirthDay().before(dateChooserDateEndSearch.getDate())) {
+                        if (radioAll.isSelected()) {
+                            filter.add(student);
+                            System.out.println("Hi1");
+                        } else if (radioMaleSearch.isSelected() && student.getGender() == 0) {
+                            filter.add(student);
+                            System.out.println("Hi2");
+                        } else if (radioFemaleSearch.isSelected() && student.getGender() == 1) {
+                            filter.add(student);
+                            System.out.println("Hi3");
                         }
                     }
                 } else {
-                    if (radioMaleSearch.isSelected() && radioFemaleSearch.isSelected()) {
-                        filter.add(emp);
-                    } else if (radioMaleSearch.isSelected() && emp.getGender() == 0) {
-                        filter.add(emp);
-                    } else if (radioFemaleSearch.isSelected() && emp.getGender() == 1) {
-                        filter.add(emp);
-                    } else {
-                        filter.add(emp);
+                    if (radioAll.isSelected()) {
+                        filter.add(student);
+                        System.out.println("Hi1");
+                    } else if (radioMaleSearch.isSelected() && student.getGender() == 0) {
+                        filter.add(student);
+                        System.out.println("Hi2");
+                    } else if (radioFemaleSearch.isSelected() && student.getGender() == 1) {
+                        filter.add(student);
+                        System.out.println("Hi3");
                     }
                 }
-                //Chua de che do ngay va gender
             }
         }
         if (filter.size() != 0) {
@@ -231,6 +232,7 @@ public class pnlStudent extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         btnReset = new javax.swing.JButton();
         txtStudentIdSearch = new javax.swing.JTextField();
+        radioAll = new javax.swing.JRadioButton();
         panelContent = new javax.swing.JPanel();
         panelTop = new javax.swing.JPanel();
         lblHienthi1 = new javax.swing.JLabel();
@@ -673,7 +675,7 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(dateChooserDateStartSearch, gridBagConstraints);
@@ -690,7 +692,7 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(dateChooserDateEndSearch, gridBagConstraints);
@@ -742,7 +744,7 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridwidth = 7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         panelInfo.add(lblTitle1, gridBagConstraints);
 
@@ -751,7 +753,7 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridwidth = 7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         panelInfo.add(sepaCourse, gridBagConstraints);
@@ -774,7 +776,7 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridwidth = 7;
         gridBagConstraints.insets = new java.awt.Insets(15, 5, 5, 5);
         panelInfo.add(jPanel1, gridBagConstraints);
 
@@ -791,6 +793,21 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelInfo.add(txtStudentIdSearch, gridBagConstraints);
+
+        radioAll.setBackground(new java.awt.Color(255, 255, 255));
+        btnGGender2.add(radioAll);
+        radioAll.setSelected(true);
+        radioAll.setText("All");
+        radioAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioAllActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        panelInfo.add(radioAll, gridBagConstraints);
 
         pnlSearch.add(panelInfo, new java.awt.GridBagConstraints());
 
@@ -1267,6 +1284,12 @@ public class pnlStudent extends javax.swing.JPanel {
         // TODO add your handling code here:
         loadTable(liststudent);
     }//GEN-LAST:event_dateChooserDateEndSearchCaretPositionChanged
+
+    private void radioAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAllActionPerformed
+        // TODO add your handling code here:
+        loadTable(liststudent);
+    }//GEN-LAST:event_radioAllActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddEdit;
     private javax.swing.JButton btnBrowseEdit;
@@ -1317,6 +1340,7 @@ public class pnlStudent extends javax.swing.JPanel {
     private javax.swing.JPanel panelTop;
     public javax.swing.JPanel pnlEdit;
     public javax.swing.JPanel pnlSearch;
+    private javax.swing.JRadioButton radioAll;
     private javax.swing.JRadioButton radioFemaleEdit;
     private javax.swing.JRadioButton radioFemaleSearch;
     private javax.swing.JRadioButton radioMaleEdit;

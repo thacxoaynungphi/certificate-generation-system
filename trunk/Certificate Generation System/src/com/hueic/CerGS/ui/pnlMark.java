@@ -93,8 +93,7 @@ public class pnlMark extends javax.swing.JPanel {
     public void loadData(ArrayList<Mark> listMark) {
         filter = new ArrayList<Mark>();
         for (Mark mark : listMark) {
-            if (String.valueOf(mark.getId()).toLowerCase().matches(".*" + txtMarkIdSearch.getText().trim().toLowerCase() + ".*")
-                    && mark.getStudentId().toLowerCase().matches(".*" + txtStudentIdSearch.getText().trim().toLowerCase() + ".*")
+            if (mark.getStudentId().toLowerCase().matches(".*" + txtStudentIdSearch.getText().trim().toLowerCase() + ".*")
                     && String.valueOf(mark.getMark()).toLowerCase().matches(".*" + txtMarkSearch.getText().trim().toLowerCase() + ".*")
                     && mark.getSubjectId().toLowerCase().matches(".*" + txtSubjectIDSearch.getText().trim().toLowerCase() + ".*")) {
                 filter.add(mark);
@@ -591,6 +590,7 @@ public class pnlMark extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         pnlTop2.add(btnChooseSubjectIdSearch, gridBagConstraints);
 
         pnlSearch.add(pnlTop2, new java.awt.GridBagConstraints());

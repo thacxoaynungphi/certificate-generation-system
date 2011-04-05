@@ -528,7 +528,6 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(15, 5, 10, 0);
         pnlTop2.add(pnlButtonSearch, gridBagConstraints);
 
-        txtUsernameSearch.setEnabled(false);
         txtUsernameSearch.setPreferredSize(new java.awt.Dimension(200, 20));
         txtUsernameSearch.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {

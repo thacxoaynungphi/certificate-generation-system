@@ -70,11 +70,8 @@ public class pnlCourse extends javax.swing.JPanel {
     public void loadData(ArrayList<Course> listCourses) {
         filter = new ArrayList<Course>();
         for (Course course : listCourses) {
-            if (course.getId().toLowerCase().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")
-                    && course.getName().toLowerCase().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")
-                    && String.valueOf(course.getTotalFees()).toLowerCase().matches(".*" + txtTotalFeesSearch.getText().trim().toLowerCase() + ".*") //&& sub.getCourseID().toLowerCase().matches(".*" + txtCoureIDSearch.getText().trim().toLowerCase() + ".*")
-                    //chua xet cai trang thai
-                    ) {
+            if (course.getId().toLowerCase().matches(".*" + txtIDSearch.getText().trim().toLowerCase() + ".*")
+                    && course.getName().toLowerCase().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")) {
                 filter.add(course);
             }
         }
@@ -166,15 +163,10 @@ public class pnlCourse extends javax.swing.JPanel {
         lblTitleSearch = new javax.swing.JLabel();
         sepaCourseSearch = new javax.swing.JSeparator();
         lblNameSearch = new javax.swing.JLabel();
-        lblTotalFeesSearch = new javax.swing.JLabel();
-        txtTotalFeesSearch = new javax.swing.JTextField();
         pnlButtonSearch = new javax.swing.JPanel();
         btnReset = new javax.swing.JButton();
         lblIDSearch = new javax.swing.JLabel();
         txtIDSearch = new javax.swing.JTextField();
-        lblStatusSearch = new javax.swing.JLabel();
-        radioEnableSearch = new javax.swing.JRadioButton();
-        radioDisableSearch = new javax.swing.JRadioButton();
         txtNameSearch = new javax.swing.JTextField();
         pnlDown = new javax.swing.JPanel();
         srcPanelCourse = new javax.swing.JScrollPane();
@@ -390,35 +382,11 @@ public class pnlCourse extends javax.swing.JPanel {
         lblNameSearch.setForeground(new java.awt.Color(3, 3, 3));
         lblNameSearch.setText("Name course:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlTop2.add(lblNameSearch, gridBagConstraints);
-
-        lblTotalFeesSearch.setForeground(new java.awt.Color(3, 3, 3));
-        lblTotalFeesSearch.setText("Total Fees:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
-        pnlTop2.add(lblTotalFeesSearch, gridBagConstraints);
-
-        txtTotalFeesSearch.setEditable(false);
-        txtTotalFeesSearch.setPreferredSize(new java.awt.Dimension(200, 20));
-        txtTotalFeesSearch.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtTotalFeesSearchCaretUpdate(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlTop2.add(txtTotalFeesSearch, gridBagConstraints);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(20, 80, 5, 5);
+        pnlTop2.add(lblNameSearch, gridBagConstraints);
 
         pnlButtonSearch.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -446,7 +414,7 @@ public class pnlCourse extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(20, 20, 5, 5);
         pnlTop2.add(lblIDSearch, gridBagConstraints);
 
         txtIDSearch.setPreferredSize(new java.awt.Dimension(200, 20));
@@ -459,39 +427,8 @@ public class pnlCourse extends javax.swing.JPanel {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(20, 5, 5, 5);
         pnlTop2.add(txtIDSearch, gridBagConstraints);
-
-        lblStatusSearch.setForeground(new java.awt.Color(3, 3, 3));
-        lblStatusSearch.setText("Status:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
-        pnlTop2.add(lblStatusSearch, gridBagConstraints);
-
-        radioEnableSearch.setBackground(new java.awt.Color(255, 255, 255));
-        btnGStatus2.add(radioEnableSearch);
-        radioEnableSearch.setForeground(new java.awt.Color(3, 3, 3));
-        radioEnableSearch.setText("Enable");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlTop2.add(radioEnableSearch, gridBagConstraints);
-
-        radioDisableSearch.setBackground(new java.awt.Color(255, 255, 255));
-        btnGStatus2.add(radioDisableSearch);
-        radioDisableSearch.setForeground(new java.awt.Color(3, 3, 3));
-        radioDisableSearch.setText("Disable");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlTop2.add(radioDisableSearch, gridBagConstraints);
 
         txtNameSearch.setPreferredSize(new java.awt.Dimension(200, 20));
         txtNameSearch.addCaretListener(new javax.swing.event.CaretListener() {
@@ -500,10 +437,10 @@ public class pnlCourse extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(20, 5, 5, 5);
         pnlTop2.add(txtNameSearch, gridBagConstraints);
 
         pnlSearch.add(pnlTop2, new java.awt.GridBagConstraints());
@@ -614,6 +551,132 @@ public class pnlCourse extends javax.swing.JPanel {
         add(pnlDown, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
+        // TODO add your handling code here:
+        int index = tableContent.getSelectedRow();
+        if (index != -1) {
+            String id = tableContent.getValueAt(index, 0).toString();
+            Course course = find(id);
+            if (course != null) {
+                loadDetails(course);
+            }
+        }
+}//GEN-LAST:event_tableContentMouseClicked
+
+    private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
+        // TODO add your handling code here:
+
+        startFiter();
+}//GEN-LAST:event_btnFilterActionPerformed
+
+    public void startFiter() {
+        if (!listCourses.isEmpty()) {
+            String text = filterText.getText();
+            if (text.length() == 0) {
+                sorter.setRowFilter(null);
+            } else {
+                try {
+                    sorter.setRowFilter(RowFilter.regexFilter(text));
+                } catch (PatternSyntaxException pse) {
+                    System.err.println("Bad regex pattern");
+                }
+            }
+        }
+    }
+    private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
+        // TODO add your handling code here:
+        startFiter();
+    }//GEN-LAST:event_filterTextCaretUpdate
+
+    private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
+        // TODO add your handling code here:
+        if (filter.size() != 0) {
+            frm.pnlReport.removeAll();
+            dlgChooseReport report = new dlgChooseReport(frm, this);
+            report.getCourseReport(filter);
+            report.setVisible(true);
+            report.setSize(860, 600);
+            frm.pnlReport.add(report);
+            frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+        } else {
+            JOptionPane.showMessageDialog(this, "No data!", "Report Message", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+    }//GEN-LAST:event_btnReportActionPerformed
+
+    private void txtNameSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtNameSearchCaretUpdate
+        // TODO add your handling code here:
+        loadData(listCourses);
+}//GEN-LAST:event_txtNameSearchCaretUpdate
+
+    private void txtIDSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtIDSearchCaretUpdate
+        // TODO add your handling code here:
+        loadData(listCourses);
+}//GEN-LAST:event_txtIDSearchCaretUpdate
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+        txtIDSearch.setText(null);
+        txtNameSearch.setText(null);
+}//GEN-LAST:event_btnResetActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        if (isAdd) {
+            isAdd = false;
+            btnUpdate.setEnabled(true);
+            btnDelete.setEnabled(true);
+            txtTotalFees.setEditable(false);
+            btnCancel.setVisible(false);
+
+            loadDetails(listCourses.get(0));
+        }
+}//GEN-LAST:event_btnCancelActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        String id = txtID.getText();
+        if (courseDao.delete(id)) {
+            listCourses.remove(find(id));
+            loadData(listCourses);
+            if (!listCourses.isEmpty()) {
+                loadDetails(listCourses.get(0));
+            }
+            JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Delete Course", JOptionPane.INFORMATION_MESSAGE, null);
+        } else {
+            JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Delete Course", JOptionPane.ERROR_MESSAGE, null);
+        }
+}//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        try {
+            String id = txtID.getText();
+            String name = txtName.getText();
+            float totalFees = Float.parseFloat(txtTotalFees.getText());
+            int status = 0;
+            if (radioEnable.isSelected()) {
+                status = 1;
+            } else {
+                status = 0;
+            }
+            Course course = new Course(id, name, totalFees, status);
+            if (courseDao.update(course)) {
+                listCourses.remove(find(course.getId()));
+                listCourses.add(course);
+                loadData(listCourses);
+                loadDetails(course);
+                JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Update Course", JOptionPane.INFORMATION_MESSAGE);
+
+            } else {
+                System.out.println(courseDao.getLastError());
+                JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Update Course", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.toString(), "Error!", JOptionPane.ERROR_MESSAGE);
+        }
+}//GEN-LAST:event_btnUpdateActionPerformed
+
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
 
@@ -663,139 +726,6 @@ public class pnlCourse extends javax.swing.JPanel {
         } catch (Exception e) {
         }
 }//GEN-LAST:event_btnAddActionPerformed
-
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
-        try {
-            String id = txtID.getText();
-            String name = txtName.getText();
-            float totalFees = Float.parseFloat(txtTotalFees.getText());
-            int status = 0;
-            if (radioEnable.isSelected()) {
-                status = 1;
-            } else {
-                status = 0;
-            }
-            Course course = new Course(id, name, totalFees, status);
-            if (courseDao.update(course)) {
-                listCourses.remove(find(course.getId()));
-                listCourses.add(course);
-                loadData(listCourses);
-                loadDetails(course);
-                JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Update Course", JOptionPane.INFORMATION_MESSAGE);
-
-            } else {
-                System.out.println(courseDao.getLastError());
-                JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Update Course", JOptionPane.ERROR_MESSAGE);
-            }
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.toString(), "Error!", JOptionPane.ERROR_MESSAGE);
-        }
-}//GEN-LAST:event_btnUpdateActionPerformed
-
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-        String id = txtID.getText();
-        if (courseDao.delete(id)) {
-            listCourses.remove(find(id));
-            loadData(listCourses);
-            if (!listCourses.isEmpty()) {
-                loadDetails(listCourses.get(0));
-            }
-            JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Delete Course", JOptionPane.INFORMATION_MESSAGE, null);
-        } else {
-            JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Delete Course", JOptionPane.ERROR_MESSAGE, null);
-        }
-}//GEN-LAST:event_btnDeleteActionPerformed
-
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        // TODO add your handling code here:
-        if (isAdd) {
-            isAdd = false;
-            btnUpdate.setEnabled(true);
-            btnDelete.setEnabled(true);
-            txtTotalFees.setEditable(false);
-            btnCancel.setVisible(false);
-
-            loadDetails(listCourses.get(0));
-        }
-}//GEN-LAST:event_btnCancelActionPerformed
-
-    private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
-        // TODO add your handling code here:
-        int index = tableContent.getSelectedRow();
-        if (index != -1) {
-            String id = tableContent.getValueAt(index, 0).toString();
-            Course course = find(id);
-            if (course != null) {
-                loadDetails(course);
-            }
-        }
-}//GEN-LAST:event_tableContentMouseClicked
-
-    private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
-        // TODO add your handling code here:
-
-        startFiter();
-}//GEN-LAST:event_btnFilterActionPerformed
-
-    public void startFiter() {
-        if (!listCourses.isEmpty()) {
-            String text = filterText.getText();
-            if (text.length() == 0) {
-                sorter.setRowFilter(null);
-            } else {
-                try {
-                    sorter.setRowFilter(RowFilter.regexFilter(text));
-                } catch (PatternSyntaxException pse) {
-                    System.err.println("Bad regex pattern");
-                }
-            }
-        }
-    }
-    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        // TODO add your handling code here:
-        txtIDSearch.setText(null);
-        txtNameSearch.setText(null);
-        txtTotalFeesSearch.setText(null);
-        radioEnableSearch.setSelected(true);
-    }//GEN-LAST:event_btnResetActionPerformed
-
-    private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
-        // TODO add your handling code here:
-        startFiter();
-    }//GEN-LAST:event_filterTextCaretUpdate
-
-    private void txtIDSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtIDSearchCaretUpdate
-        // TODO add your handling code here:
-        loadData(listCourses);
-    }//GEN-LAST:event_txtIDSearchCaretUpdate
-
-    private void txtNameSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtNameSearchCaretUpdate
-        // TODO add your handling code here:
-        loadData(listCourses);
-    }//GEN-LAST:event_txtNameSearchCaretUpdate
-
-    private void txtTotalFeesSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTotalFeesSearchCaretUpdate
-        // TODO add your handling code here:
-        loadData(listCourses);
-    }//GEN-LAST:event_txtTotalFeesSearchCaretUpdate
-
-    private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
-        // TODO add your handling code here:
-        if (filter.size() != 0) {
-            frm.pnlReport.removeAll();
-            dlgChooseReport report = new dlgChooseReport(frm, this);
-            report.getCourseReport(filter);
-            report.setVisible(true);
-            report.setSize(860, 600);
-            frm.pnlReport.add(report);
-            frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
-        } else {
-            JOptionPane.showMessageDialog(this, "No data!", "Report Message", JOptionPane.INFORMATION_MESSAGE);
-        }
-
-    }//GEN-LAST:event_btnReportActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
@@ -813,11 +743,9 @@ public class pnlCourse extends javax.swing.JPanel {
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblNameSearch;
     private javax.swing.JLabel lblStatus;
-    private javax.swing.JLabel lblStatusSearch;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblTitleSearch;
     private javax.swing.JLabel lblTotalFees;
-    private javax.swing.JLabel lblTotalFeesSearch;
     private javax.swing.JPanel pnlButtonEdit;
     private javax.swing.JPanel pnlButtonSearch;
     private javax.swing.JPanel pnlDown;
@@ -826,9 +754,7 @@ public class pnlCourse extends javax.swing.JPanel {
     public javax.swing.JPanel pnlTop1;
     private javax.swing.JPanel pnlTop2;
     private javax.swing.JRadioButton radioDisable;
-    private javax.swing.JRadioButton radioDisableSearch;
     private javax.swing.JRadioButton radioEnable;
-    private javax.swing.JRadioButton radioEnableSearch;
     private javax.swing.JSeparator sepaCourse;
     private javax.swing.JSeparator sepaCourseSearch;
     private javax.swing.JScrollPane srcPanelCourse;
@@ -839,7 +765,6 @@ public class pnlCourse extends javax.swing.JPanel {
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtNameSearch;
     private javax.swing.JTextField txtTotalFees;
-    private javax.swing.JTextField txtTotalFeesSearch;
     // End of variables declaration//GEN-END:variables
 
     String getSelectedType() {

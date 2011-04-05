@@ -93,11 +93,9 @@ public class pnlRegister extends javax.swing.JPanel {
         for (Register sub : regisList) {
             if (sub.getStudentId().toLowerCase().matches(".*" + txtIdSearch.getText().trim().toLowerCase() + ".*")
                     && sub.getId().toLowerCase().matches(".*" + txtStudentIdSearch.getText().trim().toLowerCase() + ".*")
-                    && sub.getCourseId().toLowerCase().matches(".*" + txtCourseIDSearch.getText().trim().toLowerCase() + ".*") //&& String.valueOf(sub.getCoefficient()).toLowerCase().matches(".*" + txtCoefficientSearch.getText().trim().toLowerCase() + ".*")
-                    //&& sub.getCourseID().toLowerCase().matches(".*" + txtCoureIDSearch.getText().trim().toLowerCase() + ".*")
-                    //Chua xet ngay bat dau va ket thuc
-                    ) {
-                filter.add(sub);
+                    && sub.getCourseId().toLowerCase().matches(".*" + txtCourseIDSearch.getText().trim().toLowerCase() + ".*")
+                    && String.valueOf(sub.getFeesStructe()).toLowerCase().matches(".*" + txtFeesStructeSearch.getText().trim().toLowerCase() + ".*")) {
+                    filter.add(sub);
             }
         }
         if (!filter.isEmpty()) {
@@ -207,10 +205,8 @@ public class pnlRegister extends javax.swing.JPanel {
         lblCourseIDSearch = new javax.swing.JLabel();
         lblFeesStructeSearch = new javax.swing.JLabel();
         lblStudentIDSearch = new javax.swing.JLabel();
-        lblRegistrationDateSearch = new javax.swing.JLabel();
         txtIdSearch = new javax.swing.JTextField();
         txtFeesStructeSearch = new javax.swing.JTextField();
-        dateChRegistrationDateSearch = new com.toedter.calendar.JDateChooser();
         panelButonSearch = new javax.swing.JPanel();
         btnReset = new javax.swing.JButton();
         txtCourseIDSearch = new javax.swing.JTextField();
@@ -513,9 +509,9 @@ public class pnlRegister extends javax.swing.JPanel {
         lblFeesStructeSearch.setForeground(new java.awt.Color(3, 3, 3));
         lblFeesStructeSearch.setText("Fees Structe:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight1Search.add(lblFeesStructeSearch, gridBagConstraints);
 
@@ -527,15 +523,6 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         panelRight1Search.add(lblStudentIDSearch, gridBagConstraints);
-
-        lblRegistrationDateSearch.setForeground(new java.awt.Color(3, 3, 3));
-        lblRegistrationDateSearch.setText("Registration Date:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
-        panelRight1Search.add(lblRegistrationDateSearch, gridBagConstraints);
 
         txtIdSearch.setPreferredSize(new java.awt.Dimension(200, 20));
         txtIdSearch.addCaretListener(new javax.swing.event.CaretListener() {
@@ -557,27 +544,11 @@ public class pnlRegister extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight1Search.add(txtFeesStructeSearch, gridBagConstraints);
-
-        dateChRegistrationDateSearch.setDateFormatString("MM/dd/yyyy");
-        dateChRegistrationDateSearch.setPreferredSize(new java.awt.Dimension(200, 20));
-        dateChRegistrationDateSearch.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-                dateChRegistrationDateSearchCaretPositionChanged(evt);
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 10, 5);
-        panelRight1Search.add(dateChRegistrationDateSearch, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelRight1Search.add(txtFeesStructeSearch, gridBagConstraints);
 
         panelButonSearch.setBackground(new java.awt.Color(255, 255, 255));
         panelButonSearch.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
@@ -874,7 +845,6 @@ public class pnlRegister extends javax.swing.JPanel {
         txtStudentIdSearch.setText(null);
         txtCourseIDSearch.setText(null);
         txtFeesStructeSearch.setText(null);
-        dateChRegistrationDateSearch.setDate(null);
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnChooseCourseIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseCourseIdActionPerformed
@@ -968,11 +938,6 @@ public class pnlRegister extends javax.swing.JPanel {
         loadData(regisList);
     }//GEN-LAST:event_txtStudentIdSearchCaretUpdate
 
-    private void dateChRegistrationDateSearchCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_dateChRegistrationDateSearchCaretPositionChanged
-        // TODO add your handling code here:
-        loadData(regisList);
-    }//GEN-LAST:event_dateChRegistrationDateSearchCaretPositionChanged
-
     private void btnCancelEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelEditActionPerformed
         // TODO add your handling code here:
         if (isAdd) {
@@ -994,8 +959,7 @@ public class pnlRegister extends javax.swing.JPanel {
             report.setSize(860, 600);
             frm.pnlReport.add(report);
             frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
-        }
-         else  {
+        } else {
             JOptionPane.showMessageDialog(this, "No data!", "Report Message", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnReportActionPerformed
@@ -1013,7 +977,6 @@ public class pnlRegister extends javax.swing.JPanel {
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox cbxFeeStructe;
     private com.toedter.calendar.JDateChooser dateChRegistrationDate;
-    private com.toedter.calendar.JDateChooser dateChRegistrationDateSearch;
     private javax.swing.JTextField filterText;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblCourseID;
@@ -1024,7 +987,6 @@ public class pnlRegister extends javax.swing.JPanel {
     private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblIDSearch;
     private javax.swing.JLabel lblRegistrationDate;
-    private javax.swing.JLabel lblRegistrationDateSearch;
     private javax.swing.JLabel lblStudentID;
     private javax.swing.JLabel lblStudentIDSearch;
     private javax.swing.JLabel lblTitle;
