@@ -626,7 +626,6 @@ public class pnlCourse extends javax.swing.JPanel {
             isAdd = false;
             btnUpdate.setEnabled(true);
             btnDelete.setEnabled(true);
-            txtTotalFees.setEditable(false);
             btnCancel.setVisible(false);
 
             loadDetails(listCourses.get(0));
@@ -685,19 +684,13 @@ public class pnlCourse extends javax.swing.JPanel {
                 isAdd = true;
                 btnUpdate.setEnabled(false);
                 btnDelete.setEnabled(false);
-                txtTotalFees.setEditable(true);
+                txtID.setRequestFocusEnabled(true);
                 btnCancel.setVisible(true);
 
                 txtID.setText("");
                 txtName.setText("");
                 txtTotalFees.setText("");
             } else {
-                isAdd = false;
-                btnUpdate.setEnabled(true);
-                btnDelete.setEnabled(true);
-                txtTotalFees.setEditable(false);
-                btnCancel.setVisible(false);
-
                 String id = txtID.getText();
                 String name = txtName.getText();
                 float totalFees = Float.parseFloat(txtTotalFees.getText());
@@ -715,13 +708,15 @@ public class pnlCourse extends javax.swing.JPanel {
                     listCourses.add(course);
                     loadData(listCourses);
                     loadDetails(course);
+
+                    isAdd = false;
+                    btnUpdate.setEnabled(true);
+                    btnDelete.setEnabled(true);
+                    txtID.setRequestFocusEnabled(false);
+                    btnCancel.setVisible(false);
                 } else {
                     JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Create Course", JOptionPane.ERROR_MESSAGE);
                 }
-                isAdd = false;
-                btnUpdate.setEnabled(true);
-                btnDelete.setEnabled(true);
-                txtTotalFees.setEditable(false);
             }
         } catch (Exception e) {
         }
