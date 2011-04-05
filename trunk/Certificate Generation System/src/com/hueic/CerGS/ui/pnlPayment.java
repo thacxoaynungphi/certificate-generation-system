@@ -748,7 +748,7 @@ public class pnlPayment extends javax.swing.JPanel {
                 Course course = courseDao.readById(registerDAO.readByStudentId(pay.getStudentId()).getCourseId());
 
                 if (pay.getMoney() > course.getTotalFees() - (paymentDao.getCurrentTotalDiposit(pay))) {
-                    JOptionPane.showMessageDialog(this, "You can't pay greater your total arrears", "Payment Update", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "You can't pay greater your total arrears", "Payment Add", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 if (paymentDao.create(pay)) {
