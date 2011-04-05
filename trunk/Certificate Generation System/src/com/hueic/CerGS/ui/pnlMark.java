@@ -164,6 +164,26 @@ public class pnlMark extends javax.swing.JPanel {
         return null;
     }
 
+    public Mark getPaymentFromForm() throws Exception {
+        Mark mark = new Mark();
+        try {
+            String id = txtMarkId.getText();
+            if (!id.isEmpty()) {
+                mark.setId(Integer.parseInt(id));
+            }
+
+            String ma = txtMark.getText();
+            if (!ma.isEmpty()) {
+                mark.setMark(Float.parseFloat(ma));
+            }
+            mark.setSubjectId(txtSubjectID.getText());
+            mark.setStudentId(txtStudentId.getText());
+        } catch (Exception ex) {
+            throw ex;
+        }
+        return mark;
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -299,6 +319,7 @@ public class pnlMark extends javax.swing.JPanel {
 
         txtSubjectID.setMinimumSize(new java.awt.Dimension(200, 20));
         txtSubjectID.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtSubjectID.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
@@ -375,6 +396,7 @@ public class pnlMark extends javax.swing.JPanel {
 
         txtStudentId.setMinimumSize(new java.awt.Dimension(200, 20));
         txtStudentId.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtStudentId.setRequestFocusEnabled(false);
         txtStudentId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtStudentIdActionPerformed(evt);
@@ -720,27 +742,27 @@ public class pnlMark extends javax.swing.JPanel {
         try {
             if (!isAdd) {
                 isAdd = true;
-                txtMarkId.setEnabled(false);
+                txtSubjectID.setRequestFocusEnabled(true);
+                txtStudentId.setRequestFocusEnabled(true);
                 btnCancel.setVisible(true);
                 btnUpdate.setEnabled(false);
                 btnDelete.setEnabled(false);
 
                 resetDetails();
             } else {
-                isAdd = false;
-                txtMarkId.setEnabled(true);
-                btnUpdate.setEnabled(true);
-                btnDelete.setEnabled(true);
-                btnCancel.setVisible(false);
-                Mark mark = new Mark();
-                mark.setStudentId(txtStudentId.getText());
-                mark.setMark(Float.parseFloat(txtMark.getText()));
-                mark.setSubjectId(txtSubjectID.getText());
+                Mark mark = getPaymentFromForm();
                 if (markDAO.create(mark)) {
-                    listMark.add(mark);
+                    JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Add", JOptionPane.INFORMATION_MESSAGE);
+                    listMark = markDAO.readByAll();
                     loadData();
                     loadDetails(listMark.get(0));
-                    JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Add", JOptionPane.INFORMATION_MESSAGE);
+
+                    isAdd = false;
+                    btnUpdate.setEnabled(true);
+                    btnDelete.setEnabled(true);
+                    btnCancel.setVisible(false);
+                    txtStudentId.setRequestFocusEnabled(false);
+                    txtSubjectID.setRequestFocusEnabled(false);
                 } else {
                     JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Add", JOptionPane.ERROR_MESSAGE);
                 }
@@ -753,14 +775,17 @@ public class pnlMark extends javax.swing.JPanel {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         try {
-            Mark mark = getMarkById(Integer.parseInt(txtMarkId.getText()));
-            if (mark != null) {
-                mark.setMark(Float.parseFloat(txtMark.getText()));
-                if (markDAO.update(mark)) {
-                    loadData();
-                }
+            Mark mark = getPaymentFromForm();
+            if (markDAO.update(mark)) {
+                JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Update", JOptionPane.INFORMATION_MESSAGE);
+                listMark = markDAO.readByAll();
+                loadData();
+                loadDetails(listMark.get(0));
+            }else{
+                JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Update", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Mark Update", JOptionPane.INFORMATION_MESSAGE);
         }
 }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -785,7 +810,8 @@ public class pnlMark extends javax.swing.JPanel {
             btnUpdate.setEnabled(true);
             btnDelete.setEnabled(true);
             btnCancel.setVisible(false);
-            txtMarkId.setEnabled(true);
+            txtStudentId.setRequestFocusEnabled(false);
+            txtSubjectID.setRequestFocusEnabled(false);
         }
 
         loadDetails(listMark.get(0));
