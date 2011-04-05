@@ -381,7 +381,6 @@ public class pnlPermission extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(30, 5, 5, 5);
         panelRightSearch.add(panelButtonSearch, gridBagConstraints);
 
-        txtIdSearch.setEnabled(false);
         txtIdSearch.setMinimumSize(new java.awt.Dimension(200, 20));
         txtIdSearch.setPreferredSize(new java.awt.Dimension(200, 20));
         txtIdSearch.addCaretListener(new javax.swing.event.CaretListener() {
@@ -568,12 +567,14 @@ public class pnlPermission extends javax.swing.JPanel {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
+        txtIdSearch.setText(null);
+        txtNameSearch.setText(null);
+
 }//GEN-LAST:event_btnResetActionPerformed
 
     private void txtIdCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtIdCaretUpdate
         // TODO add your handling code here:
-        txtIdSearch.setText(null);
-        txtNameSearch.setText(null);
+        
 }//GEN-LAST:event_txtIdCaretUpdate
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
@@ -655,7 +656,6 @@ public class pnlPermission extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, e.toString(), "Permission", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnAddActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
