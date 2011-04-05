@@ -339,6 +339,7 @@ public class frmMain extends javax.swing.JFrame {
 
         tpnBusiness.setBackground(new java.awt.Color(255, 255, 255));
         tpnBusiness.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+        tpnBusiness.setEnabled(false);
         tpnBusiness.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         tpnBusiness.setMaximumSize(new java.awt.Dimension(1024, 600));
         tpnBusiness.setMinimumSize(new java.awt.Dimension(1024, 600));
@@ -1097,6 +1098,23 @@ public class frmMain extends javax.swing.JFrame {
 //        pnlDevelopDegree.add(developDegree);
 //        pnlReport.add(report);
 
+        tpnBusiness.removeAll();
+        tpnBusiness.addTab("Home                  ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlHomeTab);
+        tpnBusiness.addTab("Employee            ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlEmployeeTab);
+        tpnBusiness.addTab("Student", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlStudentTab);
+        tpnBusiness.addTab("Register", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlRegisterTab);
+        tpnBusiness.addTab("Course", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlCourseTab);
+        tpnBusiness.addTab("Payment", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlPaymentTab);
+        tpnBusiness.addTab("Subject", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlSubjectTab);
+        tpnBusiness.addTab("Mark", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlMarkTab);
+        tpnBusiness.addTab("Certificate", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlCertificateTab);
+        tpnBusiness.addTab("Account             ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlAccountTab);
+        tpnBusiness.addTab("Permission", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlPermissionTab);
+        tpnBusiness.addTab("View Mark", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlViewMarkTab);
+        tpnBusiness.addTab("View Payment", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlViewPaymentTab);
+        tpnBusiness.addTab("Develop Degree", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlDevelopDegree);
+        tpnBusiness.addTab("Report", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlReport);
+
         tpnBusiness.setEnabled(false);
         jideBtnHome.setEnabled(false);
         jideBtnEmployee.setEnabled(false);
@@ -1144,16 +1162,23 @@ public class frmMain extends javax.swing.JFrame {
             if (perDao.readByName("Admin").getId() == this.accCur.getPermission()) {
             } else if (perDao.readByName("Employee").getId() == this.accCur.getPermission()) {
 
-                tpnBusiness.remove(pnlEmployeeTab);
-                tpnBusiness.remove(pnlStudentTab);
-                tpnBusiness.remove(pnlRegisterTab);
-                tpnBusiness.remove(pnlCourseTab);
-                tpnBusiness.remove(pnlSubjectTab);
-                tpnBusiness.remove(pnlPaymentTab);
-                tpnBusiness.remove(pnlMarkTab);
-                tpnBusiness.remove(pnlCertificateTab);
-                tpnBusiness.remove(pnlPermissionTab);
-                tpnBusiness.remove(pnlAccountTab);
+                tpnBusiness.removeAll();
+                tpnBusiness.addTab("Home                  ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlHomeTab);
+                tpnBusiness.addTab("View Mark", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlViewMarkTab);
+                tpnBusiness.addTab("View Payment", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlViewPaymentTab);
+                tpnBusiness.addTab("Develop Degree", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlDevelopDegree);
+                tpnBusiness.addTab("Report", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlReport);
+
+//                tpnBusiness.remove(pnlEmployeeTab);
+//                tpnBusiness.remove(pnlStudentTab);
+//                tpnBusiness.remove(pnlRegisterTab);
+//                tpnBusiness.remove(pnlCourseTab);
+//                tpnBusiness.remove(pnlSubjectTab);
+//                tpnBusiness.remove(pnlPaymentTab);
+//                tpnBusiness.remove(pnlMarkTab);
+//                tpnBusiness.remove(pnlCertificateTab);
+//                tpnBusiness.remove(pnlPermissionTab);
+//                tpnBusiness.remove(pnlAccountTab);
                 pnlHomeTab.removeAll();
                 pnlHomeTab.add(new pnlHomeEmp(this));
 
@@ -1169,17 +1194,13 @@ public class frmMain extends javax.swing.JFrame {
                 jideBtnPayment.setVisible(false);
 
             } else {
-                tpnBusiness.remove(pnlEmployeeTab);
-                tpnBusiness.remove(pnlStudentTab);
-                tpnBusiness.remove(pnlRegisterTab);
-                tpnBusiness.remove(pnlCourseTab);
-                tpnBusiness.remove(pnlSubjectTab);
-                tpnBusiness.remove(pnlPaymentTab);
-                tpnBusiness.remove(pnlMarkTab);
-                tpnBusiness.remove(pnlCertificateTab);
-                tpnBusiness.remove(pnlPermissionTab);
-                tpnBusiness.remove(pnlDevelopDegree);
-                tpnBusiness.remove(pnlAccountTab);
+                tpnBusiness.removeAll();
+                tpnBusiness.addTab("Home                  ", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlHomeTab);
+                tpnBusiness.addTab("View Mark", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlViewMarkTab);
+                tpnBusiness.addTab("View Payment", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlViewPaymentTab);
+                tpnBusiness.addTab("Report", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlReport);
+
+
                 pnlHomeTab.removeAll();
                 pnlHomeTab.add(new pnlHomeStudent(this));
 
