@@ -65,11 +65,11 @@ public class pnlRegister extends javax.swing.JPanel {
         regisList = regisDAO.readByAll();
         studentList = studentDAO.readByAll();
         courseIdList = courseDAO.readByAll();
-        btnCancelEdit.setVisible(false);
         if (!regisList.isEmpty()) {
             loadData(regisList);
             loadDetails(regisList.get(0));
         }
+        btnCancelEdit.setVisible(false);
     }
 
     public pnlRegister(frmMain frm) {
@@ -86,6 +86,7 @@ public class pnlRegister extends javax.swing.JPanel {
             loadData(regisList);
             loadDetails(regisList.get(0));
         }
+        btnCancelEdit.setVisible(false);
     }
 
     public void loadData(ArrayList<Register> regisList) {
@@ -95,7 +96,7 @@ public class pnlRegister extends javax.swing.JPanel {
                     && sub.getId().toLowerCase().matches(".*" + txtStudentIdSearch.getText().trim().toLowerCase() + ".*")
                     && sub.getCourseId().toLowerCase().matches(".*" + txtCourseIDSearch.getText().trim().toLowerCase() + ".*")
                     && String.valueOf(sub.getFeesStructe()).toLowerCase().matches(".*" + txtFeesStructeSearch.getText().trim().toLowerCase() + ".*")) {
-                    filter.add(sub);
+                filter.add(sub);
             }
         }
         if (!filter.isEmpty()) {
@@ -762,13 +763,8 @@ public class pnlRegister extends javax.swing.JPanel {
                 btnUpdate.setEnabled(false);
                 btnDelete.setEnabled(false);
                 btnCancelEdit.setVisible(true);
-                resetDetails();
+//                resetDetails();
             } else {
-                isAdd = false;
-                txtId.setRequestFocusEnabled(false);
-                btnUpdate.setEnabled(true);
-                btnDelete.setEnabled(true);
-                btnCancelEdit.setVisible(false);
                 String Id = txtStudentId.getText();
                 String studentId = txtId.getText();
                 int feesStructe = cbxFeeStructe.getSelectedIndex();
@@ -782,6 +778,12 @@ public class pnlRegister extends javax.swing.JPanel {
                     loadDetails(register);
                     txtCourseID.setVisible(true);
                     txtStudentId.setVisible(true);
+
+                    isAdd = false;
+                    txtId.setRequestFocusEnabled(false);
+                    btnUpdate.setEnabled(true);
+                    btnDelete.setEnabled(true);
+                    btnCancelEdit.setVisible(false);
                 } else {
                     JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Create Register", JOptionPane.ERROR_MESSAGE);
                 }
