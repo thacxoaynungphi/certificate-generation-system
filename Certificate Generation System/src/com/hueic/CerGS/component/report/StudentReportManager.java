@@ -29,13 +29,12 @@ public class StudentReportManager extends ReportManager {
     private CourseDAO courseDAO;
 
     public StudentReportManager(ArrayList<Student> listStudent) {
-        this.course = course;
         studentDAO = new StudentDAO();
         registerDAO = new RegisterDAO();
         courseDAO = new CourseDAO();
 
         listRegis = registerDAO.readByCourseId(this.course);
-        jasperFileName = "StudentInCourse.jasper";
+        jasperFileName = "StudentList.jasper";
 
         parameterMap = getParameter();
         dataCollection = getDataCollection();
@@ -44,7 +43,7 @@ public class StudentReportManager extends ReportManager {
     private HashMap getParameter() {
         parameterMap = new HashMap();
 
-        parameterMap.put("COURSE", courseDAO.readById(this.course).getName());
+        parameterMap.put("COURSE", "Course");
         parameterMap.put("ID", "Student Code");
         parameterMap.put("NAME", "Student Name");
         parameterMap.put("BIRTHDAY", "Birthday");
@@ -65,6 +64,7 @@ public class StudentReportManager extends ReportManager {
             rowMap.put("BIRTHDAY", dateFormat.format(new Date(st.getBirthDay().getTime())));
             Date regisDate = reg.getRegisDate();
             rowMap.put("REGISDATE", dateFormat.format(new Date(regisDate.getTime())));
+            rowMap.put("COURSE", courseDAO.readById(course).getName());
 
             reportRows.add(rowMap);
         }

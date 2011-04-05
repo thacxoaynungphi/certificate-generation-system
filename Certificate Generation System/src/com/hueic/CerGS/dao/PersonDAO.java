@@ -133,7 +133,7 @@ public class PersonDAO extends BaseDAO implements IPersonDAO {
                 setLastError("Add Person unuccessfully");
             }
         } catch (SQLException ex) {
-            setLastError(ex.toString());
+            setLastError("SQL Error!!!");
         } finally {
             db.closeConnection();
         }
