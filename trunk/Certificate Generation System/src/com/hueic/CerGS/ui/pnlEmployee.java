@@ -190,7 +190,6 @@ public class pnlEmployee extends javax.swing.JPanel {
         lblStart1 = new javax.swing.JLabel();
         lblStart2 = new javax.swing.JLabel();
         lblStart3 = new javax.swing.JLabel();
-        lblStart4 = new javax.swing.JLabel();
         lblEmployeeID = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
         lblStart6 = new javax.swing.JLabel();
@@ -511,15 +510,6 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlTop1.add(lblStart3, gridBagConstraints);
-
-        lblStart4.setForeground(new java.awt.Color(255, 0, 0));
-        lblStart4.setText("(*)");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlTop1.add(lblStart4, gridBagConstraints);
 
         lblEmployeeID.setForeground(new java.awt.Color(3, 3, 3));
         lblEmployeeID.setText("Employee ID:");
@@ -993,17 +983,33 @@ public class pnlEmployee extends javax.swing.JPanel {
             if (!isAdd) {
                 isAdd = true;
                 txtID.setEnabled(true);
-                btnCancelEdit.setVisible(false);
-              //  resetEditDetails();
+                btnCancelEdit.setVisible(true);
+                //  resetEditDetails();
             } else {
-                isAdd = false;
-                txtID.setEnabled(false);
-                btnCancelEdit.setVisible(false);
-
                 Employee emp = new Employee();
-                emp.setId(txtID.getText());
-                emp.setFirstName(txtFirstNameEdit.getText());
-                emp.setLastName(txtLastNameEdit.getText());
+
+                String id = txtID.getText();
+
+                if(!id.isEmpty()) emp.setId(id);
+                else {
+                    JOptionPane.showMessageDialog(this, "Id must be enter.", "Employee add", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                String fname = txtFirstNameEdit.getText();
+                if(!fname.isEmpty()) emp.setFirstName(fname);
+                else{
+                    JOptionPane.showMessageDialog(this, "First Name must be enter.", "Employee add", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                
+                String lname = txtLastNameEdit.getText();
+                if(!lname.isEmpty()) emp.setLastName(lname);
+                else {
+                    JOptionPane.showMessageDialog(this, "Last Name must be enter.", "Employee add", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
                 emp.setBirthDay(new java.sql.Date(dateChBirthdayEdit.getDate().getTime()));
                 if (radioMaleEdit.isSelected()) {
                     emp.setGender(0);
@@ -1011,15 +1017,29 @@ public class pnlEmployee extends javax.swing.JPanel {
                     emp.setGender(1);
                 }
                 emp.setPhone(txtPhoneEdit.getText());
-                emp.setEmail(txtEmailEdit.getText());
+
+                String email = txtEmailEdit.getText();
+                if(!email.isEmpty()) emp.setEmail(email);
+                else{
+                    JOptionPane.showMessageDialog(this, "Your email must be enter.", "Employee add", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 emp.setAddress(txtAddressEdit.getText());
-                File file = new File(txtImageEdit.getText());
-                String name = file.getName();
-                String extension;
-                int dotPos = name.lastIndexOf(".");
-                extension = name.substring(dotPos);
-                LoadImage.copyImage(file.getPath(), System.getProperty("user.dir") + "/avatar/" + emp.getId() + extension);
-                emp.setImage(emp.getId() + extension);
+                try{
+                if (!txtImageEdit.getText().isEmpty()) {
+                    File file = new File(txtImageEdit.getText());
+                    String name = file.getName();
+                    String extension;
+                    int dotPos = name.lastIndexOf(".");
+                    extension = name.substring(dotPos);
+                    LoadImage.copyImage(file.getPath(), System.getProperty("user.dir") + "/avatar/" + emp.getId() + extension);
+                    emp.setImage(emp.getId() + extension);
+                } else {
+                    emp.setImage(null);
+                }
+                }catch(Exception e){
+                    emp.setImage(null);
+                }
                 emp.setBeginWork(new java.sql.Date(dateChBeginWorkEdit.getDate().getTime()));
                 emp.setStatus(1);
 
@@ -1031,10 +1051,14 @@ public class pnlEmployee extends javax.swing.JPanel {
                 } else {
                     JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Add", JOptionPane.ERROR_MESSAGE);
                 }
+
+                isAdd = false;
+                txtID.setEnabled(false);
+                btnCancelEdit.setVisible(false);
             }
         } catch (Exception ex) {
 
-            JOptionPane.showMessageDialog(this, ex.toString() + "Bien", "Employee Update", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Input Data Error", "Employee Add", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnAddEditActionPerformed
 
@@ -1181,8 +1205,11 @@ public class pnlEmployee extends javax.swing.JPanel {
 
     private void txtEmployeeIdSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtEmployeeIdSearchCaretUpdate
         // TODO add your handling code here:
-        if(txtEmployeeIdSearch.getText().isEmpty()) loadData(empDao.readByAll());
-        else loadData(listEmp);
+        if (txtEmployeeIdSearch.getText().isEmpty()) {
+            loadData(empDao.readByAll());
+        } else {
+            loadData(listEmp);
+        }
     }//GEN-LAST:event_txtEmployeeIdSearchCaretUpdate
 
     private void txtFirstNameSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtFirstNameSearchCaretUpdate
@@ -1278,7 +1305,6 @@ public class pnlEmployee extends javax.swing.JPanel {
     private javax.swing.JLabel lblStart1;
     private javax.swing.JLabel lblStart2;
     private javax.swing.JLabel lblStart3;
-    private javax.swing.JLabel lblStart4;
     private javax.swing.JLabel lblStart6;
     private javax.swing.JLabel lblStudentId;
     private javax.swing.JLabel lblTitle;
