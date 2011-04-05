@@ -91,7 +91,7 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
         }
     }
 
-    public void loadFiter(String text,ArrayList<Mark> listMark) {
+    public void loadFiter(String text, ArrayList<Mark> listMark) {
         filter = new ArrayList<Mark>();
         for (Mark mark : listMark) {
             if (mark.getStudentId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
@@ -388,12 +388,12 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
-       loadFiter(filterText.getText(), listMark);
+        loadFiter(filterText.getText(), listMark);
 }//GEN-LAST:event_btnFilterActionPerformed
 
     private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
         // TODO add your handling code here:
-       loadFiter(filterText.getText(), listMark);
+        loadFiter(filterText.getText(), listMark);
     }//GEN-LAST:event_filterTextCaretUpdate
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
@@ -404,8 +404,10 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
             report.getCertificateReport(this.cbxStudentID.getSelectedItem().toString());
             report.setVisible(true);
             report.setSize(860, 600);
-            frm.pnlReport.add(report);
-            frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+            if (report.status == true) {
+                frm.pnlReport.add(report);
+                frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+            }
         } else {
             JOptionPane.showMessageDialog(this, "You are choose student!", "Develop Degree", JOptionPane.INFORMATION_MESSAGE);
         }

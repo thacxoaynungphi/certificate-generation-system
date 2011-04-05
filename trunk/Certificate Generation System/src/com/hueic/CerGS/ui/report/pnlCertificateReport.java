@@ -20,12 +20,17 @@ import javax.swing.JOptionPane;
 public class pnlCertificateReport extends javax.swing.JPanel {
 
     private CertificateReportManager cerReportManager;
-
     /** Creates new form pnlCertificate */
+    public boolean status = true;
+
     public pnlCertificateReport(String studentId) {
         initComponents();
-       // setLayout(new BorderLayout());
+        // setLayout(new BorderLayout());
         cerReportManager = new CertificateReportManager(studentId);
+        if (cerReportManager.status == false) {
+            status = false;
+            return;
+        }
         try {
             this.add(cerReportManager.getPanelViewer(true));
         } catch (Exception ex) {
