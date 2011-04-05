@@ -13,6 +13,7 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
 
 /**
@@ -32,8 +33,14 @@ public class StudentReportManager extends ReportManager {
         studentDAO = new StudentDAO();
         registerDAO = new RegisterDAO();
         courseDAO = new CourseDAO();
+        listRegis = new ArrayList<Register>();
+        ArrayList<Register> temp = null;
 
-        listRegis = registerDAO.readByCourseId(this.course);
+        for(Student student : listStudent){
+            temp = registerDAO.readByStudentIdOfPerson(student.getId());
+            if(!temp.isEmpty())
+                listRegis.addAll(temp);
+        }
         jasperFileName = "StudentList.jasper";
 
         parameterMap = getParameter();
@@ -64,7 +71,7 @@ public class StudentReportManager extends ReportManager {
             rowMap.put("BIRTHDAY", dateFormat.format(new Date(st.getBirthDay().getTime())));
             Date regisDate = reg.getRegisDate();
             rowMap.put("REGISDATE", dateFormat.format(new Date(regisDate.getTime())));
-            rowMap.put("COURSE", courseDAO.readById(course).getName());
+            rowMap.put("COURSE", courseDAO.readById(reg.getCourseId()).getName());
 
             reportRows.add(rowMap);
         }
