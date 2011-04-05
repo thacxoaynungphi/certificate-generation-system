@@ -992,7 +992,7 @@ public class pnlEmployee extends javax.swing.JPanel {
                 isAdd = true;
                 txtID.setEnabled(true);
                 btnCancelEdit.setVisible(false);
-                resetEditDetails();
+              //  resetEditDetails();
             } else {
                 isAdd = false;
                 txtID.setEnabled(false);
@@ -1031,7 +1031,8 @@ public class pnlEmployee extends javax.swing.JPanel {
                 }
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.toString(), "Employee Update", JOptionPane.ERROR_MESSAGE);
+
+            JOptionPane.showMessageDialog(this, ex.toString() + "Bien", "Employee Update", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnAddEditActionPerformed
 
@@ -1178,7 +1179,8 @@ public class pnlEmployee extends javax.swing.JPanel {
 
     private void txtEmployeeIdSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtEmployeeIdSearchCaretUpdate
         // TODO add your handling code here:
-        loadData(listEmp);
+        if(txtEmployeeIdSearch.getText().isEmpty()) loadData(empDao.readByAll());
+        else loadData(listEmp);
     }//GEN-LAST:event_txtEmployeeIdSearchCaretUpdate
 
     private void txtFirstNameSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtFirstNameSearchCaretUpdate
