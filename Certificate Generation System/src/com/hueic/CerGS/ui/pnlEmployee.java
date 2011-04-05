@@ -87,9 +87,13 @@ public class pnlEmployee extends javax.swing.JPanel {
             if (emp.getId().toLowerCase().matches(".*" + txtEmployeeIdSearch.getText().trim().toLowerCase() + ".*")
                     && emp.getFirstName().toLowerCase().matches(".*" + txtFirstNameSearch.getText().trim().toLowerCase() + ".*")
                     && emp.getLastName().toLowerCase().matches(".*" + txtLastNameSearch.getText().trim().toLowerCase() + ".*")) {
-                // if(dateChooserDateEnd.getDate() != null && dateChooserDateStart.getDate() != null)
-                //Chua de che do ngay va gender
-                filter.add(emp);
+                if (radioAll.isSelected()) {
+                    filter.add(emp);
+                } else if (radioMaleSearch.isSelected() && emp.getGender() == 0) {
+                    filter.add(emp);
+                } else if (radioFemaleSearch.isSelected() && emp.getGender() == 1) {
+                    filter.add(emp);
+                }
             }
         }
         if (!filter.isEmpty()) {
@@ -205,9 +209,6 @@ public class pnlEmployee extends javax.swing.JPanel {
         txtFirstNameSearch = new javax.swing.JTextField();
         lblLastName = new javax.swing.JLabel();
         txtLastNameSearch = new javax.swing.JTextField();
-        lblBirthday1 = new javax.swing.JLabel();
-        dateChooserDateStartSearch = new com.toedter.calendar.JDateChooser();
-        dateChooserDateEndSearch = new com.toedter.calendar.JDateChooser();
         lblGender1 = new javax.swing.JLabel();
         radioMaleSearch = new javax.swing.JRadioButton();
         radioFemaleSearch = new javax.swing.JRadioButton();
@@ -216,6 +217,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         pnlButtonSearch = new javax.swing.JPanel();
         btnResetSearch = new javax.swing.JButton();
         txtEmployeeIdSearch = new javax.swing.JTextField();
+        radioAll = new javax.swing.JRadioButton();
         pnlDown = new javax.swing.JPanel();
         panelDisplay = new javax.swing.JPanel();
         lblHienthi = new javax.swing.JLabel();
@@ -638,9 +640,9 @@ public class pnlEmployee extends javax.swing.JPanel {
         lblLastName.setForeground(new java.awt.Color(3, 3, 3));
         lblLastName.setText("Last Name: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlTop2.add(lblLastName, gridBagConstraints);
 
@@ -652,48 +654,18 @@ public class pnlEmployee extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlTop2.add(txtLastNameSearch, gridBagConstraints);
-
-        lblBirthday1.setForeground(new java.awt.Color(3, 3, 3));
-        lblBirthday1.setText("Birthday: ");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
-        pnlTop2.add(lblBirthday1, gridBagConstraints);
-
-        dateChooserDateStartSearch.setDateFormatString("MM/dd/yyyy");
-        dateChooserDateStartSearch.setMinimumSize(new java.awt.Dimension(150, 20));
-        dateChooserDateStartSearch.setPreferredSize(new java.awt.Dimension(200, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlTop2.add(dateChooserDateStartSearch, gridBagConstraints);
-
-        dateChooserDateEndSearch.setDateFormatString("MM/dd/yyyy");
-        dateChooserDateEndSearch.setMinimumSize(new java.awt.Dimension(150, 20));
-        dateChooserDateEndSearch.setPreferredSize(new java.awt.Dimension(200, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlTop2.add(dateChooserDateEndSearch, gridBagConstraints);
 
         lblGender1.setForeground(new java.awt.Color(3, 3, 3));
         lblGender1.setText("Gender:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         pnlTop2.add(lblGender1, gridBagConstraints);
@@ -702,9 +674,14 @@ public class pnlEmployee extends javax.swing.JPanel {
         btnGGender2.add(radioMaleSearch);
         radioMaleSearch.setForeground(new java.awt.Color(3, 3, 3));
         radioMaleSearch.setText("Male");
+        radioMaleSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioMaleSearchActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlTop2.add(radioMaleSearch, gridBagConstraints);
@@ -713,9 +690,14 @@ public class pnlEmployee extends javax.swing.JPanel {
         btnGGender2.add(radioFemaleSearch);
         radioFemaleSearch.setForeground(new java.awt.Color(3, 3, 3));
         radioFemaleSearch.setText("FeMale");
+        radioFemaleSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioFemaleSearchActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlTop2.add(radioFemaleSearch, gridBagConstraints);
@@ -726,7 +708,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         pnlTop2.add(lblTitle1, gridBagConstraints);
 
@@ -735,7 +717,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
         pnlTop2.add(sepaCourse, gridBagConstraints);
@@ -758,7 +740,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 6;
         gridBagConstraints.insets = new java.awt.Insets(15, 5, 5, 5);
         pnlTop2.add(pnlButtonSearch, gridBagConstraints);
 
@@ -775,6 +757,20 @@ public class pnlEmployee extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlTop2.add(txtEmployeeIdSearch, gridBagConstraints);
+
+        radioAll.setBackground(new java.awt.Color(255, 255, 255));
+        btnGGender2.add(radioAll);
+        radioAll.setText("All");
+        radioAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioAllActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        pnlTop2.add(radioAll, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -990,22 +986,25 @@ public class pnlEmployee extends javax.swing.JPanel {
 
                 String id = txtID.getText();
 
-                if(!id.isEmpty()) emp.setId(id);
-                else {
+                if (!id.isEmpty()) {
+                    emp.setId(id);
+                } else {
                     JOptionPane.showMessageDialog(this, "Id must be enter.", "Employee add", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
                 String fname = txtFirstNameEdit.getText();
-                if(!fname.isEmpty()) emp.setFirstName(fname);
-                else{
+                if (!fname.isEmpty()) {
+                    emp.setFirstName(fname);
+                } else {
                     JOptionPane.showMessageDialog(this, "First Name must be enter.", "Employee add", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                
+
                 String lname = txtLastNameEdit.getText();
-                if(!lname.isEmpty()) emp.setLastName(lname);
-                else {
+                if (!lname.isEmpty()) {
+                    emp.setLastName(lname);
+                } else {
                     JOptionPane.showMessageDialog(this, "Last Name must be enter.", "Employee add", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
@@ -1019,25 +1018,26 @@ public class pnlEmployee extends javax.swing.JPanel {
                 emp.setPhone(txtPhoneEdit.getText());
 
                 String email = txtEmailEdit.getText();
-                if(!email.isEmpty()) emp.setEmail(email);
-                else{
+                if (!email.isEmpty()) {
+                    emp.setEmail(email);
+                } else {
                     JOptionPane.showMessageDialog(this, "Your email must be enter.", "Employee add", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 emp.setAddress(txtAddressEdit.getText());
-                try{
-                if (!txtImageEdit.getText().isEmpty()) {
-                    File file = new File(txtImageEdit.getText());
-                    String name = file.getName();
-                    String extension;
-                    int dotPos = name.lastIndexOf(".");
-                    extension = name.substring(dotPos);
-                    LoadImage.copyImage(file.getPath(), System.getProperty("user.dir") + "/avatar/" + emp.getId() + extension);
-                    emp.setImage(emp.getId() + extension);
-                } else {
-                    emp.setImage(null);
-                }
-                }catch(Exception e){
+                try {
+                    if (!txtImageEdit.getText().isEmpty()) {
+                        File file = new File(txtImageEdit.getText());
+                        String name = file.getName();
+                        String extension;
+                        int dotPos = name.lastIndexOf(".");
+                        extension = name.substring(dotPos);
+                        LoadImage.copyImage(file.getPath(), System.getProperty("user.dir") + "/avatar/" + emp.getId() + extension);
+                        emp.setImage(emp.getId() + extension);
+                    } else {
+                        emp.setImage(null);
+                    }
+                } catch (Exception e) {
                     emp.setImage(null);
                 }
                 emp.setBeginWork(new java.sql.Date(dateChBeginWorkEdit.getDate().getTime()));
@@ -1119,8 +1119,6 @@ public class pnlEmployee extends javax.swing.JPanel {
         txtEmployeeIdSearch.setText(null);
         txtFirstNameSearch.setText(null);
         txtLastNameSearch.setText(null);
-        dateChooserDateEndSearch.setDate(null);
-        dateChooserDateStartSearch.setDate(null);
         radioMaleSearch.setSelected(true);
 }//GEN-LAST:event_btnResetSearchActionPerformed
 
@@ -1267,6 +1265,21 @@ public class pnlEmployee extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "You are choose employee!", "Report details employee", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void radioMaleSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMaleSearchActionPerformed
+        // TODO add your handling code here:
+        loadData(listEmp);
+    }//GEN-LAST:event_radioMaleSearchActionPerformed
+
+    private void radioFemaleSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioFemaleSearchActionPerformed
+        // TODO add your handling code here:
+        loadData(listEmp);
+    }//GEN-LAST:event_radioFemaleSearchActionPerformed
+
+    private void radioAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAllActionPerformed
+        // TODO add your handling code here:
+        loadData(listEmp);
+    }//GEN-LAST:event_radioAllActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddEdit;
     private javax.swing.JButton btnBrowseEdit;
@@ -1280,14 +1293,11 @@ public class pnlEmployee extends javax.swing.JPanel {
     private javax.swing.JButton btnUpdateEdit;
     private com.toedter.calendar.JDateChooser dateChBeginWorkEdit;
     private com.toedter.calendar.JDateChooser dateChBirthdayEdit;
-    private com.toedter.calendar.JDateChooser dateChooserDateEndSearch;
-    private com.toedter.calendar.JDateChooser dateChooserDateStartSearch;
     private javax.swing.JTextField filterText;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblBeginwork;
     private javax.swing.JLabel lblBirthday;
-    private javax.swing.JLabel lblBirthday1;
     private javax.swing.JLabel lblCount;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblEmployeeID;
@@ -1319,6 +1329,7 @@ public class pnlEmployee extends javax.swing.JPanel {
     public javax.swing.JPanel pnlSearch;
     private javax.swing.JPanel pnlTop1;
     private javax.swing.JPanel pnlTop2;
+    private javax.swing.JRadioButton radioAll;
     private javax.swing.JRadioButton radioFemaleEdit;
     private javax.swing.JRadioButton radioFemaleSearch;
     private javax.swing.JRadioButton radioMaleEdit;

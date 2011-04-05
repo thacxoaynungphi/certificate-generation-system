@@ -94,10 +94,8 @@ public class pnlPayment extends javax.swing.JPanel {
         for (Payment pay : listPayments) {
             if (pay.getStudentId().toLowerCase().matches(".*" + txtStudentIdSearch.getText().trim().toLowerCase() + ".*")
                     && registerDAO.readByStudentId(pay.getStudentId()).getCourseId().toLowerCase().matches(".*" + txtCourseIdSearch.getText().trim().toLowerCase() + ".*")
-                    && String.valueOf(pay.getMoney()).toLowerCase().matches(".*" + txtMoneySearch.getText().trim().toLowerCase() + ".*") //&& sub.getCourseID().toLowerCase().matches(".*" + txtCoureIDSearch.getText().trim().toLowerCase() + ".*")
-                    //TODO: chua xet duoc ngay nop tien
                     ) {
-                filter.add(pay);
+                    filter.add(pay);
             }
         }
         if (filter.size() != 0) {
@@ -129,7 +127,7 @@ public class pnlPayment extends javax.swing.JPanel {
         currentId = payment.getId();
         txtMoney.setText(String.valueOf(payment.getMoney()).trim());
         dateChPayDay.setDate(payment.getPayday());
-        txtCourseId.setText(registerDAO.readByStudentId(payment.getStudentId()).getCourseId());
+        txtId.setText(String.valueOf(payment.getId()));
         txtStudentId.setText(payment.getStudentId());
     }
 
@@ -179,7 +177,7 @@ public class pnlPayment extends javax.swing.JPanel {
         tpPayment = new javax.swing.JTabbedPane();
         pnlEdit = new javax.swing.JPanel();
         panelRight = new javax.swing.JPanel();
-        lblCourse = new javax.swing.JLabel();
+        lblId = new javax.swing.JLabel();
         lblStudentID = new javax.swing.JLabel();
         lblMoney = new javax.swing.JLabel();
         lblPayDay = new javax.swing.JLabel();
@@ -192,22 +190,17 @@ public class pnlPayment extends javax.swing.JPanel {
         lblTitle = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         dateChPayDay = new com.toedter.calendar.JDateChooser();
-        txtCourseId = new javax.swing.JTextField();
+        txtId = new javax.swing.JTextField();
         txtStudentId = new javax.swing.JTextField();
-        btnChooseCourseId = new javax.swing.JButton();
         btnChooseStudentId = new javax.swing.JButton();
         pnlSearch = new javax.swing.JPanel();
         panelRight1 = new javax.swing.JPanel();
         lblCourseSearch = new javax.swing.JLabel();
         lblStudentIDSearch = new javax.swing.JLabel();
-        lblMoneySearch = new javax.swing.JLabel();
-        lblPayDaySearch = new javax.swing.JLabel();
-        txtMoneySearch = new javax.swing.JTextField();
         panelButtonSearch = new javax.swing.JPanel();
         btnReset = new javax.swing.JButton();
         lblTitleSearch = new javax.swing.JLabel();
         jSeparatorSearch = new javax.swing.JSeparator();
-        dateChPayDaySearch = new com.toedter.calendar.JDateChooser();
         txtCourseIdSearch = new javax.swing.JTextField();
         txtStudentIdSearch = new javax.swing.JTextField();
         btnChooseCourseSearch = new javax.swing.JButton();
@@ -235,14 +228,14 @@ public class pnlPayment extends javax.swing.JPanel {
         panelRight.setPreferredSize(new java.awt.Dimension(860, 200));
         panelRight.setLayout(new java.awt.GridBagLayout());
 
-        lblCourse.setForeground(new java.awt.Color(3, 3, 3));
-        lblCourse.setText("Course:");
+        lblId.setForeground(new java.awt.Color(3, 3, 3));
+        lblId.setText("Id:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(lblCourse, gridBagConstraints);
+        panelRight.add(lblId, gridBagConstraints);
 
         lblStudentID.setForeground(new java.awt.Color(3, 3, 3));
         lblStudentID.setText("Student ID:");
@@ -359,6 +352,13 @@ public class pnlPayment extends javax.swing.JPanel {
         dateChPayDay.setDateFormatString("MM/dd/yyyy");
         dateChPayDay.setMinimumSize(new java.awt.Dimension(200, 20));
         dateChPayDay.setPreferredSize(new java.awt.Dimension(200, 20));
+        dateChPayDay.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+                dateChPayDayCaretPositionChanged(evt);
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 3;
@@ -366,14 +366,15 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(dateChPayDay, gridBagConstraints);
 
-        txtCourseId.setMinimumSize(new java.awt.Dimension(200, 20));
-        txtCourseId.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtId.setEnabled(false);
+        txtId.setMinimumSize(new java.awt.Dimension(200, 20));
+        txtId.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(txtCourseId, gridBagConstraints);
+        panelRight.add(txtId, gridBagConstraints);
 
         txtStudentId.setMinimumSize(new java.awt.Dimension(200, 20));
         txtStudentId.setPreferredSize(new java.awt.Dimension(200, 20));
@@ -383,22 +384,6 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(txtStudentId, gridBagConstraints);
-
-        btnChooseCourseId.setText("jButton1");
-        btnChooseCourseId.setMaximumSize(new java.awt.Dimension(23, 23));
-        btnChooseCourseId.setMinimumSize(new java.awt.Dimension(23, 23));
-        btnChooseCourseId.setPreferredSize(new java.awt.Dimension(23, 20));
-        btnChooseCourseId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnChooseCourseIdActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight.add(btnChooseCourseId, gridBagConstraints);
 
         btnChooseStudentId.setText("jButton2");
         btnChooseStudentId.setMaximumSize(new java.awt.Dimension(23, 23));
@@ -441,43 +426,11 @@ public class pnlPayment extends javax.swing.JPanel {
         lblStudentIDSearch.setForeground(new java.awt.Color(3, 3, 3));
         lblStudentIDSearch.setText("Student ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         panelRight1.add(lblStudentIDSearch, gridBagConstraints);
-
-        lblMoneySearch.setForeground(new java.awt.Color(3, 3, 3));
-        lblMoneySearch.setText("Money:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
-        panelRight1.add(lblMoneySearch, gridBagConstraints);
-
-        lblPayDaySearch.setForeground(new java.awt.Color(3, 3, 3));
-        lblPayDaySearch.setText("Pay day:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
-        panelRight1.add(lblPayDaySearch, gridBagConstraints);
-
-        txtMoneySearch.setMinimumSize(new java.awt.Dimension(200, 20));
-        txtMoneySearch.setPreferredSize(new java.awt.Dimension(200, 20));
-        txtMoneySearch.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtMoneySearchCaretUpdate(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight1.add(txtMoneySearch, gridBagConstraints);
 
         panelButtonSearch.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -495,7 +448,7 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 6;
         gridBagConstraints.insets = new java.awt.Insets(15, 5, 5, 5);
         panelRight1.add(panelButtonSearch, gridBagConstraints);
 
@@ -503,7 +456,7 @@ public class pnlPayment extends javax.swing.JPanel {
         lblTitleSearch.setForeground(new java.awt.Color(102, 0, 102));
         lblTitleSearch.setText("Information Payment");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         panelRight1.add(lblTitleSearch, gridBagConstraints);
 
@@ -511,19 +464,10 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
         panelRight1.add(jSeparatorSearch, gridBagConstraints);
-
-        dateChPayDaySearch.setDateFormatString("MM/dd/yyyy");
-        dateChPayDaySearch.setPreferredSize(new java.awt.Dimension(200, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelRight1.add(dateChPayDaySearch, gridBagConstraints);
 
         txtCourseIdSearch.setMinimumSize(new java.awt.Dimension(200, 20));
         txtCourseIdSearch.setPreferredSize(new java.awt.Dimension(200, 20));
@@ -547,9 +491,9 @@ public class pnlPayment extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight1.add(txtStudentIdSearch, gridBagConstraints);
 
@@ -579,9 +523,9 @@ public class pnlPayment extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight1.add(btnChooseStudentIdSearch, gridBagConstraints);
 
@@ -710,8 +654,6 @@ public class pnlPayment extends javax.swing.JPanel {
         // TODO add your handling code here:
         txtCourseIdSearch.setText(null);
         txtStudentIdSearch.setText(null);
-        txtMoneySearch.setText(null);
-        dateChPayDaySearch.setDate(null);
 }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
@@ -720,11 +662,11 @@ public class pnlPayment extends javax.swing.JPanel {
             isAdd = false;
             btnUpdate.setEnabled(true);
             btnDelete.setEnabled(true);
-            txtCourseId.setVisible(true);
+            txtId.setVisible(true);
             txtStudentId.setVisible(true);
         } else if (isUpdate) {
             isUpdate = false;
-            txtCourseId.setVisible(true);
+            txtId.setVisible(true);
             txtStudentId.setVisible(true);
             loadDetails(getPaymentById(currentId));
         } else {
@@ -749,7 +691,7 @@ public class pnlPayment extends javax.swing.JPanel {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         try {
             if (!isUpdate) {
-                txtCourseId.setVisible(true);
+                txtId.setVisible(true);
                 txtStudentId.setVisible(true);
                 isUpdate = true;
             } else {
@@ -776,7 +718,7 @@ public class pnlPayment extends javax.swing.JPanel {
                 isAdd = true;
                 btnUpdate.setEnabled(false);
                 btnDelete.setEnabled(false);
-                txtCourseId.setVisible(true);
+                txtId.setVisible(true);
                 txtStudentId.setVisible(true);
             } else {
                 //TODO: chua lay duoc chi so tu tang cua ban ghi moi dua vo
@@ -792,7 +734,7 @@ public class pnlPayment extends javax.swing.JPanel {
                     isAdd = false;
                     btnUpdate.setEnabled(true);
                     btnDelete.setEnabled(true);
-                    txtCourseId.setVisible(true);
+                    txtId.setVisible(true);
                     txtStudentId.setVisible(true);
                 } else {
                     JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Create Payment", JOptionPane.ERROR_MESSAGE);
@@ -820,15 +762,6 @@ public class pnlPayment extends javax.swing.JPanel {
         dlg.setLocationRelativeTo(null);
         dlg.setVisible(true);
     }//GEN-LAST:event_btnChooseCourseSearchActionPerformed
-
-    private void btnChooseCourseIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseCourseIdActionPerformed
-        // TODO add your handling code here:
-        dlgChoose dlg = new dlgChoose(frm, txtCourseId, true, 7);
-        dlg.setTitle("Browse Course");
-        dlg.setSize(868, 580);
-        dlg.setLocationRelativeTo(null);
-        dlg.setVisible(true);
-    }//GEN-LAST:event_btnChooseCourseIdActionPerformed
 
     private void btnChooseStudentIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseStudentIdActionPerformed
         // TODO add your handling code here:
@@ -864,11 +797,6 @@ public class pnlPayment extends javax.swing.JPanel {
         loadData(listPayments);
     }//GEN-LAST:event_txtStudentIdSearchCaretUpdate
 
-    private void txtMoneySearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtMoneySearchCaretUpdate
-        // TODO add your handling code here:
-        loadData(listPayments);
-    }//GEN-LAST:event_txtMoneySearchCaretUpdate
-
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
         // TODO add your handling code here:
         if (filter.size() != 0) {
@@ -884,10 +812,15 @@ public class pnlPayment extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_btnReportActionPerformed
+
+    private void dateChPayDayCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_dateChPayDayCaretPositionChanged
+        // TODO add your handling code here:
+        loadData(listPayments);
+    }//GEN-LAST:event_dateChPayDayCaretPositionChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
-    private javax.swing.JButton btnChooseCourseId;
     private javax.swing.JButton btnChooseCourseSearch;
     private javax.swing.JButton btnChooseStudentId;
     private javax.swing.JButton btnChooseStudentIdSearch;
@@ -897,18 +830,15 @@ public class pnlPayment extends javax.swing.JPanel {
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnUpdate;
     private com.toedter.calendar.JDateChooser dateChPayDay;
-    private com.toedter.calendar.JDateChooser dateChPayDaySearch;
     private javax.swing.JTextField filterText;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparatorSearch;
-    private javax.swing.JLabel lblCourse;
     private javax.swing.JLabel lblCourseSearch;
     private javax.swing.JLabel lblEnterNameStudent;
+    private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblMoney;
-    private javax.swing.JLabel lblMoneySearch;
     private javax.swing.JLabel lblPayDay;
-    private javax.swing.JLabel lblPayDaySearch;
     private javax.swing.JLabel lblStudentID;
     private javax.swing.JLabel lblStudentIDSearch;
     private javax.swing.JLabel lblTitle;
@@ -923,10 +853,9 @@ public class pnlPayment extends javax.swing.JPanel {
     private javax.swing.JScrollPane srcPanelPayment;
     private javax.swing.JTable tableContent;
     public javax.swing.JTabbedPane tpPayment;
-    private javax.swing.JTextField txtCourseId;
     private javax.swing.JTextField txtCourseIdSearch;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtMoney;
-    private javax.swing.JTextField txtMoneySearch;
     private javax.swing.JTextField txtStudentId;
     private javax.swing.JTextField txtStudentIdSearch;
     // End of variables declaration//GEN-END:variables
