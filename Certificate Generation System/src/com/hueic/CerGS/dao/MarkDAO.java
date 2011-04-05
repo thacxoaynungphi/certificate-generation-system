@@ -265,36 +265,31 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
 
     public boolean update(Mark mark) {
         boolean status = false;
-        Register register = registerDAO.readByStudentId(mark.getStudentId());
-        Subject subject = subjectDAO.readByID(mark.getSubjectId());
-        ArrayList<Subject> listSub = subjectDAO.readByCourseId(register.getCourseId());
 
-        if (listSub.contains(subject)) {
-            con = db.getConnection();
-            String sqlcommand = "select * from Mark where Id = ?";
+        con = db.getConnection();
+        String sqlcommand = "select * from Mark where Id = ?";
 
-            try {
-                pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-                pst.setInt(1, mark.getId());
+        try {
+            pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            pst.setInt(1, mark.getId());
 
-                rs = pst.executeQuery();
-                if (rs.first()) {
-                    rs.updateString("StudentId", mark.getStudentId());
-                    rs.updateString("SubjectId", mark.getSubjectId());
-                    rs.updateFloat("Mark", mark.getMark());
-                    rs.updateRow();
+            rs = pst.executeQuery();
+            if (rs.first()) {
+                rs.updateString("StudentId", mark.getStudentId());
+                rs.updateString("SubjectId", mark.getSubjectId());
+                rs.updateFloat("Mark", mark.getMark());
+                rs.updateRow();
 
-                    setLastError("Add mark successful");
-                    status = true;
-                } else {
-                    setLastError("Add mark unsuccessful");
-                }
-            } catch (SQLException ex) {
-                setLastError("SQL Error!!!");
-            } finally {
-                db.closeConnection();
-
+                setLastError("Add mark successful");
+                status = true;
+            } else {
+                setLastError("Add mark unsuccessful");
             }
+        } catch (SQLException ex) {
+            setLastError("SQL Error!!!");
+        } finally {
+            db.closeConnection();
+
         }
         return status;
     }
