@@ -356,6 +356,7 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
         panelRight.add(jSeparator1, gridBagConstraints);
 
+        dateChPayDay.setDateFormatString("MM/dd/yyyy");
         dateChPayDay.setMinimumSize(new java.awt.Dimension(200, 20));
         dateChPayDay.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -515,6 +516,7 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
         panelRight1.add(jSeparatorSearch, gridBagConstraints);
 
+        dateChPayDaySearch.setDateFormatString("MM/dd/yyyy");
         dateChPayDaySearch.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
