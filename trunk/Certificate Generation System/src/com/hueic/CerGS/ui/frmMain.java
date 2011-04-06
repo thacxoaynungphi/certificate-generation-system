@@ -31,8 +31,8 @@ public class frmMain extends javax.swing.JFrame {
     GUIDAO guidao = null;
     GUIProperties guip = new GUIProperties();
     public Account accCur;
-    String theme = "Silver";
-    String lookandfeel = guip.PLAF_JGOODIES;
+    String theme = "ExperienceBlue";
+    String lookandfeel = guip.PLAF_WINDOWSXP;
     pnlAccount account = new pnlAccount();
     pnlCertificate cer = new pnlCertificate(this);
     pnlCourse course = new pnlCourse(this);
