@@ -56,10 +56,7 @@ public class pnlMark extends javax.swing.JPanel {
         markDAO = new MarkDAO();
         subjectDAO = new SubjectDAO();
         courseDAO = new CourseDAO();
-        resList = resDAO.readByAll();
-        listMark = markDAO.readByAll();
-        courseList = courseDAO.readByAll();
-        listSubject = subjectDAO.readByAll();
+        getData();
         if (listMark != null) {
             loadData();
             loadDetails(listMark.get(0));
@@ -128,12 +125,9 @@ public class pnlMark extends javax.swing.JPanel {
         };
         tableModel = new ObjectTableModel(tableContent, columns, filter);
         headerTable = tableModel.getHeaderTable();
-        // Create numbering column
         headerTable.createDefaultColumnsFromModel();
         tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        // Put it in a viewport that we can control a bit
         JViewport viewport = new JViewport();
-        // Display numbering column
         viewport.setView(headerTable);
         viewport.setPreferredSize(headerTable.getMaximumSize());
         srcPanelMark.setRowHeader(viewport);
@@ -170,7 +164,6 @@ public class pnlMark extends javax.swing.JPanel {
             if (!id.isEmpty()) {
                 mark.setId(Integer.parseInt(id));
             }
-
             String ma = txtMark.getText();
             if (!ma.isEmpty()) {
                 mark.setMark(Float.parseFloat(ma));
@@ -396,11 +389,6 @@ public class pnlMark extends javax.swing.JPanel {
         txtStudentId.setMinimumSize(new java.awt.Dimension(200, 20));
         txtStudentId.setPreferredSize(new java.awt.Dimension(200, 20));
         txtStudentId.setRequestFocusEnabled(false);
-        txtStudentId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtStudentIdActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -821,6 +809,10 @@ public class pnlMark extends javax.swing.JPanel {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
+        txtMarkIdSearch.setText(null);
+        txtStudentIdSearch.setText(null);
+        txtStudentIdSearch.setText(null);
+        txtMarkSearch.setText(null);
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnChooseSubjectIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseSubjectIdActionPerformed
@@ -908,10 +900,6 @@ public class pnlMark extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "No data!", "Report Message", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnReportActionPerformed
-
-    private void txtStudentIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtStudentIdActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;

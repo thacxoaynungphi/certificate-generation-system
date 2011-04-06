@@ -80,12 +80,9 @@ public class pnlPermission extends javax.swing.JPanel {
             new ColumnData("Name", 140, SwingConstants.LEFT, 2),};
         tableModel = new ObjectTableModel(tableContent, columns, filter);
         headerTable = tableModel.getHeaderTable();
-        // Create numbering column
         headerTable.createDefaultColumnsFromModel();
         tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        // Put it in a viewport that we can control a bit
         JViewport viewport = new JViewport();
-        // Display numbering column
         viewport.setView(headerTable);
         viewport.setPreferredSize(headerTable.getMaximumSize());
         srcPanelPermission.setRowHeader(viewport);
@@ -268,11 +265,6 @@ public class pnlPermission extends javax.swing.JPanel {
         txtId.setEnabled(false);
         txtId.setMinimumSize(new java.awt.Dimension(200, 20));
         txtId.setPreferredSize(new java.awt.Dimension(200, 20));
-        txtId.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtIdCaretUpdate(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -535,7 +527,6 @@ public class pnlPermission extends javax.swing.JPanel {
         try {
             // TODO add your handling code here:
             int index = tableContent.getSelectedRow();
-
             if (index != -1) {
                 int value = Integer.parseInt(tableContent.getValueAt(index, 0).toString());
                 Permission per = find(value);
@@ -569,10 +560,6 @@ public class pnlPermission extends javax.swing.JPanel {
         txtNameSearch.setText(null);
 
 }//GEN-LAST:event_btnResetActionPerformed
-
-    private void txtIdCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtIdCaretUpdate
-        // TODO add your handling code here:
-}//GEN-LAST:event_txtIdCaretUpdate
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:

@@ -56,17 +56,19 @@ public class pnlPayment extends javax.swing.JPanel {
         registerDAO = new RegisterDAO();
         studentDAO = new StudentDAO();
         courseDao = new CourseDAO();
-
         btnCancel.setVisible(false);
         paymentDao = new PaymentDAO();
-        listPayments = paymentDao.readByAll();
-        listCourse = courseDao.readByAll();
-        //TODO: chua kiem tra xem sinh vien do da nop tien chua
-        listRegister = registerDAO.readByAll();
+        getData();
         if (!listPayments.isEmpty()) {
             loadData();
             loadDetails(listPayments.get(0));
         }
+    }
+
+    public void getData() {
+        listPayments = paymentDao.readByAll();
+        listCourse = courseDao.readByAll();
+        listRegister = registerDAO.readByAll();
     }
 
     public pnlPayment(frmMain frm) {
@@ -75,13 +77,9 @@ public class pnlPayment extends javax.swing.JPanel {
         registerDAO = new RegisterDAO();
         studentDAO = new StudentDAO();
         courseDao = new CourseDAO();
-
         btnCancel.setVisible(false);
         paymentDao = new PaymentDAO();
-        listPayments = paymentDao.readByAll();
-        listCourse = courseDao.readByAll();
-        //TODO: chua kiem tra xem sinh vien do da nop tien chua
-        listRegister = registerDAO.readByAll();
+        getData();
         if (listPayments.size() != 0) {
             loadData();
             loadDetails(listPayments.get(0));
@@ -125,12 +123,9 @@ public class pnlPayment extends javax.swing.JPanel {
         };
         tableModel = new ObjectTableModel(tableContent, columns, filter);
         headerTable = tableModel.getHeaderTable();
-        // Create numbering column
         headerTable.createDefaultColumnsFromModel();
         tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        // Put it in a viewport that we can control a bit
         JViewport viewport = new JViewport();
-        // Display numbering column
         viewport.setView(headerTable);
         viewport.setPreferredSize(headerTable.getMaximumSize());
         srcPanelPayment.setRowHeader(viewport);
@@ -685,7 +680,6 @@ public class pnlPayment extends javax.swing.JPanel {
             if (!id.isEmpty()) {
                 payment.setId(Integer.parseInt(id));
             }
-
             payment.setMoney(Float.parseFloat(txtMoney.getText()));
             payment.setPayday(new java.sql.Date(dateChPayDay.getDate().getTime()));
             payment.setStudentId(txtStudentId.getText());
@@ -698,13 +692,11 @@ public class pnlPayment extends javax.swing.JPanel {
         try {
             Payment pay = getPaymentFromForm();
             Payment currentPay = getPaymentById(currentId);
-
             Course course = courseDao.readById(registerDAO.readByStudentId(pay.getStudentId()).getCourseId());
             if (pay.getMoney() > course.getTotalFees() - (paymentDao.getCurrentTotalDiposit(currentPay) - currentPay.getMoney())) {
                 JOptionPane.showMessageDialog(this, "You can't pay greater your total arrears", "Payment Update", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-
             if (paymentDao.update(pay)) {
                 JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Update Payment", JOptionPane.INFORMATION_MESSAGE);
 
@@ -759,7 +751,6 @@ public class pnlPayment extends javax.swing.JPanel {
                     listPayments = paymentDao.readByAll();
                     loadData();
                     loadDetails(listPayments.get(0));
-
                     isAdd = false;
                     btnUpdate.setEnabled(true);
                     btnDelete.setEnabled(true);
@@ -845,7 +836,6 @@ public class pnlPayment extends javax.swing.JPanel {
     private void filterTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_filterTextActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;

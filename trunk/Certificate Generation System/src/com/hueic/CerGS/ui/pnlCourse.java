@@ -110,12 +110,9 @@ public class pnlCourse extends javax.swing.JPanel {
             }
         });
         headerTable = tableModel.getHeaderTable();
-        // Create numbering column
         headerTable.createDefaultColumnsFromModel();
         tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        // Put it in a viewport that we can control a bit
         JViewport viewport = new JViewport();
-        // Display numbering column
         viewport.setView(headerTable);
         viewport.setPreferredSize(headerTable.getMaximumSize());
         srcPanelCourse.setRowHeader(viewport);
@@ -580,7 +577,6 @@ public class pnlCourse extends javax.swing.JPanel {
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
-
       loadFiter(filterText.getText());
 }//GEN-LAST:event_btnFilterActionPerformed
 
@@ -667,7 +663,6 @@ public class pnlCourse extends javax.swing.JPanel {
                 loadData();
                 loadDetails(course);
                 JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Update Course", JOptionPane.INFORMATION_MESSAGE);
-
             } else {
                 System.out.println(courseDao.getLastError());
                 JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Update Course", JOptionPane.ERROR_MESSAGE);
@@ -679,7 +674,6 @@ public class pnlCourse extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-
         try {
             if (!isAdd) {
                 isAdd = true;
@@ -687,7 +681,6 @@ public class pnlCourse extends javax.swing.JPanel {
                 btnDelete.setEnabled(false);
                 txtID.setRequestFocusEnabled(true);
                 btnCancel.setVisible(true);
-
                 txtID.setText("");
                 txtName.setText("");
                 txtTotalFees.setText("");
@@ -698,7 +691,6 @@ public class pnlCourse extends javax.swing.JPanel {
                 int status = 0;
                 if (radioEnable.isSelected()) {
                     status = 1;
-
                 } else {
                     status = 0;
                 }
@@ -709,7 +701,6 @@ public class pnlCourse extends javax.swing.JPanel {
                     listCourses.add(course);
                     loadData();
                     loadDetails(course);
-
                     isAdd = false;
                     btnUpdate.setEnabled(true);
                     btnDelete.setEnabled(true);

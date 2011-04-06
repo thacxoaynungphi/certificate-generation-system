@@ -19,16 +19,12 @@ import com.hueic.CerGS.entity.Course;
 import com.hueic.CerGS.entity.Mark;
 import com.hueic.CerGS.entity.Register;
 import java.util.ArrayList;
-import java.util.regex.PatternSyntaxException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
-import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -55,12 +51,16 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
         courseDAO = new CourseDAO();
         registerDAO = new RegisterDAO();
         markDAO = new MarkDAO();
-        listCourse = courseDAO.readByAll();
-        listRegister = registerDAO.readByAll();
-        listMark = markDAO.readByAll();
+        getData();
         loadData(listMark);
         loadCBXCourse();
         loadCBXStudent();
+    }
+
+    public void getData() {
+        listCourse = courseDAO.readByAll();
+        listRegister = registerDAO.readByAll();
+        listMark = markDAO.readByAll();
     }
 
     public void loadCBXCourse() {
@@ -110,12 +110,9 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
             new ColumnData("Mark", 170, SwingConstants.LEFT, 4),};
         tableModel = new ObjectTableModel(tableContent, columns, listMark);
         headerTable = tableModel.getHeaderTable();
-        // Create numbering column
         headerTable.createDefaultColumnsFromModel();
         tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        // Put it in a viewport that we can control a bit
         JViewport viewport = new JViewport();
-        // Display numbering column
         viewport.setView(headerTable);
         viewport.setPreferredSize(headerTable.getMaximumSize());
         srcPanelViewMark.setRowHeader(viewport);

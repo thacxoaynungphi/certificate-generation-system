@@ -47,9 +47,8 @@ public class pnlSubject extends javax.swing.JPanel {
         initComponents();
         subjectDao = new SubjectDAO();
         courseDAO = new CourseDAO();
-        listCourses = courseDAO.readByAll();
         listSubject = new ArrayList<Subject>();
-        listSubject = subjectDao.readByAll();
+        getData();
         loadData();
         if (listSubject.size() != 0) {
             loadDetails(listSubject.get(0));
@@ -57,14 +56,18 @@ public class pnlSubject extends javax.swing.JPanel {
         btnCancel.setVisible(false);
     }
 
+    public void getData() {
+        listCourses = courseDAO.readByAll();
+        listSubject = subjectDao.readByAll();
+    }
+
     public pnlSubject(frmMain frm) {
         initComponents();
         this.frm = frm;
         subjectDao = new SubjectDAO();
         courseDAO = new CourseDAO();
-        listCourses = courseDAO.readByAll();
         listSubject = new ArrayList<Subject>();
-        listSubject = subjectDao.readByAll();
+        getData();
         loadData();
         if (listSubject.size() != 0) {
             loadDetails(listSubject.get(0));
@@ -120,12 +123,9 @@ public class pnlSubject extends javax.swing.JPanel {
         };
         tableModel = new ObjectTableModel(tableContent, columns, filter);
         headerTable = tableModel.getHeaderTable();
-        // Create numbering column
         headerTable.createDefaultColumnsFromModel();
         tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        // Put it in a viewport that we can control a bit
         JViewport viewport = new JViewport();
-        // Display numbering column
         viewport.setView(headerTable);
         viewport.setPreferredSize(headerTable.getMaximumSize());
         srcPanelSubject.setRowHeader(viewport);
@@ -164,8 +164,6 @@ public class pnlSubject extends javax.swing.JPanel {
                 < listSubject.size(); i++) {
             if (listSubject.get(i).getId().equalsIgnoreCase(id)) {
                 return listSubject.get(i);
-
-
             }
         }
         return null;
@@ -621,9 +619,6 @@ public class pnlSubject extends javax.swing.JPanel {
         tableContent.setMinimumSize(new java.awt.Dimension(770, 327));
         tableContent.setPreferredSize(new java.awt.Dimension(770, 327));
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableContentMouseClicked(evt);
-            }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 tableContentMouseReleased(evt);
             }
@@ -693,10 +688,6 @@ public class pnlSubject extends javax.swing.JPanel {
         add(panelLeft, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
-        // TODO add your handling code here:
-}//GEN-LAST:event_tableContentMouseClicked
-
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
         loadFilter(filterText.getText());
@@ -719,7 +710,6 @@ public class pnlSubject extends javax.swing.JPanel {
         } catch (Exception ex) {
             //TODO: chua xu ly
         }
-
     }//GEN-LAST:event_tableContentMouseReleased
 
     private void srcPanelSubjectMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_srcPanelSubjectMouseReleased
@@ -833,12 +823,10 @@ public class pnlSubject extends javax.swing.JPanel {
                 btnUpdate.setEnabled(false);
                 btnDelete.setEnabled(false);
                 txtSubjectId.setRequestFocusEnabled(true);
-
                 txtCoureID.setText(null);
                 txtSubjectId.setText(null);
                 txtName.setText(null);
                 txtCoefficient.setText(null);
-
             } else {
 
                 String subjectId = txtSubjectId.getText();
@@ -863,15 +851,12 @@ public class pnlSubject extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Course Id must be enter", "Subject add", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-
                 Subject subject = new Subject(subjectId, subjectName, coefficient, courseId);
-
                 if (subjectDao.create(subject)) {
                     JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Create Subject", JOptionPane.INFORMATION_MESSAGE);
                     listSubject.add(subject);
                     loadData();
                     loadDetails(subject);
-
                     isAdd = false;
                     btnUpdate.setEnabled(true);
                     btnDelete.setEnabled(true);
