@@ -96,7 +96,7 @@ public class pnlMark extends javax.swing.JPanel {
                 filter.add(mark);
             }
         }
-        if (filter.size() != 0) {
+        if (!filter.isEmpty()) {
             loadDetails(filter.get(0));
         }
         loadTable(filter);
@@ -111,7 +111,7 @@ public class pnlMark extends javax.swing.JPanel {
                 filter.add(mark);
             }
         }
-        if (filter.size() != 0) {
+        if (!filter.isEmpty()) {
             loadDetails(filter.get(0));
         }
         loadTable(filter);
@@ -794,6 +794,9 @@ public class pnlMark extends javax.swing.JPanel {
                 if (markDAO.delete(mark)) {
                     listMark.remove(mark);
                     loadData();
+                    JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Delete", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Delete", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } catch (Exception ex) {
@@ -891,7 +894,7 @@ public class pnlMark extends javax.swing.JPanel {
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
         // TODO add your handling code here:
-        if (filter.size() != 0) {
+        if (!filter.isEmpty()) {
             frm.pnlReport.removeAll();
             dlgChooseReport report = new dlgChooseReport(frm, this);
             report.getMarkAllReport(filter);
