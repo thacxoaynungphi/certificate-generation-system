@@ -79,7 +79,6 @@ public class pnlEmployee extends javax.swing.JPanel {
     }
 
     public void loadData() {
-
         filter = new ArrayList<Employee>();
         for (Employee emp : listEmp) {
             if (emp.getId().toLowerCase().matches(".*" + txtEmployeeIdSearch.getText().trim().toLowerCase() + ".*")
@@ -103,9 +102,10 @@ public class pnlEmployee extends javax.swing.JPanel {
     public void loadFiter(String text) {
         filter = new ArrayList<Employee>();
         for (Employee emp : listEmp) {
-            if (emp.getId().toLowerCase().matches(".*" + txtEmployeeIdSearch.getText().trim().toLowerCase() + ".*")
-                    || emp.getFirstName().toLowerCase().matches(".*" + txtFirstNameSearch.getText().trim().toLowerCase() + ".*")
-                    || emp.getLastName().toLowerCase().matches(".*" + txtLastNameSearch.getText().trim().toLowerCase() + ".*")) {
+            if (emp.getId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                    || emp.getFirstName().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                    || emp.getLastName().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
+                filter.add(emp);
             }
         }
         if (!filter.isEmpty()) {
@@ -834,9 +834,9 @@ public class pnlEmployee extends javax.swing.JPanel {
 
         filterText.setMinimumSize(new java.awt.Dimension(200, 20));
         filterText.setPreferredSize(new java.awt.Dimension(200, 20));
-        filterText.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                filterTextMouseReleased(evt);
+        filterText.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                filterTextCaretUpdate(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1195,11 +1195,6 @@ public class pnlEmployee extends javax.swing.JPanel {
         }
 }//GEN-LAST:event_tableContentMouseClicked
 
-    private void filterTextMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_filterTextMouseReleased
-        // TODO add your handling code here:
-        loadFiter(filterText.getText());
-    }//GEN-LAST:event_filterTextMouseReleased
-
     private void txtEmployeeIdSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtEmployeeIdSearchCaretUpdate
         // TODO add your handling code here:
         loadData();
@@ -1275,6 +1270,13 @@ public class pnlEmployee extends javax.swing.JPanel {
         // TODO add your handling code here:
         loadData();
     }//GEN-LAST:event_radioAllActionPerformed
+
+    private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
+
+        // TODO add your handling code here:
+         loadFiter(filterText.getText());
+    }//GEN-LAST:event_filterTextCaretUpdate
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddEdit;
     private javax.swing.JButton btnBrowseEdit;
