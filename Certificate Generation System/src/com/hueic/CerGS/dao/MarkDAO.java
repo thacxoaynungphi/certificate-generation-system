@@ -280,10 +280,10 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
                 rs.updateFloat("Mark", mark.getMark());
                 rs.updateRow();
 
-                setLastError("Add mark successful");
+                setLastError("Update mark successful");
                 status = true;
             } else {
-                setLastError("Add mark unsuccessful");
+                setLastError("Update mark unsuccessful");
             }
         } catch (SQLException ex) {
             setLastError("SQL Error!!!");
@@ -303,10 +303,10 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
             pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst.setInt(1, mark.getId());
             if (pst.executeUpdate() > 0) {
-                setLastError("Add mark successful");
+                setLastError("Delete mark successful");
                 status = true;
             } else {
-                setLastError("Add mark unsuccessful");
+                setLastError("Delete mark unsuccessful");
             }
         } catch (SQLException ex) {
             setLastError("SQL Error!!!");
