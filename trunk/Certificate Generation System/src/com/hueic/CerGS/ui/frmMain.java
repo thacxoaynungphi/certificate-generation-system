@@ -70,7 +70,6 @@ public class frmMain extends javax.swing.JFrame {
         this.StatusPnl.removeAll();
         AppStatusBar status = new AppStatusBar(this);
         this.StatusPnl.add(status.getBar());
-        // this.StatusPnl.repaint();
         this.tpnBusiness.setSelectedComponent(pnlHomeTab);
     }
 

@@ -91,7 +91,7 @@ public class pnlViewPayment extends javax.swing.JPanel {
         filter = new ArrayList<Payment>();
         for (Payment pay : listPayments) {
             if (pay.getStudentId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
-                    || registerDao.readByStudentId(pay.getStudentId()).getCourseId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
+                    || String.valueOf(pay.getMoney()).toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
                 filter.add(pay);
             }
         }
