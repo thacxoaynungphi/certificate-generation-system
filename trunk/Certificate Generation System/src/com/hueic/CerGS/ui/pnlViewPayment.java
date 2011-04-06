@@ -40,7 +40,6 @@ public class pnlViewPayment extends javax.swing.JPanel {
     private int currentId;
     private ArrayList<Payment> listPayments = new ArrayList<Payment>();
     private PaymentDAO paymentDao;
-    TableRowSorter<TableModel> sorter;
     private CourseDAO courseDao;
     private RegisterDAO registerDao;
     public ArrayList<Course> listCourse;
@@ -106,8 +105,6 @@ public class pnlViewPayment extends javax.swing.JPanel {
             new ColumnData("Money", 140, SwingConstants.LEFT, 3),
             new ColumnData("Payday", 170, SwingConstants.LEFT, 4),};
         tableModel = new ObjectTableModel(tableContent, columns, listPayments);
-        sorter = new TableRowSorter<TableModel>(tableModel);
-        tableContent.setRowSorter(sorter);
         headerTable = tableModel.getHeaderTable();
         // Create numbering column
         headerTable.createDefaultColumnsFromModel();

@@ -43,7 +43,6 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
     private MarkDAO markDAO;
     private ArrayList<Course> listCourse;
     private ArrayList<Register> listRegister;
-    private TableRowSorter<TableModel> sorter;
     private ArrayList<Mark> listMark;
     private ObjectTableModel tableModel;
     private JTable headerTable;
@@ -110,8 +109,6 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
             new ColumnData("Subject Id", 140, SwingConstants.LEFT, 3),
             new ColumnData("Mark", 170, SwingConstants.LEFT, 4),};
         tableModel = new ObjectTableModel(tableContent, columns, listMark);
-        sorter = new TableRowSorter<TableModel>(tableModel);
-        tableContent.setRowSorter(sorter);
         headerTable = tableModel.getHeaderTable();
         // Create numbering column
         headerTable.createDefaultColumnsFromModel();
@@ -145,7 +142,6 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
         pnlButton = new javax.swing.JPanel();
         btnCreate = new javax.swing.JButton();
         btnReport = new javax.swing.JButton();
-        btnCancel = new javax.swing.JButton();
         lblTitleAverageMark = new javax.swing.JLabel();
         lblTitleGrade = new javax.swing.JLabel();
         lblTotalMark = new javax.swing.JLabel();
@@ -234,8 +230,9 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
         pnlContent.add(srcPanelViewMark, gridBagConstraints);
 
         pnlButton.setBackground(new java.awt.Color(255, 255, 255));
-        pnlButton.setMinimumSize(new java.awt.Dimension(268, 30));
-        pnlButton.setPreferredSize(new java.awt.Dimension(268, 30));
+        pnlButton.setMinimumSize(new java.awt.Dimension(220, 30));
+        pnlButton.setPreferredSize(new java.awt.Dimension(220, 30));
+        pnlButton.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
         btnCreate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
         btnCreate.setText("Create");
@@ -257,12 +254,6 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
             }
         });
         pnlButton.add(btnReport);
-
-        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Cancel-2-16x16.png"))); // NOI18N
-        btnCancel.setText("Cancel");
-        btnCancel.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        btnCancel.setPreferredSize(new java.awt.Dimension(75, 23));
-        pnlButton.add(btnCancel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -428,7 +419,6 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnReportActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnFilter;
     private javax.swing.JButton btnReport;

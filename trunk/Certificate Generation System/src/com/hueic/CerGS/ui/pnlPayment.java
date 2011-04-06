@@ -106,7 +106,7 @@ public class pnlPayment extends javax.swing.JPanel {
         filter = new ArrayList<Payment>();
         for (Payment pay : listPayments) {
             if (pay.getStudentId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
-                    || registerDAO.readByStudentId(pay.getStudentId()).getCourseId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
+                    || String.valueOf(pay.getMoney()).toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
                 filter.add(pay);
             }
         }
@@ -575,6 +575,11 @@ public class pnlPayment extends javax.swing.JPanel {
                 filterTextCaretUpdate(evt);
             }
         });
+        filterText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filterTextActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -836,6 +841,11 @@ public class pnlPayment extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_btnReportActionPerformed
+
+    private void filterTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_filterTextActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
