@@ -177,7 +177,7 @@ public class ObjectTableModel extends AbstractTableModel {
              * Don't allow to change the order of column
              */
             // this.table.getTableHeader().setReorderingAllowed(false);
-            this.table.getTableHeader().setReorderingAllowed(true);
+            this.table.getTableHeader().setReorderingAllowed(false);
         }
     }
 

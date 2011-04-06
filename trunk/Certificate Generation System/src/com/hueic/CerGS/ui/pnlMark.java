@@ -43,7 +43,6 @@ public class pnlMark extends javax.swing.JPanel {
     private ArrayList<Subject> listSubject = new ArrayList<Subject>();
     private String courseId;
     ArrayList<Mark> filter = null;
-    private TableRowSorter<TableModel> sorter;
     private RegisterDAO resDAO;
     private MarkDAO markDAO;
     private SubjectDAO subjectDAO;
@@ -126,8 +125,6 @@ public class pnlMark extends javax.swing.JPanel {
             new ColumnData("Mark", 150, SwingConstants.LEFT, 4)
         };
         tableModel = new ObjectTableModel(tableContent, columns, filter);
-        sorter = new TableRowSorter<TableModel>(tableModel);
-        tableContent.setRowSorter(sorter);
         headerTable = tableModel.getHeaderTable();
         // Create numbering column
         headerTable.createDefaultColumnsFromModel();
