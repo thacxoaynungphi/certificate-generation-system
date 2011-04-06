@@ -26,7 +26,6 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
         ArrayList<Payment> result = new ArrayList<Payment>();
         con = db.getConnection();
         String sqlcommand = "select * from Payment";
-
         try {
             pst = con.prepareStatement(sqlcommand);
             rs = pst.executeQuery();
@@ -38,7 +37,6 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
                 pay.setPayday(rs.getDate("Payday"));
                 result.add(pay);
             }
-
             setLastError("read data successful");
         } catch (SQLException ex) {
             setLastError("SQL Error");
@@ -63,9 +61,7 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
                 pay.setStudentId(rs.getString("StudentId"));
                 pay.setMoney(rs.getFloat("Money"));
                 pay.setPayday(rs.getDate("Payday"));
-
             }
-
             setLastError("read data successful");
 
         } catch (SQLException ex) {
@@ -74,7 +70,6 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
             setLastError(ex.toString());
         } finally {
             db.closeConnection();
-
         }
         return pay;
     }
@@ -129,7 +124,6 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
                 pay.setStudentId(rs.getString("StudentId"));
                 pay.setMoney(rs.getFloat("Money"));
                 pay.setPayday(rs.getDate("Payday"));
-
                 payList.add(pay);
             }
         } catch (SQLException ex) {

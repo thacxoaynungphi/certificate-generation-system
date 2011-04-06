@@ -12,9 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -58,65 +55,64 @@ public class EmployeeDAO extends BaseDAO implements IEmployeeDAO {
         return list;
     }
 
-    public ArrayList<Employee> readByCommand(String fname, String lname, Date startDate, Date endDate, int gender) {
-        ArrayList<Employee> listEmp = new ArrayList<Employee>();
-
-        try {
-            con = db.getConnection();
-            String sqlCommand = "select e.Id,p.FirstName,p.LastName,p.BirthDay,p.Gender,p.Phone,p.Email,p.Address,p.Image,p.Status,e.BeginWork"
-                    + " from Employee e inner join Person p on e.Id = p.Id";
-            String sqlTemp = " where ";
-            if (fname.length() != 0) {
-                sqlTemp += " p.FirstName =  '" + fname + "' and ";
-            }
-            if (lname.length() != 0) {
-                sqlTemp += " p.LastName =  '" + lname + "' and ";
-            }
-            if (startDate != null && endDate != null) {
-                sqlTemp += " p.Birthday between '" + convertDate(startDate) + "' and '" + convertDate(endDate) + "' and ";
-            }
-            if (gender != -1) {
-                if (sqlTemp.equals(" where ")) {
-                    sqlTemp += " Gender = " + gender;
-                } else {
-
-                    sqlTemp += " Gender = " + gender;
-                }
-            } else {
-                sqlTemp += " Gender in (0,1)";
-            }
-            sqlCommand += sqlTemp;
-
-            pst = con.prepareStatement(sqlCommand);
-            rs = pst.executeQuery();
-
-            System.out.println(sqlCommand);
-
-            while (rs.next()) {
-                Employee emp = new Employee();
-
-                emp.setId(rs.getString(1));
-                emp.setFirstName(rs.getString(2));
-                emp.setLastName(rs.getString(3));
-                emp.setBirthDay(rs.getDate(4));
-                emp.setGender(rs.getInt(5));
-                emp.setPhone(rs.getString(6));
-                emp.setEmail(rs.getString(7));
-                emp.setAddress(rs.getString(8));
-                emp.setImage(rs.getString(9));
-                emp.setStatus(rs.getInt(10));
-                emp.setBeginWork(rs.getDate(11));
-
-                listEmp.add(emp);
-            }
-
-        } catch (Exception ex) {
-            setLastError("SQL Error!");
-        } finally {
-            db.closeConnection();
-        }
-        return listEmp;
-    }
+//    public ArrayList<Employee> readByCommand(String fname, String lname, Date startDate, Date endDate, int gender) {
+//        ArrayList<Employee> listEmp = new ArrayList<Employee>();
+//        try {
+//            con = db.getConnection();
+//            String sqlCommand = "select e.Id,p.FirstName,p.LastName,p.BirthDay,p.Gender,p.Phone,p.Email,p.Address,p.Image,p.Status,e.BeginWork"
+//                    + " from Employee e inner join Person p on e.Id = p.Id";
+//            String sqlTemp = " where ";
+//            if (fname.length() != 0) {
+//                sqlTemp += " p.FirstName =  '" + fname + "' and ";
+//            }
+//            if (lname.length() != 0) {
+//                sqlTemp += " p.LastName =  '" + lname + "' and ";
+//            }
+//            if (startDate != null && endDate != null) {
+//                sqlTemp += " p.Birthday between '" + convertDate(startDate) + "' and '" + convertDate(endDate) + "' and ";
+//            }
+//            if (gender != -1) {
+//                if (sqlTemp.equals(" where ")) {
+//                    sqlTemp += " Gender = " + gender;
+//                } else {
+//
+//                    sqlTemp += " Gender = " + gender;
+//                }
+//            } else {
+//                sqlTemp += " Gender in (0,1)";
+//            }
+//            sqlCommand += sqlTemp;
+//
+//            pst = con.prepareStatement(sqlCommand);
+//            rs = pst.executeQuery();
+//
+//            System.out.println(sqlCommand);
+//
+//            while (rs.next()) {
+//                Employee emp = new Employee();
+//
+//                emp.setId(rs.getString(1));
+//                emp.setFirstName(rs.getString(2));
+//                emp.setLastName(rs.getString(3));
+//                emp.setBirthDay(rs.getDate(4));
+//                emp.setGender(rs.getInt(5));
+//                emp.setPhone(rs.getString(6));
+//                emp.setEmail(rs.getString(7));
+//                emp.setAddress(rs.getString(8));
+//                emp.setImage(rs.getString(9));
+//                emp.setStatus(rs.getInt(10));
+//                emp.setBeginWork(rs.getDate(11));
+//
+//                listEmp.add(emp);
+//            }
+//
+//        } catch (Exception ex) {
+//            setLastError("SQL Error!");
+//        } finally {
+//            db.closeConnection();
+//        }
+//        return listEmp;
+//    }
 
     public Employee readByID(String id) {
         Employee emp = null;

@@ -23,8 +23,6 @@ public interface IStudentDAO {
 
     ArrayList<Student> readByAll();
 
-    ArrayList<Student> readByCommand(String fname, String lname, Date startDate, Date endDate, int gender);
-
     Student readByID(String id);
 
     boolean update(Student student);

@@ -94,64 +94,6 @@ public class SubjectDAO extends BaseDAO implements ISubjectDAO {
         return sub;
     }
 
-    public ArrayList<Subject> readByCommand(String subjectId, String subjectName, int coefficient, String courseId) {
-        ArrayList<Subject> listSubject = new ArrayList<Subject>();
-        Subject sub = null;
-        try {
-            con = db.getConnection();
-            String sqlCommand = "select * from Subject";
-            String sqlTemp = " where ";
-            boolean status = false;
-            if (subjectId.length() != 0) {
-                sqlTemp += " [ID] =  '" + subjectId + "' ";
-            }
-            if (subjectName.length() != 0) {
-                if (subjectId.length() != 0) {
-                    sqlTemp += " and [Name] =  '" + subjectName + "'";
-                } else {
-                    sqlTemp += " [Name] =  '" + subjectName + "'";
-                }
-            }
-            if (coefficient != 0) {
-                if (subjectName.length() != 0) {
-                    sqlTemp += " and  Coefficient =  " + coefficient + "";
-                } else {
-                    sqlTemp += " Coefficient =  " + coefficient + "";
-                }
-            }
-            if (courseId.length() != 0) {
-                if (coefficient != 0) {
-                    sqlTemp += " and  CourseId =  '" + courseId + "'";
-                } else {
-                    sqlTemp += " CourseId =  '" + courseId + "'";
-                }
-
-            }
-            sqlCommand += sqlTemp;
-            System.out.println(sqlCommand);
-            pst = con.prepareStatement(sqlCommand);
-            rs = pst.executeQuery();
-
-
-
-            while (rs.next()) {
-                sub = new Subject();
-                sub.setId(rs.getString(1));
-                sub.setName(rs.getString(2));
-                sub.setCoefficient(rs.getInt(3));
-                sub.setCourseID(rs.getString(4));
-                sub.setStatus(rs.getInt(5));
-
-                listSubject.add(sub);
-            }
-        } catch (Exception ex) {
-            setLastError("SQL Error!");
-        } finally {
-            db.closeConnection();
-        }
-        return listSubject;
-    }
-
     public boolean create(Subject sub) {
         boolean status = false;
         try {
