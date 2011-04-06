@@ -344,6 +344,11 @@ public class frmMain extends javax.swing.JFrame {
         tpnBusiness.setMaximumSize(new java.awt.Dimension(1024, 600));
         tpnBusiness.setMinimumSize(new java.awt.Dimension(1024, 600));
         tpnBusiness.setPreferredSize(new java.awt.Dimension(1024, 600));
+        tpnBusiness.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                tpnBusinessStateChanged(evt);
+            }
+        });
 
         pnlHomeTab.setBackground(new java.awt.Color(255, 255, 255));
         pnlHomeTab.setEnabled(false);
@@ -1053,6 +1058,41 @@ public class frmMain extends javax.swing.JFrame {
             guidao.setGUI(guip.PLAF_WINDOWSXP, theme);
         }
     }//GEN-LAST:event_radioWindowsXPActionPerformed
+
+    private void tpnBusinessStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tpnBusinessStateChanged
+        // TODO add your handling code here:
+        String title = tpnBusiness.getTitleAt(tpnBusiness.getSelectedIndex()).trim();
+        //TODO: Xet du lieu chua duoc
+        if (title.equals("Mark")) {
+            mark.getData();
+        } else if (title.equals("Employee")) {
+            viewMark.getData();
+        } else if (title.equals("Student")) {
+            viewMark.getData();
+        } else if (title.equals("Register")) {
+            viewMark.getData();
+        } else if (title.equals("Course")) {
+            viewMark.getData();
+        } else if (title.equals("Payment")) {
+            viewMark.getData();
+        } else if (title.equals("Subject")) {
+            viewMark.getData();
+        } else if (title.equals("Mark")) {
+            viewMark.getData();
+        } else if (title.equals("Certificate")) {
+            viewMark.getData();
+        } else if (title.equals("Account")) {
+            viewMark.getData();
+        } else if (title.equals("Permission")) {
+            viewMark.getData();
+        } else if (title.equals("View Mark")) {
+            viewMark.getData();
+        } else if (title.equals("View Payment")) {
+            viewMark.getData();
+        } else if (title.equals("Develop Degree")) {
+            viewMark.getData();
+        }
+    }//GEN-LAST:event_tpnBusinessStateChanged
 
     public void isLogout() {
 

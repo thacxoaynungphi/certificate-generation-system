@@ -27,8 +27,6 @@ import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -76,15 +74,19 @@ public class pnlMark extends javax.swing.JPanel {
         markDAO = new MarkDAO();
         subjectDAO = new SubjectDAO();
         courseDAO = new CourseDAO();
-        resList = resDAO.readByAll();
-        listMark = markDAO.readByAll();
-        courseList = courseDAO.readByAll();
-        listSubject = subjectDAO.readByAll();
+        getData();
         if (listMark != null) {
             loadData();
             loadDetails(listMark.get(0));
         }
         btnCancel.setVisible(false);
+    }
+
+    public void getData() {
+        resList = resDAO.readByAll();
+        listMark = markDAO.readByAll();
+        courseList = courseDAO.readByAll();
+        listSubject = subjectDAO.readByAll();
     }
 
     public void loadData() {
@@ -778,7 +780,7 @@ public class pnlMark extends javax.swing.JPanel {
                 listMark = markDAO.readByAll();
                 loadData();
                 loadDetails(listMark.get(0));
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Update", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {

@@ -20,16 +20,12 @@ import com.hueic.CerGS.entity.Course;
 import com.hueic.CerGS.entity.Mark;
 import com.hueic.CerGS.entity.Register;
 import java.util.ArrayList;
-import java.util.regex.PatternSyntaxException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
-import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -55,6 +51,10 @@ public class pnlViewMark extends javax.swing.JPanel {
         markDAO = new MarkDAO();
         courseDao = new CourseDAO();
         registerDao = new RegisterDAO();
+        getData();
+    }
+
+    public void getData() {
         listMarks = markDAO.readByAll();
         listCourse = courseDao.readByAll();
         listRegister = registerDao.readByAll();
@@ -79,12 +79,7 @@ public class pnlViewMark extends javax.swing.JPanel {
             cbxStudentID.setVisible(false);
             lblStudentID.setVisible(false);
         } else {
-            listMarks = markDAO.readByAll();
-            listCourse = courseDao.readByAll();
-            listRegister = registerDao.readByAll();
-            loadData(listMarks);
-            loadDataCBXCourse();
-            loadDataCBXStudent();
+            getData();
         }
 
     }
