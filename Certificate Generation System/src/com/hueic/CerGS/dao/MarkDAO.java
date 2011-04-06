@@ -21,12 +21,10 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
 
     private SubjectDAO subjectDAO;
     private RegisterDAO registerDAO;
-    private CourseDAO courseDAO;
 
     public MarkDAO() {
         subjectDAO = new SubjectDAO();
         registerDAO = new RegisterDAO();
-        courseDAO = new CourseDAO();
         db = new Configure();
     }
 
@@ -91,7 +89,6 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
             pst = con.prepareStatement(sqlcommand);
             pst.setString(1, courseId);
             rs = pst.executeQuery();
-
             while (rs.next()) {
                 mark = new Mark();
                 mark.setId(rs.getInt("Id"));
@@ -147,7 +144,6 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
                 String sqlcommand = "select * from Mark where StudentId in (select StudentId from Register where Id =  ?)";
                 pst = con.prepareStatement(sqlcommand);
                 pst.setString(1, studentIdOfPerson);
-
             } else {
                 String sqlcommand = "select * from Mark where StudentId in (select StudentId from Register where Id =  ? and CourseId = ? )";
                 pst = con.prepareStatement(sqlcommand);
@@ -314,23 +310,5 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
             db.closeConnection();
         }
         return status;
-    }
-
-    //TODO: tim ham getStudentMark va thay no bang avgMark
-    public float getStudentMark(String studentID) {
-        float totalMark = 0.0f;
-        float avgMark = 0.0f;
-        int total = 0;
-        ArrayList<Mark> markList = readByStudentID(studentID);
-        SubjectDAO subDAO = new SubjectDAO();
-
-        for (Mark mark : markList) {
-            totalMark += mark.getMark();
-            total += subDAO.readByID(mark.getSubjectId()).getCoefficient();
-        }
-
-        avgMark = totalMark / total;
-
-        return avgMark;
     }
 }

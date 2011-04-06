@@ -75,57 +75,6 @@ public class StudentDAO extends BaseDAO implements IStudentDAO {
         return student;
     }
 
-    public ArrayList<Student> readByCommand(String fname, String lname, Date startDate, Date endDate, int gender) {
-        ArrayList<Student> listStudent = new ArrayList<Student>();
-        try {
-            con = db.getConnection();
-            String sqlCommand = "select s.Id,p.FirstName,p.LastName,p.BirthDay,p.Gender,p.Phone,p.Email,p.Address,p.Image,p.Status"
-                    + " from Student s inner join Person p on s.Id = p.Id";
-            String sqlTemp = " where ";
-            if (fname.length() != 0) {
-                sqlTemp += " p.FirstName =  '" + fname + "' and ";
-            }
-            if (lname.length() != 0) {
-                sqlTemp += " p.LastName =  '" + lname + "' and ";
-            }
-            if (startDate != null && endDate != null) {
-                sqlTemp += " p.Birthday between '" + convertDate(startDate) + "' and '" + convertDate(endDate) + "'";
-            }
-            if (gender != -1) {
-                if (sqlTemp.equals(" where ")) {
-                    sqlTemp += " Gender = " + gender;
-                } else {
-                    sqlTemp += " and  Gender = " + gender;
-                }
-            }
-            sqlCommand += sqlTemp;
-            pst = con.prepareStatement(sqlCommand);
-            rs = pst.executeQuery();
-
-            while (rs.next()) {
-                Student student = new Student();
-
-                student.setId(rs.getString(1));
-                student.setFirstName(rs.getString(2));
-                student.setLastName(rs.getString(3));
-                student.setBirthDay(rs.getDate(4));
-                student.setGender(rs.getInt(5));
-                student.setPhone(rs.getString(6));
-                student.setEmail(rs.getString(7));
-                student.setAddress(rs.getString(8));
-                student.setImage(rs.getString(9));
-                student.setStatus(rs.getInt(10));
-
-                listStudent.add(student);
-            }
-
-        } catch (Exception ex) {
-            setLastError("SQL Error!");
-        }
-
-        return listStudent;
-    }
-
     public String convertDate(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);

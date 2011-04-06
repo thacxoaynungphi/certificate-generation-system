@@ -22,8 +22,6 @@ public interface IMarkDAO {
 
     String getGrades(float mark);
 
-    float getStudentMark(String studentID);
-
     boolean isCompleteCourse(String courseId, String studentId);
 
     ArrayList<Mark> readBYCourseID(String courseId);

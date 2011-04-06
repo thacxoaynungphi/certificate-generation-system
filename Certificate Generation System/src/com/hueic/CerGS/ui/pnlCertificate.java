@@ -17,16 +17,12 @@ import com.hueic.CerGS.dao.MarkDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.entity.Certificate;
 import java.util.ArrayList;
-import java.util.regex.PatternSyntaxException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
-import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -609,7 +605,7 @@ public class pnlCertificate extends javax.swing.JPanel {
                 return;
             }
             if (txtStudentID.getText().length() != 0) {
-                certificate.setMark(markDAO.getStudentMark((String) txtStudentID.getText()));
+                certificate.setMark(markDAO.avgMark((String) txtStudentID.getText()));
                 certificate.setStudentID((String) txtStudentID.getText());
             } else {
                 JOptionPane.showMessageDialog(this, "you must be Select Student Id of Cetificate", "Certificate Enter Error", JOptionPane.ERROR_MESSAGE);

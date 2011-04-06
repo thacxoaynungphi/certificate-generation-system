@@ -23,8 +23,6 @@ public interface IEmployeeDAO {
 
     ArrayList<Employee> readByAll();
 
-    ArrayList<Employee> readByCommand(String fname, String lname, Date startDate, Date endDate, int gender);
-
     Employee readByID(String id);
 
     boolean update(Employee emp);
