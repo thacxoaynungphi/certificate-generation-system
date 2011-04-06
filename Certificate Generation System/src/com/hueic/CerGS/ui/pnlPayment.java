@@ -41,7 +41,6 @@ public class pnlPayment extends javax.swing.JPanel {
     ArrayList<Register> listRegister = new ArrayList<Register>();
     private PaymentDAO paymentDao;
     ArrayList<Payment> filter = null;
-    TableRowSorter<TableModel> sorter;
     RegisterDAO registerDAO;
     StudentDAO studentDAO;
     CourseDAO courseDao;
@@ -125,8 +124,6 @@ public class pnlPayment extends javax.swing.JPanel {
             new ColumnData("Pay Day", 260, SwingConstants.LEFT, 4)
         };
         tableModel = new ObjectTableModel(tableContent, columns, filter);
-        sorter = new TableRowSorter<TableModel>(tableModel);
-        tableContent.setRowSorter(sorter);
         headerTable = tableModel.getHeaderTable();
         // Create numbering column
         headerTable.createDefaultColumnsFromModel();

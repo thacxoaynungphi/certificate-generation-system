@@ -21,16 +21,12 @@ import com.hueic.CerGS.entity.Register;
 import com.hueic.CerGS.entity.Student;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.regex.PatternSyntaxException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
-import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -101,7 +97,7 @@ public class pnlRegister extends javax.swing.JPanel {
         if (!filter.isEmpty()) {
             loadDetails(filter.get(0));
         }
-        loadTable(regisList);
+        loadTable(filter);
     }
 
     public void loadFiter(String text) {
@@ -117,7 +113,7 @@ public class pnlRegister extends javax.swing.JPanel {
         if (!filter.isEmpty()) {
             loadDetails(filter.get(0));
         }
-        loadData();
+        loadTable(filter);
     }
 
     public void loadTable(ArrayList<Register> regisList) {

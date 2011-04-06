@@ -18,16 +18,12 @@ import com.hueic.CerGS.dao.SubjectDAO;
 import com.hueic.CerGS.entity.Course;
 import com.hueic.CerGS.entity.Subject;
 import java.util.ArrayList;
-import java.util.regex.PatternSyntaxException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
-import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -41,7 +37,6 @@ public class pnlSubject extends javax.swing.JPanel {
     ArrayList<Subject> listSubject = null;
     ArrayList<Subject> filter = null;
     ArrayList<Course> listCourses = new ArrayList<Course>();
-    TableRowSorter<TableModel> sorter;
     private boolean isUpdate = false;
     private ObjectTableModel tableModel;
     private JTable headerTable;
