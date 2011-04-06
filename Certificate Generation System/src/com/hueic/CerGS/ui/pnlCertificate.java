@@ -99,12 +99,9 @@ public class pnlCertificate extends javax.swing.JPanel {
             new ColumnData("Degree Day", 170, SwingConstants.LEFT, 4),};
         tableModel = new ObjectTableModel(tableContent, columns, filter);
         headerTable = tableModel.getHeaderTable();
-        // Create numbering column
         headerTable.createDefaultColumnsFromModel();
         tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        // Put it in a viewport that we can control a bit
         JViewport viewport = new JViewport();
-        // Display numbering column
         viewport.setView(headerTable);
         viewport.setPreferredSize(headerTable.getMaximumSize());
         srcPanelCertificate.setRowHeader(viewport);
@@ -540,11 +537,6 @@ public class pnlCertificate extends javax.swing.JPanel {
                 filterTextCaretUpdate(evt);
             }
         });
-        filterText.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                filterTextKeyPressed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -616,7 +608,6 @@ public class pnlCertificate extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "you must be enter Id of Cetificate", "Certificate Enter Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-
             if (txtStudentID.getText().length() != 0) {
                 certificate.setMark(markDAO.getStudentMark((String) txtStudentID.getText()));
                 certificate.setStudentID((String) txtStudentID.getText());
@@ -624,14 +615,12 @@ public class pnlCertificate extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "you must be Select Student Id of Cetificate", "Certificate Enter Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-
             if (dateChooseDegreeDay.getDate() != null) {
                 certificate.setDegreeDay(new java.sql.Date(dateChooseDegreeDay.getDate().getTime()));
             } else {
                 JOptionPane.showMessageDialog(this, "you must be select a degree date of Cetificate", "Certificate Enter Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-
             if (certificateDao.create(certificate)) {
                 listCertificate.add(certificate);
                 loadData();
@@ -682,10 +671,6 @@ public class pnlCertificate extends javax.swing.JPanel {
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
 }//GEN-LAST:event_btnCancelActionPerformed
-
-    private void filterTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextKeyPressed
-        // TODO add your handling code here:
-}//GEN-LAST:event_filterTextKeyPressed
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:

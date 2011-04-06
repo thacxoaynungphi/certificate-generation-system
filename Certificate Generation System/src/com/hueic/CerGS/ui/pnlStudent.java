@@ -116,12 +116,9 @@ public class pnlStudent extends javax.swing.JPanel {
         };
         tableModel = new ObjectTableModel(tableContent, columns, filter);
         headerTable = tableModel.getHeaderTable();
-        // Create numbering column
         headerTable.createDefaultColumnsFromModel();
         tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        // Put it in a viewport that we can control a bit
         JViewport viewport = new JViewport();
-        // Display numbering column
         viewport.setView(headerTable);
         viewport.setPreferredSize(headerTable.getMaximumSize());
         srcPanelContent.setRowHeader(viewport);
@@ -144,13 +141,6 @@ public class pnlStudent extends javax.swing.JPanel {
             }
         }
         return true;
-    }
-
-    private void cancelCellEditing() {
-        CellEditor ce = tableContent.getCellEditor();
-        if (ce != null) {
-            ce.cancelCellEditing();
-        }
     }
 
     /** This method is called from within the constructor to
@@ -918,7 +908,6 @@ public class pnlStudent extends javax.swing.JPanel {
 
             } else if (radioFemaleEdit.isSelected()) {
                 student.setGender(1);
-
             }
             student.setPhone(txtPhoneEdit.getText());
             student.setEmail(txtEmailEdit.getText());
@@ -1032,7 +1021,6 @@ public class pnlStudent extends javax.swing.JPanel {
                 student.setImage(student.getId() + extension);
                 student.setBirthDay(new java.sql.Date(dateChBirthdayEdit.getDate().getTime()));
                 student.setStatus(1);
-                StudentDAO studentDao = new StudentDAO();
                 if (studentDao.create(student)) {
                     liststudent.add(student);
                     loadData(liststudent);
@@ -1116,8 +1104,6 @@ public class pnlStudent extends javax.swing.JPanel {
     //TODO: copy file chua xac dinh duoc duong dan cua file
     private void btnBrowseEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseEditActionPerformed
         // TODO add your handling code here:
-        //TODO: chua fix duoc update anh
-
         JFileChooser chooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
                 "JPG, GIF, & PNG Images", "jpg", "gif", "png");

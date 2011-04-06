@@ -18,16 +18,12 @@ import com.hueic.CerGS.dao.PersonDAO;
 import com.hueic.CerGS.entity.Account;
 import com.hueic.CerGS.entity.Permission;
 import java.util.ArrayList;
-import java.util.regex.PatternSyntaxException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
-import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -106,12 +102,9 @@ public class pnlAccount extends javax.swing.JPanel {
             new ColumnData("Permission", 140, SwingConstants.LEFT, 3),};
         tableModel = new ObjectTableModel(tableContent, columns, filter);
         headerTable = tableModel.getHeaderTable();
-        // Create numbering column
         headerTable.createDefaultColumnsFromModel();
         tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        // Put it in a viewport that we can control a bit
         JViewport viewport = new JViewport();
-        // Display numbering column
         viewport.setView(headerTable);
         viewport.setPreferredSize(headerTable.getMaximumSize());
         srcPanelAccount.setRowHeader(viewport);
@@ -629,7 +622,6 @@ public class pnlAccount extends javax.swing.JPanel {
                 int permission = Integer.parseInt(txtType.getText());
                 if (password.equals(confirmPass) && password.length() != 0) {
                     Account acc = new Account(username, password, permission);
-                    AccountDAO accDao = new AccountDAO();
                     if (accDao.create(acc)) {
                         JOptionPane.showMessageDialog(this, accDao.getLastError(), "Create Account", JOptionPane.INFORMATION_MESSAGE);
                         listAccounts.add(acc);
@@ -660,7 +652,6 @@ public class pnlAccount extends javax.swing.JPanel {
             int permission = Integer.parseInt(txtType.getText());
             if (password.equals(confirmPass) && password.length() != 0) {
                 Account acc = new Account(username, password, permission);
-                AccountDAO accDao = new AccountDAO();
                 if (accDao.update(acc)) {
                     JOptionPane.showMessageDialog(this, accDao.getLastError(), "Update Account", JOptionPane.INFORMATION_MESSAGE);
                     //listAccounts.remove(find(acc.getUsername()));

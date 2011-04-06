@@ -26,8 +26,6 @@ import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -54,6 +52,10 @@ public class pnlViewPayment extends javax.swing.JPanel {
         paymentDao = new PaymentDAO();
         courseDao = new CourseDAO();
         registerDao = new RegisterDAO();
+        getData();
+    }
+
+    public void getData() {
         listPayments = paymentDao.readByAll();
         listCourse = courseDao.readByAll();
         listRegister = registerDao.readByAll();
@@ -78,12 +80,7 @@ public class pnlViewPayment extends javax.swing.JPanel {
             cbxStudentID.setVisible(false);
             lblStudentID.setVisible(false);
         } else {
-            listPayments = paymentDao.readByAll();
-            listCourse = courseDao.readByAll();
-            listRegister = registerDao.readByAll();
-            loadData(listPayments);
-            loadDataCBXCourse();
-            loadDataCBXStudent();
+            getData();
         }
     }
 

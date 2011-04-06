@@ -124,21 +124,11 @@ public class pnlEmployee extends javax.swing.JPanel {
             new ColumnData("Phone", 100, SwingConstants.LEFT, 6)
         };
         tableModel = new ObjectTableModel(tableContent, columns, filter);
-        tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
-
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableContentMouseClicked(evt);
-            }
-        });
         lblCount.setText(String.valueOf(listEmp.size()));
         headerTable = tableModel.getHeaderTable();
-        // Create numbering column
         headerTable.createDefaultColumnsFromModel();
         tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        // Put it in a viewport that we can control a bit
         JViewport viewport = new JViewport();
-        // Display numbering column
         viewport.setView(headerTable);
         viewport.setPreferredSize(headerTable.getMaximumSize());
         srcPaneEmployee.setRowHeader(viewport);
@@ -387,11 +377,6 @@ public class pnlEmployee extends javax.swing.JPanel {
         btnGGender1.add(radioFemaleEdit);
         radioFemaleEdit.setForeground(new java.awt.Color(3, 3, 3));
         radioFemaleEdit.setText("Female");
-        radioFemaleEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioFemaleEditActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 5;
@@ -898,11 +883,6 @@ public class pnlEmployee extends javax.swing.JPanel {
         ));
         tableContent.setMinimumSize(new java.awt.Dimension(770, 200));
         tableContent.setPreferredSize(new java.awt.Dimension(770, 200));
-        tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableContentMouseClicked(evt);
-            }
-        });
         srcPaneEmployee.setViewportView(tableContent);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -998,16 +978,13 @@ public class pnlEmployee extends javax.swing.JPanel {
                 resetEditDetails();
             } else {
                 Employee emp = new Employee();
-
                 String id = txtID.getText();
-
                 if (!id.isEmpty()) {
                     emp.setId(id);
                 } else {
                     JOptionPane.showMessageDialog(this, "Id must be enter.", "Employee add", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-
                 String fname = txtFirstNameEdit.getText();
                 if (!fname.isEmpty()) {
                     emp.setFirstName(fname);
@@ -1023,7 +1000,6 @@ public class pnlEmployee extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Last Name must be enter.", "Employee add", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-
                 emp.setBirthDay(new java.sql.Date(dateChBirthdayEdit.getDate().getTime()));
                 if (radioMaleEdit.isSelected()) {
                     emp.setGender(0);
@@ -1057,8 +1033,6 @@ public class pnlEmployee extends javax.swing.JPanel {
                 }
                 emp.setBeginWork(new java.sql.Date(dateChBeginWorkEdit.getDate().getTime()));
                 emp.setStatus(1);
-
-                EmployeeDAO empDao = new EmployeeDAO();
                 if (empDao.create(emp)) {
                     listEmp.add(emp);
                     loadData();
@@ -1072,7 +1046,6 @@ public class pnlEmployee extends javax.swing.JPanel {
                 btnCancelEdit.setVisible(false);
             }
         } catch (Exception ex) {
-
             JOptionPane.showMessageDialog(this, "Input Data Error", "Employee Add", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnAddEditActionPerformed
@@ -1089,10 +1062,8 @@ public class pnlEmployee extends javax.swing.JPanel {
             emp.setBeginWork(new java.sql.Date(dateChBeginWorkEdit.getDate().getTime()));
             if (radioMaleEdit.isSelected()) {
                 emp.setGender(0);
-
             } else if (radioFemaleEdit.isSelected()) {
                 emp.setGender(1);
-
             }
             emp.setPhone(txtPhoneEdit.getText());
             emp.setEmail(txtEmailEdit.getText());
@@ -1105,7 +1076,6 @@ public class pnlEmployee extends javax.swing.JPanel {
             LoadImage.copyImage(file.getPath(), System.getProperty("user.dir") + "/avatar/" + emp.getId() + extension);
             emp.setImage(emp.getId() + extension);
             emp.setStatus(1);
-            EmployeeDAO empDao = new EmployeeDAO();
             if (empDao.update(emp)) {
                 listEmp = empDao.readByAll();
                 loadData();
@@ -1130,7 +1100,6 @@ public class pnlEmployee extends javax.swing.JPanel {
 
     private void btnResetSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetSearchActionPerformed
         // TODO add your handling code here:
-
         txtEmployeeIdSearch.setText(null);
         txtFirstNameSearch.setText(null);
         txtLastNameSearch.setText(null);
@@ -1183,18 +1152,6 @@ public class pnlEmployee extends javax.swing.JPanel {
         }
     }
 
-    private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
-        // TODO add your handling code here:
-        int index = tableContent.getSelectedRow();
-        if (index != -1) {
-            String value = (String) tableContent.getValueAt(index, 0);
-            Employee emp = find(value);
-            if (emp != null) {
-                loadDetails(emp);
-            }
-        }
-}//GEN-LAST:event_tableContentMouseClicked
-
     private void txtEmployeeIdSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtEmployeeIdSearchCaretUpdate
         // TODO add your handling code here:
         loadData();
@@ -1209,10 +1166,6 @@ public class pnlEmployee extends javax.swing.JPanel {
         // TODO add your handling code here:
         loadData();
     }//GEN-LAST:event_txtLastNameSearchCaretUpdate
-
-    private void radioFemaleEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioFemaleEditActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_radioFemaleEditActionPerformed
 
     private void btnDeleteEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteEditActionPerformed
         // TODO add your handling code here:

@@ -21,7 +21,6 @@ public class pnlHomeStudent extends javax.swing.JPanel {
     public pnlHomeStudent() {
         initComponents();
     }
-
     pnlHomeStudent(frmMain aThis) {
        initComponents();
     }

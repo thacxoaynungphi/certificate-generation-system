@@ -57,14 +57,18 @@ public class pnlRegister extends javax.swing.JPanel {
         courseDAO = new CourseDAO();
         studentDAO = new StudentDAO();
         subjectDAO = new SubjectDAO();
-        regisList = regisDAO.readByAll();
-        studentList = studentDAO.readByAll();
-        courseIdList = courseDAO.readByAll();
+
         if (!regisList.isEmpty()) {
             loadData();
             loadDetails(regisList.get(0));
         }
         btnCancelEdit.setVisible(false);
+    }
+
+    public void getData() {
+        regisList = regisDAO.readByAll();
+        studentList = studentDAO.readByAll();
+        courseIdList = courseDAO.readByAll();
     }
 
     public pnlRegister(frmMain frm) {
@@ -74,9 +78,7 @@ public class pnlRegister extends javax.swing.JPanel {
         courseDAO = new CourseDAO();
         studentDAO = new StudentDAO();
         subjectDAO = new SubjectDAO();
-        regisList = regisDAO.readByAll();
-        studentList = studentDAO.readByAll();
-        courseIdList = courseDAO.readByAll();
+        getData();
         if (regisList.size() != 0) {
             loadData();
             loadDetails(regisList.get(0));
@@ -126,12 +128,9 @@ public class pnlRegister extends javax.swing.JPanel {
         };
         tableModel = new ObjectTableModel(tableContent, columns, filter);
         headerTable = tableModel.getHeaderTable();
-        // Create numbering column
         headerTable.createDefaultColumnsFromModel();
         tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        // Put it in a viewport that we can control a bit
         JViewport viewport = new JViewport();
-        // Display numbering column
         viewport.setView(headerTable);
         viewport.setPreferredSize(headerTable.getMaximumSize());
         srcPanelRegister.setRowHeader(viewport);
@@ -795,7 +794,6 @@ public class pnlRegister extends javax.swing.JPanel {
         // TODO add your handling code here:
         //TODO: chua xu ly viec cap nhap khoa se bi anh huong den cac bang khac
         try {
-
             String id = txtStudentId.getText();
             String studentId = txtId.getText();
             int feesStructe = cbxFeeStructe.getSelectedIndex();
@@ -811,7 +809,6 @@ public class pnlRegister extends javax.swing.JPanel {
                 } else {
                     JOptionPane.showMessageDialog(this, "not found Student has Id is " + studentId, "Register Update", JOptionPane.ERROR_MESSAGE);
                 }
-
                 loadData();
                 loadDetails(register);
 //                txtCourseID.setVisible(true);
@@ -862,7 +859,7 @@ public class pnlRegister extends javax.swing.JPanel {
         dlg.setTitle("Browse Student");
         dlg.setSize(868, 580);
         dlg.setLocationRelativeTo(null);
-        dlg.setVisible(true);// TODO add your handling code here:
+        dlg.setVisible(true);
     }//GEN-LAST:event_btnChooseStudentIdActionPerformed
 
     private void btnChooseCourseIDSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseCourseIDSearchActionPerformed
@@ -880,7 +877,7 @@ public class pnlRegister extends javax.swing.JPanel {
         dlg.setTitle("Browse Student");
         dlg.setSize(868, 580);
         dlg.setLocationRelativeTo(null);
-        dlg.setVisible(true);// TODO add your handling code here:
+        dlg.setVisible(true);
     }//GEN-LAST:event_btnChooseStudentIDSearchActionPerformed
 
     private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
