@@ -57,7 +57,7 @@ public class pnlRegister extends javax.swing.JPanel {
         courseDAO = new CourseDAO();
         studentDAO = new StudentDAO();
         subjectDAO = new SubjectDAO();
-
+        getData();
         if (!regisList.isEmpty()) {
             loadData();
             loadDetails(regisList.get(0));
@@ -89,10 +89,11 @@ public class pnlRegister extends javax.swing.JPanel {
     public void loadData() {
         filter = new ArrayList<Register>();
         for (Register sub : regisList) {
+            String feesStructe = sub.getFeesStructe() == 0 ? "Full Payment" : "Installment Payment";
             if (sub.getStudentId().toLowerCase().matches(".*" + txtIdSearch.getText().trim().toLowerCase() + ".*")
                     && sub.getId().toLowerCase().matches(".*" + txtStudentIdSearch.getText().trim().toLowerCase() + ".*")
                     && sub.getCourseId().toLowerCase().matches(".*" + txtCourseIDSearch.getText().trim().toLowerCase() + ".*")
-                    && String.valueOf(sub.getFeesStructe()).toLowerCase().matches(".*" + txtFeesStructeSearch.getText().trim().toLowerCase() + ".*")) {
+                    && feesStructe.toLowerCase().matches(".*" + txtFeesStructeSearch.getText().trim().toLowerCase() + ".*")) {
                 filter.add(sub);
             }
         }
@@ -105,10 +106,11 @@ public class pnlRegister extends javax.swing.JPanel {
     public void loadFiter(String text) {
         filter = new ArrayList<Register>();
         for (Register sub : regisList) {
+            String feesStructe = sub.getFeesStructe() == 0 ? "Full Payment" : "Installment Payment";
             if (sub.getStudentId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
                     || sub.getId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
                     || sub.getCourseId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
-                    || String.valueOf(sub.getFeesStructe()).toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
+                    || feesStructe.toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
                 filter.add(sub);
             }
         }
