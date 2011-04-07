@@ -7,7 +7,7 @@ package com.hueic.CerGS.dao;
 import com.hueic.CerGS.dao.IDao.IAccountDAO;
 import com.hueic.CerGS.entity.Account;
 import com.hueic.CerGS.util.Configure;
-import com.hueic.CerGS.util.PassEncryption;
+import com.hueic.CerGS.util.DESPasswordEncrypt;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,11 +18,11 @@ import java.util.ArrayList;
  */
 public class AccountDAO extends BaseDAO implements IAccountDAO {
 
-    PassEncryption passEncryption = null;
+    DESPasswordEncrypt passEncryption = null;
 
     public AccountDAO() {
         db = new Configure();
-        passEncryption = new PassEncryption();
+        passEncryption = DESPasswordEncrypt.getInstance();
     }
 
     public ArrayList<Account> readByAll() {
@@ -35,7 +35,7 @@ public class AccountDAO extends BaseDAO implements IAccountDAO {
             while (rs.next()) {
                 Account account = new Account();
                 account.setUsername(rs.getString(1));
-                account.setPassword(rs.getString(2));
+                account.setPassword(passEncryption.decrypt(rs.getString(2)));
                 account.setPermission(rs.getInt(3));
                 list.add(account);
             }
@@ -55,7 +55,7 @@ public class AccountDAO extends BaseDAO implements IAccountDAO {
             String sql = "select * from Account where username = ? and password = ? and permission = ?";
             pst = con.prepareStatement(sql);
             pst.setString(1, acc.getUsername());
-            pst.setString(2, passEncryption.encryptPass(acc.getPassword()));
+            pst.setString(2, passEncryption.encrypt(acc.getPassword()));
             pst.setInt(3, acc.getPermission());
             rs = pst.executeQuery();
             if (rs.next()) {
@@ -79,10 +79,10 @@ public class AccountDAO extends BaseDAO implements IAccountDAO {
             String sql = "select * from Account where username = ? add password = ?";
             pst = con.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst.setString(1, acc.getUsername());
-            pst.setString(2, passEncryption.encryptPass(oldPass));
+            pst.setString(2, passEncryption.encrypt(oldPass));
             rs = pst.executeQuery();
             if (rs.first()) {
-                rs.updateString(2, passEncryption.encryptPass(acc.getPassword()));
+                rs.updateString(2, passEncryption.encrypt(acc.getPassword()));
                 rs.updateRow();
                 setLastError("Change Password successfully");
                 status = true;
@@ -104,7 +104,7 @@ public class AccountDAO extends BaseDAO implements IAccountDAO {
             String sql = "insert into Account (username,password,permission) " + " values (?,?,?);";
             pst = con.prepareStatement(sql);
             pst.setString(1, acc.getUsername());
-            pst.setString(2, passEncryption.encryptPass(acc.getPassword()));
+            pst.setString(2, passEncryption.encrypt(acc.getPassword()));
             pst.setInt(3, acc.getPermission());
             if (pst.executeUpdate() > 0) {
                 setLastError("Create Account suceessfully");
@@ -130,7 +130,7 @@ public class AccountDAO extends BaseDAO implements IAccountDAO {
             rs = pst.executeQuery();
             System.out.println(sql);
             if (rs.first()) {
-                rs.updateString(2, passEncryption.encryptPass(acc.getPassword()));
+                rs.updateString(2, passEncryption.encrypt(acc.getPassword()));
                 rs.updateInt(3, acc.getPermission());
                 rs.updateRow();
                 setLastError("Update Account successfully");

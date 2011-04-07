@@ -63,7 +63,6 @@ public class frmMain extends javax.swing.JFrame {
         HelpBroker hb = hs.createHelpBroker();
         CSH.setHelpIDString(mnuIHelpContent, "top");
         mnuIHelpContent.addActionListener(new CSH.DisplayHelpFromSource(hb));
-        System.out.println("Dir: " + System.getProperty("user.dir"));
     }
 
     public void initStatusBar() {
@@ -1060,36 +1059,31 @@ public class frmMain extends javax.swing.JFrame {
 
     private void tpnBusinessStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tpnBusinessStateChanged
         // TODO add your handling code here:
-        String title = tpnBusiness.getTitleAt(tpnBusiness.getSelectedIndex()).trim();
-        //TODO: Xet du lieu chua duoc
-        if (title.equals("Mark")) {
-            mark.getData();
-        } else if (title.equals("Employee")) {
-            viewMark.getData();
-        } else if (title.equals("Student")) {
-            viewMark.getData();
-        } else if (title.equals("Register")) {
-            viewMark.getData();
-        } else if (title.equals("Course")) {
-            viewMark.getData();
-        } else if (title.equals("Payment")) {
-            viewMark.getData();
-        } else if (title.equals("Subject")) {
-            viewMark.getData();
-        } else if (title.equals("Mark")) {
-            viewMark.getData();
-        } else if (title.equals("Certificate")) {
-            viewMark.getData();
-        } else if (title.equals("Account")) {
-            viewMark.getData();
-        } else if (title.equals("Permission")) {
-            viewMark.getData();
-        } else if (title.equals("View Mark")) {
-            viewMark.getData();
-        } else if (title.equals("View Payment")) {
-            viewMark.getData();
-        } else if (title.equals("Develop Degree")) {
-            viewMark.getData();
+        int index = tpnBusiness.getSelectedIndex();
+        if (index != -1) {
+            String title = tpnBusiness.getTitleAt(index).trim();
+            if (title.length() != 0) {
+                //TODO: Xet du lieu chua duoc
+                if (title.equals("Register")) {
+                    register.getData();
+                } else if (title.equals("Payment")) {
+                    payment.getData();
+                } else if (title.equals("Subject")) {
+                    subject.getData();
+                } else if (title.equals("Mark")) {
+                    mark.getData();
+                } else if (title.equals("Certificate")) {
+                    cer.getData();
+                } else if (title.equals("Account")) {
+                    account.getData();
+                } else if (title.equals("View Mark")) {
+                    viewMark.getData();
+                } else if (title.equals("View Payment")) {
+                    viewPayment.getData();
+                } else if (title.equals("Develop Degree")) {
+                    developDegree.getData();
+                }
+            }
         }
     }//GEN-LAST:event_tpnBusinessStateChanged
 
@@ -1134,7 +1128,23 @@ public class frmMain extends javax.swing.JFrame {
     }
 
     public void isLogin() {
+
+
         tpnBusiness.setSelectedComponent(pnlHomeTab);
+
+        pnlHomeTab.removeAll();
+        pnlHomeTab.add(new pnlHome(this));
+        jideBtnEmployee.setVisible(true);
+        jideBtnStudent.setVisible(true);
+        jideBtnCourse.setVisible(true);
+        jideBtnSubject.setVisible(true);
+        jideBtnAccount.setVisible(true);
+        jideBtnCertificate.setVisible(true);
+        jideBtnAccount.setVisible(true);
+        jideBtnMark.setVisible(true);
+        jideBtnRegister.setVisible(true);
+        jideBtnPayment.setVisible(true);
+
         jideBtnHome.setEnabled(true);
         jideBtnEmployee.setEnabled(true);
         jideBtnStudent.setEnabled(true);
@@ -1166,16 +1176,6 @@ public class frmMain extends javax.swing.JFrame {
                 tpnBusiness.addTab("Develop Degree", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlDevelopDegree);
                 tpnBusiness.addTab("Report", new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/arrow.png")), pnlReport);
 
-//                tpnBusiness.remove(pnlEmployeeTab);
-//                tpnBusiness.remove(pnlStudentTab);
-//                tpnBusiness.remove(pnlRegisterTab);
-//                tpnBusiness.remove(pnlCourseTab);
-//                tpnBusiness.remove(pnlSubjectTab);
-//                tpnBusiness.remove(pnlPaymentTab);
-//                tpnBusiness.remove(pnlMarkTab);
-//                tpnBusiness.remove(pnlCertificateTab);
-//                tpnBusiness.remove(pnlPermissionTab);
-//                tpnBusiness.remove(pnlAccountTab);
                 pnlHomeTab.removeAll();
                 pnlHomeTab.add(new pnlHomeEmp(this));
 

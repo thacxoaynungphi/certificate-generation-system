@@ -47,11 +47,15 @@ public class pnlAccount extends javax.swing.JPanel {
         accDao = new AccountDAO();
         permissionDao = new PermissionDAO();
         personDao = new PersonDAO();
-        listAccounts = accDao.readByAll();
+        getData();
         loadData();
         if (listAccounts.size() != 0) {
             loadDetails(listAccounts.get(0));
         }
+    }
+
+    public void getData() {
+        listAccounts = accDao.readByAll();
     }
 
     public pnlAccount(frmMain frm) {
@@ -60,7 +64,7 @@ public class pnlAccount extends javax.swing.JPanel {
         accDao = new AccountDAO();
         permissionDao = new PermissionDAO();
         personDao = new PersonDAO();
-        listAccounts = accDao.readByAll();
+        getData();
         loadData();
         if (listAccounts.size() != 0) {
             loadDetails(listAccounts.get(0));
