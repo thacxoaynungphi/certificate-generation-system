@@ -61,7 +61,7 @@ public class pnlHomeEmp extends javax.swing.JPanel {
         panelRight.setPreferredSize(new java.awt.Dimension(860, 600));
         panelRight.setLayout(new java.awt.GridBagLayout());
 
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLabel15.setForeground(new java.awt.Color(0, 0, 102));
         jLabel15.setText("<html> <body> Certificate Generator System </body> </html>");
         jLabel15.setMinimumSize(new java.awt.Dimension(400, 40));
@@ -90,7 +90,7 @@ public class pnlHomeEmp extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.insets = new java.awt.Insets(200, 200, 0, 10);
+        gridBagConstraints.insets = new java.awt.Insets(200, 220, 0, 10);
         panelRight.add(jLabel1, gridBagConstraints);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));

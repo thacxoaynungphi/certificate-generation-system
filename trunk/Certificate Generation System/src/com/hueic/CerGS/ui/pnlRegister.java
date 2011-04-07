@@ -686,8 +686,6 @@ public class pnlRegister extends javax.swing.JPanel {
             }
         ));
         tableContent.setDragEnabled(true);
-        tableContent.setMinimumSize(new java.awt.Dimension(770, 290));
-        tableContent.setPreferredSize(new java.awt.Dimension(770, 290));
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 tableContentMouseReleased(evt);
