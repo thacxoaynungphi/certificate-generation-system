@@ -33,9 +33,7 @@ public class Configure {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             con = java.sql.DriverManager.getConnection(url, user, password);
         } catch (SQLException ex) {
-            Logger.getLogger(Configure.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Configure.class.getName()).log(Level.SEVERE, null, ex);
         }
         if (con == null) {
             JOptionPane.showMessageDialog(null, "Error connect database", "Error Connect", JOptionPane.ERROR_MESSAGE);

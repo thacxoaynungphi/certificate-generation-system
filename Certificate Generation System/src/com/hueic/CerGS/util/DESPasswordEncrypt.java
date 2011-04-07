@@ -96,35 +96,4 @@ public class DESPasswordEncrypt {
 
         return recoveredPassword;
     }
-    // <editor-fold defaultstate="collapsed" desc=" Example Main Method ">
-    /*
-    public static void main(String[] args) {
-    try {
-    //	Make sure SUN are a valid provider
-    // Security.addProvider(new com.sun.crypto.provider.SunJCE());
-    //		Password encrypt agent that assumes the password is only ASCII characters
-    DESPasswordEncrypt passwordEncryptAgent = DESPasswordEncrypt.getInstance();
-    String password = "minhnguyen";
-    // Since the example password encrypter is setup to convert the password to ASCII bytes
-    // before encrypting, make sure that the password is in fact ASCII (in this case printable ASCII).
-    //if (!password.matches("[ -~]{6,}"))
-    //throw new IllegalArgumentException("Password must be printable ASCII");
-    System.out.println(
-    "Password ....................[" + password + "]");
-    String encodedEncryptedPassword =
-    passwordEncryptAgent.encrypt(password);
-    System.out.println(
-    " Encoded encrypted password ..["
-    + encodedEncryptedPassword
-    + "]");
-    System.out.println(
-    "Length of Encr Pwd:" + encodedEncryptedPassword.length());
-    String recoveredPassword = passwordEncryptAgent.decrypt(encodedEncryptedPassword);
-    System.out.println("Recovered password ..........[" + recoveredPassword + "]");
-    } catch (SystemException se) {
-    se.printStackTrace();
-    }
-    }
-     */
-    // </editor-fold>
 }
