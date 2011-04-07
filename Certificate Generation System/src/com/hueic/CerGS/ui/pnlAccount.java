@@ -88,8 +88,8 @@ public class pnlAccount extends javax.swing.JPanel {
     public void loadFiter(String text) {
         filter = new ArrayList<Account>();
         for (Account acc : listAccounts) {
-            if (acc.getUsername().toLowerCase().matches(".*" + txtUsernameSearch.getText().trim().toLowerCase() + ".*")
-                    || String.valueOf(acc.getPermission()).toLowerCase().matches(".*" + txtPermissionSearch.getText().trim().toLowerCase() + ".*")) {
+            if (acc.getUsername().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                    || String.valueOf(acc.getPermission()).toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
                 filter.add(acc);
             }
         }

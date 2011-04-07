@@ -93,7 +93,7 @@ public class pnlViewMark extends javax.swing.JPanel {
                 filter.add(mark);
             }
         }
-        loadData(listMarks);
+        loadData(filter);
     }
 
     public void loadData(ArrayList<Mark> listMarks) {

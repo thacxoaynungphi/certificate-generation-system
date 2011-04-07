@@ -80,8 +80,8 @@ public class pnlCertificate extends javax.swing.JPanel {
     public void loadFiter(String text) {
         filter = new ArrayList<Certificate>();
         for (Certificate cer : listCertificate) {
-            if (cer.getStudentID().toLowerCase().matches(".*" + txtStudentIDSearch.getText().trim().toLowerCase() + ".*") //                    && cer..getName().toLowerCase().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")
-                    || String.valueOf(cer.getId()).toLowerCase().matches(".*" + txtIDSearch.getText().trim().toLowerCase() + ".*")) {
+            if (cer.getStudentID().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*") //                    && cer..getName().toLowerCase().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")
+                    || String.valueOf(cer.getId()).toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
                 filter.add(cer);
             }
         }
