@@ -2,10 +2,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.hueic.CerGS.component.report;
 
-import com.hueic.CerGS.dao.EmployeeDAO;
 import com.hueic.CerGS.entity.Employee;
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -16,14 +14,9 @@ import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
  *
  * @author Wind
  */
-public class EmployeeReportManager extends ReportManager{
+public class EmployeeReportManager extends ReportManager {
 
-    private EmployeeDAO employeeDAO;
-    private ArrayList<Employee> listEmp;
-    public EmployeeReportManager(ArrayList<Employee> listEmp){
-        employeeDAO = new EmployeeDAO();
-        this.listEmp = listEmp;
-
+    public EmployeeReportManager(ArrayList<Employee> listEmp) {
         jasperFileName = "EmployeeList.jasper";
         dataCollection = getJRMapCollectionDataSource(listEmp);
         parameterMap = getParameterReport();
@@ -43,8 +36,8 @@ public class EmployeeReportManager extends ReportManager{
     private JRMapCollectionDataSource getJRMapCollectionDataSource(ArrayList<Employee> empList) {
         HashMap row = null;
         ArrayList collection = new ArrayList();
-        
-        for(Employee emp : empList){
+
+        for (Employee emp : empList) {
             row = new HashMap();
             DateFormat dateFormat = DateFormat.getDateInstance();
             row.put("ID", emp.getId());
@@ -54,12 +47,8 @@ public class EmployeeReportManager extends ReportManager{
 
             collection.add(row);
         }
-
         row = new HashMap();
-
-        dataCollection= new JRMapCollectionDataSource(collection);
-
+        dataCollection = new JRMapCollectionDataSource(collection);
         return dataCollection;
     }
-
 }

@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.hueic.CerGS.component.report;
 
 import com.hueic.CerGS.dao.StudentDAO;
@@ -16,32 +15,33 @@ import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
  *
  * @author Wind
  */
-public class StudentDetailsReportManager extends ReportManager{
-    private Student student;
+public class StudentDetailsReportManager extends ReportManager {
 
-    public StudentDetailsReportManager(Student student){
-        this.student = student;
+    public StudentDetailsReportManager(Student student) {
         jasperFileName = "StudentDetail.jasper";
 
         parameterMap = getParameterMap();
-        dataCollection = getJRDataSourse();
+        dataCollection = getJRDataSourse(student);
     }
 
-    private HashMap getParameterMap(){
+    private HashMap getParameterMap() {
         parameterMap = new HashMap();
 
         return parameterMap;
     }
 
-    private JRMapCollectionDataSource getJRDataSourse(){
+    private JRMapCollectionDataSource getJRDataSourse(Student student) {
         ArrayList collection = new ArrayList();
         HashMap row = new HashMap();
 
         row.put("STUDENTID", student.getId());
         row.put("STUDENTNAME", student.getFullName());
 
-        if(student.getGender() == 0) row.put("GENDER", "MALE");
-        else row.put("GENDER", "FEMALE");
+        if (student.getGender() == 0) {
+            row.put("GENDER", "MALE");
+        } else {
+            row.put("GENDER", "FEMALE");
+        }
 
         row.put("BIRTHDAY", DateFormat.getInstance().format(student.getBirthDay()));
         row.put("ADDRESS", student.getAddress());

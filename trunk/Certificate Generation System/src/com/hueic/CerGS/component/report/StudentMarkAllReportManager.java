@@ -21,15 +21,12 @@ import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
  * @author Wind
  */
 public class StudentMarkAllReportManager extends ReportManager {
-    private ArrayList<Mark> listMark;
     private SubjectDAO subjectDAO;
     private RegisterDAO registerDAO;
     private CourseDAO courseDAO;
     private StudentDAO studentDAO;
 
     public StudentMarkAllReportManager(ArrayList<Mark> listMark) {
-        this.listMark = listMark;
-
         jasperFileName = "StudentMarkAll.jasper";
         subjectDAO = new SubjectDAO();
         courseDAO = new CourseDAO();
@@ -37,7 +34,7 @@ public class StudentMarkAllReportManager extends ReportManager {
         registerDAO = new RegisterDAO();
 
         parameterMap = getParameterMap();
-        dataCollection = getJRDataSource();
+        dataCollection = getJRDataSource(listMark);
     }
 
     private HashMap getParameterMap(){
@@ -53,7 +50,7 @@ public class StudentMarkAllReportManager extends ReportManager {
         return parameterMap;
     }
 
-    private JRMapCollectionDataSource getJRDataSource(){
+    private JRMapCollectionDataSource getJRDataSource(ArrayList<Mark> listMark){
         ArrayList reportRows = new ArrayList();
         HashMap row = null;
 

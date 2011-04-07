@@ -23,7 +23,6 @@ import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
 //TODO can lam lai
 public class StudentReportManager extends ReportManager {
 
-    private String course;
     private StudentDAO studentDAO;
     private ArrayList<Register> listRegis;
     private RegisterDAO registerDAO;

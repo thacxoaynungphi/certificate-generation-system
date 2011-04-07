@@ -17,7 +17,6 @@ import java.util.Date;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
-import sun.misc.Cleaner;
 
 /**
  *
@@ -42,7 +41,6 @@ public class CertificateReportManager extends ReportManager {
         certificateDAO = new CertificateDAO();
         courseDAO = new CourseDAO();
         studentDAO = new StudentDAO();
-        MarkDAO markDAO = new MarkDAO();
         Register regis = registerDAO.readByStudentId(studentId);
         Certificate cer = certificateDAO.readByStudentId(studentId);
         if (cer == null) {
@@ -61,7 +59,6 @@ public class CertificateReportManager extends ReportManager {
 
     private HashMap getParameterReport() {
         parameterMap = new HashMap();
-
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(degreeDate);
 

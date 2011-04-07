@@ -20,7 +20,7 @@ import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
  *
  * @author Wind
  */
-public class StudentMarkReportManager extends ReportManager{
+public class StudentMarkReportManager extends ReportManager {
 
     private String studentId;
     private RegisterDAO registerDAO;
@@ -45,7 +45,7 @@ public class StudentMarkReportManager extends ReportManager{
     private HashMap getParameterMap() {
         parameterMap = new HashMap();
         Register regis = registerDAO.readByStudentId(studentId);
-        
+
         parameterMap.put("ID", studentId);
         parameterMap.put("NAME", studentDAO.readByID(regis.getId()).getFullName());
         parameterMap.put("COURSE", courseDAO.readById(regis.getCourseId()).getName());
@@ -53,7 +53,6 @@ public class StudentMarkReportManager extends ReportManager{
         parameterMap.put("SUBJECTNAME", "Subject Name");
         parameterMap.put("COEFFICIENT", "Coefficient");
         parameterMap.put("MARK", "Final Mark");
-        parameterMap.put("GRADE", "Grade");
 
         return parameterMap;
     }
@@ -71,25 +70,9 @@ public class StudentMarkReportManager extends ReportManager{
             row.put("SUBJECTNAME", sub.getName());
             row.put("COEFFICIENT", sub.getCoefficient());
             row.put("MARK", mark.getMark());
-            String grade = "";
-            if (mark.getMark() >= 7.5) {
-                grade = "DISTINSTION";
-            } else if (mark.getMark() > 60) {
-                grade = "A";
-            } else if (mark.getMark() > 50) {
-                grade = "B";
-            } else if (mark.getMark() > 40) {
-                grade = "C";
-            } else {
-                grade = "Unpass";
-            }
-
-            row.put("GRADE", grade);
-
             reportRows.add(row);
         }
         dataCollection = new JRMapCollectionDataSource(reportRows);
         return dataCollection;
     }
-
 }

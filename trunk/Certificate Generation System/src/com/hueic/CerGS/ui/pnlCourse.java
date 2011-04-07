@@ -15,16 +15,12 @@ import com.hueic.CerGS.component.ObjectTableModel;
 import com.hueic.CerGS.dao.CourseDAO;
 import com.hueic.CerGS.entity.Course;
 import java.util.ArrayList;
-import java.util.regex.PatternSyntaxException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
-import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 
 /**
  *

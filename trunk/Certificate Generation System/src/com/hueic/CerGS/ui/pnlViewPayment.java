@@ -35,7 +35,6 @@ public class pnlViewPayment extends javax.swing.JPanel {
 
     public boolean isStudent = false;
     /** Creates new form pnlViewPayment */
-    private int currentId;
     private ArrayList<Payment> listPayments = new ArrayList<Payment>();
     private PaymentDAO paymentDao;
     private CourseDAO courseDao;

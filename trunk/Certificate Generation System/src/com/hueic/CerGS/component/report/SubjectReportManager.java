@@ -15,17 +15,14 @@ import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
  * @author Wind
  */
 public class SubjectReportManager extends ReportManager {
-
-    private ArrayList<Subject> listSub;
+    
     private CourseDAO courseDAO;
 
     public SubjectReportManager(ArrayList<Subject> listSub) {
-        this.listSub = listSub;
         courseDAO = new CourseDAO();
-
         jasperFileName = "Subject.jasper";
         parameterMap = getParameterMap();
-        dataCollection = getJRDataSourse();
+        dataCollection = getJRDataSourse(listSub);
     }
 
     private HashMap getParameterMap() {
@@ -39,7 +36,7 @@ public class SubjectReportManager extends ReportManager {
         return parameterMap;
     }
 
-    private JRMapCollectionDataSource getJRDataSourse(){
+    private JRMapCollectionDataSource getJRDataSourse(ArrayList<Subject> listSub){
 
         ArrayList reportRows = new ArrayList();
         HashMap rowMap = null;

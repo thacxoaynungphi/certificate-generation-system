@@ -4,7 +4,7 @@ import javax.swing.SwingConstants;
 
 /**
  * Set Columns for the display table
- * @author Ngo Phuoc Thien
+ * @author nhchung
  */
 public class ColumnData implements SwingConstants {
     private static byte DEFAULT_RENDERER = 0;

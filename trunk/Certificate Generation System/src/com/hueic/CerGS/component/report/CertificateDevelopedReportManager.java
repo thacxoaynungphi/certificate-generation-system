@@ -22,8 +22,6 @@ import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
  */
 public class CertificateDevelopedReportManager extends ReportManager {
 
-    private ArrayList<Certificate> listCertificate;
-    private CertificateDAO certificateDAO;
     private StudentDAO studentDAO;
     private CourseDAO courseDAO;
     private RegisterDAO registerDAO;
@@ -31,16 +29,12 @@ public class CertificateDevelopedReportManager extends ReportManager {
 
     public CertificateDevelopedReportManager(ArrayList<Certificate> listCertificate) {
         jasperFileName = "CertificateDeveloped.jasper";
-        certificateDAO = new CertificateDAO();
         studentDAO = new StudentDAO();
         courseDAO = new CourseDAO();
         registerDAO = new RegisterDAO();
         markDao = new MarkDAO();
-
-        this.listCertificate = listCertificate;
-
         parameterMap = getParameterReport();
-        dataCollection = getJRMapCollectionDataSource();
+        dataCollection = getJRMapCollectionDataSource(listCertificate);
     }
 
     private HashMap getParameterReport() {
@@ -52,20 +46,17 @@ public class CertificateDevelopedReportManager extends ReportManager {
         parameterMap.put("COURSENAME", "Course Name");
         parameterMap.put("DEGREEDATE", "Degree Date");
         parameterMap.put("GRADE", "Grade");
-
         return parameterMap;
     }
 
-    private JRMapCollectionDataSource getJRMapCollectionDataSource() {
+    private JRMapCollectionDataSource getJRMapCollectionDataSource(ArrayList<Certificate> listCertificate) {
         ArrayList collection = new ArrayList();
         HashMap row = null;
 
         for (Certificate cer : listCertificate) {
             row = new HashMap();
             row.put("CERNUMBER", cer.getId());
-
             Register reg = registerDAO.readByStudentId(cer.getStudentID());
-
             row.put("STUDENTID", cer.getStudentID());
             row.put("STUDENTNAME", studentDAO.readByID(reg.getId()).getFullName());
             row.put("COURSENAME", courseDAO.readById(reg.getCourseId()).getName());
