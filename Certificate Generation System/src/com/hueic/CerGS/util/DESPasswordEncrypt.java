@@ -1,17 +1,5 @@
-/*
- * DESPasswordEncrypt.java
- *
- * Created on December 14, 2006, 5:40 PM
- */
 package com.hueic.CerGS.util;
 
-/**
- *
- * @author Nguyễn Anh Minh
- * E-mail : naminh@huesoft.com.vn
- *          anhminhnguyen@gmail.com
- * Website: www.huecit.com.vn
- */
 import com.sun.crypto.provider.SunJCE;
 import javax.crypto.*;
 import javax.crypto.spec.*;
@@ -30,13 +18,10 @@ public class DESPasswordEncrypt {
     private static BASE64Decoder base64Decoder = new BASE64Decoder();
     private static DESPasswordEncrypt inst = null;
     private static Object lock = new Object();
-    private static final byte[] keyBytes =
-            {0x01, 0x02, 0x04, 0x08, 0x08, 0x04, 0x02, 0x01};
-    private static final byte[] ivBytes =
-            {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07};
+    private static final byte[] keyBytes = {0x01, 0x02, 0x04, 0x08, 0x08, 0x04, 0x02, 0x01};
+    private static final byte[] ivBytes = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07};
 
     private DESPasswordEncrypt() {
-
     }
 
     public static DESPasswordEncrypt getInstance() throws SystemException {

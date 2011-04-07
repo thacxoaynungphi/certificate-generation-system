@@ -15,14 +15,11 @@ import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
  * @author Wind
  */
 public class CourseReportManager extends ReportManager {
-    private ArrayList<Course> listCourse;
 
     public CourseReportManager(ArrayList<Course> listCourse) {
-        this.listCourse = listCourse;
-
         jasperFileName = "Course.jasper";
         parameterMap = getParameterMap();
-        dataCollection =getJRDataSourse();
+        dataCollection =getJRDataSourse(listCourse);
     }
 
 
@@ -36,7 +33,7 @@ public class CourseReportManager extends ReportManager {
         return parameterMap;
     }
 
-    private JRMapCollectionDataSource getJRDataSourse(){
+    private JRMapCollectionDataSource getJRDataSourse(ArrayList<Course> listCourse){
         ArrayList collection = new ArrayList();
         HashMap row = null;
 

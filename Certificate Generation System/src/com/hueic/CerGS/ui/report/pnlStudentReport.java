@@ -11,8 +11,6 @@
 package com.hueic.CerGS.ui.report;
 
 import com.hueic.CerGS.component.report.StudentReportManager;
-import com.hueic.CerGS.dao.RegisterDAO;
-import com.hueic.CerGS.entity.Register;
 import com.hueic.CerGS.entity.Student;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;

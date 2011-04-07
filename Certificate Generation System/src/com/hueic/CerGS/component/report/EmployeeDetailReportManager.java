@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.hueic.CerGS.component.report;
 
 import com.hueic.CerGS.entity.Employee;
@@ -15,24 +14,22 @@ import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
  *
  * @author Wind
  */
-public class EmployeeDetailReportManager extends ReportManager{
-    private Employee employee;
+public class EmployeeDetailReportManager extends ReportManager {
 
-    public EmployeeDetailReportManager(Employee emp){
-        this.employee = emp;
+    public EmployeeDetailReportManager(Employee emp) {
         jasperFileName = "EmployeeDetail.jasper";
 
         parameterMap = getParameterMap();
-        dataCollection = getJRDataSourse();
+        dataCollection = getJRDataSourse(emp);
     }
 
-    private HashMap getParameterMap(){
+    private HashMap getParameterMap() {
         parameterMap = new HashMap();
 
         return parameterMap;
     }
 
-    private JRMapCollectionDataSource getJRDataSourse(){
+    private JRMapCollectionDataSource getJRDataSourse(Employee employee) {
         ArrayList collection = new ArrayList();
         HashMap row = new HashMap();
         DateFormat dateFormat = DateFormat.getInstance();
@@ -40,8 +37,11 @@ public class EmployeeDetailReportManager extends ReportManager{
         row.put("EMPID", employee.getId());
         row.put("NAME", employee.getFullName());
 
-        if(employee.getGender() == 0) row.put("GENDER", "MALE");
-        else row.put("GENDER", "FEMALE");
+        if (employee.getGender() == 0) {
+            row.put("GENDER", "MALE");
+        } else {
+            row.put("GENDER", "FEMALE");
+        }
 
         row.put("BIRTHDAY", dateFormat.format(employee.getBirthDay()));
         row.put("ADDRESS", employee.getAddress());

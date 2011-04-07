@@ -51,7 +51,7 @@ public class dlgChooseReport extends javax.swing.JPanel {
     String subjectId;
     JPanel pnlOld;
     frmMain parent;
-    public boolean  status = true;
+    public boolean status = true;
 
     /** Creates new form dlgChooseReport */
     public dlgChooseReport(frmMain parent, JPanel pnlOld) {
@@ -125,6 +125,11 @@ public class dlgChooseReport extends javax.swing.JPanel {
     public void getMarkAllReport(ArrayList<Mark> list) {
         pnlStudentMarkAllReport markAllReport = new pnlStudentMarkAllReport(list);
         this.pnlBrowser.add(markAllReport);
+    }
+
+    public void getMarkOfStudent(String studentId) {
+        pnlStudentMarkReport markReport = new pnlStudentMarkReport(studentId);
+        this.pnlBrowser.add(markReport);
     }
 
     public void getRegisterReport(ArrayList<Register> list) {

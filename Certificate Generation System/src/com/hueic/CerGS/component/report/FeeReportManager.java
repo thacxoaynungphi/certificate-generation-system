@@ -26,17 +26,14 @@ public class FeeReportManager extends ReportManager {
     private PaymentDAO paymentDAO;
     private CourseDAO courseDAO;
     private RegisterDAO registerDAO;
-    private ArrayList<Payment> listPayment;
 
     public FeeReportManager(ArrayList<Payment> listPayment) {
         studentDAO = new StudentDAO();
         courseDAO = new CourseDAO();
         registerDAO = new RegisterDAO();
         paymentDAO = new PaymentDAO();
-
-        this.listPayment = listPayment;
         jasperFileName = "StudentFeesInCourse.jasper";
-        dataCollection = getDataSourse();
+        dataCollection = getDataSourse(listPayment);
         parameterMap = getParameterMap();
     }
 
@@ -52,7 +49,7 @@ public class FeeReportManager extends ReportManager {
         return parameterMap;
     }
 
-    private JRMapCollectionDataSource getDataSourse() {
+    private JRMapCollectionDataSource getDataSourse(ArrayList<Payment> listPayment) {
         ArrayList reportRows = new ArrayList();
         HashMap row = null;
         DateFormat dateFormat = DateFormat.getDateInstance();

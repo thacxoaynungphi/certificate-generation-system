@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.hueic.CerGS.component.report;
 
 import com.hueic.CerGS.dao.CourseDAO;
@@ -17,22 +16,20 @@ import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
  *
  * @author Wind
  */
-public class RegisterReportManager extends ReportManager{
-    private ArrayList<Register> listRegis;
+public class RegisterReportManager extends ReportManager {
+
     private StudentDAO studentDAO;
     private CourseDAO courseDAO;
 
     public RegisterReportManager(ArrayList<Register> listRegis) {
-        this.listRegis = listRegis;
         studentDAO = new StudentDAO();
         courseDAO = new CourseDAO();
         jasperFileName = "Register.jasper";
-
         parameterMap = getParameterMap();
-        dataCollection = getJRDataSource();
+        dataCollection = getJRDataSource(listRegis);
     }
 
-    private HashMap getParameterMap(){
+    private HashMap getParameterMap() {
         parameterMap = new HashMap();
 
         parameterMap.put("STUDENTID", "Student Code");
@@ -44,19 +41,22 @@ public class RegisterReportManager extends ReportManager{
         return parameterMap;
     }
 
-    private JRMapCollectionDataSource getJRDataSource(){
+    private JRMapCollectionDataSource getJRDataSource(ArrayList<Register> listRegis) {
         ArrayList collection = new ArrayList();
         HashMap row = null;
 
-        for(Register regis : listRegis){
+        for (Register regis : listRegis) {
             row = new HashMap();
 
             row.put("STUDENTID", regis.getStudentId());
             row.put("STUDENTNAME", studentDAO.readByID(regis.getId()).getFullName());
             row.put("COURSENAME", courseDAO.readById(regis.getCourseId()).getName());
             row.put("REGISDATE", DateFormat.getInstance().format(regis.getRegisDate()));
-            if(regis.getFeesStructe() == 0) row.put("FEESTRUCTE", "Full Payment");
-            else row.put("FEESTRUCTE", "Installment Payment");
+            if (regis.getFeesStructe() == 0) {
+                row.put("FEESTRUCTE", "Full Payment");
+            } else {
+                row.put("FEESTRUCTE", "Installment Payment");
+            }
 
             collection.add(row);
         }

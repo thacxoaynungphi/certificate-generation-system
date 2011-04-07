@@ -11,13 +11,8 @@
 package com.hueic.CerGS.ui.report;
 
 import com.hueic.CerGS.component.report.RegisterReportManager;
-import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.entity.Register;
-import java.awt.BorderLayout;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**

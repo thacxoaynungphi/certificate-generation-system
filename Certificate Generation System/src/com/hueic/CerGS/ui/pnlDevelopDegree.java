@@ -403,10 +403,10 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
         // TODO add your handling code here:
-        if (listMark.size() != 0) {
+        if (!this.cbxStudentID.getSelectedItem().toString().equals("----All----")) {
             frm.pnlReport.removeAll();
             dlgChooseReport report = new dlgChooseReport(frm, this);
-            report.getMarkAllReport(listMark);
+            report.getMarkOfStudent(cbxStudentID.getSelectedItem().toString());
             report.setVisible(true);
             report.setSize(860, 600);
             frm.pnlReport.add(report);
