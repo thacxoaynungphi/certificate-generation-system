@@ -12,6 +12,10 @@ package com.hueic.CerGS.ui;
 
 import com.hueic.CerGS.component.ConfigureDB;
 import com.hueic.CerGS.entity.Configure;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -66,6 +70,7 @@ public class dlgConfigurationDB extends javax.swing.JDialog {
         txtUsername = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         btnSave = new javax.swing.JButton();
+        btnTest = new javax.swing.JButton();
         lblTitle = new javax.swing.JLabel();
         sepaServer = new javax.swing.JSeparator();
         txtPassword = new javax.swing.JPasswordField();
@@ -169,6 +174,19 @@ public class dlgConfigurationDB extends javax.swing.JDialog {
         });
         jPanel2.add(btnSave);
 
+        btnTest.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
+        btnTest.setText("Test");
+        btnTest.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnTest.setMaximumSize(new java.awt.Dimension(75, 25));
+        btnTest.setMinimumSize(new java.awt.Dimension(75, 25));
+        btnTest.setPreferredSize(new java.awt.Dimension(75, 25));
+        btnTest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTestActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnTest);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
@@ -227,11 +245,30 @@ public class dlgConfigurationDB extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
+    private void btnTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestActionPerformed
+        // TODO add your handling code here:
+        Connection con = null;
+        String url = "jdbc:sqlserver://" + txtServername.getText() + ":" + txtPort.getText() + ";databaseName=" + txtDatabase.getText() + "";
+        String user = txtUsername.getText();
+        String password = String.valueOf(txtPassword.getPassword());
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            con = java.sql.DriverManager.getConnection(url, user, password);
+        } catch (SQLException ex) {
+        } catch (ClassNotFoundException ex) {
+        }
+        if (con == null) {
+            JOptionPane.showMessageDialog(this, "Test unsuccsufully", "ConfigurationDB", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Test succsufully", "ConfigurationDB", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btnTestActionPerformed
     /**
      * @param args the command line arguments
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnTest;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblDatabase;
     private javax.swing.JLabel lblPassword;
