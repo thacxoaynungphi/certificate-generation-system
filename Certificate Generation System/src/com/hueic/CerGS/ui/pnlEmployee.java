@@ -881,8 +881,6 @@ public class pnlEmployee extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tableContent.setMinimumSize(new java.awt.Dimension(770, 200));
-        tableContent.setPreferredSize(new java.awt.Dimension(770, 200));
         srcPaneEmployee.setViewportView(tableContent);
 
         gridBagConstraints = new java.awt.GridBagConstraints();

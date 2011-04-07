@@ -454,8 +454,6 @@ public class pnlPermission extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tableContent.setMinimumSize(new java.awt.Dimension(770, 340));
-        tableContent.setPreferredSize(new java.awt.Dimension(770, 340));
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 tableContentMouseReleased(evt);

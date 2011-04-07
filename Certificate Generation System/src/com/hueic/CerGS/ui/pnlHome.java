@@ -101,7 +101,7 @@ public class pnlHome extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 6;
-        gridBagConstraints.insets = new java.awt.Insets(40, 120, 0, 10);
+        gridBagConstraints.insets = new java.awt.Insets(100, 220, 0, 10);
         panelRight.add(jLabel1, gridBagConstraints);
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
