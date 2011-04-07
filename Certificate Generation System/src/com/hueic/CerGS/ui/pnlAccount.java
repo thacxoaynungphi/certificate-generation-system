@@ -186,7 +186,7 @@ public class pnlAccount extends javax.swing.JPanel {
         sepaAccountSearch = new javax.swing.JSeparator();
         lblUsernameSearch = new javax.swing.JLabel();
         pnlButtonSearch = new javax.swing.JPanel();
-        btnAdd1 = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
         txtUsernameSearch = new javax.swing.JTextField();
         lblTypeSearch = new javax.swing.JLabel();
         btnChoosePerSearch = new javax.swing.JButton();
@@ -446,6 +446,11 @@ public class pnlAccount extends javax.swing.JPanel {
         btnChooseUsername.setMaximumSize(new java.awt.Dimension(23, 23));
         btnChooseUsername.setMinimumSize(new java.awt.Dimension(23, 23));
         btnChooseUsername.setPreferredSize(new java.awt.Dimension(23, 20));
+        btnChooseUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChooseUsernameActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
@@ -522,18 +527,18 @@ public class pnlAccount extends javax.swing.JPanel {
         pnlButtonSearch.setBackground(new java.awt.Color(255, 255, 255));
         pnlButtonSearch.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
 
-        btnAdd1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
-        btnAdd1.setText("Reset");
-        btnAdd1.setMargin(new java.awt.Insets(2, 2, 2, 2));
-        btnAdd1.setMaximumSize(new java.awt.Dimension(80, 23));
-        btnAdd1.setMinimumSize(new java.awt.Dimension(80, 23));
-        btnAdd1.setPreferredSize(new java.awt.Dimension(80, 23));
-        btnAdd1.addActionListener(new java.awt.event.ActionListener() {
+        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
+        btnReset.setText("Reset");
+        btnReset.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        btnReset.setMaximumSize(new java.awt.Dimension(80, 23));
+        btnReset.setMinimumSize(new java.awt.Dimension(80, 23));
+        btnReset.setPreferredSize(new java.awt.Dimension(80, 23));
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdd1ActionPerformed(evt);
+                btnResetActionPerformed(evt);
             }
         });
-        pnlButtonSearch.add(btnAdd1);
+        pnlButtonSearch.add(btnReset);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -618,7 +623,7 @@ public class pnlAccount extends javax.swing.JPanel {
                 btnUpdate.setEnabled(false);
                 btnDelete.setEnabled(false);
                 btnCancel.setVisible(true);
-                txtUsername.setVisible(false);
+                txtUsername.setEnabled(false);
                 txtPassword.setText(null);
                 txtConfirmPassword.setText(null);
                 txtType.setText(null);
@@ -702,18 +707,18 @@ public class pnlAccount extends javax.swing.JPanel {
             isAdd = false;
             btnUpdate.setEnabled(true);
             btnDelete.setEnabled(true);
-            txtUsername.setVisible(true);
+            txtUsername.setEnabled(true);
             btnCancel.setVisible(false);
         } else {
             loadDetails(listAccounts.get(0));
         }
 }//GEN-LAST:event_btnCancelActionPerformed
 
-    private void btnAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd1ActionPerformed
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
         txtUsernameSearch.setText(null);
         txtPermissionSearch.setText(null);
-}//GEN-LAST:event_btnAdd1ActionPerformed
+}//GEN-LAST:event_btnResetActionPerformed
 
     private void btnChoosePermissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChoosePermissionActionPerformed
         // TODO add your handling code here:
@@ -764,15 +769,25 @@ public class pnlAccount extends javax.swing.JPanel {
         dlg.setLocationRelativeTo(null);
         dlg.setVisible(true);
     }//GEN-LAST:event_btnChoosePerSearchActionPerformed
+
+    private void btnChooseUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseUsernameActionPerformed
+        // TODO add your handling code here:
+        dlgChoose dlg = new dlgChoose(frm, txtType, true, 11);
+        dlg.setTitle("Browse Permission");
+        dlg.setSize(868, 600);
+        dlg.setLocationRelativeTo(null);
+        dlg.setVisible(true);
+    }//GEN-LAST:event_btnChooseUsernameActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnAdd1;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnChoosePerSearch;
     private javax.swing.JButton btnChoosePermission;
     private javax.swing.JButton btnChooseUsername;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnFilter;
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JTextField filterText;
     private javax.swing.JLabel lblConfirmPass;
