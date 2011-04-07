@@ -47,7 +47,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="0" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt; &lt;body&gt; Certificate Generator System 2&lt;/body&gt; &lt;/html&gt;"/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt; &lt;body&gt; Certificate Generator System &lt;/body&gt; &lt;/html&gt;"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[400, 40]"/>
             </Property>
@@ -66,7 +66,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="3" green="3" red="3" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;body&gt;&#xa;This is a Certificate Department which works for &#x201c;ABC&#x201d; institute for developing  the certificate for the&lt;br/&gt; students who had completed their course. This system also deals with the student  registration,&lt;br/&gt; checking the payment scenario, inputting the marks of the students and after all verification is&lt;br/&gt;  done they develop the certificate of completion of the course for the students.&#xa;&lt;/body&gt;&#xa;&lt;/html&gt;&#xa;"/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt; &lt;body&gt; This is a Certificate Department which works for &#x201c;ABC&#x201d; institute for developing  the certificate for the&lt;br/&gt; students who had completed their course. This system also deals with the student  registration,&lt;br/&gt; checking the payment scenario, inputting the marks of the students and after all verification is&lt;br/&gt;  done they develop the certificate of completion of the course for the students. &lt;/body&gt; &lt;/html&gt; "/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[700, 80]"/>
             </Property>

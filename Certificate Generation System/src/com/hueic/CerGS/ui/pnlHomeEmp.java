@@ -61,9 +61,9 @@ public class pnlHomeEmp extends javax.swing.JPanel {
         panelRight.setPreferredSize(new java.awt.Dimension(860, 600));
         panelRight.setLayout(new java.awt.GridBagLayout());
 
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 18));
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel15.setText("<html> <body> Certificate Generator System 1</body> </html>");
+        jLabel15.setText("<html> <body> Certificate Generator System </body> </html>");
         jLabel15.setMinimumSize(new java.awt.Dimension(400, 40));
         jLabel15.setPreferredSize(new java.awt.Dimension(400, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -202,9 +202,6 @@ public class pnlHomeEmp extends javax.swing.JPanel {
         jPanel8.add(detail_Campaign_Description4, gridBagConstraints);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Degree.png"))); // NOI18N
-        jLabel5.setMaximumSize(new java.awt.Dimension(101, 101));
-        jLabel5.setMinimumSize(new java.awt.Dimension(101, 101));
-        jLabel5.setPreferredSize(new java.awt.Dimension(101, 101));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;

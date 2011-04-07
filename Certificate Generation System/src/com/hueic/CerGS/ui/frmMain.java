@@ -20,6 +20,7 @@ import java.net.URL;
 import javax.help.CSH;
 import javax.help.HelpBroker;
 import javax.help.HelpSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -79,8 +80,7 @@ public class frmMain extends javax.swing.JFrame {
             URL hsURL = HelpSet.findHelpSet(cl, helpsetfile);
             hs = new HelpSet(null, hsURL);
         } catch (Exception ee) {
-            System.out.println("HelpSet: " + ee.getMessage());
-            System.out.println("HelpSet: " + helpsetfile + " not found");
+            JOptionPane.showMessageDialog(this, "HelpSet: " + helpsetfile + " not found", "Help File", JOptionPane.ERROR_MESSAGE);
         }
         return hs;
     }
