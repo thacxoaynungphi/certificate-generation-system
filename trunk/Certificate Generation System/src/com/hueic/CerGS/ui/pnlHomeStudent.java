@@ -56,9 +56,9 @@ public class pnlHomeStudent extends javax.swing.JPanel {
         panelRight.setPreferredSize(new java.awt.Dimension(860, 600));
         panelRight.setLayout(new java.awt.GridBagLayout());
 
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 18));
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel15.setText("<html> <body> Certificate Generator System 2</body> </html>");
+        jLabel15.setText("<html> <body> Certificate Generator System </body> </html>");
         jLabel15.setMinimumSize(new java.awt.Dimension(400, 40));
         jLabel15.setPreferredSize(new java.awt.Dimension(400, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -70,7 +70,7 @@ public class pnlHomeStudent extends javax.swing.JPanel {
         panelRight.add(jLabel15, gridBagConstraints);
 
         jLabel16.setForeground(new java.awt.Color(3, 3, 3));
-        jLabel16.setText("<html>\n<body>\nThis is a Certificate Department which works for “ABC” institute for developing  the certificate for the<br/> students who had completed their course. This system also deals with the student  registration,<br/> checking the payment scenario, inputting the marks of the students and after all verification is<br/>  done they develop the certificate of completion of the course for the students.\n</body>\n</html>\n");
+        jLabel16.setText("<html> <body> This is a Certificate Department which works for “ABC” institute for developing  the certificate for the<br/> students who had completed their course. This system also deals with the student  registration,<br/> checking the payment scenario, inputting the marks of the students and after all verification is<br/>  done they develop the certificate of completion of the course for the students. </body> </html> ");
         jLabel16.setMinimumSize(new java.awt.Dimension(700, 80));
         jLabel16.setPreferredSize(new java.awt.Dimension(700, 80));
         gridBagConstraints = new java.awt.GridBagConstraints();
