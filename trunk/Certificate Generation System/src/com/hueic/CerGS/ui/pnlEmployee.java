@@ -1174,7 +1174,7 @@ public class pnlEmployee extends javax.swing.JPanel {
             listEmp = empDao.readByAll();
             loadData();
         }
-        JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Delete", JOptionPane.INFORMATION_MESSAGE);
+        //JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Delete", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnDeleteEditActionPerformed
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
