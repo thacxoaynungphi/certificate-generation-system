@@ -157,19 +157,15 @@ public class EmployeeDAO extends BaseDAO implements IEmployeeDAO {
         PersonDAO personDAO = new PersonDAO();
         if (personDAO.create(person)) {
             try {
-                System.out.println("0");
                 con = db.getConnection();
                 String sql = "insert into Employee(Id,BeginWork)" + " values (?,?); ";
                 pst = con.prepareStatement(sql);
                 pst.setString(1, emp.getId());
                 pst.setDate(2, new java.sql.Date(emp.getBeginWork().getTime()));
-                System.out.println("1");
                 if (pst.executeUpdate() > 0) {
-                    System.out.println("2");
                     setLastError("Add Employee Successfully");
                     status = true;
                 } else {
-                    System.out.println("3");
                     personDAO.delete(emp.getId());
                     setLastError("Add Employee unuccessfully");
                 }

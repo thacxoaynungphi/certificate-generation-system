@@ -1140,7 +1140,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         txtEmailEdit.setText(emp.getEmail());
         txtAddressEdit.setText(emp.getAddress());
         txtImageEdit.setText(emp.getImage());
-        if (emp.getImage().length() != 0) {
+        if (emp.getImage() != null && emp.getImage().length() != 0) {
             lblImage2.setIcon(null);
             lblImage2.setIcon(new ImageIcon(System.getProperty("user.dir") + "/avatar/" + emp.getImage()));
         } else {

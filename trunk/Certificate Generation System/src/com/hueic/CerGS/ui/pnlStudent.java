@@ -961,7 +961,7 @@ public class pnlStudent extends javax.swing.JPanel {
         txtEmailEdit.setText(student.getEmail());
         txtAddressEdit.setText(student.getAddress());
         txtImageEdit.setText(student.getImage());
-        if (student.getImage().length() != 0) {
+        if (student.getImage() != null && student.getImage().length() != 0) {
             lblImage2.setIcon(null);
             lblImage2.setIcon(new ImageIcon(System.getProperty("user.dir") + "/avatar/" + student.getImage()));
         } else {
@@ -1011,13 +1011,17 @@ public class pnlStudent extends javax.swing.JPanel {
                 student.setPhone(txtPhoneEdit.getText());
                 student.setEmail(txtEmailEdit.getText());
                 student.setAddress(txtAddressEdit.getText());
-                File file = new File(txtImageEdit.getText());
-                String name = file.getName();
-                String extension;
-                int dotPos = name.lastIndexOf(".");
-                extension = name.substring(dotPos);
-                LoadImage.copyImage(file.getPath(), System.getProperty("user.dir") + "/avatar/" + student.getId() + extension);
-                student.setImage(student.getId() + extension);
+                if (txtImageEdit.getText().length() != 0) {
+                    File file = new File(txtImageEdit.getText());
+                    if (file.exists()) {
+                        String name = file.getName();
+                        String extension;
+                        int dotPos = name.lastIndexOf(".");
+                        extension = name.substring(dotPos);
+                        LoadImage.copyImage(file.getPath(), System.getProperty("user.dir") + "/avatar/" + student.getId() + extension);
+                        student.setImage(student.getId() + extension);
+                    }
+                }
                 student.setBirthDay(new java.sql.Date(dateChBirthdayEdit.getDate().getTime()));
                 student.setStatus(1);
                 if (studentDao.create(student)) {
@@ -1028,7 +1032,7 @@ public class pnlStudent extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, studentDao.getLastError(), "Create Student", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (Exception ex) {
-                System.out.println(ex.toString());
+                System.out.println("Loi o day sao");
             }
         }
     }//GEN-LAST:event_btnAddEditActionPerformed

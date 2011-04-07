@@ -110,19 +110,20 @@ public class PersonDAO extends BaseDAO implements IPersonDAO {
         boolean status = false;
         try {
             con = db.getConnection();
-            String sql = "insert into Person(Id,FirstName,LastName,Birthday,Gender,Phone,Email,Address,Image,Status)" 
-                    + " values (?,?,?,?,?,?,?, ?, ?, ?); ";
+            String sql = "insert into Person(Id,FirstName,LastName,Birthday,Gender,Phone,Email,Address,[Image],Status)"
+                    + " values (?,?,?,?,?,?,?,?,?,?); ";
             pst = con.prepareStatement(sql);
             pst.setString(1, person.getId());
             pst.setString(2, person.getFirstName());
             pst.setString(3, person.getLastName());
-            pst.setDate(4,  new java.sql.Date(person.getBirthDay().getTime()));
+            pst.setDate(4, person.getBirthDay());
             pst.setInt(5, person.getGender());
             pst.setString(6, person.getPhone());
             pst.setString(7, person.getEmail());
             pst.setString(8, person.getAddress());
             pst.setString(9, person.getImage());
             pst.setInt(10, person.getStatus());
+           
             if (pst.executeUpdate() > 0) {
                 setLastError("Add Person Successfully");
                 status = true;
@@ -148,7 +149,7 @@ public class PersonDAO extends BaseDAO implements IPersonDAO {
             if (rs.first()) {
                 rs.updateString(2, person.getFirstName());
                 rs.updateString(3, person.getLastName());
-                rs.updateDate(4,  new java.sql.Date(person.getBirthDay().getTime()));
+                rs.updateDate(4, new java.sql.Date(person.getBirthDay().getTime()));
                 rs.updateInt(5, person.getGender());
                 rs.updateString(6, person.getPhone());
                 rs.updateString(7, person.getEmail());
