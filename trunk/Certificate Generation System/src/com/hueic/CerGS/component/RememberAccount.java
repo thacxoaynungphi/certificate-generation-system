@@ -5,6 +5,7 @@
 package com.hueic.CerGS.component;
 
 import com.hueic.CerGS.entity.Account;
+import com.hueic.CerGS.util.DESPasswordEncrypt;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -20,8 +21,10 @@ import java.util.logging.Logger;
 public class RememberAccount {
 
     String fileName;
+    DESPasswordEncrypt des;
 
     public RememberAccount() {
+        des = DESPasswordEncrypt.getInstance();
         fileName = System.getProperty("user.dir") + "/config" + "/UserLogin.properties";
     }
     //thuc hien lay du lieu tu trong file luu tai khoan
@@ -38,8 +41,7 @@ public class RememberAccount {
                 if (properties.size() != 0) {
                     acc = new Account();
                     acc.setUsername(properties.getProperty("username"));
-                    acc.setPassword(properties.getProperty("password"));
-                    //TODO: chua thuc hien ma hoa duoc password trong file log
+                    acc.setPassword(des.decrypt(properties.getProperty("password")));
                     acc.setPermission(Integer.parseInt(properties.getProperty("permission")));
                 }
             } catch (Exception ex) {
@@ -60,7 +62,7 @@ public class RememberAccount {
         try {
             Properties properties = new Properties();
             properties.setProperty("permission", String.valueOf(acc.getPermission()));
-            properties.setProperty("password", acc.getPassword());
+            properties.setProperty("password", des.encrypt(acc.getPassword()));
             properties.setProperty("username", acc.getUsername());
             File file = new File(fileName);
             fos = new FileOutputStream(file, false);

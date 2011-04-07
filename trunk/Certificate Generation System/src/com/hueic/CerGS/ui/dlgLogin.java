@@ -36,6 +36,7 @@ public class dlgLogin extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         bindingData();
+        getRemebePassword();
     }
 
     public dlgLogin(frmMain main) {
@@ -43,6 +44,21 @@ public class dlgLogin extends javax.swing.JDialog {
         this.main = main;
         setLocationRelativeTo(null);
         bindingData();
+        getRemebePassword();
+    }
+
+    public void getRemebePassword() {
+        RememberAccount ra = new RememberAccount();
+        Account acc = ra.getUser();
+        if (acc != null) {
+            txtUsername.setText(acc.getUsername());
+            txtPassword.setText(acc.getPassword());
+            for (int i = 0; i < cbxPermission.getItemCount(); i++) {
+                if (perDao.readByID(acc.getPermission()).getName().trim().equals(cbxPermission.getItemAt(i).toString().trim())) {
+                    cbxPermission.setSelectedIndex(i);
+                }
+            }
+        }
     }
 
     public void bindingData() {
@@ -289,7 +305,6 @@ public class dlgLogin extends javax.swing.JDialog {
                 panelviewMark.setSize(860, 600);
                 main.viewMark = (pnlViewMark) panelviewMark;
                 main.pnlViewMarkTab.add(panelviewMark);
-                System.out.println("Sao the nhi chan qua");
                 main.initStatusBar();
                 this.dispose();
             } else {

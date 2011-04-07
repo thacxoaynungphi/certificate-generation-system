@@ -44,7 +44,7 @@ public class pnlCertificate extends javax.swing.JPanel {
         initComponents();
         certificateDao = new CertificateDAO();
         markDAO = new MarkDAO();
-        listCertificate = certificateDao.readByAll();
+        getData();
         loadData();
         loadDetails(listCertificate.get(0));
     }
@@ -54,9 +54,13 @@ public class pnlCertificate extends javax.swing.JPanel {
         this.frm = frm;
         certificateDao = new CertificateDAO();
         markDAO = new MarkDAO();
-        listCertificate = certificateDao.readByAll();
+        getData();
         loadData();
         loadDetails(listCertificate.get(0));
+    }
+
+    public void getData() {
+        listCertificate = certificateDao.readByAll();
     }
 
     public void loadData() {
@@ -700,7 +704,7 @@ public class pnlCertificate extends javax.swing.JPanel {
 
     private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
 
-       loadFiter(filterText.getText());
+        loadFiter(filterText.getText());
     }//GEN-LAST:event_filterTextCaretUpdate
 
     private void txtIDSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtIDSearchCaretUpdate
