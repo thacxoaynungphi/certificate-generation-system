@@ -215,7 +215,7 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
     public String getGrades(float mark) {
         String grades = "";
         if (mark < 40) {
-            grades = "";
+            grades = "Unpass";
         } else if (mark < 50) {
             grades = "C";
         } else if (mark < 60) {

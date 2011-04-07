@@ -37,6 +37,7 @@ public class pnlCertificate extends javax.swing.JPanel {
     private ObjectTableModel tableModel;
     private JTable headerTable;
     ArrayList<Certificate> filter = null;
+    private boolean isAdd;
     frmMain frm;
 
     /** Creates new form pnlCertificate */
@@ -44,6 +45,9 @@ public class pnlCertificate extends javax.swing.JPanel {
         initComponents();
         certificateDao = new CertificateDAO();
         markDAO = new MarkDAO();
+        btnCancel.setVisible(false);
+        btnChooseStudentId.setVisible(false);
+        isAdd = false;
         getData();
         loadData();
         loadDetails(listCertificate.get(0));
@@ -53,7 +57,10 @@ public class pnlCertificate extends javax.swing.JPanel {
         initComponents();
         this.frm = frm;
         certificateDao = new CertificateDAO();
+        btnChooseStudentId.setVisible(false);
         markDAO = new MarkDAO();
+        btnCancel.setVisible(false);
+        isAdd = false;
         getData();
         loadData();
         loadDetails(listCertificate.get(0));
@@ -71,7 +78,7 @@ public class pnlCertificate extends javax.swing.JPanel {
                 filter.add(cer);
             }
         }
-        if (filter.size() != 0) {
+        if (!filter.isEmpty()) {
             loadDetails(filter.get(0));
         }
         loadTable(filter);
@@ -85,7 +92,7 @@ public class pnlCertificate extends javax.swing.JPanel {
                 filter.add(cer);
             }
         }
-        if (filter.size() != 0) {
+        if (!filter.isEmpty()) {
             loadDetails(filter.get(0));
         }
         loadTable(filter);
@@ -110,7 +117,7 @@ public class pnlCertificate extends javax.swing.JPanel {
 
     public void loadDetails(Certificate cer) {
         txtID.setText(String.valueOf(cer.getId()).trim());
-        txtScore.setText(String.valueOf(cer.getMark()).trim());
+        txtMark.setText(String.valueOf(cer.getMark()).trim());
         dateChooseDegreeDay.setDate(cer.getDegreeDay());
         txtStudentID.setText(cer.getStudentID());
     }
@@ -158,7 +165,7 @@ public class pnlCertificate extends javax.swing.JPanel {
         lblStudentID = new javax.swing.JLabel();
         lblScore = new javax.swing.JLabel();
         lblDegreeDay = new javax.swing.JLabel();
-        txtScore = new javax.swing.JTextField();
+        txtMark = new javax.swing.JTextField();
         pnlButtonEdit = new javax.swing.JPanel();
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
@@ -215,7 +222,7 @@ public class pnlCertificate extends javax.swing.JPanel {
         pnlTop1.add(lblStudentID, gridBagConstraints);
 
         lblScore.setForeground(new java.awt.Color(3, 3, 3));
-        lblScore.setText("Score:");
+        lblScore.setText("Mark : ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
@@ -232,13 +239,14 @@ public class pnlCertificate extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         pnlTop1.add(lblDegreeDay, gridBagConstraints);
 
-        txtScore.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtMark.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtMark.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlTop1.add(txtScore, gridBagConstraints);
+        pnlTop1.add(txtMark, gridBagConstraints);
 
         pnlButtonEdit.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -328,6 +336,7 @@ public class pnlCertificate extends javax.swing.JPanel {
 
         txtID.setMinimumSize(new java.awt.Dimension(200, 20));
         txtID.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtID.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -362,6 +371,7 @@ public class pnlCertificate extends javax.swing.JPanel {
 
         txtStudentID.setMinimumSize(new java.awt.Dimension(200, 20));
         txtStudentID.setPreferredSize(new java.awt.Dimension(200, 20));
+        txtStudentID.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -600,32 +610,63 @@ public class pnlCertificate extends javax.swing.JPanel {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
 
+        if (!isAdd) {
+            isAdd = true;
+            btnCancel.setVisible(true);
+            btnUpdate.setEnabled(false);
+            btnDelete.setEnabled(false);
+            txtStudentID.setRequestFocusEnabled(true);
+            btnChooseStudentId.setVisible(true);
+
+            txtID.setText(null);
+            txtStudentID.setText(null);
+            txtMark.setText(null);
+            dateChooseDegreeDay.setDate(null);
+
+            return;
+        }
         Certificate certificate = new Certificate();
         try {
-            if (!txtID.getText().equals("")) {
-                certificate.setId(Integer.parseInt(txtID.getText().trim()));
-            } else {
-                JOptionPane.showMessageDialog(this, "you must be enter Id of Cetificate", "Certificate Enter Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if (txtStudentID.getText().length() != 0) {
-                certificate.setMark(markDAO.avgMark((String) txtStudentID.getText()));
-                certificate.setStudentID((String) txtStudentID.getText());
-            } else {
-                JOptionPane.showMessageDialog(this, "you must be Select Student Id of Cetificate", "Certificate Enter Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if (dateChooseDegreeDay.getDate() != null) {
-                certificate.setDegreeDay(new java.sql.Date(dateChooseDegreeDay.getDate().getTime()));
-            } else {
-                JOptionPane.showMessageDialog(this, "you must be select a degree date of Cetificate", "Certificate Enter Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if (certificateDao.create(certificate)) {
-                listCertificate.add(certificate);
-                loadData();
-            } else {
-                JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Error", JOptionPane.ERROR_MESSAGE);
+            String id = txtStudentID.getText();
+            if (getIndexCertificateInListByStudentId(id) == -1) {
+                if (txtStudentID.getText().length() != 0) {
+                    float mark = markDAO.avgMark(id);
+
+                    if(mark < 40){
+                        JOptionPane.showMessageDialog(this, "This student has not completed the course or does not pass the exam", "Certificate Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    } else if(mark < 50){
+                        JOptionPane.showMessageDialog(this, "Your grade in this Course is C \n You will receive a transcript instead of a certificate", "Certificate Error", JOptionPane.INFORMATION_MESSAGE);
+                        return;
+                    }
+
+                    certificate.setMark(mark);
+                    certificate.setStudentID(id);
+                } else {
+                    JOptionPane.showMessageDialog(this, "you must be Select Student Id of Cetificate", "Certificate Enter Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                if (dateChooseDegreeDay.getDate() != null) {
+                    certificate.setDegreeDay(new java.sql.Date(dateChooseDegreeDay.getDate().getTime()));
+                } else {
+                    JOptionPane.showMessageDialog(this, "you must be select a degree date of Cetificate", "Certificate Enter Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                if (certificateDao.create(certificate)) {
+                    JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Add", JOptionPane.INFORMATION_MESSAGE);
+                    listCertificate.add(certificate);
+                    loadData();
+                    isAdd = false;
+                    btnCancel.setVisible(false);
+                    btnUpdate.setEnabled(true);
+                    btnDelete.setEnabled(true);
+                    txtStudentID.setRequestFocusEnabled(false);
+                    btnChooseStudentId.setVisible(false);
+                } else {
+                    JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }else{
+                JOptionPane.showMessageDialog(this, "This Student has been developed Certificate", "Certificate Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Certificate Error", JOptionPane.ERROR_MESSAGE);
@@ -633,25 +674,20 @@ public class pnlCertificate extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        int i1 = getIndexCertificateInListById(Integer.parseInt(txtID.getText()));
-        int i2 = getIndexCertificateInListByStudentId((String) txtStudentID.getText());
-        if (i1 == i2) {
-            try {
-                Certificate cer = listCertificate.get(i2);
-                cer.setMark(Float.parseFloat(txtScore.getText()));
-                cer.setDegreeDay(new java.sql.Date(dateChooseDegreeDay.getDate().getTime()));
-                if (certificateDao.update(cer)) {
-                    listCertificate.set(i2, cer);
-                    loadData();
-                    JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Message", JOptionPane.INFORMATION_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Error", JOptionPane.ERROR_MESSAGE);
-                }
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "data not valid", "Certificate Error", JOptionPane.ERROR_MESSAGE);
+        int i = getIndexCertificateInListByStudentId((String) txtStudentID.getText());
+        try {
+            Certificate cer = listCertificate.get(i);
+            cer.setMark(Float.parseFloat(txtMark.getText()));
+            cer.setDegreeDay(new java.sql.Date(dateChooseDegreeDay.getDate().getTime()));
+            if (certificateDao.update(cer)) {
+                listCertificate.set(i, cer);
+                loadData();
+                JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Message", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Error", JOptionPane.ERROR_MESSAGE);
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Can't update", "Certificate Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "data not valid", "Certificate Error", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -670,6 +706,15 @@ public class pnlCertificate extends javax.swing.JPanel {
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
+        if (isAdd) {
+            isAdd = false;
+            btnCancel.setVisible(false);
+            btnUpdate.setEnabled(true);
+            btnDelete.setEnabled(true);
+            txtStudentID.setRequestFocusEnabled(false);
+            btnChooseStudentId.setVisible(false);
+            loadDetails(listCertificate.get(0));
+        }
 }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
@@ -736,7 +781,7 @@ public class pnlCertificate extends javax.swing.JPanel {
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
         // TODO add your handling code here:
-        if (filter.size() != 0) {
+        if (!filter.isEmpty()) {
             frm.pnlReport.removeAll();
             dlgChooseReport report = new dlgChooseReport(frm, this);
             report.getCertificateDevelopedReport(filter);
@@ -784,7 +829,7 @@ public class pnlCertificate extends javax.swing.JPanel {
     public javax.swing.JTabbedPane tpCertificate;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtIDSearch;
-    private javax.swing.JTextField txtScore;
+    private javax.swing.JTextField txtMark;
     private javax.swing.JTextField txtStudentID;
     private javax.swing.JTextField txtStudentIDSearch;
     // End of variables declaration//GEN-END:variables

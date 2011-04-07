@@ -95,12 +95,11 @@ public class CertificateDAO extends BaseDAO implements ICertificateDAO {
         boolean status = false;
         try {
             con = db.getConnection();
-            String sql = "insert into Certificate (Id,StudentId,Mark,DegreeDay) values (?,?,?,?); ";
+            String sql = "insert into Certificate (StudentId,Mark,DegreeDay) values (?,?,?); ";
             pst = con.prepareStatement(sql);
-            pst.setInt(1, cer.getId());
-            pst.setString(2, cer.getStudentID());
-            pst.setFloat(3, cer.getMark());
-            pst.setDate(4, cer.getDegreeDay());
+            pst.setString(1, cer.getStudentID());
+            pst.setFloat(2, cer.getMark());
+            pst.setDate(3, cer.getDegreeDay());
             if (pst.executeUpdate() > 0) {
                 setLastError("Add Certificate Successfully");
                 status = true;
@@ -108,8 +107,7 @@ public class CertificateDAO extends BaseDAO implements ICertificateDAO {
                 setLastError("Add Certificate unuccessfully");
             }
         } catch (SQLException ex) {
-            System.out.println(ex);
-            setLastError("SQL Error!");
+            setLastError(ex.toString());
         } finally {
             db.closeConnection();
         }
@@ -125,7 +123,6 @@ public class CertificateDAO extends BaseDAO implements ICertificateDAO {
             pst.setInt(1, cer.getId());
             rs = pst.executeQuery();
             if (rs.first()) {
-                rs.updateString(2, cer.getStudentID());
                 rs.updateFloat(3, cer.getMark());
                 rs.updateDate(4, new Date(cer.getDegreeDay().getTime()));
                 rs.updateRow();

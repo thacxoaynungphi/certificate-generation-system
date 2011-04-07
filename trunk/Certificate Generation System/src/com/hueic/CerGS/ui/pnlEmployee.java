@@ -1179,7 +1179,7 @@ public class pnlEmployee extends javax.swing.JPanel {
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
         // TODO add your handling code here:
-        if (filter.size() != 0) {
+        if (!filter.isEmpty()) {
             frm.pnlReport.removeAll();
             dlgChooseReport report = new dlgChooseReport(frm, this);
             report.getEmployeeReport(filter);

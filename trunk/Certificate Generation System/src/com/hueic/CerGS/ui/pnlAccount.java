@@ -47,9 +47,10 @@ public class pnlAccount extends javax.swing.JPanel {
         accDao = new AccountDAO();
         permissionDao = new PermissionDAO();
         personDao = new PersonDAO();
+        btnCancel.setVisible(false);
         getData();
         loadData();
-        if (listAccounts.size() != 0) {
+        if (!listAccounts.isEmpty()) {
             loadDetails(listAccounts.get(0));
         }
     }
@@ -64,9 +65,10 @@ public class pnlAccount extends javax.swing.JPanel {
         accDao = new AccountDAO();
         permissionDao = new PermissionDAO();
         personDao = new PersonDAO();
+        btnCancel.setVisible(false);
         getData();
         loadData();
-        if (listAccounts.size() != 0) {
+        if (!listAccounts.isEmpty()) {
             loadDetails(listAccounts.get(0));
         }
     }
@@ -79,7 +81,7 @@ public class pnlAccount extends javax.swing.JPanel {
                 filter.add(acc);
             }
         }
-        if (filter.size() != 0) {
+        if (!filter.isEmpty()) {
             loadDetails(filter.get(0));
         }
         loadTable(filter);
@@ -93,7 +95,7 @@ public class pnlAccount extends javax.swing.JPanel {
                 filter.add(acc);
             }
         }
-        if (filter.size() != 0) {
+        if (!filter.isEmpty()) {
             loadDetails(filter.get(0));
         }
         loadTable(filter);
@@ -615,6 +617,7 @@ public class pnlAccount extends javax.swing.JPanel {
                 isAdd = true;
                 btnUpdate.setEnabled(false);
                 btnDelete.setEnabled(false);
+                btnCancel.setVisible(true);
                 txtUsername.setVisible(false);
                 txtPassword.setText(null);
                 txtConfirmPassword.setText(null);
@@ -635,6 +638,7 @@ public class pnlAccount extends javax.swing.JPanel {
                         btnUpdate.setEnabled(true);
                         btnDelete.setEnabled(true);
                         txtUsername.setVisible(true);
+                        btnCancel.setVisible(false);
                     } else {
                         JOptionPane.showMessageDialog(this, accDao.getLastError(), "Create Account", JOptionPane.ERROR_MESSAGE);
                     }
@@ -681,7 +685,7 @@ public class pnlAccount extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, accDao.getLastError(), "Delete Account", JOptionPane.INFORMATION_MESSAGE, null);
                 listAccounts.remove(find(username));
                 loadData();
-                if (listAccounts.size() != 0) {
+                if (!listAccounts.isEmpty()) {
                     loadDetails(listAccounts.get(0));
                 }
             } else {
@@ -699,6 +703,7 @@ public class pnlAccount extends javax.swing.JPanel {
             btnUpdate.setEnabled(true);
             btnDelete.setEnabled(true);
             txtUsername.setVisible(true);
+            btnCancel.setVisible(false);
         } else {
             loadDetails(listAccounts.get(0));
         }
