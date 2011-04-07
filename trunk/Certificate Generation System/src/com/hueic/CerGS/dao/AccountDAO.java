@@ -76,10 +76,12 @@ public class AccountDAO extends BaseDAO implements IAccountDAO {
         boolean status = false;
         try {
             con = db.getConnection();
-            String sql = "select * from Account where username = ? add password = ?";
+            String sql = "select * from Account where username = ? and password = ?";
             pst = con.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst.setString(1, acc.getUsername());
             pst.setString(2, passEncryption.encrypt(oldPass));
+            System.out.println("usernmae : " + acc.getUsername());
+            System.out.println("pass : " + passEncryption.encrypt(oldPass));
             rs = pst.executeQuery();
             if (rs.first()) {
                 rs.updateString(2, passEncryption.encrypt(acc.getPassword()));

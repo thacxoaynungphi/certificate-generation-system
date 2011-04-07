@@ -48,16 +48,19 @@ public class dlgLogin extends javax.swing.JDialog {
     }
 
     public void getRemebePassword() {
-        RememberAccount ra = new RememberAccount();
-        Account acc = ra.getUser();
-        if (acc != null) {
-            txtUsername.setText(acc.getUsername());
-            txtPassword.setText(acc.getPassword());
-            for (int i = 0; i < cbxPermission.getItemCount(); i++) {
-                if (perDao.readByID(acc.getPermission()).getName().trim().equals(cbxPermission.getItemAt(i).toString().trim())) {
-                    cbxPermission.setSelectedIndex(i);
+        try {
+            RememberAccount ra = new RememberAccount();
+            Account acc = ra.getUser();
+            if (acc != null) {
+                txtUsername.setText(acc.getUsername());
+                txtPassword.setText(acc.getPassword());
+                for (int i = 0; i < cbxPermission.getItemCount(); i++) {
+                    if (perDao.readByID(acc.getPermission()).getName().trim().equals(cbxPermission.getItemAt(i).toString().trim())) {
+                        cbxPermission.setSelectedIndex(i);
+                    }
                 }
             }
+        } catch (Exception ex) {
         }
     }
 

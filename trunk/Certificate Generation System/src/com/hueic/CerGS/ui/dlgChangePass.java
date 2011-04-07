@@ -260,7 +260,7 @@ public class dlgChangePass extends javax.swing.JDialog {
                     JOptionPane.showMessageDialog(this, accDao.getLastError(), "Change Password", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (Exception ex) {
-                Logger.getLogger(dlgChangePass.class.getName()).log(Level.SEVERE, null, ex);
+               JOptionPane.showMessageDialog(this,"Error change", "Change Password", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Password not match", "Change Password", JOptionPane.ERROR_MESSAGE);

@@ -19,6 +19,10 @@ public class Configure {
     Connection con = null;
     ConfigureDB configureDB = new ConfigureDB();
 
+    public Configure()
+    {
+        
+    }
     public Connection getConnection() {
         com.hueic.CerGS.entity.Configure config = new com.hueic.CerGS.entity.Configure();
         config = configureDB.getInfo();
