@@ -157,7 +157,7 @@ public class pnlAccount extends javax.swing.JPanel {
         tableContent = new javax.swing.JTable();
         filterText = new javax.swing.JTextField();
         btnFilter = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblEnterFilter = new javax.swing.JLabel();
         tpAccount = new javax.swing.JTabbedPane();
         pnlEdit = new javax.swing.JPanel();
         pnlTop1 = new javax.swing.JPanel();
@@ -270,13 +270,13 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlDown.add(btnFilter, gridBagConstraints);
 
-        jLabel1.setText("Enter filter:");
+        lblEnterFilter.setText("Enter filter:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 500, 5, 5);
-        pnlDown.add(jLabel1, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(5, 490, 5, 5);
+        pnlDown.add(lblEnterFilter, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -770,8 +770,8 @@ public class pnlAccount extends javax.swing.JPanel {
     private javax.swing.JButton btnFilter;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JTextField filterText;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblConfirmPass;
+    private javax.swing.JLabel lblEnterFilter;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblTitleSearch;

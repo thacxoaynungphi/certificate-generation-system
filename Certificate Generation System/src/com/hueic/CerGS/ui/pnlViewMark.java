@@ -264,7 +264,7 @@ public class pnlViewMark extends javax.swing.JPanel {
         panel3.setBackground(new java.awt.Color(255, 255, 255));
         panel3.setMinimumSize(new java.awt.Dimension(160, 35));
         panel3.setPreferredSize(new java.awt.Dimension(160, 35));
-        panel3.setLayout(new java.awt.GridBagLayout());
+        panel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
         btnReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
         btnReport.setText("Report");
@@ -275,10 +275,7 @@ public class pnlViewMark extends javax.swing.JPanel {
                 btnReportActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 50, 0, 0);
-        panel3.add(btnReport, gridBagConstraints);
+        panel3.add(btnReport);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
