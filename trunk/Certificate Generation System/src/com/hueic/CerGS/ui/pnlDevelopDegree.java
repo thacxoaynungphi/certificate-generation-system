@@ -245,6 +245,7 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
         btnReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
         btnReport.setText("Report Mark");
         btnReport.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnReport.setPreferredSize(new java.awt.Dimension(100, 23));
         btnReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReportActionPerformed(evt);
