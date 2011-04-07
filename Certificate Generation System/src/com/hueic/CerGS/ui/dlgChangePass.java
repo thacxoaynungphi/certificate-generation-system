@@ -256,6 +256,7 @@ public class dlgChangePass extends javax.swing.JDialog {
                 acc.setPassword(newPassword);
                 if (accDao.changePass(acc, oldPassword)) {
                     JOptionPane.showMessageDialog(this, accDao.getLastError(), "Change Password", JOptionPane.INFORMATION_MESSAGE);
+                    this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, accDao.getLastError(), "Change Password", JOptionPane.ERROR_MESSAGE);
                 }
