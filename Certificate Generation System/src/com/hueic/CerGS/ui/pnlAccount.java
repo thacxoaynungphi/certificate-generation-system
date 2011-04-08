@@ -17,6 +17,7 @@ import com.hueic.CerGS.dao.PermissionDAO;
 import com.hueic.CerGS.dao.PersonDAO;
 import com.hueic.CerGS.entity.Account;
 import com.hueic.CerGS.entity.Permission;
+import com.hueic.CerGS.entity.Person;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -33,6 +34,7 @@ public class pnlAccount extends javax.swing.JPanel {
 
     /** Creates new form frmAcc */
     private ArrayList<Account> listAccounts = new ArrayList<Account>();
+    private ArrayList<Person> listPersons = new ArrayList<Person>();
     private AccountDAO accDao;
     boolean isAdd = false;
     private PermissionDAO permissionDao;
@@ -49,14 +51,23 @@ public class pnlAccount extends javax.swing.JPanel {
         personDao = new PersonDAO();
         btnCancel.setVisible(false);
         getData();
-        loadData();
         if (!listAccounts.isEmpty()) {
+            loadData();
+            binddingPerson();
             loadDetails(listAccounts.get(0));
         }
     }
 
     public void getData() {
+        listPersons = personDao.readByAllNotAcc();
         listAccounts = accDao.readByAll();
+    }
+
+    public void binddingPerson() {
+        cbxUsername.removeAllItems();
+        for (Person person : listPersons) {
+            cbxUsername.addItem(person.getId());
+        }
     }
 
     public pnlAccount(frmMain frm) {
@@ -176,9 +187,9 @@ public class pnlAccount extends javax.swing.JPanel {
         lblType = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
         txtConfirmPassword = new javax.swing.JPasswordField();
-        btnChooseUsername = new javax.swing.JButton();
         btnChoosePermission = new javax.swing.JButton();
         txtType = new javax.swing.JTextField();
+        cbxUsername = new javax.swing.JComboBox();
         pnlSearch = new javax.swing.JPanel();
         pnlTop2 = new javax.swing.JPanel();
         lblTitleSearch = new javax.swing.JLabel();
@@ -440,22 +451,6 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlTop1.add(txtConfirmPassword, gridBagConstraints);
 
-        btnChooseUsername.setText("jButton1");
-        btnChooseUsername.setMaximumSize(new java.awt.Dimension(23, 23));
-        btnChooseUsername.setMinimumSize(new java.awt.Dimension(23, 23));
-        btnChooseUsername.setPreferredSize(new java.awt.Dimension(23, 20));
-        btnChooseUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnChooseUsernameActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlTop1.add(btnChooseUsername, gridBagConstraints);
-
         btnChoosePermission.setText("jButton4");
         btnChoosePermission.setMaximumSize(new java.awt.Dimension(23, 23));
         btnChoosePermission.setMinimumSize(new java.awt.Dimension(23, 23));
@@ -480,6 +475,15 @@ public class pnlAccount extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlTop1.add(txtType, gridBagConstraints);
+
+        cbxUsername.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxUsername.setMaximumSize(new java.awt.Dimension(200, 20));
+        cbxUsername.setMinimumSize(new java.awt.Dimension(200, 20));
+        cbxUsername.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        pnlTop1.add(cbxUsername, gridBagConstraints);
 
         pnlEdit.add(pnlTop1, new java.awt.GridBagConstraints());
 
@@ -625,8 +629,10 @@ public class pnlAccount extends javax.swing.JPanel {
                 txtPassword.setText(null);
                 txtConfirmPassword.setText(null);
                 txtType.setText(null);
+                cbxUsername.setVisible(true);
+                txtUsername.setVisible(false);
             } else {
-                String username = txtUsername.getText();
+                String username = cbxUsername.getSelectedItem().toString();
                 String password = String.valueOf(txtPassword.getPassword());
                 String confirmPass = String.valueOf(txtConfirmPassword.getPassword());
                 int permission = Integer.parseInt(txtType.getText());
@@ -642,6 +648,8 @@ public class pnlAccount extends javax.swing.JPanel {
                         btnDelete.setEnabled(true);
                         txtUsername.setVisible(true);
                         btnCancel.setVisible(false);
+                        cbxUsername.setVisible(false);
+                        txtUsername.setVisible(true);
                     } else {
                         JOptionPane.showMessageDialog(this, accDao.getLastError(), "Create Account", JOptionPane.ERROR_MESSAGE);
                     }
@@ -665,7 +673,6 @@ public class pnlAccount extends javax.swing.JPanel {
                 Account acc = new Account(username, password, permission);
                 if (accDao.update(acc)) {
                     JOptionPane.showMessageDialog(this, accDao.getLastError(), "Update Account", JOptionPane.INFORMATION_MESSAGE);
-                    //listAccounts.remove(find(acc.getUsername()));
                     listAccounts.set(listAccounts.indexOf(find(acc.getUsername())), acc);
                     loadData();
                     loadDetails(acc);
@@ -767,26 +774,16 @@ public class pnlAccount extends javax.swing.JPanel {
         dlg.setLocationRelativeTo(null);
         dlg.setVisible(true);
     }//GEN-LAST:event_btnChoosePerSearchActionPerformed
-
-    private void btnChooseUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseUsernameActionPerformed
-        // TODO add your handling code here:
-        dlgChoose dlg = new dlgChoose(frm, txtType, true, 11);
-        dlg.setTitle("Browse Permission");
-        dlg.setSize(868, 600);
-        dlg.setLocationRelativeTo(null);
-        dlg.setVisible(true);
-    }//GEN-LAST:event_btnChooseUsernameActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnChoosePerSearch;
     private javax.swing.JButton btnChoosePermission;
-    private javax.swing.JButton btnChooseUsername;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnFilter;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox cbxUsername;
     private javax.swing.JTextField filterText;
     private javax.swing.JLabel lblConfirmPass;
     private javax.swing.JLabel lblEnterFilter;

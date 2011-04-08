@@ -50,6 +50,9 @@ public class PersonDAO extends BaseDAO implements IPersonDAO {
         return list;
     }
 
+
+   
+
     public ArrayList<Person> readByAllNotAcc() {
         ArrayList<Person> list = new ArrayList<Person>();
         con = db.getConnection();

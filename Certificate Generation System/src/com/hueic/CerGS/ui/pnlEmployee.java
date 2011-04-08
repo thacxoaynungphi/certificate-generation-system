@@ -1241,10 +1241,12 @@ public class pnlEmployee extends javax.swing.JPanel {
     private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
         // TODO add your handling code here:
         int index = tableContent.getSelectedRow();
-        if (index != -1) {
+        if(index != -1)
+        {
             loadDetails(filter.get(index));
         }
     }//GEN-LAST:event_tableContentMouseReleased
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddEdit;
     private javax.swing.JButton btnBrowseEdit;
