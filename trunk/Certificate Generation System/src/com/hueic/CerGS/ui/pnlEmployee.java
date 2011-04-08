@@ -981,8 +981,11 @@ public class pnlEmployee extends javax.swing.JPanel {
                 isAdd = true;
                 txtID.setEnabled(true);
                 btnCancelEdit.setVisible(true);
+                btnDeleteEdit.setEnabled(false);
+                btnUpdateEdit.setEnabled(false);
                 resetEditDetails();
             } else {
+                
                 Employee emp = new Employee();
                 String id = txtID.getText();
                 if (!id.isEmpty()) {
@@ -1050,6 +1053,8 @@ public class pnlEmployee extends javax.swing.JPanel {
                 isAdd = false;
                 txtID.setEnabled(false);
                 btnCancelEdit.setVisible(false);
+                btnDeleteEdit.setEnabled(false);
+                btnUpdateEdit.setEnabled(false);
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Input Data Error", "Employee Add", JOptionPane.ERROR_MESSAGE);
@@ -1244,12 +1249,10 @@ public class pnlEmployee extends javax.swing.JPanel {
     private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
         // TODO add your handling code here:
         int index = tableContent.getSelectedRow();
-        if(index != -1)
-        {
+        if (index != -1) {
             loadDetails(filter.get(index));
         }
     }//GEN-LAST:event_tableContentMouseReleased
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddEdit;
     private javax.swing.JButton btnBrowseEdit;

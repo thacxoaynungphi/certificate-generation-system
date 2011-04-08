@@ -45,12 +45,10 @@ public class RememberAccount {
                     acc.setPermission(Integer.parseInt(properties.getProperty("permission")));
                 }
             } catch (Exception ex) {
-                Logger.getLogger(RememberAccount.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
                 try {
                     fis.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(RememberAccount.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -68,12 +66,10 @@ public class RememberAccount {
             fos = new FileOutputStream(file, false);
             properties.store(fos, null);
         } catch (IOException ex) {
-            Logger.getLogger(RememberAccount.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 fos.close();
             } catch (IOException ex) {
-                Logger.getLogger(RememberAccount.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -88,12 +84,10 @@ public class RememberAccount {
             properties.load(fis);
             properties.clear();
         } catch (IOException ex) {
-            Logger.getLogger(RememberAccount.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 fis.close();
             } catch (IOException ex) {
-                Logger.getLogger(RememberAccount.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
