@@ -540,6 +540,7 @@ public class frmMain extends javax.swing.JFrame {
 
         mnuIConfiguration.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.ALT_MASK));
         mnuIConfiguration.setText("Configuration DB");
+        mnuIConfiguration.setEnabled(false);
         mnuIConfiguration.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuIConfigurationActionPerformed(evt);
@@ -1107,6 +1108,7 @@ public class frmMain extends javax.swing.JFrame {
         menuIChangePass.setEnabled(false);
         mnuOptions.setEnabled(false);
         mnuILoginSystem.setVisible(true);
+        mnuIConfiguration.setVisible(false);
     }
 
     public void isLogin() {
@@ -1147,8 +1149,11 @@ public class frmMain extends javax.swing.JFrame {
             menuIChangePass.setEnabled(true);
             mnuOptions.setEnabled(true);
             mnuILoginSystem.setVisible(false);
+            mnuIConfiguration.setVisible(false);
 
             if (perDao.readByName("Admin").getId() == this.accCur.getPermission()) {
+                mnuIConfiguration.setVisible(true);
+                mnuIConfiguration.setEnabled(true);
             } else if (perDao.readByName("Employee").getId() == this.accCur.getPermission()) {
 
                 tpnBusiness.removeAll();
@@ -1201,6 +1206,7 @@ public class frmMain extends javax.swing.JFrame {
             menuIChangePass.setEnabled(false);
             mnuOptions.setEnabled(false);
             mnuILoginSystem.setVisible(true);
+            mnuIConfiguration.setVisible(false);
         }
     }
     /**

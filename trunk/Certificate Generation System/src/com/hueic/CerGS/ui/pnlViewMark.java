@@ -236,6 +236,7 @@ public class pnlViewMark extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent.add(cbxStudentID, gridBagConstraints);
 
+        srcPanelViewMark.setAutoscrolls(true);
         srcPanelViewMark.setMinimumSize(new java.awt.Dimension(840, 450));
         srcPanelViewMark.setPreferredSize(new java.awt.Dimension(840, 450));
 
