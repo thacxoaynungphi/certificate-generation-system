@@ -130,7 +130,6 @@ public class AccountDAO extends BaseDAO implements IAccountDAO {
             pst = con.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst.setString(1, acc.getUsername());
             rs = pst.executeQuery();
-            System.out.println(sql);
             if (rs.first()) {
                 rs.updateString(2, passEncryption.encrypt(acc.getPassword()));
                 rs.updateInt(3, acc.getPermission());
