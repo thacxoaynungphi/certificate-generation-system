@@ -605,43 +605,53 @@ public class pnlCourse extends javax.swing.JPanel {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        String id = txtID.getText();
-        if (courseDao.delete(id)) {
-            listCourses.remove(find(id));
-            loadData();
-            if (!listCourses.isEmpty()) {
-                loadDetails(listCourses.get(0));
+        if (txtID.getText().length() != 0) {
+            String id = txtID.getText();
+            if (courseDao.delete(id)) {
+                listCourses.remove(find(id));
+                loadData();
+                if (!listCourses.isEmpty()) {
+                    loadDetails(listCourses.get(0));
+                }
+                JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Delete Course", JOptionPane.INFORMATION_MESSAGE, null);
+            } else {
+                JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Delete Course", JOptionPane.ERROR_MESSAGE, null);
             }
-            JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Delete Course", JOptionPane.INFORMATION_MESSAGE, null);
         } else {
-            JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Delete Course", JOptionPane.ERROR_MESSAGE, null);
+            JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         try {
-            String id = txtID.getText();
-            String name = txtName.getText();
-            float totalFees = Float.parseFloat(txtTotalFees.getText());
-            int status = 0;
-            if (radioEnable.isSelected()) {
-                status = 1;
+            if (txtID.getText().length() != 0
+                    && txtName.getText().length() != 0
+                    && txtTotalFees.getText().length() != 0) {
+                String id = txtID.getText();
+                String name = txtName.getText();
+                float totalFees = Float.parseFloat(txtTotalFees.getText());
+                int status = 0;
+                if (radioEnable.isSelected()) {
+                    status = 1;
+                } else {
+                    status = 0;
+                }
+                Course course = new Course(id, name, totalFees, status);
+                if (courseDao.update(course)) {
+                    listCourses.remove(find(course.getId()));
+                    listCourses.add(course);
+                    loadData();
+                    loadDetails(course);
+                    JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Update Course", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Update Course", JOptionPane.ERROR_MESSAGE);
+                }
             } else {
-                status = 0;
-            }
-            Course course = new Course(id, name, totalFees, status);
-            if (courseDao.update(course)) {
-                listCourses.remove(find(course.getId()));
-                listCourses.add(course);
-                loadData();
-                loadDetails(course);
-                JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Update Course", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Update Course", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.toString(), "Error!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error System", "Error!", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -658,40 +668,51 @@ public class pnlCourse extends javax.swing.JPanel {
                 txtName.setText("");
                 txtTotalFees.setText("");
             } else {
-                String id = txtID.getText();
-                String name = txtName.getText();
-                float totalFees = Float.parseFloat(txtTotalFees.getText());
-                int status = 0;
-                if (radioEnable.isSelected()) {
-                    status = 1;
-                } else {
-                    status = 0;
-                }
-                Course course = new Course(id, name, totalFees, status);
-                if (courseDao.create(course)) {
-                    JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Create Course", JOptionPane.INFORMATION_MESSAGE);
-                    listCourses.remove(find(course.getId()));
-                    listCourses.add(course);
-                    loadData();
-                    loadDetails(course);
-                    isAdd = false;
-                    btnUpdate.setEnabled(true);
-                    btnDelete.setEnabled(true);
+                if (txtID.getText().length() != 0
+                        && txtName.getText().length() != 0
+                        && txtTotalFees.getText().length() != 0) {
+                    String id = txtID.getText();
+                    String name = txtName.getText();
+                    float totalFees = Float.parseFloat(txtTotalFees.getText());
+                    int status = 0;
+                    if (radioEnable.isSelected()) {
+                        status = 1;
+                    } else {
+                        status = 0;
+                    }
+                    Course course = new Course(id, name, totalFees, status);
+                    if (courseDao.create(course)) {
+                        JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Create Course", JOptionPane.INFORMATION_MESSAGE);
+                        listCourses.remove(find(course.getId()));
+                        listCourses.add(course);
+                        loadData();
+                        loadDetails(course);
+                        isAdd = false;
+                        btnUpdate.setEnabled(true);
+                        btnDelete.setEnabled(true);
 //                    txtID.setRequestFocusEnabled(false);
-                    btnCancel.setVisible(false);
+                        btnCancel.setVisible(false);
+                    } else {
+                        JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Create Course", JOptionPane.ERROR_MESSAGE);
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Create Course", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error System", "Error", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnAddActionPerformed
 
     private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
         // TODO add your handling code here:
         int index = tableContent.getSelectedRow();
+
+
         if (index != -1) {
             loadDetails(filter.get(index));
+
+
         }
     }//GEN-LAST:event_tableContentMouseReleased
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -739,11 +760,16 @@ public class pnlCourse extends javax.swing.JPanel {
         try {
             // TODO add your handling code here:
             int index = tableContent.getSelectedRow();
+
+
             if (index != -1) {
                 return tableContent.getValueAt(index, 0).toString();
+
+
             }
         } catch (Exception ex) {
         }
         return null;
+
     }
 }
