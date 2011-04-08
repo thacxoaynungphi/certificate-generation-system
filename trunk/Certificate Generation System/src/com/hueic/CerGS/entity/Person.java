@@ -85,7 +85,7 @@ public class Person {
      * @param firstName the firstName to set
      */
     public void setFirstName(String firstName) throws Exception {
-        if (firstName.length() > 30 || firstName.length() < 0) {
+        if (firstName.length() > 30 || firstName.length() <= 0) {
             throw new Exception("Firstname invalidation");
         } else {
             this.firstName = firstName;
@@ -103,7 +103,7 @@ public class Person {
      * @param lastName the lastName to set
      */
     public void setLastName(String lastName) throws Exception {
-        if (lastName.length() > 20 || lastName.length() < 0) {
+        if (lastName.length() > 20 || lastName.length() <= 0) {
             throw new Exception("Lastname invalidation");
         } else {
             this.lastName = lastName;
@@ -174,7 +174,6 @@ public class Person {
         Matcher match = pattern.matcher(email);
         if (match.matches()) {
             this.email = email;
-
         } else {
             throw new Exception("Email is not valid format");
         }

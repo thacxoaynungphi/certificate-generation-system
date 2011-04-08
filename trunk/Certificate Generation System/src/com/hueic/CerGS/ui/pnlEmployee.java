@@ -15,15 +15,9 @@ import com.hueic.CerGS.component.LoadImage;
 import com.hueic.CerGS.component.ObjectTableModel;
 import com.hueic.CerGS.dao.EmployeeDAO;
 import com.hueic.CerGS.entity.Employee;
-import com.lowagie.text.BadElementException;
 import com.lowagie.text.Image;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -45,7 +39,6 @@ public class pnlEmployee extends javax.swing.JPanel {
     private ArrayList<Employee> listEmp = new ArrayList<Employee>();
     private EmployeeDAO empDao;
     private boolean isAdd;
-    private boolean isUpdate;
     ArrayList<Employee> filter = null;
     TableRowSorter<TableModel> sorter;
     private ObjectTableModel tableModel;
@@ -233,7 +226,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         srcPaneEmployee = new javax.swing.JScrollPane();
         tableContent = new javax.swing.JTable();
         pnlButtonReport = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnReportDetals = new javax.swing.JButton();
         btnReport = new javax.swing.JButton();
 
         setMinimumSize(new java.awt.Dimension(800, 600));
@@ -881,9 +874,6 @@ public class pnlEmployee extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tableContent.setMaximumSize(new java.awt.Dimension(0, 0));
-        tableContent.setMinimumSize(new java.awt.Dimension(0, 0));
-        tableContent.setPreferredSize(new java.awt.Dimension(0, 0));
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 tableContentMouseReleased(evt);
@@ -897,15 +887,15 @@ public class pnlEmployee extends javax.swing.JPanel {
 
         pnlButtonReport.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
-        jButton1.setText("Report Details");
-        jButton1.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnReportDetals.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
+        btnReportDetals.setText("Report Details");
+        btnReportDetals.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        btnReportDetals.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnReportDetalsActionPerformed(evt);
             }
         });
-        pnlButtonReport.add(jButton1);
+        pnlButtonReport.add(btnReportDetals);
 
         btnReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/reports-icon.png"))); // NOI18N
         btnReport.setText("Report");
@@ -960,16 +950,8 @@ public class pnlEmployee extends javax.swing.JPanel {
                 } else {
                     JOptionPane.showMessageDialog(this, "No choose file", "Choose Iamge", JOptionPane.ERROR_MESSAGE);
                 }
-            } catch (BadElementException ex) {
-                Logger.getLogger(pnlStudent.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (MalformedURLException ex) {
-                Logger.getLogger(pnlStudent.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (FileNotFoundException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "No choose file", "Choose Iamge", JOptionPane.ERROR_MESSAGE);
             }
         }
 }//GEN-LAST:event_btnBrowseEditActionPerformed
@@ -985,76 +967,56 @@ public class pnlEmployee extends javax.swing.JPanel {
                 btnUpdateEdit.setEnabled(false);
                 resetEditDetails();
             } else {
-                
-                Employee emp = new Employee();
-                String id = txtID.getText();
-                if (!id.isEmpty()) {
-                    emp.setId(id);
-                } else {
-                    JOptionPane.showMessageDialog(this, "Id must be enter.", "Employee add", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                String fname = txtFirstNameEdit.getText();
-                if (!fname.isEmpty()) {
-                    emp.setFirstName(fname);
-                } else {
-                    JOptionPane.showMessageDialog(this, "First Name must be enter.", "Employee add", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-
-                String lname = txtLastNameEdit.getText();
-                if (!lname.isEmpty()) {
-                    emp.setLastName(lname);
-                } else {
-                    JOptionPane.showMessageDialog(this, "Last Name must be enter.", "Employee add", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                emp.setBirthDay(new java.sql.Date(dateChBirthdayEdit.getDate().getTime()));
-                if (radioMaleEdit.isSelected()) {
-                    emp.setGender(0);
-                } else if (radioFemaleEdit.isSelected()) {
-                    emp.setGender(1);
-                }
-                emp.setPhone(txtPhoneEdit.getText());
-
-                String email = txtEmailEdit.getText();
-                if (!email.isEmpty()) {
-                    emp.setEmail(email);
-                } else {
-                    JOptionPane.showMessageDialog(this, "Your email must be enter.", "Employee add", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                emp.setAddress(txtAddressEdit.getText());
-                try {
-                    if (!txtImageEdit.getText().isEmpty()) {
-                        File file = new File(txtImageEdit.getText());
-                        String name = file.getName();
-                        String extension;
-                        int dotPos = name.lastIndexOf(".");
-                        extension = name.substring(dotPos);
-                        LoadImage.copyImage(file.getPath(), System.getProperty("user.dir") + "/avatar/" + emp.getId() + extension);
-                        emp.setImage(emp.getId() + extension);
-                    } else {
+                if (txtID.getText().length() != 0
+                        && txtFirstNameEdit.getText().length() != 0
+                        && txtLastNameEdit.getText().length() != 0
+                        && dateChBirthdayEdit.getDate() != null
+                        && dateChBeginWorkEdit.getDate() != null) {
+                    Employee emp = new Employee();
+                    emp.setId(txtID.getText());
+                    emp.setFirstName(txtFirstNameEdit.getText());
+                    emp.setLastName(txtLastNameEdit.getText());
+                    emp.setBirthDay(new java.sql.Date(dateChBirthdayEdit.getDate().getTime()));
+                    if (radioMaleEdit.isSelected()) {
+                        emp.setGender(0);
+                    } else if (radioFemaleEdit.isSelected()) {
+                        emp.setGender(1);
+                    }
+                    emp.setPhone(txtPhoneEdit.getText());
+                    emp.setEmail(txtEmailEdit.getText());
+                    emp.setAddress(txtAddressEdit.getText());
+                    try {
+                        if (!txtImageEdit.getText().isEmpty()) {
+                            File file = new File(txtImageEdit.getText());
+                            String name = file.getName();
+                            String extension;
+                            int dotPos = name.lastIndexOf(".");
+                            extension = name.substring(dotPos);
+                            LoadImage.copyImage(file.getPath(), System.getProperty("user.dir") + "/avatar/" + emp.getId() + extension);
+                            emp.setImage(emp.getId() + extension);
+                        } else {
+                            emp.setImage(null);
+                        }
+                    } catch (Exception e) {
                         emp.setImage(null);
                     }
-                } catch (Exception e) {
-                    emp.setImage(null);
-                }
-                emp.setBeginWork(new java.sql.Date(dateChBeginWorkEdit.getDate().getTime()));
-                emp.setStatus(1);
-                if (empDao.create(emp)) {
-                    listEmp.add(emp);
-                    loadData();
-                    JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Add", JOptionPane.INFORMATION_MESSAGE);
+                    emp.setBeginWork(new java.sql.Date(dateChBeginWorkEdit.getDate().getTime()));
+                    emp.setStatus(1);
+                    if (empDao.create(emp)) {
+                        listEmp.add(emp);
+                        loadData();
+                        JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Add", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Add", JOptionPane.ERROR_MESSAGE);
+                    }
+                    isAdd = false;
+                    txtID.setEnabled(false);
+                    btnCancelEdit.setVisible(false);
+                    btnDeleteEdit.setEnabled(false);
+                    btnUpdateEdit.setEnabled(false);
                 } else {
-                    JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Add", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
                 }
-
-                isAdd = false;
-                txtID.setEnabled(false);
-                btnCancelEdit.setVisible(false);
-                btnDeleteEdit.setEnabled(false);
-                btnUpdateEdit.setEnabled(false);
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Input Data Error", "Employee Add", JOptionPane.ERROR_MESSAGE);
@@ -1065,38 +1027,46 @@ public class pnlEmployee extends javax.swing.JPanel {
         // TODO add your handling code here:
         try {
             // TODO add your handling code here:
-            Employee emp = new Employee();
-            emp.setId(txtID.getText());
-            emp.setFirstName(txtFirstNameEdit.getText());
-            emp.setLastName(txtLastNameEdit.getText());
-            emp.setBirthDay(new java.sql.Date(dateChBirthdayEdit.getDate().getTime()));
-            emp.setBeginWork(new java.sql.Date(dateChBeginWorkEdit.getDate().getTime()));
-            if (radioMaleEdit.isSelected()) {
-                emp.setGender(0);
-            } else if (radioFemaleEdit.isSelected()) {
-                emp.setGender(1);
-            }
-            emp.setPhone(txtPhoneEdit.getText());
-            emp.setEmail(txtEmailEdit.getText());
-            emp.setAddress(txtAddressEdit.getText());
-            if (txtImageEdit.getText().length() != 0) {
-                File file = new File(txtImageEdit.getText());
-                if (file.exists()) {
-                    String name = file.getName();
-                    String extension;
-                    int dotPos = name.lastIndexOf(".");
-                    extension = name.substring(dotPos);
-                    LoadImage.copyImage(file.getPath(), System.getProperty("user.dir") + "/avatar/" + emp.getId() + extension);
-                    emp.setImage(emp.getId() + extension);
+            if (txtID.getText().length() != 0
+                    && txtFirstNameEdit.getText().length() != 0
+                    && txtLastNameEdit.getText().length() != 0
+                    && dateChBirthdayEdit.getDate() != null
+                    && dateChBeginWorkEdit.getDate() != null) {
+                Employee emp = new Employee();
+                emp.setId(txtID.getText());
+                emp.setFirstName(txtFirstNameEdit.getText());
+                emp.setLastName(txtLastNameEdit.getText());
+                emp.setBirthDay(new java.sql.Date(dateChBirthdayEdit.getDate().getTime()));
+                emp.setBeginWork(new java.sql.Date(dateChBeginWorkEdit.getDate().getTime()));
+                if (radioMaleEdit.isSelected()) {
+                    emp.setGender(0);
+                } else if (radioFemaleEdit.isSelected()) {
+                    emp.setGender(1);
                 }
-            }
-            emp.setStatus(1);
-            if (empDao.update(emp)) {
-                listEmp = empDao.readByAll();
-                loadData();
-                JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Add", JOptionPane.INFORMATION_MESSAGE);
+                emp.setPhone(txtPhoneEdit.getText());
+                emp.setEmail(txtEmailEdit.getText());
+                emp.setAddress(txtAddressEdit.getText());
+                if (txtImageEdit.getText().length() != 0) {
+                    File file = new File(txtImageEdit.getText());
+                    if (file.exists()) {
+                        String name = file.getName();
+                        String extension;
+                        int dotPos = name.lastIndexOf(".");
+                        extension = name.substring(dotPos);
+                        LoadImage.copyImage(file.getPath(), System.getProperty("user.dir") + "/avatar/" + emp.getId() + extension);
+                        emp.setImage(emp.getId() + extension);
+                    }
+                }
+                emp.setStatus(1);
+                if (empDao.update(emp)) {
+                    listEmp = empDao.readByAll();
+                    loadData();
+                    JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Add", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Add", JOptionPane.ERROR_MESSAGE);
+                }
             } else {
-                JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Add", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.toString(), "Employee Update", JOptionPane.ERROR_MESSAGE);
@@ -1110,6 +1080,8 @@ public class pnlEmployee extends javax.swing.JPanel {
             txtID.setEnabled(false);
             loadDetails(listEmp.get(0));
             btnCancelEdit.setVisible(false);
+            btnUpdateEdit.setEnabled(true);
+            btnDeleteEdit.setEnabled(true);
         }
 }//GEN-LAST:event_btnCancelEditActionPerformed
 
@@ -1185,10 +1157,12 @@ public class pnlEmployee extends javax.swing.JPanel {
 
     private void btnDeleteEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteEditActionPerformed
         // TODO add your handling code here:
-        String id = txtID.getText();
-        if (empDao.delete(id)) {
-            listEmp = empDao.readByAll();
-            loadData();
+        if (txtID.getText().length() != 0) {
+            String id = txtID.getText();
+            if (empDao.delete(id)) {
+                listEmp = empDao.readByAll();
+                loadData();
+            }
         }
         //JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Delete", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnDeleteEditActionPerformed
@@ -1208,7 +1182,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnReportActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnReportDetalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportDetalsActionPerformed
         // TODO add your handling code here:
         int index = this.tableContent.getSelectedRow();
         if (index != -1) {
@@ -1223,7 +1197,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         } else {
             JOptionPane.showMessageDialog(this, "You are choose employee!", "Report details employee", JOptionPane.INFORMATION_MESSAGE);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnReportDetalsActionPerformed
 
     private void radioMaleSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMaleSearchActionPerformed
         // TODO add your handling code here:
@@ -1262,12 +1236,12 @@ public class pnlEmployee extends javax.swing.JPanel {
     private javax.swing.ButtonGroup btnGGender1;
     private javax.swing.ButtonGroup btnGGender2;
     private javax.swing.JButton btnReport;
+    private javax.swing.JButton btnReportDetals;
     private javax.swing.JButton btnResetSearch;
     private javax.swing.JButton btnUpdateEdit;
     private com.toedter.calendar.JDateChooser dateChBeginWorkEdit;
     private com.toedter.calendar.JDateChooser dateChBirthdayEdit;
     private javax.swing.JTextField filterText;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblBeginwork;
     private javax.swing.JLabel lblBirthday;

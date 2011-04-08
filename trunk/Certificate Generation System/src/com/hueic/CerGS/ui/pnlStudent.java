@@ -896,40 +896,48 @@ public class pnlStudent extends javax.swing.JPanel {
         // TODO add your handling code here:
         try {
             // TODO add your handling code here:
-            Student student = new Student();
-            student.setId(txtIDEdit.getText());
-            student.setFirstName(txtFirstNameEdit.getText());
-            student.setLastName(txtLastNameEdit.getText());
-            student.setBirthDay(new java.sql.Date(dateChBirthdayEdit.getDate().getTime()));
-            if (radioMaleEdit.isSelected()) {
-                student.setGender(0);
+            if (txtIDEdit.getText().length() != 0
+                    && txtFirstNameEdit.getText().length() != 0
+                    && txtLastNameEdit.getText().length() != 0
+                    && dateChBirthdayEdit.getDate() != null) {
+                Student student = new Student();
+                student.setId(txtIDEdit.getText());
+                student.setFirstName(txtFirstNameEdit.getText());
+                student.setLastName(txtLastNameEdit.getText());
+                student.setBirthDay(new java.sql.Date(dateChBirthdayEdit.getDate().getTime()));
+                if (radioMaleEdit.isSelected()) {
+                    student.setGender(0);
 
-            } else if (radioFemaleEdit.isSelected()) {
-                student.setGender(1);
-            }
-            student.setPhone(txtPhoneEdit.getText());
-            student.setEmail(txtEmailEdit.getText());
-            student.setAddress(txtAddressEdit.getText());
-            try {
-                File file = new File(txtImageEdit.getText());
-                String name = file.getName();
-                String extension;
-                int dotPos = name.lastIndexOf(".");
-                extension = name.substring(dotPos);
-                LoadImage.copyImage(file.getPath(), System.getProperty("user.dir") + "/avatar/" + student.getId() + extension);
-                student.setImage(student.getId() + extension);
-            } catch (Exception ex) {
-            }
-            student.setStatus(1);
-            StudentDAO studentDAO = new StudentDAO();
-            if (studentDAO.update(student)) {
-                liststudent = studentDAO.readByAll();
-                loadData(liststudent);
-                JOptionPane.showMessageDialog(this, studentDAO.getLastError(), "Employee Add", JOptionPane.INFORMATION_MESSAGE);
+                } else if (radioFemaleEdit.isSelected()) {
+                    student.setGender(1);
+                }
+                student.setPhone(txtPhoneEdit.getText());
+                student.setEmail(txtEmailEdit.getText());
+                student.setAddress(txtAddressEdit.getText());
+                try {
+                    File file = new File(txtImageEdit.getText());
+                    String name = file.getName();
+                    String extension;
+                    int dotPos = name.lastIndexOf(".");
+                    extension = name.substring(dotPos);
+                    LoadImage.copyImage(file.getPath(), System.getProperty("user.dir") + "/avatar/" + student.getId() + extension);
+                    student.setImage(student.getId() + extension);
+                } catch (Exception ex) {
+                }
+                student.setStatus(1);
+                StudentDAO studentDAO = new StudentDAO();
+                if (studentDAO.update(student)) {
+                    liststudent = studentDAO.readByAll();
+                    loadData(liststudent);
+                    JOptionPane.showMessageDialog(this, studentDAO.getLastError(), "Employee Add", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, studentDAO.getLastError(), "Employee Add", JOptionPane.ERROR_MESSAGE);
+                }
             } else {
-                JOptionPane.showMessageDialog(this, studentDAO.getLastError(), "Employee Add", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error System", "Error!", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnUpdateEditActionPerformed
 
@@ -998,41 +1006,48 @@ public class pnlStudent extends javax.swing.JPanel {
             txtIDEdit.setEnabled(false);
             try {
                 // TODO add your handling code here:
-                Student student = new Student();
-                student.setId(txtIDEdit.getText());
-                student.setFirstName(txtFirstNameEdit.getText());
-                student.setLastName(txtLastNameEdit.getText());
-                student.setBirthDay(new java.sql.Date(dateChBirthdayEdit.getDate().getTime()));
-                if (radioMaleEdit.isSelected()) {
-                    student.setGender(0);
-                } else if (radioFemaleEdit.isSelected()) {
-                    student.setGender(1);
-                }
-                student.setPhone(txtPhoneEdit.getText());
-                student.setEmail(txtEmailEdit.getText());
-                student.setAddress(txtAddressEdit.getText());
-                if (txtImageEdit.getText().length() != 0) {
-                    File file = new File(txtImageEdit.getText());
-                    if (file.exists()) {
-                        String name = file.getName();
-                        String extension;
-                        int dotPos = name.lastIndexOf(".");
-                        extension = name.substring(dotPos);
-                        LoadImage.copyImage(file.getPath(), System.getProperty("user.dir") + "/avatar/" + student.getId() + extension);
-                        student.setImage(student.getId() + extension);
+                if (txtIDEdit.getText().length() != 0
+                        && txtFirstNameEdit.getText().length() != 0
+                        && txtLastNameEdit.getText().length() != 0
+                        && dateChBirthdayEdit.getDate() != null) {
+                    Student student = new Student();
+                    student.setId(txtIDEdit.getText());
+                    student.setFirstName(txtFirstNameEdit.getText());
+                    student.setLastName(txtLastNameEdit.getText());
+                    student.setBirthDay(new java.sql.Date(dateChBirthdayEdit.getDate().getTime()));
+                    if (radioMaleEdit.isSelected()) {
+                        student.setGender(0);
+                    } else if (radioFemaleEdit.isSelected()) {
+                        student.setGender(1);
                     }
-                }
-                student.setBirthDay(new java.sql.Date(dateChBirthdayEdit.getDate().getTime()));
-                student.setStatus(1);
-                if (studentDao.create(student)) {
-                    liststudent.add(student);
-                    loadData(liststudent);
-                    JOptionPane.showMessageDialog(this, studentDao.getLastError(), "Create Student", JOptionPane.INFORMATION_MESSAGE);
+                    student.setPhone(txtPhoneEdit.getText());
+                    student.setEmail(txtEmailEdit.getText());
+                    student.setAddress(txtAddressEdit.getText());
+                    if (txtImageEdit.getText().length() != 0) {
+                        File file = new File(txtImageEdit.getText());
+                        if (file.exists()) {
+                            String name = file.getName();
+                            String extension;
+                            int dotPos = name.lastIndexOf(".");
+                            extension = name.substring(dotPos);
+                            LoadImage.copyImage(file.getPath(), System.getProperty("user.dir") + "/avatar/" + student.getId() + extension);
+                            student.setImage(student.getId() + extension);
+                        }
+                    }
+                    student.setBirthDay(new java.sql.Date(dateChBirthdayEdit.getDate().getTime()));
+                    student.setStatus(1);
+                    if (studentDao.create(student)) {
+                        liststudent.add(student);
+                        loadData(liststudent);
+                        JOptionPane.showMessageDialog(this, studentDao.getLastError(), "Create Student", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(this, studentDao.getLastError(), "Create Student", JOptionPane.ERROR_MESSAGE);
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(this, studentDao.getLastError(), "Create Student", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (Exception ex) {
-                System.out.println("Loi o day sao");
+                JOptionPane.showMessageDialog(this, "Error System", "Error!", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_btnAddEditActionPerformed
@@ -1066,13 +1081,15 @@ public class pnlStudent extends javax.swing.JPanel {
 
     private void btnDeleteEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteEditActionPerformed
         // TODO add your handling code here:
-        String id = txtIDEdit.getText();
-        if (studentDao.delete(id)) {
-            liststudent = studentDao.readByAll();
-            loadData(liststudent);
-            JOptionPane.showMessageDialog(this, studentDao.getLastError(), "Student Delete", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(this, studentDao.getLastError(), "Student Delete", JOptionPane.ERROR_MESSAGE);
+        if (txtIDEdit.getText().length() != 0) {
+            String id = txtIDEdit.getText();
+            if (studentDao.delete(id)) {
+                liststudent = studentDao.readByAll();
+                loadData(liststudent);
+                JOptionPane.showMessageDialog(this, studentDao.getLastError(), "Student Delete", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, studentDao.getLastError(), "Student Delete", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btnDeleteEditActionPerformed
 
