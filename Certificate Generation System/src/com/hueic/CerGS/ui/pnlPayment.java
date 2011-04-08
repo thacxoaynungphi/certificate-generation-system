@@ -750,7 +750,14 @@ public class pnlPayment extends javax.swing.JPanel {
                         && txtMoney.getText().length() != 0
                         && dateChPayDay.getDate() != null) {
                     Payment pay = getPaymentFromForm();
-                    Course course = courseDao.readById(registerDAO.readByStudentCourseId(pay.getStudentId()).getCourseId());
+                    Register register = registerDAO.readByStudentCourseId(pay.getStudentId());
+                    Course course = courseDao.readById(register.getCourseId());
+
+                    if(register.getFeesStructe() == 0 && course.getTotalFees() != pay.getMoney()){
+                        JOptionPane.showMessageDialog(this, "you have chosen the full payment", "Payment Add", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+
                     if (pay.getMoney() > course.getTotalFees() - (paymentDao.getCurrentTotalDiposit(pay))) {
                         JOptionPane.showMessageDialog(this, "You can't pay greater your total arrears", "Payment Add", JOptionPane.ERROR_MESSAGE);
                         return;

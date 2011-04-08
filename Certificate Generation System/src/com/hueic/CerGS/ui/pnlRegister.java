@@ -165,6 +165,16 @@ public class pnlRegister extends javax.swing.JPanel {
         return -1;
     }
 
+    public int findByStudentandCourseId(String studentId, String courseId) {
+        for (int i = 0; i < listRegister.size(); i++) {
+            if (listRegister.get(i).getStudentId().compareTo(studentId) == 0 
+                    && listRegister.get(i).getCourseId().compareTo(courseId) == 0) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -745,6 +755,7 @@ public class pnlRegister extends javax.swing.JPanel {
                         && txtCourseID.getText().length() != 0
                         && txtStudentCourseId.getText().length() != 0
                         && dateChRegistrationDate.getDate() != null) {
+
                     String Id = txtStudentCourseId.getText();
                     String studentId = txtStudentId.getText();
                     int feesStructe = cbxFeeStructe.getSelectedIndex();
@@ -753,13 +764,20 @@ public class pnlRegister extends javax.swing.JPanel {
 
                     Register register = new Register(Id, studentId, courseId, feesStructe, (java.sql.Date) regDate);
 
-                    if (regisDAO.create(register)) {
-                        JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Create Register", JOptionPane.INFORMATION_MESSAGE);
-                        listRegister.add(register);
-                        loadData();
-                        loadDetails(register);
-                        txtCourseID.setVisible(true);
-                        txtStudentId.setVisible(true);
+                int index = findByStudentandCourseId(studentId, courseId);
+
+                if(index != -1){
+                    JOptionPane.showMessageDialog(this, "Student " + studentId + " has been register Course + " + courseId, "Register Add", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                if (regisDAO.create(register)) {
+                    JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Create Register", JOptionPane.INFORMATION_MESSAGE);
+                    listRegister.add(register);
+                    loadData();
+                    loadDetails(register);
+                    txtCourseID.setVisible(true);
+                    txtStudentId.setVisible(true);
 
                         isAdd = false;
                         txtStudentCourseId.setRequestFocusEnabled(false);
@@ -787,12 +805,12 @@ public class pnlRegister extends javax.swing.JPanel {
                     && txtStudentCourseId.getText().length() != 0
                     && dateChRegistrationDate.getDate() != null) {
                 Register register = new Register();
-                register.setStudentId(txtStudentCourseId.getText());
+                register.setStudentId(txtStudentId.getText());
                 register.setCourseId(txtCourseID.getText());
-                register.setStudentCourseId(txtStudentId.getText());
+                register.setStudentCourseId(txtStudentCourseId.getText());
                 register.setFeesStructe(cbxFeeStructe.getSelectedIndex());
                 register.setRegisDate(new java.sql.Date(dateChRegistrationDate.getDate().getTime()));
-                int index = findByStudentId(register.getStudentId());
+                int index = findByStudentId(register.getStudentCourseId());
                 if (regisDAO.update(register)) {
                     JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Update Subject", JOptionPane.INFORMATION_MESSAGE);
                     listRegister.remove(index);
@@ -800,8 +818,10 @@ public class pnlRegister extends javax.swing.JPanel {
                     loadData();
                     loadDetails(register);
                 } else {
-                    JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Update Subject", JOptionPane.ERROR_MESSAGE);
                 }
+            } else {
+                JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error! check again, please", "Error", JOptionPane.ERROR_MESSAGE);
