@@ -98,13 +98,6 @@ public class pnlCourse extends javax.swing.JPanel {
             new ColumnData("Status", 260, SwingConstants.LEFT, 4)
         };
         tableModel = new ObjectTableModel(tableContent, columns, filter);
-        tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
-
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableContentMouseClicked(evt);
-            }
-        });
         headerTable = tableModel.getHeaderTable();
         headerTable.createDefaultColumnsFromModel();
         tableContent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -311,7 +304,6 @@ public class pnlCourse extends javax.swing.JPanel {
         pnlTop1.add(lblID, gridBagConstraints);
 
         txtID.setPreferredSize(new java.awt.Dimension(200, 20));
-        txtID.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -482,11 +474,10 @@ public class pnlCourse extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tableContent.setMaximumSize(new java.awt.Dimension(0, 0));
         tableContent.getTableHeader().setReorderingAllowed(false);
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableContentMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tableContentMouseReleased(evt);
             }
         });
         srcPanelCourse.setViewportView(tableContent);
@@ -558,21 +549,9 @@ public class pnlCourse extends javax.swing.JPanel {
         add(pnlDown, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
-        // TODO add your handling code here:
-        int index = tableContent.getSelectedRow();
-        if (index != -1) {
-            String id = tableContent.getValueAt(index, 0).toString();
-            Course course = find(id);
-            if (course != null) {
-                loadDetails(course);
-            }
-        }
-}//GEN-LAST:event_tableContentMouseClicked
-
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
-      loadFiter(filterText.getText());
+        loadFiter(filterText.getText());
 }//GEN-LAST:event_btnFilterActionPerformed
 
     private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
@@ -659,7 +638,6 @@ public class pnlCourse extends javax.swing.JPanel {
                 loadDetails(course);
                 JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Update Course", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                System.out.println(courseDao.getLastError());
                 JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Update Course", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
@@ -674,7 +652,7 @@ public class pnlCourse extends javax.swing.JPanel {
                 isAdd = true;
                 btnUpdate.setEnabled(false);
                 btnDelete.setEnabled(false);
-                txtID.setRequestFocusEnabled(true);
+//                txtID.setRequestFocusEnabled(true);
                 btnCancel.setVisible(true);
                 txtID.setText("");
                 txtName.setText("");
@@ -699,7 +677,7 @@ public class pnlCourse extends javax.swing.JPanel {
                     isAdd = false;
                     btnUpdate.setEnabled(true);
                     btnDelete.setEnabled(true);
-                    txtID.setRequestFocusEnabled(false);
+//                    txtID.setRequestFocusEnabled(false);
                     btnCancel.setVisible(false);
                 } else {
                     JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Create Course", JOptionPane.ERROR_MESSAGE);
@@ -708,6 +686,14 @@ public class pnlCourse extends javax.swing.JPanel {
         } catch (Exception e) {
         }
 }//GEN-LAST:event_btnAddActionPerformed
+
+    private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
+        // TODO add your handling code here:
+        int index = tableContent.getSelectedRow();
+        if (index != -1) {
+            loadDetails(filter.get(index));
+        }
+    }//GEN-LAST:event_tableContentMouseReleased
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
