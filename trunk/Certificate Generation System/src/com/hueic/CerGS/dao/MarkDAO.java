@@ -234,7 +234,7 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
         Register register = registerDAO.readByStudentCourseId(mark.getStudentId());
         Subject subject = subjectDAO.readByID(mark.getSubjectId());
 
-        if (subject.getCourseID().equals(register.getCourseId())) {
+        if (subject.getCourseID().equalsIgnoreCase(register.getCourseId())) {
             con = db.getConnection();
             String sqlcommand = "insert into Mark(StudentId,SubjectId,Mark) values(?, ?, ?)";
             try {

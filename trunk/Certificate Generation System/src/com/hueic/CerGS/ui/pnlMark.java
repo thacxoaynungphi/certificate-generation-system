@@ -157,6 +157,15 @@ public class pnlMark extends javax.swing.JPanel {
         return null;
     }
 
+    public int findIndexOfMark(String studentId, String subjectId) {
+        for (int i = 0; i < listMark.size(); i++) {
+            if (listMark.get(i).getStudentId().equalsIgnoreCase(studentId) && listMark.get(i).getSubjectId().equalsIgnoreCase(subjectId)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public Mark getPaymentFromForm() throws Exception {
         Mark mark = new Mark();
         try {
@@ -739,10 +748,15 @@ public class pnlMark extends javax.swing.JPanel {
 
                 resetDetails();
             } else {
-                if (txtStudentId.getText().length() != 0
-                        && txtSubjectID.getText().length() != 0
+                if (txtStudentId.getText().length() != 0 && txtSubjectID.getText().length() != 0
                         && txtMark.getText().length() != 0) {
+
                     Mark mark = getPaymentFromForm();
+
+                    if(findIndexOfMark(mark.getStudentId(), mark.getSubjectId()) != -1){
+                        JOptionPane.showMessageDialog(this, "Student " + mark.getStudentId() + " has Mark of " + mark.getSubjectId(), "Mark Add", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
                     if (markDAO.create(mark)) {
                         JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Add", JOptionPane.INFORMATION_MESSAGE);
                         listMark = markDAO.readByAll();
