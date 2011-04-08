@@ -26,6 +26,26 @@ public class BaseDAO implements IBaseDAO {
         db = new Configure();
     }
 
+    public int readIdentity(String tableName) {
+        con = db.getConnection();
+        int result = -1;
+        String sql = "SELECT IDENT_CURRENT(?)";
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setString(1, tableName);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                result = rs.getInt(1);
+            }
+            setLastError("Read All successfully");
+        } catch (Exception ex) {
+            setLastError("Read All unsuccessfully");
+        } finally {
+            db.closeConnection();
+        }
+        return result;
+    }
+
     /**
      * @return the lastError
      */
@@ -39,5 +59,4 @@ public class BaseDAO implements IBaseDAO {
     public void setLastError(String lastError) {
         this.lastError = lastError;
     }
-
 }
