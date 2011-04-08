@@ -78,7 +78,7 @@ public class pnlPayment extends javax.swing.JPanel {
         btnCancel.setVisible(false);
         paymentDao = new PaymentDAO();
         getData();
-        if (listPayments.size() != 0) {
+        if (!listPayments.isEmpty()) {
             loadData();
             loadDetails(listPayments.get(0));
         }
@@ -92,7 +92,7 @@ public class pnlPayment extends javax.swing.JPanel {
                 filter.add(pay);
             }
         }
-        if (filter.size() != 0) {
+        if (!filter.isEmpty()) {
             loadDetails(filter.get(0));
         }
         loadTable(filter);
@@ -106,7 +106,7 @@ public class pnlPayment extends javax.swing.JPanel {
                 filter.add(pay);
             }
         }
-        if (filter.size() != 0) {
+        if (!filter.isEmpty()) {
             loadDetails(filter.get(0));
         }
         loadTable(filter);

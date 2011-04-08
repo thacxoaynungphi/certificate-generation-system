@@ -102,7 +102,7 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
         Register regis = null;
         try {
             con = db.getConnection();
-            String sql = "select * from Register where StudentId = ?";
+            String sql = "select * from Register where StudentCourseId = ?";
             pst = con.prepareStatement(sql);
             pst.setString(1, studentCourseID);
 
@@ -170,7 +170,7 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
                 setLastError("Add Register unuccessfully");
             }
         } catch (SQLException ex) {
-            setLastError("SQL Error");
+            setLastError(ex.toString());
         } finally {
             db.closeConnection();
         }
