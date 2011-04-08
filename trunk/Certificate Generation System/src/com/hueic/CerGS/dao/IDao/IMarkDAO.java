@@ -18,7 +18,7 @@ public interface IMarkDAO {
 
     boolean create(Mark Marks);
 
-    boolean delete(Mark Marks);
+    boolean delete(int id);
 
     String getGrades(float mark);
 
