@@ -107,7 +107,7 @@ public class pnlHomeStudent extends javax.swing.JPanel {
         jPanel6.add(lblCampaignMaster2, gridBagConstraints);
 
         detail_Campaign_Description2.setFont(new java.awt.Font("Arial", 0, 11));
-        detail_Campaign_Description2.setText("<html>Master data for campaigns with<br>each new product and given<br>periods."); // NOI18N
+        detail_Campaign_Description2.setText("<html>See details mark courses that students have the test."); // NOI18N
         detail_Campaign_Description2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         detail_Campaign_Description2.setMinimumSize(new java.awt.Dimension(153, 42));
         detail_Campaign_Description2.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
@@ -153,7 +153,7 @@ public class pnlHomeStudent extends javax.swing.JPanel {
         jPanel7.add(lblCampaignMaster3, gridBagConstraints);
 
         detail_Campaign_Description3.setFont(new java.awt.Font("Arial", 0, 11));
-        detail_Campaign_Description3.setText("<html>Master data for campaigns with<br>each new product and given<br>periods."); // NOI18N
+        detail_Campaign_Description3.setText("<html>Review the status of student deposit."); // NOI18N
         detail_Campaign_Description3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         detail_Campaign_Description3.setMinimumSize(new java.awt.Dimension(153, 42));
         detail_Campaign_Description3.setVerticalTextPosition(javax.swing.SwingConstants.TOP);

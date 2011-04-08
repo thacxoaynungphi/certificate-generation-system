@@ -122,8 +122,8 @@ public class pnlHome extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel5.add(lblCampaignMaster1, gridBagConstraints);
 
-        detail_Campaign_Description1.setFont(new java.awt.Font("Arial", 0, 11));
-        detail_Campaign_Description1.setText("<html>Master data for campaigns with<br>each new product and given<br>periods."); // NOI18N
+        detail_Campaign_Description1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        detail_Campaign_Description1.setText("<html>Manage the payment of students<br> in each course."); // NOI18N
         detail_Campaign_Description1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         detail_Campaign_Description1.setMinimumSize(new java.awt.Dimension(153, 42));
         detail_Campaign_Description1.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
@@ -171,8 +171,8 @@ public class pnlHome extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel6.add(lblCampaignMaster2, gridBagConstraints);
 
-        detail_Campaign_Description2.setFont(new java.awt.Font("Arial", 0, 11));
-        detail_Campaign_Description2.setText("<html>Master data for campaigns with<br>each new product and given<br>periods."); // NOI18N
+        detail_Campaign_Description2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        detail_Campaign_Description2.setText("<html>Manage storage, updates and delete the information of its employee."); // NOI18N
         detail_Campaign_Description2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         detail_Campaign_Description2.setMinimumSize(new java.awt.Dimension(153, 42));
         detail_Campaign_Description2.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
@@ -218,7 +218,7 @@ public class pnlHome extends javax.swing.JPanel {
         jPanel7.add(lblCampaignMaster3, gridBagConstraints);
 
         detail_Campaign_Description3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        detail_Campaign_Description3.setText("<html>Master data for campaigns with<br>each new product and given<br>periods."); // NOI18N
+        detail_Campaign_Description3.setText("<html>Manage storage, updates and delete the information of its student."); // NOI18N
         detail_Campaign_Description3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         detail_Campaign_Description3.setMinimumSize(new java.awt.Dimension(153, 42));
         detail_Campaign_Description3.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
@@ -263,8 +263,8 @@ public class pnlHome extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel8.add(lblCampaignMaster4, gridBagConstraints);
 
-        detail_Campaign_Description4.setFont(new java.awt.Font("Arial", 0, 11));
-        detail_Campaign_Description4.setText("<html>Master data for campaigns with<br>each new product and given<br>periods."); // NOI18N
+        detail_Campaign_Description4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        detail_Campaign_Description4.setText("<html>Manage students enrolling in courses."); // NOI18N
         detail_Campaign_Description4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         detail_Campaign_Description4.setMinimumSize(new java.awt.Dimension(153, 42));
         detail_Campaign_Description4.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
@@ -312,8 +312,8 @@ public class pnlHome extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel9.add(lblCampaignMaster5, gridBagConstraints);
 
-        detail_Campaign_Description5.setFont(new java.awt.Font("Arial", 0, 11));
-        detail_Campaign_Description5.setText("<html>Master data for campaigns with<br>each new product and given<br>periods."); // NOI18N
+        detail_Campaign_Description5.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        detail_Campaign_Description5.setText("<html>Manage storage, updates and delete the student marks."); // NOI18N
         detail_Campaign_Description5.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         detail_Campaign_Description5.setMinimumSize(new java.awt.Dimension(153, 42));
         detail_Campaign_Description5.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
@@ -358,8 +358,8 @@ public class pnlHome extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel10.add(lblCampaignMaster6, gridBagConstraints);
 
-        detail_Campaign_Description6.setFont(new java.awt.Font("Arial", 0, 11));
-        detail_Campaign_Description6.setText("<html>Master data for campaigns with<br>each new product and given<br>periods."); // NOI18N
+        detail_Campaign_Description6.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        detail_Campaign_Description6.setText("<html>Manage the grant degree to <br>students after completing the<br> course."); // NOI18N
         detail_Campaign_Description6.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         detail_Campaign_Description6.setMinimumSize(new java.awt.Dimension(153, 42));
         detail_Campaign_Description6.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
