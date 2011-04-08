@@ -696,6 +696,7 @@ public class pnlPayment extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "You can't pay greater your total arrears", "Payment Update", JOptionPane.ERROR_MESSAGE);
                 return;
             }
+
             if (paymentDao.update(pay)) {
                 JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Update Payment", JOptionPane.INFORMATION_MESSAGE);
 
@@ -703,7 +704,6 @@ public class pnlPayment extends javax.swing.JPanel {
                 loadData();
                 loadDetails(listPayments.get(0));
             } else {
-                isUpdate = false;
                 pay = getPaymentById(currentId);
                 pay.setMoney(Float.parseFloat(txtMoney.getText()));
                 pay.setPayday(new java.sql.Date(dateChPayDay.getDate().getTime()));
