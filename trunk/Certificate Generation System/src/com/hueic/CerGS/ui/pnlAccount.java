@@ -37,7 +37,6 @@ public class pnlAccount extends javax.swing.JPanel {
     private ArrayList<Person> listPersons = new ArrayList<Person>();
     private AccountDAO accDao;
     boolean isAdd = false;
-    private PermissionDAO permissionDao;
     private PersonDAO personDao;
     private ObjectTableModel tableModel;
     private JTable headerTable;
@@ -47,7 +46,6 @@ public class pnlAccount extends javax.swing.JPanel {
     public pnlAccount() {
         initComponents();
         accDao = new AccountDAO();
-        permissionDao = new PermissionDAO();
         personDao = new PersonDAO();
         btnCancel.setVisible(false);
         getData();
@@ -74,7 +72,6 @@ public class pnlAccount extends javax.swing.JPanel {
         initComponents();
         this.frm = frm;
         accDao = new AccountDAO();
-        permissionDao = new PermissionDAO();
         personDao = new PersonDAO();
         btnCancel.setVisible(false);
         getData();

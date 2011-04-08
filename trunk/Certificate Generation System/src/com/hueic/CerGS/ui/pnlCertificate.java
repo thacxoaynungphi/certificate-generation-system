@@ -49,8 +49,10 @@ public class pnlCertificate extends javax.swing.JPanel {
         btnChooseStudentId.setVisible(false);
         isAdd = false;
         getData();
-        loadData();
-        loadDetails(listCertificate.get(0));
+        if (listCertificate.size() != 0) {
+            loadData();
+            loadDetails(listCertificate.get(0));
+        }
     }
 
     public pnlCertificate(frmMain frm) {
@@ -62,8 +64,10 @@ public class pnlCertificate extends javax.swing.JPanel {
         btnCancel.setVisible(false);
         isAdd = false;
         getData();
-        loadData();
-        loadDetails(listCertificate.get(0));
+        if (listCertificate.size() != 0) {
+            loadData();
+            loadDetails(listCertificate.get(0));
+        }
     }
 
     public void getData() {

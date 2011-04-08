@@ -792,9 +792,7 @@ public class pnlRegister extends javax.swing.JPanel {
                 register.setStudentCourseId(txtStudentId.getText());
                 register.setFeesStructe(cbxFeeStructe.getSelectedIndex());
                 register.setRegisDate(new java.sql.Date(dateChRegistrationDate.getDate().getTime()));
-
                 int index = findByStudentId(register.getStudentId());
-
                 if (regisDAO.update(register)) {
                     JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Update Subject", JOptionPane.INFORMATION_MESSAGE);
                     listRegister.remove(index);

@@ -8,7 +8,6 @@
  *
  * Created on Apr 2, 2011, 9:16:53 PM
  */
-
 package com.hueic.CerGS.ui;
 
 /**
@@ -18,12 +17,16 @@ package com.hueic.CerGS.ui;
 public class pnlHomeEmp extends javax.swing.JPanel {
 
     /** Creates new form pnlHomeEmp */
+    frmMain main;
+
     public pnlHomeEmp() {
         initComponents();
+
     }
 
-    pnlHomeEmp(frmMain aThis) {
+    pnlHomeEmp(frmMain main) {
         initComponents();
+        this.main = main;
     }
 
     /** This method is called from within the constructor to
@@ -43,15 +46,15 @@ public class pnlHomeEmp extends javax.swing.JPanel {
         jPanel6 = new javax.swing.JPanel();
         lblCampaignMaster2 = new javax.swing.JLabel();
         detail_Campaign_Description2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblViewMark = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         lblCampaignMaster3 = new javax.swing.JLabel();
         detail_Campaign_Description3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblViewPayment = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         lblCampaignMaster4 = new javax.swing.JLabel();
         detail_Campaign_Description4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblDevelopDegree = new javax.swing.JLabel();
 
         setLayout(new java.awt.GridBagLayout());
 
@@ -119,13 +122,18 @@ public class pnlHomeEmp extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel6.add(detail_Campaign_Description2, gridBagConstraints);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/ViewMark.jpg"))); // NOI18N
+        lblViewMark.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/ViewMark.jpg"))); // NOI18N
+        lblViewMark.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblViewMarkMouseClicked(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel6.add(jLabel3, gridBagConstraints);
+        jPanel6.add(lblViewMark, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -160,13 +168,18 @@ public class pnlHomeEmp extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel7.add(detail_Campaign_Description3, gridBagConstraints);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/ViewPayment.png"))); // NOI18N
+        lblViewPayment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/ViewPayment.png"))); // NOI18N
+        lblViewPayment.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblViewPaymentMouseClicked(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel7.add(jLabel4, gridBagConstraints);
+        jPanel7.add(lblViewPayment, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -201,13 +214,18 @@ public class pnlHomeEmp extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel8.add(detail_Campaign_Description4, gridBagConstraints);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Degree.png"))); // NOI18N
+        lblDevelopDegree.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Degree.png"))); // NOI18N
+        lblDevelopDegree.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblDevelopDegreeMouseClicked(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel8.add(jLabel5, gridBagConstraints);
+        jPanel8.add(lblDevelopDegree, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
@@ -224,7 +242,20 @@ public class pnlHomeEmp extends javax.swing.JPanel {
         add(panelRight, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void lblViewMarkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblViewMarkMouseClicked
+        // TODO add your handling code here:
+        main.tpnBusiness.setSelectedComponent(main.pnlViewMarkTab);
+    }//GEN-LAST:event_lblViewMarkMouseClicked
 
+    private void lblViewPaymentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblViewPaymentMouseClicked
+        // TODO add your handling code here:
+        main.tpnBusiness.setSelectedComponent(main.pnlViewPaymentTab);
+    }//GEN-LAST:event_lblViewPaymentMouseClicked
+
+    private void lblDevelopDegreeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDevelopDegreeMouseClicked
+        // TODO add your handling code here:
+        main.tpnBusiness.setSelectedComponent(main.pnlDevelopDegree);
+    }//GEN-LAST:event_lblDevelopDegreeMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel detail_Campaign_Description2;
     private javax.swing.JLabel detail_Campaign_Description3;
@@ -232,16 +263,15 @@ public class pnlHomeEmp extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JLabel lblCampaignMaster2;
     private javax.swing.JLabel lblCampaignMaster3;
     private javax.swing.JLabel lblCampaignMaster4;
+    private javax.swing.JLabel lblDevelopDegree;
+    private javax.swing.JLabel lblViewMark;
+    private javax.swing.JLabel lblViewPayment;
     private javax.swing.JPanel panelRight;
     // End of variables declaration//GEN-END:variables
-
 }
