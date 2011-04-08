@@ -153,7 +153,7 @@ public class pnlViewMark extends javax.swing.JPanel {
         cbxStudentID.setSelectedIndex(0);
         if (listRegister != null) {
             for (int i = 0; i < listRegister.size(); i++) {
-                cbxStudentID.addItem(listRegister.get(i).getStudentId());
+                cbxStudentID.addItem(listRegister.get(i).getStudentCourseId());
             }
         }
     }
@@ -385,7 +385,7 @@ public class pnlViewMark extends javax.swing.JPanel {
             if (!cbxCourseID.getSelectedItem().toString().equals("-- All --")) {
                 frm.pnlReport.removeAll();
                 dlgChooseReport report = new dlgChooseReport(frm, frm.pnlViewMarkTab);
-                report.getStudentMarkReport(registerDao.readById(this.frm.accCur.getUsername(), cbxCourseID.getSelectedItem().toString()).getStudentId());
+                report.getStudentMarkReport(registerDao.readById(this.frm.accCur.getUsername(), cbxCourseID.getSelectedItem().toString()).getStudentCourseId());
                 report.setVisible(true);
                 report.setSize(860, 600);
                 frm.pnlReport.add(report);

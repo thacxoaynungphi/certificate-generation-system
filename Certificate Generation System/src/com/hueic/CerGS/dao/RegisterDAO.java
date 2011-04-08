@@ -25,11 +25,11 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
             rs = pst.executeQuery();
             while (rs.next()) {
                 Register regis = new Register();
-                regis.setId(rs.getString("Id"));
-                regis.setCourseId(rs.getString("CourseId"));
-                regis.setFeesStructe(rs.getInt("FeesStructe"));
-                regis.setRegisDate(rs.getDate("RegistrationDate"));
-                regis.setStudentId(rs.getString("StudentId"));
+                regis.setStudentId(rs.getString(1));
+                regis.setCourseId(rs.getString(2));
+                regis.setFeesStructe(rs.getInt(3));
+                regis.setRegisDate(rs.getDate(4));
+                regis.setStudentCourseId(rs.getString(5));
                 list.add(regis);
             }
         } catch (Exception ex) {
@@ -45,7 +45,7 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
         Register regis = null;
         try {
             con = db.getConnection();
-            String sql = "select * from Register where Id = ?";
+            String sql = "select * from Register where StudentId = ?";
             pst = con.prepareStatement(sql);
             pst.setString(1, studentId);
 
@@ -53,11 +53,11 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
             while (rs.next()) {
                 regis = new Register();
 
-                regis.setId(rs.getString("Id"));
-                regis.setCourseId(rs.getString("CourseId"));
-                regis.setFeesStructe(rs.getInt("FeesStructe"));
-                regis.setRegisDate(rs.getDate("RegistrationDate"));
-                regis.setStudentId(rs.getString("StudentId"));
+                regis.setStudentId(studentId);
+                regis.setCourseId(rs.getString(2));
+                regis.setFeesStructe(rs.getInt(3));
+                regis.setRegisDate(rs.getDate(4));
+                regis.setStudentCourseId(rs.getString(5));
 
                 listRegister.add(regis);
             }
@@ -69,50 +69,51 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
         return listRegister;
     }
 
-    public Register readById(String id, String courseId) {
+    public Register readById(String studentId, String courseId) {
         Register regis = null;
         try {
             con = db.getConnection();
-            String sql = "select * from Register where Id = ? and CourseId = ?";
+            String sql = "select * from Register where StudentId = ? and CourseId = ?";
             pst = con.prepareStatement(sql);
-            pst.setString(1, id);
+            pst.setString(1, studentId);
             pst.setString(2, courseId);
 
             rs = pst.executeQuery();
             if (rs.next()) {
                 regis = new Register();
-                regis.setId(rs.getString("Id"));
-                regis.setCourseId(rs.getString("CourseId"));
-                regis.setFeesStructe(rs.getInt("FeesStructe"));
-                regis.setRegisDate(rs.getDate("RegistrationDate"));
-                regis.setStudentId(rs.getString("StudentId"));
+                regis.setStudentId(studentId);
+                regis.setCourseId(courseId);
+                regis.setFeesStructe(rs.getInt(3));
+                regis.setRegisDate(rs.getDate(4));
+                regis.setStudentCourseId(rs.getString(5));
             }
         } catch (Exception ex) {
             setLastError("SQL Error!");
         } finally {
             db.closeConnection();
         }
-        if(regis != null)
-            System.out.println(regis.getStudentId());
+        if (regis != null) {
+            System.out.println(regis.getStudentCourseId());
+        }
         return regis;
     }
 
-    public Register readByStudentId(String studentID) {
+    public Register readByStudentCourseId(String studentCourseID) {
         Register regis = null;
         try {
             con = db.getConnection();
             String sql = "select * from Register where StudentId = ?";
             pst = con.prepareStatement(sql);
-            pst.setString(1, studentID);
+            pst.setString(1, studentCourseID);
 
             rs = pst.executeQuery();
             if (rs.next()) {
                 regis = new Register();
-                regis.setId(rs.getString("Id"));
-                regis.setCourseId(rs.getString("CourseId"));
-                regis.setFeesStructe(rs.getInt("FeesStructe"));
-                regis.setRegisDate(rs.getDate("RegistrationDate"));
-                regis.setStudentId(rs.getString("StudentId"));
+                regis.setStudentId(rs.getString(1));
+                regis.setCourseId(rs.getString(2));
+                regis.setFeesStructe(rs.getInt(3));
+                regis.setRegisDate(rs.getDate(4));
+                regis.setStudentCourseId(studentCourseID);
             }
         } catch (Exception ex) {
             setLastError("SQL Error!");
@@ -134,11 +135,11 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
             rs = pst.executeQuery();
             while (rs.next()) {
                 regis = new Register();
-                regis.setId(rs.getString("Id"));
-                regis.setCourseId(rs.getString("CourseId"));
-                regis.setFeesStructe(rs.getInt("FeesStructe"));
-                regis.setRegisDate(rs.getDate("RegistrationDate"));
-                regis.setStudentId(rs.getString("StudentId"));
+                regis.setStudentId(rs.getString(1));
+                regis.setCourseId(rs.getString(2));
+                regis.setFeesStructe(rs.getInt(3));
+                regis.setRegisDate(rs.getDate(4));
+                regis.setStudentCourseId(rs.getString(5));
                 resList.add(regis);
             }
         } catch (Exception ex) {
@@ -153,14 +154,14 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
         boolean status = false;
         try {
             con = db.getConnection();
-            String sql = "insert into Register (Id,CourseId, FeesStructe, RegistrationDate, StudentId)" + " values (?,?,?,?,?); ";
+            String sql = "insert into Register (StudentId,CourseId, FeesStructe, RegistrationDate, StudentCourseId)" + " values (?,?,?,?,?); ";
             pst = con.prepareStatement(sql);
 
-            pst.setString(1, regis.getId());
+            pst.setString(1, regis.getStudentId());
             pst.setString(2, regis.getCourseId());
             pst.setInt(3, regis.getFeesStructe());
             pst.setDate(4, regis.getRegisDate());
-            pst.setString(5, regis.getStudentId());
+            pst.setString(5, regis.getStudentCourseId());
 
             if (pst.executeUpdate() > 0) {
                 setLastError("Add Register Successfully");
@@ -180,15 +181,14 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
         boolean status = false;
         try {
             con = db.getConnection();
-            String sql = "select * from Register where Id = ?";
+            String sql = "select * from Register where StudentCourseId = ?";
             pst = con.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            pst.setString(1, res.getId());
+            pst.setString(1, res.getStudentCourseId());
             rs = pst.executeQuery();
             if (rs.first()) {
                 rs.updateString(2, res.getCourseId());
                 rs.updateInt(3, res.getFeesStructe());
                 rs.updateDate(4, res.getRegisDate());
-                rs.updateString(5, res.getStudentId());
                 try {
                     rs.updateRow();
                 } catch (Exception ex) {
@@ -207,13 +207,13 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
         return status;
     }
 
-    public boolean delete(String id, String courseId) {
+    public boolean delete(String studentId, String courseId) {
         boolean status = false;
         try {
             con = db.getConnection();
-            String sql = "delete from Register where Id = ? and CourseId = ?";
+            String sql = "delete from Register where StudentId = ? and CourseId = ?";
             pst = con.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            pst.setString(1, id);
+            pst.setString(1, studentId);
             pst.setString(2, courseId);
 
             if (pst.executeUpdate() > 0) {
@@ -230,13 +230,13 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
         return status;
     }
 
-    public boolean delete(String studentId) {
+    public boolean delete(String studentCourseId) {
         boolean status = false;
         try {
             con = db.getConnection();
-            String sql = "delete from Register where StudentId = ? ";
+            String sql = "delete from Register where StudentCourseId = ? ";
             pst = con.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            pst.setString(1, studentId);
+            pst.setString(1, studentCourseId);
 
             if (pst.executeUpdate() > 0) {
                 setLastError("Delete Register successfully!");

@@ -57,12 +57,12 @@ public class StudentMarkAllReportManager extends ReportManager {
 
         for (Mark mark : listMark) {
             row = new HashMap();
-            Register reg = registerDAO.readByStudentId(mark.getStudentId());
+            Register reg = registerDAO.readByStudentCourseId(mark.getStudentId());
             Subject sub = subjectDAO.readByID(mark.getSubjectId());
 
             row.put("ID", mark.getId());
             row.put("STUDENTID", mark.getStudentId());
-            row.put("STUDENTNAME", studentDAO.readByID(reg.getId()).getFullName());
+            row.put("STUDENTNAME", studentDAO.readByID(reg.getStudentId()).getFullName());
             row.put("COURSE", courseDAO.readById(sub.getCourseID()).getName());
             row.put("SUBJECT", sub.getName());
             row.put("MARK", mark.getMark());

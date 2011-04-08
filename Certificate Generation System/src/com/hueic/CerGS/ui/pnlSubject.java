@@ -771,9 +771,8 @@ public class pnlSubject extends javax.swing.JPanel {
             btnDelete.setEnabled(true);
             btnCancel.setVisible(false);
             txtSubjectId.setRequestFocusEnabled(false);
-        } else {
-            loadDetails(listSubject.get(0));
         }
+        loadDetails(listSubject.get(0));
 }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed

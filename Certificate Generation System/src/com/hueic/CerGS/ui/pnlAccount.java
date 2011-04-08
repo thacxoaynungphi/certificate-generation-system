@@ -732,7 +732,6 @@ public class pnlAccount extends javax.swing.JPanel {
             btnDelete.setEnabled(true);
             txtUsername.setEnabled(true);
             btnCancel.setVisible(false);
-        } else {
             loadDetails(listAccounts.get(0));
         }
 }//GEN-LAST:event_btnCancelActionPerformed

@@ -41,7 +41,7 @@ public class CertificateReportManager extends ReportManager {
         certificateDAO = new CertificateDAO();
         courseDAO = new CourseDAO();
         studentDAO = new StudentDAO();
-        Register regis = registerDAO.readByStudentId(studentId);
+        Register regis = registerDAO.readByStudentCourseId(studentId);
         Certificate cer = certificateDAO.readByStudentId(studentId);
         if (cer == null) {
             JOptionPane.showMessageDialog(null, "Degree is not developed", "Develop Degree", JOptionPane.ERROR_MESSAGE);
@@ -49,7 +49,7 @@ public class CertificateReportManager extends ReportManager {
             return;
         }
         this.cerNumber = cer.getId();
-        this.studentName = studentDAO.readByID(regis.getId()).getFullName();
+        this.studentName = studentDAO.readByID(regis.getStudentId()).getFullName();
         this.courseName = courseDAO.readById(regis.getCourseId()).getName();
         this.degreeDate = cer.getDegreeDay();
         this.grade = cer.getGrade();

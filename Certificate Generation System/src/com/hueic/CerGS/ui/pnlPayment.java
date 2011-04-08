@@ -88,7 +88,7 @@ public class pnlPayment extends javax.swing.JPanel {
         filter = new ArrayList<Payment>();
         for (Payment pay : listPayments) {
             if (pay.getStudentId().toLowerCase().matches(".*" + txtStudentIdSearch.getText().trim().toLowerCase() + ".*")
-                    && registerDAO.readByStudentId(pay.getStudentId()).getCourseId().toLowerCase().matches(".*" + txtCourseIdSearch.getText().trim().toLowerCase() + ".*")) {
+                    && registerDAO.readByStudentCourseId(pay.getStudentId()).getCourseId().toLowerCase().matches(".*" + txtCourseIdSearch.getText().trim().toLowerCase() + ".*")) {
                 filter.add(pay);
             }
         }
@@ -689,7 +689,7 @@ public class pnlPayment extends javax.swing.JPanel {
         try {
             Payment pay = getPaymentFromForm();
             Payment currentPay = getPaymentById(currentId);
-            Course course = courseDao.readById(registerDAO.readByStudentId(pay.getStudentId()).getCourseId());
+            Course course = courseDao.readById(registerDAO.readByStudentCourseId(pay.getStudentId()).getCourseId());
             if (pay.getMoney() > course.getTotalFees() - (paymentDao.getCurrentTotalDiposit(currentPay) - currentPay.getMoney())) {
                 JOptionPane.showMessageDialog(this, "You can't pay greater your total arrears", "Payment Update", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -735,7 +735,7 @@ public class pnlPayment extends javax.swing.JPanel {
             } else {
                 //TODO: chua lay duoc chi so tu tang cua ban ghi moi dua vo
                 Payment pay = getPaymentFromForm();
-                Course course = courseDao.readById(registerDAO.readByStudentId(pay.getStudentId()).getCourseId());
+                Course course = courseDao.readById(registerDAO.readByStudentCourseId(pay.getStudentId()).getCourseId());
                 if (pay.getMoney() > course.getTotalFees() - (paymentDao.getCurrentTotalDiposit(pay))) {
                     JOptionPane.showMessageDialog(this, "You can't pay greater your total arrears", "Payment Add", JOptionPane.ERROR_MESSAGE);
                     return;

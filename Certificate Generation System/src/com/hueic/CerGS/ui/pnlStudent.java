@@ -1084,6 +1084,7 @@ public class pnlStudent extends javax.swing.JPanel {
             txtIDEdit.setEnabled(false);
             btnCancelEdit.setVisible(false);
         }
+        loadDetails(liststudent.get(0));
     }//GEN-LAST:event_btnCancelEditActionPerformed
 
     private void btnReportDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportDetailsActionPerformed
