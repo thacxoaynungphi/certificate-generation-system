@@ -52,6 +52,7 @@ public class dlgLogin extends javax.swing.JDialog {
             RememberAccount ra = new RememberAccount();
             Account acc = ra.getUser();
             if (acc != null) {
+                chbRepass.setSelected(true);
                 txtUsername.setText(acc.getUsername());
                 txtPassword.setText(acc.getPassword());
                 for (int i = 0; i < cbxPermission.getItemCount(); i++) {
