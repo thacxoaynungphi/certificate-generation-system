@@ -133,7 +133,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="&lt;html&gt;Master data for campaigns with&lt;br&gt;each new product and given&lt;br&gt;periods." noResource="true"/>
+                <Property name="text" type="java.lang.String" value="&lt;html&gt;See details mark courses that students have the test." noResource="true"/>
                 <Property name="verticalAlignment" type="int" value="1"/>
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[153, 42]"/>
@@ -204,7 +204,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="&lt;html&gt;Master data for campaigns with&lt;br&gt;each new product and given&lt;br&gt;periods." noResource="true"/>
+                <Property name="text" type="java.lang.String" value="&lt;html&gt;Review the status of student deposit." noResource="true"/>
                 <Property name="verticalAlignment" type="int" value="1"/>
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[153, 42]"/>
@@ -275,7 +275,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="&lt;html&gt;Master data for campaigns with&lt;br&gt;each new product and given&lt;br&gt;periods." noResource="true"/>
+                <Property name="text" type="java.lang.String" value="&lt;html&gt;Degree for students who have completed the course." noResource="true"/>
                 <Property name="verticalAlignment" type="int" value="1"/>
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[153, 42]"/>
