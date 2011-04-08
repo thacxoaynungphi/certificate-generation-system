@@ -44,10 +44,10 @@ public class StudentMarkReportManager extends ReportManager {
 
     private HashMap getParameterMap() {
         parameterMap = new HashMap();
-        Register regis = registerDAO.readByStudentId(studentId);
+        Register regis = registerDAO.readByStudentCourseId(studentId);
 
         parameterMap.put("ID", studentId);
-        parameterMap.put("NAME", studentDAO.readByID(regis.getId()).getFullName());
+        parameterMap.put("NAME", studentDAO.readByID(regis.getStudentId()).getFullName());
         parameterMap.put("COURSE", courseDAO.readById(regis.getCourseId()).getName());
         parameterMap.put("SUBJECTID", "Subject Code");
         parameterMap.put("SUBJECTNAME", "Subject Name");

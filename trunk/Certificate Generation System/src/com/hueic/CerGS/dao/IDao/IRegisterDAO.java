@@ -26,7 +26,7 @@ public interface IRegisterDAO {
 
     Register readById(String id, String courseId);
 
-    Register readByStudentId(String studentID);
+    Register readByStudentCourseId(String studentCourseID);
 
     ArrayList<Register> readByStudentIdOfPerson(String studentId);
 

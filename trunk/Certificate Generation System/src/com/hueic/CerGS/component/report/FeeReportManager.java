@@ -58,11 +58,11 @@ public class FeeReportManager extends ReportManager {
 
         for (Payment pay : listPayment) {
             row = new HashMap();
-            reg = registerDAO.readByStudentId(pay.getStudentId());
+            reg = registerDAO.readByStudentCourseId(pay.getStudentId());
             course = courseDAO.readById(reg.getCourseId());
 
             row.put("ID", pay.getStudentId());
-            row.put("NAME", studentDAO.readByID(reg.getId()).getFullName());
+            row.put("NAME", studentDAO.readByID(reg.getStudentId()).getFullName());
             row.put("PAYDATE", dateFormat.format(pay.getPayday()));
             row.put("PAYMENT", pay.getMoney());
             row.put("ARREARS", course.getTotalFees() - paymentDAO.getCurrentTotalDiposit(pay));

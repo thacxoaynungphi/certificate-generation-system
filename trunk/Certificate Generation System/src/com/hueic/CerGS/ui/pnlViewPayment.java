@@ -128,7 +128,7 @@ public class pnlViewPayment extends javax.swing.JPanel {
                 lblTitleTotal.setVisible(false);
             } else {
                 lblTotalTheDeposit.setText(String.valueOf(money));
-                lblAmountRemaining.setText(String.valueOf(courseDao.readById(registerDao.readByStudentId(studentid).getCourseId()).getTotalFees() - money));
+                lblAmountRemaining.setText(String.valueOf(courseDao.readById(registerDao.readByStudentCourseId(studentid).getCourseId()).getTotalFees() - money));
             }
         }
     }
@@ -155,7 +155,7 @@ public class pnlViewPayment extends javax.swing.JPanel {
         cbxStudentID.setSelectedIndex(0);
         if (listRegister != null) {
             for (int i = 0; i < listRegister.size(); i++) {
-                cbxStudentID.addItem(listRegister.get(i).getStudentId());
+                cbxStudentID.addItem(listRegister.get(i).getStudentCourseId());
             }
         }
     }
@@ -390,7 +390,7 @@ public class pnlViewPayment extends javax.swing.JPanel {
                 } else {
 
                     listPayments = paymentDao.readByStudentIdOfPerson(frm.accCur.getUsername(), coursid);
-                    float money = paymentDao.getTotalDiposit(registerDao.readById(frm.accCur.getUsername(), coursid).getStudentId());
+                    float money = paymentDao.getTotalDiposit(registerDao.readById(frm.accCur.getUsername(), coursid).getStudentCourseId());
                     lblTotalTheDeposit.setText(String.valueOf(money));
                     lblAmountRemaining.setText(String.valueOf(courseDao.readById(coursid).getTotalFees() - money));
                     loadData(listPayments);
@@ -429,7 +429,7 @@ public class pnlViewPayment extends javax.swing.JPanel {
             if (!cbxCourseID.getSelectedItem().toString().equals("-- All --")) {
                 frm.pnlReport.removeAll();
                 dlgChooseReport report = new dlgChooseReport(frm, frm.pnlViewPaymentTab);
-                report.getStudentFeeReport(registerDao.readById(this.frm.accCur.getUsername(), cbxCourseID.getSelectedItem().toString()).getStudentId());
+                report.getStudentFeeReport(registerDao.readById(this.frm.accCur.getUsername(), cbxCourseID.getSelectedItem().toString()).getStudentCourseId());
                 report.setVisible(true);
                 report.setSize(860, 600);
                 frm.pnlReport.add(report);

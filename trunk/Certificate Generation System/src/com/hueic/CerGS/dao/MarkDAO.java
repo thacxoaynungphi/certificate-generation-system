@@ -231,7 +231,7 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
 
     public boolean create(Mark mark) {
         boolean status = false;
-        Register register = registerDAO.readByStudentId(mark.getStudentId());
+        Register register = registerDAO.readByStudentCourseId(mark.getStudentId());
         Subject subject = subjectDAO.readByID(mark.getSubjectId());
 
         if (subject.getCourseID().equals(register.getCourseId())) {

@@ -42,7 +42,7 @@ public class StudentFeeReportManger extends ReportManager {
         parameterMap = new HashMap();
 
         parameterMap.put("ID", studentId);
-        parameterMap.put("STUDENTNAME", studentDAO.readByID(registerDAO.readByStudentId(studentId).getId()).getFullName());
+        parameterMap.put("STUDENTNAME", studentDAO.readByID(registerDAO.readByStudentCourseId(studentId).getStudentId()).getFullName());
         parameterMap.put("DATE", "Day");
         parameterMap.put("FEE", "Fee");
 

@@ -85,7 +85,7 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
             cbxStudentID.addItem("----All----");
             cbxStudentID.setSelectedIndex(0);
             for (int i = 0; i < listRegister.size(); i++) {
-                cbxStudentID.addItem(listRegister.get(i).getStudentId());
+                cbxStudentID.addItem(listRegister.get(i).getStudentCourseId());
             }
         }
     }
@@ -357,7 +357,7 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
             if (studentId != null && !studentId.equals("----All----")) {
                 listMark = markDAO.readByStudentID(studentId);
                 loadData(listMark);
-                if (markDAO.isCompleteCourse(registerDAO.readByStudentId(studentId).getCourseId(), studentId)) {
+                if (markDAO.isCompleteCourse(registerDAO.readByStudentCourseId(studentId).getCourseId(), studentId)) {
                     float mark = markDAO.avgMark(studentId);
                     lblTotalMark.setText(String.valueOf(mark));
                     lblGrade.setText(markDAO.getGrades(mark));

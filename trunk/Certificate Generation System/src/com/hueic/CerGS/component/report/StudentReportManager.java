@@ -63,7 +63,7 @@ public class StudentReportManager extends ReportManager {
         DateFormat dateFormat = DateFormat.getInstance();
         HashMap rowMap = null;
         for (Register reg : listRegis) {
-            Student st = studentDAO.readByID(reg.getId());
+            Student st = studentDAO.readByID(reg.getStudentId());
             rowMap = new HashMap();
             rowMap.put("ID", st.getId());
             rowMap.put("NAME", st.getFullName());
