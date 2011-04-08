@@ -655,7 +655,6 @@ public class pnlMark extends javax.swing.JPanel {
         srcPanelMark.setAutoscrolls(true);
         srcPanelMark.setMinimumSize(new java.awt.Dimension(840, 320));
         srcPanelMark.setPreferredSize(new java.awt.Dimension(840, 320));
-        srcPanelMark.setRequestFocusEnabled(false);
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -668,9 +667,6 @@ public class pnlMark extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tableContent.setMaximumSize(new java.awt.Dimension(0, 0));
-        tableContent.setMinimumSize(new java.awt.Dimension(0, 0));
-        tableContent.setPreferredSize(new java.awt.Dimension(0, 0));
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 tableContentMouseReleased(evt);

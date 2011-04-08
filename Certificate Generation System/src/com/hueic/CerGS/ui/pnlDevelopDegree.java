@@ -201,6 +201,7 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlContent.add(cbxStudentID, gridBagConstraints);
 
+        srcPanelViewMark.setAutoscrolls(true);
         srcPanelViewMark.setMinimumSize(new java.awt.Dimension(840, 450));
         srcPanelViewMark.setPreferredSize(new java.awt.Dimension(840, 450));
 
@@ -215,9 +216,6 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tableContent.setMaximumSize(new java.awt.Dimension(0, 0));
-        tableContent.setMinimumSize(new java.awt.Dimension(0, 0));
-        tableContent.setPreferredSize(new java.awt.Dimension(0, 0));
         srcPanelViewMark.setViewportView(tableContent);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
