@@ -213,6 +213,7 @@ public class pnlAccount extends javax.swing.JPanel {
         pnlDown.setPreferredSize(new java.awt.Dimension(860, 400));
         pnlDown.setLayout(new java.awt.GridBagLayout());
 
+        srcPanelAccount.setAutoscrolls(true);
         srcPanelAccount.setMinimumSize(new java.awt.Dimension(840, 340));
         srcPanelAccount.setPreferredSize(new java.awt.Dimension(840, 340));
 
@@ -235,7 +236,6 @@ public class pnlAccount extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tableContent.setMaximumSize(new java.awt.Dimension(0, 0));
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 tableContentMouseReleased(evt);

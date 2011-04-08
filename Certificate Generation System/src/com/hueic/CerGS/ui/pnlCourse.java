@@ -474,6 +474,8 @@ public class pnlCourse extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableContent.setMinimumSize(new java.awt.Dimension(0, 0));
+        tableContent.setPreferredSize(new java.awt.Dimension(0, 0));
         tableContent.getTableHeader().setReorderingAllowed(false);
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -662,7 +664,6 @@ public class pnlCourse extends javax.swing.JPanel {
                 isAdd = true;
                 btnUpdate.setEnabled(false);
                 btnDelete.setEnabled(false);
-//                txtID.setRequestFocusEnabled(true);
                 btnCancel.setVisible(true);
                 txtID.setText("");
                 txtName.setText("");
@@ -690,7 +691,6 @@ public class pnlCourse extends javax.swing.JPanel {
                         isAdd = false;
                         btnUpdate.setEnabled(true);
                         btnDelete.setEnabled(true);
-//                    txtID.setRequestFocusEnabled(false);
                         btnCancel.setVisible(false);
                     } else {
                         JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Create Course", JOptionPane.ERROR_MESSAGE);

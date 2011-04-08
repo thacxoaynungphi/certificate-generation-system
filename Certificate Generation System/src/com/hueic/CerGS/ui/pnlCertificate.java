@@ -510,6 +510,7 @@ public class pnlCertificate extends javax.swing.JPanel {
         pnlDown.setPreferredSize(new java.awt.Dimension(860, 400));
         pnlDown.setLayout(new java.awt.GridBagLayout());
 
+        srcPanelCertificate.setAutoscrolls(true);
         srcPanelCertificate.setMinimumSize(new java.awt.Dimension(840, 300));
         srcPanelCertificate.setPreferredSize(new java.awt.Dimension(840, 300));
 
@@ -524,7 +525,6 @@ public class pnlCertificate extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tableContent.setMaximumSize(new java.awt.Dimension(0, 0));
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 tableContentMouseReleased(evt);
