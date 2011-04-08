@@ -816,6 +816,7 @@ public class pnlStudent extends javax.swing.JPanel {
         panelTable.setRequestFocusEnabled(false);
         panelTable.setLayout(new java.awt.GridBagLayout());
 
+        srcPanelContent.setAutoscrolls(true);
         srcPanelContent.setMinimumSize(new java.awt.Dimension(840, 220));
         srcPanelContent.setPreferredSize(new java.awt.Dimension(840, 220));
 

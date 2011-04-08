@@ -573,6 +573,7 @@
       <SubComponents>
         <Container class="javax.swing.JScrollPane" name="srcPanelCertificate">
           <Properties>
+            <Property name="autoscrolls" type="boolean" value="true"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[840, 300]"/>
             </Property>
