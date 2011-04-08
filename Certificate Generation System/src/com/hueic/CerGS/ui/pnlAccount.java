@@ -103,9 +103,8 @@ public class pnlAccount extends javax.swing.JPanel {
 
     public void loadTable(ArrayList<Account> filter) {
         ColumnData[] columns = {
-            new ColumnData("Username", 135, SwingConstants.LEFT, 1),
-            new ColumnData("Password", 100, SwingConstants.LEFT, 2),
-            new ColumnData("Permission", 140, SwingConstants.LEFT, 3),};
+            new ColumnData("Username", 135, SwingConstants.CENTER, 1),
+            new ColumnData("Permission", 140, SwingConstants.CENTER, 3),};
         tableModel = new ObjectTableModel(tableContent, columns, filter);
         headerTable = tableModel.getHeaderTable();
         headerTable.createDefaultColumnsFromModel();
@@ -225,6 +224,7 @@ public class pnlAccount extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tableContent.setMaximumSize(new java.awt.Dimension(0, 0));
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 tableContentMouseReleased(evt);

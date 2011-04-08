@@ -42,7 +42,7 @@ public class Student extends Person implements PropertyIndex{
                 break;
             case 5:
                if (this.getGender() == 1) {
-                    value = "FeMale";
+                    value = "Female";
                 } else {
                     value = "Male";
                 }

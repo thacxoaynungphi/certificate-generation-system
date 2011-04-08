@@ -750,7 +750,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="3" green="3" red="3" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="FeMale"/>
+                    <Property name="text" type="java.lang.String" value="Female"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioFemaleSearchActionPerformed"/>
@@ -1083,6 +1083,9 @@
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tableContentMouseReleased"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

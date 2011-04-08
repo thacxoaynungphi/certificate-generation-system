@@ -646,7 +646,7 @@ public class pnlStudent extends javax.swing.JPanel {
         radioFemaleSearch.setBackground(new java.awt.Color(255, 255, 255));
         btnGGender2.add(radioFemaleSearch);
         radioFemaleSearch.setForeground(new java.awt.Color(3, 3, 3));
-        radioFemaleSearch.setText("FeMale");
+        radioFemaleSearch.setText("Female");
         radioFemaleSearch.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 radioFemaleSearchItemStateChanged(evt);
@@ -938,6 +938,7 @@ public class pnlStudent extends javax.swing.JPanel {
         txtFirstNameSearch.setText(null);
         txtLastNameSearch.setText(null);
         radioAll.setSelected(true);
+        loadData(liststudent);
     }//GEN-LAST:event_btnResetActionPerformed
 
     public void loadDetails(Student student) {
