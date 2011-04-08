@@ -310,11 +310,6 @@ public class pnlRegister extends javax.swing.JPanel {
 
         txtStudentCourseId.setPreferredSize(new java.awt.Dimension(200, 20));
         txtStudentCourseId.setRequestFocusEnabled(false);
-        txtStudentCourseId.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtStudentCourseIdCaretUpdate(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -326,13 +321,6 @@ public class pnlRegister extends javax.swing.JPanel {
         dateChRegistrationDate.setMaximumSize(new java.awt.Dimension(200, 20));
         dateChRegistrationDate.setMinimumSize(new java.awt.Dimension(200, 20));
         dateChRegistrationDate.setPreferredSize(new java.awt.Dimension(200, 20));
-        dateChRegistrationDate.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-                dateChRegistrationDateCaretPositionChanged(evt);
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 3;
@@ -400,11 +388,6 @@ public class pnlRegister extends javax.swing.JPanel {
 
         txtCourseID.setMinimumSize(new java.awt.Dimension(200, 20));
         txtCourseID.setPreferredSize(new java.awt.Dimension(200, 20));
-        txtCourseID.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtCourseIDCaretUpdate(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -414,11 +397,6 @@ public class pnlRegister extends javax.swing.JPanel {
 
         txtStudentId.setMinimumSize(new java.awt.Dimension(180, 20));
         txtStudentId.setPreferredSize(new java.awt.Dimension(200, 20));
-        txtStudentId.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtStudentIdCaretUpdate(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
@@ -687,9 +665,6 @@ public class pnlRegister extends javax.swing.JPanel {
             }
         ));
         tableContent.setDragEnabled(true);
-        tableContent.setMaximumSize(new java.awt.Dimension(0, 0));
-        tableContent.setMinimumSize(new java.awt.Dimension(0, 0));
-        tableContent.setPreferredSize(new java.awt.Dimension(0, 0));
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 tableContentMouseReleased(evt);
@@ -766,33 +741,40 @@ public class pnlRegister extends javax.swing.JPanel {
                 btnCancelEdit.setVisible(true);
                 resetDetails();
             } else {
-                String Id = txtStudentCourseId.getText();
-                String studentId = txtStudentId.getText();
-                int feesStructe = cbxFeeStructe.getSelectedIndex();
-                Date regDate = new java.sql.Date(dateChRegistrationDate.getDate().getTime());
-                String courseId = txtCourseID.getText();
+                if (txtStudentId.getText().length() != 0
+                        && txtCourseID.getText().length() != 0
+                        && txtStudentCourseId.getText().length() != 0
+                        && dateChRegistrationDate.getDate() != null) {
+                    String Id = txtStudentCourseId.getText();
+                    String studentId = txtStudentId.getText();
+                    int feesStructe = cbxFeeStructe.getSelectedIndex();
+                    Date regDate = new java.sql.Date(dateChRegistrationDate.getDate().getTime());
+                    String courseId = txtCourseID.getText();
 
-                Register register = new Register(Id, studentId, courseId, feesStructe, (java.sql.Date) regDate);
+                    Register register = new Register(Id, studentId, courseId, feesStructe, (java.sql.Date) regDate);
 
-                if (regisDAO.create(register)) {
-                    JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Create Register", JOptionPane.INFORMATION_MESSAGE);
-                    listRegister.add(register);
-                    loadData();
-                    loadDetails(register);
-                    txtCourseID.setVisible(true);
-                    txtStudentId.setVisible(true);
+                    if (regisDAO.create(register)) {
+                        JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Create Register", JOptionPane.INFORMATION_MESSAGE);
+                        listRegister.add(register);
+                        loadData();
+                        loadDetails(register);
+                        txtCourseID.setVisible(true);
+                        txtStudentId.setVisible(true);
 
-                    isAdd = false;
-                    txtStudentCourseId.setRequestFocusEnabled(false);
-                    btnUpdate.setEnabled(true);
-                    btnDelete.setEnabled(true);
-                    btnCancelEdit.setVisible(false);
+                        isAdd = false;
+                        txtStudentCourseId.setRequestFocusEnabled(false);
+                        btnUpdate.setEnabled(true);
+                        btnDelete.setEnabled(true);
+                        btnCancelEdit.setVisible(false);
+                    } else {
+                        JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Create Register", JOptionPane.ERROR_MESSAGE);
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Create Register", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.toString(), "Create Register", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error System", "Create Register", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnAddActionPerformed
 
@@ -800,49 +782,52 @@ public class pnlRegister extends javax.swing.JPanel {
         // TODO add your handling code here:
         //TODO: chua xu ly viec cap nhap khoa se bi anh huong den cac bang khac
         try {
-            Register register = new Register();
-            register.setStudentId(txtStudentCourseId.getText());
-            register.setCourseId(txtCourseID.getText());
-            register.setStudentCourseId(txtStudentId.getText());
-            register.setFeesStructe(cbxFeeStructe.getSelectedIndex());
-            register.setRegisDate(new java.sql.Date(dateChRegistrationDate.getDate().getTime()));
+            if (txtStudentId.getText().length() != 0
+                    && txtCourseID.getText().length() != 0
+                    && txtStudentCourseId.getText().length() != 0
+                    && dateChRegistrationDate.getDate() != null) {
+                Register register = new Register();
+                register.setStudentId(txtStudentCourseId.getText());
+                register.setCourseId(txtCourseID.getText());
+                register.setStudentCourseId(txtStudentId.getText());
+                register.setFeesStructe(cbxFeeStructe.getSelectedIndex());
+                register.setRegisDate(new java.sql.Date(dateChRegistrationDate.getDate().getTime()));
 
-            int index = findByStudentId(register.getStudentId());
-            
-            if (regisDAO.update(register)) {
-                JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Update Subject", JOptionPane.INFORMATION_MESSAGE);
-                listRegister.remove(index);
-                listRegister.add(register);
-                loadData();
-                loadDetails(register);
+                int index = findByStudentId(register.getStudentId());
+
+                if (regisDAO.update(register)) {
+                    JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Update Subject", JOptionPane.INFORMATION_MESSAGE);
+                    listRegister.remove(index);
+                    listRegister.add(register);
+                    loadData();
+                    loadDetails(register);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
+                }
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.toString(), "Update Subject", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error! check again, please", "Error", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         String studentid = txtStudentCourseId.getText();
-
-
-        if (regisDAO.delete(studentid)) {
-            listRegister.remove(findByStudentId(studentid));
-            loadData();
-
-
-            if (!listRegister.isEmpty()) {
-                loadDetails(listRegister.get(0));
-
-
+        if (studentid.length() != 0) {
+            if (studentid.length() != 0) {
+                if (regisDAO.delete(studentid)) {
+                    listRegister.remove(findByStudentId(studentid));
+                    loadData();
+                    if (!listRegister.isEmpty()) {
+                        loadDetails(listRegister.get(0));
+                    }
+                    JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Delete Register", JOptionPane.INFORMATION_MESSAGE, null);
+                } else {
+                    JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Delete Register", JOptionPane.ERROR_MESSAGE, null);
+                }
             }
-            JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Delete Register", JOptionPane.INFORMATION_MESSAGE, null);
-
-
         } else {
-            JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Delete Register", JOptionPane.ERROR_MESSAGE, null);
-
-
+            JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -897,39 +882,15 @@ public class pnlRegister extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (!listRegister.isEmpty()) {
             int tableIndex = tableContent.getSelectedRow();
-
-
             if (tableIndex != -1) {
                 String studentId = tableContent.getValueAt(tableIndex, 0).toString();
-
-
                 int listIndex = findByStudentId(studentId);
-
-
                 if (listIndex != -1) {
                     loadDetails(listRegister.get(listIndex));
-
-
                 }
             }
         }
     }//GEN-LAST:event_tableContentMouseReleased
-
-    private void txtStudentCourseIdCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtStudentCourseIdCaretUpdate
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtStudentCourseIdCaretUpdate
-
-    private void txtCourseIDCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtCourseIDCaretUpdate
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCourseIDCaretUpdate
-
-    private void txtStudentIdCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtStudentIdCaretUpdate
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtStudentIdCaretUpdate
-
-    private void dateChRegistrationDateCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_dateChRegistrationDateCaretPositionChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dateChRegistrationDateCaretPositionChanged
 
     private void txtIdSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtIdSearchCaretUpdate
         // TODO add your handling code here:
@@ -956,11 +917,7 @@ public class pnlRegister extends javax.swing.JPanel {
             btnUpdate.setEnabled(true);
             btnDelete.setEnabled(true);
             btnCancelEdit.setVisible(false);
-
-            loadDetails(
-                    listRegister.get(0));
-
-
+            loadDetails(listRegister.get(0));
         }
     }//GEN-LAST:event_btnCancelEditActionPerformed
 
@@ -974,12 +931,8 @@ public class pnlRegister extends javax.swing.JPanel {
             report.setSize(860, 600);
             frm.pnlReport.add(report);
             frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
-
-
         } else {
             JOptionPane.showMessageDialog(this, "No data!", "Report Message", JOptionPane.INFORMATION_MESSAGE);
-
-
         }
     }//GEN-LAST:event_btnReportActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables

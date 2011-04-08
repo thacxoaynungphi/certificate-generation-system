@@ -256,11 +256,6 @@ public class pnlViewPayment extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableContentMouseClicked(evt);
-            }
-        });
         srcPanelPayment.setViewportView(tableContent);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -405,10 +400,6 @@ public class pnlViewPayment extends javax.swing.JPanel {
             load(listPayments, courseid, studentid);
         }
 }//GEN-LAST:event_cbxStudentIDItemStateChanged
-
-    private void tableContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseClicked
-        // TODO add your handling code here:
-}//GEN-LAST:event_tableContentMouseClicked
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
