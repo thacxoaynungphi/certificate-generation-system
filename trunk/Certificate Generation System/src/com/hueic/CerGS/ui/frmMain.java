@@ -138,7 +138,6 @@ public class frmMain extends javax.swing.JFrame {
         mnuSkin = new javax.swing.JMenu();
         radioWindows = new javax.swing.JRadioButtonMenuItem();
         radioMetal = new javax.swing.JRadioButtonMenuItem();
-        radioNimbus = new javax.swing.JRadioButtonMenuItem();
         radioJgoodies = new javax.swing.JRadioButtonMenuItem();
         radioWindowsXP = new javax.swing.JRadioButtonMenuItem();
         mnuTheme = new javax.swing.JMenu();
@@ -338,7 +337,7 @@ public class frmMain extends javax.swing.JFrame {
         tpnBusiness.setBackground(new java.awt.Color(255, 255, 255));
         tpnBusiness.setTabPlacement(javax.swing.JTabbedPane.LEFT);
         tpnBusiness.setEnabled(false);
-        tpnBusiness.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        tpnBusiness.setFont(new java.awt.Font("Tahoma", 1, 12));
         tpnBusiness.setMaximumSize(new java.awt.Dimension(1024, 600));
         tpnBusiness.setMinimumSize(new java.awt.Dimension(1024, 600));
         tpnBusiness.setPreferredSize(new java.awt.Dimension(1024, 600));
@@ -531,7 +530,7 @@ public class frmMain extends javax.swing.JFrame {
         mnuSystem.add(mnuILogoutSystem);
 
         menuIChangePass.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK));
-        menuIChangePass.setText("Change Password");
+        menuIChangePass.setText("Change Pass");
         menuIChangePass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuIChangePassActionPerformed(evt);
@@ -572,15 +571,6 @@ public class frmMain extends javax.swing.JFrame {
             }
         });
         mnuSkin.add(radioMetal);
-
-        buttonGroupSkin.add(radioNimbus);
-        radioNimbus.setText("Nimbus");
-        radioNimbus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioNimbusActionPerformed(evt);
-            }
-        });
-        mnuSkin.add(radioNimbus);
 
         buttonGroupSkin.add(radioJgoodies);
         radioJgoodies.setText("Jgoodies");
@@ -809,14 +799,6 @@ public class frmMain extends javax.swing.JFrame {
             guidao.setGUI(lookandfeel, theme);
         }
     }//GEN-LAST:event_radioMetalActionPerformed
-
-    private void radioNimbusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNimbusActionPerformed
-        // TODO add your handling code here:
-        if (radioNimbus.isSelected()) {
-            lookandfeel = guip.PLAF_NIMBUS;
-            guidao.setGUI(lookandfeel, theme);
-        }
-    }//GEN-LAST:event_radioNimbusActionPerformed
 
     private void menuIChangePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIChangePassActionPerformed
         // TODO add your handling code here:
@@ -1280,7 +1262,6 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JRadioButtonMenuItem radioJgoodies;
     private javax.swing.JRadioButtonMenuItem radioLightGray;
     private javax.swing.JRadioButtonMenuItem radioMetal;
-    private javax.swing.JRadioButtonMenuItem radioNimbus;
     private javax.swing.JRadioButtonMenuItem radioSilver;
     private javax.swing.JRadioButtonMenuItem radioSkyBlue;
     private javax.swing.JRadioButtonMenuItem radioSkyBluer;

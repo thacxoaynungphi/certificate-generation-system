@@ -524,6 +524,7 @@ public class pnlCertificate extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableContent.setMaximumSize(new java.awt.Dimension(0, 0));
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 tableContentMouseReleased(evt);
@@ -630,10 +631,10 @@ public class pnlCertificate extends javax.swing.JPanel {
                 if (txtStudentID.getText().length() != 0) {
                     float mark = markDAO.avgMark(id);
 
-                    if(mark < 40){
+                    if (mark < 40) {
                         JOptionPane.showMessageDialog(this, "This student has not completed the course or does not pass the exam", "Certificate Error", JOptionPane.ERROR_MESSAGE);
                         return;
-                    } else if(mark < 50){
+                    } else if (mark < 50) {
                         JOptionPane.showMessageDialog(this, "Your grade in this Course is C \n You will receive a transcript instead of a certificate", "Certificate Error", JOptionPane.INFORMATION_MESSAGE);
                         return;
                     }
@@ -663,7 +664,7 @@ public class pnlCertificate extends javax.swing.JPanel {
                 } else {
                     JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Error", JOptionPane.ERROR_MESSAGE);
                 }
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(this, "This Student has been developed Certificate", "Certificate Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
@@ -734,6 +735,10 @@ public class pnlCertificate extends javax.swing.JPanel {
         dlg.setSize(868, 580);
         dlg.setLocationRelativeTo(null);
         dlg.setVisible(true);
+        if (txtStudentID.getText().length() != 0) {
+            float mark = markDAO.avgMark(txtStudentID.getText());
+            txtMark.setText(String.valueOf(mark));
+        }
     }//GEN-LAST:event_btnChooseStudentIdActionPerformed
 
     private void btnChooseStudentIdSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseStudentIdSearchActionPerformed

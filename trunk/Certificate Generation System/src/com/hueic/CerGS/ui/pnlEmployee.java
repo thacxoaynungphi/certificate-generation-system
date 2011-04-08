@@ -688,7 +688,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         radioFemaleSearch.setBackground(new java.awt.Color(255, 255, 255));
         btnGGender2.add(radioFemaleSearch);
         radioFemaleSearch.setForeground(new java.awt.Color(3, 3, 3));
-        radioFemaleSearch.setText("FeMale");
+        radioFemaleSearch.setText("Female");
         radioFemaleSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioFemaleSearchActionPerformed(evt);
@@ -881,6 +881,11 @@ public class pnlEmployee extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tableContentMouseReleased(evt);
+            }
+        });
         srcPaneEmployee.setViewportView(tableContent);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1066,13 +1071,17 @@ public class pnlEmployee extends javax.swing.JPanel {
             emp.setPhone(txtPhoneEdit.getText());
             emp.setEmail(txtEmailEdit.getText());
             emp.setAddress(txtAddressEdit.getText());
-            File file = new File(txtImageEdit.getText());
-            String name = file.getName();
-            String extension;
-            int dotPos = name.lastIndexOf(".");
-            extension = name.substring(dotPos);
-            LoadImage.copyImage(file.getPath(), System.getProperty("user.dir") + "/avatar/" + emp.getId() + extension);
-            emp.setImage(emp.getId() + extension);
+            if (txtImageEdit.getText().length() != 0) {
+                File file = new File(txtImageEdit.getText());
+                if (file.exists()) {
+                    String name = file.getName();
+                    String extension;
+                    int dotPos = name.lastIndexOf(".");
+                    extension = name.substring(dotPos);
+                    LoadImage.copyImage(file.getPath(), System.getProperty("user.dir") + "/avatar/" + emp.getId() + extension);
+                    emp.setImage(emp.getId() + extension);
+                }
+            }
             emp.setStatus(1);
             if (empDao.update(emp)) {
                 listEmp = empDao.readByAll();
@@ -1102,6 +1111,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         txtFirstNameSearch.setText(null);
         txtLastNameSearch.setText(null);
         radioAll.setSelected(true);
+        loadData();
 }//GEN-LAST:event_btnResetSearchActionPerformed
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
@@ -1225,9 +1235,16 @@ public class pnlEmployee extends javax.swing.JPanel {
     private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
 
         // TODO add your handling code here:
-         loadFiter(filterText.getText());
+        loadFiter(filterText.getText());
     }//GEN-LAST:event_filterTextCaretUpdate
 
+    private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
+        // TODO add your handling code here:
+        int index = tableContent.getSelectedRow();
+        if (index != -1) {
+            loadDetails(filter.get(index));
+        }
+    }//GEN-LAST:event_tableContentMouseReleased
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddEdit;
     private javax.swing.JButton btnBrowseEdit;

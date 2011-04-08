@@ -215,6 +215,7 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableContent.setMaximumSize(new java.awt.Dimension(0, 0));
         srcPanelViewMark.setViewportView(tableContent);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
