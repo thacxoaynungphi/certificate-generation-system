@@ -17,12 +17,15 @@ package com.hueic.CerGS.ui;
 public class pnlHome extends javax.swing.JPanel {
 
     /** Creates new form pnlHome */
+    frmMain main;
+
     public pnlHome() {
         initComponents();
     }
 
-    pnlHome(frmMain aThis) {
+    pnlHome(frmMain main) {
         initComponents();
+        this.main = main;
     }
 
     /** This method is called from within the constructor to
@@ -42,27 +45,27 @@ public class pnlHome extends javax.swing.JPanel {
         jPanel5 = new javax.swing.JPanel();
         lblCampaignMaster1 = new javax.swing.JLabel();
         detail_Campaign_Description1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblManagerPayment = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         lblCampaignMaster2 = new javax.swing.JLabel();
         detail_Campaign_Description2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblManagerEmployee = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         lblCampaignMaster3 = new javax.swing.JLabel();
         detail_Campaign_Description3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblManagerStudent = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         lblCampaignMaster4 = new javax.swing.JLabel();
         detail_Campaign_Description4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblManagerRegister = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         lblCampaignMaster5 = new javax.swing.JLabel();
         detail_Campaign_Description5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblManagerMark = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         lblCampaignMaster6 = new javax.swing.JLabel();
         detail_Campaign_Description6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        lblManagerCertificate = new javax.swing.JLabel();
 
         setLayout(new java.awt.GridBagLayout());
 
@@ -130,16 +133,21 @@ public class pnlHome extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel5.add(detail_Campaign_Description1, gridBagConstraints);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Dollar.png"))); // NOI18N
-        jLabel2.setMaximumSize(new java.awt.Dimension(101, 101));
-        jLabel2.setMinimumSize(new java.awt.Dimension(101, 101));
-        jLabel2.setPreferredSize(new java.awt.Dimension(101, 101));
+        lblManagerPayment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Dollar.png"))); // NOI18N
+        lblManagerPayment.setMaximumSize(new java.awt.Dimension(101, 101));
+        lblManagerPayment.setMinimumSize(new java.awt.Dimension(101, 101));
+        lblManagerPayment.setPreferredSize(new java.awt.Dimension(101, 101));
+        lblManagerPayment.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblManagerPaymentMouseClicked(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel5.add(jLabel2, gridBagConstraints);
+        jPanel5.add(lblManagerPayment, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
@@ -174,13 +182,18 @@ public class pnlHome extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel6.add(detail_Campaign_Description2, gridBagConstraints);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/emp_icon.png"))); // NOI18N
+        lblManagerEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/emp_icon.png"))); // NOI18N
+        lblManagerEmployee.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblManagerEmployeeMouseClicked(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel6.add(jLabel3, gridBagConstraints);
+        jPanel6.add(lblManagerEmployee, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -204,7 +217,7 @@ public class pnlHome extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel7.add(lblCampaignMaster3, gridBagConstraints);
 
-        detail_Campaign_Description3.setFont(new java.awt.Font("Arial", 0, 11));
+        detail_Campaign_Description3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         detail_Campaign_Description3.setText("<html>Master data for campaigns with<br>each new product and given<br>periods."); // NOI18N
         detail_Campaign_Description3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         detail_Campaign_Description3.setMinimumSize(new java.awt.Dimension(153, 42));
@@ -215,13 +228,18 @@ public class pnlHome extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel7.add(detail_Campaign_Description3, gridBagConstraints);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/student_icon.png"))); // NOI18N
+        lblManagerStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/student_icon.png"))); // NOI18N
+        lblManagerStudent.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblManagerStudentMouseClicked(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel7.add(jLabel4, gridBagConstraints);
+        jPanel7.add(lblManagerStudent, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -256,16 +274,21 @@ public class pnlHome extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel8.add(detail_Campaign_Description4, gridBagConstraints);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/register_icon.jpg"))); // NOI18N
-        jLabel5.setMaximumSize(new java.awt.Dimension(101, 101));
-        jLabel5.setMinimumSize(new java.awt.Dimension(101, 101));
-        jLabel5.setPreferredSize(new java.awt.Dimension(101, 101));
+        lblManagerRegister.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/register_icon.jpg"))); // NOI18N
+        lblManagerRegister.setMaximumSize(new java.awt.Dimension(101, 101));
+        lblManagerRegister.setMinimumSize(new java.awt.Dimension(101, 101));
+        lblManagerRegister.setPreferredSize(new java.awt.Dimension(101, 101));
+        lblManagerRegister.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblManagerRegisterMouseClicked(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel8.add(jLabel5, gridBagConstraints);
+        jPanel8.add(lblManagerRegister, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
@@ -300,13 +323,18 @@ public class pnlHome extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel9.add(detail_Campaign_Description5, gridBagConstraints);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/mark_icon.jpg"))); // NOI18N
+        lblManagerMark.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/mark_icon.jpg"))); // NOI18N
+        lblManagerMark.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblManagerMarkMouseClicked(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel9.add(jLabel6, gridBagConstraints);
+        jPanel9.add(lblManagerMark, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -341,16 +369,21 @@ public class pnlHome extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel10.add(detail_Campaign_Description6, gridBagConstraints);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Certificate_icon_blue.png"))); // NOI18N
-        jLabel7.setMaximumSize(new java.awt.Dimension(101, 101));
-        jLabel7.setMinimumSize(new java.awt.Dimension(101, 101));
-        jLabel7.setPreferredSize(new java.awt.Dimension(101, 101));
+        lblManagerCertificate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Certificate_icon_blue.png"))); // NOI18N
+        lblManagerCertificate.setMaximumSize(new java.awt.Dimension(101, 101));
+        lblManagerCertificate.setMinimumSize(new java.awt.Dimension(101, 101));
+        lblManagerCertificate.setPreferredSize(new java.awt.Dimension(101, 101));
+        lblManagerCertificate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblManagerCertificateMouseClicked(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel10.add(jLabel7, gridBagConstraints);
+        jPanel10.add(lblManagerCertificate, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -366,6 +399,36 @@ public class pnlHome extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         add(panelRight, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lblManagerEmployeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblManagerEmployeeMouseClicked
+        // TODO add your handling code here:
+        main.tpnBusiness.setSelectedComponent(main.pnlEmployeeTab);
+    }//GEN-LAST:event_lblManagerEmployeeMouseClicked
+
+    private void lblManagerStudentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblManagerStudentMouseClicked
+        // TODO add your handling code here:
+        main.tpnBusiness.setSelectedComponent(main.pnlStudentTab);
+    }//GEN-LAST:event_lblManagerStudentMouseClicked
+
+    private void lblManagerRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblManagerRegisterMouseClicked
+        // TODO add your handling code here:
+        main.tpnBusiness.setSelectedComponent(main.pnlRegisterTab);
+    }//GEN-LAST:event_lblManagerRegisterMouseClicked
+
+    private void lblManagerMarkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblManagerMarkMouseClicked
+        // TODO add your handling code here:
+        main.tpnBusiness.setSelectedComponent(main.pnlMarkTab);
+    }//GEN-LAST:event_lblManagerMarkMouseClicked
+
+    private void lblManagerCertificateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblManagerCertificateMouseClicked
+        // TODO add your handling code here:
+        main.tpnBusiness.setSelectedComponent(main.pnlCertificateTab);
+    }//GEN-LAST:event_lblManagerCertificateMouseClicked
+
+    private void lblManagerPaymentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblManagerPaymentMouseClicked
+        // TODO add your handling code here:
+        main.tpnBusiness.setSelectedComponent(main.pnlPaymentTab);
+    }//GEN-LAST:event_lblManagerPaymentMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel detail_Campaign_Description1;
     private javax.swing.JLabel detail_Campaign_Description2;
@@ -376,12 +439,6 @@ public class pnlHome extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -394,6 +451,12 @@ public class pnlHome extends javax.swing.JPanel {
     private javax.swing.JLabel lblCampaignMaster4;
     private javax.swing.JLabel lblCampaignMaster5;
     private javax.swing.JLabel lblCampaignMaster6;
+    private javax.swing.JLabel lblManagerCertificate;
+    private javax.swing.JLabel lblManagerEmployee;
+    private javax.swing.JLabel lblManagerMark;
+    private javax.swing.JLabel lblManagerPayment;
+    private javax.swing.JLabel lblManagerRegister;
+    private javax.swing.JLabel lblManagerStudent;
     private javax.swing.JPanel panelRight;
     // End of variables declaration//GEN-END:variables
 }
