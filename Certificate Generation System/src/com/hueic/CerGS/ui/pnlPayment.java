@@ -659,15 +659,17 @@ public class pnlPayment extends javax.swing.JPanel {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        if (paymentDao.delete(currentId)) {
-            listPayments.remove(getPaymentById(currentId));
-            loadData();
-            if (!listPayments.isEmpty()) {
-                loadDetails(listPayments.get(0));
+        if (currentId != -1) {
+            if (paymentDao.delete(currentId)) {
+                listPayments.remove(getPaymentById(currentId));
+                loadData();
+                if (!listPayments.isEmpty()) {
+                    loadDetails(listPayments.get(0));
+                }
+                JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Delete payment", JOptionPane.INFORMATION_MESSAGE, null);
+            } else {
+                JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Delete payment", JOptionPane.ERROR_MESSAGE, null);
             }
-            JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Delete payment", JOptionPane.INFORMATION_MESSAGE, null);
-        } else {
-            JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Delete payment", JOptionPane.ERROR_MESSAGE, null);
         }
 }//GEN-LAST:event_btnDeleteActionPerformed
     public Payment getPaymentFromForm() throws Exception {
@@ -687,30 +689,37 @@ public class pnlPayment extends javax.swing.JPanel {
     }
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         try {
-            Payment pay = getPaymentFromForm();
-            Payment currentPay = getPaymentById(currentId);
-            Course course = courseDao.readById(registerDAO.readByStudentCourseId(pay.getStudentId()).getCourseId());
-            if (pay.getMoney() > course.getTotalFees() - (paymentDao.getCurrentTotalDiposit(currentPay) - currentPay.getMoney())) {
-                JOptionPane.showMessageDialog(this, "You can't pay greater your total arrears", "Payment Update", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if (paymentDao.update(pay)) {
-                JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Update Payment", JOptionPane.INFORMATION_MESSAGE);
-                currentPay = pay;
-                listPayments = paymentDao.readByAll();
-                loadData();
-                loadDetails(listPayments.get(0));
-            } else {
-                pay = getPaymentById(currentId);
-                pay.setMoney(Float.parseFloat(txtMoney.getText()));
-                pay.setPayday(new java.sql.Date(dateChPayDay.getDate().getTime()));
+            if (txtStudentId.getText().length() != 0
+                    && txtMoney.getText().length() != 0
+                    && dateChPayDay.getDate() != null
+                    && txtId.getText().length() != 0) {
+                Payment pay = getPaymentFromForm();
+                Payment currentPay = getPaymentById(currentId);
+                Course course = courseDao.readById(registerDAO.readByStudentCourseId(pay.getStudentId()).getCourseId());
+                if (pay.getMoney() > course.getTotalFees() - (paymentDao.getCurrentTotalDiposit(currentPay) - currentPay.getMoney())) {
+                    JOptionPane.showMessageDialog(this, "You can't pay greater your total arrears", "Payment Update", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 if (paymentDao.update(pay)) {
                     JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Update Payment", JOptionPane.INFORMATION_MESSAGE);
+                    currentPay = pay;
+                    listPayments = paymentDao.readByAll();
                     loadData();
-                    loadDetails(pay);
+                    loadDetails(listPayments.get(0));
                 } else {
-                    JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Update Payment", JOptionPane.ERROR_MESSAGE);
+                    pay = getPaymentById(currentId);
+                    pay.setMoney(Float.parseFloat(txtMoney.getText()));
+                    pay.setPayday(new java.sql.Date(dateChPayDay.getDate().getTime()));
+                    if (paymentDao.update(pay)) {
+                        JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Update Payment", JOptionPane.INFORMATION_MESSAGE);
+                        loadData();
+                        loadDetails(pay);
+                    } else {
+                        JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Update Payment", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
+            } else {
+                JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.toString(), "Update Payment", JOptionPane.ERROR_MESSAGE);
@@ -734,25 +743,31 @@ public class pnlPayment extends javax.swing.JPanel {
                 resetDetails();
             } else {
                 //TODO: chua lay duoc chi so tu tang cua ban ghi moi dua vo
-                Payment pay = getPaymentFromForm();
-                Course course = courseDao.readById(registerDAO.readByStudentCourseId(pay.getStudentId()).getCourseId());
-                if (pay.getMoney() > course.getTotalFees() - (paymentDao.getCurrentTotalDiposit(pay))) {
-                    JOptionPane.showMessageDialog(this, "You can't pay greater your total arrears", "Payment Add", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                if (paymentDao.create(pay)) {
-                    JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Create Payment", JOptionPane.INFORMATION_MESSAGE);
-                    pay.setId(paymentDao.readIdentity("Payment"));
-                    listPayments.add(pay);
-                    loadData();
-                    loadDetails(listPayments.get(0));
-                    isAdd = false;
-                    btnUpdate.setEnabled(true);
-                    btnDelete.setEnabled(true);
-                    btnCancel.setVisible(false);
-                    txtStudentId.setRequestFocusEnabled(false);
+                if (txtStudentId.getText().length() != 0
+                        && txtMoney.getText().length() != 0
+                        && dateChPayDay.getDate() != null) {
+                    Payment pay = getPaymentFromForm();
+                    Course course = courseDao.readById(registerDAO.readByStudentCourseId(pay.getStudentId()).getCourseId());
+                    if (pay.getMoney() > course.getTotalFees() - (paymentDao.getCurrentTotalDiposit(pay))) {
+                        JOptionPane.showMessageDialog(this, "You can't pay greater your total arrears", "Payment Add", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    if (paymentDao.create(pay)) {
+                        JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Create Payment", JOptionPane.INFORMATION_MESSAGE);
+                        pay.setId(paymentDao.readIdentity("Payment"));
+                        listPayments.add(pay);
+                        loadData();
+                        loadDetails(listPayments.get(0));
+                        isAdd = false;
+                        btnUpdate.setEnabled(true);
+                        btnDelete.setEnabled(true);
+                        btnCancel.setVisible(false);
+                        txtStudentId.setRequestFocusEnabled(false);
+                    } else {
+                        JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Create Payment", JOptionPane.ERROR_MESSAGE);
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Create Payment", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } catch (Exception e) {
@@ -786,12 +801,10 @@ public class pnlPayment extends javax.swing.JPanel {
         dlg.setLocationRelativeTo(null);
         dlg.setVisible(true);
     }//GEN-LAST:event_btnChooseStudentIdActionPerformed
-
     private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
         // TODO add your handling code here:
         loadFiter(filterText.getText());
     }//GEN-LAST:event_filterTextCaretUpdate
-
     private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
         // TODO add your handling code here:
         int index = tableContent.getSelectedRow();
@@ -806,7 +819,6 @@ public class pnlPayment extends javax.swing.JPanel {
         // TODO add your handling code here:
         loadData();
     }//GEN-LAST:event_txtCourseIdSearchCaretUpdate
-
     private void txtStudentIdSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtStudentIdSearchCaretUpdate
         // TODO add your handling code here:
         loadData();
@@ -877,11 +889,16 @@ public class pnlPayment extends javax.swing.JPanel {
         try {
             // TODO add your handling code here:
             int index = tableContent.getSelectedRow();
+
+
             if (index != -1) {
                 return tableContent.getValueAt(index, 0).toString();
+
+
             }
         } catch (Exception ex) {
         }
         return null;
+
     }
 }

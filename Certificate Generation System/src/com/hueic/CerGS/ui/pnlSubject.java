@@ -778,36 +778,46 @@ public class pnlSubject extends javax.swing.JPanel {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         String subjectid = txtSubjectId.getText();
-        if (subjectDao.delete(subjectid)) {
-            listSubject.remove(findSubject(subjectid));
-            loadData();
-            if (listSubject.size() != 0) {
-                loadDetails(listSubject.get(0));
+        if (subjectid.length() != 0) {
+            if (subjectDao.delete(subjectid)) {
+                listSubject.remove(findSubject(subjectid));
+                loadData();
+                if (listSubject.size() != 0) {
+                    loadDetails(listSubject.get(0));
+                }
+                JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Delete Subject", JOptionPane.INFORMATION_MESSAGE, null);
+            } else {
+                JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Delete Subject", JOptionPane.ERROR_MESSAGE, null);
             }
-            JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Delete Subject", JOptionPane.INFORMATION_MESSAGE, null);
         } else {
-            JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Delete Subject", JOptionPane.ERROR_MESSAGE, null);
+            JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         try {
-            String subjectId = txtSubjectId.getText();
-            String subjectName = txtName.getText();
+            if (txtSubjectId.getText().length() != 0
+                    && txtName.getText().length() != 0
+                    && txtCoefficient.getText().length() != 0
+                    && txtCoureID.getText().length() != 0) {
+                String subjectId = txtSubjectId.getText();
+                String subjectName = txtName.getText();
+                int coefficient = Integer.parseInt(txtCoefficient.getText());
+                String courseId = txtCoureID.getText();
+                Subject subject = new Subject(subjectId, subjectName, coefficient, courseId);
 
-            int coefficient = Integer.parseInt(txtCoefficient.getText());
-            String courseId = txtCoureID.getText();
-            Subject subject = new Subject(subjectId, subjectName, coefficient, courseId);
-
-            if (subjectDao.update(subject)) {
-                JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Update Subject", JOptionPane.INFORMATION_MESSAGE);
-                listSubject.remove(findSubject(subjectId));
-                listSubject.add(subject);
-                loadData();
-                loadDetails(subject);
+                if (subjectDao.update(subject)) {
+                    JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Update Subject", JOptionPane.INFORMATION_MESSAGE);
+                    listSubject.remove(findSubject(subjectId));
+                    listSubject.add(subject);
+                    loadData();
+                    loadDetails(subject);
+                } else {
+                    JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Update Subject", JOptionPane.ERROR_MESSAGE);
+                }
             } else {
-                JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Update Subject", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -827,48 +837,64 @@ public class pnlSubject extends javax.swing.JPanel {
                 txtSubjectId.setText(null);
                 txtName.setText(null);
                 txtCoefficient.setText(null);
+
+
             } else {
 
-                String subjectId = txtSubjectId.getText();
-                if (subjectId.isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Subject Id must be enter", "Subject add", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                String subjectName = txtName.getText();
-                if (subjectName.isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Subject Name must be enter", "Subject add", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                String coe = txtCoefficient.getText();
-                if (coe.isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Coefficient must be enter", "Subject add", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                int coefficient = Integer.parseInt(coe);
-                String courseId = txtCoureID.getText();
+                if (txtSubjectId.getText().length() != 0
+                        && txtName.getText().length() != 0
+                        && txtCoefficient.getText().length() != 0
+                        && txtCoureID.getText().length() != 0) {
+                    String subjectId = txtSubjectId.getText();
+                    String subjectName = txtName.getText();
+                    String coe = txtCoefficient.getText();
 
-                if (courseId.isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Course Id must be enter", "Subject add", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                Subject subject = new Subject(subjectId, subjectName, coefficient, courseId);
-                if (subjectDao.create(subject)) {
-                    JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Create Subject", JOptionPane.INFORMATION_MESSAGE);
-                    listSubject.add(subject);
-                    loadData();
-                    loadDetails(subject);
-                    isAdd = false;
-                    btnUpdate.setEnabled(true);
-                    btnDelete.setEnabled(true);
-                    btnCancel.setVisible(false);
-                    txtSubjectId.setRequestFocusEnabled(false);
 
+                    int coefficient = Integer.parseInt(coe);
+                    String courseId = txtCoureID.getText();
+
+
+
+                    if (courseId.isEmpty()) {
+                        JOptionPane.showMessageDialog(this, "Course Id must be enter", "Subject add", JOptionPane.ERROR_MESSAGE);
+
+
+                        return;
+
+
+                    }
+                    Subject subject = new Subject(subjectId, subjectName, coefficient, courseId);
+
+
+                    if (subjectDao.create(subject)) {
+                        JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Create Subject", JOptionPane.INFORMATION_MESSAGE);
+                        listSubject.add(subject);
+                        loadData();
+                        loadDetails(
+                                subject);
+                        isAdd = false;
+                        btnUpdate.setEnabled(true);
+                        btnDelete.setEnabled(true);
+                        btnCancel.setVisible(false);
+                        txtSubjectId.setRequestFocusEnabled(false);
+
+
+
+                    } else {
+                        JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Create Subject", JOptionPane.ERROR_MESSAGE);
+
+
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Create Subject", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
+
+
                 }
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.toString(), "Create Subject", JOptionPane.ERROR_MESSAGE);
+
+
         }
 }//GEN-LAST:event_btnAddActionPerformed
 
@@ -882,8 +908,12 @@ public class pnlSubject extends javax.swing.JPanel {
             report.setSize(860, 600);
             frm.pnlReport.add(report);
             frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+
+
         } else {
             JOptionPane.showMessageDialog(this, "No data!", "Report Message", JOptionPane.INFORMATION_MESSAGE);
+
+
         }
     }//GEN-LAST:event_btnReportActionPerformed
 
@@ -940,11 +970,16 @@ public class pnlSubject extends javax.swing.JPanel {
         try {
             // TODO add your handling code here:
             int index = tableContent.getSelectedRow();
+
+
             if (index != -1) {
                 return tableContent.getValueAt(index, 0).toString();
+
+
             }
         } catch (Exception ex) {
         }
         return null;
+
     }
 }

@@ -275,7 +275,6 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
                 rs.updateString("SubjectId", mark.getSubjectId());
                 rs.updateFloat("Mark", mark.getMark());
                 rs.updateRow();
-
                 setLastError("Update mark successful");
                 status = true;
             } else {
@@ -290,14 +289,13 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
         return status;
     }
 
-    public boolean delete(Mark mark) {
+    public boolean delete(int id) {
         boolean status = false;
         con = db.getConnection();
         String sqlcommand = "delete from Mark where Id = ?";
-
         try {
             pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            pst.setInt(1, mark.getId());
+            pst.setInt(1, id);
             if (pst.executeUpdate() > 0) {
                 setLastError("Delete mark successful");
                 status = true;

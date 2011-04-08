@@ -736,21 +736,27 @@ public class pnlMark extends javax.swing.JPanel {
 
                 resetDetails();
             } else {
-                Mark mark = getPaymentFromForm();
-                if (markDAO.create(mark)) {
-                    JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Add", JOptionPane.INFORMATION_MESSAGE);
-                    listMark = markDAO.readByAll();
-                    loadData();
-                    loadDetails(listMark.get(0));
+                if (txtStudentId.getText().length() != 0
+                        && txtSubjectID.getText().length() != 0
+                        && txtMark.getText().length() != 0) {
+                    Mark mark = getPaymentFromForm();
+                    if (markDAO.create(mark)) {
+                        JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Add", JOptionPane.INFORMATION_MESSAGE);
+                        listMark = markDAO.readByAll();
+                        loadData();
+                        loadDetails(listMark.get(0));
 
-                    isAdd = false;
-                    btnUpdate.setEnabled(true);
-                    btnDelete.setEnabled(true);
-                    btnCancel.setVisible(false);
-                    txtStudentId.setRequestFocusEnabled(false);
-                    txtSubjectID.setRequestFocusEnabled(false);
+                        isAdd = false;
+                        btnUpdate.setEnabled(true);
+                        btnDelete.setEnabled(true);
+                        btnCancel.setVisible(false);
+                        txtStudentId.setRequestFocusEnabled(false);
+                        txtSubjectID.setRequestFocusEnabled(false);
+                    } else {
+                        JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Add", JOptionPane.ERROR_MESSAGE);
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Add", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } catch (Exception ex) {
@@ -761,34 +767,44 @@ public class pnlMark extends javax.swing.JPanel {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         try {
-            Mark mark = getPaymentFromForm();
-            if (markDAO.update(mark)) {
-                JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Update", JOptionPane.INFORMATION_MESSAGE);
-                listMark = markDAO.readByAll();
-                loadData();
-                loadDetails(listMark.get(0));
+            if (txtStudentId.getText().length() != 0
+                    && txtSubjectID.getText().length() != 0
+                    && txtMark.getText().length() != 0
+                    && txtMarkId.getText().length() != 0) {
+                Mark mark = getPaymentFromForm();
+                if (markDAO.update(mark)) {
+                    JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Update", JOptionPane.INFORMATION_MESSAGE);
+                    listMark = markDAO.readByAll();
+                    loadData();
+                    loadDetails(listMark.get(0));
+                } else {
+                    JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Update", JOptionPane.ERROR_MESSAGE);
+                }
             } else {
-                JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Update", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Mark Update", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error System", "Mark Update", JOptionPane.INFORMATION_MESSAGE);
         }
 }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         try {
-            Mark mark = getMarkById(Integer.parseInt(txtMarkId.getText()));
-            if (mark != null) {
-                if (markDAO.delete(mark)) {
-                    listMark.remove(mark);
+            if (txtMarkId.getText().length() != 0) {
+                int id = Integer.parseInt(txtMarkId.getText());
+                if (markDAO.delete(id)) {
+                    listMark.remove(getMarkById(id));
                     loadData();
                     JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Delete", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Delete", JOptionPane.ERROR_MESSAGE);
                 }
+            } else {
+                JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error System", "Error!", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -802,7 +818,6 @@ public class pnlMark extends javax.swing.JPanel {
             txtStudentId.setRequestFocusEnabled(false);
             txtSubjectID.setRequestFocusEnabled(false);
         }
-
         loadDetails(listMark.get(0));
 }//GEN-LAST:event_btnCancelActionPerformed
 
@@ -849,14 +864,18 @@ public class pnlMark extends javax.swing.JPanel {
         dlg.setLocationRelativeTo(null);
         dlg.setVisible(true);
     }//GEN-LAST:event_btnChooseSubjectIdSearchActionPerformed
-
     private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
         // TODO add your handling code here:
         int index = tableContent.getSelectedRow();
+
+
         if (index != -1) {
             int id = Integer.parseInt(String.valueOf(tableContent.getValueAt(index, 0)));
             Mark mark = getMarkById(id);
-            loadDetails(mark);
+            loadDetails(
+                    mark);
+
+
         }
     }//GEN-LAST:event_tableContentMouseReleased
 
@@ -864,22 +883,18 @@ public class pnlMark extends javax.swing.JPanel {
         // TODO add your handling code here:
         loadFiter(filterText.getText());
     }//GEN-LAST:event_filterTextCaretUpdate
-
     private void txtMarkIdSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtMarkIdSearchCaretUpdate
         // TODO add your handling code here:
         loadData();
     }//GEN-LAST:event_txtMarkIdSearchCaretUpdate
-
     private void txtStudentIdSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtStudentIdSearchCaretUpdate
         // TODO add your handling code here:
         loadData();
     }//GEN-LAST:event_txtStudentIdSearchCaretUpdate
-
     private void txtSubjectIDSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtSubjectIDSearchCaretUpdate
         // TODO add your handling code here:
         loadData();
     }//GEN-LAST:event_txtSubjectIDSearchCaretUpdate
-
     private void txtMarkSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtMarkSearchCaretUpdate
         // TODO add your handling code here:
         loadData();
@@ -895,8 +910,12 @@ public class pnlMark extends javax.swing.JPanel {
             report.setSize(860, 600);
             frm.pnlReport.add(report);
             frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+
+
         } else {
             JOptionPane.showMessageDialog(this, "No data!", "Report Message", JOptionPane.INFORMATION_MESSAGE);
+
+
         }
     }//GEN-LAST:event_btnReportActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -950,11 +969,16 @@ public class pnlMark extends javax.swing.JPanel {
         try {
             // TODO add your handling code here:
             int index = tableContent.getSelectedRow();
+
+
             if (index != -1) {
                 return tableContent.getValueAt(index, 0).toString();
+
+
             }
         } catch (Exception ex) {
         }
         return null;
+
     }
 }
