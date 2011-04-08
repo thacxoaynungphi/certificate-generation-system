@@ -632,29 +632,36 @@ public class pnlAccount extends javax.swing.JPanel {
                 cbxUsername.setVisible(true);
                 txtUsername.setVisible(false);
             } else {
-                String username = cbxUsername.getSelectedItem().toString();
-                String password = String.valueOf(txtPassword.getPassword());
-                String confirmPass = String.valueOf(txtConfirmPassword.getPassword());
-                int permission = Integer.parseInt(txtType.getText());
-                if (password.equals(confirmPass) && password.length() != 0) {
+                if (cbxUsername.getSelectedItem().toString().length() != 0
+                        && String.valueOf(txtConfirmPassword.getPassword()).length() != 0
+                        && String.valueOf(txtPassword.getPassword()).length() != 0
+                        && txtType.getText().length() != 0) {
+                    String username = cbxUsername.getSelectedItem().toString();
+                    String password = String.valueOf(txtPassword.getPassword());
+                    String confirmPass = String.valueOf(txtConfirmPassword.getPassword());
+                    int permission = Integer.parseInt(txtType.getText());
                     Account acc = new Account(username, password, permission);
-                    if (accDao.create(acc)) {
-                        JOptionPane.showMessageDialog(this, accDao.getLastError(), "Create Account", JOptionPane.INFORMATION_MESSAGE);
-                        listAccounts.add(acc);
-                        loadData();
-                        loadDetails(acc);
-                        isAdd = false;
-                        btnUpdate.setEnabled(true);
-                        btnDelete.setEnabled(true);
-                        txtUsername.setVisible(true);
-                        btnCancel.setVisible(false);
-                        cbxUsername.setVisible(false);
-                        txtUsername.setVisible(true);
+                    if (password.equals(confirmPass) && password.length() != 0) {
+                        if (accDao.create(acc)) {
+                            JOptionPane.showMessageDialog(this, accDao.getLastError(), "Create Account", JOptionPane.INFORMATION_MESSAGE);
+                            listAccounts.add(acc);
+                            loadData();
+                            loadDetails(acc);
+                            isAdd = false;
+                            btnUpdate.setEnabled(true);
+                            btnDelete.setEnabled(true);
+                            txtUsername.setVisible(true);
+                            btnCancel.setVisible(false);
+                            cbxUsername.setVisible(false);
+                            txtUsername.setVisible(true);
+                        } else {
+                            JOptionPane.showMessageDialog(this, accDao.getLastError(), "Create Account", JOptionPane.ERROR_MESSAGE);
+                        }
                     } else {
-                        JOptionPane.showMessageDialog(this, accDao.getLastError(), "Create Account", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "Password not match", "Create Account", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(this, "Password not match", "Create Account", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } catch (Exception e) {
@@ -665,22 +672,29 @@ public class pnlAccount extends javax.swing.JPanel {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         try {
-            String username = txtUsername.getText();
-            String password = String.valueOf(txtPassword.getPassword());
-            String confirmPass = String.valueOf(txtConfirmPassword.getPassword());
-            int permission = Integer.parseInt(txtType.getText());
-            if (password.equals(confirmPass) && password.length() != 0) {
-                Account acc = new Account(username, password, permission);
-                if (accDao.update(acc)) {
-                    JOptionPane.showMessageDialog(this, accDao.getLastError(), "Update Account", JOptionPane.INFORMATION_MESSAGE);
-                    listAccounts.set(listAccounts.indexOf(find(acc.getUsername())), acc);
-                    loadData();
-                    loadDetails(acc);
+            if (cbxUsername.getSelectedItem().toString().length() != 0
+                    && String.valueOf(txtConfirmPassword.getPassword()).length() != 0
+                    && String.valueOf(txtPassword.getPassword()).length() != 0
+                    && txtType.getText().length() != 0) {
+                String username = txtUsername.getText();
+                String password = String.valueOf(txtPassword.getPassword());
+                String confirmPass = String.valueOf(txtConfirmPassword.getPassword());
+                int permission = Integer.parseInt(txtType.getText());
+                if (password.equals(confirmPass) && password.length() != 0) {
+                    Account acc = new Account(username, password, permission);
+                    if (accDao.update(acc)) {
+                        JOptionPane.showMessageDialog(this, accDao.getLastError(), "Update Account", JOptionPane.INFORMATION_MESSAGE);
+                        listAccounts.set(listAccounts.indexOf(find(acc.getUsername())), acc);
+                        loadData();
+                        loadDetails(acc);
+                    } else {
+                        JOptionPane.showMessageDialog(this, accDao.getLastError(), "Update Account", JOptionPane.ERROR_MESSAGE);
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(this, accDao.getLastError(), "Update Account", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Password not match", "Create Account", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Password not match", "Create Account", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.toString(), "Error!", JOptionPane.ERROR_MESSAGE);
@@ -691,15 +705,19 @@ public class pnlAccount extends javax.swing.JPanel {
         // TODO add your handling code here:
         try {
             String username = txtUsername.getText();
-            if (accDao.delete(username)) {
-                JOptionPane.showMessageDialog(this, accDao.getLastError(), "Delete Account", JOptionPane.INFORMATION_MESSAGE, null);
-                listAccounts.remove(find(username));
-                loadData();
-                if (!listAccounts.isEmpty()) {
-                    loadDetails(listAccounts.get(0));
+            if (username.length() != 0) {
+                if (accDao.delete(username)) {
+                    JOptionPane.showMessageDialog(this, accDao.getLastError(), "Delete Account", JOptionPane.INFORMATION_MESSAGE, null);
+                    listAccounts.remove(find(username));
+                    loadData();
+                    if (!listAccounts.isEmpty()) {
+                        loadDetails(listAccounts.get(0));
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, accDao.getLastError(), "Delete Account", JOptionPane.ERROR_MESSAGE, null);
                 }
             } else {
-                JOptionPane.showMessageDialog(this, accDao.getLastError(), "Delete Account", JOptionPane.ERROR_MESSAGE, null);
+                JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.toString(), "Error!", JOptionPane.ERROR_MESSAGE);
