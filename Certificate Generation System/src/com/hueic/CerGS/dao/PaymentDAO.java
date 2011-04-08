@@ -208,8 +208,6 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
 
             rs = pst.executeQuery();
             if (rs.first()) {
-                rs.updateInt("Id", pay.getId());
-                rs.updateString("StudentId", pay.getStudentId());
                 rs.updateFloat("Money", pay.getMoney());
                 rs.updateDate("Payday", (Date) pay.getPayday());
                 rs.updateRow();
@@ -220,7 +218,7 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
                 setLastError("Update fee unsuccessful");
             }
         } catch (SQLException ex) {
-            setLastError("SQL Error!!!");
+            setLastError("SQL Error");
         } finally {
             db.closeConnection();
             return status;
