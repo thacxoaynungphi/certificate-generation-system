@@ -91,6 +91,13 @@ public class pnlPermission extends javax.swing.JPanel {
     }
 
     public void loadDetails(Permission per) {
+        if (per.getName().equals("Admin") || per.getName().equals("Employee") || per.getName().equals("Student")) {
+            btnDelete.setEnabled(false);
+            btnUpdate.setEnabled(false);
+        } else {
+            btnDelete.setEnabled(true);
+            btnUpdate.setEnabled(true);
+        }
         txtId.setText(String.valueOf(per.getId()).trim());
         txtName.setText(per.getName().trim());
     }
@@ -218,6 +225,7 @@ public class pnlPermission extends javax.swing.JPanel {
 
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/switch.jpg"))); // NOI18N
         btnUpdate.setText("Update");
+        btnUpdate.setEnabled(false);
         btnUpdate.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnUpdate.setMaximumSize(new java.awt.Dimension(80, 25));
         btnUpdate.setMinimumSize(new java.awt.Dimension(75, 23));
@@ -231,6 +239,7 @@ public class pnlPermission extends javax.swing.JPanel {
 
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/delete.png"))); // NOI18N
         btnDelete.setText("Delete");
+        btnDelete.setEnabled(false);
         btnDelete.setMargin(new java.awt.Insets(2, 5, 2, 5));
         btnDelete.setMinimumSize(new java.awt.Dimension(75, 23));
         btnDelete.setPreferredSize(new java.awt.Dimension(75, 23));
@@ -453,9 +462,6 @@ public class pnlPermission extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tableContent.setMaximumSize(new java.awt.Dimension(0, 0));
-        tableContent.setMinimumSize(new java.awt.Dimension(0, 0));
-        tableContent.setPreferredSize(new java.awt.Dimension(0, 0));
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 tableContentMouseReleased(evt);
@@ -532,13 +538,7 @@ public class pnlPermission extends javax.swing.JPanel {
                 Permission per = find(value);
                 if (per != null) {
                     loadDetails(per);
-                    if (per.getName().equals("Admin") || per.getName().equals("Employee") || per.getName().equals("Student")) {
-                        btnDelete.setEnabled(false);
-                        btnUpdate.setEnabled(false);
-                    } else {
-                        btnDelete.setEnabled(true);
-                        btnUpdate.setEnabled(true);
-                    }
+
                 }
             }
         } catch (Exception ex) {
@@ -596,7 +596,7 @@ public class pnlPermission extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, perDao.getLastError(), "Delete Permission", JOptionPane.ERROR_MESSAGE, null);
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error System", "Error!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error! Check again, please.", "Error!", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnDeleteActionPerformed
 

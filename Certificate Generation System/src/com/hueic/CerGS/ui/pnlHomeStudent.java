@@ -118,6 +118,7 @@ public class pnlHomeStudent extends javax.swing.JPanel {
         jPanel6.add(detail_Campaign_Description2, gridBagConstraints);
 
         lblViewMark.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/ViewMark.jpg"))); // NOI18N
+        lblViewMark.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblViewMark.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblViewMarkMouseClicked(evt);
@@ -164,6 +165,7 @@ public class pnlHomeStudent extends javax.swing.JPanel {
         jPanel7.add(detail_Campaign_Description3, gridBagConstraints);
 
         lblViewPayment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/ViewPayment.png"))); // NOI18N
+        lblViewPayment.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblViewPayment.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblViewPaymentMouseClicked(evt);

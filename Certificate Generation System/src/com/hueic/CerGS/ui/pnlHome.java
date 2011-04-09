@@ -122,7 +122,7 @@ public class pnlHome extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel5.add(lblCampaignMaster1, gridBagConstraints);
 
-        detail_Campaign_Description1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        detail_Campaign_Description1.setFont(new java.awt.Font("Arial", 0, 11));
         detail_Campaign_Description1.setText("<html>Manage the payment of students<br> in each course."); // NOI18N
         detail_Campaign_Description1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         detail_Campaign_Description1.setMinimumSize(new java.awt.Dimension(153, 42));
@@ -134,6 +134,7 @@ public class pnlHome extends javax.swing.JPanel {
         jPanel5.add(detail_Campaign_Description1, gridBagConstraints);
 
         lblManagerPayment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Dollar.png"))); // NOI18N
+        lblManagerPayment.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblManagerPayment.setMaximumSize(new java.awt.Dimension(101, 101));
         lblManagerPayment.setMinimumSize(new java.awt.Dimension(101, 101));
         lblManagerPayment.setPreferredSize(new java.awt.Dimension(101, 101));
@@ -171,7 +172,7 @@ public class pnlHome extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel6.add(lblCampaignMaster2, gridBagConstraints);
 
-        detail_Campaign_Description2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        detail_Campaign_Description2.setFont(new java.awt.Font("Arial", 0, 11));
         detail_Campaign_Description2.setText("<html>Manage storage, updates and delete the information of its employee."); // NOI18N
         detail_Campaign_Description2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         detail_Campaign_Description2.setMinimumSize(new java.awt.Dimension(153, 42));
@@ -183,6 +184,7 @@ public class pnlHome extends javax.swing.JPanel {
         jPanel6.add(detail_Campaign_Description2, gridBagConstraints);
 
         lblManagerEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/emp_icon.png"))); // NOI18N
+        lblManagerEmployee.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblManagerEmployee.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblManagerEmployeeMouseClicked(evt);
@@ -217,7 +219,7 @@ public class pnlHome extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel7.add(lblCampaignMaster3, gridBagConstraints);
 
-        detail_Campaign_Description3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        detail_Campaign_Description3.setFont(new java.awt.Font("Arial", 0, 11));
         detail_Campaign_Description3.setText("<html>Manage storage, updates and delete the information of its student."); // NOI18N
         detail_Campaign_Description3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         detail_Campaign_Description3.setMinimumSize(new java.awt.Dimension(153, 42));
@@ -229,6 +231,7 @@ public class pnlHome extends javax.swing.JPanel {
         jPanel7.add(detail_Campaign_Description3, gridBagConstraints);
 
         lblManagerStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/student_icon.png"))); // NOI18N
+        lblManagerStudent.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblManagerStudent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblManagerStudentMouseClicked(evt);
@@ -263,7 +266,7 @@ public class pnlHome extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel8.add(lblCampaignMaster4, gridBagConstraints);
 
-        detail_Campaign_Description4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        detail_Campaign_Description4.setFont(new java.awt.Font("Arial", 0, 11));
         detail_Campaign_Description4.setText("<html>Manage students enrolling in courses."); // NOI18N
         detail_Campaign_Description4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         detail_Campaign_Description4.setMinimumSize(new java.awt.Dimension(153, 42));
@@ -275,6 +278,7 @@ public class pnlHome extends javax.swing.JPanel {
         jPanel8.add(detail_Campaign_Description4, gridBagConstraints);
 
         lblManagerRegister.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/register_icon.jpg"))); // NOI18N
+        lblManagerRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblManagerRegister.setMaximumSize(new java.awt.Dimension(101, 101));
         lblManagerRegister.setMinimumSize(new java.awt.Dimension(101, 101));
         lblManagerRegister.setPreferredSize(new java.awt.Dimension(101, 101));
@@ -312,7 +316,7 @@ public class pnlHome extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel9.add(lblCampaignMaster5, gridBagConstraints);
 
-        detail_Campaign_Description5.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        detail_Campaign_Description5.setFont(new java.awt.Font("Arial", 0, 11));
         detail_Campaign_Description5.setText("<html>Manage storage, updates and delete the student marks."); // NOI18N
         detail_Campaign_Description5.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         detail_Campaign_Description5.setMinimumSize(new java.awt.Dimension(153, 42));
@@ -324,6 +328,7 @@ public class pnlHome extends javax.swing.JPanel {
         jPanel9.add(detail_Campaign_Description5, gridBagConstraints);
 
         lblManagerMark.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/mark_icon.jpg"))); // NOI18N
+        lblManagerMark.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblManagerMark.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblManagerMarkMouseClicked(evt);
@@ -358,7 +363,7 @@ public class pnlHome extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel10.add(lblCampaignMaster6, gridBagConstraints);
 
-        detail_Campaign_Description6.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        detail_Campaign_Description6.setFont(new java.awt.Font("Arial", 0, 11));
         detail_Campaign_Description6.setText("<html>Manage the grant degree to <br>students after completing the<br> course."); // NOI18N
         detail_Campaign_Description6.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         detail_Campaign_Description6.setMinimumSize(new java.awt.Dimension(153, 42));
@@ -370,6 +375,7 @@ public class pnlHome extends javax.swing.JPanel {
         jPanel10.add(detail_Campaign_Description6, gridBagConstraints);
 
         lblManagerCertificate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/hueic/CerGS/images/Certificate_icon_blue.png"))); // NOI18N
+        lblManagerCertificate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblManagerCertificate.setMaximumSize(new java.awt.Dimension(101, 101));
         lblManagerCertificate.setMinimumSize(new java.awt.Dimension(101, 101));
         lblManagerCertificate.setPreferredSize(new java.awt.Dimension(101, 101));
