@@ -53,14 +53,14 @@ public class StudentReportManager extends ReportManager {
         parameterMap.put("ID", "Student Code");
         parameterMap.put("NAME", "Student Name");
         parameterMap.put("BIRTHDAY", "Birthday");
-        parameterMap.put("REGISDATE", "REGISTRATION DATE");
+        parameterMap.put("REGISDATE", "Registration Date");
 
         return parameterMap;
     }
 
     private JRMapCollectionDataSource getDataCollection() {
         ArrayList reportRows = new ArrayList();
-        DateFormat dateFormat = DateFormat.getInstance();
+        DateFormat dateFormat = DateFormat.getDateInstance();
         HashMap rowMap = null;
         for (Register reg : listRegis) {
             Student st = studentDAO.readByID(reg.getPersonId());

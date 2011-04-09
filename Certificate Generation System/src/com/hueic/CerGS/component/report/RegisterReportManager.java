@@ -44,14 +44,15 @@ public class RegisterReportManager extends ReportManager {
     private JRMapCollectionDataSource getJRDataSource(ArrayList<Register> listRegis) {
         ArrayList collection = new ArrayList();
         HashMap row = null;
-
+        DateFormat dateFormat = DateFormat.getInstance();
+        
         for (Register regis : listRegis) {
             row = new HashMap();
 
             row.put("STUDENTID", regis.getStudentId());
             row.put("STUDENTNAME", studentDAO.readByID(regis.getPersonId()).getFullName());
             row.put("COURSENAME", courseDAO.readById(regis.getCourseId()).getName());
-            row.put("REGISDATE", DateFormat.getInstance().format(regis.getRegisDate()));
+            row.put("REGISDATE", dateFormat.format(regis.getRegisDate()));
             if (regis.getFeesStructe() == 0) {
                 row.put("FEESTRUCTE", "Full Payment");
             } else {

@@ -59,8 +59,6 @@ public class CertificateReportManager extends ReportManager {
 
     private HashMap getParameterReport() {
         parameterMap = new HashMap();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(degreeDate);
 
         parameterMap.put("CERNUMBER", cerNumber);
         parameterMap.put("COURSE", courseName);
