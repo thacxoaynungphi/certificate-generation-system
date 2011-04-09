@@ -48,7 +48,6 @@ public class pnlCertificate extends javax.swing.JPanel {
         certificateDao = new CertificateDAO();
         markDAO = new MarkDAO();
         btnCancel.setVisible(false);
-        btnChooseStudentId.setVisible(false);
         isAdd = false;
         getData();
         if (listCertificate.size() != 0) {
@@ -61,7 +60,6 @@ public class pnlCertificate extends javax.swing.JPanel {
         initComponents();
         this.frm = frm;
         certificateDao = new CertificateDAO();
-        btnChooseStudentId.setVisible(false);
         markDAO = new MarkDAO();
         btnCancel.setVisible(false);
         isAdd = false;
@@ -379,7 +377,6 @@ public class pnlCertificate extends javax.swing.JPanel {
         txtStudentID.setEnabled(false);
         txtStudentID.setMinimumSize(new java.awt.Dimension(200, 20));
         txtStudentID.setPreferredSize(new java.awt.Dimension(200, 20));
-        txtStudentID.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
