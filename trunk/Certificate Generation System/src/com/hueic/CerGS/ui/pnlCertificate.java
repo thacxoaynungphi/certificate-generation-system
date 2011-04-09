@@ -669,8 +669,8 @@ public class pnlCertificate extends javax.swing.JPanel {
                                 btnCancel.setVisible(false);
                                 btnUpdate.setEnabled(true);
                                 btnDelete.setEnabled(true);
-                                txtStudentID.setRequestFocusEnabled(false);
-                                btnChooseStudentId.setVisible(false);
+                                txtStudentID.setEnabled(true);
+                                btnChooseStudentId.setEnabled(true);
                             } else {
                                 JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Error", JOptionPane.ERROR_MESSAGE);
                             }

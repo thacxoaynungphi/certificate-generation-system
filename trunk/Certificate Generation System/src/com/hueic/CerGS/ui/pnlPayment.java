@@ -758,7 +758,7 @@ public class pnlPayment extends javax.swing.JPanel {
                     Register register = registerDAO.readByStudentCourseId(pay.getStudentId());
                     Course course = courseDao.readById(register.getCourseId());
 
-                    if (register.getFeesStructe() == 0 && course.getTotalFees() != pay.getMoney()) {
+                    if (register.getFeesStructe() == 0 && course.getTotalFees() > pay.getMoney()) {
                         JOptionPane.showMessageDialog(this, "you have chosen the full payment", "Payment Add", JOptionPane.ERROR_MESSAGE);
                         return;
                     }
