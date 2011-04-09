@@ -54,6 +54,7 @@ public class pnlStudent extends javax.swing.JPanel {
         txtIDEdit.setEnabled(false);
         isAdd = false;
         liststudent = studentDao.readByAll();
+        System.out.println("Size : " + liststudent.size());
         btnCancelEdit.setVisible(false);
         loadData(liststudent);
     }
@@ -64,6 +65,7 @@ public class pnlStudent extends javax.swing.JPanel {
         txtIDEdit.setEnabled(false);
         isAdd = false;
         liststudent = studentDao.readByAll();
+        System.out.println("Size : " + liststudent.size());
         btnCancelEdit.setVisible(false);
         loadData(liststudent);
     }

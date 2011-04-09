@@ -153,7 +153,6 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
             con = db.getConnection();
             String sql = "insert into Register (PersonId,CourseId, FeesStructe, RegistrationDate, StudentId)" + " values (?,?,?,?,?); ";
             pst = con.prepareStatement(sql);
-
             pst.setString(1, regis.getPersonId());
             pst.setString(2, regis.getCourseId());
             pst.setInt(3, regis.getFeesStructe());
