@@ -937,7 +937,7 @@ public class pnlStudent extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error System", "Error!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error! Check again, please.", "Error!", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnUpdateEditActionPerformed
 
@@ -1047,7 +1047,7 @@ public class pnlStudent extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Error System", "Error!", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Error! Check again, please.", "Error!", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_btnAddEditActionPerformed

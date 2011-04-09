@@ -792,7 +792,7 @@ public class pnlRegister extends javax.swing.JPanel {
                 }
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error System", "Create Register", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error! Check again, please.", "Create Register", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnAddActionPerformed
 
