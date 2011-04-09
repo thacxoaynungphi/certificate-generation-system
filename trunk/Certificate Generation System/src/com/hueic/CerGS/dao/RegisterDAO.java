@@ -92,9 +92,6 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
         } finally {
             db.closeConnection();
         }
-        if (regis != null) {
-            System.out.println(regis.getStudentCourseId());
-        }
         return regis;
     }
 
@@ -189,11 +186,7 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
                 rs.updateString(2, res.getCourseId());
                 rs.updateInt(3, res.getFeesStructe());
                 rs.updateDate(4, res.getRegisDate());
-                try {
-                    rs.updateRow();
-                } catch (Exception ex) {
-                    System.out.println(ex.toString());
-                }
+                rs.updateRow();
                 setLastError("Update Register successfully");
                 status = true;
             } else {

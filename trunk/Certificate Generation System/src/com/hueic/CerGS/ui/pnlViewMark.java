@@ -46,29 +46,15 @@ public class pnlViewMark extends javax.swing.JPanel {
     public boolean isStudent = false;
     private ArrayList<Mark> filter;
 
-    public pnlViewMark() {
-        initComponents();
-        markDAO = new MarkDAO();
-        courseDao = new CourseDAO();
-        registerDao = new RegisterDAO();
-        getData();
-    }
+//    public pnlViewMark() {
+//        initComponents();
+//        markDAO = new MarkDAO();
+//        courseDao = new CourseDAO();
+//        registerDao = new RegisterDAO();
+//        getData();
+//    }
 
     public void getData() {
-        listMarks = markDAO.readByAll();
-        listCourse = courseDao.readByAll();
-        listRegister = registerDao.readByAll();
-        loadData(listMarks);
-        loadDataCBXCourse();
-        loadDataCBXStudent();
-    }
-
-    public pnlViewMark(frmMain frm) {
-        initComponents();
-        this.frm = frm;
-        markDAO = new MarkDAO();
-        courseDao = new CourseDAO();
-        registerDao = new RegisterDAO();
         PermissionDAO perDao = new PermissionDAO();
         if (perDao.readByID(frm.accCur.getPermission()).getName().equals("Student")) {
             listMarks = markDAO.readByStudentIDOfPerson(frm.accCur.getUsername(), "");
@@ -79,21 +65,40 @@ public class pnlViewMark extends javax.swing.JPanel {
             cbxStudentID.setVisible(false);
             lblStudentID.setVisible(false);
         } else {
-            getData();
+            listMarks = markDAO.readByAll();
+            listCourse = courseDao.readByAll();
+            listRegister = registerDao.readByAll();
+            loadData(listMarks);
+            loadDataCBXCourse();
+            loadDataCBXStudent();
         }
+    }
 
+    public pnlViewMark(frmMain frm) {
+        initComponents();
+        this.frm = frm;
+        markDAO = new MarkDAO();
+        courseDao = new CourseDAO();
+        registerDao = new RegisterDAO();
+        getData();
     }
 
     public void loadFiter(String text, ArrayList<Mark> listMark) {
         filter = new ArrayList<Mark>();
+
+
         for (Mark mark : listMark) {
             if (mark.getStudentId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
                     || String.valueOf(mark.getMark()).toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
                     || mark.getSubjectId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
                 filter.add(mark);
+
+
             }
         }
         loadData(filter);
+
+
     }
 
     public void loadData(ArrayList<Mark> listMarks) {
@@ -114,6 +119,8 @@ public class pnlViewMark extends javax.swing.JPanel {
         viewport.setPreferredSize(headerTable.getMaximumSize());
         srcPanelViewMark.setRowHeader(viewport);
         srcPanelViewMark.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, headerTable.getTableHeader());
+
+
     }
 
     public void load(ArrayList<Mark> listMarks, String courseId, String studentid) {
@@ -121,23 +128,35 @@ public class pnlViewMark extends javax.swing.JPanel {
         if (studentid.equals("------")) {
             if (courseId.equals("-- All --")) {
                 listMarks = markDAO.readByAll();
+
+
             } else {
                 listMarks = markDAO.readBYCourseID(courseId);
+
+
             }
         } else {
             listMarks = markDAO.readByStudentID(studentid);
+
+
         }
         if (listMarks != null) {
             loadData(listMarks);
+
+
         }
     }
 
     public void loadDataCBXCourse() {
         if (cbxCourseID.getItemCount() != 0) {
             cbxCourseID.removeAllItems();
+
+
         }
         cbxCourseID.addItem("-- All --");
         cbxCourseID.setSelectedIndex(0);
+
+
         if (listCourse != null) {
             for (int i = 0; i < listCourse.size(); i++) {
                 cbxCourseID.addItem(listCourse.get(i).getId());
@@ -152,7 +171,7 @@ public class pnlViewMark extends javax.swing.JPanel {
         cbxStudentID.addItem("------");
         cbxStudentID.setSelectedIndex(0);
         if (listRegister != null) {
-            for (int i = 0; i < listRegister.size(); i++) {
+            for (int i = 0; i< listRegister.size(); i++) {
                 cbxStudentID.addItem(listRegister.get(i).getStudentCourseId());
             }
         }
@@ -333,31 +352,34 @@ public class pnlViewMark extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbxCourseIDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxCourseIDItemStateChanged
-        // TODO add your handling code here:
-        if (cbxCourseID.getItemCount() - 1 == listCourse.size()) {
-            String coursid = cbxCourseID.getSelectedItem().toString();
-            if (coursid.equals("-- All --")) {
-                if (isStudent == false) {
-                    listMarks = markDAO.readByAll();
-                    loadData(listMarks);
-                    listRegister = registerDao.readByAll();
-                    loadDataCBXStudent();
+            // TODO add your handling code here:
+            if (cbxCourseID.getItemCount() - 1 == listCourse.size()) {
+                String coursid = cbxCourseID.getSelectedItem().toString();
+
+
+                if (coursid.equals("-- All --")) {
+                    if (isStudent == false) {
+                        listMarks = markDAO.readByAll();
+                        loadData(
+                                listMarks);
+                        listRegister = registerDao.readByAll();
+                        loadDataCBXStudent();
+                    } else {
+                        listMarks = markDAO.readByStudentIDOfPerson(frm.accCur.getUsername(), "");
+                        loadData(listMarks);
+                    }
                 } else {
-                    listMarks = markDAO.readByStudentIDOfPerson(frm.accCur.getUsername(), "");
-                    loadData(listMarks);
-                }
-            } else {
-                if (isStudent == false) {
-                    listMarks = markDAO.readBYCourseID(coursid);
-                    loadData(listMarks);
-                    listRegister = registerDao.readByCourseId(coursid);
-                    loadDataCBXStudent();
-                } else {
-                    listMarks = markDAO.readByStudentIDOfPerson(frm.accCur.getUsername(), coursid);
-                    loadData(listMarks);
+                    if (isStudent == false) {
+                        listMarks = markDAO.readBYCourseID(coursid);
+                        loadData(listMarks);
+                        listRegister = registerDao.readByCourseId(coursid);
+                        loadDataCBXStudent();
+                    } else {
+                        listMarks = markDAO.readByStudentIDOfPerson(frm.accCur.getUsername(), coursid);
+                        loadData( listMarks);
+                    }
                 }
             }
-        }
 }//GEN-LAST:event_cbxCourseIDItemStateChanged
 
     private void cbxStudentIDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxStudentIDItemStateChanged
@@ -366,6 +388,8 @@ public class pnlViewMark extends javax.swing.JPanel {
             String courseid = cbxCourseID.getSelectedItem().toString();
             String studentid = cbxStudentID.getSelectedItem().toString();
             load(listMarks, courseid, studentid);
+
+
         }
 }//GEN-LAST:event_cbxStudentIDItemStateChanged
 
@@ -373,15 +397,15 @@ public class pnlViewMark extends javax.swing.JPanel {
         // TODO add your handling code here:
         loadFiter(filterText.getText(), listMarks);
 }//GEN-LAST:event_btnFilterActionPerformed
-
     private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
         // TODO add your handling code here:
         loadFiter(filterText.getText(), listMarks);
     }//GEN-LAST:event_filterTextCaretUpdate
-
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
         // TODO add your handling code here:
         PermissionDAO perDao = new PermissionDAO();
+
+
         if (perDao.readByID(frm.accCur.getPermission()).getName().equals("Student")) {
             if (!cbxCourseID.getSelectedItem().toString().equals("-- All --")) {
                 frm.pnlReport.removeAll();
@@ -391,8 +415,12 @@ public class pnlViewMark extends javax.swing.JPanel {
                 report.setSize(860, 600);
                 frm.pnlReport.add(report);
                 frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+
+
             } else {
                 JOptionPane.showMessageDialog(this, "You are choose course!", "Report mark for student", JOptionPane.INFORMATION_MESSAGE);
+
+
             }
         } else {
             if (!this.cbxStudentID.getSelectedItem().toString().equals("------")) {
@@ -403,8 +431,12 @@ public class pnlViewMark extends javax.swing.JPanel {
                 report.setSize(860, 600);
                 frm.pnlReport.add(report);
                 frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+
+
             } else {
                 JOptionPane.showMessageDialog(this, "You are choose student!", "Report mark for student", JOptionPane.INFORMATION_MESSAGE);
+
+
             }
         }
     }//GEN-LAST:event_btnReportActionPerformed

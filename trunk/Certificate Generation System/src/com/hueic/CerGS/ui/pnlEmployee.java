@@ -1012,8 +1012,8 @@ public class pnlEmployee extends javax.swing.JPanel {
                     isAdd = false;
                     txtID.setEnabled(false);
                     btnCancelEdit.setVisible(false);
-                    btnDeleteEdit.setEnabled(false);
-                    btnUpdateEdit.setEnabled(false);
+                    btnDeleteEdit.setEnabled(true);
+                    btnUpdateEdit.setEnabled(true);
                 } else {
                     JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
                 }
