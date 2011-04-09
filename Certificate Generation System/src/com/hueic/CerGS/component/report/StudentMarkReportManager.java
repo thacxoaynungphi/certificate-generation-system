@@ -47,7 +47,7 @@ public class StudentMarkReportManager extends ReportManager {
         Register regis = registerDAO.readByStudentCourseId(studentId);
 
         parameterMap.put("ID", studentId);
-        parameterMap.put("NAME", studentDAO.readByID(regis.getStudentId()).getFullName());
+        parameterMap.put("NAME", studentDAO.readByID(regis.getPersonId()).getFullName());
         parameterMap.put("COURSE", courseDAO.readById(regis.getCourseId()).getName());
         parameterMap.put("SUBJECTID", "Subject Code");
         parameterMap.put("SUBJECTNAME", "Subject Name");

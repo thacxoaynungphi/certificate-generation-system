@@ -62,7 +62,7 @@ public class FeeReportManager extends ReportManager {
             course = courseDAO.readById(reg.getCourseId());
 
             row.put("ID", pay.getStudentId());
-            row.put("NAME", studentDAO.readByID(reg.getStudentId()).getFullName());
+            row.put("NAME", studentDAO.readByID(reg.getPersonId()).getFullName());
             row.put("PAYDATE", dateFormat.format(pay.getPayday()));
             row.put("PAYMENT", pay.getMoney());
             row.put("ARREARS", course.getTotalFees() - paymentDAO.getCurrentTotalDiposit(pay));

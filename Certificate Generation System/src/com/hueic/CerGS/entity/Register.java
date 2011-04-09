@@ -13,46 +13,46 @@ import java.sql.Date;
  */
 public class Register implements PropertyIndex {
 
-    private String studentId;
+    private String personId;
     private String courseId;
     private int feesStructe;
     private Date regisDate;
-    private String studentCourseId;
+    private String studentId;
 
     public Register() {
     }
 
     public Register(String studentCourseId, String studentId, String courseId, int feesStructe, Date regisDate) throws Exception {
-        setStudentId(studentId);
+        setPersonId(studentId);
         setCourseId(courseId);
         setFeesStructe(feesStructe);
         setRegisDate(regisDate);
-        setStudentCourseId(studentCourseId);
+        setStudentId(studentCourseId);
     }
 
     public Register(String studentCourseId, String studentId, String courseId, int feesStructe) throws Exception {
-        setStudentId(studentId);
+        setPersonId(studentId);
         setCourseId(courseId);
         setFeesStructe(feesStructe);
         this.regisDate = null;
-        setStudentCourseId(studentCourseId);
+        setStudentId(studentCourseId);
     }
 
     /**
      * @return the id
      */
-    public String getStudentId() {
-        return studentId;
+    public String getPersonId() {
+        return personId;
     }
 
     /**
      * @param studentId the id to set
      */
-    public void setStudentId(String studentId) throws Exception {
+    public void setPersonId(String studentId) throws Exception {
         if (studentId.length() <= 0 || studentId.length() > 20) {
             throw new Exception("Id not validation");
         } else {
-            this.studentId = studentId;
+            this.personId = studentId;
         }
     }
 
@@ -109,22 +109,22 @@ public class Register implements PropertyIndex {
     /**
      * @return the studentId
      */
-    public String getStudentCourseId() {
-        return studentCourseId;
+    public String getStudentId() {
+        return studentId;
     }
 
     /**
      * @param studentCourseId the studentId to set
      */
-    public void setStudentCourseId(String studentCourseId) {
-        this.studentCourseId = studentCourseId;
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
     }
 
     public Object getPropertyValue(int index) {
         String value = "";
         switch (index) {
             case 1:
-                value = String.valueOf(this.getStudentId());
+                value = String.valueOf(this.getPersonId());
                 break;
             case 2:
                 value = String.valueOf(this.getCourseId());
@@ -140,7 +140,7 @@ public class Register implements PropertyIndex {
                 value = String.valueOf(this.getRegisDate());
                 break;
             case 5:
-                value = String.valueOf(this.getStudentCourseId());
+                value = String.valueOf(this.getStudentId());
                 break;
         }
         return value;

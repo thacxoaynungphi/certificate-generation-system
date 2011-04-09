@@ -85,7 +85,7 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
             cbxStudentID.addItem("----All----");
             cbxStudentID.setSelectedIndex(0);
             for (int i = 0; i < listRegister.size(); i++) {
-                cbxStudentID.addItem(listRegister.get(i).getStudentCourseId());
+                cbxStudentID.addItem(listRegister.get(i).getStudentId());
             }
         }
     }

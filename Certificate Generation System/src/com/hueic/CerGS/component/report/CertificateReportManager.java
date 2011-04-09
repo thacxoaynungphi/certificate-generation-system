@@ -49,7 +49,7 @@ public class CertificateReportManager extends ReportManager {
             return;
         }
         this.cerNumber = cer.getId();
-        this.studentName = studentDAO.readByID(regis.getStudentId()).getFullName();
+        this.studentName = studentDAO.readByID(regis.getPersonId()).getFullName();
         this.courseName = courseDAO.readById(regis.getCourseId()).getName();
         this.degreeDate = cer.getDegreeDay();
         this.grade = cer.getGrade();
