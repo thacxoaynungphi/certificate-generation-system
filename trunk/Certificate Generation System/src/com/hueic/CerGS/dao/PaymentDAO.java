@@ -108,11 +108,11 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
         try {
             con = db.getConnection();
             if (courseId.length() == 0) {
-                String sql = "select * from Payment where StudentId in (select StudentId from Register where Id = ?)";
+                String sql = "select * from Payment where StudentId in (select StudentId from Register where StudentId = ?)";
                 pst = con.prepareStatement(sql);
                 pst.setString(1, studentIDOfPerson);
             } else {
-                String sql = "select * from Payment where StudentId in (select StudentId from Register where Id = ? and CourseId = ?)";
+                String sql = "select * from Payment where StudentId in (select StudentId from Register where StudentId = ? and CourseId = ?)";
                 pst = con.prepareStatement(sql);
                 pst.setString(1, studentIDOfPerson);
                 pst.setString(2, courseId);
@@ -154,13 +154,13 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
         return money;
     }
 
-    public float getTotalDiposit(String studentId) {
+    public float getTotalDiposit(String studentCourseId) {
         float money = 0.0f;
         con = db.getConnection();
-        String sqlcommand = "select sum(Money) from Payment where StudentId = ?";
+        String sqlcommand = "select sum(Money) from Payment where StudentCourseId = ?";
         try {
             pst = con.prepareStatement(sqlcommand);
-            pst.setString(1, studentId);
+            pst.setString(1, studentCourseId);
             rs = pst.executeQuery();
             if (rs.next()) {
                 money = rs.getFloat(1);

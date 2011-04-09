@@ -77,7 +77,7 @@ public class StudentDAO extends BaseDAO implements IStudentDAO {
     public String convertDate(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        String str = calendar.get(calendar.MONTH) + 1 + "/" + calendar.get(calendar.DAY_OF_MONTH) + "/" + calendar.get(calendar.YEAR);
+        String str = calendar.get(Calendar.MONTH) + 1 + "/" + calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.YEAR);
         return str;
     }
 

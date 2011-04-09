@@ -83,7 +83,7 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
     public ArrayList<Mark> readBYCourseID(String courseId) {
         ArrayList<Mark> result = new ArrayList<Mark>();
         con = db.getConnection();
-        String sqlcommand = "select m.* from Mark m inner join Register r on m.StudentId = r.StudentId  where r.CourseId = ?";
+        String sqlcommand = "select m.* from Mark m inner join Register r on m.StudentId = r.StudentCourseId  where r.CourseId = ?";
         Mark mark = null;
         try {
             pst = con.prepareStatement(sqlcommand);
@@ -141,18 +141,17 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
         Mark mark = null;
         try {
             if (courseId.length() == 0) {
-                String sqlcommand = "select * from Mark where StudentId in (select StudentId from Register where Id =  ?)";
+                String sqlcommand = "select * from Mark where StudentId in (select StudentCourseId from Register where StudentId =  ?)";
                 pst = con.prepareStatement(sqlcommand);
                 pst.setString(1, studentIdOfPerson);
             } else {
-                String sqlcommand = "select * from Mark where StudentId in (select StudentId from Register where Id =  ? and CourseId = ? )";
+                String sqlcommand = "select * from Mark where StudentId in (select StudentCourseId from Register where StudentId =  ? and CourseId = ? )";
                 pst = con.prepareStatement(sqlcommand);
                 pst.setString(1, studentIdOfPerson);
                 pst.setString(2, courseId);
             }
             rs = pst.executeQuery();
             while (rs.next()) {
-                System.out.println("Chay di ma");
                 mark = new Mark();
                 mark.setId(rs.getInt("Id"));
                 mark.setStudentId(rs.getString("StudentId"));

@@ -50,7 +50,7 @@ public class CourseDAO extends BaseDAO implements ICourseDAO {
     public ArrayList<Course> readCourseRegisterByStudentIdOfPerson(String studentIdOfPerson) {
         ArrayList<Course> result = new ArrayList<Course>();
         con = db.getConnection();
-        String sqlcommand = "select * from Course where Id in (select CourseId from Register where Id = ?)";
+        String sqlcommand = "select * from Course where Id in (select CourseId from Register where StudentId = ?)";
         try {
             pst = con.prepareStatement(sqlcommand);
             pst.setString(1, studentIdOfPerson);
