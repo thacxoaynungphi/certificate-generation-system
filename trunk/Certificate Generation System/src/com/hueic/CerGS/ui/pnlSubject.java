@@ -362,9 +362,9 @@ public class pnlSubject extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(lblSubjectID, gridBagConstraints);
 
+        txtSubjectId.setEnabled(false);
         txtSubjectId.setMinimumSize(new java.awt.Dimension(200, 20));
         txtSubjectId.setPreferredSize(new java.awt.Dimension(200, 20));
-        txtSubjectId.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -780,7 +780,7 @@ public class pnlSubject extends javax.swing.JPanel {
             if (subjectDao.delete(subjectid)) {
                 listSubject.remove(findSubject(subjectid));
                 loadData();
-                if (listSubject.size() != 0) {
+                if (!listSubject.isEmpty()) {
                     loadDetails(listSubject.get(0));
                 }
                 JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Delete Subject", JOptionPane.INFORMATION_MESSAGE, null);
@@ -827,16 +827,14 @@ public class pnlSubject extends javax.swing.JPanel {
         try {
             if (!isAdd) {
                 isAdd = true;
+                txtSubjectId.setEnabled(true);
                 btnCancel.setVisible(true);
                 btnUpdate.setEnabled(false);
                 btnDelete.setEnabled(false);
-                txtSubjectId.setRequestFocusEnabled(true);
                 txtCoureID.setText(null);
                 txtSubjectId.setText(null);
                 txtName.setText(null);
                 txtCoefficient.setText(null);
-
-
             } else {
 
                 if (txtSubjectId.getText().length() != 0
@@ -847,19 +845,11 @@ public class pnlSubject extends javax.swing.JPanel {
                     String subjectName = txtName.getText();
                     String coe = txtCoefficient.getText();
 
-
                     int coefficient = Integer.parseInt(coe);
                     String courseId = txtCoureID.getText();
-
-
-
                     if (courseId.isEmpty()) {
                         JOptionPane.showMessageDialog(this, "Course Id must be enter", "Subject add", JOptionPane.ERROR_MESSAGE);
-
-
                         return;
-
-
                     }
                     Subject subject = new Subject(subjectId, subjectName, coefficient, courseId);
 
@@ -871,28 +861,19 @@ public class pnlSubject extends javax.swing.JPanel {
                         loadDetails(
                                 subject);
                         isAdd = false;
+                        txtSubjectId.setEnabled(false);
                         btnUpdate.setEnabled(true);
                         btnDelete.setEnabled(true);
                         btnCancel.setVisible(false);
-                        txtSubjectId.setRequestFocusEnabled(false);
-
-
-
                     } else {
                         JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Create Subject", JOptionPane.ERROR_MESSAGE);
-
-
                     }
                 } else {
                     JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
-
-
                 }
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.toString(), "Create Subject", JOptionPane.ERROR_MESSAGE);
-
-
         }
 }//GEN-LAST:event_btnAddActionPerformed
 

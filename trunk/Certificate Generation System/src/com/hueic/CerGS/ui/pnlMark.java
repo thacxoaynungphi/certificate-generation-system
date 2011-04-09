@@ -236,6 +236,7 @@ public class pnlMark extends javax.swing.JPanel {
         pnlButtonReport = new javax.swing.JPanel();
         btnReport = new javax.swing.JButton();
 
+        setEnabled(false);
         setLayout(new java.awt.GridBagLayout());
 
         tpMark.setMinimumSize(new java.awt.Dimension(860, 200));
@@ -304,9 +305,9 @@ public class pnlMark extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         pnlTop1.add(lblMark, gridBagConstraints);
 
+        txtMarkId.setEnabled(false);
         txtMarkId.setMinimumSize(new java.awt.Dimension(200, 20));
         txtMarkId.setPreferredSize(new java.awt.Dimension(200, 20));
-        txtMarkId.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -314,9 +315,9 @@ public class pnlMark extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlTop1.add(txtMarkId, gridBagConstraints);
 
+        txtSubjectID.setEnabled(false);
         txtSubjectID.setMinimumSize(new java.awt.Dimension(200, 20));
         txtSubjectID.setPreferredSize(new java.awt.Dimension(200, 20));
-        txtSubjectID.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
@@ -391,9 +392,9 @@ public class pnlMark extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(15, 5, 5, 5);
         pnlTop1.add(pnlButtonEdit, gridBagConstraints);
 
+        txtStudentId.setEnabled(false);
         txtStudentId.setMinimumSize(new java.awt.Dimension(200, 20));
         txtStudentId.setPreferredSize(new java.awt.Dimension(200, 20));
-        txtStudentId.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -402,6 +403,7 @@ public class pnlMark extends javax.swing.JPanel {
         pnlTop1.add(txtStudentId, gridBagConstraints);
 
         btnChooseStudentId.setText("jButton3");
+        btnChooseStudentId.setEnabled(false);
         btnChooseStudentId.setMaximumSize(new java.awt.Dimension(23, 23));
         btnChooseStudentId.setMinimumSize(new java.awt.Dimension(23, 23));
         btnChooseStudentId.setPreferredSize(new java.awt.Dimension(23, 20));
@@ -418,6 +420,7 @@ public class pnlMark extends javax.swing.JPanel {
         pnlTop1.add(btnChooseStudentId, gridBagConstraints);
 
         btnChooseSubjectId.setText("jButton4");
+        btnChooseSubjectId.setEnabled(false);
         btnChooseSubjectId.setMaximumSize(new java.awt.Dimension(23, 23));
         btnChooseSubjectId.setMinimumSize(new java.awt.Dimension(23, 23));
         btnChooseSubjectId.setPreferredSize(new java.awt.Dimension(23, 20));
@@ -732,8 +735,12 @@ public class pnlMark extends javax.swing.JPanel {
         try {
             if (!isAdd) {
                 isAdd = true;
-                txtSubjectID.setRequestFocusEnabled(true);
-                txtStudentId.setRequestFocusEnabled(true);
+
+                txtStudentId.setEnabled(true);
+                txtSubjectID.setEnabled(true);
+                btnChooseStudentId.setEnabled(true);
+                btnChooseSubjectId.setEnabled(true);
+
                 btnCancel.setVisible(true);
                 btnUpdate.setEnabled(false);
                 btnDelete.setEnabled(false);
@@ -764,8 +771,10 @@ public class pnlMark extends javax.swing.JPanel {
                         btnUpdate.setEnabled(true);
                         btnDelete.setEnabled(true);
                         btnCancel.setVisible(false);
-                        txtStudentId.setRequestFocusEnabled(false);
-                        txtSubjectID.setRequestFocusEnabled(false);
+                        txtStudentId.setEnabled(false);
+                        txtSubjectID.setEnabled(false);
+                        btnChooseStudentId.setEnabled(false);
+                        btnChooseSubjectId.setEnabled(false);
                     } else {
                         JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Add", JOptionPane.ERROR_MESSAGE);
                     }
@@ -835,8 +844,10 @@ public class pnlMark extends javax.swing.JPanel {
             btnUpdate.setEnabled(true);
             btnDelete.setEnabled(true);
             btnCancel.setVisible(false);
-            txtStudentId.setRequestFocusEnabled(false);
-            txtSubjectID.setRequestFocusEnabled(false);
+            txtStudentId.setEnabled(false);
+            txtSubjectID.setEnabled(false);
+            btnChooseStudentId.setEnabled(false);
+            btnChooseSubjectId.setEnabled(false);
         }
         loadDetails(listMark.get(0));
 }//GEN-LAST:event_btnCancelActionPerformed

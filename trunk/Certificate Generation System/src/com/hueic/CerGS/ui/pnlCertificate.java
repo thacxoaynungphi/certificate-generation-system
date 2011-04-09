@@ -243,8 +243,8 @@ public class pnlCertificate extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         pnlTop1.add(lblDegreeDay, gridBagConstraints);
 
+        txtMark.setEnabled(false);
         txtMark.setPreferredSize(new java.awt.Dimension(200, 20));
-        txtMark.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
@@ -338,9 +338,9 @@ public class pnlCertificate extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlTop1.add(lblID, gridBagConstraints);
 
+        txtID.setEnabled(false);
         txtID.setMinimumSize(new java.awt.Dimension(200, 20));
         txtID.setPreferredSize(new java.awt.Dimension(200, 20));
-        txtID.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -358,6 +358,7 @@ public class pnlCertificate extends javax.swing.JPanel {
         pnlTop1.add(dateChooseDegreeDay, gridBagConstraints);
 
         btnChooseStudentId.setText("jButton1");
+        btnChooseStudentId.setEnabled(false);
         btnChooseStudentId.setMaximumSize(new java.awt.Dimension(23, 23));
         btnChooseStudentId.setMinimumSize(new java.awt.Dimension(23, 23));
         btnChooseStudentId.setPreferredSize(new java.awt.Dimension(23, 20));
@@ -373,6 +374,7 @@ public class pnlCertificate extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlTop1.add(btnChooseStudentId, gridBagConstraints);
 
+        txtStudentID.setEnabled(false);
         txtStudentID.setMinimumSize(new java.awt.Dimension(200, 20));
         txtStudentID.setPreferredSize(new java.awt.Dimension(200, 20));
         txtStudentID.setRequestFocusEnabled(false);
@@ -529,9 +531,6 @@ public class pnlCertificate extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tableContent.setMaximumSize(new java.awt.Dimension(0, 0));
-        tableContent.setMinimumSize(new java.awt.Dimension(0, 0));
-        tableContent.setPreferredSize(new java.awt.Dimension(0, 0));
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 tableContentMouseReleased(evt);
@@ -621,8 +620,8 @@ public class pnlCertificate extends javax.swing.JPanel {
             btnCancel.setVisible(true);
             btnUpdate.setEnabled(false);
             btnDelete.setEnabled(false);
-            txtStudentID.setRequestFocusEnabled(true);
-            btnChooseStudentId.setVisible(true);
+            txtStudentID.setEnabled(true);
+            btnChooseStudentId.setEnabled(true);
 
             txtID.setText(null);
             txtStudentID.setText(null);
@@ -668,8 +667,8 @@ public class pnlCertificate extends javax.swing.JPanel {
                             btnCancel.setVisible(false);
                             btnUpdate.setEnabled(true);
                             btnDelete.setEnabled(true);
-                            txtStudentID.setRequestFocusEnabled(false);
-                            btnChooseStudentId.setVisible(false);
+                            txtStudentID.setEnabled(false);
+                            btnChooseStudentId.setEnabled(false);
                         } else {
                             JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Error", JOptionPane.ERROR_MESSAGE);
                         }
@@ -738,8 +737,8 @@ public class pnlCertificate extends javax.swing.JPanel {
             btnCancel.setVisible(false);
             btnUpdate.setEnabled(true);
             btnDelete.setEnabled(true);
-            txtStudentID.setRequestFocusEnabled(false);
-            btnChooseStudentId.setVisible(false);
+            txtStudentID.setEnabled(false);
+            btnChooseStudentId.setEnabled(false);
             loadDetails(listCertificate.get(0));
         }
 }//GEN-LAST:event_btnCancelActionPerformed
