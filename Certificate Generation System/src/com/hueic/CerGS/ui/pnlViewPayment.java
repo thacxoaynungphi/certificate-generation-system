@@ -221,6 +221,11 @@ public class pnlViewPayment extends javax.swing.JPanel {
                 cbxCourseIDItemStateChanged(evt);
             }
         });
+        cbxCourseID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxCourseIDActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -378,6 +383,8 @@ public class pnlViewPayment extends javax.swing.JPanel {
                 }
             } else {
                 if (isStudent == false) {
+                    listPayments = paymentDao.readByCourseId(courseid);
+                    loadData(listPayments);
                     listRegister = registerDao.readByCourseId(courseid);
                     loadDataCBXStudent();
                 } else {
@@ -439,6 +446,11 @@ public class pnlViewPayment extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_btnReportActionPerformed
+
+    private void cbxCourseIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCourseIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxCourseIDActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFilter;
     private javax.swing.JButton btnReport;
