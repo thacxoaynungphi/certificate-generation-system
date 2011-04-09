@@ -79,6 +79,10 @@ public class pnlMark extends javax.swing.JPanel {
         if (listMark != null) {
             loadData();
             loadDetails(listMark.get(0));
+            isAdd = false;
+            btnDelete.setEnabled(true);
+            btnUpdate.setEnabled(true);
+            btnCancel.setVisible(false);
         }
     }
 
@@ -894,14 +898,16 @@ public class pnlMark extends javax.swing.JPanel {
     private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
         // TODO add your handling code here:
         int index = tableContent.getSelectedRow();
-
-
         if (index != -1) {
             int id = Integer.parseInt(String.valueOf(tableContent.getValueAt(index, 0)));
             Mark mark = getMarkById(id);
-            loadDetails(
-                    mark);
-
+            loadDetails(mark);
+            if (isAdd) {
+                isAdd = false;
+                btnUpdate.setEnabled(true);
+                btnDelete.setEnabled(true);
+                btnCancel.setVisible(false);
+            }
 
         }
     }//GEN-LAST:event_tableContentMouseReleased

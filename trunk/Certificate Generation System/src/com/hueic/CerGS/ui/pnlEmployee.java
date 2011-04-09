@@ -51,10 +51,18 @@ public class pnlEmployee extends javax.swing.JPanel {
         isAdd = false;
         btnCancelEdit.setVisible(false);
         empDao = new EmployeeDAO();
+        getData();
+    }
+
+    public void getData() {
         listEmp = empDao.readByAll();
         if (!listEmp.isEmpty()) {
             loadData();
             loadDetails(listEmp.get(0));
+            isAdd = false;
+            btnUpdateEdit.setEnabled(true);
+            btnDeleteEdit.setEnabled(true);
+            btnCancelEdit.setVisible(false);
         }
     }
 
@@ -64,11 +72,7 @@ public class pnlEmployee extends javax.swing.JPanel {
         isAdd = false;
         btnCancelEdit.setVisible(false);
         empDao = new EmployeeDAO();
-        listEmp = empDao.readByAll();
-        if (!listEmp.isEmpty()) {
-            loadData();
-            loadDetails(listEmp.get(0));
-        }
+        getData();
     }
 
     public void loadData() {
@@ -1245,6 +1249,12 @@ public class pnlEmployee extends javax.swing.JPanel {
         int index = tableContent.getSelectedRow();
         if (index != -1) {
             loadDetails(filter.get(index));
+            if (isAdd) {
+                isAdd = false;
+                btnUpdateEdit.setEnabled(true);
+                btnDeleteEdit.setEnabled(true);
+                btnCancelEdit.setVisible(false);
+            }
         }
     }//GEN-LAST:event_tableContentMouseReleased
     // Variables declaration - do not modify//GEN-BEGIN:variables

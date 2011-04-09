@@ -1067,6 +1067,14 @@ public class frmMain extends javax.swing.JFrame {
                     viewPayment.getData();
                 } else if (title.equals("Develop Degree")) {
                     developDegree.getData();
+                }else if (title.equals("Employee")) {
+                    emp.getData();
+                }else if (title.equals("Student")) {
+                    student.getData();
+                }else if (title.equals("Permission")) {
+                    per.getData();
+                }else if (title.equals("Course")) {
+                    course.getData();
                 }
             }
         }

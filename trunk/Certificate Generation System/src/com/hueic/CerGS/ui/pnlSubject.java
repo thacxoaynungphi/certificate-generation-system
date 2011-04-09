@@ -37,7 +37,6 @@ public class pnlSubject extends javax.swing.JPanel {
     ArrayList<Subject> listSubject = null;
     ArrayList<Subject> filter = null;
     ArrayList<Course> listCourses = new ArrayList<Course>();
-    private boolean isUpdate = false;
     private ObjectTableModel tableModel;
     private JTable headerTable;
     frmMain frm;
@@ -49,16 +48,20 @@ public class pnlSubject extends javax.swing.JPanel {
         courseDAO = new CourseDAO();
         listSubject = new ArrayList<Subject>();
         getData();
-        loadData();
-        if (listSubject.size() != 0) {
-            loadDetails(listSubject.get(0));
-        }
-        btnCancel.setVisible(false);
+
     }
 
     public void getData() {
         listCourses = courseDAO.readByAll();
         listSubject = subjectDao.readByAll();
+        loadData();
+        if (listSubject.size() != 0) {
+            loadDetails(listSubject.get(0));
+        }
+         isAdd = false;
+        btnDelete.setEnabled(true);
+        btnUpdate.setEnabled(true);
+        btnCancel.setVisible(false);
     }
 
     public pnlSubject(frmMain frm) {
@@ -68,11 +71,6 @@ public class pnlSubject extends javax.swing.JPanel {
         courseDAO = new CourseDAO();
         listSubject = new ArrayList<Subject>();
         getData();
-        loadData();
-        if (listSubject.size() != 0) {
-            loadDetails(listSubject.get(0));
-        }
-        btnCancel.setVisible(false);
     }
 
     public void loadData() {
@@ -704,6 +702,12 @@ public class pnlSubject extends javax.swing.JPanel {
                 Subject subject = findSubject(value);
                 if (subject != null) {
                     loadDetails(subject);
+                }
+                if (isAdd) {
+                    isAdd = false;
+                    btnUpdate.setEnabled(true);
+                    btnDelete.setEnabled(true);
+                    btnCancel.setVisible(false);
                 }
             }
         } catch (Exception ex) {

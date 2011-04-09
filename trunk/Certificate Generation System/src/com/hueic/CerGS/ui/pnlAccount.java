@@ -49,17 +49,23 @@ public class pnlAccount extends javax.swing.JPanel {
         personDao = new PersonDAO();
         btnCancel.setVisible(false);
         getData();
-        if (!listAccounts.isEmpty()) {
-            loadData();
-            binddingPerson();
-            loadDetails(listAccounts.get(0));
-        }
+
     }
 
     public void getData() {
         listPersons = personDao.readByAllNotAcc();
         listAccounts = accDao.readByAll();
-        binddingPerson();
+        if (!listAccounts.isEmpty()) {
+            loadData();
+            binddingPerson();
+            loadDetails(listAccounts.get(0));
+            isAdd = false;
+            cbxUsername.setVisible(false);
+            btnUpdate.setEnabled(true);
+            btnDelete.setEnabled(true);
+            btnCancel.setVisible(false);
+            txtUsername.setVisible(true);
+        }
     }
 
     public void binddingPerson() {
@@ -78,10 +84,6 @@ public class pnlAccount extends javax.swing.JPanel {
         personDao = new PersonDAO();
         btnCancel.setVisible(false);
         getData();
-        loadData();
-        if (!listAccounts.isEmpty()) {
-            loadDetails(listAccounts.get(0));
-        }
     }
 
     public void loadData() {
@@ -141,7 +143,6 @@ public class pnlAccount extends javax.swing.JPanel {
             return per.getName();
         } else {
             return null;
-
         }
     }
 
@@ -730,8 +731,10 @@ public class pnlAccount extends javax.swing.JPanel {
             isAdd = false;
             btnUpdate.setEnabled(true);
             btnDelete.setEnabled(true);
-            txtUsername.setEnabled(true);
+            txtUsername.setEnabled(false);
             btnCancel.setVisible(false);
+            cbxUsername.setVisible(false);
+            txtUsername.setVisible(true);
             loadDetails(listAccounts.get(0));
         }
 }//GEN-LAST:event_btnCancelActionPerformed
@@ -761,6 +764,12 @@ public class pnlAccount extends javax.swing.JPanel {
                 Account acc = find(value);
                 if (acc != null) {
                     loadDetails(acc);
+                }
+                if (isAdd) {
+                    isAdd = false;
+                    btnUpdate.setEnabled(true);
+                    btnDelete.setEnabled(true);
+                    btnCancel.setVisible(false);
                 }
             }
         } catch (Exception ex) {
