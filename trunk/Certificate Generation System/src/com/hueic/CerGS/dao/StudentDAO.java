@@ -21,7 +21,7 @@ public class StudentDAO extends BaseDAO implements IStudentDAO {
     public ArrayList<Student> readByAll() {
         ArrayList<Student> list = new ArrayList<Student>();
         con = db.getConnection();
-        String sql = "select s.Id,p.FirstName,p.LastName,p.BirthDay,p.Gender,p.Phone,p.Email,p.Address,p.Image,p.Status from Student s inner join Person p on s.Id = p.Id order by (Student.Id) asc";
+        String sql = "select s.Id,p.FirstName,p.LastName,p.BirthDay,p.Gender,p.Phone,p.Email,p.Address,p.Image,p.Status from Student s inner join Person p on s.Id = p.Id order by (s.Id) asc";
         try {
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
