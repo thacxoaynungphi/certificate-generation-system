@@ -351,9 +351,9 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(dateChPayDay, gridBagConstraints);
 
+        txtId.setEnabled(false);
         txtId.setMinimumSize(new java.awt.Dimension(200, 20));
         txtId.setPreferredSize(new java.awt.Dimension(200, 20));
-        txtId.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -361,9 +361,9 @@ public class pnlPayment extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(txtId, gridBagConstraints);
 
+        txtStudentId.setEnabled(false);
         txtStudentId.setMinimumSize(new java.awt.Dimension(200, 20));
         txtStudentId.setPreferredSize(new java.awt.Dimension(200, 20));
-        txtStudentId.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -372,6 +372,7 @@ public class pnlPayment extends javax.swing.JPanel {
         panelRight.add(txtStudentId, gridBagConstraints);
 
         btnChooseStudentId.setText("jButton2");
+        btnChooseStudentId.setEnabled(false);
         btnChooseStudentId.setMaximumSize(new java.awt.Dimension(23, 23));
         btnChooseStudentId.setMinimumSize(new java.awt.Dimension(23, 23));
         btnChooseStudentId.setPreferredSize(new java.awt.Dimension(23, 20));
@@ -650,10 +651,15 @@ public class pnlPayment extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (isAdd) {
             isAdd = false;
+
+            txtId.setEnabled(false);
+            txtStudentId.setEnabled(false);
+            btnChooseStudentId.setEnabled(false);
             btnUpdate.setEnabled(true);
             btnDelete.setEnabled(true);
             btnCancel.setVisible(false);
-            txtStudentId.setRequestFocusEnabled(false);
+
+            loadDetails(listPayments.get(0));
         }
 }//GEN-LAST:event_btnCancelActionPerformed
 
@@ -736,10 +742,12 @@ public class pnlPayment extends javax.swing.JPanel {
         try {
             if (!isAdd) {
                 isAdd = true;
+                txtId.setEnabled(true);
+                txtStudentId.setEnabled(true);
+                btnChooseStudentId.setEnabled(true);
                 btnUpdate.setEnabled(false);
                 btnDelete.setEnabled(false);
                 btnCancel.setVisible(true);
-                txtStudentId.setRequestFocusEnabled(true);
                 resetDetails();
             } else {
                 //TODO: chua lay duoc chi so tu tang cua ban ghi moi dua vo
@@ -750,7 +758,7 @@ public class pnlPayment extends javax.swing.JPanel {
                     Register register = registerDAO.readByStudentCourseId(pay.getStudentId());
                     Course course = courseDao.readById(register.getCourseId());
 
-                    if(register.getFeesStructe() == 0 && course.getTotalFees() != pay.getMoney()){
+                    if (register.getFeesStructe() == 0 && course.getTotalFees() != pay.getMoney()) {
                         JOptionPane.showMessageDialog(this, "you have chosen the full payment", "Payment Add", JOptionPane.ERROR_MESSAGE);
                         return;
                     }
@@ -766,10 +774,12 @@ public class pnlPayment extends javax.swing.JPanel {
                         loadData();
                         loadDetails(listPayments.get(0));
                         isAdd = false;
+                        txtId.setEnabled(false);
+                        txtStudentId.setEnabled(false);
+                        btnChooseStudentId.setEnabled(false);
                         btnUpdate.setEnabled(true);
                         btnDelete.setEnabled(true);
                         btnCancel.setVisible(false);
-                        txtStudentId.setRequestFocusEnabled(false);
                     } else {
                         JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Create Payment", JOptionPane.ERROR_MESSAGE);
                     }

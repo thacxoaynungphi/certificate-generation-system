@@ -317,8 +317,8 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 100, 5, 5);
         panelRight.add(lblRegistrationDate, gridBagConstraints);
 
+        txtStudentCourseId.setEnabled(false);
         txtStudentCourseId.setPreferredSize(new java.awt.Dimension(200, 20));
-        txtStudentCourseId.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -395,6 +395,7 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(15, 5, 5, 5);
         panelRight.add(panelButon, gridBagConstraints);
 
+        txtCourseID.setEnabled(false);
         txtCourseID.setMinimumSize(new java.awt.Dimension(200, 20));
         txtCourseID.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -414,6 +415,7 @@ public class pnlRegister extends javax.swing.JPanel {
         panelRight.add(txtStudentId, gridBagConstraints);
 
         btnChooseCourseId.setText("jButton3");
+        btnChooseCourseId.setEnabled(false);
         btnChooseCourseId.setMaximumSize(new java.awt.Dimension(23, 23));
         btnChooseCourseId.setMinimumSize(new java.awt.Dimension(23, 23));
         btnChooseCourseId.setPreferredSize(new java.awt.Dimension(23, 20));
@@ -744,7 +746,9 @@ public class pnlRegister extends javax.swing.JPanel {
         try {
             if (!isAdd) {
                 isAdd = true;
-                txtStudentCourseId.setRequestFocusEnabled(true);
+                txtStudentCourseId.setEnabled(true);
+                txtCourseID.setEnabled(true);
+                btnChooseCourseId.setEnabled(true);
                 btnUpdate.setEnabled(false);
                 btnDelete.setEnabled(false);
                 btnCancelEdit.setVisible(true);
@@ -761,22 +765,24 @@ public class pnlRegister extends javax.swing.JPanel {
                     String courseId = txtCourseID.getText();
                     Register register = new Register(Id, studentId, courseId, feesStructe, (java.sql.Date) regDate);
 
-                int index = findByStudentandCourseId(studentId, courseId);
+                    int index = findByStudentandCourseId(studentId, courseId);
 
-                if(index != -1){
-                    JOptionPane.showMessageDialog(this, "Student " + studentId + " has been register Course + " + courseId, "Register Add", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                if (regisDAO.create(register)) {
-                    JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Create Register", JOptionPane.INFORMATION_MESSAGE);
-                    listRegister.add(register);
-                    loadData();
-                    loadDetails(register);
-                    txtCourseID.setVisible(true);
-                    txtStudentId.setVisible(true);
+                    if (index != -1) {
+                        JOptionPane.showMessageDialog(this, "Student " + studentId + " has been register Course + " + courseId, "Register Add", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    if (regisDAO.create(register)) {
+                        JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Create Register", JOptionPane.INFORMATION_MESSAGE);
+                        listRegister.add(register);
+                        loadData();
+                        loadDetails(register);
+//                        txtCourseID.setVisible(true);
+//                        txtStudentId.setVisible(true);
 
                         isAdd = false;
-                        txtStudentCourseId.setRequestFocusEnabled(false);
+                        txtStudentCourseId.setEnabled(false);
+                        txtCourseID.setEnabled(false);
+                        btnChooseCourseId.setEnabled(false);
                         btnUpdate.setEnabled(true);
                         btnDelete.setEnabled(true);
                         btnCancelEdit.setVisible(false);
@@ -927,7 +933,9 @@ public class pnlRegister extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (isAdd) {
             isAdd = false;
-            txtStudentCourseId.setRequestFocusEnabled(false);
+            txtStudentCourseId.setEnabled(false);
+            txtCourseID.setEnabled(false);
+            btnChooseCourseId.setEnabled(false);
             btnUpdate.setEnabled(true);
             btnDelete.setEnabled(true);
             btnCancelEdit.setVisible(false);
@@ -937,7 +945,7 @@ public class pnlRegister extends javax.swing.JPanel {
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
         // TODO add your handling code here:
-        if (filter.size() != 0) {
+        if (!filter.isEmpty()) {
             frm.pnlReport.removeAll();
             dlgChooseReport report = new dlgChooseReport(frm, this);
             report.getRegisterReport(filter);

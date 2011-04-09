@@ -303,6 +303,7 @@ public class pnlCourse extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlTop1.add(lblID, gridBagConstraints);
 
+        txtID.setEnabled(false);
         txtID.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -474,8 +475,6 @@ public class pnlCourse extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tableContent.setMinimumSize(new java.awt.Dimension(0, 0));
-        tableContent.setPreferredSize(new java.awt.Dimension(0, 0));
         tableContent.getTableHeader().setReorderingAllowed(false);
         tableContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -597,6 +596,7 @@ public class pnlCourse extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (isAdd) {
             isAdd = false;
+            txtID.setEnabled(false);
             btnUpdate.setEnabled(true);
             btnDelete.setEnabled(true);
             btnCancel.setVisible(false);
@@ -662,6 +662,7 @@ public class pnlCourse extends javax.swing.JPanel {
         try {
             if (!isAdd) {
                 isAdd = true;
+                txtID.setEnabled(true);
                 btnUpdate.setEnabled(false);
                 btnDelete.setEnabled(false);
                 btnCancel.setVisible(true);
@@ -689,6 +690,7 @@ public class pnlCourse extends javax.swing.JPanel {
                         loadData();
                         loadDetails(course);
                         isAdd = false;
+                        txtID.setEnabled(false);
                         btnUpdate.setEnabled(true);
                         btnDelete.setEnabled(true);
                         btnCancel.setVisible(false);
