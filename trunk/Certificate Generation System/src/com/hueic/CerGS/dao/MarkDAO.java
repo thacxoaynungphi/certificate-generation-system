@@ -262,7 +262,7 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
         boolean status = false;
 
         con = db.getConnection();
-        String sqlcommand = "select * from Mark where Id = ?";
+        String sqlcommand = "select * from Mark m where m.Id = ? and m.SubjectId in (select s.SubjectId from SubjectId where s.CourseId = (select r.CourseId from Register r where r.StudentId = m.StudentId))";
 
         try {
             pst = con.prepareStatement(sqlcommand, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
