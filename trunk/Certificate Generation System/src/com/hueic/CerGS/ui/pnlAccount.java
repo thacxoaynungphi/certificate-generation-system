@@ -59,10 +59,13 @@ public class pnlAccount extends javax.swing.JPanel {
     public void getData() {
         listPersons = personDao.readByAllNotAcc();
         listAccounts = accDao.readByAll();
+        binddingPerson();
     }
 
     public void binddingPerson() {
-        cbxUsername.removeAllItems();
+        if (cbxUsername.getItemCount() != 0) {
+            cbxUsername.removeAllItems();
+        }
         for (Person person : listPersons) {
             cbxUsername.addItem(person.getId());
         }
