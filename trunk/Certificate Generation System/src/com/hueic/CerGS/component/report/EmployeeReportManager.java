@@ -25,10 +25,10 @@ public class EmployeeReportManager extends ReportManager {
     private HashMap getParameterReport() {
         parameterMap = new HashMap();
 
-        parameterMap.put("ID", "ID");
-        parameterMap.put("NAME", "FULL NAME");
-        parameterMap.put("BIRTHDAY", "DATE OF BIRTH");
-        parameterMap.put("BEGINWORK", "THE FIRST DAY TO WORKING");
+        parameterMap.put("ID", "Id");
+        parameterMap.put("NAME", "Full Name");
+        parameterMap.put("BIRTHDAY", "Date Ò Birth");
+        parameterMap.put("BEGINWORK", "The Begin Work");
 
         return parameterMap;
     }
@@ -37,9 +37,9 @@ public class EmployeeReportManager extends ReportManager {
         HashMap row = null;
         ArrayList collection = new ArrayList();
 
+        DateFormat dateFormat = DateFormat.getDateInstance();
         for (Employee emp : empList) {
             row = new HashMap();
-            DateFormat dateFormat = DateFormat.getDateInstance();
             row.put("ID", emp.getId());
             row.put("NAME", emp.getFullName());
             row.put("BIRTHDAY", dateFormat.format(emp.getBirthDay()));

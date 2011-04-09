@@ -52,6 +52,7 @@ public class CertificateDevelopedReportManager extends ReportManager {
     private JRMapCollectionDataSource getJRMapCollectionDataSource(ArrayList<Certificate> listCertificate) {
         ArrayList collection = new ArrayList();
         HashMap row = null;
+        DateFormat dateFormat = DateFormat.getDateInstance();
 
         for (Certificate cer : listCertificate) {
             row = new HashMap();
@@ -60,7 +61,7 @@ public class CertificateDevelopedReportManager extends ReportManager {
             row.put("STUDENTID", cer.getStudentID());
             row.put("STUDENTNAME", studentDAO.readByID(reg.getPersonId()).getFullName());
             row.put("COURSENAME", courseDAO.readById(reg.getCourseId()).getName());
-            row.put("DEGREEDATE", DateFormat.getInstance().format(cer.getDegreeDay()));
+            row.put("DEGREEDATE", dateFormat.format(cer.getDegreeDay()));
             row.put("GRADE", markDao.getGrades(cer.getMark()));
 
             collection.add(row);

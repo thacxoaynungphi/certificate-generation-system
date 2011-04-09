@@ -32,7 +32,7 @@ public class EmployeeDetailReportManager extends ReportManager {
     private JRMapCollectionDataSource getJRDataSourse(Employee employee) {
         ArrayList collection = new ArrayList();
         HashMap row = new HashMap();
-        DateFormat dateFormat = DateFormat.getInstance();
+        DateFormat dateFormat = DateFormat.getDateInstance();
 
         row.put("EMPID", employee.getId());
         row.put("NAME", employee.getFullName());
