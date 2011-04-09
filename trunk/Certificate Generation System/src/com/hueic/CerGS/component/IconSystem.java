@@ -15,7 +15,7 @@ import javax.swing.JFrame;
 public class IconSystem {
 
     public IconSystem(JFrame frame) {
-        Image icon = Toolkit.getDefaultToolkit().getImage("src/com/hueic/CerGS/images/Logochuan.png");
+        Image icon = Toolkit.getDefaultToolkit().getImage(System.getProperty("user.dir") + "/Logochuan.png");
         frame.setIconImage(icon);
     }
 }

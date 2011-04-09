@@ -57,10 +57,6 @@ public class pnlMark extends javax.swing.JPanel {
         subjectDAO = new SubjectDAO();
         courseDAO = new CourseDAO();
         getData();
-        if (listMark != null) {
-            loadData();
-            loadDetails(listMark.get(0));
-        }
         btnCancel.setVisible(false);
     }
 
@@ -72,10 +68,6 @@ public class pnlMark extends javax.swing.JPanel {
         subjectDAO = new SubjectDAO();
         courseDAO = new CourseDAO();
         getData();
-        if (listMark != null) {
-            loadData();
-            loadDetails(listMark.get(0));
-        }
         btnCancel.setVisible(false);
     }
 
@@ -84,6 +76,10 @@ public class pnlMark extends javax.swing.JPanel {
         listMark = markDAO.readByAll();
         courseList = courseDAO.readByAll();
         listSubject = subjectDAO.readByAll();
+        if (listMark != null) {
+            loadData();
+            loadDetails(listMark.get(0));
+        }
     }
 
     public void loadData() {

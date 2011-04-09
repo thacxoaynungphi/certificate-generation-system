@@ -64,6 +64,8 @@ public class frmMain extends javax.swing.JFrame {
         HelpBroker hb = hs.createHelpBroker();
         CSH.setHelpIDString(mnuIHelpContent, "top");
         mnuIHelpContent.addActionListener(new CSH.DisplayHelpFromSource(hb));
+        radioWindowsXP.setSelected(true);
+        radioExperienceBlue.setSelected(true);
     }
 
     public void initStatusBar() {

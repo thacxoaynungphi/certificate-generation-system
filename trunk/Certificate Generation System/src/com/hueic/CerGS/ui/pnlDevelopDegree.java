@@ -12,13 +12,19 @@ package com.hueic.CerGS.ui;
 
 import com.hueic.CerGS.component.ColumnData;
 import com.hueic.CerGS.component.ObjectTableModel;
+import com.hueic.CerGS.dao.CertificateDAO;
 import com.hueic.CerGS.dao.CourseDAO;
 import com.hueic.CerGS.dao.MarkDAO;
+import com.hueic.CerGS.dao.PermissionDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
+import com.hueic.CerGS.entity.Certificate;
 import com.hueic.CerGS.entity.Course;
 import com.hueic.CerGS.entity.Mark;
 import com.hueic.CerGS.entity.Register;
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
@@ -396,14 +402,28 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
         if (!this.cbxStudentID.getSelectedItem().toString().equals("----All----")) {
-            frm.pnlReport.removeAll();
-            dlgChooseReport report = new dlgChooseReport(frm, this);
-            report.getCertificateReport(this.cbxStudentID.getSelectedItem().toString());
-            report.setVisible(true);
-            report.setSize(860, 600);
-            if (report.status == true) {
-                frm.pnlReport.add(report);
-                frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+            try {
+                if (new PermissionDAO().readByID(frm.accCur.getPermission()).getName().equals("Admin")) {
+                    Certificate cer = new Certificate();
+                    cer.setStudentID(cbxStudentID.getSelectedItem().toString());
+                    cer.setDegreeDay(new Date(System.currentTimeMillis()));
+                    cer.setMark(new MarkDAO().avgMark(cbxStudentID.getSelectedItem().toString()));
+                    CertificateDAO certificateDAO = new CertificateDAO();
+                    if (!certificateDAO.create(cer)) {
+                    }
+                }
+                frm.pnlReport.removeAll();
+                dlgChooseReport report = new dlgChooseReport(frm, this);
+                report.getCertificateReport(this.cbxStudentID.getSelectedItem().toString());
+                report.setVisible(true);
+                report.setSize(860, 600);
+                if (report.status == true) {
+                    frm.pnlReport.add(report);
+                    frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+                }
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Error! Check again, please.", "Error!", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(this, "You are choose student!", "Develop Degree", JOptionPane.INFORMATION_MESSAGE);
