@@ -102,6 +102,34 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
         return payList;
     }
 
+    public ArrayList<Payment> readByCourseId(String courseId) {
+        ArrayList<Payment> payList = new ArrayList<Payment>();
+        Payment pay = null;
+        try {
+            con = db.getConnection();
+            String sql = "select * from Payment where StudentId in (select StudentId from Register where CourseId = ?)";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, courseId);
+
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                pay = new Payment();
+
+                pay.setId(rs.getInt("Id"));
+                pay.setStudentId(rs.getString("StudentId"));
+                pay.setMoney(rs.getFloat("Money"));
+                pay.setPayday(rs.getDate("Payday"));
+
+                payList.add(pay);
+            }
+        } catch (SQLException ex) {
+            setLastError("SQL Error!");
+        } catch (Exception ex) {
+            setLastError("Data not valid");
+        }
+        return payList;
+    }
+
     public ArrayList<Payment> readByStudentIdOfPerson(String studentIDOfPerson, String courseId) {
         ArrayList<Payment> payList = new ArrayList<Payment>();
         Payment pay = null;

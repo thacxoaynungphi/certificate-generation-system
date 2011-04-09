@@ -335,14 +335,18 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
     private void cbxCourseIDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxCourseIDItemStateChanged
         // TODO add your handling code here:
         if (cbxCourseID.getItemCount() - 1 == listCourse.size()) {
-            String courid = cbxCourseID.getSelectedItem().toString();
-            if (courid != null && !courid.equals("----All----")) {
-                listRegister = registerDAO.readByCourseId(courid);
+            String courseid = cbxCourseID.getSelectedItem().toString();
+            if (courseid != null && !courseid.equals("----All----")) {
+                listRegister = registerDAO.readByCourseId(courseid);
+                listMark = markDAO.readBYCourseID(courseid);
+                loadData(listMark);
                 if (listRegister != null) {
                     loadCBXStudent();
                 }
             } else {
                 listRegister = registerDAO.readByAll();
+                listMark = markDAO.readByAll();
+                loadData(listMark);
                 if (listRegister != null) {
                     loadCBXStudent();
                 }
@@ -368,7 +372,12 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
                     lblGrade.setText("NA");
                 }
             } else {
-                listMark = markDAO.readByAll();
+                String courseId = cbxCourseID.getSelectedItem().toString();
+                if (courseId != null && !courseId.equals("----All----")) {
+                    listMark = markDAO.readBYCourseID(courseId);
+                } else {
+                    listMark = markDAO.readByAll();
+                }
                 loadData(listMark);
             }
         }
