@@ -28,7 +28,7 @@ public class AccountDAO extends BaseDAO implements IAccountDAO {
     public ArrayList<Account> readByAll() {
         ArrayList<Account> list = new ArrayList<Account>();
         con = db.getConnection();
-        String sql = "select * from Account";
+        String sql = "select * from Account order by username";
         try {
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();

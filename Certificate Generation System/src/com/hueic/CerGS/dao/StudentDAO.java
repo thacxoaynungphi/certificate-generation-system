@@ -21,7 +21,7 @@ public class StudentDAO extends BaseDAO implements IStudentDAO {
     public ArrayList<Student> readByAll() {
         ArrayList<Student> list = new ArrayList<Student>();
         con = db.getConnection();
-        String sql = "select s.Id,p.FirstName,p.LastName,p.BirthDay,p.Gender,p.Phone,p.Email,p.Address,p.Image,p.Status from Student s inner join Person p on s.Id = p.Id";
+        String sql = "select s.Id,p.FirstName,p.LastName,p.BirthDay,p.Gender,p.Phone,p.Email,p.Address,p.Image,p.Status from Student s inner join Person p on s.Id = p.Id order by (Student.Id) asc";
         try {
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -51,7 +51,7 @@ public class StudentDAO extends BaseDAO implements IStudentDAO {
         Student student = null;
         try {
             con = db.getConnection();
-            String sql = "select s.Id,p.FirstName,p.LastName,p.BirthDay,p.Gender,p.Phone,p.Email,p.Address,p.Image,p.Status from Student s inner join Person p on s.Id = p.Id  where s.Id = ?";
+            String sql = "select s.Id,p.FirstName,p.LastName,p.BirthDay,p.Gender,p.Phone,p.Email,p.Address,p.Image,p.Status from Student s inner join Person p on s.Id = p.Id  where s.Id = ? order by (s.Id) asc";
             pst = con.prepareStatement(sql);
             pst.setString(1, id);
             rs = pst.executeQuery();

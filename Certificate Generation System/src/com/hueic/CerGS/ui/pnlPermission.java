@@ -94,7 +94,7 @@ public class pnlPermission extends javax.swing.JPanel {
         if (per.getName().equals("Admin") || per.getName().equals("Employee") || per.getName().equals("Student")) {
             btnDelete.setEnabled(false);
             btnUpdate.setEnabled(false);
-        } else {
+        } else if(!isAdd){
             btnDelete.setEnabled(true);
             btnUpdate.setEnabled(true);
         }
@@ -644,6 +644,8 @@ public class pnlPermission extends javax.swing.JPanel {
                     Permission per = new Permission(id, name);
                     if (perDao.create(per)) {
                         per = perDao.readByName(name);
+                        per.setId(perDao.readByName(name).getId());
+                        
                         listPermssion.add(per);
                         loadData();
                         loadDetails(per);
