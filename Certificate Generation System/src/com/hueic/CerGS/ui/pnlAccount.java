@@ -758,6 +758,15 @@ public class pnlAccount extends javax.swing.JPanel {
                 Account acc = find(value);
                 if (acc != null) {
                     loadDetails(acc);
+                    PermissionDAO permissionDao = new PermissionDAO();
+                    String persion = permissionDao.readByID(acc.getPermission()).getName();
+                    if (persion.equals("Admin") || persion.equals("Employee") || persion.equals("Student")) {
+                        btnDelete.setEnabled(false);
+                        btnUpdate.setEnabled(false);
+                    } else {
+                        btnDelete.setEnabled(true);
+                        btnUpdate.setEnabled(true);
+                    }
                 }
             }
         } catch (Exception ex) {
