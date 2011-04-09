@@ -367,8 +367,8 @@ public class pnlViewPayment extends javax.swing.JPanel {
     private void cbxCourseIDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxCourseIDItemStateChanged
         // TODO add your handling code here:
         if (cbxCourseID.getItemCount() - 1 == listCourse.size()) {
-            String coursid = cbxCourseID.getSelectedItem().toString();
-            if (coursid.equals("-- All --")) {
+            String courseid = (String)cbxCourseID.getSelectedItem();
+            if (courseid.equals("-- All --")) {
                 if (isStudent == false) {
                     listRegister = registerDao.readByAll();
                     loadDataCBXStudent();
@@ -378,14 +378,14 @@ public class pnlViewPayment extends javax.swing.JPanel {
                 }
             } else {
                 if (isStudent == false) {
-                    listRegister = registerDao.readByCourseId(coursid);
+                    listRegister = registerDao.readByCourseId(courseid);
                     loadDataCBXStudent();
                 } else {
 
-                    listPayments = paymentDao.readByStudentIdOfPerson(frm.accCur.getUsername(), coursid);
-                    float money = paymentDao.getTotalDiposit(registerDao.readById(frm.accCur.getUsername(), coursid).getStudentCourseId());
+                    listPayments = paymentDao.readByStudentIdOfPerson(frm.accCur.getUsername(), courseid);
+                    float money = paymentDao.getTotalDiposit(registerDao.readById(frm.accCur.getUsername(), courseid).getStudentCourseId());
                     lblTotalTheDeposit.setText(String.valueOf(money));
-                    lblAmountRemaining.setText(String.valueOf(courseDao.readById(coursid).getTotalFees() - money));
+                    lblAmountRemaining.setText(String.valueOf(courseDao.readById(courseid).getTotalFees() - money));
                     loadData(listPayments);
                 }
             }
