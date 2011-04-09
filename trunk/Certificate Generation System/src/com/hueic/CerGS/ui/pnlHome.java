@@ -408,32 +408,44 @@ public class pnlHome extends javax.swing.JPanel {
 
     private void lblManagerEmployeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblManagerEmployeeMouseClicked
         // TODO add your handling code here:
-        main.tpnBusiness.setSelectedComponent(main.pnlEmployeeTab);
+        if (main.accCur != null) {
+            main.tpnBusiness.setSelectedComponent(main.pnlEmployeeTab);
+        }
     }//GEN-LAST:event_lblManagerEmployeeMouseClicked
 
     private void lblManagerStudentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblManagerStudentMouseClicked
         // TODO add your handling code here:
-        main.tpnBusiness.setSelectedComponent(main.pnlStudentTab);
+        if (main.accCur != null) {
+            main.tpnBusiness.setSelectedComponent(main.pnlStudentTab);
+        }
     }//GEN-LAST:event_lblManagerStudentMouseClicked
 
     private void lblManagerRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblManagerRegisterMouseClicked
         // TODO add your handling code here:
-        main.tpnBusiness.setSelectedComponent(main.pnlRegisterTab);
+        if (main.accCur != null) {
+            main.tpnBusiness.setSelectedComponent(main.pnlRegisterTab);
+        }
     }//GEN-LAST:event_lblManagerRegisterMouseClicked
 
     private void lblManagerMarkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblManagerMarkMouseClicked
         // TODO add your handling code here:
-        main.tpnBusiness.setSelectedComponent(main.pnlMarkTab);
+        if (main.accCur != null) {
+            main.tpnBusiness.setSelectedComponent(main.pnlMarkTab);
+        }
     }//GEN-LAST:event_lblManagerMarkMouseClicked
 
     private void lblManagerCertificateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblManagerCertificateMouseClicked
         // TODO add your handling code here:
-        main.tpnBusiness.setSelectedComponent(main.pnlCertificateTab);
+        if (main.accCur != null) {
+            main.tpnBusiness.setSelectedComponent(main.pnlCertificateTab);
+        }
     }//GEN-LAST:event_lblManagerCertificateMouseClicked
 
     private void lblManagerPaymentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblManagerPaymentMouseClicked
         // TODO add your handling code here:
-        main.tpnBusiness.setSelectedComponent(main.pnlPaymentTab);
+        if (main.accCur != null) {
+            main.tpnBusiness.setSelectedComponent(main.pnlPaymentTab);
+        }
     }//GEN-LAST:event_lblManagerPaymentMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel detail_Campaign_Description1;

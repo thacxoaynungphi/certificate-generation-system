@@ -195,12 +195,16 @@ public class pnlHomeStudent extends javax.swing.JPanel {
 
     private void lblViewMarkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblViewMarkMouseClicked
         // TODO add your handling code here:
-        main.tpnBusiness.setSelectedComponent(main.pnlViewMarkTab);
+        if (main.accCur != null) {
+            main.tpnBusiness.setSelectedComponent(main.pnlViewMarkTab);
+        }
     }//GEN-LAST:event_lblViewMarkMouseClicked
 
     private void lblViewPaymentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblViewPaymentMouseClicked
         // TODO add your handling code here:
-        main.tpnBusiness.setSelectedComponent(main.pnlViewPaymentTab);
+        if (main.accCur != null) {
+            main.tpnBusiness.setSelectedComponent(main.pnlViewPaymentTab);
+        }
     }//GEN-LAST:event_lblViewPaymentMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel detail_Campaign_Description2;
