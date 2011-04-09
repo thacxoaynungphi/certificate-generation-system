@@ -532,6 +532,13 @@ public class pnlPermission extends javax.swing.JPanel {
                 Permission per = find(value);
                 if (per != null) {
                     loadDetails(per);
+                    if (per.getName().equals("Admin") || per.getName().equals("Employee") || per.getName().equals("Student")) {
+                        btnDelete.setEnabled(false);
+                        btnUpdate.setEnabled(false);
+                    } else {
+                        btnDelete.setEnabled(true);
+                        btnUpdate.setEnabled(true);
+                    }
                 }
             }
         } catch (Exception ex) {
