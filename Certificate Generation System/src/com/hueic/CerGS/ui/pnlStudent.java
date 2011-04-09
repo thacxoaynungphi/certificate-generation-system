@@ -51,23 +51,24 @@ public class pnlStudent extends javax.swing.JPanel {
     /** Creates new form pnlStudent */
     public pnlStudent() {
         initComponents();
-        txtIDEdit.setEnabled(false);
-        isAdd = false;
+        getData();
+
+    }
+
+    public void getData() {
         liststudent = studentDao.readByAll();
-        System.out.println("Size : " + liststudent.size());
-        btnCancelEdit.setVisible(false);
         loadData(liststudent);
+        isAdd = false;
+        txtIDEdit.setEnabled(false);
+        btnUpdateEdit.setEnabled(true);
+        btnDeleteEdit.setEnabled(true);
+        btnCancelEdit.setVisible(false);
     }
 
     public pnlStudent(frmMain frm) {
         initComponents();
         this.frm = frm;
-        txtIDEdit.setEnabled(false);
-        isAdd = false;
-        liststudent = studentDao.readByAll();
-        System.out.println("Size : " + liststudent.size());
-        btnCancelEdit.setVisible(false);
-        loadData(liststudent);
+        getData();
     }
 
     public void loadData(ArrayList<Student> liststudent) {
@@ -1072,6 +1073,12 @@ public class pnlStudent extends javax.swing.JPanel {
             Student student = find(value);
             if (student != null) {
                 loadDetails(student);
+            }
+            if (isAdd) {
+                isAdd = false;
+                btnUpdateEdit.setEnabled(true);
+                btnDeleteEdit.setEnabled(true);
+                btnCancelEdit.setVisible(false);
             }
         }
     }//GEN-LAST:event_tableContentMouseReleased

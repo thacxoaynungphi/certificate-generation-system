@@ -43,10 +43,18 @@ public class pnlCourse extends javax.swing.JPanel {
         isAdd = false;
         btnCancel.setVisible(false);
         courseDao = new CourseDAO();
+        getData();
+    }
+
+    public void getData() {
         listCourses = courseDao.readByAll();
         loadData();
         if (!listCourses.isEmpty()) {
             loadDetails(listCourses.get(0));
+            isAdd = false;
+            btnUpdate.setEnabled(true);
+            btnDelete.setEnabled(true);
+            btnCancel.setVisible(false);
         }
     }
 
@@ -55,11 +63,7 @@ public class pnlCourse extends javax.swing.JPanel {
         isAdd = false;
         btnCancel.setVisible(false);
         courseDao = new CourseDAO();
-        listCourses = courseDao.readByAll();
-        loadData();
-        if (!listCourses.isEmpty()) {
-            loadDetails(listCourses.get(0));
-        }
+        getData();
     }
 
     public void loadData() {
@@ -711,8 +715,12 @@ public class pnlCourse extends javax.swing.JPanel {
         int index = tableContent.getSelectedRow();
         if (index != -1) {
             loadDetails(filter.get(index));
-
-
+            if (isAdd) {
+                isAdd = false;
+                btnUpdate.setEnabled(true);
+                btnDelete.setEnabled(true);
+                btnCancel.setVisible(false);
+            }
         }
     }//GEN-LAST:event_tableContentMouseReleased
     // Variables declaration - do not modify//GEN-BEGIN:variables

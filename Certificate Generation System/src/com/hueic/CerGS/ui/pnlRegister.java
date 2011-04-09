@@ -40,7 +40,6 @@ public class pnlRegister extends javax.swing.JPanel {
     private CourseDAO courseDAO;
     private RegisterDAO regisDAO;
     private StudentDAO studentDAO;
-    private SubjectDAO subjectDAO;
     private boolean isAdd = false;
     String studentIdtemp = null;
     private ObjectTableModel tableModel;
@@ -55,19 +54,24 @@ public class pnlRegister extends javax.swing.JPanel {
         regisDAO = new RegisterDAO();
         courseDAO = new CourseDAO();
         studentDAO = new StudentDAO();
-        subjectDAO = new SubjectDAO();
         getData();
-        if (!listRegister.isEmpty()) {
-            loadData();
-            loadDetails(listRegister.get(0));
-        }
-        btnCancelEdit.setVisible(false);
+
+
     }
 
     public void getData() {
         listRegister = regisDAO.readByAll();
         studentList = studentDAO.readByAll();
         courseIdList = courseDAO.readByAll();
+        if (!listRegister.isEmpty()) {
+            loadData();
+            loadDetails(listRegister.get(0));
+        }
+        isAdd = false;
+        btnCancelEdit.setVisible(false);
+        btnUpdate.setEnabled(true);
+        btnDelete.setEnabled(true);
+        btnCancelEdit.setVisible(false);
     }
 
     public pnlRegister(frmMain frm) {
@@ -76,13 +80,7 @@ public class pnlRegister extends javax.swing.JPanel {
         regisDAO = new RegisterDAO();
         courseDAO = new CourseDAO();
         studentDAO = new StudentDAO();
-        subjectDAO = new SubjectDAO();
         getData();
-        if (listRegister.size() != 0) {
-            loadData();
-            loadDetails(listRegister.get(0));
-        }
-        btnCancelEdit.setVisible(false);
     }
 
     public void loadData() {
@@ -907,6 +905,12 @@ public class pnlRegister extends javax.swing.JPanel {
                 int listIndex = findByStudentId(studentId);
                 if (listIndex != -1) {
                     loadDetails(listRegister.get(listIndex));
+                }
+                if (isAdd) {
+                    isAdd = false;
+                    btnUpdate.setEnabled(true);
+                    btnDelete.setEnabled(true);
+                    btnCancelEdit.setVisible(false);
                 }
             }
         }

@@ -42,7 +42,6 @@ public class pnlPayment extends javax.swing.JPanel {
     RegisterDAO registerDAO;
     StudentDAO studentDAO;
     CourseDAO courseDao;
-    private boolean isUpdate = false;
     private boolean isAdd = false;
     private ObjectTableModel tableModel;
     private JTable headerTable;
@@ -57,16 +56,21 @@ public class pnlPayment extends javax.swing.JPanel {
         btnCancel.setVisible(false);
         paymentDao = new PaymentDAO();
         getData();
-        if (!listPayments.isEmpty()) {
-            loadData();
-            loadDetails(listPayments.get(0));
-        }
+        
     }
 
     public void getData() {
         listPayments = paymentDao.readByAll();
         listCourse = courseDao.readByAll();
         listRegister = registerDAO.readByAll();
+        if (!listPayments.isEmpty()) {
+            loadData();
+            loadDetails(listPayments.get(0));
+        }
+        isAdd = false;
+        btnUpdate.setEnabled(true);
+        btnDelete.setEnabled(true);
+        btnCancel.setVisible(false);
     }
 
     public pnlPayment(frmMain frm) {
@@ -75,13 +79,7 @@ public class pnlPayment extends javax.swing.JPanel {
         registerDAO = new RegisterDAO();
         studentDAO = new StudentDAO();
         courseDao = new CourseDAO();
-        btnCancel.setVisible(false);
         paymentDao = new PaymentDAO();
-        getData();
-        if (!listPayments.isEmpty()) {
-            loadData();
-            loadDetails(listPayments.get(0));
-        }
     }
 
     public void loadData() {
@@ -829,6 +827,12 @@ public class pnlPayment extends javax.swing.JPanel {
             int currentId = Integer.parseInt(String.valueOf(tableContent.getValueAt(index, 0)));
             Payment payment = getPaymentById(currentId);
             loadDetails(payment);
+            if (isAdd) {
+                isAdd = false;
+                btnUpdate.setEnabled(true);
+                btnDelete.setEnabled(true);
+                btnCancel.setVisible(false);
+            }
         }
     }//GEN-LAST:event_tableContentMouseReleased
 

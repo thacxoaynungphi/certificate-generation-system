@@ -14,8 +14,6 @@ import com.hueic.CerGS.component.ConfigureDB;
 import com.hueic.CerGS.entity.Configure;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -36,7 +34,6 @@ public class dlgConfigurationDB extends javax.swing.JDialog {
         config = configureDB.getInfo();
         if (config != null) {
             loadData(config);
-
         }
     }
 

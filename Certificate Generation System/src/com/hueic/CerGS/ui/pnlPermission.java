@@ -39,12 +39,19 @@ public class pnlPermission extends javax.swing.JPanel {
     public pnlPermission() {
         initComponents();
         perDao = new PermissionDAO();
+        getData();
+    }
+
+    public void getData() {
         listPermssion = perDao.readByAll();
-        btnCancel.setVisible(false);
         loadData();
         if (!listPermssion.isEmpty()) {
             loadDetails(listPermssion.get(0));
         }
+        isAdd = false;
+        btnDelete.setEnabled(true);
+        btnUpdate.setEnabled(true);
+        btnCancel.setVisible(false);
     }
 
     public void loadData() {
@@ -94,7 +101,7 @@ public class pnlPermission extends javax.swing.JPanel {
         if (per.getName().equals("Admin") || per.getName().equals("Employee") || per.getName().equals("Student")) {
             btnDelete.setEnabled(false);
             btnUpdate.setEnabled(false);
-        } else if(!isAdd){
+        } else if (!isAdd) {
             btnDelete.setEnabled(true);
             btnUpdate.setEnabled(true);
         }
@@ -538,7 +545,12 @@ public class pnlPermission extends javax.swing.JPanel {
                 Permission per = find(value);
                 if (per != null) {
                     loadDetails(per);
-
+                }
+                if (isAdd) {
+                    isAdd = false;
+                    btnUpdate.setEnabled(true);
+                    btnDelete.setEnabled(true);
+                    btnCancel.setVisible(false);
                 }
             }
         } catch (Exception ex) {
@@ -645,7 +657,7 @@ public class pnlPermission extends javax.swing.JPanel {
                     if (perDao.create(per)) {
                         per = perDao.readByName(name);
                         per.setId(perDao.readByName(name).getId());
-                        
+
                         listPermssion.add(per);
                         loadData();
                         loadDetails(per);

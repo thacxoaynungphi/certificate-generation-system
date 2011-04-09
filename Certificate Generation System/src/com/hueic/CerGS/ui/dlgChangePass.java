@@ -12,8 +12,6 @@ package com.hueic.CerGS.ui;
 
 import com.hueic.CerGS.dao.AccountDAO;
 import com.hueic.CerGS.entity.Account;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**

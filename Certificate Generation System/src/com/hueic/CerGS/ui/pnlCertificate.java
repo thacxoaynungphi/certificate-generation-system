@@ -52,7 +52,9 @@ public class pnlCertificate extends javax.swing.JPanel {
         getData();
         if (listCertificate.size() != 0) {
             loadData();
-            loadDetails(listCertificate.get(0));
+            if (!isAdd) {
+                loadDetails(listCertificate.get(0));
+            }
         }
     }
 
@@ -71,6 +73,10 @@ public class pnlCertificate extends javax.swing.JPanel {
         if (listCertificate.size() != 0) {
             loadData();
             loadDetails(listCertificate.get(0));
+            isAdd = false;
+            btnUpdate.setEnabled(true);
+            btnDelete.setEnabled(true);
+            btnCancel.setVisible(false);
         }
     }
 
@@ -808,6 +814,13 @@ public class pnlCertificate extends javax.swing.JPanel {
                 if (cer != null) {
                     loadDetails(cer);
                 }
+                if (isAdd) {
+                    isAdd = false;
+                    btnUpdate.setEnabled(true);
+                    btnDelete.setEnabled(true);
+                    btnCancel.setVisible(false);
+                }
+
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.toString(), "Error!", JOptionPane.ERROR_MESSAGE);
