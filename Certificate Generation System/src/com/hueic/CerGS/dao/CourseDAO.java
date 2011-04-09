@@ -99,7 +99,7 @@ public class CourseDAO extends BaseDAO implements ICourseDAO {
     public Course readByName(String name) {
         Course course = null;
         con = db.getConnection();
-        String sqlcommand = "select * from Course where name like ?";
+        String sqlcommand = "select * from Course where name = ?";
         try {
             pst = con.prepareStatement(sqlcommand);
             pst.setString(1, name);

@@ -46,29 +46,15 @@ public class pnlViewPayment extends javax.swing.JPanel {
     frmMain frm;
     private ArrayList<Payment> filter;
 
-    public pnlViewPayment() {
-        initComponents();
-        paymentDao = new PaymentDAO();
-        courseDao = new CourseDAO();
-        registerDao = new RegisterDAO();
-        getData();
-    }
+//    public pnlViewPayment() {
+//        initComponents();
+//        paymentDao = new PaymentDAO();
+//        courseDao = new CourseDAO();
+//        registerDao = new RegisterDAO();
+//        getData();
+//    }
 
     public void getData() {
-        listPayments = paymentDao.readByAll();
-        listCourse = courseDao.readByAll();
-        listRegister = registerDao.readByAll();
-        loadData(listPayments);
-        loadDataCBXCourse();
-        loadDataCBXStudent();
-    }
-
-    public pnlViewPayment(frmMain frm) {
-        initComponents();
-        this.frm = frm;
-        paymentDao = new PaymentDAO();
-        courseDao = new CourseDAO();
-        registerDao = new RegisterDAO();
         PermissionDAO perDao = new PermissionDAO();
         if (perDao.readByID(frm.accCur.getPermission()).getName().equals("Student")) {
             listPayments = paymentDao.readByStudentIdOfPerson(frm.accCur.getUsername(), "");
@@ -79,8 +65,22 @@ public class pnlViewPayment extends javax.swing.JPanel {
             cbxStudentID.setVisible(false);
             lblStudentID.setVisible(false);
         } else {
-            getData();
+            listPayments = paymentDao.readByAll();
+            listCourse = courseDao.readByAll();
+            listRegister = registerDao.readByAll();
+            loadData(listPayments);
+            loadDataCBXCourse();
+            loadDataCBXStudent();
         }
+    }
+
+    public pnlViewPayment(frmMain frm) {
+        initComponents();
+        this.frm = frm;
+        paymentDao = new PaymentDAO();
+        courseDao = new CourseDAO();
+        registerDao = new RegisterDAO();
+        getData();
     }
 
     public void loadFiter(String text, ArrayList<Payment> listPayments) {
@@ -367,7 +367,7 @@ public class pnlViewPayment extends javax.swing.JPanel {
     private void cbxCourseIDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxCourseIDItemStateChanged
         // TODO add your handling code here:
         if (cbxCourseID.getItemCount() - 1 == listCourse.size()) {
-            String courseid = (String)cbxCourseID.getSelectedItem();
+            String courseid = (String) cbxCourseID.getSelectedItem();
             if (courseid.equals("-- All --")) {
                 if (isStudent == false) {
                     listRegister = registerDao.readByAll();
@@ -381,7 +381,6 @@ public class pnlViewPayment extends javax.swing.JPanel {
                     listRegister = registerDao.readByCourseId(courseid);
                     loadDataCBXStudent();
                 } else {
-
                     listPayments = paymentDao.readByStudentIdOfPerson(frm.accCur.getUsername(), courseid);
                     float money = paymentDao.getTotalDiposit(registerDao.readById(frm.accCur.getUsername(), courseid).getStudentCourseId());
                     lblTotalTheDeposit.setText(String.valueOf(money));
