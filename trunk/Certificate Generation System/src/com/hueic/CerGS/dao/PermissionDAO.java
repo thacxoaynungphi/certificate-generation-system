@@ -24,7 +24,7 @@ public class PermissionDAO extends BaseDAO implements IPermissionDAO {
     public ArrayList<Permission> readByAll() {
         ArrayList<Permission> list = new ArrayList<Permission>();
         con = db.getConnection();
-        String sql = "select * from Permission";
+        String sql = "select * from Permission order by Id asc";
         try {
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -48,7 +48,7 @@ public class PermissionDAO extends BaseDAO implements IPermissionDAO {
         Permission per = null;
         try {
             con = db.getConnection();
-            String sql = "select * from Permission where Id = ?";
+            String sql = "select * from Permission where Id = ? order by Id asc";
             pst = con.prepareStatement(sql);
             pst.setInt(1, id);
             rs = pst.executeQuery();
@@ -71,7 +71,7 @@ public class PermissionDAO extends BaseDAO implements IPermissionDAO {
         Permission per = null;
         try {
             con = db.getConnection();
-            String sql = "select * from Permission where Name = ?";
+            String sql = "select * from Permission where Name = ? order by Id asc";
             pst = con.prepareStatement(sql);
             pst.setString(1, name);
             rs = pst.executeQuery();
