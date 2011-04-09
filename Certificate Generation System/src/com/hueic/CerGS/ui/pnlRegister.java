@@ -41,7 +41,6 @@ public class pnlRegister extends javax.swing.JPanel {
     private RegisterDAO regisDAO;
     private StudentDAO studentDAO;
     private SubjectDAO subjectDAO;
-    private boolean isUpdate = false;
     private boolean isAdd = false;
     String studentIdtemp = null;
     private ObjectTableModel tableModel;
@@ -755,13 +754,11 @@ public class pnlRegister extends javax.swing.JPanel {
                         && txtCourseID.getText().length() != 0
                         && txtStudentCourseId.getText().length() != 0
                         && dateChRegistrationDate.getDate() != null) {
-
                     String Id = txtStudentCourseId.getText();
                     String studentId = txtStudentId.getText();
                     int feesStructe = cbxFeeStructe.getSelectedIndex();
                     Date regDate = new java.sql.Date(dateChRegistrationDate.getDate().getTime());
                     String courseId = txtCourseID.getText();
-
                     Register register = new Register(Id, studentId, courseId, feesStructe, (java.sql.Date) regDate);
 
                 int index = findByStudentandCourseId(studentId, courseId);
@@ -770,7 +767,6 @@ public class pnlRegister extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Student " + studentId + " has been register Course + " + courseId, "Register Add", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-
                 if (regisDAO.create(register)) {
                     JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Create Register", JOptionPane.INFORMATION_MESSAGE);
                     listRegister.add(register);
