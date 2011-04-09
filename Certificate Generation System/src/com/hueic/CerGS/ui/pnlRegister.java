@@ -768,7 +768,7 @@ public class pnlRegister extends javax.swing.JPanel {
                     int index = findByStudentandCourseId(studentId, courseId);
 
                     if (index != -1) {
-                        JOptionPane.showMessageDialog(this, "Student " + studentId + " has been register Course + " + courseId, "Register Add", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "Student " + studentId + " has been register Course " + courseId, "Register Add", JOptionPane.ERROR_MESSAGE);
                         return;
                     }
                     if (regisDAO.create(register)) {
