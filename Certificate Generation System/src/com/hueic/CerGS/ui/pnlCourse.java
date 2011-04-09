@@ -707,8 +707,6 @@ public class pnlCourse extends javax.swing.JPanel {
     private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
         // TODO add your handling code here:
         int index = tableContent.getSelectedRow();
-
-
         if (index != -1) {
             loadDetails(filter.get(index));
 

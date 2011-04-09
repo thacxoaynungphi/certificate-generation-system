@@ -661,6 +661,7 @@ public class pnlCertificate extends javax.swing.JPanel {
                         }
                         if (certificateDao.create(certificate)) {
                             JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Add", JOptionPane.INFORMATION_MESSAGE);
+                            certificate.setId(certificateDao.readIdentity("Certificate"));
                             listCertificate.add(certificate);
                             loadData();
                             isAdd = false;
