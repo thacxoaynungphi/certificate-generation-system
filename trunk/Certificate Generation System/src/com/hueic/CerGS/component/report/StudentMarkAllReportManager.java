@@ -62,7 +62,7 @@ public class StudentMarkAllReportManager extends ReportManager {
 
             row.put("ID", mark.getId());
             row.put("STUDENTID", mark.getStudentId());
-            row.put("STUDENTNAME", studentDAO.readByID(reg.getStudentId()).getFullName());
+            row.put("STUDENTNAME", studentDAO.readByID(reg.getPersonId()).getFullName());
             row.put("COURSE", courseDAO.readById(sub.getCourseID()).getName());
             row.put("SUBJECT", sub.getName());
             row.put("MARK", mark.getMark());

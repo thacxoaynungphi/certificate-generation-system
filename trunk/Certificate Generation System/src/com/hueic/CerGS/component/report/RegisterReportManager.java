@@ -48,8 +48,8 @@ public class RegisterReportManager extends ReportManager {
         for (Register regis : listRegis) {
             row = new HashMap();
 
-            row.put("STUDENTID", regis.getStudentCourseId());
-            row.put("STUDENTNAME", studentDAO.readByID(regis.getStudentId()).getFullName());
+            row.put("STUDENTID", regis.getStudentId());
+            row.put("STUDENTNAME", studentDAO.readByID(regis.getPersonId()).getFullName());
             row.put("COURSENAME", courseDAO.readById(regis.getCourseId()).getName());
             row.put("REGISDATE", DateFormat.getInstance().format(regis.getRegisDate()));
             if (regis.getFeesStructe() == 0) {

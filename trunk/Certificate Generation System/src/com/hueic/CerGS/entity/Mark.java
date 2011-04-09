@@ -100,7 +100,7 @@ public class Mark implements PropertyIndex {
      */
     public void setMark(float mark) throws Exception {
         if (mark < 0 || mark > 100) {
-            throw new Exception("Mark invalidation");
+            throw new Exception("Mark must be between 0 to 100");
         } else {
             this.mark = mark;
         }

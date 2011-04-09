@@ -90,8 +90,8 @@ public class pnlRegister extends javax.swing.JPanel {
         filter = new ArrayList<Register>();
         for (Register sub : listRegister) {
             String feesStructe = sub.getFeesStructe() == 0 ? "Full Payment" : "Installment Payment";
-            if (sub.getStudentCourseId().toLowerCase().matches(".*" + txtIdSearch.getText().trim().toLowerCase() + ".*")
-                    && sub.getStudentId().toLowerCase().matches(".*" + txtStudentIdSearch.getText().trim().toLowerCase() + ".*")
+            if (sub.getStudentId().toLowerCase().matches(".*" + txtIdSearch.getText().trim().toLowerCase() + ".*")
+                    && sub.getPersonId().toLowerCase().matches(".*" + txtStudentIdSearch.getText().trim().toLowerCase() + ".*")
                     && sub.getCourseId().toLowerCase().matches(".*" + txtCourseIDSearch.getText().trim().toLowerCase() + ".*")
                     && feesStructe.toLowerCase().matches(".*" + txtFeesStructeSearch.getText().trim().toLowerCase() + ".*")) {
                 filter.add(sub);
@@ -107,8 +107,8 @@ public class pnlRegister extends javax.swing.JPanel {
         filter = new ArrayList<Register>();
         for (Register sub : listRegister) {
             String feesStructe = sub.getFeesStructe() == 0 ? "Full Payment" : "Installment Payment";
-            if (sub.getStudentCourseId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
-                    || sub.getStudentId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+            if (sub.getStudentId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                    || sub.getPersonId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
                     || sub.getCourseId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
                     || feesStructe.toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
                 filter.add(sub);
@@ -149,16 +149,16 @@ public class pnlRegister extends javax.swing.JPanel {
     }
 
     public void loadDetails(Register register) {
-        txtStudentCourseId.setText(register.getStudentCourseId());
+        txtStudentCourseId.setText(register.getStudentId());
         cbxFeeStructe.setSelectedIndex(register.getFeesStructe());
         dateChRegistrationDate.setDate(register.getRegisDate());
         txtCourseID.setText(register.getCourseId());
-        txtStudentId.setText(register.getStudentId());
+        txtStudentId.setText(register.getPersonId());
     }
 
     public int findByStudentId(String studentId) {
         for (int i = 0; i < listRegister.size(); i++) {
-            if (listRegister.get(i).getStudentCourseId().compareTo(studentId) == 0) {
+            if (listRegister.get(i).getStudentId().compareTo(studentId) == 0) {
                 return i;
             }
         }
@@ -167,7 +167,7 @@ public class pnlRegister extends javax.swing.JPanel {
 
     public int findByStudentandCourseId(String studentId, String courseId) {
         for (int i = 0; i < listRegister.size(); i++) {
-            if (listRegister.get(i).getStudentId().compareTo(studentId) == 0 
+            if (listRegister.get(i).getPersonId().compareTo(studentId) == 0
                     && listRegister.get(i).getCourseId().compareTo(courseId) == 0) {
                 return i;
             }
@@ -805,12 +805,12 @@ public class pnlRegister extends javax.swing.JPanel {
                     && txtStudentCourseId.getText().length() != 0
                     && dateChRegistrationDate.getDate() != null) {
                 Register register = new Register();
-                register.setStudentId(txtStudentId.getText());
+                register.setPersonId(txtStudentId.getText());
                 register.setCourseId(txtCourseID.getText());
-                register.setStudentCourseId(txtStudentCourseId.getText());
+                register.setStudentId(txtStudentCourseId.getText());
                 register.setFeesStructe(cbxFeeStructe.getSelectedIndex());
                 register.setRegisDate(new java.sql.Date(dateChRegistrationDate.getDate().getTime()));
-                int index = findByStudentId(register.getStudentCourseId());
+                int index = findByStudentId(register.getStudentId());
                 if (regisDAO.update(register)) {
                     JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Update Subject", JOptionPane.INFORMATION_MESSAGE);
                     listRegister.remove(index);

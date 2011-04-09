@@ -155,7 +155,7 @@ public class pnlViewPayment extends javax.swing.JPanel {
         cbxStudentID.setSelectedIndex(0);
         if (listRegister != null) {
             for (int i = 0; i < listRegister.size(); i++) {
-                cbxStudentID.addItem(listRegister.get(i).getStudentCourseId());
+                cbxStudentID.addItem(listRegister.get(i).getStudentId());
             }
         }
     }
@@ -382,7 +382,7 @@ public class pnlViewPayment extends javax.swing.JPanel {
                     loadDataCBXStudent();
                 } else {
                     listPayments = paymentDao.readByStudentIdOfPerson(frm.accCur.getUsername(), courseid);
-                    float money = paymentDao.getTotalDiposit(registerDao.readById(frm.accCur.getUsername(), courseid).getStudentCourseId());
+                    float money = paymentDao.getTotalDiposit(registerDao.readById(frm.accCur.getUsername(), courseid).getStudentId());
                     lblTotalTheDeposit.setText(String.valueOf(money));
                     lblAmountRemaining.setText(String.valueOf(courseDao.readById(courseid).getTotalFees() - money));
                     loadData(listPayments);
@@ -417,7 +417,7 @@ public class pnlViewPayment extends javax.swing.JPanel {
             if (!cbxCourseID.getSelectedItem().toString().equals("-- All --")) {
                 frm.pnlReport.removeAll();
                 dlgChooseReport report = new dlgChooseReport(frm, frm.pnlViewPaymentTab);
-                report.getStudentFeeReport(registerDao.readById(this.frm.accCur.getUsername(), cbxCourseID.getSelectedItem().toString()).getStudentCourseId());
+                report.getStudentFeeReport(registerDao.readById(this.frm.accCur.getUsername(), cbxCourseID.getSelectedItem().toString()).getStudentId());
                 report.setVisible(true);
                 report.setSize(860, 600);
                 frm.pnlReport.add(report);

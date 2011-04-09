@@ -58,7 +58,7 @@ public class CertificateDevelopedReportManager extends ReportManager {
             row.put("CERNUMBER", cer.getId());
             Register reg = registerDAO.readByStudentCourseId(cer.getStudentID());
             row.put("STUDENTID", cer.getStudentID());
-            row.put("STUDENTNAME", studentDAO.readByID(reg.getStudentId()).getFullName());
+            row.put("STUDENTNAME", studentDAO.readByID(reg.getPersonId()).getFullName());
             row.put("COURSENAME", courseDAO.readById(reg.getCourseId()).getName());
             row.put("DEGREEDATE", DateFormat.getInstance().format(cer.getDegreeDay()));
             row.put("GRADE", markDao.getGrades(cer.getMark()));
