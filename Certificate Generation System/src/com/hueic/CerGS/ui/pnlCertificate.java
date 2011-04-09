@@ -64,14 +64,14 @@ public class pnlCertificate extends javax.swing.JPanel {
         btnCancel.setVisible(false);
         isAdd = false;
         getData();
-        if (listCertificate.size() != 0) {
-            loadData();
-            loadDetails(listCertificate.get(0));
-        }
     }
 
     public void getData() {
         listCertificate = certificateDao.readByAll();
+        if (listCertificate.size() != 0) {
+            loadData();
+            loadDetails(listCertificate.get(0));
+        }
     }
 
     public void loadData() {
