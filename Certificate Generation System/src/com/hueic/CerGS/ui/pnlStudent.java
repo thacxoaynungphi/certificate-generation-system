@@ -189,6 +189,7 @@ public class pnlStudent extends javax.swing.JPanel {
         dateChBirthdayEdit = new com.toedter.calendar.JDateChooser();
         lblPhone = new javax.swing.JLabel();
         txtPhoneEdit = new javax.swing.JTextField();
+        lblStart5 = new javax.swing.JLabel();
         pnlSearch = new javax.swing.JPanel();
         panelInfo = new javax.swing.JPanel();
         lblStudentId = new javax.swing.JLabel();
@@ -472,7 +473,8 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 5);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent1.add(lblStart1, gridBagConstraints);
 
         lblStart2.setForeground(new java.awt.Color(255, 0, 0));
@@ -487,7 +489,7 @@ public class pnlStudent extends javax.swing.JPanel {
         lblStart3.setText("(*)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent1.add(lblStart3, gridBagConstraints);
 
@@ -544,6 +546,14 @@ public class pnlStudent extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelContent1.add(txtPhoneEdit, gridBagConstraints);
+
+        lblStart5.setForeground(new java.awt.Color(255, 0, 0));
+        lblStart5.setText("(*)");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelContent1.add(lblStart5, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1229,6 +1239,7 @@ public class pnlStudent extends javax.swing.JPanel {
     private javax.swing.JLabel lblStart2;
     private javax.swing.JLabel lblStart3;
     private javax.swing.JLabel lblStart4;
+    private javax.swing.JLabel lblStart5;
     private javax.swing.JLabel lblStudentID;
     private javax.swing.JLabel lblStudentId;
     private javax.swing.JLabel lblTitle;
