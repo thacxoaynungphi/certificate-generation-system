@@ -168,20 +168,16 @@ public class pnlMark extends javax.swing.JPanel {
 
     public Mark getPaymentFromForm() throws Exception {
         Mark mark = new Mark();
-        try {
-            String id = txtMarkId.getText();
-            if (!id.isEmpty()) {
-                mark.setId(Integer.parseInt(id));
-            }
-            String ma = txtMark.getText();
-            if (!ma.isEmpty()) {
-                mark.setMark(Float.parseFloat(ma));
-            }
-            mark.setSubjectId(txtSubjectID.getText());
-            mark.setStudentId(txtStudentId.getText());
-        } catch (Exception ex) {
-            throw ex;
+        String id = txtMarkId.getText();
+        if (!id.isEmpty()) {
+            mark.setId(Integer.parseInt(id));
         }
+        String ma = txtMark.getText();
+        if (!ma.isEmpty()) {
+            mark.setMark(Float.parseFloat(ma));
+        }
+        mark.setSubjectId(txtSubjectID.getText());
+        mark.setStudentId(txtStudentId.getText());
         return mark;
     }
 
@@ -746,10 +742,15 @@ public class pnlMark extends javax.swing.JPanel {
             } else {
                 if (txtStudentId.getText().length() != 0 && txtSubjectID.getText().length() != 0
                         && txtMark.getText().length() != 0) {
+                    Mark mark = null;
+                    try {
+                        mark = getPaymentFromForm();
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(this, ex.getMessage(), "Mark Add", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
 
-                    Mark mark = getPaymentFromForm();
-
-                    if(findIndexOfMark(mark.getStudentId(), mark.getSubjectId()) != -1){
+                    if (findIndexOfMark(mark.getStudentId(), mark.getSubjectId()) != -1) {
                         JOptionPane.showMessageDialog(this, "Student " + mark.getStudentId() + " has Mark of " + mark.getSubjectId(), "Mark Add", JOptionPane.ERROR_MESSAGE);
                         return;
                     }
@@ -784,7 +785,13 @@ public class pnlMark extends javax.swing.JPanel {
                     && txtSubjectID.getText().length() != 0
                     && txtMark.getText().length() != 0
                     && txtMarkId.getText().length() != 0) {
-                Mark mark = getPaymentFromForm();
+                Mark mark = null;
+                try {
+                    mark = getPaymentFromForm();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, ex.getMessage(), "Mark Add", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 if (markDAO.update(mark)) {
                     JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Update", JOptionPane.INFORMATION_MESSAGE);
                     listMark = markDAO.readByAll();
@@ -797,7 +804,7 @@ public class pnlMark extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error System", "Mark Update", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error! Check again, Please", "Error!", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -817,7 +824,7 @@ public class pnlMark extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error System", "Error!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error! Check again, Please", "Error!", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnDeleteActionPerformed
 
