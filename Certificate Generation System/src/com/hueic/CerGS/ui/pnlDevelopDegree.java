@@ -52,15 +52,15 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
         registerDAO = new RegisterDAO();
         markDAO = new MarkDAO();
         getData();
-        loadData(listMark);
-        loadCBXCourse();
-        loadCBXStudent();
     }
 
     public void getData() {
         listCourse = courseDAO.readByAll();
         listRegister = registerDAO.readByAll();
         listMark = markDAO.readByAll();
+        loadData(listMark);
+        loadCBXCourse();
+        loadCBXStudent();
     }
 
     public void loadCBXCourse() {
@@ -340,14 +340,14 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
                 listRegister = registerDAO.readByCourseId(courseid);
                 listMark = markDAO.readBYCourseID(courseid);
                 loadData(listMark);
-                if (listRegister != null) {
+                if (listRegister.size() != 0) {
                     loadCBXStudent();
                 }
             } else {
                 listRegister = registerDAO.readByAll();
                 listMark = markDAO.readByAll();
                 loadData(listMark);
-                if (listRegister != null) {
+                if (listRegister.size() != 0) {
                     loadCBXStudent();
                 }
             }

@@ -13,7 +13,9 @@ package com.hueic.CerGS.ui;
 import com.hueic.CerGS.component.ColumnData;
 import com.hueic.CerGS.component.ObjectTableModel;
 import com.hueic.CerGS.dao.CertificateDAO;
+import com.hueic.CerGS.dao.CourseDAO;
 import com.hueic.CerGS.dao.MarkDAO;
+import com.hueic.CerGS.dao.PaymentDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.entity.Certificate;
 import java.util.ArrayList;
@@ -658,19 +660,25 @@ public class pnlCertificate extends javax.swing.JPanel {
                             JOptionPane.showMessageDialog(this, "you must be select a degree date of Cetificate", "Certificate Enter Error", JOptionPane.ERROR_MESSAGE);
                             return;
                         }
-                        if (certificateDao.create(certificate)) {
-                            JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Add", JOptionPane.INFORMATION_MESSAGE);
-                            certificate.setId(certificateDao.readIdentity("Certificate"));
-                            listCertificate.add(certificate);
-                            loadData();
-                            isAdd = false;
-                            btnCancel.setVisible(false);
-                            btnUpdate.setEnabled(true);
-                            btnDelete.setEnabled(true);
-                            txtStudentID.setEnabled(false);
-                            btnChooseStudentId.setEnabled(false);
+                        PaymentDAO payDao = new PaymentDAO();
+                        CourseDAO courseDao = new CourseDAO();
+                        if (payDao.getTotalDiposit(certificate.getStudentID()) == courseDao.readById(registerDAO.readByStudentCourseId(certificate.getStudentID()).getCourseId()).getTotalFees()) {
+                            if (certificateDao.create(certificate)) {
+                                JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Add", JOptionPane.INFORMATION_MESSAGE);
+                                certificate.setId(certificateDao.readIdentity("Certificate"));
+                                listCertificate.add(certificate);
+                                loadData();
+                                isAdd = false;
+                                btnCancel.setVisible(false);
+                                btnUpdate.setEnabled(true);
+                                btnDelete.setEnabled(true);
+                                txtStudentID.setRequestFocusEnabled(false);
+                                btnChooseStudentId.setVisible(false);
+                            } else {
+                                JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Error", JOptionPane.ERROR_MESSAGE);
+                            }
                         } else {
-                            JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(this, "Student have not fully paid", "Error!", JOptionPane.ERROR_MESSAGE);
                         }
                     } else {
                         JOptionPane.showMessageDialog(this, "This Student has been developed Certificate", "Certificate Error", JOptionPane.ERROR_MESSAGE);
