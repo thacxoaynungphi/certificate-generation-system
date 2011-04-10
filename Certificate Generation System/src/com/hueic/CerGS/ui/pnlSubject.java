@@ -52,7 +52,7 @@ public class pnlSubject extends javax.swing.JPanel {
         if (listSubject.size() != 0) {
             loadDetails(listSubject.get(0));
         }
-         isAdd = false;
+        isAdd = false;
         btnDelete.setEnabled(true);
         btnUpdate.setEnabled(true);
         btnCancel.setVisible(false);
@@ -704,7 +704,6 @@ public class pnlSubject extends javax.swing.JPanel {
     }//GEN-LAST:event_tableContentMouseReleased
 
     private void srcPanelSubjectMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_srcPanelSubjectMouseReleased
-
     }//GEN-LAST:event_srcPanelSubjectMouseReleased
 
     private void btnChooseCourIDSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseCourIDSearchActionPerformed
@@ -775,12 +774,12 @@ public class pnlSubject extends javax.swing.JPanel {
                 if (!listSubject.isEmpty()) {
                     loadDetails(listSubject.get(0));
                 }
-                JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Delete Subject", JOptionPane.INFORMATION_MESSAGE, null);
+                JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Subject Delete", JOptionPane.INFORMATION_MESSAGE, null);
             } else {
-                JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Delete Subject", JOptionPane.ERROR_MESSAGE, null);
+                JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Subject Delete", JOptionPane.ERROR_MESSAGE, null);
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Enter full information, please", "Subject Delete", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -795,18 +794,24 @@ public class pnlSubject extends javax.swing.JPanel {
                 String subjectName = txtName.getText();
                 int coefficient = Integer.parseInt(txtCoefficient.getText());
                 String courseId = txtCoureID.getText();
-                Subject subject = new Subject(subjectId, subjectName, coefficient, courseId);
+                Subject subject = null;
+                try {
+                    subject = new Subject(subjectId, subjectName, coefficient, courseId);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, ex.getMessage(), "Subject Update", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 if (subjectDao.update(subject)) {
-                    JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Update Subject", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Subject Update", JOptionPane.INFORMATION_MESSAGE);
                     listSubject.remove(findSubject(subjectId));
                     listSubject.add(subject);
                     loadData();
                     loadDetails(subject);
                 } else {
-                    JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Update Subject", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Subject Update", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Enter full information, please", "Subject Update", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
         }
@@ -841,9 +846,14 @@ public class pnlSubject extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, "Course Id must be enter", "Subject add", JOptionPane.ERROR_MESSAGE);
                         return;
                     }
-                    Subject subject = new Subject(subjectId, subjectName, coefficient, courseId);
+                    Subject subject = null;
+                    try{
+                    subject = new Subject(subjectId, subjectName, coefficient, courseId);
+                    }catch(Exception ex){
+                        JOptionPane.showMessageDialog(this, ex.getMessage(), "Subject Add", JOptionPane.ERROR_MESSAGE);
+                    }
                     if (subjectDao.create(subject)) {
-                        JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Create Subject", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Subject Add", JOptionPane.INFORMATION_MESSAGE);
                         listSubject.add(subject);
                         loadData();
                         loadDetails(subject);
@@ -853,14 +863,14 @@ public class pnlSubject extends javax.swing.JPanel {
                         btnDelete.setEnabled(true);
                         btnCancel.setVisible(false);
                     } else {
-                        JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Create Subject", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Subject Add", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Enter full information, please", "Subject Add", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.toString(), "Create Subject", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, e.toString(), "Subject Add", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnAddActionPerformed
 

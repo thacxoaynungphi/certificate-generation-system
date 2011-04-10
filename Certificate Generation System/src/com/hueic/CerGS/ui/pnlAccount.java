@@ -632,10 +632,16 @@ public class pnlAccount extends javax.swing.JPanel {
                     String password = String.valueOf(txtPassword.getPassword());
                     String confirmPass = String.valueOf(txtConfirmPassword.getPassword());
                     int permission = Integer.parseInt(txtType.getText());
-                    Account acc = new Account(username, password, permission);
+                    Account acc = null;
+                    try {
+                        acc = new Account(username, password, permission);
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(this, ex.getMessage(), "Account Create", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
                     if (password.equals(confirmPass) && password.length() != 0) {
                         if (accDao.create(acc)) {
-                            JOptionPane.showMessageDialog(this, accDao.getLastError(), "Create Account", JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(this, accDao.getLastError(), "Account Create", JOptionPane.INFORMATION_MESSAGE);
                             listAccounts.add(acc);
                             loadData();
                             loadDetails(acc);
@@ -647,17 +653,17 @@ public class pnlAccount extends javax.swing.JPanel {
                             cbxUsername.setVisible(false);
                             txtUsername.setVisible(true);
                         } else {
-                            JOptionPane.showMessageDialog(this, accDao.getLastError(), "Create Account", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(this, accDao.getLastError(), "Account Create", JOptionPane.ERROR_MESSAGE);
                         }
                     } else {
-                        JOptionPane.showMessageDialog(this, "Password not match", "Create Account", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "Password not match", "Account Create", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Enter full information, please", "Account Create", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, toString(), "Create Account", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, toString(), "Account Create", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnAddActionPerformed
 
@@ -673,23 +679,29 @@ public class pnlAccount extends javax.swing.JPanel {
                 String confirmPass = String.valueOf(txtConfirmPassword.getPassword());
                 int permission = Integer.parseInt(txtType.getText());
                 if (password.equals(confirmPass) && password.length() != 0) {
-                    Account acc = new Account(username, password, permission);
+                    Account acc = null;
+                    try {
+                        acc = new Account(username, password, permission);
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(this, ex.getMessage(), "Account Update", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
                     if (accDao.update(acc)) {
-                        JOptionPane.showMessageDialog(this, accDao.getLastError(), "Update Account", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(this, accDao.getLastError(), "Account Update", JOptionPane.INFORMATION_MESSAGE);
                         listAccounts.set(listAccounts.indexOf(find(acc.getUsername())), acc);
                         loadData();
                         loadDetails(acc);
                     } else {
-                        JOptionPane.showMessageDialog(this, accDao.getLastError(), "Update Account", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, accDao.getLastError(), "Account Update", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(this, "Password not match", "Create Account", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Password not match", "Account Update", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Enter full information, please", "Account Update", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.toString(), "Error!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, e.toString(), "Account Update", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -699,20 +711,20 @@ public class pnlAccount extends javax.swing.JPanel {
             String username = txtUsername.getText();
             if (username.length() != 0) {
                 if (accDao.delete(username)) {
-                    JOptionPane.showMessageDialog(this, accDao.getLastError(), "Delete Account", JOptionPane.INFORMATION_MESSAGE, null);
+                    JOptionPane.showMessageDialog(this, accDao.getLastError(), "Account Delete", JOptionPane.INFORMATION_MESSAGE, null);
                     listAccounts.remove(find(username));
                     loadData();
                     if (!listAccounts.isEmpty()) {
                         loadDetails(listAccounts.get(0));
                     }
                 } else {
-                    JOptionPane.showMessageDialog(this, accDao.getLastError(), "Delete Account", JOptionPane.ERROR_MESSAGE, null);
+                    JOptionPane.showMessageDialog(this, accDao.getLastError(), "Account Delete", JOptionPane.ERROR_MESSAGE, null);
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Enter full information, please", "Account Delete", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.toString(), "Error!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error! check again, please", "Account Delete", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnDeleteActionPerformed
 

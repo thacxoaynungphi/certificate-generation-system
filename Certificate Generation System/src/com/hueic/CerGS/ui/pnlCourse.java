@@ -127,6 +127,7 @@ public class pnlCourse extends javax.swing.JPanel {
         }
         return null;
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -609,12 +610,12 @@ public class pnlCourse extends javax.swing.JPanel {
                 if (!listCourses.isEmpty()) {
                     loadDetails(listCourses.get(0));
                 }
-                JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Delete Course", JOptionPane.INFORMATION_MESSAGE, null);
+                JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Course Delete", JOptionPane.INFORMATION_MESSAGE, null);
             } else {
-                JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Delete Course", JOptionPane.ERROR_MESSAGE, null);
+                JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Course Delete", JOptionPane.ERROR_MESSAGE, null);
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Enter full information, please", "Course Delete", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -633,21 +634,27 @@ public class pnlCourse extends javax.swing.JPanel {
                 } else {
                     status = 0;
                 }
-                Course course = new Course(id, name, totalFees, status);
+                Course course = null;
+                try {
+                    course = new Course(id, name, totalFees, status);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, ex.getMessage(), "Course Update", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 if (courseDao.update(course)) {
                     listCourses.remove(find(course.getId()));
                     listCourses.add(course);
                     loadData();
                     loadDetails(course);
-                    JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Update Course", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Course Update", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Update Course", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Course Update", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Enter full information, please", "Course Update", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error! Check again, please.", "Error!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error! Check again, please.", "Course Update", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -676,9 +683,15 @@ public class pnlCourse extends javax.swing.JPanel {
                     } else {
                         status = 0;
                     }
-                    Course course = new Course(id, name, totalFees, status);
+                    Course course = null;
+                    try {
+                        course = new Course(id, name, totalFees, status);
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(this, ex.getMessage(), "Course Add", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
                     if (courseDao.create(course)) {
-                        JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Create Course", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Course Add", JOptionPane.INFORMATION_MESSAGE);
                         listCourses.remove(find(course.getId()));
                         listCourses.add(course);
                         loadData();
@@ -689,14 +702,14 @@ public class pnlCourse extends javax.swing.JPanel {
                         btnDelete.setEnabled(true);
                         btnCancel.setVisible(false);
                     } else {
-                        JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Create Course", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Course Add", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Enter full information, please", "Course Add", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error System", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error System", "Course Add", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnAddActionPerformed
 

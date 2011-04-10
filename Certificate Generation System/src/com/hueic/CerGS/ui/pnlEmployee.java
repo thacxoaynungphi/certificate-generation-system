@@ -988,18 +988,23 @@ public class pnlEmployee extends javax.swing.JPanel {
                         && dateChBirthdayEdit.getDate() != null
                         && dateChBeginWorkEdit.getDate() != null) {
                     Employee emp = new Employee();
-                    emp.setId(txtID.getText());
-                    emp.setFirstName(txtFirstNameEdit.getText());
-                    emp.setLastName(txtLastNameEdit.getText());
-                    emp.setBirthDay(new java.sql.Date(dateChBirthdayEdit.getDate().getTime()));
-                    if (radioMaleEdit.isSelected()) {
-                        emp.setGender(0);
-                    } else if (radioFemaleEdit.isSelected()) {
-                        emp.setGender(1);
+                    try {
+                        emp.setId(txtID.getText());
+                        emp.setFirstName(txtFirstNameEdit.getText());
+                        emp.setLastName(txtLastNameEdit.getText());
+                        emp.setBirthDay(new java.sql.Date(dateChBirthdayEdit.getDate().getTime()));
+                        if (radioMaleEdit.isSelected()) {
+                            emp.setGender(0);
+                        } else if (radioFemaleEdit.isSelected()) {
+                            emp.setGender(1);
+                        }
+                        emp.setPhone(txtPhoneEdit.getText());
+                        emp.setEmail(txtEmailEdit.getText());
+                        emp.setAddress(txtAddressEdit.getText());
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(this, ex.getMessage(), "Enployee Add", JOptionPane.ERROR_MESSAGE);
+                        return;
                     }
-                    emp.setPhone(txtPhoneEdit.getText());
-                    emp.setEmail(txtEmailEdit.getText());
-                    emp.setAddress(txtAddressEdit.getText());
                     try {
                         if (!txtImageEdit.getText().isEmpty()) {
                             File file = new File(txtImageEdit.getText());
@@ -1030,7 +1035,7 @@ public class pnlEmployee extends javax.swing.JPanel {
                     btnDeleteEdit.setEnabled(true);
                     btnUpdateEdit.setEnabled(true);
                 } else {
-                    JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Enter full information, please", "Employee Add", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } catch (Exception ex) {
@@ -1047,19 +1052,24 @@ public class pnlEmployee extends javax.swing.JPanel {
                     && dateChBirthdayEdit.getDate() != null
                     && dateChBeginWorkEdit.getDate() != null) {
                 Employee emp = new Employee();
-                emp.setId(txtID.getText());
-                emp.setFirstName(txtFirstNameEdit.getText());
-                emp.setLastName(txtLastNameEdit.getText());
-                emp.setBirthDay(new java.sql.Date(dateChBirthdayEdit.getDate().getTime()));
-                emp.setBeginWork(new java.sql.Date(dateChBeginWorkEdit.getDate().getTime()));
-                if (radioMaleEdit.isSelected()) {
-                    emp.setGender(0);
-                } else if (radioFemaleEdit.isSelected()) {
-                    emp.setGender(1);
+                try {
+                    emp.setId(txtID.getText());
+                    emp.setFirstName(txtFirstNameEdit.getText());
+                    emp.setLastName(txtLastNameEdit.getText());
+                    emp.setBirthDay(new java.sql.Date(dateChBirthdayEdit.getDate().getTime()));
+                    emp.setBeginWork(new java.sql.Date(dateChBeginWorkEdit.getDate().getTime()));
+                    if (radioMaleEdit.isSelected()) {
+                        emp.setGender(0);
+                    } else if (radioFemaleEdit.isSelected()) {
+                        emp.setGender(1);
+                    }
+                    emp.setPhone(txtPhoneEdit.getText());
+                    emp.setEmail(txtEmailEdit.getText());
+                    emp.setAddress(txtAddressEdit.getText());
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, ex.getMessage(), "Employee Update", JOptionPane.ERROR_MESSAGE);
+                    return;
                 }
-                emp.setPhone(txtPhoneEdit.getText());
-                emp.setEmail(txtEmailEdit.getText());
-                emp.setAddress(txtAddressEdit.getText());
                 if (txtImageEdit.getText().length() != 0) {
                     File file = new File(txtImageEdit.getText());
                     if (file.exists()) {
@@ -1075,12 +1085,12 @@ public class pnlEmployee extends javax.swing.JPanel {
                 if (empDao.update(emp)) {
                     listEmp = empDao.readByAll();
                     loadData();
-                    JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Add", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Update", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Add", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Update", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Enter full information, please", "Employee Update", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.toString(), "Employee Update", JOptionPane.ERROR_MESSAGE);
@@ -1174,11 +1184,15 @@ public class pnlEmployee extends javax.swing.JPanel {
         if (txtID.getText().length() != 0) {
             String id = txtID.getText();
             if (empDao.delete(id)) {
+                JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Delete", JOptionPane.INFORMATION_MESSAGE);
                 listEmp = empDao.readByAll();
                 loadData();
+            }else {
+                JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Delete", JOptionPane.ERROR_MESSAGE);
             }
+        }else {
+            JOptionPane.showMessageDialog(this, "Choose a Employee, please", "Employee Delete", JOptionPane.ERROR_MESSAGE);
         }
-        //JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Delete", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnDeleteEditActionPerformed
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed

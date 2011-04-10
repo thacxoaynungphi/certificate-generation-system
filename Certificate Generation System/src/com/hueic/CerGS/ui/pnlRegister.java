@@ -749,8 +749,13 @@ public class pnlRegister extends javax.swing.JPanel {
                     int feesStructe = cbxFeeStructe.getSelectedIndex();
                     Date regDate = new java.sql.Date(dateChRegistrationDate.getDate().getTime());
                     String courseId = txtCourseID.getText();
-                    Register register = new Register(Id, studentId, courseId, feesStructe, (java.sql.Date) regDate);
-
+                    Register register = null;
+                    try {
+                        register = new Register(Id, studentId, courseId, feesStructe, (java.sql.Date) regDate);
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(this, ex.getMessage(), "Register Add", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
                     int index = findByStudentandCourseId(studentId, courseId);
 
                     if (index != -1) {
@@ -758,7 +763,7 @@ public class pnlRegister extends javax.swing.JPanel {
                         return;
                     }
                     if (regisDAO.create(register)) {
-                        JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Create Register", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Register Add", JOptionPane.INFORMATION_MESSAGE);
                         listRegister.add(register);
                         loadData();
                         loadDetails(register);
@@ -770,14 +775,14 @@ public class pnlRegister extends javax.swing.JPanel {
                         btnDelete.setEnabled(true);
                         btnCancelEdit.setVisible(false);
                     } else {
-                        JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Create Register", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Register Add", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Enter full information, please", "Register Add", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error! Check again, please.", "Create Register", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error! Check again, please.", "Register Add", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnAddActionPerformed
 
@@ -789,26 +794,31 @@ public class pnlRegister extends javax.swing.JPanel {
                     && txtStudentCourseId.getText().length() != 0
                     && dateChRegistrationDate.getDate() != null) {
                 Register register = new Register();
-                register.setPersonId(txtStudentId.getText());
-                register.setCourseId(txtCourseID.getText());
-                register.setStudentId(txtStudentCourseId.getText());
-                register.setFeesStructe(cbxFeeStructe.getSelectedIndex());
-                register.setRegisDate(new java.sql.Date(dateChRegistrationDate.getDate().getTime()));
+                try {
+                    register.setPersonId(txtStudentId.getText());
+                    register.setCourseId(txtCourseID.getText());
+                    register.setStudentId(txtStudentCourseId.getText());
+                    register.setFeesStructe(cbxFeeStructe.getSelectedIndex());
+                    register.setRegisDate(new java.sql.Date(dateChRegistrationDate.getDate().getTime()));
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, ex.getMessage(), "Register Update", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 int index = findByStudentId(register.getStudentId());
                 if (regisDAO.update(register)) {
-                    JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Update Subject", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Register Update", JOptionPane.INFORMATION_MESSAGE);
                     listRegister.remove(index);
                     listRegister.add(register);
                     loadData();
                     loadDetails(register);
                 } else {
-                    JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Update Subject", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Register Update", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Enter full information, please", "Register Update", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error! check again, please", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error! check again, please", "Register Update", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -823,13 +833,13 @@ public class pnlRegister extends javax.swing.JPanel {
                     if (!listRegister.isEmpty()) {
                         loadDetails(listRegister.get(0));
                     }
-                    JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Delete Register", JOptionPane.INFORMATION_MESSAGE, null);
+                    JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Register Delete", JOptionPane.INFORMATION_MESSAGE, null);
                 } else {
-                    JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Delete Register", JOptionPane.ERROR_MESSAGE, null);
+                    JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Register Delete", JOptionPane.ERROR_MESSAGE, null);
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Enter full information, please", "Register Delete", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnDeleteActionPerformed
 

@@ -52,7 +52,7 @@ public class pnlPayment extends javax.swing.JPanel {
         btnCancel.setVisible(false);
         paymentDao = new PaymentDAO();
         getData();
-        
+
     }
 
     public void getData() {
@@ -656,9 +656,9 @@ public class pnlPayment extends javax.swing.JPanel {
                 if (!listPayments.isEmpty()) {
                     loadDetails(listPayments.get(0));
                 }
-                JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Delete payment", JOptionPane.INFORMATION_MESSAGE, null);
+                JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Payment Delete", JOptionPane.INFORMATION_MESSAGE, null);
             } else {
-                JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Delete payment", JOptionPane.ERROR_MESSAGE, null);
+                JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Payment Delete", JOptionPane.ERROR_MESSAGE, null);
             }
         }
 }//GEN-LAST:event_btnDeleteActionPerformed
@@ -683,7 +683,13 @@ public class pnlPayment extends javax.swing.JPanel {
                     && txtMoney.getText().length() != 0
                     && dateChPayDay.getDate() != null
                     && txtId.getText().length() != 0) {
-                Payment pay = getPaymentFromForm();
+                Payment pay = null;
+                try {
+                    pay = getPaymentFromForm();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, ex.getMessage(), "Payment Update", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 Payment currentPay = getPaymentById(currentId);
                 Course course = courseDao.readById(registerDAO.readByStudentCourseId(pay.getStudentId()).getCourseId());
                 if (pay.getMoney() > course.getTotalFees() - (paymentDao.getCurrentTotalDiposit(currentPay) - currentPay.getMoney())) {
@@ -691,7 +697,7 @@ public class pnlPayment extends javax.swing.JPanel {
                     return;
                 }
                 if (paymentDao.update(pay)) {
-                    JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Update Payment", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Payment Update", JOptionPane.INFORMATION_MESSAGE);
                     currentPay = pay;
                     listPayments = paymentDao.readByAll();
                     loadData();
@@ -701,18 +707,18 @@ public class pnlPayment extends javax.swing.JPanel {
                     pay.setMoney(Float.parseFloat(txtMoney.getText()));
                     pay.setPayday(new java.sql.Date(dateChPayDay.getDate().getTime()));
                     if (paymentDao.update(pay)) {
-                        JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Update Payment", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Payment Update", JOptionPane.INFORMATION_MESSAGE);
                         loadData();
                         loadDetails(pay);
                     } else {
-                        JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Update Payment", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Payment Update", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Enter full information, please", "Payment Update", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.toString(), "Update Payment", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, e.toString(), "Payment Update", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -737,7 +743,13 @@ public class pnlPayment extends javax.swing.JPanel {
                 if (txtStudentId.getText().length() != 0
                         && txtMoney.getText().length() != 0
                         && dateChPayDay.getDate() != null) {
-                    Payment pay = getPaymentFromForm();
+                    Payment pay = null;
+                    try {
+                        pay = getPaymentFromForm();
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(this, ex.getMessage(), "Payment Add", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
                     Register register = registerDAO.readByStudentCourseId(pay.getStudentId());
                     Course course = courseDao.readById(register.getCourseId());
 
@@ -751,7 +763,7 @@ public class pnlPayment extends javax.swing.JPanel {
                         return;
                     }
                     if (paymentDao.create(pay)) {
-                        JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Create Payment", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Payment Add", JOptionPane.INFORMATION_MESSAGE);
                         pay.setId(paymentDao.readIdentity("Payment"));
                         listPayments.add(pay);
                         loadData();
@@ -764,14 +776,14 @@ public class pnlPayment extends javax.swing.JPanel {
                         btnDelete.setEnabled(true);
                         btnCancel.setVisible(false);
                     } else {
-                        JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Create Payment", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, paymentDao.getLastError(), "Payment Add", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Enter full information, please", "Payment Add", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.toString(), "Create Payment", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, e.toString(), "Payment Add", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnAddActionPerformed
 
@@ -845,7 +857,6 @@ public class pnlPayment extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_btnReportActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;

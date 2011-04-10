@@ -767,7 +767,7 @@ public class pnlMark extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Add", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Enter full information, please", "Mark Add", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } catch (Exception ex) {
@@ -786,7 +786,7 @@ public class pnlMark extends javax.swing.JPanel {
                 try {
                     mark = getPaymentFromForm();
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(this, ex.getMessage(), "Mark Add", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, ex.getMessage(), "Mark Update", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 if (markDAO.update(mark)) {
@@ -798,7 +798,7 @@ public class pnlMark extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Update", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Enter full information, please", "Mark Update", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error! Check again, Please", "Error!", JOptionPane.ERROR_MESSAGE);
@@ -818,7 +818,7 @@ public class pnlMark extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, markDAO.getLastError(), "Mark Delete", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Enter full information, please", "Mark Delete", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error! Check again, Please", "Error!", JOptionPane.ERROR_MESSAGE);
