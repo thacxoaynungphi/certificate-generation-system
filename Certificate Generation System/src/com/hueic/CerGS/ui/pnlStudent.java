@@ -68,24 +68,27 @@ public class pnlStudent extends javax.swing.JPanel {
     }
 
     public void loadData(ArrayList<Student> liststudent) {
-        filter = new ArrayList<Student>();
-        for (Student student : liststudent) {
-            if (student.getId().toLowerCase().matches(".*" + txtStudentIdSearch.getText().trim().toLowerCase() + ".*")
-                    && student.getFirstName().toLowerCase().matches(".*" + txtFirstNameSearch.getText().trim().toLowerCase() + ".*")
-                    && student.getLastName().toLowerCase().matches(".*" + txtLastNameSearch.getText().trim().toLowerCase() + ".*")) {
-                if (radioAll.isSelected()) {
-                    filter.add(student);
-                } else if (radioMaleSearch.isSelected() && student.getGender() == 0) {
-                    filter.add(student);
-                } else if (radioFemaleSearch.isSelected() && student.getGender() == 1) {
-                    filter.add(student);
+        try {
+            filter = new ArrayList<Student>();
+            for (Student student : liststudent) {
+                if (student.getId().toLowerCase().matches(".*" + txtStudentIdSearch.getText().trim().toLowerCase() + ".*")
+                        && student.getFirstName().toLowerCase().matches(".*" + txtFirstNameSearch.getText().trim().toLowerCase() + ".*")
+                        && student.getLastName().toLowerCase().matches(".*" + txtLastNameSearch.getText().trim().toLowerCase() + ".*")) {
+                    if (radioAll.isSelected()) {
+                        filter.add(student);
+                    } else if (radioMaleSearch.isSelected() && student.getGender() == 0) {
+                        filter.add(student);
+                    } else if (radioFemaleSearch.isSelected() && student.getGender() == 1) {
+                        filter.add(student);
+                    }
                 }
             }
+            if (filter.size() != 0) {
+                loadDetails(filter.get(0));
+            }
+            loadTable(filter);
+        } catch (Exception ex) {
         }
-        if (filter.size() != 0) {
-            loadDetails(filter.get(0));
-        }
-        loadTable(filter);
     }
 
     public void loadFilter(String text) {
@@ -1111,7 +1114,7 @@ public class pnlStudent extends javax.swing.JPanel {
             } else {
                 JOptionPane.showMessageDialog(this, studentDao.getLastError(), "Student Delete", JOptionPane.ERROR_MESSAGE);
             }
-        }else {
+        } else {
             JOptionPane.showMessageDialog(this, studentDao.getLastError(), "Student Delete", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnDeleteEditActionPerformed

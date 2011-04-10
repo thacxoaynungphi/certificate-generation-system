@@ -63,17 +63,21 @@ public class pnlCourse extends javax.swing.JPanel {
     }
 
     public void loadData() {
-        filter = new ArrayList<Course>();
-        for (Course course : listCourses) {
-            if (course.getId().toLowerCase().matches(".*" + txtIDSearch.getText().trim().toLowerCase() + ".*")
-                    && course.getName().toLowerCase().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")) {
-                filter.add(course);
+
+        try {
+            filter = new ArrayList<Course>();
+            for (Course course : listCourses) {
+                if (course.getId().toLowerCase().matches(".*" + txtIDSearch.getText().trim().toLowerCase() + ".*")
+                        && course.getName().toLowerCase().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")) {
+                    filter.add(course);
+                }
             }
+            if (filter.size() != 0) {
+                loadDetails(filter.get(0));
+            }
+            loadTable(filter);
+        } catch (Exception ex) {
         }
-        if (filter.size() != 0) {
-            loadDetails(filter.get(0));
-        }
-        loadTable(filter);
     }
 
     public void loadFiter(String text) {

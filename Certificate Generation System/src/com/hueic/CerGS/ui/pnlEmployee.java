@@ -72,24 +72,27 @@ public class pnlEmployee extends javax.swing.JPanel {
     }
 
     public void loadData() {
-        filter = new ArrayList<Employee>();
-        for (Employee emp : listEmp) {
-            if (emp.getId().toLowerCase().matches(".*" + txtEmployeeIdSearch.getText().trim().toLowerCase() + ".*")
-                    && emp.getFirstName().toLowerCase().matches(".*" + txtFirstNameSearch.getText().trim().toLowerCase() + ".*")
-                    && emp.getLastName().toLowerCase().matches(".*" + txtLastNameSearch.getText().trim().toLowerCase() + ".*")) {
-                if (radioAll.isSelected()) {
-                    filter.add(emp);
-                } else if (radioMaleSearch.isSelected() && emp.getGender() == 0) {
-                    filter.add(emp);
-                } else if (radioFemaleSearch.isSelected() && emp.getGender() == 1) {
-                    filter.add(emp);
+        try {
+            filter = new ArrayList<Employee>();
+            for (Employee emp : listEmp) {
+                if (emp.getId().toLowerCase().matches(".*" + txtEmployeeIdSearch.getText().trim().toLowerCase() + ".*")
+                        && emp.getFirstName().toLowerCase().matches(".*" + txtFirstNameSearch.getText().trim().toLowerCase() + ".*")
+                        && emp.getLastName().toLowerCase().matches(".*" + txtLastNameSearch.getText().trim().toLowerCase() + ".*")) {
+                    if (radioAll.isSelected()) {
+                        filter.add(emp);
+                    } else if (radioMaleSearch.isSelected() && emp.getGender() == 0) {
+                        filter.add(emp);
+                    } else if (radioFemaleSearch.isSelected() && emp.getGender() == 1) {
+                        filter.add(emp);
+                    }
                 }
             }
+            if (!filter.isEmpty()) {
+                loadDetails(filter.get(0));
+            }
+            loadTable(filter);
+        } catch (Exception ex) {
         }
-        if (!filter.isEmpty()) {
-            loadDetails(filter.get(0));
-        }
-        loadTable(filter);
     }
 
     public void loadFiter(String text) {
@@ -1190,10 +1193,10 @@ public class pnlEmployee extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Delete", JOptionPane.INFORMATION_MESSAGE);
                 listEmp = empDao.readByAll();
                 loadData();
-            }else {
+            } else {
                 JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Delete", JOptionPane.ERROR_MESSAGE);
             }
-        }else {
+        } else {
             JOptionPane.showMessageDialog(this, "Choose a Employee, please", "Employee Delete", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnDeleteEditActionPerformed

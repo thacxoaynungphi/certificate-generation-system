@@ -78,21 +78,23 @@ public class pnlCertificate extends javax.swing.JPanel {
     }
 
     public void loadData() {
-        filter = new ArrayList<Certificate>();
-        for (Certificate cer : listCertificate) {
-            if (cer.getStudentID().toLowerCase().matches(".*" + txtStudentIDSearch.getText().trim().toLowerCase() + ".*") //                    && cer..getName().toLowerCase().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")
-                    && String.valueOf(cer.getId()).toLowerCase().matches(".*" + txtIDSearch.getText().trim().toLowerCase() + ".*")) {
-                filter.add(cer);
+        try {
+            filter = new ArrayList<Certificate>();
+            for (Certificate cer : listCertificate) {
+                if (cer.getStudentID().toLowerCase().matches(".*" + txtStudentIDSearch.getText().trim().toLowerCase() + ".*") //                    && cer..getName().toLowerCase().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")
+                        && String.valueOf(cer.getId()).toLowerCase().matches(".*" + txtIDSearch.getText().trim().toLowerCase() + ".*")) {
+                    filter.add(cer);
+                }
             }
+            if (!filter.isEmpty()) {
+                loadDetails(filter.get(0));
+            }
+            loadTable(filter);
+        } catch (Exception ex) {
         }
-        if (!filter.isEmpty()) {
-            loadDetails(filter.get(0));
-        }
-        loadTable(filter);
     }
 
     public void loadFiter(String text) {
-
         try {
             filter = new ArrayList<Certificate>();
             for (Certificate cer : listCertificate) {

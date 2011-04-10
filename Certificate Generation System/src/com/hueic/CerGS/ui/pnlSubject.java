@@ -68,22 +68,25 @@ public class pnlSubject extends javax.swing.JPanel {
     }
 
     public void loadData() {
-        filter = new ArrayList<Subject>();
-        filter.clear();
-        if (listSubject.size() != 0) {
-            for (Subject sub : listSubject) {
-                if (sub.getId().toLowerCase().matches(".*" + txtSubjectIdSearch.getText().trim().toLowerCase() + ".*")
-                        && sub.getName().toLowerCase().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")
-                        && String.valueOf(sub.getCoefficient()).toLowerCase().matches(".*" + txtCoefficientSearch.getText().trim().toLowerCase() + ".*")
-                        && sub.getCourseID().toLowerCase().matches(".*" + txtCoureIDSearch.getText().trim().toLowerCase() + ".*")) {
-                    filter.add(sub);
+        try {
+            filter = new ArrayList<Subject>();
+            filter.clear();
+            if (listSubject.size() != 0) {
+                for (Subject sub : listSubject) {
+                    if (sub.getId().toLowerCase().matches(".*" + txtSubjectIdSearch.getText().trim().toLowerCase() + ".*")
+                            && sub.getName().toLowerCase().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")
+                            && String.valueOf(sub.getCoefficient()).toLowerCase().matches(".*" + txtCoefficientSearch.getText().trim().toLowerCase() + ".*")
+                            && sub.getCourseID().toLowerCase().matches(".*" + txtCoureIDSearch.getText().trim().toLowerCase() + ".*")) {
+                        filter.add(sub);
+                    }
                 }
             }
+            if (filter.size() != 0) {
+                loadDetails(filter.get(0));
+            }
+            loadTable(filter);
+        } catch (Exception ex) {
         }
-        if (filter.size() != 0) {
-            loadDetails(filter.get(0));
-        }
-        loadTable(filter);
     }
 
     public void loadFilter(String text) {
@@ -850,9 +853,9 @@ public class pnlSubject extends javax.swing.JPanel {
                         return;
                     }
                     Subject subject = null;
-                    try{
-                    subject = new Subject(subjectId, subjectName, coefficient, courseId);
-                    }catch(Exception ex){
+                    try {
+                        subject = new Subject(subjectId, subjectName, coefficient, courseId);
+                    } catch (Exception ex) {
                         JOptionPane.showMessageDialog(this, ex.getMessage(), "Subject Add", JOptionPane.ERROR_MESSAGE);
                     }
                     if (subjectDao.create(subject)) {
