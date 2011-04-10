@@ -32,10 +32,8 @@ public class frmSplash extends JFrame {
         new IconSystem(this);
         setTitle("Certificate Splash Screen");
     }
-    // Set up contraints so that the user supplied component and the
-    // background image label overlap and resize identically
-    private static final GridBagConstraints gbc;
 
+    private static final GridBagConstraints gbc;
     static {
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
@@ -78,7 +76,6 @@ public class frmSplash extends JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-
         setVisible(false);
     }
 

@@ -7,8 +7,6 @@ package com.hueic.CerGS.util;
 import com.hueic.CerGS.component.ConfigureDB;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -48,7 +46,6 @@ public class Configure {
                 con.close();
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Configure.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
