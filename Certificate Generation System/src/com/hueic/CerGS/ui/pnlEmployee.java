@@ -93,18 +93,21 @@ public class pnlEmployee extends javax.swing.JPanel {
     }
 
     public void loadFiter(String text) {
-        filter = new ArrayList<Employee>();
-        for (Employee emp : listEmp) {
-            if (emp.getId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
-                    || emp.getFirstName().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
-                    || emp.getLastName().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
-                filter.add(emp);
+        try {
+            filter = new ArrayList<Employee>();
+            for (Employee emp : listEmp) {
+                if (emp.getId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                        || emp.getFirstName().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                        || emp.getLastName().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
+                    filter.add(emp);
+                }
             }
+            if (!filter.isEmpty()) {
+                loadDetails(filter.get(0));
+            }
+            loadTable(filter);
+        } catch (Exception ex) {
         }
-        if (!filter.isEmpty()) {
-            loadDetails(filter.get(0));
-        }
-        loadTable(filter);
     }
 
     public void loadTable(ArrayList<Employee> filter) {

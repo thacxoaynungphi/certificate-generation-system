@@ -89,18 +89,21 @@ public class pnlStudent extends javax.swing.JPanel {
     }
 
     public void loadFilter(String text) {
-        filter = new ArrayList<Student>();
-        for (Student student : liststudent) {
-            if (student.getId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
-                    || student.getFirstName().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
-                    || student.getLastName().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
-                filter.add(student);
+        try {
+            filter = new ArrayList<Student>();
+            for (Student student : liststudent) {
+                if (student.getId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                        || student.getFirstName().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                        || student.getLastName().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
+                    filter.add(student);
+                }
             }
+            if (filter.size() != 0) {
+                loadDetails(filter.get(0));
+            }
+            loadTable(filter);
+        } catch (Exception ex) {
         }
-        if (filter.size() != 0) {
-            loadDetails(filter.get(0));
-        }
-        loadTable(filter);
     }
 
     public void loadTable(ArrayList<Student> filter) {

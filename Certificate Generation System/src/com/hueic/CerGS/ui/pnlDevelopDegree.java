@@ -89,15 +89,18 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
     }
 
     public void loadFiter(String text, ArrayList<Mark> listMark) {
-        filter = new ArrayList<Mark>();
-        for (Mark mark : listMark) {
-            if (mark.getStudentId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
-                    || String.valueOf(mark.getMark()).toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
-                    || mark.getSubjectId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
-                filter.add(mark);
+        try {
+            filter = new ArrayList<Mark>();
+            for (Mark mark : listMark) {
+                if (mark.getStudentId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                        || String.valueOf(mark.getMark()).toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                        || mark.getSubjectId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
+                    filter.add(mark);
+                }
             }
+            loadData(filter);
+        } catch (Exception ex) {
         }
-        loadData(filter);
     }
 
     public void loadData(ArrayList<Mark> listMark) {

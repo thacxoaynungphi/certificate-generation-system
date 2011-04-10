@@ -97,17 +97,20 @@ public class pnlAccount extends javax.swing.JPanel {
     }
 
     public void loadFiter(String text) {
-        filter = new ArrayList<Account>();
-        for (Account acc : listAccounts) {
-            if (acc.getUsername().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
-                    || String.valueOf(acc.getPermission()).toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
-                filter.add(acc);
+        try {
+            filter = new ArrayList<Account>();
+            for (Account acc : listAccounts) {
+                if (acc.getUsername().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                        || String.valueOf(acc.getPermission()).toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
+                    filter.add(acc);
+                }
             }
+            if (!filter.isEmpty()) {
+                loadDetails(filter.get(0));
+            }
+            loadTable(filter);
+        } catch (Exception ex) {
         }
-        if (!filter.isEmpty()) {
-            loadDetails(filter.get(0));
-        }
-        loadTable(filter);
     }
 
     public void loadTable(ArrayList<Account> filter) {

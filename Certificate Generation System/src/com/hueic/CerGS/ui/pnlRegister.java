@@ -94,20 +94,23 @@ public class pnlRegister extends javax.swing.JPanel {
     }
 
     public void loadFiter(String text) {
-        filter = new ArrayList<Register>();
-        for (Register sub : listRegister) {
-            String feesStructe = sub.getFeesStructe() == 0 ? "Full Payment" : "Installment Payment";
-            if (sub.getStudentId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
-                    || sub.getPersonId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
-                    || sub.getCourseId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
-                    || feesStructe.toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
-                filter.add(sub);
+        try {
+            filter = new ArrayList<Register>();
+            for (Register sub : listRegister) {
+                String feesStructe = sub.getFeesStructe() == 0 ? "Full Payment" : "Installment Payment";
+                if (sub.getStudentId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                        || sub.getPersonId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                        || sub.getCourseId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                        || feesStructe.toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
+                    filter.add(sub);
+                }
             }
+            if (!filter.isEmpty()) {
+                loadDetails(filter.get(0));
+            }
+            loadTable(filter);
+        } catch (Exception ex) {
         }
-        if (!filter.isEmpty()) {
-            loadDetails(filter.get(0));
-        }
-        loadTable(filter);
     }
 
     public void loadTable(ArrayList<Register> regisList) {

@@ -72,17 +72,18 @@ public class pnlViewMark extends javax.swing.JPanel {
     }
 
     public void loadFiter(String text, ArrayList<Mark> listMark) {
-        filter = new ArrayList<Mark>();
-
-
-        for (Mark mark : listMark) {
-            if (mark.getStudentId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
-                    || String.valueOf(mark.getMark()).toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
-                    || mark.getSubjectId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
-                filter.add(mark);
+        try {
+            filter = new ArrayList<Mark>();
+            for (Mark mark : listMark) {
+                if (mark.getStudentId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                        || String.valueOf(mark.getMark()).toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                        || mark.getSubjectId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
+                    filter.add(mark);
+                }
             }
+            loadData(filter);
+        } catch (Exception ex) {
         }
-        loadData(filter);
     }
 
     public void loadData(ArrayList<Mark> listMarks) {
@@ -141,7 +142,7 @@ public class pnlViewMark extends javax.swing.JPanel {
         cbxStudentID.addItem("------");
         cbxStudentID.setSelectedIndex(0);
         if (listRegister != null) {
-            for (int i = 0; i< listRegister.size(); i++) {
+            for (int i = 0; i < listRegister.size(); i++) {
                 cbxStudentID.addItem(listRegister.get(i).getStudentId());
             }
         }
@@ -317,31 +318,31 @@ public class pnlViewMark extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbxCourseIDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxCourseIDItemStateChanged
-            // TODO add your handling code here:
-            if (cbxCourseID.getItemCount() - 1 == listCourse.size()) {
-                String coursid = cbxCourseID.getSelectedItem().toString();
-                if (coursid.equals("-- All --")) {
-                    if (isStudent == false) {
-                        listMarks = markDAO.readByAll();
-                        loadData(listMarks);
-                        listRegister = registerDao.readByAll();
-                        loadDataCBXStudent();
-                    } else {
-                        listMarks = markDAO.readByStudentIDOfPerson(frm.accCur.getUsername(), "");
-                        loadData(listMarks);
-                    }
+        // TODO add your handling code here:
+        if (cbxCourseID.getItemCount() - 1 == listCourse.size()) {
+            String coursid = cbxCourseID.getSelectedItem().toString();
+            if (coursid.equals("-- All --")) {
+                if (isStudent == false) {
+                    listMarks = markDAO.readByAll();
+                    loadData(listMarks);
+                    listRegister = registerDao.readByAll();
+                    loadDataCBXStudent();
                 } else {
-                    if (isStudent == false) {
-                        listMarks = markDAO.readBYCourseID(coursid);
-                        loadData(listMarks);
-                        listRegister = registerDao.readByCourseId(coursid);
-                        loadDataCBXStudent();
-                    } else {
-                        listMarks = markDAO.readByStudentIDOfPerson(frm.accCur.getUsername(), coursid);
-                        loadData( listMarks);
-                    }
+                    listMarks = markDAO.readByStudentIDOfPerson(frm.accCur.getUsername(), "");
+                    loadData(listMarks);
+                }
+            } else {
+                if (isStudent == false) {
+                    listMarks = markDAO.readBYCourseID(coursid);
+                    loadData(listMarks);
+                    listRegister = registerDao.readByCourseId(coursid);
+                    loadDataCBXStudent();
+                } else {
+                    listMarks = markDAO.readByStudentIDOfPerson(frm.accCur.getUsername(), coursid);
+                    loadData(listMarks);
                 }
             }
+        }
 }//GEN-LAST:event_cbxCourseIDItemStateChanged
 
     private void cbxStudentIDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxStudentIDItemStateChanged

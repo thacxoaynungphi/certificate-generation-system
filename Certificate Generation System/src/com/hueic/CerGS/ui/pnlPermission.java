@@ -65,17 +65,20 @@ public class pnlPermission extends javax.swing.JPanel {
     }
 
     public void loadFiter(String text) {
-        filter = new ArrayList<Permission>();
-        for (Permission per : listPermssion) {
-            if (String.valueOf(per.getId()).toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
-                    || per.getName().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
-                filter.add(per);
+        try {
+            filter = new ArrayList<Permission>();
+            for (Permission per : listPermssion) {
+                if (String.valueOf(per.getId()).toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                        || per.getName().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
+                    filter.add(per);
+                }
             }
+            if (!filter.isEmpty()) {
+                loadDetails(filter.get(0));
+            }
+            loadTable(filter);
+        } catch (Exception ex) {
         }
-        if (!filter.isEmpty()) {
-            loadDetails(filter.get(0));
-        }
-        loadTable(filter);
     }
 
     public void loadTable(ArrayList<Permission> list) {
