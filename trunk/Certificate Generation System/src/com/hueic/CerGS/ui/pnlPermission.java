@@ -51,17 +51,20 @@ public class pnlPermission extends javax.swing.JPanel {
     }
 
     public void loadData() {
-        filter = new ArrayList<Permission>();
-        for (Permission per : listPermssion) {
-            if (String.valueOf(per.getId()).toLowerCase().matches(".*" + txtIdSearch.getText().trim().toLowerCase() + ".*")
-                    && per.getName().toLowerCase().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")) {
-                filter.add(per);
+        try {
+            filter = new ArrayList<Permission>();
+            for (Permission per : listPermssion) {
+                if (String.valueOf(per.getId()).toLowerCase().matches(".*" + txtIdSearch.getText().trim().toLowerCase() + ".*")
+                        && per.getName().toLowerCase().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")) {
+                    filter.add(per);
+                }
             }
+            if (!filter.isEmpty()) {
+                loadDetails(filter.get(0));
+            }
+            loadTable(filter);
+        } catch (Exception ex) {
         }
-        if (!filter.isEmpty()) {
-            loadDetails(filter.get(0));
-        }
-        loadTable(filter);
     }
 
     public void loadFiter(String text) {
@@ -611,9 +614,9 @@ public class pnlPermission extends javax.swing.JPanel {
             String name = txtName.getText();
             if (name.length() != 0) {
                 Permission per = null;
-                try{
-                per = new Permission(id, name);
-                }catch(Exception ex){
+                try {
+                    per = new Permission(id, name);
+                } catch (Exception ex) {
                     JOptionPane.showMessageDialog(this, ex.getMessage(), "Permission Update", JOptionPane.ERROR_MESSAGE);
                     return;
                 }

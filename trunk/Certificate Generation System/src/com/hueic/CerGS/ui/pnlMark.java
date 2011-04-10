@@ -82,18 +82,21 @@ public class pnlMark extends javax.swing.JPanel {
     }
 
     public void loadData() {
-        filter = new ArrayList<Mark>();
-        for (Mark mark : listMark) {
-            if (mark.getStudentId().toLowerCase().matches(".*" + txtStudentIdSearch.getText().trim().toLowerCase() + ".*")
-                    && String.valueOf(mark.getMark()).toLowerCase().matches(".*" + txtMarkSearch.getText().trim().toLowerCase() + ".*")
-                    && mark.getSubjectId().toLowerCase().matches(".*" + txtSubjectIDSearch.getText().trim().toLowerCase() + ".*")) {
-                filter.add(mark);
+        try {
+            filter = new ArrayList<Mark>();
+            for (Mark mark : listMark) {
+                if (mark.getStudentId().toLowerCase().matches(".*" + txtStudentIdSearch.getText().trim().toLowerCase() + ".*")
+                        && String.valueOf(mark.getMark()).toLowerCase().matches(".*" + txtMarkSearch.getText().trim().toLowerCase() + ".*")
+                        && mark.getSubjectId().toLowerCase().matches(".*" + txtSubjectIDSearch.getText().trim().toLowerCase() + ".*")) {
+                    filter.add(mark);
+                }
             }
+            if (!filter.isEmpty()) {
+                loadDetails(filter.get(0));
+            }
+            loadTable(filter);
+        } catch (Exception ex) {
         }
-        if (!filter.isEmpty()) {
-            loadDetails(filter.get(0));
-        }
-        loadTable(filter);
     }
 
     public void loadFiter(String text) {
