@@ -904,19 +904,24 @@ public class pnlStudent extends javax.swing.JPanel {
                     && txtLastNameEdit.getText().length() != 0
                     && dateChBirthdayEdit.getDate() != null) {
                 Student student = new Student();
-                student.setId(txtIDEdit.getText());
-                student.setFirstName(txtFirstNameEdit.getText());
-                student.setLastName(txtLastNameEdit.getText());
-                student.setBirthDay(new java.sql.Date(dateChBirthdayEdit.getDate().getTime()));
-                if (radioMaleEdit.isSelected()) {
-                    student.setGender(0);
+                try {
+                    student.setId(txtIDEdit.getText());
+                    student.setFirstName(txtFirstNameEdit.getText());
+                    student.setLastName(txtLastNameEdit.getText());
+                    student.setBirthDay(new java.sql.Date(dateChBirthdayEdit.getDate().getTime()));
+                    if (radioMaleEdit.isSelected()) {
+                        student.setGender(0);
 
-                } else if (radioFemaleEdit.isSelected()) {
-                    student.setGender(1);
+                    } else if (radioFemaleEdit.isSelected()) {
+                        student.setGender(1);
+                    }
+                    student.setPhone(txtPhoneEdit.getText());
+                    student.setEmail(txtEmailEdit.getText());
+                    student.setAddress(txtAddressEdit.getText());
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, ex.getMessage(), "Student Update", JOptionPane.ERROR_MESSAGE);
+                    return;
                 }
-                student.setPhone(txtPhoneEdit.getText());
-                student.setEmail(txtEmailEdit.getText());
-                student.setAddress(txtAddressEdit.getText());
                 try {
                     File file = new File(txtImageEdit.getText());
                     String name = file.getName();
@@ -1013,18 +1018,23 @@ public class pnlStudent extends javax.swing.JPanel {
                         && txtLastNameEdit.getText().length() != 0
                         && dateChBirthdayEdit.getDate() != null) {
                     Student student = new Student();
-                    student.setId(txtIDEdit.getText());
-                    student.setFirstName(txtFirstNameEdit.getText());
-                    student.setLastName(txtLastNameEdit.getText());
-                    student.setBirthDay(new java.sql.Date(dateChBirthdayEdit.getDate().getTime()));
-                    if (radioMaleEdit.isSelected()) {
-                        student.setGender(0);
-                    } else if (radioFemaleEdit.isSelected()) {
-                        student.setGender(1);
+                    try {
+                        student.setId(txtIDEdit.getText());
+                        student.setFirstName(txtFirstNameEdit.getText());
+                        student.setLastName(txtLastNameEdit.getText());
+                        student.setBirthDay(new java.sql.Date(dateChBirthdayEdit.getDate().getTime()));
+                        if (radioMaleEdit.isSelected()) {
+                            student.setGender(0);
+                        } else if (radioFemaleEdit.isSelected()) {
+                            student.setGender(1);
+                        }
+                        student.setPhone(txtPhoneEdit.getText());
+                        student.setEmail(txtEmailEdit.getText());
+                        student.setAddress(txtAddressEdit.getText());
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(this, ex.getMessage(), "Student Add", JOptionPane.ERROR_MESSAGE);
+                        return;
                     }
-                    student.setPhone(txtPhoneEdit.getText());
-                    student.setEmail(txtEmailEdit.getText());
-                    student.setAddress(txtAddressEdit.getText());
                     if (txtImageEdit.getText().length() != 0) {
                         File file = new File(txtImageEdit.getText());
                         if (file.exists()) {
@@ -1098,6 +1108,8 @@ public class pnlStudent extends javax.swing.JPanel {
             } else {
                 JOptionPane.showMessageDialog(this, studentDao.getLastError(), "Student Delete", JOptionPane.ERROR_MESSAGE);
             }
+        }else {
+            JOptionPane.showMessageDialog(this, studentDao.getLastError(), "Student Delete", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnDeleteEditActionPerformed
 
@@ -1156,10 +1168,7 @@ public class pnlStudent extends javax.swing.JPanel {
                 } catch (IOException e) {
                 }
             }
-        }
-        catch(Exception e)
-        {
-            
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_btnBrowseEditActionPerformed
 

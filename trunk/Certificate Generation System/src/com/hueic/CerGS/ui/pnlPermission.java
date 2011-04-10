@@ -587,17 +587,17 @@ public class pnlPermission extends javax.swing.JPanel {
         try {
             int id = Integer.parseInt(txtId.getText());
             if (perDao.delete(id)) {
-                JOptionPane.showMessageDialog(this, perDao.getLastError(), "Delete Permission", JOptionPane.INFORMATION_MESSAGE, null);
+                JOptionPane.showMessageDialog(this, perDao.getLastError(), "Permission Delete", JOptionPane.INFORMATION_MESSAGE, null);
                 listPermssion.remove(find(id));
                 loadData();
                 if (!listPermssion.isEmpty()) {
                     loadDetails(listPermssion.get(0));
                 }
             } else {
-                JOptionPane.showMessageDialog(this, perDao.getLastError(), "Delete Permission", JOptionPane.ERROR_MESSAGE, null);
+                JOptionPane.showMessageDialog(this, perDao.getLastError(), "Permission Delete", JOptionPane.ERROR_MESSAGE, null);
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error! Check again, please.", "Error!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error! Check again, please.", "Permission Delete", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -607,9 +607,15 @@ public class pnlPermission extends javax.swing.JPanel {
             int id = Integer.parseInt(txtId.getText());
             String name = txtName.getText();
             if (name.length() != 0) {
-                Permission per = new Permission(id, name);
+                Permission per = null;
+                try{
+                per = new Permission(id, name);
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(this, ex.getMessage(), "Permission Update", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 if (perDao.update(per)) {
-                    JOptionPane.showMessageDialog(this, perDao.getLastError(), "Update Permission", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, perDao.getLastError(), "Permission Update", JOptionPane.INFORMATION_MESSAGE);
                     listPermssion.remove(find(id));
                     listPermssion.add(per);
                     loadData();
@@ -618,13 +624,13 @@ public class pnlPermission extends javax.swing.JPanel {
                     btnUpdate.setEnabled(true);
                     btnDelete.setEnabled(true);
                 } else {
-                    JOptionPane.showMessageDialog(this, perDao.getLastError(), "Update Permission", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, perDao.getLastError(), "Permission Update", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Enter full information, please", "Permission Update", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error System", "Error!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error System", "Permission Update", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -642,7 +648,13 @@ public class pnlPermission extends javax.swing.JPanel {
                 int id = 0;
                 String name = txtName.getText();
                 if (name.length() != 0) {
-                    Permission per = new Permission(id, name);
+                    Permission per = null;
+                    try {
+                        per = new Permission(id, name);
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(this, ex.getMessage(), "permission Add", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
                     if (perDao.create(per)) {
                         per = perDao.readByName(name);
                         per.setId(perDao.readByName(name).getId());
@@ -654,16 +666,16 @@ public class pnlPermission extends javax.swing.JPanel {
                         btnUpdate.setEnabled(true);
                         btnDelete.setEnabled(true);
                         btnCancel.setVisible(false);
-                        JOptionPane.showMessageDialog(this, perDao.getLastError(), "Create Permission", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(this, perDao.getLastError(), "Permission Add", JOptionPane.INFORMATION_MESSAGE);
                     } else {
-                        JOptionPane.showMessageDialog(this, perDao.getLastError(), "Create Permission", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, perDao.getLastError(), "Permission Add", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Enter full information, please", "Permission Add", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.toString(), "Permission", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, e.toString(), "Permission Add", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnAddActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables

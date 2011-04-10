@@ -634,22 +634,27 @@ public class pnlCertificate extends javax.swing.JPanel {
                         if (txtStudentID.getText().length() != 0) {
                             float mark = markDAO.avgMark(id);
                             if (mark < 40) {
-                                JOptionPane.showMessageDialog(this, "This student has not completed the course or does not pass the exam", "Certificate Error", JOptionPane.ERROR_MESSAGE);
+                                JOptionPane.showMessageDialog(this, "This student has not completed the course or does not pass the exam", "Certificate Add", JOptionPane.ERROR_MESSAGE);
                                 return;
                             } else if (mark < 50) {
-                                JOptionPane.showMessageDialog(this, "Your grade in this Course is C \n You will receive a transcript instead of a certificate", "Certificate Error", JOptionPane.INFORMATION_MESSAGE);
+                                JOptionPane.showMessageDialog(this, "Your grade in this Course is C \n You will receive a transcript instead of a certificate", "Certificate Add", JOptionPane.INFORMATION_MESSAGE);
                                 return;
                             }
-                            certificate.setMark(mark);
-                            certificate.setStudentID(id);
+                            try {
+                                certificate.setMark(mark);
+                                certificate.setStudentID(id);
+                            } catch (Exception ex) {
+                                JOptionPane.showMessageDialog(this, ex.getMessage(), "Certificate Add", JOptionPane.ERROR_MESSAGE);
+                                return;
+                            }
                         } else {
-                            JOptionPane.showMessageDialog(this, "you must be Select Student Id of Cetificate", "Certificate Enter Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(this, "you must be Select Student Id of Cetificate", "Certificate Add", JOptionPane.ERROR_MESSAGE);
                             return;
                         }
                         if (dateChooseDegreeDay.getDate() != null) {
                             certificate.setDegreeDay(new java.sql.Date(dateChooseDegreeDay.getDate().getTime()));
                         } else {
-                            JOptionPane.showMessageDialog(this, "you must be select a degree date of Cetificate", "Certificate Enter Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(this, "you must be select a degree date of Cetificate", "Certificate Add", JOptionPane.ERROR_MESSAGE);
                             return;
                         }
                         PaymentDAO payDao = new PaymentDAO();
@@ -667,19 +672,19 @@ public class pnlCertificate extends javax.swing.JPanel {
                                 txtStudentID.setEnabled(true);
                                 btnChooseStudentId.setEnabled(true);
                             } else {
-                                JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Error", JOptionPane.ERROR_MESSAGE);
+                                JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Add", JOptionPane.ERROR_MESSAGE);
                             }
                         } else {
-                            JOptionPane.showMessageDialog(this, "Student have not fully paid", "Error!", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(this, "Student have not fully paid", "Certificate Add", JOptionPane.ERROR_MESSAGE);
                         }
                     } else {
-                        JOptionPane.showMessageDialog(this, "This Student has been developed Certificate", "Certificate Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "This Student has been developed Certificate", "Certificate Add", JOptionPane.ERROR_MESSAGE);
                     }
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(this, ex.getMessage(), "Certificate Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, ex.getMessage(), "Certificate Add", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Enter full information, please", "Certificate Add", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_btnAddActionPerformed
@@ -692,20 +697,25 @@ public class pnlCertificate extends javax.swing.JPanel {
             int i = getIndexCertificateInListByStudentId((String) txtStudentID.getText());
             try {
                 Certificate cer = listCertificate.get(i);
-                cer.setMark(Float.parseFloat(txtMark.getText()));
-                cer.setDegreeDay(new java.sql.Date(dateChooseDegreeDay.getDate().getTime()));
+                try {
+                    cer.setMark(Float.parseFloat(txtMark.getText()));
+                    cer.setDegreeDay(new java.sql.Date(dateChooseDegreeDay.getDate().getTime()));
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, ex.getMessage(), "Certificate Update", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 if (certificateDao.update(cer)) {
                     listCertificate.set(i, cer);
                     loadData();
-                    JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Message", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Update", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Update", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "data not valid", "Certificate Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "data not valid", "Certificate Update", JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Enter full information, please", "Certificate Update", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -718,15 +728,15 @@ public class pnlCertificate extends javax.swing.JPanel {
                 if (certificateDao.delete(id)) {
                     listCertificate.remove(index);
                     loadData();
-                    JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Delete Certificate", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Delete", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Delete Certificate", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Delete", JOptionPane.INFORMATION_MESSAGE);
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Error! Check again, please.", "Error!", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Error! Check again, please.", "Certificate Delete", JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Enter full information, please", "Error!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Enter full information, please", "Certificate Delete", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnDeleteActionPerformed
 
