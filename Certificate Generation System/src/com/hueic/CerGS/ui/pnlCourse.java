@@ -92,10 +92,10 @@ public class pnlCourse extends javax.swing.JPanel {
 
     public void loadTable(ArrayList<Course> filter) {
         ColumnData[] columns = {
-            new ColumnData("ID", 100, SwingConstants.LEFT, 1),
+            new ColumnData("ID", 150, SwingConstants.LEFT, 1),
             new ColumnData("Name", 140, SwingConstants.LEFT, 2),
             new ColumnData("Total Fees", 170, SwingConstants.LEFT, 3),
-            new ColumnData("Status", 260, SwingConstants.LEFT, 4)
+            new ColumnData("Status", 150, SwingConstants.LEFT, 4)
         };
         tableModel = new ObjectTableModel(tableContent, columns, filter);
         headerTable = tableModel.getHeaderTable();

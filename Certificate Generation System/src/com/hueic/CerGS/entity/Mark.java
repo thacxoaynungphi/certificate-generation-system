@@ -2,10 +2,6 @@ package com.hueic.CerGS.entity;
 
 import com.hueic.CerGS.component.PropertyIndex;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
  * @author Huu Bien
