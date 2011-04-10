@@ -397,6 +397,7 @@ public class pnlRegister extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelRight.add(txtCourseID, gridBagConstraints);
 
+        txtStudentId.setEnabled(false);
         txtStudentId.setMinimumSize(new java.awt.Dimension(180, 20));
         txtStudentId.setPreferredSize(new java.awt.Dimension(200, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -424,6 +425,7 @@ public class pnlRegister extends javax.swing.JPanel {
         panelRight.add(btnChooseCourseId, gridBagConstraints);
 
         btnChooseStudentId.setText("jButton4");
+        btnChooseStudentId.setEnabled(false);
         btnChooseStudentId.setMaximumSize(new java.awt.Dimension(23, 23));
         btnChooseStudentId.setMinimumSize(new java.awt.Dimension(23, 23));
         btnChooseStudentId.setPreferredSize(new java.awt.Dimension(23, 20));
@@ -741,6 +743,8 @@ public class pnlRegister extends javax.swing.JPanel {
                 txtStudentCourseId.setEnabled(true);
                 txtCourseID.setEnabled(true);
                 btnChooseCourseId.setEnabled(true);
+                txtStudentId.setEnabled(true);
+                btnChooseStudentId.setEnabled(true);
                 btnUpdate.setEnabled(false);
                 btnDelete.setEnabled(false);
                 btnCancelEdit.setVisible(true);
@@ -777,6 +781,8 @@ public class pnlRegister extends javax.swing.JPanel {
                         txtStudentCourseId.setEnabled(false);
                         txtCourseID.setEnabled(false);
                         btnChooseCourseId.setEnabled(false);
+                        txtStudentId.setEnabled(false);
+                        btnChooseStudentId.setEnabled(false);
                         btnUpdate.setEnabled(true);
                         btnDelete.setEnabled(true);
                         btnCancelEdit.setVisible(false);
@@ -939,6 +945,8 @@ public class pnlRegister extends javax.swing.JPanel {
             isAdd = false;
             txtStudentCourseId.setEnabled(false);
             txtCourseID.setEnabled(false);
+            txtStudentId.setEnabled(false);
+            btnChooseStudentId.setEnabled(false);
             btnChooseCourseId.setEnabled(false);
             btnUpdate.setEnabled(true);
             btnDelete.setEnabled(true);
