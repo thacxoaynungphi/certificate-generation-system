@@ -87,22 +87,25 @@ public class pnlSubject extends javax.swing.JPanel {
     }
 
     public void loadFilter(String text) {
-        filter = new ArrayList<Subject>();
-        filter.clear();
-        if (listSubject.size() != 0) {
-            for (Subject sub : listSubject) {
-                if (sub.getId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
-                        || sub.getName().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
-                        || String.valueOf(sub.getCoefficient()).toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
-                        || sub.getCourseID().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
-                    filter.add(sub);
+        try {
+            filter = new ArrayList<Subject>();
+            filter.clear();
+            if (listSubject.size() != 0) {
+                for (Subject sub : listSubject) {
+                    if (sub.getId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                            || sub.getName().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                            || String.valueOf(sub.getCoefficient()).toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                            || sub.getCourseID().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
+                        filter.add(sub);
+                    }
                 }
             }
+            if (filter.size() != 0) {
+                loadDetails(filter.get(0));
+            }
+            loadTable(filter);
+        } catch (Exception ex) {
         }
-        if (filter.size() != 0) {
-            loadDetails(filter.get(0));
-        }
-        loadTable(filter);
     }
 
     public void loadTable(ArrayList<Subject> filter) {

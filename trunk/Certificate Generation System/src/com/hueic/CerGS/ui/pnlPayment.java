@@ -93,17 +93,20 @@ public class pnlPayment extends javax.swing.JPanel {
     }
 
     public void loadFiter(String text) {
-        filter = new ArrayList<Payment>();
-        for (Payment pay : listPayments) {
-            if (pay.getStudentId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
-                    || String.valueOf(pay.getMoney()).toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
-                filter.add(pay);
+        try {
+            filter = new ArrayList<Payment>();
+            for (Payment pay : listPayments) {
+                if (pay.getStudentId().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                        || String.valueOf(pay.getMoney()).toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
+                    filter.add(pay);
+                }
             }
+            if (!filter.isEmpty()) {
+                loadDetails(filter.get(0));
+            }
+            loadTable(filter);
+        } catch (Exception ex) {
         }
-        if (!filter.isEmpty()) {
-            loadDetails(filter.get(0));
-        }
-        loadTable(filter);
     }
 
     public void loadTable(ArrayList<Payment> filter) {

@@ -15,6 +15,7 @@ import com.hueic.CerGS.dao.PaymentDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.entity.Certificate;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
@@ -91,17 +92,23 @@ public class pnlCertificate extends javax.swing.JPanel {
     }
 
     public void loadFiter(String text) {
-        filter = new ArrayList<Certificate>();
-        for (Certificate cer : listCertificate) {
-            if (cer.getStudentID().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*") //                    && cer..getName().toLowerCase().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")
-                    || String.valueOf(cer.getId()).toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
-                filter.add(cer);
+
+        try {
+            filter = new ArrayList<Certificate>();
+            for (Certificate cer : listCertificate) {
+                if (cer.getStudentID().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*") //                    && cer..getName().toLowerCase().matches(".*" + txtNameSearch.getText().trim().toLowerCase() + ".*")
+                        || String.valueOf(cer.getId()).toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                        || String.valueOf(cer.getMark()).toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")
+                        || cer.getDegreeDay().toString().toLowerCase().matches(".*" + text.trim().toLowerCase() + ".*")) {
+                    filter.add(cer);
+                }
             }
+            if (!filter.isEmpty()) {
+                loadDetails(filter.get(0));
+            }
+            loadTable(filter);
+        } catch (Exception ex) {
         }
-        if (!filter.isEmpty()) {
-            loadDetails(filter.get(0));
-        }
-        loadTable(filter);
     }
 
     public void loadTable(ArrayList<Certificate> filter) {
