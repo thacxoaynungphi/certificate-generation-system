@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Ngo Phuoc Thien
+ * @author nhchung
  */
 public class pnlBackground {
 
@@ -35,47 +35,15 @@ public class pnlBackground {
     }
 
     public static JPanel wrapInBackgroundImage(JComponent component, Icon backgroundIcon, int verticalAlignment, int horizontalAlignment) {
-
-        // make the passed in swing component transparent
         component.setOpaque(false);
-
-        // create wrapper JPanel
         JPanel backgroundPanel = new JPanel(new GridBagLayout());
-
-        // add the passed in swing component first to ensure that it is in front
         backgroundPanel.add(component, gbc);
-
-        // create a label to paint the background image
         JLabel backgroundImage = new JLabel(backgroundIcon);
-
-        // set minimum and preferred sizes so that the size of the image
-        // does not affect the layout size
         backgroundImage.setPreferredSize(new Dimension(1, 1));
         backgroundImage.setMinimumSize(new Dimension(1, 1));
-
-        // align the image as specified.
         backgroundImage.setVerticalAlignment(verticalAlignment);
         backgroundImage.setHorizontalAlignment(horizontalAlignment);
-
-        // add the background label
         backgroundPanel.add(backgroundImage, gbc);
-
-        // return the wrapper
         return backgroundPanel;
     }
-//
-//    public static void main(String[] args) {
-//        JFrame frame = new JFrame("Background Image Panel Example");
-//
-////        // Create some GUI
-//        JPanel foregroundPanel = new JPanel(new BorderLayout(10, 10));
-//        foregroundPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-//        foregroundPanel.setOpaque(false);
-//
-//        frame.setContentPane(wrapInBackgroundImage(foregroundPanel, new ImageIcon(BackgroundImagePanelExample.class.getResource("../icon/logods.png"))));
-//        frame.pack();
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setVisible(true);
-//
-//    }
 }
