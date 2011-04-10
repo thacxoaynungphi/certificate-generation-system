@@ -344,6 +344,8 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
                     loadCBXStudent();
                 }
             }
+            lblTotalMark.setText("NA");
+            lblGrade.setText("NA");
         }
 }//GEN-LAST:event_cbxCourseIDItemStateChanged
 

@@ -112,8 +112,8 @@ public class pnlViewPayment extends javax.swing.JPanel {
             loadData(listPayments);
             float money = paymentDao.getTotalDiposit(studentid);
             if (studentid.equals("------")) {
-                lblTitleAmount.setVisible(false);
-                lblTitleTotal.setVisible(false);
+                lblTotalTheDeposit.setText(null);
+                lblAmountRemaining.setText(null);
             } else {
                 lblTotalTheDeposit.setText(String.valueOf(money));
                 lblAmountRemaining.setText(String.valueOf(courseDao.readById(registerDao.readByStudentCourseId(studentid).getCourseId()).getTotalFees() - money));
@@ -359,6 +359,8 @@ public class pnlViewPayment extends javax.swing.JPanel {
                     listPayments = paymentDao.readByStudentIdOfPerson(frm.accCur.getUsername(), "");
                     loadData(listPayments);
                 }
+                lblTotalTheDeposit.setText(null);
+                lblAmountRemaining.setText(null);
             } else {
                 if (isStudent == false) {
                     listPayments = paymentDao.readByCourseId(courseid);
@@ -424,7 +426,6 @@ public class pnlViewPayment extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_btnReportActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFilter;
     private javax.swing.JButton btnReport;
