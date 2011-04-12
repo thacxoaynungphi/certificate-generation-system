@@ -352,41 +352,47 @@ public class pnlViewPayment extends javax.swing.JPanel {
 
     private void cbxCourseIDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxCourseIDItemStateChanged
         // TODO add your handling code here:
-        if (cbxCourseID.getItemCount() - 1 == listCourse.size()) {
-            String courseid = (String) cbxCourseID.getSelectedItem();
-            if (courseid.equals("-- All --")) {
-                if (isStudent == false) {
-                    listRegister = registerDao.readByAll();
-                    loadDataCBXStudent();
+        try {
+            if (cbxCourseID.getItemCount() - 1 == listCourse.size()) {
+                String courseid = (String) cbxCourseID.getSelectedItem();
+                if (courseid.equals("-- All --")) {
+                    if (isStudent == false) {
+                        listRegister = registerDao.readByAll();
+                        loadDataCBXStudent();
+                    } else {
+                        listPayments = paymentDao.readByStudentIdOfPerson(frm.accCur.getUsername(), "");
+                        loadData(listPayments);
+                    }
+                    lblTotalTheDeposit.setText(null);
+                    lblAmountRemaining.setText(null);
                 } else {
-                    listPayments = paymentDao.readByStudentIdOfPerson(frm.accCur.getUsername(), "");
-                    loadData(listPayments);
-                }
-                lblTotalTheDeposit.setText(null);
-                lblAmountRemaining.setText(null);
-            } else {
-                if (isStudent == false) {
-                    listPayments = paymentDao.readByCourseId(courseid);
-                    loadData(listPayments);
-                    listRegister = registerDao.readByCourseId(courseid);
-                    loadDataCBXStudent();
-                } else {
-                    listPayments = paymentDao.readByStudentIdOfPerson(frm.accCur.getUsername(), courseid);
-                    float money = paymentDao.getTotalDiposit(registerDao.readById(frm.accCur.getUsername(), courseid).getStudentId());
-                    lblTotalTheDeposit.setText(String.valueOf(money));
-                    lblAmountRemaining.setText(String.valueOf(courseDao.readById(courseid).getTotalFees() - money));
-                    loadData(listPayments);
+                    if (isStudent == false) {
+                        listPayments = paymentDao.readByCourseId(courseid);
+                        loadData(listPayments);
+                        listRegister = registerDao.readByCourseId(courseid);
+                        loadDataCBXStudent();
+                    } else {
+                        listPayments = paymentDao.readByStudentIdOfPerson(frm.accCur.getUsername(), courseid);
+                        float money = paymentDao.getTotalDiposit(registerDao.readById(frm.accCur.getUsername(), courseid).getStudentId());
+                        lblTotalTheDeposit.setText(String.valueOf(money));
+                        lblAmountRemaining.setText(String.valueOf(courseDao.readById(courseid).getTotalFees() - money));
+                        loadData(listPayments);
+                    }
                 }
             }
+        } catch (Exception ex) {
         }
 }//GEN-LAST:event_cbxCourseIDItemStateChanged
 
     private void cbxStudentIDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxStudentIDItemStateChanged
         // TODO add your handling code here:
-        if (cbxStudentID.getItemCount() - 1 == listRegister.size()) {
-            String courseid = cbxCourseID.getSelectedItem().toString();
-            String studentid = cbxStudentID.getSelectedItem().toString();
-            load(listPayments, courseid, studentid);
+        try {
+            if (cbxStudentID.getItemCount() - 1 == listRegister.size()) {
+                String courseid = cbxCourseID.getSelectedItem().toString();
+                String studentid = cbxStudentID.getSelectedItem().toString();
+                load(listPayments, courseid, studentid);
+            }
+        } catch (Exception ex) {
         }
 }//GEN-LAST:event_cbxStudentIDItemStateChanged
 
@@ -402,31 +408,34 @@ public class pnlViewPayment extends javax.swing.JPanel {
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
         // TODO add your handling code here:
-        PermissionDAO perDao = new PermissionDAO();
-        if (perDao.readByID(frm.accCur.getPermission()).getName().equals("Student")) {
-            if (!cbxCourseID.getSelectedItem().toString().equals("-- All --")) {
-                frm.pnlReport.removeAll();
-                dlgChooseReport report = new dlgChooseReport(frm, frm.pnlViewPaymentTab);
-                report.getStudentFeeReport(registerDao.readById(this.frm.accCur.getUsername(), cbxCourseID.getSelectedItem().toString()).getStudentId());
-                report.setVisible(true);
-                report.setSize(860, 600);
-                frm.pnlReport.add(report);
-                frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+        try {
+            PermissionDAO perDao = new PermissionDAO();
+            if (perDao.readByID(frm.accCur.getPermission()).getName().equals("Student")) {
+                if (!cbxCourseID.getSelectedItem().toString().equals("-- All --")) {
+                    frm.pnlReport.removeAll();
+                    dlgChooseReport report = new dlgChooseReport(frm, frm.pnlViewPaymentTab);
+                    report.getStudentFeeReport(registerDao.readById(this.frm.accCur.getUsername(), cbxCourseID.getSelectedItem().toString()).getStudentId());
+                    report.setVisible(true);
+                    report.setSize(860, 600);
+                    frm.pnlReport.add(report);
+                    frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+                } else {
+                    JOptionPane.showMessageDialog(this, "You are choose course!", "Report payment student", JOptionPane.INFORMATION_MESSAGE);
+                }
             } else {
-                JOptionPane.showMessageDialog(this, "You are choose course!", "Report payment student", JOptionPane.INFORMATION_MESSAGE);
+                if (!this.cbxStudentID.getSelectedItem().equals("------")) {
+                    frm.pnlReport.removeAll();
+                    dlgChooseReport report = new dlgChooseReport(frm, frm.pnlViewPaymentTab);
+                    report.getStudentFeeReport(this.cbxStudentID.getSelectedItem().toString());
+                    report.setVisible(true);
+                    report.setSize(860, 600);
+                    frm.pnlReport.add(report);
+                    frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+                } else {
+                    JOptionPane.showMessageDialog(this, "You are choose student!", "Report payment student", JOptionPane.INFORMATION_MESSAGE);
+                }
             }
-        } else {
-            if (!this.cbxStudentID.getSelectedItem().equals("------")) {
-                frm.pnlReport.removeAll();
-                dlgChooseReport report = new dlgChooseReport(frm, frm.pnlViewPaymentTab);
-                report.getStudentFeeReport(this.cbxStudentID.getSelectedItem().toString());
-                report.setVisible(true);
-                report.setSize(860, 600);
-                frm.pnlReport.add(report);
-                frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
-            } else {
-                JOptionPane.showMessageDialog(this, "You are choose student!", "Report payment student", JOptionPane.INFORMATION_MESSAGE);
-            }
+        } catch (Exception ex) {
         }
     }//GEN-LAST:event_btnReportActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables

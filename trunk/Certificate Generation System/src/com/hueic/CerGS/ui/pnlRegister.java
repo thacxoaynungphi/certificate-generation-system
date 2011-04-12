@@ -835,23 +835,25 @@ public class pnlRegister extends javax.swing.JPanel {
 }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-
-        String studentid = txtStudentCourseId.getText();
-        if (studentid.length() != 0) {
+        try {
+            String studentid = txtStudentCourseId.getText();
             if (studentid.length() != 0) {
-                if (regisDAO.delete(studentid)) {
-                    listRegister.remove(findByStudentId(studentid));
-                    loadData();
-                    if (!listRegister.isEmpty()) {
-                        loadDetails(listRegister.get(0));
+                if (studentid.length() != 0) {
+                    if (regisDAO.delete(studentid)) {
+                        listRegister.remove(findByStudentId(studentid));
+                        loadData();
+                        if (!listRegister.isEmpty()) {
+                            loadDetails(listRegister.get(0));
+                        }
+                        JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Register Delete", JOptionPane.INFORMATION_MESSAGE, null);
+                    } else {
+                        JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Register Delete", JOptionPane.ERROR_MESSAGE, null);
                     }
-                    JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Register Delete", JOptionPane.INFORMATION_MESSAGE, null);
-                } else {
-                    JOptionPane.showMessageDialog(this, regisDAO.getLastError(), "Register Delete", JOptionPane.ERROR_MESSAGE, null);
                 }
+            } else {
+                JOptionPane.showMessageDialog(this, "Enter full information, please", "Register Delete", JOptionPane.ERROR_MESSAGE);
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Enter full information, please", "Register Delete", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception ex) {
         }
 }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -864,61 +866,71 @@ public class pnlRegister extends javax.swing.JPanel {
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnChooseCourseIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseCourseIdActionPerformed
-
-        dlgChoose dlg = new dlgChoose(frm, txtCourseID, true, 7);
-        dlg.setTitle("Browse Course");
-        dlg.setSize(868, 580);
-        dlg.setLocationRelativeTo(null);
-        dlg.setVisible(true);
+        try {
+            dlgChoose dlg = new dlgChoose(frm, txtCourseID, true, 7);
+            dlg.setTitle("Browse Course");
+            dlg.setSize(868, 580);
+            dlg.setLocationRelativeTo(null);
+            dlg.setVisible(true);
+        } catch (Exception ex) {
+        }
     }//GEN-LAST:event_btnChooseCourseIdActionPerformed
 
     private void btnChooseStudentIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseStudentIdActionPerformed
-
-        dlgChoose dlg = new dlgChoose(frm, txtStudentId, true, 13);
-        dlg.setTitle("Browse Student");
-        dlg.setSize(868, 580);
-        dlg.setLocationRelativeTo(null);
-        dlg.setVisible(true);
+        try {
+            dlgChoose dlg = new dlgChoose(frm, txtStudentId, true, 13);
+            dlg.setTitle("Browse Student");
+            dlg.setSize(868, 580);
+            dlg.setLocationRelativeTo(null);
+            dlg.setVisible(true);
+        } catch (Exception ex) {
+        }
     }//GEN-LAST:event_btnChooseStudentIdActionPerformed
 
     private void btnChooseCourseIDSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseCourseIDSearchActionPerformed
-
-        dlgChoose dlg = new dlgChoose(frm, txtCourseIDSearch, true, 7);
-        dlg.setTitle("Browse Course");
-        dlg.setSize(868, 580);
-        dlg.setLocationRelativeTo(null);
-        dlg.setVisible(true);
+        try {
+            dlgChoose dlg = new dlgChoose(frm, txtCourseIDSearch, true, 7);
+            dlg.setTitle("Browse Course");
+            dlg.setSize(868, 580);
+            dlg.setLocationRelativeTo(null);
+            dlg.setVisible(true);
+        } catch (Exception ex) {
+        }
     }//GEN-LAST:event_btnChooseCourseIDSearchActionPerformed
 
     private void btnChooseStudentIDSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseStudentIDSearchActionPerformed
-
-        dlgChoose dlg = new dlgChoose(frm, txtStudentIdSearch, true, 13);
-        dlg.setTitle("Browse Student");
-        dlg.setSize(868, 580);
-        dlg.setLocationRelativeTo(null);
-        dlg.setVisible(true);
+        try {
+            dlgChoose dlg = new dlgChoose(frm, txtStudentIdSearch, true, 13);
+            dlg.setTitle("Browse Student");
+            dlg.setSize(868, 580);
+            dlg.setLocationRelativeTo(null);
+            dlg.setVisible(true);
+        } catch (Exception ex) {
+        }
     }//GEN-LAST:event_btnChooseStudentIDSearchActionPerformed
     private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
 
         loadFiter(filterText.getText());
     }//GEN-LAST:event_filterTextCaretUpdate
     private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
-
-        if (!listRegister.isEmpty()) {
-            int tableIndex = tableContent.getSelectedRow();
-            if (tableIndex != -1) {
-                String studentId = tableContent.getValueAt(tableIndex, 0).toString();
-                int listIndex = findByStudentId(studentId);
-                if (listIndex != -1) {
-                    loadDetails(listRegister.get(listIndex));
-                }
-                if (isAdd) {
-                    isAdd = false;
-                    btnUpdate.setEnabled(true);
-                    btnDelete.setEnabled(true);
-                    btnCancelEdit.setVisible(false);
+        try {
+            if (!listRegister.isEmpty()) {
+                int tableIndex = tableContent.getSelectedRow();
+                if (tableIndex != -1) {
+                    String studentId = tableContent.getValueAt(tableIndex, 0).toString();
+                    int listIndex = findByStudentId(studentId);
+                    if (listIndex != -1) {
+                        loadDetails(listRegister.get(listIndex));
+                    }
+                    if (isAdd) {
+                        isAdd = false;
+                        btnUpdate.setEnabled(true);
+                        btnDelete.setEnabled(true);
+                        btnCancelEdit.setVisible(false);
+                    }
                 }
             }
+        } catch (Exception ex) {
         }
     }//GEN-LAST:event_tableContentMouseReleased
 
@@ -940,33 +952,37 @@ public class pnlRegister extends javax.swing.JPanel {
     }//GEN-LAST:event_txtStudentIdSearchCaretUpdate
 
     private void btnCancelEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelEditActionPerformed
-
-        if (isAdd) {
-            isAdd = false;
-            txtStudentCourseId.setEnabled(false);
-            txtCourseID.setEnabled(false);
-            txtStudentId.setEnabled(false);
-            btnChooseStudentId.setEnabled(false);
-            btnChooseCourseId.setEnabled(false);
-            btnUpdate.setEnabled(true);
-            btnDelete.setEnabled(true);
-            btnCancelEdit.setVisible(false);
-            loadDetails(listRegister.get(0));
+        try {
+            if (isAdd) {
+                isAdd = false;
+                txtStudentCourseId.setEnabled(false);
+                txtCourseID.setEnabled(false);
+                txtStudentId.setEnabled(false);
+                btnChooseStudentId.setEnabled(false);
+                btnChooseCourseId.setEnabled(false);
+                btnUpdate.setEnabled(true);
+                btnDelete.setEnabled(true);
+                btnCancelEdit.setVisible(false);
+                loadDetails(listRegister.get(0));
+            }
+        } catch (Exception ex) {
         }
     }//GEN-LAST:event_btnCancelEditActionPerformed
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
-
-        if (!filter.isEmpty()) {
-            frm.pnlReport.removeAll();
-            dlgChooseReport report = new dlgChooseReport(frm, this);
-            report.getRegisterReport(filter);
-            report.setVisible(true);
-            report.setSize(860, 600);
-            frm.pnlReport.add(report);
-            frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
-        } else {
-            JOptionPane.showMessageDialog(this, "No data!", "Report Message", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            if (!filter.isEmpty()) {
+                frm.pnlReport.removeAll();
+                dlgChooseReport report = new dlgChooseReport(frm, this);
+                report.getRegisterReport(filter);
+                report.setVisible(true);
+                report.setSize(860, 600);
+                frm.pnlReport.add(report);
+                frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+            } else {
+                JOptionPane.showMessageDialog(this, "No data!", "Report Message", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (Exception ex) {
         }
     }//GEN-LAST:event_btnReportActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables

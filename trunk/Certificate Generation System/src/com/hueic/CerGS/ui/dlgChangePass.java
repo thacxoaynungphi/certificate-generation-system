@@ -230,7 +230,6 @@ public class dlgChangePass extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
     private void btnChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeActionPerformed
 
         String username = txtUsername.getText();
@@ -241,8 +240,13 @@ public class dlgChangePass extends javax.swing.JDialog {
             try {
                 AccountDAO accDao = new AccountDAO();
                 Account acc = new Account();
-                acc.setUsername(username);
-                acc.setPassword(newPassword);
+                try {
+                    acc.setUsername(username);
+                    acc.setPassword(newPassword);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, ex.getMessage(), "Change Password", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 if (accDao.changePass(acc, oldPassword)) {
                     JOptionPane.showMessageDialog(this, accDao.getLastError(), "Change Password", JOptionPane.INFORMATION_MESSAGE);
                     this.dispose();
@@ -250,7 +254,7 @@ public class dlgChangePass extends javax.swing.JDialog {
                     JOptionPane.showMessageDialog(this, accDao.getLastError(), "Change Password", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (Exception ex) {
-               JOptionPane.showMessageDialog(this,"Error change", "Change Password", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Error change", "Change Password", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Password not match", "Change Password", JOptionPane.ERROR_MESSAGE);
@@ -268,8 +272,6 @@ public class dlgChangePass extends javax.swing.JDialog {
 
         this.dispose();
 }//GEN-LAST:event_btnCancelActionPerformed
-
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnChange;

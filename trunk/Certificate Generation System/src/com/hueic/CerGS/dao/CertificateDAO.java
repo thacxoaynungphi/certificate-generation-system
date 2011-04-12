@@ -23,6 +23,7 @@ public class CertificateDAO extends BaseDAO implements ICertificateDAO {
     }
 
     public ArrayList<Certificate> readByAll() {
+        setLastError("");
         ArrayList<Certificate> list = new ArrayList<Certificate>();
         con = db.getConnection();
         String sql = "select * from Certificate";
@@ -47,6 +48,7 @@ public class CertificateDAO extends BaseDAO implements ICertificateDAO {
     }
 
     public Certificate readById(int id) {
+        setLastError("");
         Certificate cer = null;
         try {
             con = db.getConnection();
@@ -69,6 +71,7 @@ public class CertificateDAO extends BaseDAO implements ICertificateDAO {
     }
 
     public Certificate readByStudentId(String studentID) {
+        setLastError("");
         Certificate cer = null;
         con = db.getConnection();
         String sql = "select * from Certificate where StudentId = ?";
@@ -92,6 +95,7 @@ public class CertificateDAO extends BaseDAO implements ICertificateDAO {
     }
 
     public boolean create(Certificate cer) {
+        setLastError("");
         boolean status = false;
         try {
             con = db.getConnection();
@@ -115,6 +119,7 @@ public class CertificateDAO extends BaseDAO implements ICertificateDAO {
     }
 
     public boolean update(Certificate cer) {
+        setLastError("");
         boolean status = false;
         try {
             con = db.getConnection();
@@ -140,6 +145,7 @@ public class CertificateDAO extends BaseDAO implements ICertificateDAO {
     }
 
     public boolean delete(int id) {
+        setLastError("");
         boolean status = false;
         try {
             con = db.getConnection();

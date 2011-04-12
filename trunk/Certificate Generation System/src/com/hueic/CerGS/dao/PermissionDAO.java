@@ -22,6 +22,7 @@ public class PermissionDAO extends BaseDAO implements IPermissionDAO {
     }
 
     public ArrayList<Permission> readByAll() {
+        setLastError("");
         ArrayList<Permission> list = new ArrayList<Permission>();
         con = db.getConnection();
         String sql = "select * from Permission order by Id asc";
@@ -45,6 +46,7 @@ public class PermissionDAO extends BaseDAO implements IPermissionDAO {
     }
 
     public Permission readByID(int id) {
+        setLastError("");
         Permission per = null;
         try {
             con = db.getConnection();
@@ -68,6 +70,7 @@ public class PermissionDAO extends BaseDAO implements IPermissionDAO {
     }
 
     public Permission readByName(String name) {
+        setLastError("");
         Permission per = null;
         try {
             con = db.getConnection();
@@ -91,6 +94,7 @@ public class PermissionDAO extends BaseDAO implements IPermissionDAO {
     }
 
     public boolean create(Permission per) {
+        setLastError("");
         boolean status = false;
         try {
             con = db.getConnection();
@@ -113,6 +117,7 @@ public class PermissionDAO extends BaseDAO implements IPermissionDAO {
     }
 
     public boolean update(Permission per) {
+        setLastError("");
         boolean status = false;
         try {
             con = db.getConnection();
@@ -137,6 +142,7 @@ public class PermissionDAO extends BaseDAO implements IPermissionDAO {
     }
 
     public boolean delete(int id) {
+        setLastError("");
         boolean status = false;
         try {
             con = db.getConnection();

@@ -15,7 +15,6 @@ import com.hueic.CerGS.dao.PaymentDAO;
 import com.hueic.CerGS.dao.RegisterDAO;
 import com.hueic.CerGS.entity.Certificate;
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
@@ -699,66 +698,73 @@ public class pnlCertificate extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        if (txtStudentID.getText().length() != 0
-                && txtMark.getText().length() != 0
-                && dateChooseDegreeDay.getDate() != null
-                && txtID.getText().length() != 0) {
-            int i = getIndexCertificateInListByStudentId((String) txtStudentID.getText());
-            try {
-                Certificate cer = listCertificate.get(i);
+        try {
+            if (txtStudentID.getText().length() != 0
+                    && txtMark.getText().length() != 0
+                    && dateChooseDegreeDay.getDate() != null
+                    && txtID.getText().length() != 0) {
+                int i = getIndexCertificateInListByStudentId((String) txtStudentID.getText());
                 try {
-                    cer.setMark(Float.parseFloat(txtMark.getText()));
-                    cer.setDegreeDay(new java.sql.Date(dateChooseDegreeDay.getDate().getTime()));
+                    Certificate cer = listCertificate.get(i);
+                    try {
+                        cer.setMark(Float.parseFloat(txtMark.getText()));
+                        cer.setDegreeDay(new java.sql.Date(dateChooseDegreeDay.getDate().getTime()));
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(this, ex.getMessage(), "Certificate Update", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    if (certificateDao.update(cer)) {
+                        listCertificate.set(i, cer);
+                        loadData();
+                        JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Update", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Update", JOptionPane.ERROR_MESSAGE);
+                    }
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(this, ex.getMessage(), "Certificate Update", JOptionPane.ERROR_MESSAGE);
-                    return;
+                    JOptionPane.showMessageDialog(this, "data not valid", "Certificate Update", JOptionPane.ERROR_MESSAGE);
                 }
-                if (certificateDao.update(cer)) {
-                    listCertificate.set(i, cer);
-                    loadData();
-                    JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Update", JOptionPane.INFORMATION_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Update", JOptionPane.ERROR_MESSAGE);
-                }
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "data not valid", "Certificate Update", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Enter full information, please", "Certificate Update", JOptionPane.ERROR_MESSAGE);
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Enter full information, please", "Certificate Update", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception ex) {
         }
 }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-
-        if (txtID.getText().length() != 0) {
-            try {
-                int id = Integer.parseInt(txtID.getText());
-                int index = getIndexCertificateInListById(id);
-                if (certificateDao.delete(id)) {
-                    listCertificate.remove(index);
-                    loadData();
-                    JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Delete", JOptionPane.INFORMATION_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Delete", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            if (txtID.getText().length() != 0) {
+                try {
+                    int id = Integer.parseInt(txtID.getText());
+                    int index = getIndexCertificateInListById(id);
+                    if (certificateDao.delete(id)) {
+                        listCertificate.remove(index);
+                        loadData();
+                        JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Delete", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(this, certificateDao.getLastError(), "Certificate Delete", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Error! Check again, please.", "Certificate Delete", JOptionPane.ERROR_MESSAGE);
                 }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Error! Check again, please.", "Certificate Delete", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Enter full information, please", "Certificate Delete", JOptionPane.ERROR_MESSAGE);
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Enter full information, please", "Certificate Delete", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception ex) {
         }
 }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-
-        if (isAdd) {
-            isAdd = false;
-            btnCancel.setVisible(false);
-            btnUpdate.setEnabled(true);
-            btnDelete.setEnabled(true);
-            txtStudentID.setEnabled(false);
-            btnChooseStudentId.setEnabled(false);
-            loadDetails(listCertificate.get(0));
+        try {
+            if (isAdd) {
+                isAdd = false;
+                btnCancel.setVisible(false);
+                btnUpdate.setEnabled(true);
+                btnDelete.setEnabled(true);
+                txtStudentID.setEnabled(false);
+                btnChooseStudentId.setEnabled(false);
+                loadDetails(listCertificate.get(0));
+            }
+        } catch (Exception ex) {
         }
 }//GEN-LAST:event_btnCancelActionPerformed
 
@@ -775,25 +781,29 @@ public class pnlCertificate extends javax.swing.JPanel {
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnChooseStudentIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseStudentIdActionPerformed
-
-        dlgChoose dlg = new dlgChoose(frm, txtStudentID, true, 12);
-        dlg.setTitle("Browse Student");
-        dlg.setSize(868, 580);
-        dlg.setLocationRelativeTo(null);
-        dlg.setVisible(true);
-        if (txtStudentID.getText().length() != 0) {
-            float mark = markDAO.avgMark(txtStudentID.getText());
-            txtMark.setText(String.valueOf(mark));
+        try {
+            dlgChoose dlg = new dlgChoose(frm, txtStudentID, true, 12);
+            dlg.setTitle("Browse Student");
+            dlg.setSize(868, 580);
+            dlg.setLocationRelativeTo(null);
+            dlg.setVisible(true);
+            if (txtStudentID.getText().length() != 0) {
+                float mark = markDAO.avgMark(txtStudentID.getText());
+                txtMark.setText(String.valueOf(mark));
+            }
+        } catch (Exception ex) {
         }
     }//GEN-LAST:event_btnChooseStudentIdActionPerformed
 
     private void btnChooseStudentIdSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseStudentIdSearchActionPerformed
-
-        dlgChoose dlg = new dlgChoose(frm, txtStudentIDSearch, true, 12);
-        dlg.setTitle("Browse Student");
-        dlg.setSize(868, 580);
-        dlg.setLocationRelativeTo(null);
-        dlg.setVisible(true);
+        try {
+            dlgChoose dlg = new dlgChoose(frm, txtStudentIDSearch, true, 12);
+            dlg.setTitle("Browse Student");
+            dlg.setSize(868, 580);
+            dlg.setLocationRelativeTo(null);
+            dlg.setVisible(true);
+        } catch (Exception ex) {
+        }
     }//GEN-LAST:event_btnChooseStudentIdSearchActionPerformed
 
     private void filterTextCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_filterTextCaretUpdate
@@ -814,7 +824,6 @@ public class pnlCertificate extends javax.swing.JPanel {
     private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
 
         try {
-
             int index = tableContent.getSelectedRow();
             if (index != -1) {
                 int value = Integer.parseInt(tableContent.getValueAt(index, 0).toString());
@@ -831,22 +840,23 @@ public class pnlCertificate extends javax.swing.JPanel {
 
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.toString(), "Error!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_tableContentMouseReleased
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
-
-        if (!filter.isEmpty()) {
-            frm.pnlReport.removeAll();
-            dlgChooseReport report = new dlgChooseReport(frm, this);
-            report.getCertificateDevelopedReport(filter);
-            report.setVisible(true);
-            report.setSize(860, 600);
-            frm.pnlReport.add(report);
-            frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
-        } else {
-            JOptionPane.showMessageDialog(this, "No data!", "Report Message", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            if (!filter.isEmpty()) {
+                frm.pnlReport.removeAll();
+                dlgChooseReport report = new dlgChooseReport(frm, this);
+                report.getCertificateDevelopedReport(filter);
+                report.setVisible(true);
+                report.setSize(860, 600);
+                frm.pnlReport.add(report);
+                frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+            } else {
+                JOptionPane.showMessageDialog(this, "No data!", "Report Message", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (Exception ex) {
         }
     }//GEN-LAST:event_btnReportActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables

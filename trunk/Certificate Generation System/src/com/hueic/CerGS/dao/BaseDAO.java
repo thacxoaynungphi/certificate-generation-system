@@ -27,6 +27,7 @@ public class BaseDAO implements IBaseDAO {
     }
 
     public int readIdentity(String tableName) {
+        setLastError("");
         con = db.getConnection();
         int result = -1;
         String sql = "SELECT IDENT_CURRENT(?)";
@@ -37,9 +38,9 @@ public class BaseDAO implements IBaseDAO {
             while (rs.next()) {
                 result = rs.getInt(1);
             }
-            setLastError("Read All successfully");
+            setLastError("Read  successfully");
         } catch (Exception ex) {
-            setLastError("Read All unsuccessfully");
+            setLastError("Read unsuccessfully");
         } finally {
             db.closeConnection();
         }

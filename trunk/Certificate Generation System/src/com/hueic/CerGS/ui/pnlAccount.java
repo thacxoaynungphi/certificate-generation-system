@@ -735,16 +735,18 @@ public class pnlAccount extends javax.swing.JPanel {
 }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-
-        if (isAdd) {
-            isAdd = false;
-            btnUpdate.setEnabled(true);
-            btnDelete.setEnabled(true);
-            txtUsername.setEnabled(false);
-            btnCancel.setVisible(false);
-            cbxUsername.setVisible(false);
-            txtUsername.setVisible(true);
-            loadDetails(listAccounts.get(0));
+        try {
+            if (isAdd) {
+                isAdd = false;
+                btnUpdate.setEnabled(true);
+                btnDelete.setEnabled(true);
+                txtUsername.setEnabled(false);
+                btnCancel.setVisible(false);
+                cbxUsername.setVisible(false);
+                txtUsername.setVisible(true);
+                loadDetails(listAccounts.get(0));
+            }
+        } catch (Exception ex) {
         }
 }//GEN-LAST:event_btnCancelActionPerformed
 
@@ -755,18 +757,19 @@ public class pnlAccount extends javax.swing.JPanel {
 }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnChoosePermissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChoosePermissionActionPerformed
-
-        dlgChoose dlg = new dlgChoose(frm, txtType, true, 11);
-        dlg.setTitle("Browse Permission");
-        dlg.setSize(868, 600);
-        dlg.setLocationRelativeTo(null);
-        dlg.setVisible(true);
+        try {
+            dlgChoose dlg = new dlgChoose(frm, txtType, true, 11);
+            dlg.setTitle("Browse Permission");
+            dlg.setSize(868, 600);
+            dlg.setLocationRelativeTo(null);
+            dlg.setVisible(true);
+        } catch (Exception ex) {
+        }
     }//GEN-LAST:event_btnChoosePermissionActionPerformed
 
     private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
 
         try {
-
             int index = tableContent.getSelectedRow();
             if (index != -1) {
                 String value = tableContent.getValueAt(index, 0).toString();
@@ -782,7 +785,6 @@ public class pnlAccount extends javax.swing.JPanel {
                 }
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.toString(), "Error!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_tableContentMouseReleased
 
@@ -802,12 +804,14 @@ public class pnlAccount extends javax.swing.JPanel {
     }//GEN-LAST:event_txtPermissionSearchCaretUpdate
 
     private void btnChoosePerSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChoosePerSearchActionPerformed
-
-        dlgChoose dlg = new dlgChoose(frm, txtPermissionSearch, true, 11);
-        dlg.setTitle("Browse Permission");
-        dlg.setSize(868, 580);
-        dlg.setLocationRelativeTo(null);
-        dlg.setVisible(true);
+        try {
+            dlgChoose dlg = new dlgChoose(frm, txtPermissionSearch, true, 11);
+            dlg.setTitle("Browse Permission");
+            dlg.setSize(868, 580);
+            dlg.setLocationRelativeTo(null);
+            dlg.setVisible(true);
+        } catch (Exception ex) {
+        }
     }//GEN-LAST:event_btnChoosePerSearchActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;

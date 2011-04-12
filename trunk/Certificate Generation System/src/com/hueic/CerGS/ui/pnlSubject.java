@@ -687,8 +687,6 @@ public class pnlSubject extends javax.swing.JPanel {
 
     private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
 
-        btnUpdate.setEnabled(true);
-        btnDelete.setEnabled(true);
         try {
 
             int index = tableContent.getSelectedRow();
@@ -714,11 +712,14 @@ public class pnlSubject extends javax.swing.JPanel {
 
     private void btnChooseCourIDSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseCourIDSearchActionPerformed
         // TODO add your handling code here:
-        dlgChoose dlg = new dlgChoose(frm, txtCoureIDSearch, true, 7);
-        dlg.setTitle("Browse Course");
-        dlg.setSize(868, 580);
-        dlg.setLocationRelativeTo(null);
-        dlg.setVisible(true);
+        try {
+            dlgChoose dlg = new dlgChoose(frm, txtCoureIDSearch, true, 7);
+            dlg.setTitle("Browse Course");
+            dlg.setSize(868, 580);
+            dlg.setLocationRelativeTo(null);
+            dlg.setVisible(true);
+        } catch (Exception ex) {
+        }
 }//GEN-LAST:event_btnChooseCourIDSearchActionPerformed
 
     private void txtCoureIDSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtCoureIDSearchCaretUpdate
@@ -750,42 +751,48 @@ public class pnlSubject extends javax.swing.JPanel {
 }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnChooseCourIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseCourIDActionPerformed
-
-        dlgChoose dlg = new dlgChoose(frm, txtCoureID, true, 7);
-        dlg.setTitle("Browse Course");
-        dlg.setSize(868, 580);
-        dlg.setLocationRelativeTo(null);
-        dlg.setVisible(true);
+        try {
+            dlgChoose dlg = new dlgChoose(frm, txtCoureID, true, 7);
+            dlg.setTitle("Browse Course");
+            dlg.setSize(868, 580);
+            dlg.setLocationRelativeTo(null);
+            dlg.setVisible(true);
+        } catch (Exception ex) {
+        }
 }//GEN-LAST:event_btnChooseCourIDActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-
-        if (isAdd) {
-            isAdd = false;
-            btnUpdate.setEnabled(true);
-            btnDelete.setEnabled(true);
-            btnCancel.setVisible(false);
-            txtSubjectId.setRequestFocusEnabled(false);
+        try {
+            if (isAdd) {
+                isAdd = false;
+                btnUpdate.setEnabled(true);
+                btnDelete.setEnabled(true);
+                btnCancel.setVisible(false);
+                txtSubjectId.setRequestFocusEnabled(false);
+            }
+            loadDetails(listSubject.get(0));
+        } catch (Exception ex) {
         }
-        loadDetails(listSubject.get(0));
 }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-
-        String subjectid = txtSubjectId.getText();
-        if (subjectid.length() != 0) {
-            if (subjectDao.delete(subjectid)) {
-                listSubject.remove(findSubject(subjectid));
-                loadData();
-                if (!listSubject.isEmpty()) {
-                    loadDetails(listSubject.get(0));
+        try {
+            String subjectid = txtSubjectId.getText();
+            if (subjectid.length() != 0) {
+                if (subjectDao.delete(subjectid)) {
+                    listSubject.remove(findSubject(subjectid));
+                    loadData();
+                    if (!listSubject.isEmpty()) {
+                        loadDetails(listSubject.get(0));
+                    }
+                    JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Subject Delete", JOptionPane.INFORMATION_MESSAGE, null);
+                } else {
+                    JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Subject Delete", JOptionPane.ERROR_MESSAGE, null);
                 }
-                JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Subject Delete", JOptionPane.INFORMATION_MESSAGE, null);
             } else {
-                JOptionPane.showMessageDialog(this, subjectDao.getLastError(), "Subject Delete", JOptionPane.ERROR_MESSAGE, null);
+                JOptionPane.showMessageDialog(this, "Enter full information, please", "Subject Delete", JOptionPane.ERROR_MESSAGE);
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Enter full information, please", "Subject Delete", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception ex) {
         }
 }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -881,17 +888,19 @@ public class pnlSubject extends javax.swing.JPanel {
 }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
-
-        if (filter.size() != 0) {
-            frm.pnlReport.removeAll();
-            dlgChooseReport report = new dlgChooseReport(frm, this);
-            report.getSubjectReport(filter);
-            report.setVisible(true);
-            report.setSize(860, 600);
-            frm.pnlReport.add(report);
-            frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
-        } else {
-            JOptionPane.showMessageDialog(this, "No data!", "Report Message", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            if (filter.size() != 0) {
+                frm.pnlReport.removeAll();
+                dlgChooseReport report = new dlgChooseReport(frm, this);
+                report.getSubjectReport(filter);
+                report.setVisible(true);
+                report.setSize(860, 600);
+                frm.pnlReport.add(report);
+                frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+            } else {
+                JOptionPane.showMessageDialog(this, "No data!", "Report Message", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (Exception ex) {
         }
     }//GEN-LAST:event_btnReportActionPerformed
 

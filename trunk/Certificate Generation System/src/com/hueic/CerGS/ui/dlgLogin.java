@@ -1,5 +1,3 @@
-
-
 /*
  * dlgLogin.java
  *
@@ -283,7 +281,13 @@ public class dlgLogin extends javax.swing.JDialog {
         try {
             String username = txtUsername.getText();
             String password = String.valueOf(txtPassword.getPassword());
-            Account acc = new Account(username, password, perDao.readByName(cbxPermission.getSelectedItem().toString()).getId());
+            Account acc = null;
+            try {
+                acc = new Account(username, password, perDao.readByName(cbxPermission.getSelectedItem().toString()).getId());
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Login", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             AccountDAO accDao = new AccountDAO();
             if (accDao.login(acc)) {
                 main.accCur = acc;
@@ -313,7 +317,6 @@ public class dlgLogin extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, accDao.getLastError(), "Login", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
-           
         }
     }
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed

@@ -218,23 +218,27 @@ public class dlgConfigurationDB extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-
-        Configure config = new Configure();
-        config.setDatabase(txtDatabase.getText());
-        config.setSever(txtServername.getText());
-        config.setPort(txtPort.getText());
-        config.setUsername(txtUsername.getText());
-        config.setPassword(String.valueOf(txtPassword.getPassword()));
-        if (configureDB.writeFile(config)) {
-            JOptionPane.showMessageDialog(this, "Configuration DB succsufully", "ConfigurationDB", JOptionPane.INFORMATION_MESSAGE);
-            this.dispose();
+        Connection con = Test();
+        if (con == null) {
+            JOptionPane.showMessageDialog(this, "Change Config Database unsuccsufully", "ConfigurationDB", JOptionPane.ERROR_MESSAGE);
+            return;
         } else {
-            JOptionPane.showMessageDialog(this, "Configuration DB unsuccsufully", "ConfigurationDB", JOptionPane.ERROR_MESSAGE);
+            Configure config = new Configure();
+            config.setDatabase(txtDatabase.getText());
+            config.setSever(txtServername.getText());
+            config.setPort(txtPort.getText());
+            config.setUsername(txtUsername.getText());
+            config.setPassword(String.valueOf(txtPassword.getPassword()));
+            if (configureDB.writeFile(config)) {
+                JOptionPane.showMessageDialog(this, "Configuration DB succsufully", "ConfigurationDB", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Configuration DB unsuccsufully", "ConfigurationDB", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
-    private void btnTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestActionPerformed
-
+    public Connection Test() {
         Connection con = null;
         String url = "jdbc:sqlserver://" + txtServername.getText() + ":" + txtPort.getText() + ";databaseName=" + txtDatabase.getText() + "";
         String user = txtUsername.getText();
@@ -242,9 +246,15 @@ public class dlgConfigurationDB extends javax.swing.JDialog {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             con = java.sql.DriverManager.getConnection(url, user, password);
+            return con;
         } catch (SQLException ex) {
         } catch (ClassNotFoundException ex) {
         }
+        return null;
+    }
+    private void btnTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestActionPerformed
+
+        Connection con = Test();
         if (con == null) {
             JOptionPane.showMessageDialog(this, "Test unsuccsufully", "ConfigurationDB", JOptionPane.ERROR_MESSAGE);
         } else {

@@ -19,6 +19,7 @@ import java.util.Date;
 public class StudentDAO extends BaseDAO implements IStudentDAO {
 
     public ArrayList<Student> readByAll() {
+        setLastError("");
         ArrayList<Student> list = new ArrayList<Student>();
         con = db.getConnection();
         String sql = "select s.Id,p.FirstName,p.LastName,p.BirthDay,p.Gender,p.Phone,p.Email,p.Address,p.Image,p.Status from Student s inner join Person p on s.Id = p.Id order by (s.Id) asc";
@@ -48,6 +49,7 @@ public class StudentDAO extends BaseDAO implements IStudentDAO {
     }
 
     public Student readByID(String id) {
+        setLastError("");
         Student student = null;
         try {
             con = db.getConnection();
@@ -82,6 +84,7 @@ public class StudentDAO extends BaseDAO implements IStudentDAO {
     }
 
     public boolean create(Student student) {
+        setLastError("");
         boolean status = false;
         Person person = student;
         PersonDAO personDAO = new PersonDAO();
@@ -109,6 +112,7 @@ public class StudentDAO extends BaseDAO implements IStudentDAO {
     }
 
     public boolean update(Student student) {
+        setLastError("");
         boolean status = false;
         Person person = student;
         PersonDAO personDAO = new PersonDAO();
@@ -123,6 +127,7 @@ public class StudentDAO extends BaseDAO implements IStudentDAO {
     }
 
     public boolean delete(String id) {
+        setLastError("");
         boolean status = false;
 
         try {

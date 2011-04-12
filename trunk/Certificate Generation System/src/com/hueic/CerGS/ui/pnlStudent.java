@@ -18,8 +18,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -930,13 +928,16 @@ public class pnlStudent extends javax.swing.JPanel {
                 }
                 try {
                     File file = new File(txtImageEdit.getText());
-                    String name = file.getName();
-                    String extension;
-                    int dotPos = name.lastIndexOf(".");
-                    extension = name.substring(dotPos);
-                    LoadImage.copyImage(file.getPath(), System.getProperty("user.dir") + "/avatar/" + student.getId() + extension);
-                    student.setImage(student.getId() + extension);
+                    if (file.exists()) {
+                        String name = file.getName();
+                        String extension;
+                        int dotPos = name.lastIndexOf(".");
+                        extension = name.substring(dotPos);
+                        LoadImage.copyImage(file.getPath(), System.getProperty("user.dir") + "/avatar/" + student.getId() + extension);
+                        student.setImage(student.getId() + extension);
+                    }
                 } catch (Exception ex) {
+                    student.setImage(null);
                 }
                 student.setStatus(1);
                 StudentDAO studentDAO = new StudentDAO();
@@ -984,8 +985,12 @@ public class pnlStudent extends javax.swing.JPanel {
         txtAddressEdit.setText(student.getAddress());
         txtImageEdit.setText(student.getImage());
         if (student.getImage() != null && student.getImage().length() != 0) {
-            lblImage2.setIcon(null);
-            lblImage2.setIcon(new ImageIcon(System.getProperty("user.dir") + "/avatar/" + student.getImage()));
+            try {
+                lblImage2.setIcon(null);
+                lblImage2.setIcon(new ImageIcon(System.getProperty("user.dir") + "/avatar/" + student.getImage()));
+            } catch (Exception ex) {
+                lblImage2.setIcon(new ImageIcon(System.getProperty("user.dir") + "/avatar/no images.jpg"));
+            }
         } else {
             lblImage2.setIcon(new ImageIcon(System.getProperty("user.dir") + "/avatar/no images.jpg"));
         }
@@ -1071,20 +1076,22 @@ public class pnlStudent extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAddEditActionPerformed
 
     private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
-
-        int index = tableContent.getSelectedRow();
-        if (index != -1) {
-            String value = (String) tableContent.getValueAt(index, 0);
-            Student student = find(value);
-            if (student != null) {
-                loadDetails(student);
+        try {
+            int index = tableContent.getSelectedRow();
+            if (index != -1) {
+                String value = (String) tableContent.getValueAt(index, 0);
+                Student student = find(value);
+                if (student != null) {
+                    loadDetails(student);
+                }
+                if (isAdd) {
+                    isAdd = false;
+                    btnUpdateEdit.setEnabled(true);
+                    btnDeleteEdit.setEnabled(true);
+                    btnCancelEdit.setVisible(false);
+                }
             }
-            if (isAdd) {
-                isAdd = false;
-                btnUpdateEdit.setEnabled(true);
-                btnDeleteEdit.setEnabled(true);
-                btnCancelEdit.setVisible(false);
-            }
+        } catch (Exception ex) {
         }
     }//GEN-LAST:event_tableContentMouseReleased
 
@@ -1104,47 +1111,54 @@ public class pnlStudent extends javax.swing.JPanel {
     }//GEN-LAST:event_txtLastNameSearchCaretUpdate
 
     private void btnDeleteEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteEditActionPerformed
-
-        if (txtIDEdit.getText().length() != 0) {
-            String id = txtIDEdit.getText();
-            if (studentDao.delete(id)) {
-                liststudent = studentDao.readByAll();
-                loadData(liststudent);
-                JOptionPane.showMessageDialog(this, studentDao.getLastError(), "Student Delete", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            if (txtIDEdit.getText().length() != 0) {
+                String id = txtIDEdit.getText();
+                if (studentDao.delete(id)) {
+                    liststudent = studentDao.readByAll();
+                    loadData(liststudent);
+                    JOptionPane.showMessageDialog(this, studentDao.getLastError(), "Student Delete", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, studentDao.getLastError(), "Student Delete", JOptionPane.ERROR_MESSAGE);
+                }
             } else {
                 JOptionPane.showMessageDialog(this, studentDao.getLastError(), "Student Delete", JOptionPane.ERROR_MESSAGE);
             }
-        } else {
-            JOptionPane.showMessageDialog(this, studentDao.getLastError(), "Student Delete", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception ex) {
         }
     }//GEN-LAST:event_btnDeleteEditActionPerformed
 
     private void btnCancelEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelEditActionPerformed
-
-        if (isAdd) {
-            isAdd = false;
-            btnUpdateEdit.setEnabled(true);
-            btnDeleteEdit.setEnabled(true);
-            txtIDEdit.setEnabled(false);
-            btnCancelEdit.setVisible(false);
+        try {
+            if (isAdd) {
+                isAdd = false;
+                btnUpdateEdit.setEnabled(true);
+                btnDeleteEdit.setEnabled(true);
+                txtIDEdit.setEnabled(false);
+                btnCancelEdit.setVisible(false);
+            }
+            loadDetails(liststudent.get(0));
+        } catch (Exception ex) {
         }
-        loadDetails(liststudent.get(0));
     }//GEN-LAST:event_btnCancelEditActionPerformed
 
     private void btnReportDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportDetailsActionPerformed
 
-        int index = this.tableContent.getSelectedRow();
-        if (index != -1) {
-            Student student = filter.get(index);
-            frm.pnlReport.removeAll();
-            dlgChooseReport report = new dlgChooseReport(frm, this);
-            report.getStudentDetailsReport(student);
-            report.setVisible(true);
-            report.setSize(860, 600);
-            frm.pnlReport.add(report);
-            frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
-        } else {
-            JOptionPane.showMessageDialog(this, "You are choose student!", "Report details student", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            int index = this.tableContent.getSelectedRow();
+            if (index != -1) {
+                Student student = filter.get(index);
+                frm.pnlReport.removeAll();
+                dlgChooseReport report = new dlgChooseReport(frm, this);
+                report.getStudentDetailsReport(student);
+                report.setVisible(true);
+                report.setSize(860, 600);
+                frm.pnlReport.add(report);
+                frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+            } else {
+                JOptionPane.showMessageDialog(this, "You are choose student!", "Report details student", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (Exception ex) {
         }
     }//GEN-LAST:event_btnReportDetailsActionPerformed
 
@@ -1179,17 +1193,19 @@ public class pnlStudent extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBrowseEditActionPerformed
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
-
-        if (!filter.isEmpty()) {
-            frm.pnlReport.removeAll();
-            dlgChooseReport report = new dlgChooseReport(frm, this);
-            report.getStudentReport(filter);
-            report.setVisible(true);
-            report.setSize(860, 600);
-            frm.pnlReport.add(report);
-            frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
-        } else {
-            JOptionPane.showMessageDialog(this, "No data!", "Report Message", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            if (!filter.isEmpty()) {
+                frm.pnlReport.removeAll();
+                dlgChooseReport report = new dlgChooseReport(frm, this);
+                report.getStudentReport(filter);
+                report.setVisible(true);
+                report.setSize(860, 600);
+                frm.pnlReport.add(report);
+                frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+            } else {
+                JOptionPane.showMessageDialog(this, "No data!", "Report Message", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (Exception ex) {
         }
     }//GEN-LAST:event_btnReportActionPerformed
 

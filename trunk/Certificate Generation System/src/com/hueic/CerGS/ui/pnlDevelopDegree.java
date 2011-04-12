@@ -329,55 +329,59 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbxCourseIDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxCourseIDItemStateChanged
-
-        if (cbxCourseID.getItemCount() - 1 == listCourse.size()) {
-            String courseid = cbxCourseID.getSelectedItem().toString();
-            if (courseid != null && !courseid.equals("----All----")) {
-                listRegister = registerDAO.readByCourseId(courseid);
-                listMark = markDAO.readBYCourseID(courseid);
-                loadData(listMark);
-                if (listRegister.size() != 0) {
-                    loadCBXStudent();
+        try {
+            if (cbxCourseID.getItemCount() - 1 == listCourse.size()) {
+                String courseid = cbxCourseID.getSelectedItem().toString();
+                if (courseid != null && !courseid.equals("----All----")) {
+                    listRegister = registerDAO.readByCourseId(courseid);
+                    listMark = markDAO.readBYCourseID(courseid);
+                    loadData(listMark);
+                    if (listRegister.size() != 0) {
+                        loadCBXStudent();
+                    }
+                } else {
+                    listRegister = registerDAO.readByAll();
+                    listMark = markDAO.readByAll();
+                    loadData(listMark);
+                    if (listRegister.size() != 0) {
+                        loadCBXStudent();
+                    }
                 }
-            } else {
-                listRegister = registerDAO.readByAll();
-                listMark = markDAO.readByAll();
-                loadData(listMark);
-                if (listRegister.size() != 0) {
-                    loadCBXStudent();
-                }
+                lblTotalMark.setText("NA");
+                lblGrade.setText("NA");
             }
-            lblTotalMark.setText("NA");
-            lblGrade.setText("NA");
+        } catch (Exception ex) {
         }
 }//GEN-LAST:event_cbxCourseIDItemStateChanged
 
     private void cbxStudentIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxStudentIDActionPerformed
-
-        if (cbxStudentID.getItemCount() - 1 == listRegister.size()) {
-            String studentId = cbxStudentID.getSelectedItem().toString();
-            if (studentId != null && !studentId.equals("----All----")) {
-                listMark = markDAO.readByStudentID(studentId);
-                loadData(listMark);
-                if (markDAO.isCompleteCourse(registerDAO.readByStudentCourseId(studentId).getCourseId(), studentId)) {
-                    float mark = markDAO.avgMark(studentId);
-                    lblTotalMark.setText(String.valueOf(mark));
-                    lblGrade.setText(markDAO.getGrades(mark));
-                    btnCreate.setVisible(true);
+        try {
+            if (cbxStudentID.getItemCount() - 1 == listRegister.size()) {
+                String studentId = cbxStudentID.getSelectedItem().toString();
+                if (studentId != null && !studentId.equals("----All----")) {
+                    listMark = markDAO.readByStudentID(studentId);
+                    loadData(listMark);
+                    if (markDAO.isCompleteCourse(registerDAO.readByStudentCourseId(studentId).getCourseId(), studentId)) {
+                        float mark = markDAO.avgMark(studentId);
+                        lblTotalMark.setText(String.valueOf(mark));
+                        lblGrade.setText(markDAO.getGrades(mark));
+                        btnCreate.setVisible(true);
+                    } else {
+                        btnCreate.setVisible(false);
+                        lblTotalMark.setText("NA");
+                        lblGrade.setText("NA");
+                    }
                 } else {
-                    btnCreate.setVisible(false);
-                    lblTotalMark.setText("NA");
-                    lblGrade.setText("NA");
+                    String courseId = cbxCourseID.getSelectedItem().toString();
+                    if (courseId != null && !courseId.equals("----All----")) {
+                        listMark = markDAO.readBYCourseID(courseId);
+                    } else {
+                        listMark = markDAO.readByAll();
+                    }
+                    loadData(listMark);
                 }
-            } else {
-                String courseId = cbxCourseID.getSelectedItem().toString();
-                if (courseId != null && !courseId.equals("----All----")) {
-                    listMark = markDAO.readBYCourseID(courseId);
-                } else {
-                    listMark = markDAO.readByAll();
-                }
-                loadData(listMark);
             }
+        } catch (Exception ex) {
         }
 }//GEN-LAST:event_cbxStudentIDActionPerformed
 
@@ -392,47 +396,51 @@ public class pnlDevelopDegree extends javax.swing.JPanel {
     }//GEN-LAST:event_filterTextCaretUpdate
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-
-        if (!this.cbxStudentID.getSelectedItem().toString().equals("----All----")) {
-            try {
-                if (new PermissionDAO().readByID(frm.accCur.getPermission()).getName().equals("Admin")) {
-                    Certificate cer = new Certificate();
-                    cer.setStudentID(cbxStudentID.getSelectedItem().toString());
-                    cer.setDegreeDay(new Date(System.currentTimeMillis()));
-                    cer.setMark(new MarkDAO().avgMark(cbxStudentID.getSelectedItem().toString()));
-                    CertificateDAO certificateDAO = new CertificateDAO();
-                    if (!certificateDAO.create(cer)) {
+        try {
+            if (!this.cbxStudentID.getSelectedItem().toString().equals("----All----")) {
+                try {
+                    if (new PermissionDAO().readByID(frm.accCur.getPermission()).getName().equals("Admin")) {
+                        Certificate cer = new Certificate();
+                        cer.setStudentID(cbxStudentID.getSelectedItem().toString());
+                        cer.setDegreeDay(new Date(System.currentTimeMillis()));
+                        cer.setMark(new MarkDAO().avgMark(cbxStudentID.getSelectedItem().toString()));
+                        CertificateDAO certificateDAO = new CertificateDAO();
+                        if (!certificateDAO.create(cer)) {
+                        }
                     }
+                    frm.pnlReport.removeAll();
+                    dlgChooseReport report = new dlgChooseReport(frm, this);
+                    report.getCertificateReport(this.cbxStudentID.getSelectedItem().toString());
+                    report.setVisible(true);
+                    report.setSize(860, 600);
+                    if (report.status == true) {
+                        frm.pnlReport.add(report);
+                        frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+                    }
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, "Error! Check again, please.", "Error!", JOptionPane.ERROR_MESSAGE);
                 }
-                frm.pnlReport.removeAll();
-                dlgChooseReport report = new dlgChooseReport(frm, this);
-                report.getCertificateReport(this.cbxStudentID.getSelectedItem().toString());
-                report.setVisible(true);
-                report.setSize(860, 600);
-                if (report.status == true) {
-                    frm.pnlReport.add(report);
-                    frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
-                }
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Error! Check again, please.", "Error!", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "You are choose student!", "Develop Degree", JOptionPane.INFORMATION_MESSAGE);
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "You are choose student!", "Develop Degree", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception ex) {
         }
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
-
-        if (!this.cbxStudentID.getSelectedItem().toString().equals("----All----")) {
-            frm.pnlReport.removeAll();
-            dlgChooseReport report = new dlgChooseReport(frm, this);
-            report.getMarkOfStudent(cbxStudentID.getSelectedItem().toString());
-            report.setVisible(true);
-            report.setSize(860, 600);
-            frm.pnlReport.add(report);
-            frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
-        } else {
-            JOptionPane.showMessageDialog(this, "No data!", "Report Message", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            if (!this.cbxStudentID.getSelectedItem().toString().equals("----All----")) {
+                frm.pnlReport.removeAll();
+                dlgChooseReport report = new dlgChooseReport(frm, this);
+                report.getMarkOfStudent(cbxStudentID.getSelectedItem().toString());
+                report.setVisible(true);
+                report.setSize(860, 600);
+                frm.pnlReport.add(report);
+                frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+            } else {
+                JOptionPane.showMessageDialog(this, "No data!", "Report Message", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (Exception ex) {
         }
     }//GEN-LAST:event_btnReportActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables

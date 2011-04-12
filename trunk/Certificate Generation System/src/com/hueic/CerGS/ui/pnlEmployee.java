@@ -1014,12 +1014,14 @@ public class pnlEmployee extends javax.swing.JPanel {
                     try {
                         if (!txtImageEdit.getText().isEmpty()) {
                             File file = new File(txtImageEdit.getText());
-                            String name = file.getName();
-                            String extension;
-                            int dotPos = name.lastIndexOf(".");
-                            extension = name.substring(dotPos);
-                            LoadImage.copyImage(file.getPath(), System.getProperty("user.dir") + "/avatar/" + emp.getId() + extension);
-                            emp.setImage(emp.getId() + extension);
+                            if (file.exists()) {
+                                String name = file.getName();
+                                String extension;
+                                int dotPos = name.lastIndexOf(".");
+                                extension = name.substring(dotPos);
+                                LoadImage.copyImage(file.getPath(), System.getProperty("user.dir") + "/avatar/" + emp.getId() + extension);
+                                emp.setImage(emp.getId() + extension);
+                            }
                         } else {
                             emp.setImage(null);
                         }
@@ -1159,8 +1161,12 @@ public class pnlEmployee extends javax.swing.JPanel {
         txtAddressEdit.setText(emp.getAddress());
         txtImageEdit.setText(emp.getImage());
         if (emp.getImage() != null && emp.getImage().length() != 0) {
-            lblImage2.setIcon(null);
-            lblImage2.setIcon(new ImageIcon(System.getProperty("user.dir") + "/avatar/" + emp.getImage()));
+            try {
+                lblImage2.setIcon(null);
+                lblImage2.setIcon(new ImageIcon(System.getProperty("user.dir") + "/avatar/" + emp.getImage()));
+            } catch (Exception ex) {
+                lblImage2.setIcon(new ImageIcon(System.getProperty("user.dir") + "/avatar/no images.jpg"));
+            }
         } else {
             lblImage2.setIcon(new ImageIcon(System.getProperty("user.dir") + "/avatar/no images.jpg"));
         }
@@ -1186,50 +1192,56 @@ public class pnlEmployee extends javax.swing.JPanel {
     }//GEN-LAST:event_txtLastNameSearchCaretUpdate
 
     private void btnDeleteEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteEditActionPerformed
-
-        if (txtID.getText().length() != 0) {
-            String id = txtID.getText();
-            if (empDao.delete(id)) {
-                JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Delete", JOptionPane.INFORMATION_MESSAGE);
-                listEmp = empDao.readByAll();
-                loadData();
+        try {
+            if (txtID.getText().length() != 0) {
+                String id = txtID.getText();
+                if (empDao.delete(id)) {
+                    JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Delete", JOptionPane.INFORMATION_MESSAGE);
+                    listEmp = empDao.readByAll();
+                    loadData();
+                } else {
+                    JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Delete", JOptionPane.ERROR_MESSAGE);
+                }
             } else {
-                JOptionPane.showMessageDialog(this, empDao.getLastError(), "Employee Delete", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Choose a Employee, please", "Employee Delete", JOptionPane.ERROR_MESSAGE);
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Choose a Employee, please", "Employee Delete", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception ex) {
         }
     }//GEN-LAST:event_btnDeleteEditActionPerformed
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
-
-        if (!filter.isEmpty()) {
-            frm.pnlReport.removeAll();
-            dlgChooseReport report = new dlgChooseReport(frm, this);
-            report.getEmployeeReport(filter);
-            report.setVisible(true);
-            report.setSize(860, 600);
-            frm.pnlReport.add(report);
-            frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
-        } else {
-            JOptionPane.showMessageDialog(this, "No data!", "Report Message", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            if (!filter.isEmpty()) {
+                frm.pnlReport.removeAll();
+                dlgChooseReport report = new dlgChooseReport(frm, this);
+                report.getEmployeeReport(filter);
+                report.setVisible(true);
+                report.setSize(860, 600);
+                frm.pnlReport.add(report);
+                frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+            } else {
+                JOptionPane.showMessageDialog(this, "No data!", "Report Message", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (Exception ex) {
         }
     }//GEN-LAST:event_btnReportActionPerformed
 
     private void btnReportDetalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportDetalsActionPerformed
-
-        int index = this.tableContent.getSelectedRow();
-        if (index != -1) {
-            Employee emp = filter.get(index);
-            frm.pnlReport.removeAll();
-            dlgChooseReport report = new dlgChooseReport(frm, this);
-            report.getEmployeeDetailsReport(emp);
-            report.setVisible(true);
-            report.setSize(860, 600);
-            frm.pnlReport.add(report);
-            frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
-        } else {
-            JOptionPane.showMessageDialog(this, "You are choose employee!", "Report details employee", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            int index = this.tableContent.getSelectedRow();
+            if (index != -1) {
+                Employee emp = filter.get(index);
+                frm.pnlReport.removeAll();
+                dlgChooseReport report = new dlgChooseReport(frm, this);
+                report.getEmployeeDetailsReport(emp);
+                report.setVisible(true);
+                report.setSize(860, 600);
+                frm.pnlReport.add(report);
+                frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+            } else {
+                JOptionPane.showMessageDialog(this, "You are choose employee!", "Report details employee", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (Exception ex) {
         }
     }//GEN-LAST:event_btnReportDetalsActionPerformed
 
@@ -1254,16 +1266,18 @@ public class pnlEmployee extends javax.swing.JPanel {
     }//GEN-LAST:event_filterTextCaretUpdate
 
     private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
-
-        int index = tableContent.getSelectedRow();
-        if (index != -1) {
-            loadDetails(filter.get(index));
-            if (isAdd) {
-                isAdd = false;
-                btnUpdateEdit.setEnabled(true);
-                btnDeleteEdit.setEnabled(true);
-                btnCancelEdit.setVisible(false);
+        try {
+            int index = tableContent.getSelectedRow();
+            if (index != -1) {
+                loadDetails(filter.get(index));
+                if (isAdd) {
+                    isAdd = false;
+                    btnUpdateEdit.setEnabled(true);
+                    btnDeleteEdit.setEnabled(true);
+                    btnCancelEdit.setVisible(false);
+                }
             }
+        } catch (Exception ex) {
         }
     }//GEN-LAST:event_tableContentMouseReleased
     // Variables declaration - do not modify//GEN-BEGIN:variables
