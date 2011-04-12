@@ -22,6 +22,7 @@ public class SubjectDAO extends BaseDAO implements ISubjectDAO {
     }
 
     public ArrayList<Subject> readByAll() {
+        setLastError("");
         ArrayList<Subject> list = new ArrayList<Subject>();
         con = db.getConnection();
         String sql = "select * from Subject";
@@ -46,6 +47,7 @@ public class SubjectDAO extends BaseDAO implements ISubjectDAO {
     }
 
     public ArrayList<Subject> readByCourseId(String id) {
+        setLastError("");
         ArrayList<Subject> list = new ArrayList<Subject>();
         con = db.getConnection();
         String sql = "select * from Subject where CourseId = ?";
@@ -71,6 +73,7 @@ public class SubjectDAO extends BaseDAO implements ISubjectDAO {
     }
 
     public Subject readByID(String id) {
+        setLastError("");
         Subject sub = null;
         try {
             con = db.getConnection();
@@ -95,6 +98,7 @@ public class SubjectDAO extends BaseDAO implements ISubjectDAO {
     }
 
     public boolean create(Subject sub) {
+        setLastError("");
         boolean status = false;
         try {
             con = db.getConnection();
@@ -120,6 +124,7 @@ public class SubjectDAO extends BaseDAO implements ISubjectDAO {
     }
 
     public boolean update(Subject sub) {
+        setLastError("");
         boolean status = false;
         try {
             con = db.getConnection();
@@ -150,6 +155,7 @@ public class SubjectDAO extends BaseDAO implements ISubjectDAO {
     }
 
     public boolean delete(String id) {
+        setLastError("");
         boolean status = false;
         try {
             con = db.getConnection();

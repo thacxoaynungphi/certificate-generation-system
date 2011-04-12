@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class RegisterDAO extends BaseDAO implements IRegisterDAO {
 
     public ArrayList<Register> readByAll() {
+        setLastError("");
         ArrayList<Register> list = new ArrayList<Register>();
         con = db.getConnection();
         String sql = "select * from Register";
@@ -41,6 +42,7 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
     }
 
     public ArrayList<Register> readByStudentIdOfPerson(String personId) {
+        setLastError("");
         ArrayList<Register> listRegister = new ArrayList<Register>();
         Register regis = null;
         try {
@@ -70,6 +72,7 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
     }
 
     public Register readById(String personId, String courseId) {
+        setLastError("");
         Register regis = null;
         try {
             con = db.getConnection();
@@ -96,6 +99,7 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
     }
 
     public Register readByStudentCourseId(String studenID) {
+        setLastError("");
         Register regis = null;
         try {
             con = db.getConnection();
@@ -121,6 +125,7 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
     }
 
     public ArrayList<Register> readByCourseId(String courseId) {
+        setLastError("");
         ArrayList<Register> resList = new ArrayList<Register>();
         Register regis = null;
         try {
@@ -148,6 +153,7 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
     }
 
     public boolean create(Register regis) {
+        setLastError("");
         boolean status = false;
         try {
             con = db.getConnection();
@@ -174,6 +180,7 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
     }
 
     public boolean update(Register res) {
+        setLastError("");
         boolean status = false;
         try {
             con = db.getConnection();
@@ -200,6 +207,7 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
     }
 
     public boolean delete(String studentId, String courseId) {
+        setLastError("");
         boolean status = false;
         try {
             con = db.getConnection();
@@ -223,6 +231,7 @@ public class RegisterDAO extends BaseDAO implements IRegisterDAO {
     }
 
     public boolean delete(String studentCourseId) {
+        setLastError("");
         boolean status = false;
         try {
             con = db.getConnection();

@@ -311,6 +311,7 @@ public class pnlMark extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlTop1.add(txtMarkId, gridBagConstraints);
 
+        txtSubjectID.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtSubjectID.setEnabled(false);
         txtSubjectID.setMinimumSize(new java.awt.Dimension(200, 20));
         txtSubjectID.setPreferredSize(new java.awt.Dimension(200, 20));
@@ -833,17 +834,20 @@ public class pnlMark extends javax.swing.JPanel {
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
 
-        if (isAdd) {
-            isAdd = false;
-            btnUpdate.setEnabled(true);
-            btnDelete.setEnabled(true);
-            btnCancel.setVisible(false);
-            txtStudentId.setEnabled(false);
-            txtSubjectID.setEnabled(false);
-            btnChooseStudentId.setEnabled(false);
-            btnChooseSubjectId.setEnabled(false);
+        try {
+            if (isAdd) {
+                isAdd = false;
+                btnUpdate.setEnabled(true);
+                btnDelete.setEnabled(true);
+                btnCancel.setVisible(false);
+                txtStudentId.setEnabled(false);
+                txtSubjectID.setEnabled(false);
+                btnChooseStudentId.setEnabled(false);
+                btnChooseSubjectId.setEnabled(false);
+            }
+            loadDetails(listMark.get(0));
+        } catch (Exception ex) {
         }
-        loadDetails(listMark.get(0));
 }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
@@ -855,53 +859,63 @@ public class pnlMark extends javax.swing.JPanel {
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnChooseSubjectIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseSubjectIdActionPerformed
-
-        dlgChoose dlg = new dlgChoose(frm, txtSubjectID, true, 14);
-        dlg.setTitle("Browse Subject");
-        dlg.setSize(868, 580);
-        dlg.setLocationRelativeTo(null);
-        dlg.setVisible(true);
+        try {
+            dlgChoose dlg = new dlgChoose(frm, txtSubjectID, true, 14);
+            dlg.setTitle("Browse Subject");
+            dlg.setSize(868, 580);
+            dlg.setLocationRelativeTo(null);
+            dlg.setVisible(true);
+        } catch (Exception ex) {
+        }
     }//GEN-LAST:event_btnChooseSubjectIdActionPerformed
 
     private void btnChooseStudentIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseStudentIdActionPerformed
-
-        dlgChoose dlg = new dlgChoose(frm, txtStudentId, true, 12);
-        dlg.setTitle("Browse Student");
-        dlg.setSize(868, 580);
-        dlg.setLocationRelativeTo(null);
-        dlg.setVisible(true);
+        try {
+            dlgChoose dlg = new dlgChoose(frm, txtStudentId, true, 12);
+            dlg.setTitle("Browse Student");
+            dlg.setSize(868, 580);
+            dlg.setLocationRelativeTo(null);
+            dlg.setVisible(true);
+        } catch (Exception ex) {
+        }
     }//GEN-LAST:event_btnChooseStudentIdActionPerformed
 
     private void btnChooseStudentIdSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseStudentIdSearchActionPerformed
-
-        dlgChoose dlg = new dlgChoose(frm, txtStudentIdSearch, true, 12);
-        dlg.setTitle("Browse Student");
-        dlg.setSize(868, 580);
-        dlg.setLocationRelativeTo(null);
-        dlg.setVisible(true);
+        try {
+            dlgChoose dlg = new dlgChoose(frm, txtStudentIdSearch, true, 12);
+            dlg.setTitle("Browse Student");
+            dlg.setSize(868, 580);
+            dlg.setLocationRelativeTo(null);
+            dlg.setVisible(true);
+        } catch (Exception ex) {
+        }
     }//GEN-LAST:event_btnChooseStudentIdSearchActionPerformed
 
     private void btnChooseSubjectIdSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseSubjectIdSearchActionPerformed
-
-        dlgChoose dlg = new dlgChoose(frm, txtSubjectIDSearch, true, 14);
-        dlg.setTitle("Browse Subject");
-        dlg.setSize(868, 580);
-        dlg.setLocationRelativeTo(null);
-        dlg.setVisible(true);
+        try {
+            dlgChoose dlg = new dlgChoose(frm, txtSubjectIDSearch, true, 14);
+            dlg.setTitle("Browse Subject");
+            dlg.setSize(868, 580);
+            dlg.setLocationRelativeTo(null);
+            dlg.setVisible(true);
+        } catch (Exception ex) {
+        }
     }//GEN-LAST:event_btnChooseSubjectIdSearchActionPerformed
     private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
-
-        int index = tableContent.getSelectedRow();
-        if (index != -1) {
-            int id = Integer.parseInt(String.valueOf(tableContent.getValueAt(index, 0)));
-            Mark mark = getMarkById(id);
-            loadDetails(mark);
-            if (isAdd) {
-                isAdd = false;
-                btnUpdate.setEnabled(true);
-                btnDelete.setEnabled(true);
-                btnCancel.setVisible(false);
+        try {
+            int index = tableContent.getSelectedRow();
+            if (index != -1) {
+                int id = Integer.parseInt(String.valueOf(tableContent.getValueAt(index, 0)));
+                Mark mark = getMarkById(id);
+                loadDetails(mark);
+                if (isAdd) {
+                    isAdd = false;
+                    btnUpdate.setEnabled(true);
+                    btnDelete.setEnabled(true);
+                    btnCancel.setVisible(false);
+                }
             }
+        } catch (Exception ex) {
         }
     }//GEN-LAST:event_tableContentMouseReleased
 
@@ -927,17 +941,19 @@ public class pnlMark extends javax.swing.JPanel {
     }//GEN-LAST:event_txtMarkSearchCaretUpdate
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
-
-        if (!filter.isEmpty()) {
-            frm.pnlReport.removeAll();
-            dlgChooseReport report = new dlgChooseReport(frm, this);
-            report.getMarkAllReport(filter);
-            report.setVisible(true);
-            report.setSize(860, 600);
-            frm.pnlReport.add(report);
-            frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
-        } else {
-            JOptionPane.showMessageDialog(this, "No data!", "Report Message", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            if (!filter.isEmpty()) {
+                frm.pnlReport.removeAll();
+                dlgChooseReport report = new dlgChooseReport(frm, this);
+                report.getMarkAllReport(filter);
+                report.setVisible(true);
+                report.setSize(860, 600);
+                frm.pnlReport.add(report);
+                frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+            } else {
+                JOptionPane.showMessageDialog(this, "No data!", "Report Message", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (Exception ex) {
         }
     }//GEN-LAST:event_btnReportActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables

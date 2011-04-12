@@ -576,15 +576,17 @@ public class pnlPermission extends javax.swing.JPanel {
 }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-
-        if (isAdd) {
-            isAdd = false;
-            btnUpdate.setEnabled(true);
-            btnDelete.setEnabled(true);
-            txtId.setVisible(true);
-            btnCancel.setVisible(false);
-        } else {
-            loadDetails(listPermssion.get(0));
+        try {
+            if (isAdd) {
+                isAdd = false;
+                btnUpdate.setEnabled(true);
+                btnDelete.setEnabled(true);
+                txtId.setVisible(true);
+                btnCancel.setVisible(false);
+            } else {
+                loadDetails(listPermssion.get(0));
+            }
+        } catch (Exception ex) {
         }
 }//GEN-LAST:event_btnCancelActionPerformed
 

@@ -26,6 +26,7 @@ public class AccountDAO extends BaseDAO implements IAccountDAO {
     }
 
     public ArrayList<Account> readByAll() {
+        setLastError("");
         ArrayList<Account> list = new ArrayList<Account>();
         con = db.getConnection();
         String sql = "select * from Account order by username";
@@ -49,6 +50,7 @@ public class AccountDAO extends BaseDAO implements IAccountDAO {
     }
 
     public boolean login(Account acc) {
+        setLastError("");
         boolean status = false;
         try {
             con = db.getConnection();
@@ -73,6 +75,7 @@ public class AccountDAO extends BaseDAO implements IAccountDAO {
     }
 
     public boolean changePass(Account acc, String oldPass) {
+        setLastError("");
         boolean status = false;
         try {
             con = db.getConnection();
@@ -100,6 +103,7 @@ public class AccountDAO extends BaseDAO implements IAccountDAO {
     }
 
     public boolean create(Account acc) {
+        setLastError("");
         boolean status = false;
         try {
             con = db.getConnection();
@@ -123,6 +127,7 @@ public class AccountDAO extends BaseDAO implements IAccountDAO {
     }
 
     public boolean update(Account acc) {
+        setLastError("");
         boolean status = false;
         try {
             con = db.getConnection();
@@ -148,6 +153,7 @@ public class AccountDAO extends BaseDAO implements IAccountDAO {
     }
 
     public boolean delete(String username) {
+        setLastError("");
         boolean status = false;
         try {
             con = db.getConnection();

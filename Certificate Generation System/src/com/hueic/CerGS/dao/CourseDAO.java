@@ -25,6 +25,7 @@ public class CourseDAO extends BaseDAO implements ICourseDAO {
     }
 
     public ArrayList<Course> readByAll() {
+        setLastError("");
         ArrayList<Course> result = new ArrayList<Course>();
         con = db.getConnection();
         String sqlcommand = "select * from Course";
@@ -48,6 +49,7 @@ public class CourseDAO extends BaseDAO implements ICourseDAO {
     }
 
     public ArrayList<Course> readCourseRegisterByStudentIdOfPerson(String studentIdOfPerson) {
+        setLastError("");
         ArrayList<Course> result = new ArrayList<Course>();
         con = db.getConnection();
         String sqlcommand = "select * from Course where Id in (select CourseId from Register where PersonId = ?)";
@@ -72,6 +74,7 @@ public class CourseDAO extends BaseDAO implements ICourseDAO {
     }
 
     public Course readById(String id) {
+        setLastError("");
         Course course = null;
         con = db.getConnection();
         String sqlcommand = "select * from Course where Id = ?";
@@ -97,6 +100,7 @@ public class CourseDAO extends BaseDAO implements ICourseDAO {
     }
 
     public Course readByName(String name) {
+        setLastError("");
         Course course = null;
         con = db.getConnection();
         String sqlcommand = "select * from Course where name = ?";
@@ -120,6 +124,7 @@ public class CourseDAO extends BaseDAO implements ICourseDAO {
     }
 
     public boolean create(Course course) {
+        setLastError("");
         boolean status = false;
         con = db.getConnection();
         String sqlcommand = "insert into Course values(?, ?, ?, ?)";
@@ -145,6 +150,7 @@ public class CourseDAO extends BaseDAO implements ICourseDAO {
     }
 
     public boolean update(Course course) {
+        setLastError("");
         boolean status = false;
         con = db.getConnection();
         String sqlcommand = "select * from Course where Id = ?";
@@ -169,6 +175,7 @@ public class CourseDAO extends BaseDAO implements ICourseDAO {
     }
 
     public boolean delete(String id) {
+        setLastError("");
         boolean status = false;
         con = db.getConnection();
         String sqlcommand = "delete from Course where id = ?";

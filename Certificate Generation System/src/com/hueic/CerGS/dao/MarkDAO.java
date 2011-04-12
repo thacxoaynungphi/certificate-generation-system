@@ -29,6 +29,7 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
     }
 
     public ArrayList<Mark> readByAll() {
+        setLastError("");
         ArrayList<Mark> listMark = new ArrayList<Mark>();
         con = db.getConnection();
         String sqlcommand = "select * from Mark";
@@ -55,6 +56,7 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
     }
 
     public Mark readByID(int id) {
+        setLastError("");
         Mark result = new Mark();
         con = db.getConnection();
         String sqlcommand = "select * from Mark where id = ?";
@@ -81,6 +83,7 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
     }
 
     public ArrayList<Mark> readBYCourseID(String courseId) {
+        setLastError("");
         ArrayList<Mark> result = new ArrayList<Mark>();
         con = db.getConnection();
         String sqlcommand = "select m.* from Mark m inner join Register r on m.StudentId = r.StudentId  where r.CourseId = ?";
@@ -109,6 +112,7 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
     }
 
     public ArrayList<Mark> readByStudentID(String studentId) {
+        setLastError("");
         ArrayList<Mark> result = new ArrayList<Mark>();
         con = db.getConnection();
         String sqlcommand = "select * from Mark where StudentId = ? ";
@@ -136,6 +140,7 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
     }
 
     public ArrayList<Mark> readByStudentIDOfPerson(String studentIdOfPerson, String courseId) {
+        setLastError("");
         ArrayList<Mark> result = new ArrayList<Mark>();
         con = db.getConnection();
         Mark mark = null;
@@ -169,6 +174,7 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
     }
 
     public boolean isCompleteCourse(String courseId, String studentId) {
+        setLastError("");
         boolean status = true;
         con = db.getConnection();
         String sqlcommand = "select * from Subject s where s.CourseId = ? and s.Id not in (select m.SubjectId from Mark m where m.StudentId = ?) ";
@@ -191,6 +197,7 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
     }
 
     public float avgMark(String studentId) {
+        setLastError("");
         float dtb = 0.0f;
         con = db.getConnection();
         String sqlcommand = "select avg(Mark) from Mark m where m.StudentId = ? ";
@@ -229,6 +236,7 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
     }
 
     public boolean create(Mark mark) {
+        setLastError("");
         boolean status = false;
         Register register = registerDAO.readByStudentCourseId(mark.getStudentId());
         Subject subject = subjectDAO.readByID(mark.getSubjectId());
@@ -259,6 +267,7 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
     }
 
     public boolean update(Mark mark) {
+        setLastError("");
         boolean status = false;
 
         con = db.getConnection();
@@ -289,6 +298,7 @@ public class MarkDAO extends BaseDAO implements IMarkDAO {
     }
 
     public boolean delete(int id) {
+        setLastError("");
         boolean status = false;
         con = db.getConnection();
         String sqlcommand = "delete from Mark where Id = ?";

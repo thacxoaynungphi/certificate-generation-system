@@ -22,6 +22,7 @@ public class PersonDAO extends BaseDAO implements IPersonDAO {
     }
 
     public ArrayList<Person> readByAll() {
+        setLastError("");
         ArrayList<Person> list = new ArrayList<Person>();
         con = db.getConnection();
         String sql = "select * from Person";
@@ -54,6 +55,7 @@ public class PersonDAO extends BaseDAO implements IPersonDAO {
    
 
     public ArrayList<Person> readByAllNotAcc() {
+        setLastError("");
         ArrayList<Person> list = new ArrayList<Person>();
         con = db.getConnection();
         String sql = "select * from Person where Id not in (select username from Account);";
@@ -83,6 +85,7 @@ public class PersonDAO extends BaseDAO implements IPersonDAO {
     }
 
     public Person readByID(String id) {
+        setLastError("");
         Person person = null;
         try {
             con = db.getConnection();
@@ -110,6 +113,7 @@ public class PersonDAO extends BaseDAO implements IPersonDAO {
     }
 
     public boolean create(Person person) {
+        setLastError("");
         boolean status = false;
         try {
             con = db.getConnection();
@@ -142,6 +146,7 @@ public class PersonDAO extends BaseDAO implements IPersonDAO {
     }
 
     public boolean update(Person person) {
+        setLastError("");
         boolean status = false;
         try {
             con = db.getConnection();
@@ -174,6 +179,7 @@ public class PersonDAO extends BaseDAO implements IPersonDAO {
     }
 
     public boolean delete(String Id) {
+        setLastError("");
         boolean status = false;
         try {
             con = db.getConnection();

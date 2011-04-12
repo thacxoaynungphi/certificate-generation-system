@@ -24,6 +24,7 @@ public class EmployeeDAO extends BaseDAO implements IEmployeeDAO {
     }
 
     public ArrayList<Employee> readByAll() {
+        setLastError("");
         ArrayList<Employee> list = new ArrayList<Employee>();
         con = db.getConnection();
         String sql = "select e.Id,p.FirstName,p.LastName,p.BirthDay,p.Gender,p.Phone,p.Email,p.Address,p.Image,p.Status,e.BeginWork from Employee e inner join Person p on e.Id = p.Id";
@@ -56,6 +57,7 @@ public class EmployeeDAO extends BaseDAO implements IEmployeeDAO {
     }
 
     public Employee readByID(String id) {
+        setLastError("");
         Employee emp = null;
         try {
             con = db.getConnection();
@@ -93,6 +95,7 @@ public class EmployeeDAO extends BaseDAO implements IEmployeeDAO {
     }
 
     public boolean create(Employee emp) {
+        setLastError("");
         boolean status = false;
         Person person = emp;
         PersonDAO personDAO = new PersonDAO();
@@ -122,6 +125,7 @@ public class EmployeeDAO extends BaseDAO implements IEmployeeDAO {
     }
 
     public boolean update(Employee emp) {
+        setLastError("");
         boolean status = false;
         Person person = emp;
         PersonDAO personDAO = new PersonDAO();
@@ -152,6 +156,7 @@ public class EmployeeDAO extends BaseDAO implements IEmployeeDAO {
     }
 
     public boolean delete(String id) {
+        setLastError("");
         boolean status = false;
         try {
             con = db.getConnection();

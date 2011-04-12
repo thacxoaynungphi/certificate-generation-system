@@ -23,6 +23,7 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
     }
 
     public ArrayList<Payment> readByAll() {
+        setLastError("");
         ArrayList<Payment> result = new ArrayList<Payment>();
         con = db.getConnection();
         String sqlcommand = "select * from Payment";
@@ -47,6 +48,7 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
     }
 
     public Payment readByID(int id) {
+        setLastError("");
         con = db.getConnection();
         String sqlcommand = "select * from Payment where id = ?";
         Payment pay = null;
@@ -75,6 +77,7 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
     }
 
     public ArrayList<Payment> readByStudentId(String studentID) {
+        setLastError("");
         ArrayList<Payment> payList = new ArrayList<Payment>();
         Payment pay = null;
         try {
@@ -103,6 +106,7 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
     }
 
     public ArrayList<Payment> readByCourseId(String courseId) {
+        setLastError("");
         ArrayList<Payment> payList = new ArrayList<Payment>();
         Payment pay = null;
         try {
@@ -131,6 +135,7 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
     }
 
     public ArrayList<Payment> readByStudentIdOfPerson(String studentIDOfPerson, String courseId) {
+        setLastError("");
         ArrayList<Payment> payList = new ArrayList<Payment>();
         Payment pay = null;
         try {
@@ -163,6 +168,7 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
     }
 
     public float getCurrentTotalDiposit(Payment pay) {
+        setLastError("");
         float money = 0.0f;
         con = db.getConnection();
         String sqlcommand = "select sum(Money) from Payment where StudentId = ? and Payday <= ?";
@@ -183,6 +189,7 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
     }
 
     public float getTotalDiposit(String studentCourseId) {
+        setLastError("");
         float money = 0.0f;
         con = db.getConnection();
         String sqlcommand = "select sum([Money]) from Payment where StudentId = ?";
@@ -202,6 +209,7 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
     }
 
     public boolean create(Payment pay) {
+        setLastError("");
         boolean status = false;
         con = db.getConnection();
         String sqlcommand = "insert into Payment(StudentId,Money,Payday) values(?, ?, ?)";
@@ -226,6 +234,7 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
     }
 
     public boolean update(Payment pay) {
+        setLastError("");
         boolean status = false;
         con = db.getConnection();
         String sqlcommand = "select * from Payment where id = ?";
@@ -254,6 +263,7 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
     }
 
     public boolean delete(int id) {
+        setLastError("");
         boolean status = false;
         con = db.getConnection();
         String sqlcommand = "delete from Payment where id = ?";

@@ -563,19 +563,20 @@ public class pnlCourse extends javax.swing.JPanel {
     }//GEN-LAST:event_filterTextCaretUpdate
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
-
-        if (filter.size() != 0) {
-            frm.pnlReport.removeAll();
-            dlgChooseReport report = new dlgChooseReport(frm, this);
-            report.getCourseReport(filter);
-            report.setVisible(true);
-            report.setSize(860, 600);
-            frm.pnlReport.add(report);
-            frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
-        } else {
-            JOptionPane.showMessageDialog(this, "No data!", "Report Message", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            if (filter.size() != 0) {
+                frm.pnlReport.removeAll();
+                dlgChooseReport report = new dlgChooseReport(frm, this);
+                report.getCourseReport(filter);
+                report.setVisible(true);
+                report.setSize(860, 600);
+                frm.pnlReport.add(report);
+                frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+            } else {
+                JOptionPane.showMessageDialog(this, "No data!", "Report Message", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (Exception ex) {
         }
-
     }//GEN-LAST:event_btnReportActionPerformed
 
     private void txtNameSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtNameSearchCaretUpdate
@@ -595,34 +596,39 @@ public class pnlCourse extends javax.swing.JPanel {
 }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        try {
+            if (isAdd) {
+                isAdd = false;
+                txtID.setEnabled(false);
+                btnUpdate.setEnabled(true);
+                btnDelete.setEnabled(true);
+                btnCancel.setVisible(false);
 
-        if (isAdd) {
-            isAdd = false;
-            txtID.setEnabled(false);
-            btnUpdate.setEnabled(true);
-            btnDelete.setEnabled(true);
-            btnCancel.setVisible(false);
-
-            loadDetails(listCourses.get(0));
+                loadDetails(listCourses.get(0));
+            }
+        } catch (Exception ex) {
         }
 }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
 
-        if (txtID.getText().length() != 0) {
-            String id = txtID.getText();
-            if (courseDao.delete(id)) {
-                listCourses.remove(find(id));
-                loadData();
-                if (!listCourses.isEmpty()) {
-                    loadDetails(listCourses.get(0));
+        try {
+            if (txtID.getText().length() != 0) {
+                String id = txtID.getText();
+                if (courseDao.delete(id)) {
+                    listCourses.remove(find(id));
+                    loadData();
+                    if (!listCourses.isEmpty()) {
+                        loadDetails(listCourses.get(0));
+                    }
+                    JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Course Delete", JOptionPane.INFORMATION_MESSAGE, null);
+                } else {
+                    JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Course Delete", JOptionPane.ERROR_MESSAGE, null);
                 }
-                JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Course Delete", JOptionPane.INFORMATION_MESSAGE, null);
             } else {
-                JOptionPane.showMessageDialog(this, courseDao.getLastError(), "Course Delete", JOptionPane.ERROR_MESSAGE, null);
+                JOptionPane.showMessageDialog(this, "Enter full information, please", "Course Delete", JOptionPane.ERROR_MESSAGE);
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Enter full information, please", "Course Delete", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception ex) {
         }
 }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -722,15 +728,18 @@ public class pnlCourse extends javax.swing.JPanel {
 
     private void tableContentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContentMouseReleased
 
-        int index = tableContent.getSelectedRow();
-        if (index != -1) {
-            loadDetails(filter.get(index));
-            if (isAdd) {
-                isAdd = false;
-                btnUpdate.setEnabled(true);
-                btnDelete.setEnabled(true);
-                btnCancel.setVisible(false);
+        try {
+            int index = tableContent.getSelectedRow();
+            if (index != -1) {
+                loadDetails(filter.get(index));
+                if (isAdd) {
+                    isAdd = false;
+                    btnUpdate.setEnabled(true);
+                    btnDelete.setEnabled(true);
+                    btnCancel.setVisible(false);
+                }
             }
+        } catch (Exception ex) {
         }
     }//GEN-LAST:event_tableContentMouseReleased
     // Variables declaration - do not modify//GEN-BEGIN:variables

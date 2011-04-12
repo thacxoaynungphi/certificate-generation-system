@@ -319,38 +319,43 @@ public class pnlViewMark extends javax.swing.JPanel {
 
     private void cbxCourseIDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxCourseIDItemStateChanged
         // TODO add your handling code here:
-        if (cbxCourseID.getItemCount() - 1 == listCourse.size()) {
-            String coursid = cbxCourseID.getSelectedItem().toString();
-            if (coursid.equals("-- All --")) {
-                if (isStudent == false) {
-                    listMarks = markDAO.readByAll();
-                    loadData(listMarks);
-                    listRegister = registerDao.readByAll();
-                    loadDataCBXStudent();
+        try {
+            if (cbxCourseID.getItemCount() - 1 == listCourse.size()) {
+                String coursid = cbxCourseID.getSelectedItem().toString();
+                if (coursid.equals("-- All --")) {
+                    if (isStudent == false) {
+                        listMarks = markDAO.readByAll();
+                        loadData(listMarks);
+                        listRegister = registerDao.readByAll();
+                        loadDataCBXStudent();
+                    } else {
+                        listMarks = markDAO.readByStudentIDOfPerson(frm.accCur.getUsername(), "");
+                        loadData(listMarks);
+                    }
                 } else {
-                    listMarks = markDAO.readByStudentIDOfPerson(frm.accCur.getUsername(), "");
-                    loadData(listMarks);
-                }
-            } else {
-                if (isStudent == false) {
-                    listMarks = markDAO.readBYCourseID(coursid);
-                    loadData(listMarks);
-                    listRegister = registerDao.readByCourseId(coursid);
-                    loadDataCBXStudent();
-                } else {
-                    listMarks = markDAO.readByStudentIDOfPerson(frm.accCur.getUsername(), coursid);
-                    loadData(listMarks);
+                    if (isStudent == false) {
+                        listMarks = markDAO.readBYCourseID(coursid);
+                        loadData(listMarks);
+                        listRegister = registerDao.readByCourseId(coursid);
+                        loadDataCBXStudent();
+                    } else {
+                        listMarks = markDAO.readByStudentIDOfPerson(frm.accCur.getUsername(), coursid);
+                        loadData(listMarks);
+                    }
                 }
             }
+        } catch (Exception ex) {
         }
 }//GEN-LAST:event_cbxCourseIDItemStateChanged
 
     private void cbxStudentIDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxStudentIDItemStateChanged
-
-        if (cbxStudentID.getItemCount() - 1 == listRegister.size()) {
-            String courseid = cbxCourseID.getSelectedItem().toString();
-            String studentid = cbxStudentID.getSelectedItem().toString();
-            load(listMarks, courseid, studentid);
+        try {
+            if (cbxStudentID.getItemCount() - 1 == listRegister.size()) {
+                String courseid = cbxCourseID.getSelectedItem().toString();
+                String studentid = cbxStudentID.getSelectedItem().toString();
+                load(listMarks, courseid, studentid);
+            }
+        } catch (Exception ex) {
         }
 }//GEN-LAST:event_cbxStudentIDItemStateChanged
 
@@ -363,32 +368,34 @@ public class pnlViewMark extends javax.swing.JPanel {
         loadFiter(filterText.getText(), listMarks);
     }//GEN-LAST:event_filterTextCaretUpdate
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
-
-        PermissionDAO perDao = new PermissionDAO();
-        if (perDao.readByID(frm.accCur.getPermission()).getName().equals("Student")) {
-            if (!cbxCourseID.getSelectedItem().toString().equals("-- All --")) {
-                frm.pnlReport.removeAll();
-                dlgChooseReport report = new dlgChooseReport(frm, frm.pnlViewMarkTab);
-                report.getStudentMarkReport(registerDao.readById(this.frm.accCur.getUsername(), cbxCourseID.getSelectedItem().toString()).getStudentId());
-                report.setVisible(true);
-                report.setSize(860, 600);
-                frm.pnlReport.add(report);
-                frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+        try {
+            PermissionDAO perDao = new PermissionDAO();
+            if (perDao.readByID(frm.accCur.getPermission()).getName().equals("Student")) {
+                if (!cbxCourseID.getSelectedItem().toString().equals("-- All --")) {
+                    frm.pnlReport.removeAll();
+                    dlgChooseReport report = new dlgChooseReport(frm, frm.pnlViewMarkTab);
+                    report.getStudentMarkReport(registerDao.readById(this.frm.accCur.getUsername(), cbxCourseID.getSelectedItem().toString()).getStudentId());
+                    report.setVisible(true);
+                    report.setSize(860, 600);
+                    frm.pnlReport.add(report);
+                    frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+                } else {
+                    JOptionPane.showMessageDialog(this, "You are choose course!", "Report mark for student", JOptionPane.INFORMATION_MESSAGE);
+                }
             } else {
-                JOptionPane.showMessageDialog(this, "You are choose course!", "Report mark for student", JOptionPane.INFORMATION_MESSAGE);
+                if (!this.cbxStudentID.getSelectedItem().toString().equals("------")) {
+                    frm.pnlReport.removeAll();
+                    dlgChooseReport report = new dlgChooseReport(frm, frm.pnlViewMarkTab);
+                    report.getStudentMarkReport(this.cbxStudentID.getSelectedItem().toString());
+                    report.setVisible(true);
+                    report.setSize(860, 600);
+                    frm.pnlReport.add(report);
+                    frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
+                } else {
+                    JOptionPane.showMessageDialog(this, "You are choose student!", "Report mark for student", JOptionPane.INFORMATION_MESSAGE);
+                }
             }
-        } else {
-            if (!this.cbxStudentID.getSelectedItem().toString().equals("------")) {
-                frm.pnlReport.removeAll();
-                dlgChooseReport report = new dlgChooseReport(frm, frm.pnlViewMarkTab);
-                report.getStudentMarkReport(this.cbxStudentID.getSelectedItem().toString());
-                report.setVisible(true);
-                report.setSize(860, 600);
-                frm.pnlReport.add(report);
-                frm.tpnBusiness.setSelectedComponent(frm.pnlReport);
-            } else {
-                JOptionPane.showMessageDialog(this, "You are choose student!", "Report mark for student", JOptionPane.INFORMATION_MESSAGE);
-            }
+        } catch (Exception ex) {
         }
     }//GEN-LAST:event_btnReportActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
